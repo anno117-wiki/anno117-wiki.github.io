@@ -1,0 +1,17 @@
+{
+  "name": "anno117-calculator-jp",
+  "version": "1.0.0",
+  "description": "Anno 117 Production Calculator - Japanese Edition",
+  "scripts": {
+    "dev": "bun run devserver.ts --dev",
+    "build": "bun run devserver.ts --build"
+  },
+  "devDependencies": {
+    "@types/bun": "latest",
+    "@types/node": "^25.5.0"
+  },
+  "private": true,
+  "peerDependencies": {
+    "typescript": "^5"
+  }
+}

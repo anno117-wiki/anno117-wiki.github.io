@@ -1,0 +1,23 @@
+{
+  "リベルトゥス": "libertus",
+  "プレブス": "plebeian",
+  "エクィテス": "equites",
+  "パトリキ": "patrician",
+  "ウェーダー": "wader",
+  "スミス": "smith",
+  "アルダー": "alderman",
+  "メルカトル": "mercators",
+  "アルビオン": "albion",
+  "ラティウム": "latium",
+  "水道橋": "Aqueduct_Network",
+  "農業水路": "Field_Irrigation",
+  "農園給水": "Aqua_Arborica",
+  "水圧掘削": "Hushing",
+  "建築コスト": "Building_Cost",
+  "維持費": "Maintenance",
+  "石炭消費": "Coal",
+  "生産チェーン": "Dependency_Graph",
+  "生産品を選択": "Select_a_Good",
+  "水道橋の接続": "Aqueduct_Setting",
+  ""
+}
