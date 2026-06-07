@@ -95,9 +95,15 @@ anno_DB2/
   - E2Eテストスイート作成（商品一覧・言語切り替え・地域切り替え・生産チェーン）
   - 5ブラウザ対応（Chrome, Firefox, Safari, Mobile Chrome, Mobile Safari）
   - テストスクリプト追加（test, test:ui, test:headed, test:report）
+  - テスト成功率：80% (20/25テスト)
 
 ### 🚧 進行中
-- なし
+- **フェーズ3：Vue 3段階的移行（2026-06-07開始）**
+  - Vue 3.5.35 + Vite 8.0.16導入完了
+  - 第1段階：最初のコンポーネント化
+    - ✅ LanguageToggle.vue（言語切り替えボタン）
+    - ⬜ GoodsList.vue（商品一覧カード）
+    - ⬜ SettingsPanel.vue（設定パネル）
 
 ### 📋 今後の予定
 詳細は `@docs/implementation-plan.md` を参照
@@ -105,7 +111,7 @@ anno_DB2/
 **優先順位：**
 1. ✅ フェーズ1：言語切り替え基盤構築（完了）
 2. ✅ フェーズ2：テスト環境構築（完了）
-3. ⬜ フェーズ3：Vue 3段階的移行
+3. 🚧 フェーズ3：Vue 3段階的移行（進行中）
 4. ⬜ フェーズ4：独自UI設計
 5. ⬜ フェーズ5：Wikiサイト連携
 6. ⬜ フェーズ6：ビルド・Git公開
