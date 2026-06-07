@@ -279,11 +279,18 @@ class ProductionChainView {
             });
         }
         this.recommendButton?.addEventListener('click', () => {
+            console.debug('[Auto Ratio] Button clicked');
+            console.debug('[Auto Ratio] Current rate before:', this.currentRate);
+
             const recommended = this.calculator.findRecommendedRate(recipe);
+            console.debug('[Auto Ratio] Recommended rate:', recommended);
+
             this.currentRate = recommended;
             if (this.targetInput) {
                 this.targetInput.value = recommended.toFixed(2);
+                console.debug('[Auto Ratio] Input field updated to:', this.targetInput.value);
             }
+
             this.updateCalculations(recipe);
         });
 
@@ -339,7 +346,7 @@ class ProductionChainView {
                         <div class="production-rate-inline">
                             <label for="target-rate">Output / min</label>
                             <input id="target-rate" type="number" min="0" step="1" value="${this.currentRate ?? 1}" />
-                            <button id="recommend-ratio-btn" type="button" class="recommend-button">Auto Ratio</button>
+                            <button id="recommend-ratio-btn" type="button" class="recommend-button" title="整数建物数になる最適レートを自動設定します">Auto Ratio</button>
                         </div>
                         ${modifierToolbar}
                     </div>
@@ -565,8 +572,12 @@ class ProductionChainView {
     updateCalculations(recipe: Goods): void {
         if (!recipe) return;
         const rate = typeof this.currentRate === 'number' ? this.currentRate : 1;
+        console.debug('[updateCalculations] Using rate:', rate, 'for good:', recipe.id);
+
         const workingRecipe = this.calculator.cloneRecipe(recipe);
         const allBuildings = this.calculator.collectAllBuildings(workingRecipe, rate, {});
+        console.debug('[updateCalculations] Buildings calculated:', allBuildings);
+
         this.updateBuildingCounts(allBuildings);
         this.updateCostSummary(allBuildings);
         this.graphRenderer.render(recipe, allBuildings);
