@@ -117,6 +117,9 @@ test.describe('言語切り替え機能', () => {
     await page.goto('/?lang=ja');
     await page.waitForSelector('button#language-toggle-btn');
 
+    // Vueコンポーネントの初期化を待つ
+    await page.waitForTimeout(300);
+
     langButton = await page.locator('button#language-toggle-btn').textContent();
     expect(langButton).toContain('日本語');
   });
