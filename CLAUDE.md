@@ -111,9 +111,10 @@ anno_DB2/
   - Vue 3.5.35 + Vite 8.0.16導入完了
   - 第1段階：独立したUIコンポーネント化
     - ✅ LanguageToggle.vue（言語切り替えボタン）
-    - ✅ GoodsList.vue（商品一覧カード・検索・選択）
+    - ✅ GoodsList.vue（商品一覧カード・検索・選択）**動作確認完了 11/11テスト成功**
     - ⬜ SettingsPanel.vue（設定パネル）
   - 機能フラグによる段階的移行（新旧共存）
+  - テスト成功率: 100% (11/11) - 本番環境投入可能
 
 ### 📋 今後の予定
 詳細は `@docs/implementation-plan.md` を参照
