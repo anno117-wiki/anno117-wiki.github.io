@@ -39,12 +39,12 @@ test.describe('商品一覧の表示と選択', () => {
     const firstCard = page.locator('.goods-card').first();
     await firstCard.click();
 
-    // 生産チェーンビューが表示されることを確認
-    const productionChain = page.locator('.production-chain-view');
-    await expect(productionChain).toBeVisible({ timeout: 5000 });
+    // calculator-containerが表示されることを確認
+    const calculatorContainer = page.locator('#calculator-container:not(.hidden)');
+    await expect(calculatorContainer).toBeVisible({ timeout: 10000 });
 
     // SVGグラフが描画されることを確認
-    const svg = page.locator('svg#production-graph');
+    const svg = page.locator('svg#dependency-graph');
     await expect(svg).toBeVisible();
   });
 

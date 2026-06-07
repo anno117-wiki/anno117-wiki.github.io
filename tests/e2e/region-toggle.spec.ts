@@ -12,7 +12,9 @@ test.describe('地域切り替え機能', () => {
     // 商品を選択して生産チェーンを表示
     const firstCard = page.locator('.goods-card').first();
     await firstCard.click();
-    await page.waitForSelector('.production-chain-view', { timeout: 5000 });
+
+    // calculator-containerが表示されるまで待機
+    await page.waitForSelector('#calculator-container:not(.hidden)', { timeout: 10000 });
   });
 
   test('地域切り替えボタンが表示される', async ({ page }) => {
@@ -26,7 +28,7 @@ test.describe('地域切り替え機能', () => {
 
   test('地域を切り替えると生産チェーンが更新される', async ({ page }) => {
     // 初期状態のグラフを取得
-    const initialGraph = await page.locator('svg#production-graph').innerHTML();
+    const initialGraph = await page.locator('svg#dependency-graph').innerHTML();
 
     // 地域切り替えボタンを探す（例：Albion）
     const regionButton = page.locator('button, .toggle-button').filter({ hasText: /Albion/i }).first();
@@ -38,7 +40,7 @@ test.describe('地域切り替え機能', () => {
       await page.waitForTimeout(1000);
 
       // グラフの内容が変更されたことを確認（完全一致しないことを確認）
-      const updatedGraph = await page.locator('svg#production-graph').innerHTML();
+      const updatedGraph = await page.locator('svg#dependency-graph').innerHTML();
 
       // 地域によって生産チェーンが変わる場合は内容が異なるはず
       // ただし、同じ商品が両地域で利用可能な場合は同じになる可能性もある
