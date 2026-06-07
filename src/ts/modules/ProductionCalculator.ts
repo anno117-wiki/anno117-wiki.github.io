@@ -195,6 +195,7 @@ export class ProductionCalculator {
         let bestCandidateRate = minRateForMainBuilding;
         let bestCandidateError = Number.POSITIVE_INFINITY;
         let bestCandidateTotalError = Number.POSITIVE_INFINITY;
+        let firstIntegerRate: number | null = null;
 
         const minStep = Math.max(1, Math.ceil(minRateForMainBuilding / RECOMMENDED_RATE_STEP));
         const maxSteps = Math.round(MAX_RECOMMENDED_RATE / RECOMMENDED_RATE_STEP);
@@ -202,8 +203,10 @@ export class ProductionCalculator {
             const candidateRate = this.roundRate(step * RECOMMENDED_RATE_STEP);
             const { maxError, totalError } = this.measureBuildingError(productionData, candidateRate);
 
-            if (maxError <= ACCEPTABLE_BUILDING_ERROR) {
-                return candidateRate;
+            // 燃料建物を除外した誤差をチェック（Auto Ratio用）
+            const errorExcludingFuel = this.measureBuildingErrorExcludingFuel(productionData, candidateRate);
+            if (errorExcludingFuel <= 0.01 && firstIntegerRate === null) {
+                firstIntegerRate = candidateRate;
             }
 
             const isBetterCandidate =
@@ -221,6 +224,13 @@ export class ProductionCalculator {
                 bestCandidateTotalError = totalError;
             }
         }
+
+        // 燃料建物を除くすべての建物が整数のレートが見つかればそれを返す
+        if (firstIntegerRate !== null) {
+            console.debug(`[ProductionCalculator] Found perfect integer rate (excluding fuel): ${firstIntegerRate}`);
+            return firstIntegerRate;
+        }
+
         console.debug(`[ProductionCalculator] No perfect rate found. Best candidate: ${bestCandidateRate} with max error ${bestCandidateError.toFixed(4)} and total error ${bestCandidateTotalError.toFixed(4)}`);
         return this.roundRate(bestCandidateRate);
     }
@@ -288,6 +298,23 @@ export class ProductionCalculator {
         }
 
         return { maxError, totalError };
+    }
+
+    /** 燃料建物を除外した誤差測定（Auto Ratio用） */
+    private measureBuildingErrorExcludingFuel(productionData: Goods, rate: number): number {
+        const allBuildings = this.collectAllBuildings(this.cloneRecipe(productionData), rate, {});
+        let maxError = 0;
+
+        for (const [key, value] of Object.entries(allBuildings)) {
+            if (key === '_metadata') continue;
+            const num = value as number;
+            const error = Math.abs(num - Math.round(num));
+            if (error > maxError) {
+                maxError = error;
+            }
+        }
+
+        return maxError;
     }
 
     calculateTotals(allBuildings: BuildingsMap): { buildingCost: Record<string, number>; maintenance: Record<string, number> } {

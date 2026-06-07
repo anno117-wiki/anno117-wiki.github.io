@@ -338,7 +338,7 @@ class ProductionChainView {
                     <div class="production-command-deck">
                         <div class="production-rate-inline">
                             <label for="target-rate">Output / min</label>
-                            <input id="target-rate" type="number" min="0" step="0.5" value="${this.currentRate ?? 1}" />
+                            <input id="target-rate" type="number" min="0" step="1" value="${this.currentRate ?? 1}" />
                             <button id="recommend-ratio-btn" type="button" class="recommend-button">Auto Ratio</button>
                         </div>
                         ${modifierToolbar}
@@ -601,7 +601,8 @@ class ProductionChainView {
             : 0;
 
         if (charcoalFuelBuildings > 0) {
-            maintenanceElements.push(this.buildCostElement('charcoal', `${charcoalFuelBuildings.toFixed(2)}x`, 'Coal'));
+            const charcoalLabel = this.i18n.t('goods.charcoal');
+            maintenanceElements.push(this.buildCostElement('charcoal', `${charcoalFuelBuildings.toFixed(2)}x`, charcoalLabel !== 'charcoal' ? charcoalLabel : 'Coal'));
         }
 
         this.maintenanceElement.replaceChildren(...maintenanceElements);
@@ -680,7 +681,10 @@ class ProductionChainView {
             return [none];
         }
         return entries.map(([resource, amount]) => {
-            const label = resource.replace(/_/g, ' ').replace(/\b\w/g, c => c.toUpperCase());
+            // I18nManagerから翻訳を取得、見つからない場合はTitle Case形式にフォールバック
+            const translatedLabel = this.i18n.t(`goods.${resource}`);
+            const fallbackLabel = resource.replace(/_/g, ' ').replace(/\b\w/g, c => c.toUpperCase());
+            const label = (translatedLabel !== resource) ? translatedLabel : fallbackLabel;
             return this.buildCostElement(resource, String(amount), label);
         });
     }

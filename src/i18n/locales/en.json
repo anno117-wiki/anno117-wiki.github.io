@@ -113,7 +113,17 @@
     "wigs": "Wigs",
     "wine": "Wine",
     "wood": "Wood",
-    "writing_tablets": "Writing Tablets"
+    "writing_tablets": "Writing Tablets",
+    "money": "Money",
+    "tier": "Tier",
+    "libertus": "Libertus",
+    "plebeian": "Plebeian",
+    "equites": "Equites",
+    "patrician": "Patrician",
+    "wader": "Wader",
+    "smith": "Smith",
+    "alderman": "Alderman",
+    "mercators": "Mercators"
   },
   "ui": {
     "selectGood": "Select a Good",
@@ -134,6 +144,9 @@
     "noSavedConfigurations": "No saved configurations yet.",
     "noActiveModifiers": "No active modifier toggles.",
     "close": "Close",
+    "productivity": "Productivity",
+    "required": "Required",
+    "constructionCost": "Construction Cost",
     "aboutTitle": "About Anno 117 Production Calculator",
     "aboutDescription": "This free Anno 117 production calculator helps you plan and optimize production chains. Calculate building requirements, view production times, and visualize dependency graphs for all goods in Anno 117: Pax Romana. Perfect for planning your empire's economy and maximizing efficiency.",
     "features": "Features",

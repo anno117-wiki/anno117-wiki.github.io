@@ -455,7 +455,8 @@ export class GraphRenderer {
         this.svgElement.addEventListener('contextmenu', (e) => e.preventDefault());
 
         this.svgElement.addEventListener('mousedown', (e: MouseEvent) => {
-            if (e.button === 2) {
+            // アイコン（image要素）のクリックはドラッグ開始しない
+            if (e.button === 0 && (e.target as HTMLElement).tagName !== 'image') {
                 isDragging = true;
                 startX = e.clientX;
                 startY = e.clientY;
@@ -476,7 +477,7 @@ export class GraphRenderer {
         });
 
         this.svgElement.addEventListener('mouseup', (e: MouseEvent) => {
-            if (e.button === 2) {
+            if (e.button === 0) {
                 isDragging = false;
                 this.svgElement!.style.cursor = 'default';
             }
@@ -671,22 +672,22 @@ export class GraphRenderer {
             const productivity = currentTarget.productionData.productivity;
             const productivityInfo = document.createElement('div');
             productivityInfo.className = 'metadata-row';
-            productivityInfo.innerHTML = `<strong>Productivity:</strong> ${((productivity * 100) * Math.min(buildings, 1)).toFixed(0)}%`;
+            productivityInfo.innerHTML = `<strong>${this.i18n.t('ui.productivity')}:</strong> ${((productivity * 100) * Math.min(buildings, 1)).toFixed(0)}%`;
             content.appendChild(productivityInfo);
         }
 
-        countInfo.innerHTML = `<strong>Required:</strong> ${buildings ? buildings.toFixed(2) : '0.00'}x`;
+        countInfo.innerHTML = `<strong>${this.i18n.t('ui.required')}:</strong> ${buildings ? buildings.toFixed(2) : '0.00'}x`;
         content.appendChild(countInfo);
 
         // Helper to render cost list
-        const renderCostList = (title: string, costs?: Record<string, number>) => {
+        const renderCostList = (titleKey: string, costs?: Record<string, number>) => {
             if (!costs || Object.keys(costs).length === 0) return null;
             const validCosts = Object.entries(costs).filter(([, amount]) => amount > 0);
             if (validCosts.length === 0) return null;
 
             const container = document.createElement('div');
             container.className = 'metadata-section';
-            container.innerHTML = `<h5>${title}</h5>`;
+            container.innerHTML = `<h5>${this.i18n.t(titleKey)}</h5>`;
 
             const list = document.createElement('div');
             list.className = 'cost-list';
@@ -694,7 +695,8 @@ export class GraphRenderer {
             validCosts.forEach(([resource, amount]) => {
                 const item = document.createElement('div');
                 item.className = 'cost-resource';
-                const label = resource.replace(/_/g, ' ').replace(/\b\w/g, c => c.toUpperCase());
+                const translatedName = this.i18n.t(`goods.${resource}`);
+                const label = translatedName !== resource ? translatedName : resource.replace(/_/g, ' ').replace(/\b\w/g, c => c.toUpperCase());
                 item.innerHTML = `<img src="./assets/icons/${resource}.png" alt="${label}" class="cost-icon-small" onerror="this.style.display='none';"/><span>${amount}</span>`;
 
                 item.addEventListener('mouseenter', () => {
@@ -719,10 +721,10 @@ export class GraphRenderer {
         };
 
         // Costs
-        const buildingCostEl = renderCostList('Construction Cost', buildingCost);
+        const buildingCostEl = renderCostList('ui.constructionCost', buildingCost);
         if (buildingCostEl) content.appendChild(buildingCostEl);
 
-        const maintenanceCostEl = renderCostList('Maintenance', maintenanceCost);
+        const maintenanceCostEl = renderCostList('ui.maintenance', maintenanceCost);
         if (maintenanceCostEl) content.appendChild(maintenanceCostEl);
 
         infoContainer.appendChild(content);
