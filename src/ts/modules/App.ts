@@ -386,4 +386,33 @@ export class App {
         const settings = this.settingsManager.getConfig();
         return Item.getActiveGuidsForChain(settings, this.currentGood.id);
     }
+
+    // -----------------------------------------------------------------------
+    // Public API for Vue components
+    // -----------------------------------------------------------------------
+
+    /**
+     * Vue GoodsListコンポーネント用：現在の商品リストを取得
+     */
+    public getFilteredGoods(): RecipeListItem[] {
+        return this.allGoods.filter((good) => {
+            if (good.startOfChain) return true;
+            if (!good.regions?.length) return false;
+            return good.regions.includes(this.currentRegion);
+        });
+    }
+
+    /**
+     * Vue GoodsListコンポーネント用：商品選択ハンドラー
+     */
+    public selectGood(good: RecipeListItem): void {
+        this.handleGoodSelection(good);
+    }
+
+    /**
+     * Vue GoodsListコンポーネント用：selectionContainerを取得
+     */
+    public getSelectionContainer(): HTMLElement {
+        return this.selectionContainer;
+    }
 }

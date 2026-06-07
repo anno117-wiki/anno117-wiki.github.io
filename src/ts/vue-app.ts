@@ -5,6 +5,8 @@
 
 import { createApp } from 'vue';
 import LanguageToggle from '../components/LanguageToggle.vue';
+import GoodsList from '../components/GoodsList.vue';
+import type { RecipeListItem } from './types/RecipeList';
 
 /**
  * Vueコンポーネントを初期化
@@ -31,4 +33,29 @@ export function initVueComponents() {
       console.log('[Vue] LanguageToggle component mounted');
     }
   }
+}
+
+/**
+ * 商品一覧をVueコンポーネントとして初期化
+ */
+export function initGoodsList(
+  container: HTMLElement,
+  goods: RecipeListItem[],
+  onSelect: (good: RecipeListItem) => void
+) {
+  // コンテナをクリア
+  container.innerHTML = '';
+  container.classList.remove('hidden');
+
+  // Vueアプリを作成してマウント
+  const app = createApp(GoodsList, {
+    goods,
+    onSelect,
+  });
+
+  app.mount(container);
+
+  console.log('[Vue] GoodsList component mounted');
+
+  return app;
 }
