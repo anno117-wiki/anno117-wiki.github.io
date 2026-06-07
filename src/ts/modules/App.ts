@@ -157,7 +157,7 @@ export class App {
         this.settingsManager.onChange(() => this.handleSettingsChange());
         this.i18nManager.onChange(() => this.handleLanguageChange());
         this.bindRegionToggle();
-        this.bindLanguageToggle();
+        // this.bindLanguageToggle(); // Vueコンポーネントで処理
         await this.loadGoodsList();
         this.restoreFromUrl();
     }

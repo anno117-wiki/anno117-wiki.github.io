@@ -4,7 +4,10 @@
   "description": "Anno 117 Production Calculator - Japanese Edition",
   "scripts": {
     "dev": "bun run devserver.ts --dev",
+    "dev:vite": "vite",
     "build": "bun run devserver.ts --build",
+    "build:vite": "vite build",
+    "preview": "vite preview",
     "test": "playwright test",
     "test:ui": "playwright test --ui",
     "test:headed": "playwright test --headed",
@@ -18,5 +21,10 @@
   "private": true,
   "peerDependencies": {
     "typescript": "^5"
+  },
+  "dependencies": {
+    "@vitejs/plugin-vue": "^6.0.7",
+    "vite": "^8.0.16",
+    "vue": "^3.5.35"
   }
 }
