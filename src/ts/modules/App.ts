@@ -2,11 +2,13 @@ import { GoodsRepository } from './GoodRepository';
 import { SettingsManager } from './SettingsManager';
 import { ProductionCalculator } from './ProductionCalculator';
 import { GraphRenderer } from './GraphRenderer';
-import { GoodsListView, ProductionChainView } from './ProductionChainView';
+import { ProductionChainView } from './ProductionChainView';
 import { Item } from './modifier/Item';
 import { I18nManager, type Locale } from '../../i18n/I18nManager';
+import { TreeApp } from '../tree-app';
 import type { RecipeListItem } from '../types/RecipeList';
 import type { Goods } from '../types/Goods';
+import { initSettingsPanel } from '../vue-app';
 
 // ---------------------------------------------------------------------------
 // ParameterParser — owns all URL state serialisation / deserialisation
@@ -108,8 +110,8 @@ export class App {
     private readonly i18nManager: I18nManager;
     private readonly selectionContainer: HTMLElement;
     private readonly calculatorContainer: HTMLElement;
-    private readonly goodsListView: GoodsListView;
     private readonly productionView: ProductionChainView;
+    private readonly treeApp: TreeApp;
 
     private currentGood: RecipeListItem | null = null;
     private currentRegion = 'Roman';
@@ -123,11 +125,6 @@ export class App {
         this.selectionContainer  = document.getElementById('selection-container')  as HTMLElement;
         this.calculatorContainer = document.getElementById('calculator-container') as HTMLElement;
 
-        this.goodsListView = new GoodsListView({
-            container: this.selectionContainer,
-            onSelect: (good) => this.handleGoodSelection(good),
-        });
-
         this.productionView = new ProductionChainView({
             container: this.calculatorContainer,
             calculator: ProductionCalculator.getInstance(),
@@ -135,6 +132,21 @@ export class App {
         });
 
         this.productionView.setBackHandler(() => this.showSelectionView());
+
+        // ツリービューを初期化
+        // 既存のコンテンツをクリア
+        this.selectionContainer.innerHTML = '';
+
+        this.treeApp = new TreeApp({
+            container: this.selectionContainer,
+            goods: [],
+            selectedId: undefined,
+            onSelect: (good) => this.handleGoodSelection(good),
+        });
+        // mount()はloadGoodsList()完了後に呼び出す
+
+        // SettingsPanelをVue化
+        initSettingsPanel();
     }
 
     public async initialize(): Promise<void> {
@@ -157,39 +169,13 @@ export class App {
         this.settingsManager.onChange(() => this.handleSettingsChange());
         this.i18nManager.onChange(() => this.handleLanguageChange());
         this.bindRegionToggle();
-        // this.bindLanguageToggle(); // Vueコンポーネントで処理
         await this.loadGoodsList();
         this.restoreFromUrl();
     }
 
     // -----------------------------------------------------------------------
-    // Language toggle
+    // Language change handler
     // -----------------------------------------------------------------------
-
-    private bindLanguageToggle(): void {
-        const toggleBtn = document.getElementById('language-toggle-btn');
-        if (!toggleBtn) return;
-
-        const updateButtonText = (locale: Locale) => {
-            toggleBtn.textContent = locale === 'en' ? 'EN' : '日本語';
-        };
-
-        const setLanguage = async (locale: Locale) => {
-            if (this.i18nManager.getLocale() === locale) return;
-            await this.i18nManager.setLocale(locale);
-            this.settingsManager.setSettingValue('language', locale);
-            updateButtonText(locale);
-            this.pushUrl();
-        };
-
-        toggleBtn.addEventListener('click', async () => {
-            const currentLocale = this.i18nManager.getLocale();
-            const nextLocale: Locale = currentLocale === 'en' ? 'ja' : 'en';
-            await setLanguage(nextLocale);
-        });
-
-        updateButtonText(this.i18nManager.getLocale());
-    }
 
     private async handleLanguageChange(): Promise<void> {
         // 言語変更時にUIを再描画
@@ -265,10 +251,24 @@ export class App {
             } catch (error) {
                 console.warn('[App] Failed to preload item modifier data', error);
             }
-            this.updateGoodsList();
+
+            // ツリービューの初回マウント（データ取得完了後）
+            const filtered = this.allGoods.filter((good) => {
+                if (good.startOfChain) return true;
+                if (!good.regions?.length) return false;
+                return good.regions.includes(this.currentRegion);
+            });
+
+            // 先にマウント（goods=[]の状態で）
+            this.treeApp.mount();
+            // その後データを更新（rootInstanceが存在するのでリアクティブに更新）
+            this.treeApp.updateGoods(filtered);
+            console.log('[App] TreeApp mounted with', filtered.length, 'goods');
+
         } catch (error) {
             console.error('Error loading goods list:', error);
-            this.goodsListView.showError('Error loading goods list. Please try again later.');
+            // ツリービュー用のエラー表示
+            this.selectionContainer.innerHTML = '<div class="error-message" style="padding: 2rem; text-align: center; color: #721c24;">Error loading goods list. Please try again later.</div>';
         }
     }
 
@@ -278,7 +278,9 @@ export class App {
             if (!good.regions?.length) return false;
             return good.regions.includes(this.currentRegion);
         });
-        this.goodsListView.render(filtered);
+
+        // ツリービューを更新
+        this.treeApp.updateGoods(filtered);
     }
 
     // -----------------------------------------------------------------------
@@ -289,9 +291,9 @@ export class App {
         this.currentGood = good;
         Item.setActiveChain(good.id);
         this.pushUrl();
-        this.goodsListView.highlight(good.id);
-        this.selectionContainer.classList.add('hidden');
-        this.calculatorContainer.classList.remove('hidden');
+        // 2カラムレイアウトのため、両方を常に表示
+        // this.selectionContainer.classList.add('hidden');
+        // this.calculatorContainer.classList.remove('hidden');
         this.productionView.showLoading(good);
         try {
             const recipe: Goods | null = await this.goodsRepository.loadProductionChain(good.id, this.currentRegion);
@@ -310,8 +312,12 @@ export class App {
         this.currentGood = null;
         Item.setActiveChain(null);
         this.pushUrl();
-        this.calculatorContainer.classList.add('hidden');
-        this.selectionContainer.classList.remove('hidden');
+        // 2カラムレイアウトのため、両方を常に表示
+        // this.calculatorContainer.classList.add('hidden');
+        // this.selectionContainer.classList.remove('hidden');
+
+        // 右側パネルを初期状態に戻す
+        this.calculatorContainer.innerHTML = '<p class="info-note">Select a good from the table to view its production chain details.</p>';
     }
 
     // -----------------------------------------------------------------------
@@ -390,29 +396,4 @@ export class App {
     // -----------------------------------------------------------------------
     // Public API for Vue components
     // -----------------------------------------------------------------------
-
-    /**
-     * Vue GoodsListコンポーネント用：現在の商品リストを取得
-     */
-    public getFilteredGoods(): RecipeListItem[] {
-        return this.allGoods.filter((good) => {
-            if (good.startOfChain) return true;
-            if (!good.regions?.length) return false;
-            return good.regions.includes(this.currentRegion);
-        });
-    }
-
-    /**
-     * Vue GoodsListコンポーネント用：商品選択ハンドラー
-     */
-    public selectGood(good: RecipeListItem): void {
-        this.handleGoodSelection(good);
-    }
-
-    /**
-     * Vue GoodsListコンポーネント用：selectionContainerを取得
-     */
-    public getSelectionContainer(): HTMLElement {
-        return this.selectionContainer;
-    }
 }

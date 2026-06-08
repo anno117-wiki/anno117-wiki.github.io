@@ -1,6 +1,6 @@
 import type { Goods } from '../types/Goods';
 import type { RecipeListItem } from '../types/RecipeList';
-import { ProductionCalculator } from './ProductionCalculator';
+import { ProductionCalculator, type BuildingsMap } from './ProductionCalculator';
 import { GoodsRepository } from './GoodRepository';
 import { I18nManager } from '../../i18n/I18nManager';
 
@@ -76,6 +76,7 @@ export class GraphRenderer {
     private currentGoodId: string | null = null;
     private i18n: I18nManager;
     private goodsRepository: GoodsRepository;
+    private nodeDataMap: WeakMap<SVGElement, NodeData> = new WeakMap();
 
     private constructor(config: GraphRendererConfig = {}) {
         const { templatePath = 'svg/dependency-graph.svg' } = config;
@@ -114,7 +115,7 @@ export class GraphRenderer {
         this.setupInteractions();
     }
 
-    render(productionData: Goods, allBuildings: Record<string, number>): void {
+    render(productionData: Goods, allBuildings: BuildingsMap): void {
         if (!this.svgElement || !productionData) return;
         this.clearSvg();
         if (!allBuildings || Object.keys(allBuildings).length === 0) return;
@@ -135,7 +136,7 @@ export class GraphRenderer {
         x: number,
         y: number,
         depth: number,
-        allBuildings: Record<string, number>,
+        allBuildings: BuildingsMap,
         parentX: number | null,
         parentY: number | null,
         maxDepth: number
@@ -144,7 +145,8 @@ export class GraphRenderer {
 
         const good = this.findGood(prodData.id, prodData);
         const hasFuel = prodData.needs_fuel === true;
-        const buildings = allBuildings[prodData.id] || 0;
+        const buildingCount = allBuildings[prodData.id];
+        const buildings = typeof buildingCount === 'number' ? buildingCount : 0;
         const buildingType = prodData.type || '';
 
         let textAlign: 'left' | 'right' = 'left';
@@ -259,14 +261,33 @@ export class GraphRenderer {
         rect.setAttribute('class', 'graph-node');
         group.appendChild(rect);
 
-        const img = document.createElementNS('http://www.w3.org/2000/svg', 'image') as any;
+        const img = document.createElementNS('http://www.w3.org/2000/svg', 'image');
         img.setAttributeNS('http://www.w3.org/1999/xlink', 'href', `./assets/icons/${good.icon || good.id}.png`);
         img.setAttribute('x', String(x - size / 2));
         img.setAttribute('y', String(y - size / 2));
         img.setAttribute('width', String(size));
         img.setAttribute('height', String(size));
         img.dataset.goodId = good.id;
-        img.productionData = { buildingCost, maintenanceCost, buildings, good, productivity };
+
+        // WeakMapでノードデータを管理（メモリリーク防止）
+        this.nodeDataMap.set(img, {
+            x,
+            y,
+            good,
+            buildings,
+            textAlign,
+            hasFuel,
+            buildingType,
+            prodNode,
+            depth,
+            maxDepth,
+            isLeaf,
+            startOfChain,
+            buildingCost,
+            maintenanceCost,
+            productivity
+        });
+
         img.addEventListener('mousedown', this.displayInfoMenue);
         group.appendChild(img);
 
@@ -635,14 +656,16 @@ export class GraphRenderer {
      * Click Event on the icon
      */
     displayInfoMenue(event: MouseEvent): void {
-        if ((event as any).button !== 0) return;
+        if (event.button !== 0) return;
 
         event.preventDefault();
         event.stopPropagation();
 
-        const currentTarget = event.currentTarget as any;
-        const { buildingCost, maintenanceCost, buildings, good } = currentTarget.productionData || {};
-        if (!good) return;
+        const currentTarget = event.currentTarget as SVGElement;
+        const nodeData = this.nodeDataMap.get(currentTarget);
+        if (!nodeData) return;
+
+        const { buildingCost, maintenanceCost, buildings, good, productivity } = nodeData;
 
         let infoContainer = document.createElement('div');
         infoContainer.classList.add("metadata-container");
@@ -668,8 +691,7 @@ export class GraphRenderer {
         const countInfo = document.createElement('div');
         countInfo.className = 'metadata-row';
 
-        if (currentTarget.productionData.productivity) {
-            const productivity = currentTarget.productionData.productivity;
+        if (productivity) {
             const productivityInfo = document.createElement('div');
             productivityInfo.className = 'metadata-row';
             productivityInfo.innerHTML = `<strong>${this.i18n.t('ui.productivity')}:</strong> ${((productivity * 100) * Math.min(buildings, 1)).toFixed(0)}%`;

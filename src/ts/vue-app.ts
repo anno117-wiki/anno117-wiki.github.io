@@ -6,7 +6,9 @@
 import { createApp } from 'vue';
 import LanguageToggle from '../components/LanguageToggle.vue';
 import GoodsList from '../components/GoodsList.vue';
+import SettingsPanelRoot from '../components/SettingsPanelRoot.vue';
 import type { RecipeListItem } from './types/RecipeList';
+import { SettingsManager } from './modules/SettingsManager';
 
 /**
  * Vueコンポーネントを初期化
@@ -56,6 +58,31 @@ export function initGoodsList(
   app.mount(container);
 
   console.log('[Vue] GoodsList component mounted');
+
+  return app;
+}
+
+/**
+ * 設定パネルをVueコンポーネントとして初期化
+ */
+export function initSettingsPanel() {
+  const settingsPanelContainer = document.createElement('div');
+  settingsPanelContainer.id = 'settings-panel-vue';
+  document.body.appendChild(settingsPanelContainer);
+
+  const app = createApp(SettingsPanelRoot);
+  app.mount(settingsPanelContainer);
+
+  // Storageボタンのクリックイベントを設定（CustomEventで通知）
+  const toggleButton = document.getElementById('saved-store-toggle');
+  if (toggleButton) {
+    toggleButton.addEventListener('click', () => {
+      // CustomEventを発火してSettingsPanelRootに通知
+      window.dispatchEvent(new Event('openSettingsPanel'));
+    });
+  }
+
+  console.log('[Vue] SettingsPanel component mounted');
 
   return app;
 }

@@ -128,6 +128,14 @@ export class SettingsManager {
         this.renderStoragePanel();
     }
 
+    /**
+     * 保存されたプリセット一覧を取得
+     * @returns プリセットの配列（コピー）
+     */
+    public getPresets(): SavedPreset[] {
+        return [...this.presets];
+    }
+
     openSettings(): void {
         this.settingsPanel?.classList.remove('hidden');
         this.overlay?.classList.add('active');

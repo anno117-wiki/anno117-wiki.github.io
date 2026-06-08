@@ -6,6 +6,7 @@ import { Item } from './modifier/Item';
 import { SettingsManager } from './SettingsManager';
 import { I18nManager } from '../../i18n/I18nManager';
 import { formatDuration } from './Utils';
+import type { BuildingsMap } from './ProductionCalculator';
 
 interface GoodsListViewConfig {
     container: HTMLElement;
@@ -19,13 +20,13 @@ interface ProductionChainViewConfig {
         collectBaseInputs(recipe: Goods): Map<string, Goods>;
         findRecommendedRate(recipe: Goods): number;
         getAdjustedTime(node: Goods): number;
-        collectAllBuildings(recipe: Goods, rate: number, accum: Record<string, number>): Record<string, number>;
-        calculateFuelBuildings(recipe: Goods, allBuildings: Record<string, number>): Array<{ id: string; count: number }>;
-        calculateTotals(allBuildings: Record<string, number>): { buildingCost: Record<string, number>; maintenance: Record<string, number> };
+        collectAllBuildings(recipe: Goods, rate: number, accum: BuildingsMap): BuildingsMap;
+        calculateFuelBuildings(recipe: Goods, allBuildings: BuildingsMap): Array<{ id: string; count: number }>;
+        calculateTotals(allBuildings: BuildingsMap): { buildingCost: Record<string, number>; maintenance: Record<string, number> };
     };
     graphRenderer: {
         attach(container: HTMLElement, selectedGoodId?: string): Promise<void>;
-        render(productionData: Goods, allBuildings: Record<string, number>): void;
+        render(productionData: Goods, allBuildings: BuildingsMap): void;
     };
 }
 
@@ -583,23 +584,23 @@ class ProductionChainView {
         this.graphRenderer.render(recipe, allBuildings);
     }
 
-    updateBuildingCounts(allBuildings: Record<string, number> = {}): void {
+    updateBuildingCounts(allBuildings: BuildingsMap = {}): void {
         Object.entries(allBuildings).forEach(([goodId, buildings]) => {
             if (goodId === '_metadata') return;
             const target = this.container.querySelector(`[data-building-count="${goodId}"]`) as HTMLElement | null;
-            if (target) {
+            if (target && typeof buildings === 'number') {
                 target.textContent = `${(buildings || 0).toFixed(2)}x`;
             }
         });
     }
 
-    updateCostSummary(allBuildings: Record<string, number>): void {
+    updateCostSummary(allBuildings: BuildingsMap): void {
         if (!this.buildingCostElement || !this.maintenanceElement) return;
         const totals = this.calculator.calculateTotals(allBuildings);
         this.buildingCostElement.replaceChildren(...this.buildCostElements(totals.buildingCost));
 
         const maintenanceElements = this.buildCostElements(totals.maintenance);
-        const metadata = (allBuildings as Record<string, unknown>)['_metadata'] as Record<string, Goods> | undefined;
+        const metadata = allBuildings._metadata;
         const charcoalFuelBuildings = metadata
             ? Object.values(metadata).reduce((sum, node) => {
                 if (!node?.id) return sum;

@@ -8,10 +8,19 @@ const RECOMMENDED_RATE_STEP = 0.1;
 const MAX_RECOMMENDED_RATE = 25;
 const ACCEPTABLE_BUILDING_ERROR = 0.05;
 
-// The buildings map stores counts (numbers) plus a special '_metadata' key for production data.
-// We use 'any' here since we need to mix counts and metadata in the same Record
-// that is compatible with the existing interface contract (Record<string, number>).
-type BuildingsMap = Record<string, any>;
+/**
+ * BuildingsMap型定義
+ * 建物IDをキーとし、建物数（number）を値として保持
+ * 特別なキー '_metadata' でGoods情報を保持
+ */
+export interface BuildingsMetadata {
+  [buildingId: string]: Goods;
+}
+
+export interface BuildingsMap {
+  [buildingId: string]: number;
+  _metadata?: BuildingsMetadata;
+}
 
 /**
  * Pure calculation utilities for production chains.
