@@ -123,11 +123,14 @@
     "wader": "ウェーダー",
     "smith": "スミス",
     "alderman": "アルダー",
-    "mercators": "メルカトル"
+    "mercators": "メルカトル",
+    "nobles": "ノビレス"
   },
   "ui": {
     "selectGood": "生産品を選択",
     "searchGoods": "生産品を検索...",
+    "noResults": "検索結果がありません",
+    "recentlyViewed": "最近表示",
     "buildingCost": "建築コスト",
     "maintenance": "維持費",
     "coalConsumption": "石炭消費",
@@ -143,6 +146,8 @@
     "delete": "削除",
     "noSavedConfigurations": "保存された設定はありません。",
     "noActiveModifiers": "有効な修正設定はありません。",
+    "savedConfigurationsDesc": "現在の修正設定を保存し、後でワンクリックで読み込むことができます。",
+    "presetNamePlaceholder": "プリセット名",
     "close": "閉じる",
     "productivity": "生産性",
     "required": "必要数",
@@ -173,12 +178,21 @@
     "wader": "ウェーダー",
     "smith": "スミス",
     "alderman": "アルダー",
-    "mercators": "メルカトル"
+    "mercators": "メルカトル",
+    "nobles": "ノビレス"
   },
   "modifiers": {
     "aqueductNetwork": "水道橋",
     "fieldIrrigation": "農業水路",
     "aquaArborica": "農園給水",
     "hushing": "水圧掘削"
+  },
+  "category": {
+    "luxury": "高級品",
+    "food": "食料",
+    "clothing": "ファッション",
+    "military": "軍事物資",
+    "construction": "建設資材",
+    "intermediate": "中間資源"
   }
 }

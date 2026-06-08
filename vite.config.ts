@@ -20,7 +20,8 @@ export default defineConfig({
 
   // 開発サーバー設定
   server: {
-    port: 3000,
+    port: 5173,  // Playwrightと統一
+    strictPort: true,  // ポートが使用中の場合エラー
     open: false,
   },
 
@@ -31,8 +32,8 @@ export default defineConfig({
     rollupOptions: {
       input: resolve(__dirname, 'src/index.html'),
     },
-    minify: 'terser',
-    sourcemap: false,
+    minify: false,  // minifyを無効化（開発中）
+    sourcemap: true,
   },
 
   // CSS設定

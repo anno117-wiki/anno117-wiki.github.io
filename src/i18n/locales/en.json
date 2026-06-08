@@ -123,11 +123,14 @@
     "wader": "Wader",
     "smith": "Smith",
     "alderman": "Alderman",
-    "mercators": "Mercators"
+    "mercators": "Mercators",
+    "nobles": "Nobles"
   },
   "ui": {
     "selectGood": "Select a Good",
     "searchGoods": "Search goods...",
+    "noResults": "No results found",
+    "recentlyViewed": "Recently Viewed",
     "buildingCost": "Building Cost",
     "maintenance": "Maintenance",
     "coalConsumption": "Coal",
@@ -143,6 +146,8 @@
     "delete": "Delete",
     "noSavedConfigurations": "No saved configurations yet.",
     "noActiveModifiers": "No active modifier toggles.",
+    "savedConfigurationsDesc": "Save your current modifier setup and load it later with one click.",
+    "presetNamePlaceholder": "Preset name",
     "close": "Close",
     "productivity": "Productivity",
     "required": "Required",
@@ -173,12 +178,21 @@
     "wader": "Wader",
     "smith": "Smith",
     "alderman": "Alderman",
-    "mercators": "Mercators"
+    "mercators": "Mercators",
+    "nobles": "Nobles"
   },
   "modifiers": {
     "aqueductNetwork": "Aqueduct Network",
     "fieldIrrigation": "Field Irrigation",
     "aquaArborica": "Aqua Arborica",
     "hushing": "Hushing"
+  },
+  "category": {
+    "luxury": "Luxury Goods",
+    "food": "Food & Beverages",
+    "clothing": "Clothing & Textiles",
+    "military": "Military Supplies",
+    "construction": "Construction Materials",
+    "intermediate": "Intermediate Resources"
   }
 }

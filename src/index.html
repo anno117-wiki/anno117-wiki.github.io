@@ -96,21 +96,19 @@
     </header>
     <main>
         <section class="calculator-section">
-            <div class="calculator-layout">
-                <div id="selection-container">
+            <div class="calculator-layout two-column">
+                <!-- 左側: ツリー表示（常時表示） -->
+                <div id="selection-container" class="left-panel">
                     <h3>Select a Good</h3>
                 </div>
-                <div id="calculator-container" class="hidden">
+                <!-- リサイズハンドル -->
+                <div class="resize-handle" id="resize-handle"></div>
+                <!-- 右側: 生産チェーン -->
+                <div id="calculator-container" class="right-panel">
                     <p class="info-note">Select a good from the table to view its production chain details.</p>
                 </div>
             </div>
-            <div id="saved-store-panel" class="saved-store-panel hidden">
-                <div class="saved-store-header">
-                    <h2>Storage</h2>
-                    <button id="saved-store-close" class="saved-store-close" aria-label="Close Storage">×</button>
-                </div>
-                <div id="saved-store-content" class="saved-store-content"></div>
-            </div>
+            <!-- Vue SettingsPanel will be mounted here -->
         </section>
         <!-- Info Modal -->
         <div id="info-modal" class="modal hidden">

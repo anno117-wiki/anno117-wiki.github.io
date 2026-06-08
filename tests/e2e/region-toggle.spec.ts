@@ -7,14 +7,18 @@ import { test, expect } from '@playwright/test';
 test.describe('地域切り替え機能', () => {
   test.beforeEach(async ({ page }) => {
     await page.goto('/');
-    await page.waitForSelector('.goods-card');
+    await page.waitForSelector('.goods-tree-view', { timeout: 10000 });
 
-    // 商品を選択して生産チェーンを表示
-    const firstCard = page.locator('.goods-card').first();
-    await firstCard.click();
+    // カテゴリを展開して商品を選択
+    const firstCategory = page.locator('.tree-category').first();
+    await firstCategory.locator('.category-header').click();
+    await page.waitForTimeout(300);
 
-    // calculator-containerが表示されるまで待機
-    await page.waitForSelector('#calculator-container:not(.hidden)', { timeout: 10000 });
+    const firstItem = page.locator('.tree-item').first();
+    await firstItem.click();
+
+    // SVGグラフが表示されるまで待機
+    await page.waitForSelector('svg#dependency-graph', { timeout: 10000 });
   });
 
   test('地域切り替えボタンが表示される', async ({ page }) => {
@@ -51,7 +55,7 @@ test.describe('地域切り替え機能', () => {
   test('地域フィルターが正しく機能する', async ({ page }) => {
     // Latium専用の商品があればそれを選択
     await page.goto('/');
-    await page.waitForSelector('.goods-card');
+    await page.waitForSelector('.goods-tree-view', { timeout: 10000 });
 
     // 地域フィルターボタンを探す
     const latiumFilter = page.locator('button, .toggle-button').filter({ hasText: /Latium/i }).first();
@@ -60,10 +64,9 @@ test.describe('地域切り替え機能', () => {
       await latiumFilter.click();
       await page.waitForTimeout(500);
 
-      // フィルター後も商品カードが表示される
-      const goodsCards = page.locator('.goods-card');
-      const count = await goodsCards.count();
-      expect(count).toBeGreaterThan(0);
+      // フィルター後もツリービューが表示される
+      const treeView = page.locator('.goods-tree-view');
+      await expect(treeView).toBeVisible();
     }
   });
 

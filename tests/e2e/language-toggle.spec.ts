@@ -20,7 +20,7 @@ test.describe('言語切り替え機能', () => {
     await page.goto('/?lang=en');
 
     // 商品一覧が表示されるまで待機
-    await page.waitForSelector('.goods-grid');
+    await page.waitForSelector('.goods-tree-view');
 
     // 言語切り替えボタンをクリック
     const languageToggle = page.locator('button#language-toggle-btn');
@@ -44,14 +44,14 @@ test.describe('言語切り替え機能', () => {
   test('URLパラメータで言語を指定できる', async ({ page }) => {
     // 日本語でアクセス
     await page.goto('/?lang=ja');
-    await page.waitForSelector('.goods-grid');
+    await page.waitForSelector('.goods-tree-view');
 
     const bodyTextJa = await page.locator('body').textContent();
     expect(bodyTextJa).toMatch(/[぀-ゟ゠-ヿ一-龯]/);
 
     // 英語でアクセス
     await page.goto('/?lang=en');
-    await page.waitForSelector('.goods-grid');
+    await page.waitForSelector('.goods-tree-view');
 
     const bodyTextEn = await page.locator('body').textContent();
     expect(bodyTextEn).toMatch(/[a-zA-Z]/);
@@ -60,7 +60,7 @@ test.describe('言語切り替え機能', () => {
   test('localStorageに言語設定が保存される', async ({ page }) => {
     // 日本語に切り替え
     await page.goto('/?lang=ja');
-    await page.waitForSelector('.goods-grid');
+    await page.waitForSelector('.goods-tree-view');
 
     // localStorageを確認（設定は anno117_calculator_settings オブジェクトに保存される）
     const storedSettings = await page.evaluate(() => {
@@ -72,7 +72,7 @@ test.describe('言語切り替え機能', () => {
 
     // ページをリロードしても言語設定が保持されることを確認
     await page.reload();
-    await page.waitForSelector('.goods-grid');
+    await page.waitForSelector('.goods-tree-view');
 
     const afterReloadSettings = await page.evaluate(() => {
       const raw = localStorage.getItem('anno117_calculator_settings');
@@ -88,12 +88,19 @@ test.describe('言語切り替え機能', () => {
   test('商品選択後も言語切り替えが機能する', async ({ page }) => {
     // 商品を選択
     await page.goto('/?lang=en');
-    await page.waitForSelector('.goods-card');
-    const firstCard = page.locator('.goods-card').first();
-    await firstCard.click();
+    await page.waitForSelector('.goods-tree-view', { timeout: 10000 });
 
-    // calculator-containerが表示されるまで待機
-    await page.waitForSelector('#calculator-container:not(.hidden)', { timeout: 10000 });
+    // カテゴリを展開
+    const firstCategory = page.locator('.tree-category').first();
+    await firstCategory.locator('.category-header').click();
+    await page.waitForTimeout(300);
+
+    // 商品を選択
+    const firstItem = page.locator('.tree-item').first();
+    await firstItem.click();
+
+    // SVGグラフが表示されるまで待機
+    await page.waitForSelector('svg#dependency-graph', { timeout: 10000 });
 
     // 言語を日本語に切り替え
     const languageToggle = page.locator('button#language-toggle-btn');

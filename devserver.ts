@@ -56,25 +56,9 @@ await generateItemsList({ showList: false, devmode: !values.build });
 
 if (values.build) {
     console.log(`\n${Bun.color("#acf3ff", "ansi-16m") + "[Developer Server] " + Bun.color("#1394bf", "ansi-16m")}Building for production ...`);
-    await Bun.$`mkdir ./docs/`.text().catch(() => { /* ignore if already exists */ });
-    await Bun.$`rm -rf ./docs/*`.text().catch(() => { /* ignore if already exists */ });
 
-    await Bun.build({
-        entrypoints: ["./src/index.html"],
-        outdir: "./docs",
-        minify: true,
-    });
-
-    // Cross-platform asset copy (works on macOS/Linux/Windows shell environments).
-    await Bun.$`mkdir -p ./docs/assets`.text().catch(() => { /* ignore if already exists */ });
-    await Bun.$`cp -R ./src/assets/. ./docs/`.text();
-
-    // Copy i18n directory
-    await Bun.$`mkdir -p ./docs/i18n`.text().catch(() => { /* ignore if already exists */ });
-    await Bun.$`cp -R ./src/i18n/. ./docs/i18n/`.text();
-
-    // SW must be at the root so its scope covers the entire origin.
-    await Bun.write('./docs/sw.js', Bun.file('./src/assets/data/sw.js'));
+    // Viteビルドを実行（Vueコンポーネントを正しくバンドル）
+    await Bun.$`bun run build:vite`.text();
 
     console.log(`\n${Bun.color("#acf3ff", "ansi-16m") + "[Developer Server] " + Bun.color("#1394bf", "ansi-16m")}Build completed! Output in ./docs/`);
 }
@@ -108,6 +92,21 @@ if (values.dev) {
                 const i18nPath = `./src${url.pathname}`;
                 if (await Bun.file(i18nPath).exists()) {
                     return new Response(Bun.file(i18nPath), {
+                        headers: {
+                            'Content-Type': 'application/json',
+                        },
+                    });
+                }
+            }
+
+            // Serve data JSON files (categories.json等)
+            if (url.pathname.startsWith("/data")) {
+                if (url.pathname.endsWith("/")) {
+                    url.pathname = url.pathname.slice(0, -1);
+                }
+                const dataPath = `./src/assets${url.pathname}`;
+                if (await Bun.file(dataPath).exists()) {
+                    return new Response(Bun.file(dataPath), {
                         headers: {
                             'Content-Type': 'application/json',
                         },
