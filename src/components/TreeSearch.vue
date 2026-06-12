@@ -25,7 +25,7 @@
 
 <script setup lang="ts">
 import { ref, computed } from 'vue';
-import { I18nManager } from '../i18n/I18nManager';
+import { I18nManager } from '@anno/shared';
 
 interface Emits {
   (e: 'update:modelValue', value: string): void;

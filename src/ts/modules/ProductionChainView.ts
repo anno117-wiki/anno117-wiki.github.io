@@ -1,10 +1,10 @@
-import type { RecipeListItem } from '../types/RecipeList';
-import type { Goods } from '../types/Goods';
-import { GoodsRepository } from './GoodRepository';
+import type { RecipeListItem } from '@anno/shared';
+import type { Goods } from '@anno/shared';
+import { GoodsRepository } from '@anno/shared';
 import { ModifierRegistry } from './ModifierRegistry';
 import { Item } from './modifier/Item';
 import { SettingsManager } from './SettingsManager';
-import { I18nManager } from '../../i18n/I18nManager';
+import { I18nManager } from '@anno/shared';
 import { formatDuration } from './Utils';
 import type { BuildingsMap } from './ProductionCalculator';
 import { ASSETS_ICONS_PATH } from '../constants';

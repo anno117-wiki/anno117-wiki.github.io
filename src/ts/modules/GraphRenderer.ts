@@ -1,8 +1,8 @@
-import type { Goods } from '../types/Goods';
-import type { RecipeListItem } from '../types/RecipeList';
+import type { Goods } from '@anno/shared';
+import type { RecipeListItem } from '@anno/shared';
 import { ProductionCalculator, type BuildingsMap } from './ProductionCalculator';
-import { GoodsRepository } from './GoodRepository';
-import { I18nManager } from '../../i18n/I18nManager';
+import { GoodsRepository } from '@anno/shared';
+import { I18nManager } from '@anno/shared';
 import { SVG_NS, XLINK_NS, ASSETS_ICONS_PATH } from '../constants';
 
 // 横配置（RL: Right to Left）用の定数

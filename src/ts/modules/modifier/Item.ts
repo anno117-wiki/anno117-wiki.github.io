@@ -1,7 +1,7 @@
-import type { Goods } from '../../types/Goods';
-import { GoodsRepository } from '../GoodRepository';
+import type { Goods } from '@anno/shared';
+import { GoodsRepository } from '@anno/shared';
 import { ModifierRegistry } from '../ModifierRegistry';
-import { I18nManager } from '../../../i18n/I18nManager';
+import { I18nManager } from '@anno/shared';
 import {
 	AbstractProductionModifier,
 	type ModifierDefinition,

@@ -1,4 +1,4 @@
-import type { Goods } from "../types/Goods";
+import type { Goods } from '@anno/shared';
 
 type ProductionModifierType = 'percentage' | 'flat';
 type SettingsSnapshot = Record<string, boolean | number | string>;

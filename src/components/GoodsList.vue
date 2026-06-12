@@ -44,8 +44,8 @@
 
 <script setup lang="ts">
 import { ref, computed, onMounted, watch } from 'vue';
-import { I18nManager } from '../i18n/I18nManager';
-import type { RecipeListItem } from '../ts/types/RecipeList';
+import { I18nManager } from '@anno/shared';
+import type { RecipeListItem } from '@anno/shared';
 
 interface Props {
   goods: RecipeListItem[];

@@ -9,7 +9,7 @@
 <script setup lang="ts">
 import { ref } from 'vue';
 import GoodsTreeView from './GoodsTreeView.vue';
-import type { RecipeListItem } from '../ts/types/RecipeList';
+import type { RecipeListItem } from '@anno/shared';
 
 interface Props {
   initialGoods: RecipeListItem[];

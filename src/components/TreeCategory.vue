@@ -31,7 +31,7 @@
 <script setup lang="ts">
 import { computed, ref, onMounted } from 'vue';
 import TreeItem from './TreeItem.vue';
-import { I18nManager } from '../i18n/I18nManager';
+import { I18nManager } from '@anno/shared';
 
 interface RecipeListItem {
   displayName: string;

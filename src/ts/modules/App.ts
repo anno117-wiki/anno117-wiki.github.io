@@ -1,13 +1,13 @@
-import { GoodsRepository } from './GoodRepository';
+import { GoodsRepository } from '@anno/shared';
 import { SettingsManager } from './SettingsManager';
 import { ProductionCalculator } from './ProductionCalculator';
 import { GraphRenderer } from './GraphRenderer';
 import { ProductionChainView } from './ProductionChainView';
 import { Item } from './modifier/Item';
-import { I18nManager, type Locale } from '../../i18n/I18nManager';
+import { I18nManager, type Locale } from '@anno/shared';
 import { TreeApp } from '../tree-app';
-import type { RecipeListItem } from '../types/RecipeList';
-import type { Goods } from '../types/Goods';
+import type { RecipeListItem } from '@anno/shared';
+import type { Goods } from '@anno/shared';
 import { initSettingsPanel, initModifierPanel } from '../vue-app';
 import { ASSETS_ICONS_PATH } from '../constants';
 

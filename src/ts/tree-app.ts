@@ -9,7 +9,7 @@
 import { createApp } from 'vue';
 import type { ComponentPublicInstance } from 'vue';
 import TreeAppRoot from '../components/TreeAppRoot.vue';
-import type { RecipeListItem } from './types/RecipeList';
+import type { RecipeListItem } from '@anno/shared';
 
 export interface TreeAppConfig {
   container: HTMLElement;

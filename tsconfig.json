@@ -18,14 +18,16 @@
 
     "baseUrl": ".",
     "paths": {
-      "@/*": ["src/*"]
+      "@/*": ["src/*"],
+      "@anno/shared": ["packages/shared/src/index.ts"]
     },
     "types": ["vite/client"]
   },
   "include": [
     "src/**/*.ts",
     "src/**/*.d.ts",
-    "src/**/*.vue"
+    "src/**/*.vue",
+    "packages/shared/src/**/*.ts"
   ],
   "exclude": ["node_modules", "docs", "dist"]
 }

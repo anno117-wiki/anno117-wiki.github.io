@@ -109,7 +109,7 @@
 
 <script setup lang="ts">
 import { ref, computed, onMounted, onUnmounted, watch } from 'vue';
-import { I18nManager } from '../i18n/I18nManager';
+import { I18nManager } from '@anno/shared';
 import { SettingsManager } from '../ts/modules/SettingsManager';
 import { ModifierRegistry } from '../ts/modules/ModifierRegistry';
 

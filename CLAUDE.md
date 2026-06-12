@@ -1,146 +1,86 @@
 # Anno 117 統合Wikiプロジェクト
 
 ## 概要
-Anno 117（PS5/Steam）の日本語情報Wikiを織り込んだ 生産チェーン計算機を統合したWebアプリケーション。
-
----
-  
-
-## 基本構想
-- anno-calculator公式からデータを流用し最大級のリスペクトをこめて日本語表示対応のアプリを作成する
-- 言語切り替えボタンの実装 EN→日本語
-- 独自デザインのUIに変更 生産品はツリー選択 生産チェーン表示はオリジナルを尊重するがコントロール機能は変更したい
-- 主要機能が完成したら独自要素を増やす
-- wiki形式での攻略情報配信（将来の展望）
+Anno 117（PS5/Steam）の日本語情報Wiki + 生産チェーン計算機を統合したWebアプリ。
+anno-calculator公式（GitHub: agentquackyt/Anno117Calculator）のデータを活用。
 
 ## 技術スタック
-- TypeScript (^5.3.3)
-- Vue 3
-- Tailwind CSS
-- Capacitor
-- PostCSS / Autoprefixer
-- Playwright
-- 但し、新たに追加する機能については言及しない
+- TypeScript ^5.6 / Vue 3.5.35 / Vite 8.x
+- bun（パッケージマネージャ・ランタイム）
+- VitePress（wiki）/ Playwright 1.60.0（E2E）
+- **Capacitor・Tailwindは未導入**（標準CSS: src/css/theme.css）
 
-## プロジェクト構造
+## プロジェクト構造（モノレポ移行後）
 
 ```
-anno_DB2/
-|
-├── .claude/agents         #カスタムサブエージェント
-
-├── docs/                    
-│   └── assets/
-│         ├── data
-|         ├── fonts/       
-|         ├── icon/        # 統一アイコン
-|         └── productions/ # 製品ID
-│
-├── src/
-|
-├── tools/
-|
-└── special_thanks/        # anno-calculator data sample           
-
+anno_db2/                        ← workspaces root
+├── packages/shared/             # @anno/shared（データ・ロジック共有）
+│   ├── src/                     # GoodsRepository, I18nManager, 型定義
+│   └── public/                  # 旧 src/assets（データ・アイコン・i18n）
+├── apps/
+│   ├── calculator/              # 生産チェーン計算機SPA
+│   └── wiki/                    # VitePress wiki
+├── scripts/build-site.ts        # 一体ビルド合成
+├── docs/                        # 配信出力（wiki=/, calculator=/calculator）
+├── .claude/agents/              # カスタムサブエージェント
+├── tools/                       # データ生成スクリプト
+└── special_thanks/              # anno-calculator data sample
 ```
-## 言語ルール（重要）
 
-### 内部キー：すべて英語 【絶対順守】
+詳細アーキテクチャ: `docs-notes/architecture-monorepo.md` 参照
 
-- フォルダ名、ID、タグ、変数もすべて英語
-
-### 表示テキスト：【絶対順守】
-
-- 日本語切替時はすべて日本語表示
-- 英語切替時はすべて英語表示
-
----
-
+## 言語ルール【絶対順守】
+- **内部キー（フォルダ名・ID・変数）**: すべて英語
+- **表示テキスト**: 日本語切替→全て日本語、英語切替→全て英語
 
 ## アイコン管理
-
-**統一ルール:**
-- 出典: anno-calculator公式（GitHub: agentquackyt/Anno117Calculator）
-- 配置: `assets/icons/{商品ID}.png`
+- 配置: `packages/shared/public/icons/{商品ID}.png`
 - サイズ: 64×64px以上、PNG形式
 
----
-
-## 主要ツール
-
----
+## 配信規約【重要】
+- wiki = `/`（ルート）、calculator = `/calculator/`
+- GitHub Pages `docs/`、CNAME無し
+- fetchパスは `import.meta.env.BASE_URL` プレフィックス必須（絶対パス禁止）
 
 ## 禁止事項
-
 - ❌ 情報源不明の数値をタグなしで記載
-- ❌ 不整合の解決以外の目的で独自フォーマットは使用しない
+- ❌ 不整合解決以外の目的で独自フォーマットを使用
 - ❌ 大きなサイズの並列処理（効率低下）
----
+- ❌ 絶対fetchパス（`/i18n/...` 等）の新規追加
 
-## 現在の状況（2026-06-07更新）
+## フェーズ進捗
 
-### ✅ 完了
-- 公式データ配置完了
-- **フェーズ1：言語切り替え機能の実装完了**
-  - 日本語/英語の完全対応（商品名114個、UIテキスト全般）
-  - リアルタイム言語切り替え機能
-  - URL/localStorage対応
-- **UI/UX改善（2026-06-07）**
-  - GraphRendererのパン移動操作を右クリック→左クリックに変更
-  - 詳細ポップアップの完全日本語化（生産性、必要数、建設コスト、維持費、資源名）
-  - Auto Ratio計算ロジック修正（燃料建物を除外し、最小整数レートを出力）
-  - 生産数入力ステップを0.5刻み→1刻みに変更
-- **フェーズ2：テスト環境構築完了（2026-06-07）**
-  - Playwright 1.60.0導入
-  - E2Eテストスイート作成（25テスト、4カテゴリ）
-  - テスト成功率：80% (20/25テスト成功)
-    - 商品一覧表示: 100%成功 (5/5)
-    - 言語切り替え: 100%成功 (6/6)
-    - 地域切り替え: 80%成功 (4/5)
-    - 生産チェーン: 56%成功 (5/9) ※SVGインタラクション改善が必要
-  - 5ブラウザ対応設定（Chromium実行済み）
-  - テストレポート自動生成（test-reports/e2e-test-results.md）
-- **フェーズ4：UI設計完了（2026-06-07）**
-  - 詳細設計ドキュメント作成（`docs/ui-design.md`）
-  - ツリー型商品選択UIのワイヤーフレーム
-  - 商品自動分類ツール作成（`tools/auto-categorize-goods.ts`）
-  - ダークモード・レスポンシブデザイン仕様策定
+| フェーズ | 内容 | 状態 |
+|---------|------|------|
+| 1 | 言語切り替え基盤（ja/en 114商品） | ✅ 完了 |
+| 2 | Playwright E2E環境構築 | ✅ 完了 |
+| 3 | Vue 3.5 + Vite 8 移行 | ✅ 完了 |
+| 4 | ツリー型商品選択UI（4カテゴリ・48商品） | ✅ 完了 |
+| 5 | 3カラムレイアウト | ✅ 完了 |
+| 7 | モノレポ再編 + VitePress wiki | 🚧 第0段着手中 |
 
-### 🚧 進行中
-- **フェーズ3：Vue 3段階的移行（2026-06-07開始）**
-  - Vue 3.5.35 + Vite 8.0.16導入完了
-  - 第1段階：独立したUIコンポーネント化
-    - ✅ LanguageToggle.vue（言語切り替えボタン）
-    - ✅ GoodsList.vue（商品一覧カード・検索・選択）**動作確認完了 11/11テスト成功**
-    - ⬜ SettingsPanel.vue（設定パネル）
-  - 機能フラグによる段階的移行（新旧共存）
-  - テスト成功率: 100% (11/11) - 本番環境投入可能
+フェーズ7詳細計画: `c:\Users\kojif\.claude\plans\claude-md-replicated-crown.md`
 
-### 📋 今後の予定
-詳細は `@docs/implementation-plan.md` を参照
+### フェーズ7 第0段 状態（2026-06-12）
+- 第0段: git/作業ツリー整理（侍・忍者が並列実施中）
+- 第1段以降: 侍・忍者の完了報告後に着手
 
-**優先順位：**
-1. ✅ フェーズ1：言語切り替え基盤構築（完了）
-2. ✅ フェーズ2：テスト環境構築（完了）
-3. 🚧 フェーズ3：Vue 3段階的移行（進行中）
-4. ✅ フェーズ4：独自UI設計（設計完了、実装待ち）
-5. ⬜ フェーズ5：Wikiサイト連携
-6. ⬜ フェーズ6：ビルド・Git公開
+## 制作の基本行動【MUST】
 
-## 制作の基本行動
- 
- 1.claude.mdは200行以内とし@docs/○○.mdのように別ファイルに書き出すこと
- 2.1つのファイルに処理を詰め込みすぎない
- 3.変更前に影響範囲を説明する
- 4.エラー処理を追加する
- 5.計画・実装・レビュー・テストにはカスタムサブエージェントを使用する
+1. CLAUDE.mdは200行以内。超える場合は要約または分離
+2. 1ファイル1責務、処理を詰め込みすぎない
+3. 変更前に影響範囲を説明
+4. エラー処理を必ず追加
+5. エラー調査はサブエージェント（investigator）を使用
+6. 制作は3セッション並列起動を基本動作とする
+7. ビルド可否は必ず実コマンド出力で確認（目視「成功」報告禁止）
 
-
+## 重要な教訓
+- `@anno/shared` の fetch文字列は変更しない（publicDir契約を壊す）
+- 並列セッションでの同一ファイル競合に注意
+- Grep結果が混線した場合は必ず実ファイルで確認
 
 ## 参考リンク
-
-- **anno-calculator公式**:（GitHub: agentquackyt/Anno117Calculator）
-- **Anno Calculator**: https://anno-calculator.org/
-- **Bun**: https://bun.sh/
-
----
+- anno-calculator公式: GitHub: agentquackyt/Anno117Calculator
+- Anno Calculator: https://anno-calculator.org/
+- Bun: https://bun.sh/

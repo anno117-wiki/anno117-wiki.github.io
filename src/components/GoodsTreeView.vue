@@ -49,7 +49,7 @@ import { ref, computed, onMounted, watch } from 'vue';
 import TreeSearch from './TreeSearch.vue';
 import TreeCategory from './TreeCategory.vue';
 import TreeItem from './TreeItem.vue';
-import { I18nManager } from '../i18n/I18nManager';
+import { I18nManager } from '@anno/shared';
 
 interface RecipeListItem {
   displayName: string;

@@ -34,6 +34,10 @@
     "vue-tsc": "^2.2.0"
   },
   "private": true,
+  "workspaces": [
+    "apps/*",
+    "packages/*"
+  ],
   "peerDependencies": {
     "typescript": "^5"
   },

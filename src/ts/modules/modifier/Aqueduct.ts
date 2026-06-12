@@ -1,4 +1,4 @@
-import type { Goods } from "../../types/Goods";
+import type { Goods } from '@anno/shared';
 import { ModifierRegistry } from "../ModifierRegistry";
 import { AbstractProductionModifier, type ModifierDefinition, type ProductionModifierType, type SettingsSnapshot } from "../ProductionModifier";
 import { URLTools } from "../Utils";

@@ -20,8 +20,32 @@
         "typescript": "^5",
       },
     },
+    "apps/calculator": {
+      "name": "@anno/calculator",
+      "version": "1.0.0",
+      "dependencies": {
+        "@anno/shared": "workspace:*",
+      },
+    },
+    "apps/wiki": {
+      "name": "@anno/wiki",
+      "version": "1.0.0",
+      "dependencies": {
+        "@anno/shared": "workspace:*",
+      },
+    },
+    "packages/shared": {
+      "name": "@anno/shared",
+      "version": "1.0.0",
+    },
   },
   "packages": {
+    "@anno/calculator": ["@anno/calculator@workspace:apps/calculator"],
+
+    "@anno/shared": ["@anno/shared@workspace:packages/shared"],
+
+    "@anno/wiki": ["@anno/wiki@workspace:apps/wiki"],
+
     "@babel/helper-string-parser": ["@babel/helper-string-parser@7.29.7", "", {}, "sha512-Pb5ijPrZ89GDH8223L4UP8i6QApWxs04RbPQJTeWDV0/keR2E36MeKnyr6LYmUUvqRRI+Iv87SuF1W6ErINzYw=="],
 
     "@babel/helper-validator-identifier": ["@babel/helper-validator-identifier@7.29.7", "", {}, "sha512-qehxGkRj55h/ff8EMaJ+cYhyaKlHIxqYDn682wQD7RNp9UujOQsHog2uS0r2vzr4pW+sXf90NeeayjcNaX3fFg=="],

@@ -11,7 +11,7 @@
 
 <script setup lang="ts">
 import { ref, onMounted } from 'vue';
-import { I18nManager, type Locale } from '../i18n/I18nManager';
+import { I18nManager, type Locale } from '@anno/shared';
 import { SettingsManager } from '../ts/modules/SettingsManager';
 
 const i18nManager = I18nManager.getInstance();

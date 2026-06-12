@@ -1,4 +1,4 @@
-import type { Goods } from '../types/Goods';
+import type { Goods } from '@anno/shared';
 import { ModifierRegistry } from './ModifierRegistry';
 import type { AbstractProductionModifier } from './ProductionModifier';
 import { SettingsManager } from './SettingsManager';
