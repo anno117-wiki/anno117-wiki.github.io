@@ -1,82 +1,56 @@
 {
-  "version": "1.0.0",
+  "version": "2.0.0",
   "categories": [
-    {
-      "id": "luxury",
-      "icon": "🏛️",
-      "name": {
-        "en": "Luxury Goods",
-        "ja": "高級品"
-      },
-      "order": 1,
-      "description": {
-        "en": "High-end products for wealthy citizens",
-        "ja": "富裕市民向けの高級製品"
-      }
-    },
     {
       "id": "food",
       "icon": "🍖",
       "name": {
-        "en": "Food & Beverages",
-        "ja": "食品・飲料"
+        "en": "Food",
+        "ja": "食料品"
+      },
+      "order": 1,
+      "description": {
+        "en": "Food and beverages for citizens",
+        "ja": "市民向けの食料と飲料"
+      }
+    },
+    {
+      "id": "fashion",
+      "icon": "👔",
+      "name": {
+        "en": "Fashion",
+        "ja": "ファッション"
       },
       "order": 2,
       "description": {
-        "en": "Consumable goods for sustenance",
-        "ja": "生活必需品の食料品"
+        "en": "Clothing, accessories and decorative items",
+        "ja": "衣服、装飾品、アクセサリー"
       }
     },
     {
-      "id": "clothing",
-      "icon": "👔",
+      "id": "culture",
+      "icon": "🏛️",
       "name": {
-        "en": "Clothing & Textiles",
-        "ja": "衣服・織物"
+        "en": "Culture",
+        "ja": "文化"
       },
       "order": 3,
       "description": {
-        "en": "Garments and fabric products",
-        "ja": "衣類と布製品"
-      }
-    },
-    {
-      "id": "military",
-      "icon": "⚔️",
-      "name": {
-        "en": "Military Supplies",
-        "ja": "軍事物資"
-      },
-      "order": 4,
-      "description": {
-        "en": "Equipment for military units",
-        "ja": "軍事ユニット用装備"
+        "en": "Cultural goods and luxury items",
+        "ja": "文化的製品と高級品"
       }
     },
     {
       "id": "construction",
       "icon": "🏗️",
       "name": {
-        "en": "Construction Materials",
-        "ja": "建設資材"
+        "en": "Construction",
+        "ja": "建築資材"
       },
-      "order": 5,
+      "order": 4,
       "description": {
-        "en": "Materials for building structures",
-        "ja": "建物建設用資材"
-      }
-    },
-    {
-      "id": "intermediate",
-      "icon": "🔧",
-      "name": {
-        "en": "Intermediate Resources",
-        "ja": "中間資源"
-      },
-      "order": 6,
-      "description": {
-        "en": "Resources used in production chains",
-        "ja": "生産チェーンで使用される中間資源"
+        "en": "Building materials and construction resources",
+        "ja": "建築資材と建設用資源"
       }
     }
   ]

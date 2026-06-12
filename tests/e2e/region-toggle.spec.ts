@@ -11,7 +11,7 @@ test.describe('地域切り替え機能', () => {
 
     // カテゴリを展開して商品を選択
     const firstCategory = page.locator('.tree-category').first();
-    await firstCategory.locator('.category-header').click();
+    await firstCategory.locator('.tree-category-header').click();
     await page.waitForTimeout(300);
 
     const firstItem = page.locator('.tree-item').first();

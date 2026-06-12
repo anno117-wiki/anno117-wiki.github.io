@@ -26,7 +26,7 @@ test.describe('商品一覧の表示と選択', () => {
   test('商品アイテムにアイコンと名前が表示される', async ({ page }) => {
     // カテゴリを展開して商品を表示
     const firstCategory = page.locator('.tree-category').first();
-    await firstCategory.locator('.category-header').click();
+    await firstCategory.locator('.tree-category-header').click();
     await page.waitForTimeout(300);
 
     const firstItem = page.locator('.tree-item').first();
@@ -44,7 +44,7 @@ test.describe('商品一覧の表示と選択', () => {
   test('商品を選択すると生産チェーンが表示される', async ({ page }) => {
     // カテゴリを展開
     const firstCategory = page.locator('.tree-category').first();
-    await firstCategory.locator('.category-header').click();
+    await firstCategory.locator('.tree-category-header').click();
     await page.waitForTimeout(300);
 
     // 最初の商品アイテムをクリック
@@ -66,7 +66,7 @@ test.describe('商品一覧の表示と選択', () => {
 
     // カテゴリを展開
     const firstCategory = page.locator('.tree-category').first();
-    await firstCategory.locator('.category-header').click();
+    await firstCategory.locator('.tree-category-header').click();
     await page.waitForTimeout(300);
 
     // 少なくとも1つの商品アイテムに日本語が含まれることを確認
@@ -86,7 +86,7 @@ test.describe('商品一覧の表示と選択', () => {
 
     // カテゴリを展開
     const firstCategory = page.locator('.tree-category').first();
-    await firstCategory.locator('.category-header').click();
+    await firstCategory.locator('.tree-category-header').click();
     await page.waitForTimeout(300);
 
     // 少なくとも1つの商品アイテムに英語が含まれることを確認

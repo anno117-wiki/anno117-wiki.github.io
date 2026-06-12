@@ -26,7 +26,7 @@
         >
           <div class="goods-card-icon">
             <img
-              :src="`./assets/icons/${good.icon}.png`"
+              :src="`/icons/${good.icon}.png`"
               :alt="good.displayName"
               loading="lazy"
               @error="handleImageError"

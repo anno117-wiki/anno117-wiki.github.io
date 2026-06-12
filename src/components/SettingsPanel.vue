@@ -88,10 +88,10 @@
           </li>
           <li v-for="toggle in activeToggles" :key="toggle.key">
             <img
-              :src="`./assets/icons/${toggle.icon}`"
+              :src="`/icons/${toggle.icon}`"
               :alt="toggle.label"
             />
-            <span>{{ toggle.label }}</span>
+            <span>{{ $t(`modifiers.${toggle.key}`) }}</span>
           </li>
         </ul>
       </section>
@@ -222,7 +222,6 @@ onMounted(() => {
 });
 
 // クリーンアップ
-import { onUnmounted } from 'vue';
 onUnmounted(() => {
   console.log('[SettingsPanel] Unmounted');
   if (unsubscribe) {

@@ -29,9 +29,12 @@
   --font-family: "NotoSerif", "Tim New Roman", serif;
 
   /* 2カラムレイアウト設定 */
-  --left-panel-width: 250px;
+  --left-panel-width: 220px; /* 縮小: 250px → 220px */
   --left-panel-min-width: 250px;
   --left-panel-max-width: 600px;
+
+  /* 3カラムレイアウト設定 */
+  --right-panel-narrow-width: 180px; /* モディファイア幅（ナロー、縮小: 200px → 180px） */
 }
 
 /* Custom Scrollbar */
@@ -94,16 +97,19 @@ main {
 
 .calculator-section {
   display: flex;
-  flex-direction: row;
-  gap: 1rem;
-  height: 100%;
+  flex-direction: column; /* row → column に変更 */
+  gap: 0.5rem; /* 縮小: 1rem→0.5rem */
   overflow: auto;
+  padding: 0.75rem; /* 縮小: 1rem→0.75rem */
+  flex: 1; /* 高さを最大化 */
+  min-height: 0; /* Flexboxで高さを確保 */
 }
 
 .calculator-layout {
   display: grid;
   gap: 1rem;
-  height: 100%;
+  flex: 1; /* 親のflexコンテナで高さを最大化 */
+  min-height: 0; /* Flexboxで高さを確保 */
   overflow: auto;
   width: 100%;
 }
@@ -113,6 +119,15 @@ main {
   grid-template-columns: var(--left-panel-width) 8px 1fr;
   overflow: hidden;
   position: relative;
+}
+
+/* 3カラムレイアウト */
+.calculator-layout.three-column {
+  grid-template-columns: var(--left-panel-width) 8px 1fr var(--right-panel-narrow-width);
+  grid-template-rows: 1fr;
+  gap: 16px;
+  overflow: hidden;
+  height: 100%; /* Grid子要素の高さ制約を明確化 */
 }
 
 .left-panel {
@@ -136,6 +151,120 @@ main {
   flex-direction: column;
   gap: 0.5rem;
   overflow: auto;
+}
+
+/* 中央パネル（3カラム用） */
+.center-panel {
+  background: var(--background);
+  border-radius: 20px;
+  box-shadow: var(--shadow-light), var(--shadow-dark);
+  padding: 0.75rem; /* 削減: 1.5rem→0.75rem */
+  display: flex;
+  flex-direction: column;
+  gap: 0.5rem;
+  overflow: auto;
+  min-height: 0; /* Grid子要素の高さ確保 */
+  max-height: 100%; /* 親グリッドからはみ出さない */
+}
+
+/* 右パネル（ナロー） */
+.right-panel-narrow {
+  background: var(--background);
+  border-radius: 20px;
+  box-shadow: var(--shadow-light), var(--shadow-dark);
+  padding: 16px;
+  display: flex;
+  flex-direction: column;
+  gap: 0.5rem;
+  overflow-y: auto;
+  overflow-x: hidden;
+  min-height: 0; /* Grid子要素の高さ確保 */
+  max-height: 100%; /* 親グリッドからはみ出さない */
+}
+
+/* ヘッダー */
+.app-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 8px 20px; /* 縮小: 12px→8px, 24px→20px */
+  background: var(--background);
+  border-radius: 16px; /* 縮小: 20px→16px */
+  box-shadow: var(--shadow-light), var(--shadow-dark);
+  margin-bottom: 0.5rem; /* 縮小: 1rem→0.5rem */
+}
+
+.header-btn {
+  background: var(--background);
+  border: none;
+  border-radius: 12px;
+  padding: 8px 16px;
+  cursor: pointer;
+  box-shadow: var(--shadow-light), var(--shadow-dark);
+  transition: all 0.2s ease;
+  font-size: 14px;
+  font-weight: 500;
+  color: var(--text-primary);
+}
+
+.header-btn:hover {
+  box-shadow: var(--shadow-inset-light), var(--shadow-inset-dark);
+}
+
+.production-input-wrapper {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+}
+
+.production-input-wrapper label {
+  font-size: 14px;
+  font-weight: 500;
+  color: var(--text-primary);
+}
+
+.production-input-wrapper input {
+  width: 80px;
+  padding: 6px 12px;
+  border: none;
+  border-radius: 8px;
+  background: var(--background);
+  box-shadow: var(--shadow-inset-light), var(--shadow-inset-dark);
+  font-size: 14px;
+  text-align: center;
+  color: var(--text-primary);
+}
+
+/* フッター */
+.app-footer {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-around;
+  align-items: center;
+  padding: 6px 20px; /* さらに縮小 */
+  gap: 32px;
+  background: var(--background);
+  border-radius: 16px; /* 縮小 */
+  box-shadow: var(--shadow-inset-light), var(--shadow-inset-dark);
+  margin-top: 0.5rem; /* 縮小 */
+}
+
+.footer-stat {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+}
+
+.footer-stat .label {
+  font-size: 14px;
+  font-weight: 500;
+  color: var(--text-secondary);
+}
+
+.footer-stat span:not(.label) {
+  font-size: 16px;
+  font-weight: 700;
+  color: var(--text-primary);
 }
 
 /* リサイズハンドル */
@@ -388,16 +517,27 @@ input[type="number"]:focus,
 }
 
 .back-button {
-  background: none;
+  background: var(--background);
   border: none;
-  color: var(--theme-color);
-  font-size: 1.5rem;
+  color: var(--theme-color-dark);
+  font-size: 0.95rem;
+  font-weight: 600;
   cursor: pointer;
-  padding: 0;
+  padding: 0.75rem 1.25rem;
+  border-radius: 12px;
+  box-shadow: var(--shadow-light), var(--shadow-dark);
+  transition: all 0.2s ease;
+  font-family: var(--font-family);
 }
 
 .back-button:hover {
-  color: var(--theme-color-dark);
+  color: var(--theme-color);
+  box-shadow: -6px -6px 12px var(--background-light),
+              6px 6px 12px var(--background-dark);
+}
+
+.back-button:active {
+  box-shadow: var(--shadow-inset-light), var(--shadow-inset-dark);
 }
 
 .calculator-content {
@@ -426,6 +566,39 @@ input[type="number"]:focus,
   display: flex;
   flex-direction: column;
   gap: 1rem;
+  min-height: 0;
+}
+
+/* 右パネル上部2カラムレイアウト */
+.production-details-top {
+  display: flex;
+  gap: 0.5rem; /* 削減: 1rem→0.5rem */
+  margin-bottom: 0.5rem; /* 削減: 1rem→0.5rem */
+}
+
+.production-details-top.two-column {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 1rem;
+}
+
+.production-header-left {
+  display: flex;
+  flex-direction: column;
+  gap: 0.75rem;
+}
+
+.production-header-right {
+  display: flex;
+  flex-direction: column;
+  gap: 0.75rem;
+}
+
+.graph-panel {
+  display: flex;
+  flex-direction: column;
+  gap: 1rem;
+  flex: 1;
   min-height: 0;
 }
 
@@ -659,8 +832,8 @@ input[type="number"]:focus,
 }
 
 .modifier-toggle-btn img {
-  width: 48px;
-  height: 48px;
+  width: 38.4px;
+  height: 38.4px;
   opacity: 0.85;
   filter: grayscale(.5);
   object-fit: contain;
@@ -776,7 +949,7 @@ input[type="number"]:focus,
 /* Dependency graph */
 .production-graph {
   background-color: var(--background-accent);
-  padding: 1rem;
+  padding: 0.5rem; /* 削減: 1rem→0.5rem */
   border-radius: 0.25rem;
   border: 1px solid var(--theme-color);
   display: flex;
@@ -794,7 +967,7 @@ input[type="number"]:focus,
 .dependency-graph {
   width: 100%;
   flex: 1;
-  min-height: 200px;
+  min-height: 500px; /* 増加: 200px→500px */
   touch-action: none;
   -ms-touch-action: none;
   user-select: none;
@@ -813,7 +986,7 @@ input[type="number"]:focus,
 
 .cost-item {
   display: flex;
-  flex-direction: column;
+  flex-direction: row;
   gap: 0.25rem;
   flex: 1;
 }
@@ -1380,8 +1553,8 @@ input[type="number"]:focus,
   }
 
   .modifier-toggle-btn img {
-    width: 22px;
-    height: 22px;
+    width: 17.6px;
+    height: 17.6px;
   }
 
   .production-grid.compact-grid {
@@ -1539,10 +1712,11 @@ footer {
 }
 
 .cost-list {
-  display: flex;
-  flex-direction: row;
+  display: flex !important;
+  flex-direction: row !important;
   flex-wrap: wrap;
   gap: 0.5rem;
+  align-items: center;
 }
 
 
@@ -1607,6 +1781,8 @@ footer {
   margin-left: 0;
   transition: all 0.3s ease;
   height: 44px;
+  white-space: nowrap;
+  min-width: 160px;
 }
 
 .region-toggle-btn:hover {
@@ -1629,6 +1805,9 @@ footer {
 .region-text {
   font-weight: 600;
   text-transform: capitalize;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
 }
 
 /* ========================================

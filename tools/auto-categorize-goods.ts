@@ -214,7 +214,7 @@ async function calculateComplexity(good: RecipeListItem): Promise<number> {
         const fileName = good.files[regionKey];
         if (!fileName) return 1;
 
-        const recipePath = resolve(__dirname, `../docs/assets/productions/${fileName}.json`);
+        const recipePath = resolve(__dirname, `../src/assets/productions/${fileName}.json`);
         const recipeContent = await readFile(recipePath, 'utf-8');
         const recipe: Goods = JSON.parse(recipeContent);
 

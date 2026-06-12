@@ -14,6 +14,8 @@ interface Good {
   icon: string;
   regions: string[];
   files: Record<string, string>; // filename -> regions
+  category: string;
+  startOfChain?: boolean;
 }
 
 interface ProductionNode {
@@ -37,6 +39,46 @@ function toDisplayName(id: string): string {
     .join(" ");
 }
 
+/**
+ * Determine category based on good ID
+ * Categories decided by user: food, fashion, culture, construction
+ */
+function determineCategory(id: string): string {
+  // Food (14 items)
+  const foodItems = [
+    'beer', 'bird_tongues_in_aspic', 'bread', 'cheese', 'cockles', 'eels',
+    'garum', 'olive_oil', 'oysters_with_caviar', 'porridge', 'roast_beef',
+    'sardines', 'sausages', 'wine'
+  ];
+
+  // Fashion (16 items)
+  const fashionItems = [
+    'brooches', 'clan_shields', 'cloaks', 'drinking_horns', 'fur_hats',
+    'handmirrors', 'necklaces', 'pileus', 'reed_shoes', 'sandals',
+    'standing_lyres', 'togas', 'torcs', 'trousers', 'tunics', 'wigs'
+  ];
+
+  // Culture (6 items)
+  const cultureItems = [
+    'amphorae', 'chariots', 'fine_glass', 'loungers', 'soap', 'writing_tablets'
+  ];
+
+  // Construction (12 items)
+  const constructionItems = [
+    'armour', 'concrete', 'granite', 'horses', 'marble', 'mosaics',
+    'rope', 'sails', 'tiles', 'timber', 'wattle_&_daub', 'weapons'
+  ];
+
+  if (foodItems.includes(id)) return 'food';
+  if (fashionItems.includes(id)) return 'fashion';
+  if (cultureItems.includes(id)) return 'culture';
+  if (constructionItems.includes(id)) return 'construction';
+
+  // Default fallback
+  console.warn(`[Generate] Unknown category for item: ${id}, defaulting to 'culture'`);
+  return 'culture';
+}
+
 function processFile(node: ProductionNode, filename: string, goodsMap: Map<string, Good>) {
     if (!node.id) return;
 
@@ -56,9 +98,16 @@ function processFile(node: ProductionNode, filename: string, goodsMap: Map<strin
             id,
             icon: node.icon || id,
             regions: [],
-            files: {}
+            files: {},
+            category: determineCategory(id),
+            startOfChain: node.start_of_chain || false
         };
         goodsMap.set(id, good);
+    } else {
+        // Update startOfChain if this file has it set to true
+        if (node.start_of_chain && !good.startOfChain) {
+            good.startOfChain = true;
+        }
     }
 
     // Update regions and files for this good (since this file defines a recipe for it)
@@ -150,4 +199,9 @@ export default async function generateGoodsList({showList = true, devmode = true
     formatConsoleLog(`Error generating goods list:`, true);
     process.exit(1);
   }
+}
+
+// Execute the function when run directly
+if (import.meta.main) {
+  await generateGoodsList({ showList: true, devmode: true });
 }

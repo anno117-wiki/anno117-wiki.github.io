@@ -3,9 +3,11 @@ import type { RecipeListItem } from '../types/RecipeList';
 import { ProductionCalculator, type BuildingsMap } from './ProductionCalculator';
 import { GoodsRepository } from './GoodRepository';
 import { I18nManager } from '../../i18n/I18nManager';
+import { SVG_NS, XLINK_NS, ASSETS_ICONS_PATH } from '../constants';
 
-const CENTER_X = 200;
-const CENTER_Y = 40;
+// 横配置（RL: Right to Left）用の定数
+const CENTER_X = 360; // 右端の開始位置
+const CENTER_Y = 150; // 縦方向の位置（上寄りに調整）
 
 interface GraphRendererConfig {
     templatePath?: string;
@@ -104,7 +106,7 @@ export class GraphRenderer {
             : '0 0 400 400';
 
         const svgElement = document.createElement('svg');
-        svgElement.setAttribute('xmlns', 'http://www.w3.org/2000/svg');
+        svgElement.setAttribute('xmlns', SVG_NS);
         svgElement.setAttribute('id', 'dependency-graph');
         svgElement.setAttribute('class', 'dependency-graph');
         svgElement.setAttribute('viewBox', viewBoxAttr);
@@ -122,6 +124,9 @@ export class GraphRenderer {
 
         const maxDepth = this.calculateMaxDepth(productionData);
         this.renderRecursiveGraph(productionData, CENTER_X, CENTER_Y, 0, allBuildings, null, null, maxDepth);
+
+        // レンダリング完了後、グラフ全体を表示するようズーム調整
+        this.fitToView();
     }
 
     clearSvg(): void {
@@ -149,14 +154,8 @@ export class GraphRenderer {
         const buildings = typeof buildingCount === 'number' ? buildingCount : 0;
         const buildingType = prodData.type || '';
 
-        let textAlign: 'left' | 'right' = 'left';
-        if (depth === 0) {
-            textAlign = 'left';
-        } else if (parentX !== null && parentX !== undefined) {
-            textAlign = x < parentX ? 'left' : x > parentX ? 'right' : x < CENTER_X ? 'left' : 'right';
-        } else {
-            textAlign = x < CENTER_X ? 'left' : 'right';
-        }
+        // 横配置（RL）: 常にright（テキストはノードの左側に配置）
+        let textAlign: 'left' | 'right' = 'right';
 
         const inputs = Array.isArray(prodData.input) ? prodData.input : [];
         const isLeaf = inputs.length === 0 || inputs.every((input) => input.start_of_chain);
@@ -180,52 +179,46 @@ export class GraphRenderer {
         });
 
         if (typeof parentX === 'number' && typeof parentY === 'number') {
-            this.drawLink(parentX, parentY + 32, x, y - 32, depth === 0);
+            // 横配置（RL）: 横方向のリンク（右から左へ）
+            this.drawLink(parentX - 32, parentY, x + 32, y, depth === 0);
         }
 
         if (!inputs.length) return;
-        const nextY = y + 120;
+        // 横配置（RL）: 次のノードは左方向（X軸）に展開
+        const nextX = x - 180;
 
-        const inputWidths = inputs.map((input) => {
+        // 横配置: 各inputの縦幅（高さ）を計算
+        const inputHeights = inputs.map((input) => {
             if (Array.isArray(input.input)) return this.calculateTreeWidth(input);
             return 1;
         });
-        const totalWidth = inputWidths.reduce((sum, width) => sum + width, 0);
+        const totalHeight = inputHeights.reduce((sum, height) => sum + height, 0);
 
-        let hasRightAlignedText = false;
-        let probeOffset = x - (totalWidth * 90) / 2;
-        inputWidths.forEach((width) => {
-            const tentativeX = probeOffset + (width * 90) / 2;
-            if (tentativeX >= CENTER_X) {
-                hasRightAlignedText = true;
-            }
-            probeOffset += width * 90;
-        });
-
-        const nodeSpacing = hasRightAlignedText ? 160 : 120;
-        let currentOffset = x - (totalWidth * nodeSpacing) / 2;
+        // ノード間隔（縦方向）
+        const nodeSpacing = 120;
+        let currentOffset = y - (totalHeight * nodeSpacing) / 2;
 
         inputs.forEach((input, index) => {
             if (!input.id) return;
-            const widthUnits = inputWidths[index] ?? 1;
-            const inputX = currentOffset + (widthUnits * nodeSpacing) / 2;
-            currentOffset += widthUnits * nodeSpacing;
+            const heightUnits = inputHeights[index] ?? 1;
+            const inputY = currentOffset + (heightUnits * nodeSpacing) / 2;
+            currentOffset += heightUnits * nodeSpacing;
 
             if (Array.isArray(input.input)) {
-                this.renderRecursiveGraph(input, inputX, nextY, depth + 1, allBuildings, x, y, maxDepth);
+                this.renderRecursiveGraph(input, nextX, inputY, depth + 1, allBuildings, x, y, maxDepth);
                 return;
             }
 
             if (input.start_of_chain) {
                 const inputGood = this.findGood(input.id, input);
-                const inputBuildings = allBuildings[input.id] || 0;
+                const inputBuildings = (allBuildings[input.id] as number) || 0;
 
-                let align: 'left' | 'right' = 'left';
-                align = inputX < x ? 'left' : inputX > x ? 'right' : inputX < CENTER_X ? 'left' : 'right';
+                // 横配置（RL）では常にright（左側にラベル）
+                let align: 'left' | 'right' = 'right';
 
                 this.addNode({
-                    x: inputX,
-                    y: nextY,
+                    x: nextX,
+                    y: inputY,
                     good: inputGood,
                     buildings: inputBuildings,
                     textAlign: align,
@@ -240,7 +233,8 @@ export class GraphRenderer {
                     maintenanceCost: input.maintanance_cost,
                     productivity: this.calculateProductivity(input)
                 });
-                this.drawLink(x, y + 32, inputX, nextY - 32, false);
+                // 横配置（RL）: 横方向のリンク（右から左へ）
+                this.drawLink(x - 32, y, nextX + 32, inputY, false);
             }
         });
     }
@@ -248,9 +242,10 @@ export class GraphRenderer {
     addNode(nodeData: NodeData): void {
         if (!this.svgElement) return;
         const { x, y, good, buildings, textAlign, hasFuel, buildingType, prodNode, depth, maxDepth, isLeaf, startOfChain, buildingCost, maintenanceCost, productivity } = nodeData;
-        const group = document.createElementNS('http://www.w3.org/2000/svg', 'g');
+        const group = document.createElementNS(SVG_NS, 'g');
+        group.setAttribute('class', 'node');
 
-        const rect = document.createElementNS('http://www.w3.org/2000/svg', 'rect');
+        const rect = document.createElementNS(SVG_NS, 'rect');
         const size = 64;
         rect.setAttribute('x', String(x - size / 2));
         rect.setAttribute('y', String(y - size / 2));
@@ -261,8 +256,8 @@ export class GraphRenderer {
         rect.setAttribute('class', 'graph-node');
         group.appendChild(rect);
 
-        const img = document.createElementNS('http://www.w3.org/2000/svg', 'image');
-        img.setAttributeNS('http://www.w3.org/1999/xlink', 'href', `./assets/icons/${good.icon || good.id}.png`);
+        const img = document.createElementNS(SVG_NS, 'image');
+        img.setAttributeNS(XLINK_NS, 'href', `${ASSETS_ICONS_PATH}${good.icon || good.id}.png`);
         img.setAttribute('x', String(x - size / 2));
         img.setAttribute('y', String(y - size / 2));
         img.setAttribute('width', String(size));
@@ -292,10 +287,10 @@ export class GraphRenderer {
         group.appendChild(img);
 
         if (hasFuel) {
-            this.addCornerImage(group, x, y, size, './assets/icons/charcoal.png');
+            this.addCornerImage(group, x, y, size, '/icons/charcoal.png');
         } else {
             for (const icon of ProductionCalculator.getInstance().getActiveVisualModifiersForNode(prodNode)) {
-                this.addCornerImage(group, x, y, size, `./assets/icons/${icon}`, true);
+                this.addCornerImage(group, x, y, size, `${ASSETS_ICONS_PATH}${icon}`, true);
             }
         }
 
@@ -313,7 +308,7 @@ export class GraphRenderer {
             startOfChain
         });
 
-        const labelText = document.createElementNS('http://www.w3.org/2000/svg', 'text');
+        const labelText = document.createElementNS(SVG_NS, 'text');
         labelText.setAttribute('x', String(labelX));
         labelText.setAttribute('y', String(labelY));
         labelText.setAttribute('text-anchor', labelAnchor);
@@ -323,7 +318,7 @@ export class GraphRenderer {
         labelText.textContent = good.displayName || good.id || 'good';
         group.appendChild(labelText);
 
-        const buildingText = document.createElementNS('http://www.w3.org/2000/svg', 'text');
+        const buildingText = document.createElementNS(SVG_NS, 'text');
         buildingText.setAttribute('x', String(labelX));
         buildingText.setAttribute('y', String(buildingsY));
         buildingText.setAttribute('text-anchor', labelAnchor);
@@ -338,13 +333,22 @@ export class GraphRenderer {
 
     drawLink(x1: number, y1: number, x2: number, y2: number, primary: boolean): void {
         if (!this.svgElement) return;
-        const line = document.createElementNS('http://www.w3.org/2000/svg', 'line');
+
+        // エッジグループが存在しなければ作成
+        let edgeGroup = this.svgElement.querySelector('g.edges');
+        if (!edgeGroup) {
+            edgeGroup = document.createElementNS(SVG_NS, 'g');
+            edgeGroup.setAttribute('class', 'edges');
+            this.svgElement.insertBefore(edgeGroup, this.svgElement.firstChild);
+        }
+
+        const line = document.createElementNS(SVG_NS, 'line');
         line.setAttribute('x1', String(x1));
         line.setAttribute('y1', String(y1));
         line.setAttribute('x2', String(x2));
         line.setAttribute('y2', String(y2));
         line.setAttribute('class', primary ? 'graph-link' : 'graph-link-secondary');
-        this.svgElement.insertBefore(line, this.svgElement.firstChild);
+        (edgeGroup as SVGGElement).appendChild(line);
     }
 
     resolveLabelGeometry(params: {
@@ -360,21 +364,15 @@ export class GraphRenderer {
     }): LabelGeometry {
         const { x, y, textAlign, depth, startOfChain } = params;
 
+        // 横配置（RL）: ラベルはノードの左側に配置
+        const offset = 45;
+
         if (depth >= 2 && startOfChain) {
+            // チェーン末端ノードはノードの下に配置
             return { labelX: x, labelY: y + 50, buildingsY: y + 67, labelAnchor: 'middle' };
         }
 
-        const offset = 45;
-
-        if (textAlign === 'right') {
-            return {
-                labelX: x + offset,
-                labelY: y - 5,
-                buildingsY: y + 12,
-                labelAnchor: 'start'
-            };
-        }
-
+        // 通常ノード: 左側に配置
         return {
             labelX: x - offset,
             labelY: y - 5,
@@ -384,11 +382,11 @@ export class GraphRenderer {
     }
 
     addCornerImage(group: SVGGElement, x: number, y: number, size: number, href: string, filled: boolean = false): void {
-        const icon = document.createElementNS('http://www.w3.org/2000/svg', 'image');
+        const icon = document.createElementNS(SVG_NS, 'image');
         const iconSize = Math.round(size * 0.56);
         const cornerX = x + size / 2 - iconSize + 6;
         const cornerY = y + size / 2 - iconSize + 6;
-        icon.setAttributeNS('http://www.w3.org/1999/xlink', 'href', href);
+        icon.setAttributeNS(XLINK_NS, 'href', href);
         icon.setAttribute('x', String(cornerX));
         icon.setAttribute('y', String(cornerY));
         icon.setAttribute('width', String(iconSize));
@@ -396,7 +394,7 @@ export class GraphRenderer {
 
         if (filled) {
             // square with rounded corners as background for better visibility
-            const bg = document.createElementNS('http://www.w3.org/2000/svg', 'rect');
+            const bg = document.createElementNS(SVG_NS, 'rect');
             bg.setAttribute('x', String(cornerX));
             bg.setAttribute('y', String(cornerY));
             bg.setAttribute('width', String(iconSize));
@@ -638,6 +636,36 @@ export class GraphRenderer {
         }
     }
 
+    /**
+     * グラフ全体が見渡せるようviewBoxを自動調整
+     */
+    fitToView(): void {
+        if (!this.svgElement) return;
+
+        // レンダリング直後にDOM更新を確実に待つ
+        requestAnimationFrame(() => {
+            requestAnimationFrame(() => {
+                try {
+                    const bbox = this.svgElement!.getBBox();
+                    if (bbox.width === 0 || bbox.height === 0) return;
+
+                    const padding = 100; // 余白を十分に確保（枠内完全収容のため）
+                    const verticalOffset = 80; // グラフを上方向に移動（下部寄せを修正）
+                    const newViewBox: ViewBox = {
+                        x: bbox.x - padding,
+                        y: bbox.y - padding + verticalOffset,
+                        width: bbox.width + padding * 2,
+                        height: bbox.height + padding * 2
+                    };
+
+                    this.updateViewBox(newViewBox);
+                } catch (error) {
+                    console.warn('[fitToView] getBBox failed:', error);
+                }
+            });
+        });
+    }
+
     clientToSvgPoint(touch: Touch): Point {
         const rect = this.svgElement!.getBoundingClientRect();
         return {
@@ -682,7 +710,7 @@ export class GraphRenderer {
         const header = document.createElement('div');
         header.className = 'metadata-header';
         header.innerHTML = `
-            <img src="./assets/icons/${good.icon || good.id}.png" alt="${good.displayName}" class="metadata-icon" onerror="this.style.display='none';"/>
+            <img src="/icons/${good.icon || good.id}.png" alt="${good.displayName}" class="metadata-icon" onerror="this.style.display='none';"/>
             <h4>${good.displayName || good.id}</h4>
         `;
         content.appendChild(header);
@@ -713,13 +741,19 @@ export class GraphRenderer {
 
             const list = document.createElement('div');
             list.className = 'cost-list';
+            // 強制的に横並びにする
+            list.style.display = 'flex';
+            list.style.flexDirection = 'row';
+            list.style.flexWrap = 'wrap';
+            list.style.gap = '0.5rem';
+            list.style.alignItems = 'center';
 
             validCosts.forEach(([resource, amount]) => {
                 const item = document.createElement('div');
                 item.className = 'cost-resource';
                 const translatedName = this.i18n.t(`goods.${resource}`);
                 const label = translatedName !== resource ? translatedName : resource.replace(/_/g, ' ').replace(/\b\w/g, c => c.toUpperCase());
-                item.innerHTML = `<img src="./assets/icons/${resource}.png" alt="${label}" class="cost-icon-small" onerror="this.style.display='none';"/><span>${amount}</span>`;
+                item.innerHTML = `<img src="/icons/${resource}.png" alt="${label}" class="cost-icon-small" onerror="this.style.display='none';"/><span>${amount}</span>`;
 
                 item.addEventListener('mouseenter', () => {
                     const tip = document.createElement('div');

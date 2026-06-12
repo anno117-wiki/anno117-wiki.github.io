@@ -7,6 +7,7 @@ import { SettingsManager } from './SettingsManager';
 import { I18nManager } from '../../i18n/I18nManager';
 import { formatDuration } from './Utils';
 import type { BuildingsMap } from './ProductionCalculator';
+import { ASSETS_ICONS_PATH } from '../constants';
 
 interface GoodsListViewConfig {
     container: HTMLElement;
@@ -116,7 +117,7 @@ class GoodsListView {
             card.dataset.goodId = good.id;
             card.innerHTML = `
                 <div class="goods-card-icon">
-                    <img src="./assets/icons/${good.icon}.png" alt="${good.displayName}" loading="lazy" onerror="this.style.display='none'; this.nextElementSibling.style.display='flex';" />
+                    <img src="${ASSETS_ICONS_PATH}${good.icon}.png" alt="${good.displayName}" loading="lazy" onerror="this.style.display='none'; this.nextElementSibling.style.display='flex';" />
                     <div class="icon-placeholder" style="display:none;">${good.icon.substring(0, 2).toUpperCase()}</div>
                 </div>
                 <div class="goods-card-name">${good.displayName}</div>
@@ -202,13 +203,14 @@ class ProductionChainView {
         this.currentGood = good;
         this.container.classList.remove('hidden');
         const chainLabel = this.i18n.t('ui.dependencyGraph');
+        const backLabel = this.i18n.t('ui.back');
         this.container.innerHTML = `
             <div class="calculator-header">
-                <button type="button" class="back-button" data-action="back">&larr;</button>
+                <button type="button" class="back-button" data-action="back">${backLabel}</button>
                 <h3>${chainLabel}: ${good.displayName}</h3>
             </div>
             <div class="calculator-content">
-                <p>Loading production data for <strong>${good.displayName}</strong>...</p>
+                <p>${this.i18n.t('ui.loadingProductionData')} <strong>${good.displayName}</strong>...</p>
             </div>
         `;
         this.bindBackButton();
@@ -240,8 +242,9 @@ class ProductionChainView {
         this.graphHost = this.container.querySelector('[data-role="graph-host"]') as HTMLElement | null;
         this.targetInput = this.container.querySelector('#target-rate') as HTMLInputElement | null;
         this.recommendButton = this.container.querySelector('#recommend-ratio-btn') as HTMLElement | null;
-        this.buildingCostElement = this.container.querySelector('#total-building-cost') as HTMLElement | null;
-        this.maintenanceElement = this.container.querySelector('#total-maintenance') as HTMLElement | null;
+        // フッター要素は#calculator-containerの外にあるため、documentから取得
+        this.buildingCostElement = document.querySelector('#total-construction-cost') as HTMLElement | null;
+        this.maintenanceElement = document.querySelector('#total-maintenance-cost') as HTMLElement | null;
         this.bindBackButton();
         this.bindControls(recipe);
         if (this.graphHost) {
@@ -331,41 +334,31 @@ class ProductionChainView {
     }
 
     buildMarkup(good: RecipeListItem): string {
-        const modifierToolbar = this.buildModifierToolbar();
+        // modifierToolbarは右パネルのVue SettingsPanelに移動したため削除
         const chainLabel = this.i18n.t('ui.dependencyGraph');
         const buildingCostLabel = this.i18n.t('ui.buildingCost');
         const maintenanceLabel = this.i18n.t('ui.maintenance');
+        const backLabel = this.i18n.t('ui.back');
 
         return `
-            <div class="calculator-header">
-                <button class="back-button" type="button" data-action="back" aria-label="Back to list">&larr;</button>
-                <h3>${chainLabel}: ${good.displayName}</h3>
-            </div>
-            <div class="calculator-content two-column">
-                <div class="production-column">
-                    <div class="production-command-deck">
-                        <div class="production-rate-inline">
-                            <label for="target-rate">Output / min</label>
-                            <input id="target-rate" type="number" min="0" step="1" value="${this.currentRate ?? 1}" />
-                            <button id="recommend-ratio-btn" type="button" class="recommend-button" title="整数建物数になる最適レートを自動設定します">Auto Ratio</button>
+            <div class="calculator-content">
+                <div class="production-details-top single-column">
+                    <div class="production-header-left">
+                        <div class="calculator-header">
+                            <button class="back-button" type="button" data-action="back" aria-label="${backLabel}">${backLabel}</button>
+                            <h3>${chainLabel}: ${good.displayName}</h3>
                         </div>
-                        ${modifierToolbar}
+                        <div class="production-rate-inline">
+                            <label for="target-rate">${this.i18n.t('ui.outputPerMinute')}</label>
+                            <input id="target-rate" type="number" min="0" step="1" value="${this.currentRate ?? 1}" />
+                            <button id="recommend-ratio-btn" type="button" class="recommend-button" title="整数建物数になる最適レートを自動設定します">${this.i18n.t('ui.autoRatio')}</button>
+                        </div>
                     </div>
                 </div>
-                <div class="graph-column">
+                <div class="graph-panel">
                     <div class="production-graph">
                         <h4>${chainLabel}</h4>
                         <div class="graph-host" data-role="graph-host"></div>
-                    </div>
-                    <div class="cost-summary">
-                        <div class="cost-item">
-                            <strong>${buildingCostLabel}:</strong>
-                            <span id="total-building-cost">-</span>
-                        </div>
-                        <div class="cost-item">
-                            <strong>${maintenanceLabel}:</strong>
-                            <span id="total-maintenance">-</span>
-                        </div>
                     </div>
                 </div>
             </div>
@@ -384,7 +377,7 @@ class ProductionChainView {
             cards.push(`
                 <div class="production-card" data-input-id="${id}">
                     <div class="production-card-icon">
-                        <img src="./assets/icons/${icon}.png" alt="${displayName}" onerror="this.style.display='none'; this.nextElementSibling.style.display='flex';" />
+                        <img src="${ASSETS_ICONS_PATH}${icon}.png" alt="${displayName}" onerror="this.style.display='none'; this.nextElementSibling.style.display='flex';" />
                         <div class="icon-placeholder" style="display:none;">${icon.substring(0, 2).toUpperCase()}</div>
                     </div>
                     <div class="production-card-name">${displayName}</div>
@@ -396,11 +389,11 @@ class ProductionChainView {
 
         const content = cards.length
             ? cards.join('')
-            : '<p class="production-empty-note">No direct base input required.</p>';
+            : `<p class="production-empty-note">${this.i18n.t('ui.noDirectBaseInput')}</p>`;
 
         return `
             <div class="production-info production-info-compact">
-                <h4>Inputs</h4>
+                <h4>${this.i18n.t('ui.inputs')}</h4>
                 <div class="production-grid compact-grid">
                     ${content}
                 </div>
@@ -419,7 +412,7 @@ class ProductionChainView {
             return `
                 <div class="production-card">
                     <div class="production-card-icon">
-                        <img src="./assets/icons/${icon}.png" alt="${displayName}" onerror="this.style.display='none'; this.nextElementSibling.style.display='flex';" />
+                        <img src="${ASSETS_ICONS_PATH}${icon}.png" alt="${displayName}" onerror="this.style.display='none'; this.nextElementSibling.style.display='flex';" />
                         <div class="icon-placeholder" style="display:none;">${icon.substring(0, 2).toUpperCase()}</div>
                     </div>
                     <div class="production-card-name">${displayName}</div>
@@ -431,11 +424,11 @@ class ProductionChainView {
 
         const content = cards.length
             ? cards.join('')
-            : '<p class="production-empty-note">No fuel dependency.</p>';
+            : `<p class="production-empty-note">${this.i18n.t('ui.noFuelDependency')}</p>`;
 
         return `
             <div class="production-info production-info-compact">
-                <h4>Fuel</h4>
+                <h4>${this.i18n.t('ui.fuel')}</h4>
                 <div class="production-grid compact-grid">
                     ${content}
                 </div>
@@ -460,115 +453,8 @@ class ProductionChainView {
         `;
     }
 
-    buildModifierToolbar(): string {
-        const cards: string[] = [];
-
-        this.modifierRegistry.getDefinitions().forEach((modifier) => {
-            const toggles = (modifier.toggles ?? []).map((toggle) => {
-                const active = this.settingsManager.getSetting(toggle.key);
-                const requiredKey = toggle.requires || '';
-                const unlocked = !requiredKey || this.settingsManager.getSetting(requiredKey);
-                const classes = [
-                    'modifier-toggle-btn',
-                    active ? 'active' : '',
-                    unlocked ? '' : 'locked',
-                ].filter(Boolean).join(' ');
-                return `
-                    <button
-                        type="button"
-                        class="${classes}"
-                        data-setting-key="${toggle.key}"
-                        data-setting-requires="${requiredKey}"
-                        aria-label="${toggle.label}"
-                        aria-pressed="${active}"
-                        data-tooltip="${toggle.label}: ${toggle.description}">
-                        <img src="./assets/icons/${toggle.icon}" alt="" aria-hidden="true" />
-                        <span>${toggle.label}</span>
-                    </button>
-                `;
-            }).join('');
-
-            const numInputs = (modifier.numInputs ?? []).map((numInput) => {
-                const requiredKey = numInput.requires || '';
-                const unlocked = !requiredKey || this.settingsManager.getSetting(requiredKey);
-                const currentVal = this.settingsManager.getSettingRaw(numInput.key) ?? numInput.defaultValue ?? 0;
-                const minAttr = numInput.min !== undefined ? `min="${numInput.min}"` : '';
-                const maxAttr = numInput.max !== undefined ? `max="${numInput.max}"` : '';
-                const stepAttr = numInput.step !== undefined ? `step="${numInput.step}"` : '';
-                return `
-                    <label class="modifier-num-input-label ${unlocked ? '' : 'locked'}"
-                           data-tooltip="${numInput.label}: ${numInput.description}">
-                        <img src="./assets/icons/${numInput.icon}" alt="" aria-hidden="true" />
-                        <span>${numInput.label}</span>
-                        <input type="number" class="modifier-num-input"
-                               ${minAttr} ${maxAttr} ${stepAttr}
-                               value="${currentVal}"
-                               data-setting-num-key="${numInput.key}"
-                               data-setting-requires="${requiredKey}"
-                               ${unlocked ? '' : 'disabled'} />
-                    </label>
-                `;
-            }).join('');
-
-            const selects = (modifier.selects ?? []).map((select) => {
-                const requiredKey = select.requires || '';
-                const unlocked = !requiredKey || this.settingsManager.getSetting(requiredKey);
-                const currentVal = this.settingsManager.getSettingRaw(select.key) ?? select.defaultValue ?? '';
-                const options = select.options.map((opt) =>
-                    `<option value="${opt.value}" ${currentVal === opt.value ? 'selected' : ''}>${opt.label}</option>`
-                ).join('');
-                return `
-                    <label class="modifier-select-label ${unlocked ? '' : 'locked'}"
-                           data-tooltip="${select.label}: ${select.description}">
-                        <img src="./assets/icons/${select.icon}" alt="" aria-hidden="true" />
-                        <span>${select.label}</span>
-                        <select class="modifier-select"
-                                data-setting-select-key="${select.key}"
-                                data-setting-requires="${requiredKey}"
-                                ${unlocked ? '' : 'disabled'}>
-                            ${options}
-                        </select>
-                    </label>
-                `;
-            }).join('');
-
-            const hasControls = toggles || numInputs || selects;
-            if (!hasControls) return;
-
-            cards.push(`
-                <div class="modifier-toolbar-group compact">
-                    <span class="modifier-toolbar-label">${modifier.label} Settings</span>
-                    <div class="modifier-toggle-row">
-                        ${toggles}
-                        ${numInputs}
-                        ${selects}
-                    </div>
-                </div>
-            `);
-        });
-
-        if (!cards.length) {
-            return `
-                <section class="aqueduct-settings-panel">
-                    <h4>Modifier Settings</h4>
-                    <p>Apply productivity boosts to improve efficiency.</p>
-                    <div class="modifier-toolbar-empty">
-                        No modifier settings registered.
-                    </div>
-                </section>
-            `;
-        }
-
-        return `
-            <section class="aqueduct-settings-panel">
-                <h4>Modifier Settings</h4>
-                <p>Apply productivity boosts to improve efficiency.</p>
-                <div class="production-modifier-inline">
-                    ${cards.join('')}
-                </div>
-            </section>
-        `;
-    }
+    // buildModifierToolbar()は削除
+    // Modifier Settingsは右パネルのVue SettingsPanelに完全移行
 
     updateCalculations(recipe: Goods): void {
         if (!recipe) return;
@@ -597,9 +483,13 @@ class ProductionChainView {
     updateCostSummary(allBuildings: BuildingsMap): void {
         if (!this.buildingCostElement || !this.maintenanceElement) return;
         const totals = this.calculator.calculateTotals(allBuildings);
-        this.buildingCostElement.replaceChildren(...this.buildCostElements(totals.buildingCost));
 
-        const maintenanceElements = this.buildCostElements(totals.maintenance);
+        // 建設コストコンテナを作成して追加
+        const buildingCostContainer = this.buildCostElements(totals.buildingCost);
+        this.buildingCostElement.replaceChildren(buildingCostContainer);
+
+        // 維持費コンテナを作成
+        const maintenanceContainer = this.buildCostElements(totals.maintenance);
         const metadata = allBuildings._metadata;
         const charcoalFuelBuildings = metadata
             ? Object.values(metadata).reduce((sum, node) => {
@@ -614,10 +504,10 @@ class ProductionChainView {
 
         if (charcoalFuelBuildings > 0) {
             const charcoalLabel = this.i18n.t('goods.charcoal');
-            maintenanceElements.push(this.buildCostElement('charcoal', `${charcoalFuelBuildings.toFixed(2)}x`, charcoalLabel !== 'charcoal' ? charcoalLabel : 'Coal'));
+            maintenanceContainer.appendChild(this.buildCostElement('charcoal', `${charcoalFuelBuildings.toFixed(2)}x`, charcoalLabel !== 'charcoal' ? charcoalLabel : 'Coal'));
         }
 
-        this.maintenanceElement.replaceChildren(...maintenanceElements);
+        this.maintenanceElement.replaceChildren(maintenanceContainer);
     }
 
     private syncModifierControlState(): void {
@@ -684,27 +574,40 @@ class ProductionChainView {
         });
     }
 
-    buildCostElements(costs: Record<string, number> = {}): HTMLElement[] {
+    buildCostElements(costs: Record<string, number> = {}): HTMLElement {
+        const container = document.createElement('div');
+        container.className = 'cost-list';
+        // 強制的に横並びにする
+        container.style.display = 'flex';
+        container.style.flexDirection = 'row';
+        container.style.flexWrap = 'wrap';
+        container.style.gap = '0.5rem';
+        container.style.alignItems = 'center';
+
         const entries = Object.entries(costs).filter(([, amount]) => amount > 0);
         if (!entries.length) {
             const none = document.createElement('span');
             none.className = 'cost-none';
-            none.textContent = 'None';
-            return [none];
+            none.textContent = this.i18n.t('ui.none');
+            container.appendChild(none);
+            return container;
         }
-        return entries.map(([resource, amount]) => {
+
+        entries.forEach(([resource, amount]) => {
             // I18nManagerから翻訳を取得、見つからない場合はTitle Case形式にフォールバック
             const translatedLabel = this.i18n.t(`goods.${resource}`);
             const fallbackLabel = resource.replace(/_/g, ' ').replace(/\b\w/g, c => c.toUpperCase());
             const label = (translatedLabel !== resource) ? translatedLabel : fallbackLabel;
-            return this.buildCostElement(resource, String(amount), label);
+            container.appendChild(this.buildCostElement(resource, String(amount), label));
         });
+
+        return container;
     }
 
     private buildCostElement(resource: string, amountText: string, label: string): HTMLElement {
         const item = document.createElement('span');
         item.className = 'cost-resource';
-        item.innerHTML = `<img src="./assets/icons/${resource}.png" alt="${label}" class="cost-icon" onerror="this.style.display='none';"/><span class="cost-amount">${amountText}</span>`;
+        item.innerHTML = `<img src="${ASSETS_ICONS_PATH}${resource}.png" alt="${label}" class="cost-icon" onerror="this.style.display='none';"/><span class="cost-amount">${amountText}</span>`;
 
         item.addEventListener('mouseenter', () => {
             const tip = document.createElement('div');
@@ -728,9 +631,10 @@ class ProductionChainView {
         this.currentGood = good;
         this.sourceRecipe = null;
         this.container.classList.remove('hidden');
+        const backLabel = this.i18n.t('ui.back');
         this.container.innerHTML = `
             <div class="calculator-header">
-                <button class="back-button" type="button" data-action="back" aria-label="Back to list">&larr;</button>
+                <button class="back-button" type="button" data-action="back" aria-label="${backLabel}">${backLabel}</button>
                 <h3>${good.displayName}</h3>
             </div>
             <div class="calculator-content">
@@ -738,7 +642,7 @@ class ProductionChainView {
                     <p><strong>ID:</strong> ${good.id}</p>
                     <p><strong>Icon:</strong> ${good.icon}</p>
                 </div>
-                <p class="info-note">No detailed production data available for this good.</p>
+                <p class="info-note">${this.i18n.t('ui.noDetailedProductionData')}</p>
             </div>
         `;
         this.bindBackButton();

@@ -1,7 +1,7 @@
 <template>
   <div :class="['tree-category', { expanded }]" :data-category="category.id">
     <div
-      class="category-header"
+      class="tree-category-header"
       @click="toggleExpand"
       role="button"
       :aria-expanded="expanded"
@@ -101,7 +101,7 @@ function handleSelectItem(good: RecipeListItem) {
   margin-bottom: 4px;
 }
 
-.category-header {
+.tree-category-header {
   display: flex;
   align-items: center;
   gap: 8px;
@@ -116,11 +116,11 @@ function handleSelectItem(good: RecipeListItem) {
   user-select: none;
 }
 
-.category-header:hover {
+.tree-category-header:hover {
   background-color: var(--background-accent);
 }
 
-.category-header:focus {
+.tree-category-header:focus {
   outline: 2px solid var(--theme-color);
   outline-offset: 2px;
 }
@@ -173,7 +173,7 @@ function handleSelectItem(good: RecipeListItem) {
 
 /* タッチデバイス対応 */
 @media (hover: none) {
-  .category-header {
+  .tree-category-header {
     min-height: 52px;
   }
 }

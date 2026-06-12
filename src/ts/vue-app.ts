@@ -5,10 +5,8 @@
 
 import { createApp } from 'vue';
 import LanguageToggle from '../components/LanguageToggle.vue';
-import GoodsList from '../components/GoodsList.vue';
 import SettingsPanelRoot from '../components/SettingsPanelRoot.vue';
-import type { RecipeListItem } from './types/RecipeList';
-import { SettingsManager } from './modules/SettingsManager';
+import ModifierPanel from '../components/ModifierPanel.vue';
 
 /**
  * Vueコンポーネントを初期化
@@ -37,38 +35,27 @@ export function initVueComponents() {
   }
 }
 
-/**
- * 商品一覧をVueコンポーネントとして初期化
- */
-export function initGoodsList(
-  container: HTMLElement,
-  goods: RecipeListItem[],
-  onSelect: (good: RecipeListItem) => void
-) {
-  // コンテナをクリア
-  container.innerHTML = '';
-  container.classList.remove('hidden');
-
-  // Vueアプリを作成してマウント
-  const app = createApp(GoodsList, {
-    goods,
-    onSelect,
-  });
-
-  app.mount(container);
-
-  console.log('[Vue] GoodsList component mounted');
-
-  return app;
-}
 
 /**
  * 設定パネルをVueコンポーネントとして初期化
  */
 export function initSettingsPanel() {
+  const modifierContainer = document.getElementById('modifier-container');
+
+  if (!modifierContainer) {
+    console.warn('[Vue] #modifier-container not found, falling back to body');
+    const settingsPanelContainer = document.createElement('div');
+    settingsPanelContainer.id = 'settings-panel-vue';
+    document.body.appendChild(settingsPanelContainer);
+
+    const app = createApp(SettingsPanelRoot);
+    app.mount(settingsPanelContainer);
+    return app;
+  }
+
   const settingsPanelContainer = document.createElement('div');
   settingsPanelContainer.id = 'settings-panel-vue';
-  document.body.appendChild(settingsPanelContainer);
+  modifierContainer.appendChild(settingsPanelContainer);
 
   const app = createApp(SettingsPanelRoot);
   app.mount(settingsPanelContainer);
@@ -83,6 +70,25 @@ export function initSettingsPanel() {
   }
 
   console.log('[Vue] SettingsPanel component mounted');
+
+  return app;
+}
+
+/**
+ * 右パネルにModifierPanelをマウント
+ */
+export function initModifierPanel() {
+  const modifierContainer = document.getElementById('modifier-container');
+
+  if (!modifierContainer) {
+    console.warn('[Vue] #modifier-container not found');
+    return;
+  }
+
+  const app = createApp(ModifierPanel);
+  app.mount(modifierContainer);
+
+  console.log('[Vue] ModifierPanel component mounted');
 
   return app;
 }

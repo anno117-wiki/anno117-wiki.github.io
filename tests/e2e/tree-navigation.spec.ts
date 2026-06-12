@@ -13,7 +13,7 @@ test.describe('ツリーナビゲーション', () => {
 
   test('カテゴリが正しく表示される', async ({ page }) => {
     // カテゴリヘッダーが表示される
-    const luxuryCategory = page.locator('[data-category="luxury"] .category-header');
+    const luxuryCategory = page.locator('[data-category="luxury"] .tree-category-header');
     await expect(luxuryCategory).toBeVisible();
 
     // カテゴリ名が日本語で表示される
@@ -28,7 +28,7 @@ test.describe('ツリーナビゲーション', () => {
 
   test('カテゴリクリックで商品が表示される', async ({ page }) => {
     // 高級品カテゴリをクリック
-    const luxuryHeader = page.locator('[data-category="luxury"] .category-header');
+    const luxuryHeader = page.locator('[data-category="luxury"] .tree-category-header');
     await luxuryHeader.click();
     await page.waitForTimeout(300);
 
@@ -48,7 +48,7 @@ test.describe('ツリーナビゲーション', () => {
 
   test('カテゴリを再クリックで折り畳まれる', async ({ page }) => {
     // カテゴリを展開
-    const foodHeader = page.locator('[data-category="food"] .category-header');
+    const foodHeader = page.locator('[data-category="food"] .tree-category-header');
     await foodHeader.click();
     await page.waitForTimeout(300);
 
@@ -116,7 +116,7 @@ test.describe('ツリーナビゲーション', () => {
 
   test('商品をクリックすると生産チェーンが表示される', async ({ page }) => {
     // カテゴリを展開
-    const foodHeader = page.locator('[data-category="food"] .category-header');
+    const foodHeader = page.locator('[data-category="food"] .tree-category-header');
     await foodHeader.click();
     await page.waitForTimeout(300);
 
@@ -133,7 +133,7 @@ test.describe('ツリーナビゲーション', () => {
 
   test('最近表示した商品がリストに追加される', async ({ page }) => {
     // カテゴリを展開
-    const militaryHeader = page.locator('[data-category="military"] .category-header');
+    const militaryHeader = page.locator('[data-category="military"] .tree-category-header');
     await militaryHeader.click();
     await page.waitForTimeout(300);
 
@@ -162,14 +162,14 @@ test.describe('ツリーナビゲーション', () => {
     await page.waitForSelector('.goods-tree-view', { timeout: 10000 });
 
     // カテゴリ名が英語で表示される
-    const luxuryCategory = page.locator('[data-category="luxury"] .category-header');
+    const luxuryCategory = page.locator('[data-category="luxury"] .tree-category-header');
     const categoryName = luxuryCategory.locator('.category-name');
     await expect(categoryName).toHaveText('Luxury Goods');
   });
 
   test('キーボードナビゲーションが機能する', async ({ page }) => {
     // カテゴリヘッダーにフォーカス
-    const luxuryHeader = page.locator('[data-category="luxury"] .category-header');
+    const luxuryHeader = page.locator('[data-category="luxury"] .tree-category-header');
     await luxuryHeader.focus();
 
     // Enterキーで展開

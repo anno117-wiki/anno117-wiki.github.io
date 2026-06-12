@@ -11,6 +11,7 @@ type TranslationData = {
     regions: Record<string, string>;
     populationTiers: Record<string, string>;
     modifiers: Record<string, string>;
+    specialists: Record<string, string>;
 };
 
 type LocaleChangeListener = (locale: Locale) => void;
@@ -73,34 +74,38 @@ export class I18nManager {
 
     /**
      * 翻訳キーからテキストを取得
-     * @param key - ドット記法のキー（例: "ui.selectGood", "goods.amphorae"）
+     * @param key - ドット記法のキー（例: "ui.selectGood", "goods.amphorae", "modifiers.aqueduct.enabled"）
      * @returns 翻訳されたテキスト（キーが見つからない場合は英語フォールバック）
      */
     t(key: string): string {
         const parts = key.split('.');
-        if (parts.length !== 2) {
+        if (parts.length < 2) {
             console.warn(`[I18n] Invalid key format: ${key}`);
             return key;
         }
 
-        const [category, subKey] = parts;
+        const category = parts[0];
+        const subKeys = parts.slice(1);
         const data = this.translations.get(this.currentLocale);
 
         if (!data) {
             console.warn(`[I18n] No translations loaded for locale: ${this.currentLocale}`);
-            return this.fallbackTranslation(category, subKey);
+            return this.fallbackTranslation(category, subKeys);
         }
 
         const categoryData = data[category as keyof TranslationData];
         if (!categoryData) {
             console.warn(`[I18n] Unknown category: ${category}`);
-            return this.fallbackTranslation(category, subKey);
+            return this.fallbackTranslation(category, subKeys);
         }
 
-        const translation = categoryData[subKey];
+        // ネストされたキーを辿る（modifiers.aqueduct.enabled → categoryData['aqueduct.enabled']）
+        const fullSubKey = subKeys.join('.');
+        const translation = categoryData[fullSubKey];
+
         if (!translation) {
             console.warn(`[I18n] Missing translation: ${key}`);
-            return this.fallbackTranslation(category, subKey);
+            return this.fallbackTranslation(category, subKeys);
         }
 
         return translation;
@@ -109,20 +114,22 @@ export class I18nManager {
     /**
      * 英語フォールバック（翻訳が見つからない場合）
      */
-    private fallbackTranslation(category: string, subKey: string): string {
+    private fallbackTranslation(category: string, subKeys: string[]): string {
+        const fullSubKey = subKeys.join('.');
+
         if (this.currentLocale === 'en') {
             // 英語でも見つからない場合はキーをそのまま返す
-            return subKey;
+            return fullSubKey;
         }
 
         // 英語から取得を試みる
         const enData = this.translations.get('en');
-        if (!enData) return subKey;
+        if (!enData) return fullSubKey;
 
         const categoryData = enData[category as keyof TranslationData];
-        if (!categoryData) return subKey;
+        if (!categoryData) return fullSubKey;
 
-        return categoryData[subKey] || subKey;
+        return categoryData[fullSubKey] || fullSubKey;
     }
 
     /**
@@ -156,7 +163,7 @@ export class I18nManager {
      */
     private async fetchTranslationData(locale: Locale): Promise<void> {
         try {
-            const response = await fetch(`./i18n/locales/${locale}.json`);
+            const response = await fetch(`/i18n/locales/${locale}.json`);
             if (!response.ok) {
                 throw new Error(`Failed to load locale: ${locale} (${response.status})`);
             }
@@ -170,7 +177,8 @@ export class I18nManager {
                 ui: {},
                 regions: {},
                 populationTiers: {},
-                modifiers: {}
+                modifiers: {},
+                specialists: {}
             });
         }
     }

@@ -92,7 +92,7 @@ test.describe('言語切り替え機能', () => {
 
     // カテゴリを展開
     const firstCategory = page.locator('.tree-category').first();
-    await firstCategory.locator('.category-header').click();
+    await firstCategory.locator('.tree-category-header').click();
     await page.waitForTimeout(300);
 
     // 商品を選択

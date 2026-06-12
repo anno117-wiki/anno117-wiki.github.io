@@ -1,4 +1,5 @@
 import { ModifierRegistry } from './ModifierRegistry';
+import { ASSETS_ICONS_PATH } from '../constants';
 
 export type SettingsSnapshot = Record<string, boolean | number | string>;
 
@@ -38,6 +39,9 @@ export class SettingsManager {
     private infoModal: HTMLElement | null;
     private infoToggle: HTMLElement | null;
     private infoClose: HTMLElement | null;
+    private helpModal: HTMLElement | null;
+    private helpToggle: HTMLElement | null;
+    private helpClose: HTMLElement | null;
 
     private constructor(storageKey = 'anno117_calculator_settings') {
         this.storageKey = storageKey;
@@ -53,6 +57,9 @@ export class SettingsManager {
         this.infoModal = null;
         this.infoToggle = null;
         this.infoClose = null;
+        this.helpModal = null;
+        this.helpToggle = null;
+        this.helpClose = null;
     }
 
     init(): void {
@@ -62,6 +69,7 @@ export class SettingsManager {
         this.ensureOverlay();
         this.bindShellButtons();
         this.bindInfoModal();
+        this.bindHelpModal();
         this.renderStoragePanel();
         this.notify();
     }
@@ -160,6 +168,18 @@ export class SettingsManager {
         }
     }
 
+    openHelp(): void {
+        this.helpModal?.classList.remove('hidden');
+        this.overlay?.classList.add('active');
+    }
+
+    closeHelp(): void {
+        this.helpModal?.classList.add('hidden');
+        if (!this.settingsPanel || this.settingsPanel.classList.contains('hidden')) {
+            this.overlay?.classList.remove('active');
+        }
+    }
+
     private cacheDom(): void {
         this.settingsPanel = document.getElementById('saved-store-panel');
         this.settingsToggle = document.getElementById('saved-store-toggle');
@@ -168,6 +188,9 @@ export class SettingsManager {
         this.infoToggle = document.getElementById('info-toggle');
         this.infoClose = document.getElementById('info-close');
         this.infoModal = document.getElementById('info-modal');
+        this.helpToggle = document.getElementById('help-toggle');
+        this.helpClose = document.getElementById('help-close');
+        this.helpModal = document.getElementById('help-modal');
     }
 
     private ensureOverlay(): void {
@@ -189,6 +212,8 @@ export class SettingsManager {
                 this.closeSettings();
             } else if (this.infoModal && !this.infoModal.classList.contains('hidden')) {
                 this.closeInfo();
+            } else if (this.helpModal && !this.helpModal.classList.contains('hidden')) {
+                this.closeHelp();
             }
         });
     }
@@ -197,6 +222,12 @@ export class SettingsManager {
         if (!this.infoModal) return;
         this.infoToggle?.addEventListener('click', () => this.openInfo());
         this.infoClose?.addEventListener('click', () => this.closeInfo());
+    }
+
+    private bindHelpModal(): void {
+        if (!this.helpModal) return;
+        this.helpToggle?.addEventListener('click', () => this.openHelp());
+        this.helpClose?.addEventListener('click', () => this.closeHelp());
     }
 
     private renderStoragePanel(): void {
@@ -229,7 +260,7 @@ export class SettingsManager {
         const activeMarkup = activeToggles.length
             ? activeToggles.map((toggle) => `
                 <li>
-                    <img src="./assets/icons/${toggle.icon}" alt="${toggle.label}">
+                    <img src="${ASSETS_ICONS_PATH}${toggle.icon}" alt="${toggle.label}">
                     <span>${toggle.label}</span>
                 </li>
             `).join('')

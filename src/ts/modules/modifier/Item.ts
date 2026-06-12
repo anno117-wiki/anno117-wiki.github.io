@@ -1,6 +1,7 @@
 import type { Goods } from '../../types/Goods';
 import { GoodsRepository } from '../GoodRepository';
 import { ModifierRegistry } from '../ModifierRegistry';
+import { I18nManager } from '../../../i18n/I18nManager';
 import {
 	AbstractProductionModifier,
 	type ModifierDefinition,
@@ -22,16 +23,29 @@ class Item extends AbstractProductionModifier {
 	private static activeChainId: string | null = null;
 
 	private readonly repository: GoodsRepository;
+	private readonly i18n: I18nManager;
 	private latestSettings: SettingsSnapshot;
 
 	constructor() {
 		super('item');
 		this.repository = GoodsRepository.getInstance();
+		this.i18n = I18nManager.getInstance();
 		this.latestSettings = {};
 	}
 
 	static setActiveChain(chainId: string | null): void {
+		// 変更がなければ何もしない（無駄な再描画を防ぐ）
+		if (Item.activeChainId === chainId) return;
+
+		console.log('[Item] setActiveChain called with:', chainId);
 		Item.activeChainId = chainId;
+
+		// ModifierPanelに変更を通知してアイテムリストを更新
+		try {
+			ModifierRegistry.getInstance().notifyDefinitionsChanged();
+		} catch (error) {
+			console.error('[Item] Failed to notify definitions changed:', error);
+		}
 	}
 
 	static getChainSettingKey(chainId: string): string {
@@ -75,24 +89,34 @@ class Item extends AbstractProductionModifier {
 		const toggles: ModifierToggleDefinition[] = [];
 
 		const activeChainId = Item.activeChainId;
+		console.log('[Item] getDefinition called, activeChainId:', activeChainId);
+
 		if (activeChainId) {
-			const chain = this.repository
-				.getCompatibleItemChains()
-				.find((c) => c.id === activeChainId);
+			const allChains = this.repository.getCompatibleItemChains();
+			console.log('[Item] Available chain IDs:', allChains.map(c => c.id));
+
+			const chain = allChains.find((c) => c.id === activeChainId);
+			console.log('[Item] Found chain for activeChainId:', chain ? chain.id : 'NOT FOUND');
+
 			if (chain) {
+				console.log('[Item] Chain items count:', chain.items.length);
 				for (const item of chain.items) {
 					const pct = this.repository.getItemProductivity(item.guid);
 					const icon = item.iconFilename ? `items/${item.iconFilename}` : 'infrastructure/coastal.png';
+					const localizedName = this.i18n.t(`specialists.${item.guid}`);
 					toggles.push({
 						key: this.getItemKey(chain.id, item.guid),
-						label: item.displayName,
+						label: localizedName,
 						description: `${chain.displayName}: +${this.formatPercent(pct)} productivity`,
 						icon,
 					});
 				}
+			} else {
+				console.warn('[Item] No chain found for activeChainId:', activeChainId);
 			}
 		}
 
+		console.log('[Item] Returning definition with toggles count:', toggles.length);
 		return {
 			id: 'item',
 			label: 'Items',

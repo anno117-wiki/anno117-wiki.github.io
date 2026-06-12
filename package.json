@@ -2,11 +2,23 @@
   "name": "anno117-calculator-jp",
   "version": "1.0.0",
   "description": "Anno 117 Production Calculator - Japanese Edition",
+  "author": "kojifujita0822 <kojifujita0822@gmail.com>",
+  "license": "UNLICENSED",
+  "keywords": [
+    "anno",
+    "anno117",
+    "calculator",
+    "production-chain",
+    "japanese",
+    "vue3",
+    "typescript",
+    "vite"
+  ],
   "scripts": {
     "generate": "bun run tools/generate-goods-list.ts && bun run tools/generate-items-list.ts",
     "dev": "vite",
     "dev:legacy": "bun run devserver.ts --dev",
-    "build": "bun run devserver.ts --build",
+    "build": "vue-tsc --noEmit && vite build",
     "build:vite": "vite build",
     "preview": "vite preview",
     "test": "playwright test",
@@ -17,7 +29,9 @@
   "devDependencies": {
     "@playwright/test": "^1.60.0",
     "@types/bun": "latest",
-    "@types/node": "^25.5.0"
+    "@types/node": "^25.5.0",
+    "typescript": "^5.6.0",
+    "vue-tsc": "^2.2.0"
   },
   "private": true,
   "peerDependencies": {

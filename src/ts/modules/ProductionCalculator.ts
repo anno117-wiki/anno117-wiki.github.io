@@ -18,7 +18,7 @@ export interface BuildingsMetadata {
 }
 
 export interface BuildingsMap {
-  [buildingId: string]: number;
+  [buildingId: string]: number | BuildingsMetadata | undefined;
   _metadata?: BuildingsMetadata;
 }
 
@@ -99,7 +99,7 @@ export class ProductionCalculator {
             ? (requiredPerMinute * adjustedDuration) / SECONDS_PER_MINUTE
             : 0;
 
-        result[key] = (result[key] || 0) + buildings;
+        result[key] = ((result[key] as number) || 0) + buildings;
         if (!result['_metadata']) result['_metadata'] = {};
         if (!result['_metadata'][key]) {
             result['_metadata'][key] = productionData;
@@ -116,7 +116,7 @@ export class ProductionCalculator {
 
                 if (input.start_of_chain) {
                     const inputBuildings = this.calculateStartOfChainBuildings(input, requiredInputPerMinute, buildings, productionData);
-                    result[input.id] = (result[input.id] || 0) + inputBuildings;
+                    result[input.id] = ((result[input.id] as number) || 0) + inputBuildings;
                     if (!result['_metadata'][input.id]) {
                         result['_metadata'][input.id] = input;
                     }
@@ -180,7 +180,7 @@ export class ProductionCalculator {
                     : [];
 
         if (!fuelList.length) return [];
-        const consumingBuildings = productionData.id ? (allBuildings[productionData.id] || 0) : 0;
+        const consumingBuildings = productionData.id ? ((allBuildings[productionData.id] as number) || 0) : 0;
 
         return fuelList.map((fuel) => {
             const burningTime = fuel.burning_time || 120;
