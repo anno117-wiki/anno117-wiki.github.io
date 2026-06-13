@@ -25,7 +25,7 @@ export default defineConfig({
   },
 
   build: {
-    outDir: resolve(__dirname, 'docs'),
+    outDir: resolve(__dirname, 'docs/calculator'),
     emptyOutDir: true,
     rollupOptions: {
       input: resolve(__dirname, 'apps/calculator/src/index.html'),
