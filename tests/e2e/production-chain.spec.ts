@@ -151,19 +151,20 @@ test.describe('生産チェーン表示とインタラクション', () => {
     const initialViewBox = await svg.getAttribute('viewBox');
     expect(initialViewBox).toBeTruthy();
 
-    // マウスホイールでズーム（シミュレーション）
-    const svgBox = await svg.boundingBox();
-    if (svgBox) {
-      await page.mouse.move(svgBox.x + svgBox.width / 2, svgBox.y + svgBox.height / 2);
-      await page.mouse.wheel(0, -100); // ズームイン
-      await page.waitForTimeout(500);
+    // page.mouse.wheel() はheadless ChromiumではSVGのwheelリスナーを発火させない
+    // （pointer-events:all 適用後も同様であることを検証済み）。
+    // WheelEvent を直接 SVG に dispatch してズームをトリガーする。
+    await page.evaluate(() => {
+      const svgEl = document.querySelector('svg#dependency-graph');
+      svgEl?.dispatchEvent(new WheelEvent('wheel', { deltaY: -100, bubbles: true, cancelable: true }));
+    });
+    await page.waitForTimeout(300);
 
-      // viewBoxが変更されることを確認
-      const updatedViewBox = await svg.getAttribute('viewBox');
+    // viewBoxが変更されることを確認
+    const updatedViewBox = await svg.getAttribute('viewBox');
 
-      // ズームが適用されたかを確認（viewBoxが変化する）
-      expect(updatedViewBox).not.toBe(initialViewBox);
-    }
+    // ズームが適用されたかを確認（viewBoxが変化する）
+    expect(updatedViewBox).not.toBe(initialViewBox);
   });
 
   test('SVGグラフのパン（移動）機能が動作する', async ({ page }) => {

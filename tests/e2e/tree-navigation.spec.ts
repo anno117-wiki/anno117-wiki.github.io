@@ -13,37 +13,38 @@ test.describe('ツリーナビゲーション', () => {
 
   test('カテゴリが正しく表示される', async ({ page }) => {
     // カテゴリヘッダーが表示される
-    const luxuryCategory = page.locator('[data-category="luxury"] .tree-category-header');
-    await expect(luxuryCategory).toBeVisible();
+    const cultureCategory = page.locator('[data-category="culture"] .tree-category-header');
+    await expect(cultureCategory).toBeVisible();
 
     // カテゴリ名が日本語で表示される
-    const categoryName = luxuryCategory.locator('.category-name');
-    await expect(categoryName).toHaveText('高級品');
+    const categoryName = cultureCategory.locator('.category-name');
+    await expect(categoryName).toHaveText('文化');
 
     // カテゴリ数が表示される
-    const categoryCount = luxuryCategory.locator('.category-count');
+    const categoryCount = cultureCategory.locator('.category-count');
     const countText = await categoryCount.textContent();
     expect(countText).toMatch(/\(\d+\)/);
   });
 
   test('カテゴリクリックで商品が表示される', async ({ page }) => {
     // 高級品カテゴリをクリック
-    const luxuryHeader = page.locator('[data-category="luxury"] .tree-category-header');
-    await luxuryHeader.click();
+    const cultureHeader = page.locator('[data-category="culture"] .tree-category-header');
+    await cultureHeader.click();
     await page.waitForTimeout(300);
 
     // カテゴリが展開される
-    const luxuryCategory = page.locator('[data-category="luxury"]');
-    await expect(luxuryCategory).toHaveClass(/expanded/);
+    const cultureCategory = page.locator('[data-category="culture"]');
+    await expect(cultureCategory).toHaveClass(/expanded/);
 
     // 商品アイテムが表示される
-    const items = page.locator('[data-category="luxury"] .tree-item');
+    const items = page.locator('[data-category="culture"] .tree-item');
     const itemCount = await items.count();
     expect(itemCount).toBeGreaterThan(0);
 
     // Fine Glassが存在する
     const fineGlass = page.locator('[data-good-id="fine_glass"]');
     await expect(fineGlass).toBeVisible();
+    // 注: fine_glass は現行カテゴリ体系では culture(文化) に所属
   });
 
   test('カテゴリを再クリックで折り畳まれる', async ({ page }) => {
@@ -75,8 +76,8 @@ test.describe('ツリーナビゲーション', () => {
     await expect(breadItem).toBeVisible();
 
     // パンが含まれないカテゴリは空になる
-    const militaryCategory = page.locator('[data-category="military"]');
-    await expect(militaryCategory).not.toBeVisible();
+    const constructionCategory = page.locator('[data-category="construction"]');
+    await expect(constructionCategory).not.toBeVisible();
   });
 
   test('検索結果がない場合にメッセージが表示される', async ({ page }) => {
@@ -111,7 +112,7 @@ test.describe('ツリーナビゲーション', () => {
     // すべてのカテゴリが再表示される
     const allCategories = page.locator('.tree-category');
     const categoryCount = await allCategories.count();
-    expect(categoryCount).toBeGreaterThanOrEqual(5);
+    expect(categoryCount).toBeGreaterThanOrEqual(4);
   });
 
   test('商品をクリックすると生産チェーンが表示される', async ({ page }) => {
@@ -133,8 +134,8 @@ test.describe('ツリーナビゲーション', () => {
 
   test('最近表示した商品がリストに追加される', async ({ page }) => {
     // カテゴリを展開
-    const militaryHeader = page.locator('[data-category="military"] .tree-category-header');
-    await militaryHeader.click();
+    const constructionHeader = page.locator('[data-category="construction"] .tree-category-header');
+    await constructionHeader.click();
     await page.waitForTimeout(300);
 
     // 商品を選択
@@ -162,22 +163,22 @@ test.describe('ツリーナビゲーション', () => {
     await page.waitForSelector('.goods-tree-view', { timeout: 10000 });
 
     // カテゴリ名が英語で表示される
-    const luxuryCategory = page.locator('[data-category="luxury"] .tree-category-header');
-    const categoryName = luxuryCategory.locator('.category-name');
-    await expect(categoryName).toHaveText('Luxury Goods');
+    const cultureCategory = page.locator('[data-category="culture"] .tree-category-header');
+    const categoryName = cultureCategory.locator('.category-name');
+    await expect(categoryName).toHaveText('Culture');
   });
 
   test('キーボードナビゲーションが機能する', async ({ page }) => {
     // カテゴリヘッダーにフォーカス
-    const luxuryHeader = page.locator('[data-category="luxury"] .tree-category-header');
-    await luxuryHeader.focus();
+    const cultureHeader = page.locator('[data-category="culture"] .tree-category-header');
+    await cultureHeader.focus();
 
     // Enterキーで展開
     await page.keyboard.press('Enter');
     await page.waitForTimeout(300);
 
     // カテゴリが展開される
-    const luxuryCategory = page.locator('[data-category="luxury"]');
-    await expect(luxuryCategory).toHaveClass(/expanded/);
+    const cultureCategory = page.locator('[data-category="culture"]');
+    await expect(cultureCategory).toHaveClass(/expanded/);
   });
 });
