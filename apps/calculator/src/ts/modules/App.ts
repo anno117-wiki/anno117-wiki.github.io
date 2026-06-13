@@ -218,7 +218,7 @@ export class App {
             this.pushUrl();
             this.updateGoodsList();
             if (this.currentGood) {
-                this.handleGoodSelection(this.currentGood);
+                this.handleGoodSelection(this.currentGood, { preserveRate: true });
             }
         };
 
@@ -291,7 +291,7 @@ export class App {
     // Good selection
     // -----------------------------------------------------------------------
 
-    private async handleGoodSelection(good: RecipeListItem): Promise<void> {
+    private async handleGoodSelection(good: RecipeListItem, options: { preserveRate?: boolean } = {}): Promise<void> {
         this.currentGood = good;
         Item.setActiveChain(good.id);
         this.pushUrl();
@@ -302,7 +302,7 @@ export class App {
         try {
             const recipe: Goods | null = await this.goodsRepository.loadProductionChain(good.id, this.currentRegion);
             if (recipe) {
-                await this.productionView.showChain(good, recipe);
+                await this.productionView.showChain(good, recipe, { preserveRate: Boolean(options.preserveRate) });
             } else {
                 this.productionView.showBasicInfo(good);
             }

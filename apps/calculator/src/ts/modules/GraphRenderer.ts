@@ -486,8 +486,10 @@ export class GraphRenderer {
 
         this.svgElement.addEventListener('mousemove', (e: MouseEvent) => {
             if (!isDragging) return;
-            const dx = (e.clientX - startX) * (viewBox.width / this.svgElement!.clientWidth);
-            const dy = (e.clientY - startY) * (viewBox.height / this.svgElement!.clientHeight);
+            const viewBox = this.parseViewBox();
+            const clientRect = this.svgElement!.getBoundingClientRect();
+            const dx = (e.clientX - startX) * (viewBox.width / clientRect.width);
+            const dy = (e.clientY - startY) * (viewBox.height / clientRect.height);
             viewBox.x -= dx;
             viewBox.y -= dy;
             this.updateViewBox(viewBox);
@@ -509,16 +511,17 @@ export class GraphRenderer {
 
         this.svgElement.addEventListener('wheel', (e: WheelEvent) => {
             e.preventDefault();
+            const viewBox = this.parseViewBox();
             const rect = this.svgElement!.getBoundingClientRect();
             const mouseX = e.clientX - rect.left;
             const mouseY = e.clientY - rect.top;
-            const svgX = viewBox.x + (mouseX / this.svgElement!.clientWidth) * viewBox.width;
-            const svgY = viewBox.y + (mouseY / this.svgElement!.clientHeight) * viewBox.height;
+            const svgX = viewBox.x + (mouseX / rect.width) * viewBox.width;
+            const svgY = viewBox.y + (mouseY / rect.height) * viewBox.height;
             const zoomFactor = e.deltaY > 0 ? 1.1 : 0.9;
             const newWidth = viewBox.width * zoomFactor;
             const newHeight = viewBox.height * zoomFactor;
-            viewBox.x = svgX - (mouseX / this.svgElement!.clientWidth) * newWidth;
-            viewBox.y = svgY - (mouseY / this.svgElement!.clientHeight) * newHeight;
+            viewBox.x = svgX - (mouseX / rect.width) * newWidth;
+            viewBox.y = svgY - (mouseY / rect.height) * newHeight;
             viewBox.width = newWidth;
             viewBox.height = newHeight;
             this.updateViewBox(viewBox);
@@ -556,8 +559,10 @@ export class GraphRenderer {
             }
             if (activeTouches.size === 1 && isDragging) {
                 const point = Array.from(activeTouches.values())[0]!;
-                const dx = (point.x - startX) * (viewBox.width / this.svgElement!.clientWidth);
-                const dy = (point.y - startY) * (viewBox.height / this.svgElement!.clientHeight);
+                const viewBox = this.parseViewBox();
+                const clientRect = this.svgElement!.getBoundingClientRect();
+                const dx = (point.x - startX) * (viewBox.width / clientRect.width);
+                const dy = (point.y - startY) * (viewBox.height / clientRect.height);
                 viewBox.x -= dx;
                 viewBox.y -= dy;
                 this.updateViewBox(viewBox);
@@ -571,12 +576,14 @@ export class GraphRenderer {
                 if (currentDistance <= 0) return;
                 const scale = initialPinchDistance / currentDistance;
                 const mid = { x: (p1.x + p2.x) / 2, y: (p1.y + p2.y) / 2 };
-                const focusX = initialViewBox.x + (mid.x / this.svgElement!.clientWidth) * initialViewBox.width;
-                const focusY = initialViewBox.y + (mid.y / this.svgElement!.clientHeight) * initialViewBox.height;
+                const clientRect = this.svgElement!.getBoundingClientRect();
+                const focusX = initialViewBox.x + (mid.x / clientRect.width) * initialViewBox.width;
+                const focusY = initialViewBox.y + (mid.y / clientRect.height) * initialViewBox.height;
                 const newWidth = initialViewBox.width * scale;
                 const newHeight = initialViewBox.height * scale;
-                viewBox.x = focusX - (mid.x / this.svgElement!.clientWidth) * newWidth;
-                viewBox.y = focusY - (mid.y / this.svgElement!.clientHeight) * newHeight;
+                const viewBox = this.parseViewBox();
+                viewBox.x = focusX - (mid.x / clientRect.width) * newWidth;
+                viewBox.y = focusY - (mid.y / clientRect.height) * newHeight;
                 viewBox.width = newWidth;
                 viewBox.height = newHeight;
                 this.updateViewBox(viewBox);
