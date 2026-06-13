@@ -109,7 +109,7 @@ const MAX_RECENT_ITEMS = 5;
 // カテゴリデータの読み込み
 onMounted(async () => {
   try {
-    const response = await fetch(`${import.meta.env.BASE_URL}assets/data/categories.json`);
+    const response = await fetch(`${import.meta.env.BASE_URL}data/categories.json`);
     const data: CategoriesData = await response.json();
     categories.value = data.categories.sort((a, b) => a.order - b.order);
     console.log('[GoodsTreeView] Loaded', categories.value.length, 'categories');

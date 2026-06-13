@@ -12,7 +12,7 @@
   >
     <div class="tree-item-icon">
       <img
-        :src="`./assets/icons/${good.icon}.png`"
+        :src="iconSrc"
         :alt="displayName"
         class="good-icon"
         @error="handleImageError"
@@ -69,6 +69,9 @@ const i18n = I18nManager.getInstance();
 const displayName = computed(() => {
   return i18n.t(`goods.${props.good.id}`) || props.good.displayName;
 });
+
+// import.meta はVueテンプレートでなくscriptでBASE_URLを解決する
+const iconSrc = computed(() => `${import.meta.env.BASE_URL}icons/${props.good.icon}.png`);
 
 function handleClick() {
   if (!props.disabled) {

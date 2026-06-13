@@ -60,7 +60,7 @@ class GoodsRepository {
     private itemTargetsByGuid: Map<string, Set<string>> = new Map();
     private i18n: I18nManager;
 
-    private constructor(goodsUrl = './assets/productions/list.json', productionBaseUrl = './assets/productions') {
+    private constructor(goodsUrl = `${import.meta.env.BASE_URL}productions/list.json`, productionBaseUrl = `${import.meta.env.BASE_URL}productions`) {
         this.goodsUrl = goodsUrl;
         this.productionBaseUrl = productionBaseUrl;
         this.i18n = I18nManager.getInstance();
@@ -240,7 +240,7 @@ class GoodsRepository {
         }
 
         try {
-            const response = await fetch(`./assets/data/items/${guid}.json`);
+            const response = await fetch(`${import.meta.env.BASE_URL}data/items/${guid}.json`);
             if (!response.ok) {
                 this.itemProductivityByGuid.set(guid, 0);
                 return 0;
