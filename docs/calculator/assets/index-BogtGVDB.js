@@ -176,7 +176,7 @@ var GoodsRepository = class GoodsRepository {
 	itemProductivityByGuid = /* @__PURE__ */ new Map();
 	itemTargetsByGuid = /* @__PURE__ */ new Map();
 	i18n;
-	constructor(goodsUrl = "./assets/productions/list.json", productionBaseUrl = "./assets/productions") {
+	constructor(goodsUrl = `/calculator/productions/list.json`, productionBaseUrl = `/calculator/productions`) {
 		this.goodsUrl = goodsUrl;
 		this.productionBaseUrl = productionBaseUrl;
 		this.i18n = I18nManager.getInstance();
@@ -302,7 +302,7 @@ var GoodsRepository = class GoodsRepository {
 		const cached = this.itemProductivityByGuid.get(guid);
 		if (cached !== void 0) return cached;
 		try {
-			const response = await fetch(`./assets/data/items/${guid}.json`);
+			const response = await fetch(`/calculator/data/items/${guid}.json`);
 			if (!response.ok) {
 				this.itemProductivityByGuid.set(guid, 0);
 				return 0;
@@ -6599,6 +6599,7 @@ var TreeItem_default = /*#__PURE__*/ _plugin_vue_export_helper_default(/* @__PUR
 		const displayName = computed(() => {
 			return i18n.t(`goods.${props.good.id}`) || props.good.displayName;
 		});
+		const iconSrc = computed(() => `/calculator/icons/${props.good.icon}.png`);
 		function handleClick() {
 			if (!props.disabled) emit("select", props.good);
 		}
@@ -6620,7 +6621,7 @@ var TreeItem_default = /*#__PURE__*/ _plugin_vue_export_helper_default(/* @__PUR
 				tabindex: "0",
 				onKeydown: [withKeys(handleClick, ["enter"]), withKeys(withModifiers(handleClick, ["prevent"]), ["space"])]
 			}, [createBaseVNode("div", _hoisted_2$4, [createBaseVNode("img", {
-				src: `./assets/icons/${__props.good.icon}.png`,
+				src: iconSrc.value,
 				alt: displayName.value,
 				class: "good-icon",
 				onError: handleImageError
@@ -6632,7 +6633,7 @@ var TreeItem_default = /*#__PURE__*/ _plugin_vue_export_helper_default(/* @__PUR
 			}), 128))])) : createCommentVNode("v-if", true)])], 42, _hoisted_1$4);
 		};
 	}
-}), [["__scopeId", "data-v-94c3d8ea"]]);
+}), [["__scopeId", "data-v-9ab57aeb"]]);
 //#endregion
 //#region apps/calculator/src/components/TreeCategory.vue?vue&type=script&setup=true&lang.ts
 var _hoisted_1$3 = ["data-category"];
@@ -6748,7 +6749,7 @@ var GoodsTreeView_default = /*#__PURE__*/ _plugin_vue_export_helper_default(/* @
 		const categories = /* @__PURE__ */ ref([]);
 		onMounted(async () => {
 			try {
-				categories.value = (await (await fetch(`/calculator/assets/data/categories.json`)).json()).categories.sort((a, b) => a.order - b.order);
+				categories.value = (await (await fetch(`/calculator/data/categories.json`)).json()).categories.sort((a, b) => a.order - b.order);
 				console.log("[GoodsTreeView] Loaded", categories.value.length, "categories");
 			} catch (error) {
 				console.error("[GoodsTreeView] Failed to load categories:", error);
@@ -6876,7 +6877,7 @@ var GoodsTreeView_default = /*#__PURE__*/ _plugin_vue_export_helper_default(/* @
 			]);
 		};
 	}
-}), [["__scopeId", "data-v-50380013"]]);
+}), [["__scopeId", "data-v-9e5864d1"]]);
 //#endregion
 //#region apps/calculator/src/components/TreeAppRoot.vue
 var TreeAppRoot_default = /* @__PURE__ */ defineComponent({
@@ -7814,4 +7815,4 @@ document.addEventListener("DOMContentLoaded", async () => {
 });
 //#endregion
 
-//# sourceMappingURL=index-BFPtcgFN.js.map
+//# sourceMappingURL=index-BogtGVDB.js.map

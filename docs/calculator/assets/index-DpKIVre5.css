@@ -1,6 +1,6 @@
 @font-face {
   font-family: "NotoSerif";
-  src: url("./../assets/fonts/NotoSerif.ttf") format("truetype");
+  src: url("../fonts/NotoSerif.ttf") format("truetype");
 }
 
 * {
@@ -1908,7 +1908,7 @@ footer {
   outline-offset: 2px;
 }
 
-.tree-item[data-v-94c3d8ea] {
+.tree-item[data-v-9ab57aeb] {
   display: flex;
   align-items: center;
   gap: 12px;
@@ -1920,25 +1920,25 @@ footer {
   min-height: 48px;
   user-select: none;
 }
-.tree-item[data-v-94c3d8ea]:hover {
+.tree-item[data-v-9ab57aeb]:hover {
   background-color: var(--background-accent);
 }
-.tree-item[data-v-94c3d8ea]:focus {
+.tree-item[data-v-9ab57aeb]:focus {
   outline: 2px solid var(--theme-color);
   outline-offset: 2px;
 }
-.tree-item.selected[data-v-94c3d8ea] {
+.tree-item.selected[data-v-9ab57aeb] {
   background-color: var(--theme-color);
   color: var(--background);
 }
-.tree-item.selected[data-v-94c3d8ea]:hover {
+.tree-item.selected[data-v-9ab57aeb]:hover {
   background-color: var(--theme-color-hover);
 }
-.tree-item.disabled[data-v-94c3d8ea] {
+.tree-item.disabled[data-v-9ab57aeb] {
   opacity: 0.5;
   cursor: not-allowed;
 }
-.tree-item-icon[data-v-94c3d8ea] {
+.tree-item-icon[data-v-9ab57aeb] {
   flex-shrink: 0;
   width: 32px;
   height: 32px;
@@ -1946,45 +1946,45 @@ footer {
   align-items: center;
   justify-content: center;
 }
-.good-icon[data-v-94c3d8ea] {
+.good-icon[data-v-9ab57aeb] {
   max-width: 100%;
   max-height: 100%;
   object-fit: contain;
 }
-.tree-item-content[data-v-94c3d8ea] {
+.tree-item-content[data-v-9ab57aeb] {
   flex: 1;
   display: flex;
   flex-direction: column;
   gap: 4px;
   overflow: hidden;
 }
-.tree-item-name[data-v-94c3d8ea] {
+.tree-item-name[data-v-9ab57aeb] {
   font-weight: 500;
   font-size: 14px;
   white-space: nowrap;
   overflow: hidden;
   text-overflow: ellipsis;
 }
-.tree-item-tags[data-v-94c3d8ea] {
+.tree-item-tags[data-v-9ab57aeb] {
   display: flex;
   gap: 4px;
   flex-wrap: wrap;
 }
-.tag[data-v-94c3d8ea] {
+.tag[data-v-9ab57aeb] {
   font-size: 10px;
   padding: 2px 6px;
   border-radius: 3px;
   background-color: rgba(95, 3, 46, 0.1);
   color: var(--text-secondary);
 }
-.tree-item.selected .tag[data-v-94c3d8ea] {
+.tree-item.selected .tag[data-v-9ab57aeb] {
   background-color: rgba(255, 255, 255, 0.2);
   color: var(--background);
 }
 
 /* タッチデバイス対応 */
 @media (hover: none) {
-.tree-item[data-v-94c3d8ea] {
+.tree-item[data-v-9ab57aeb] {
     min-height: 52px;
 }
 }
@@ -2060,35 +2060,35 @@ to {
 }
 }
 
-.goods-tree-view[data-v-50380013] {
+.goods-tree-view[data-v-9e5864d1] {
   display: flex;
   flex-direction: column;
   height: 100%;
   background-color: var(--background);
   overflow: hidden;
 }
-.tree-content[data-v-50380013] {
+.tree-content[data-v-9e5864d1] {
   flex: 1;
   overflow-y: auto;
   padding: 8px;
 }
-.tree-categories[data-v-50380013] {
+.tree-categories[data-v-9e5864d1] {
   display: flex;
   flex-direction: column;
   gap: 4px;
 }
-.no-results[data-v-50380013] {
+.no-results[data-v-9e5864d1] {
   padding: 32px 16px;
   text-align: center;
   color: var(--text-secondary);
   font-size: 14px;
 }
-.recent-section[data-v-50380013] {
+.recent-section[data-v-9e5864d1] {
   margin-top: 24px;
   padding-top: 16px;
   border-top: 1px solid var(--border-color);
 }
-.recent-header[data-v-50380013] {
+.recent-header[data-v-9e5864d1] {
   display: flex;
   align-items: center;
   gap: 8px;
@@ -2097,28 +2097,28 @@ to {
   font-size: 14px;
   color: var(--text-primary);
 }
-.recent-icon[data-v-50380013] {
+.recent-icon[data-v-9e5864d1] {
   font-size: 16px;
 }
-.recent-title[data-v-50380013] {
+.recent-title[data-v-9e5864d1] {
   flex: 1;
 }
-.recent-list[data-v-50380013] {
+.recent-list[data-v-9e5864d1] {
   margin-top: 4px;
 }
 
 /* スクロールバーのスタイル */
-.tree-content[data-v-50380013]::-webkit-scrollbar {
+.tree-content[data-v-9e5864d1]::-webkit-scrollbar {
   width: 8px;
 }
-.tree-content[data-v-50380013]::-webkit-scrollbar-track {
+.tree-content[data-v-9e5864d1]::-webkit-scrollbar-track {
   background: var(--background);
 }
-.tree-content[data-v-50380013]::-webkit-scrollbar-thumb {
+.tree-content[data-v-9e5864d1]::-webkit-scrollbar-thumb {
   background: var(--border-color);
   border-radius: 4px;
 }
-.tree-content[data-v-50380013]::-webkit-scrollbar-thumb:hover {
+.tree-content[data-v-9e5864d1]::-webkit-scrollbar-thumb:hover {
   background: var(--text-secondary);
 }
 
