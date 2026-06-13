@@ -17,7 +17,12 @@ build/
 bun.lockb
 
 # Build output
-# docs/ は GitHub Pages 配信元のため追跡対象（build:site の生成物をコミットする）
+# ルート docs/ は GitHub Pages 配信元のため追跡対象（build:site の生成物をコミットする）
+# wiki ソース（apps/wiki/docs/）は追跡し、VitePress のビルド生成物のみ除外する
+apps/wiki/docs/.vitepress/cache/
+apps/wiki/docs/.vitepress/dist/
+# 公式クローン（special_thanks）のビルド物は追跡不要
+special_thanks/**/docs/
 
 # OS
 Thumbs.db
