@@ -8,7 +8,7 @@
 
 ### git状態
 - ブランチ: master、未コミット変更なし
-- 最新コミット: `52a035e` fix: wiki ソース本体を追跡対象に救出
+- 最新コミット: `ff43903` docs: フェーズ7検証結果を反映（E2E 33失敗を記録）
 
 ### ビルド確認
 - `bun run build` → exit0（calculator単独、docs/calculator/ へ出力）
@@ -53,10 +53,11 @@ docs/
 
 ### 優先度高
 
-1. **E2E playwright 検証**
-   - `bun run test` を実行して既存テストが通るか確認
-   - テストの baseURL が calculator のサブパス（/calculator/）に対応しているか要確認
-   - playwright.config.ts の baseURL を `process.env.E2E_BASE ?? 'http://localhost:5173'` に
+1. **E2E playwright 修復**（次回最優先）
+   - 家老検証済み: `bun run test` → **33 failed / 2 passed**
+   - 原因: モノレポ移行後のパス変更・サブパス対応未完
+   - 詳細は `docs-notes/handover-phase7-verification.md` 参照（家老作成）
+   - investigator サブエージェントで失敗テストの原因を分類してから修正推奨
 
 2. **フォント警告修正**（軽微）
    - `NotoSerif.ttf referenced in ... didn't resolve at build time` 警告
