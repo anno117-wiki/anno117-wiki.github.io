@@ -2,6 +2,11 @@
   "name": "@anno/calculator",
   "version": "1.0.0",
   "private": true,
+  "scripts": {
+    "dev": "vite",
+    "build": "vue-tsc --noEmit && vite build",
+    "preview": "vite preview"
+  },
   "dependencies": {
     "@anno/shared": "workspace:*"
   }

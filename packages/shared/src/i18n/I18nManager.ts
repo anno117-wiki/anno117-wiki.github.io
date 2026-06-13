@@ -163,7 +163,7 @@ export class I18nManager {
      */
     private async fetchTranslationData(locale: Locale): Promise<void> {
         try {
-            const response = await fetch(`/i18n/locales/${locale}.json`);
+            const response = await fetch(`${import.meta.env.BASE_URL}i18n/locales/${locale}.json`);
             if (!response.ok) {
                 throw new Error(`Failed to load locale: ${locale} (${response.status})`);
             }
