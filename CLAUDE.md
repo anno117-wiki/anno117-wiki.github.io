@@ -57,7 +57,7 @@ anno_db2/                        ← workspaces root
 | 3 | Vue 3.5 + Vite 8 移行 | ✅ 完了 |
 | 4 | ツリー型商品選択UI（4カテゴリ・48商品） | ✅ 完了 |
 | 5 | 3カラムレイアウト | ✅ 完了 |
-| 7 | モノレポ再編 + VitePress wiki | 🚧 実装は第0-5段完了・E2E検証未通過(33失敗) |
+| 7 | モノレポ再編 + VitePress wiki | ✅ 完了（第0-5段＋E2E 35/35全通過） |
 
 フェーズ7詳細計画: `c:\Users\kojif\.claude\plans\claude-md-replicated-crown.md`
 
@@ -68,11 +68,10 @@ anno_db2/                        ← workspaces root
 - ✅ 第3段: calculator アプリ化（src/→apps/calculator/src/、publicDir共有化、BASE_URL化）
 - ✅ 第4段: VitePress wiki 骨組み
 - ✅ 第5段: 一体ビルド（bun run build:site、exit0確認済み）
-- 🚧 残（次回最優先・詳細は docs-notes/handover-phase7-verification.md）:
-  - E2E playwright が移行後 **33 failed / 2 passed**（要修復・investigator推奨）
-  - フォント警告: theme.css のフォントパスが旧 src/assets 基準（実害軽微）
-  - 配信データ経路: docs/calculator/index.html の ./assets/ 相対参照を要確認
-  - E2E通過後にフェーズ7を「✅完了」へ確定
+- ✅ E2E検証: 33 failed→**35/35 全通過**（2026-06-14）。原因はテスト陳腐化6件＋
+  既存バグ2件（SVGズームの pointer-events / 地域切替レート保持）でモノレポ移行とは無関係。
+  詳細は docs-notes/handover-phase7-verification.md
+- 残課題（軽微・任意）: フォント警告（theme.css のフォントパス、serifフォールバックで実害なし）
 
 ## 制作の基本行動【MUST】
 
