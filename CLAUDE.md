@@ -8,7 +8,7 @@ anno-calculator公式（GitHub: agentquackyt/Anno117Calculator）のデータを
 - TypeScript ^5.6 / Vue 3.5.35 / Vite 8.x
 - bun（パッケージマネージャ・ランタイム）
 - VitePress（wiki）/ Playwright 1.60.0（E2E）
-- **Capacitor・Tailwindは未導入**（標準CSS: src/css/theme.css）
+- **Capacitor・Tailwindは未導入**（標準CSS: apps/calculator/src/css/theme.css）
 
 ## プロジェクト構造（モノレポ移行後）
 
@@ -57,13 +57,18 @@ anno_db2/                        ← workspaces root
 | 3 | Vue 3.5 + Vite 8 移行 | ✅ 完了 |
 | 4 | ツリー型商品選択UI（4カテゴリ・48商品） | ✅ 完了 |
 | 5 | 3カラムレイアウト | ✅ 完了 |
-| 7 | モノレポ再編 + VitePress wiki | 🚧 第0段着手中 |
+| 7 | モノレポ再編 + VitePress wiki | 🚧 第5段完了・E2E検証残 |
 
 フェーズ7詳細計画: `c:\Users\kojif\.claude\plans\claude-md-replicated-crown.md`
 
-### フェーズ7 第0段 状態（2026-06-12）
-- 第0段: git/作業ツリー整理（侍・忍者が並列実施中）
-- 第1段以降: 侍・忍者の完了報告後に着手
+### フェーズ7 完了済み段（2026-06-13）
+- ✅ 第0段: git/作業ツリー整理
+- ✅ 第1段: workspaces骨組み
+- ✅ 第2段: @anno/shared 切り出し
+- ✅ 第3段: calculator アプリ化（src/→apps/calculator/src/、publicDir共有化、BASE_URL化）
+- ✅ 第4段: VitePress wiki 骨組み
+- ✅ 第5段: 一体ビルド（bun run build:site）
+- 🚧 残: E2E playwright 検証・フォント警告修正・第6段 CLAUDE.md最終更新
 
 ## 制作の基本行動【MUST】
 
