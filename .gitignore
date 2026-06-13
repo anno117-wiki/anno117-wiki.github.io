@@ -17,7 +17,7 @@ build/
 bun.lockb
 
 # Build output
-docs/
+# docs/ は GitHub Pages 配信元のため追跡対象（build:site の生成物をコミットする）
 
 # OS
 Thumbs.db

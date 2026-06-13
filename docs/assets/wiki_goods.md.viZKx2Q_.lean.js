@@ -1,0 +1,1 @@
+import{_ as e,o as t,c as o,a0 as r}from"./chunks/framework.Dx25mwie.js";const _=JSON.parse('{"title":"商品","description":"","frontmatter":{},"headers":[],"relativePath":"wiki/goods.md","filePath":"wiki/goods.md"}'),i={name:"wiki/goods.md"};function l(s,a,d,c,n,h){return t(),o("div",null,[...a[0]||(a[0]=[r("",9)])])}const u=e(i,[["render",l]]);export{_ as __pageData,u as default};
