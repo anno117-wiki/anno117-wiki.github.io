@@ -2,9 +2,9 @@
  * アプリケーション全体で使用する定数
  */
 
-// アセットパス（Vite publicDir設定: src/assets → /）
-export const ASSETS_ICONS_PATH = '/icons/';
-export const ASSETS_DATA_PATH = '/data/';
+// アセットパス（BASE_URLプレフィックス必須: GitHub Pages /calculator/ サブパス対応）
+export const ASSETS_ICONS_PATH = `${import.meta.env.BASE_URL}icons/`;
+export const ASSETS_DATA_PATH = `${import.meta.env.BASE_URL}data/`;
 
 // SVG namespace
 export const SVG_NS = 'http://www.w3.org/2000/svg';

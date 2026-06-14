@@ -21,7 +21,7 @@
           >
             <img
               v-if="toggle.icon"
-              :src="`/icons/${toggle.icon}`"
+              :src="`${iconsPath}${toggle.icon}`"
               :alt="toggle.label"
               class="toggle-icon"
             />
@@ -54,6 +54,7 @@ interface ModifierDefinition {
 const i18n = I18nManager.getInstance();
 const modifierRegistry = ModifierRegistry.getInstance();
 const settingsManager = SettingsManager.getInstance();
+const iconsPath = import.meta.env.BASE_URL + 'icons/';
 
 const $t = (key: string, fallback?: string): string => {
   const result = i18n.t(key);

@@ -88,7 +88,7 @@
           </li>
           <li v-for="toggle in activeToggles" :key="toggle.key">
             <img
-              :src="`/icons/${toggle.icon}`"
+              :src="`${iconsPath}${toggle.icon}`"
               :alt="toggle.label"
             />
             <span>{{ $t(`modifiers.${toggle.key}`) }}</span>
@@ -138,6 +138,7 @@ const emit = defineEmits<{
 const i18n = I18nManager.getInstance();
 const settingsManager = SettingsManager.getInstance();
 const modifierRegistry = ModifierRegistry.getInstance();
+const iconsPath = import.meta.env.BASE_URL + 'icons/';
 
 // 翻訳ヘルパー関数
 const $t = (key: string): string => {

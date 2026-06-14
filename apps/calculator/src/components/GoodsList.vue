@@ -26,7 +26,7 @@
         >
           <div class="goods-card-icon">
             <img
-              :src="`/icons/${good.icon}.png`"
+              :src="`${iconsPath}${good.icon}.png`"
               :alt="good.displayName"
               loading="lazy"
               @error="handleImageError"
@@ -61,6 +61,7 @@ const emit = defineEmits<Emits>();
 const i18nManager = I18nManager.getInstance();
 const searchTerm = ref<string>('');
 const selectedGoodId = ref<string>('');
+const iconsPath = import.meta.env.BASE_URL + 'icons/';
 
 /**
  * 翻訳ヘルパー関数

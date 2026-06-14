@@ -287,7 +287,7 @@ export class GraphRenderer {
         group.appendChild(img);
 
         if (hasFuel) {
-            this.addCornerImage(group, x, y, size, '/icons/charcoal.png');
+            this.addCornerImage(group, x, y, size, `${ASSETS_ICONS_PATH}charcoal.png`);
         } else {
             for (const icon of ProductionCalculator.getInstance().getActiveVisualModifiersForNode(prodNode)) {
                 this.addCornerImage(group, x, y, size, `${ASSETS_ICONS_PATH}${icon}`, true);
@@ -717,7 +717,7 @@ export class GraphRenderer {
         const header = document.createElement('div');
         header.className = 'metadata-header';
         header.innerHTML = `
-            <img src="/icons/${good.icon || good.id}.png" alt="${good.displayName}" class="metadata-icon" onerror="this.style.display='none';"/>
+            <img src="${ASSETS_ICONS_PATH}${good.icon || good.id}.png" alt="${good.displayName}" class="metadata-icon" onerror="this.style.display='none';"/>
             <h4>${good.displayName || good.id}</h4>
         `;
         content.appendChild(header);
@@ -760,7 +760,7 @@ export class GraphRenderer {
                 item.className = 'cost-resource';
                 const translatedName = this.i18n.t(`goods.${resource}`);
                 const label = translatedName !== resource ? translatedName : resource.replace(/_/g, ' ').replace(/\b\w/g, c => c.toUpperCase());
-                item.innerHTML = `<img src="/icons/${resource}.png" alt="${label}" class="cost-icon-small" onerror="this.style.display='none';"/><span>${amount}</span>`;
+                item.innerHTML = `<img src="${ASSETS_ICONS_PATH}${resource}.png" alt="${label}" class="cost-icon-small" onerror="this.style.display='none';"/><span>${amount}</span>`;
 
                 item.addEventListener('mouseenter', () => {
                     const tip = document.createElement('div');

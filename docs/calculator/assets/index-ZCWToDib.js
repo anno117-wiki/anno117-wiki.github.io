@@ -401,7 +401,7 @@ var ModifierRegistry = class ModifierRegistry {
 /**
 * アプリケーション全体で使用する定数
 */
-var ASSETS_ICONS_PATH = "/icons/";
+var ASSETS_ICONS_PATH = `/calculator/icons/`;
 var SVG_NS = "http://www.w3.org/2000/svg";
 var XLINK_NS = "http://www.w3.org/1999/xlink";
 //#endregion
@@ -1130,7 +1130,7 @@ var GraphRenderer = class GraphRenderer {
 		});
 		img.addEventListener("mousedown", this.displayInfoMenue);
 		group.appendChild(img);
-		if (hasFuel) this.addCornerImage(group, x, y, size, "/icons/charcoal.png");
+		if (hasFuel) this.addCornerImage(group, x, y, size, `${ASSETS_ICONS_PATH}charcoal.png`);
 		else for (const icon of ProductionCalculator.getInstance().getActiveVisualModifiersForNode(prodNode)) this.addCornerImage(group, x, y, size, `${ASSETS_ICONS_PATH}${icon}`, true);
 		const { labelX, labelAnchor, labelY, buildingsY } = this.resolveLabelGeometry({
 			x,
@@ -1496,7 +1496,7 @@ var GraphRenderer = class GraphRenderer {
 		const header = document.createElement("div");
 		header.className = "metadata-header";
 		header.innerHTML = `
-            <img src="/icons/${good.icon || good.id}.png" alt="${good.displayName}" class="metadata-icon" onerror="this.style.display='none';"/>
+            <img src="${ASSETS_ICONS_PATH}${good.icon || good.id}.png" alt="${good.displayName}" class="metadata-icon" onerror="this.style.display='none';"/>
             <h4>${good.displayName || good.id}</h4>
         `;
 		content.appendChild(header);
@@ -1529,7 +1529,7 @@ var GraphRenderer = class GraphRenderer {
 				item.className = "cost-resource";
 				const translatedName = this.i18n.t(`goods.${resource}`);
 				const label = translatedName !== resource ? translatedName : resource.replace(/_/g, " ").replace(/\b\w/g, (c) => c.toUpperCase());
-				item.innerHTML = `<img src="/icons/${resource}.png" alt="${label}" class="cost-icon-small" onerror="this.style.display='none';"/><span>${amount}</span>`;
+				item.innerHTML = `<img src="${ASSETS_ICONS_PATH}${resource}.png" alt="${label}" class="cost-icon-small" onerror="this.style.display='none';"/><span>${amount}</span>`;
 				item.addEventListener("mouseenter", () => {
 					const tip = document.createElement("div");
 					tip.className = "cost-tooltip";
@@ -7059,6 +7059,7 @@ var SettingsPanel_default = /* @__PURE__ */ defineComponent({
 		const i18n = I18nManager.getInstance();
 		const settingsManager = SettingsManager.getInstance();
 		const modifierRegistry = ModifierRegistry.getInstance();
+		const iconsPath = "/calculator/icons/";
 		const $t = (key) => {
 			return i18n.t(key);
 		};
@@ -7171,7 +7172,7 @@ var SettingsPanel_default = /* @__PURE__ */ defineComponent({
 					createCommentVNode(" Current Modifier Setup Section "),
 					createBaseVNode("section", _hoisted_14, [createBaseVNode("h3", null, toDisplayString($t("ui.currentModifierSetup")), 1), createBaseVNode("ul", _hoisted_15, [activeToggles.value.length === 0 ? (openBlock(), createElementBlock("li", _hoisted_16, toDisplayString($t("ui.noActiveModifiers")), 1)) : createCommentVNode("v-if", true), (openBlock(true), createElementBlock(Fragment, null, renderList(activeToggles.value, (toggle) => {
 						return openBlock(), createElementBlock("li", { key: toggle.key }, [createBaseVNode("img", {
-							src: `/icons/${toggle.icon}`,
+							src: `${iconsPath}${toggle.icon}`,
 							alt: toggle.label
 						}, null, 8, _hoisted_17), createBaseVNode("span", null, toDisplayString($t(`modifiers.${toggle.key}`)), 1)]);
 					}), 128))])])
@@ -7237,6 +7238,7 @@ var ModifierPanel_default = /*#__PURE__*/ _plugin_vue_export_helper_default(/* @
 		const i18n = I18nManager.getInstance();
 		const modifierRegistry = ModifierRegistry.getInstance();
 		const settingsManager = SettingsManager.getInstance();
+		const iconsPath = "/calculator/icons/";
 		const $t = (key, fallback) => {
 			const result = i18n.t(key);
 			const subKey = key.split(".").slice(1).join(".");
@@ -7299,7 +7301,7 @@ var ModifierPanel_default = /*#__PURE__*/ _plugin_vue_export_helper_default(/* @
 						onClick: ($event) => handleToggle(toggle.key)
 					}, [toggle.icon ? (openBlock(), createElementBlock("img", {
 						key: 0,
-						src: `/icons/${toggle.icon}`,
+						src: `${iconsPath}${toggle.icon}`,
 						alt: toggle.label,
 						class: "toggle-icon"
 					}, null, 8, _hoisted_7)) : createCommentVNode("v-if", true), createBaseVNode("span", _hoisted_8, toDisplayString($t(`modifiers.${toggle.key}`, toggle.label)), 1)], 10, _hoisted_6);
@@ -7307,7 +7309,7 @@ var ModifierPanel_default = /*#__PURE__*/ _plugin_vue_export_helper_default(/* @
 			}), 128))])]);
 		};
 	}
-}), [["__scopeId", "data-v-835c9c4b"]]);
+}), [["__scopeId", "data-v-5008e8e4"]]);
 //#endregion
 //#region apps/calculator/src/ts/vue-app.ts
 /**
@@ -7473,7 +7475,7 @@ var App = class App {
 		if (this.currentGood) {
 			const updatedGood = this.allGoods.find((g) => g.id === this.currentGood.id);
 			if (updatedGood) await this.handleGoodSelection(updatedGood);
-		}
+		} else this.showSelectionView();
 	}
 	bindRegionToggle() {
 		const toggleBtn = document.getElementById("region-toggle-btn");
@@ -7550,7 +7552,7 @@ var App = class App {
 		this.currentGood = null;
 		Item.setActiveChain(null);
 		this.pushUrl();
-		this.calculatorContainer.innerHTML = "<p class=\"info-note\">Select a good from the table to view its production chain details.</p>";
+		this.calculatorContainer.innerHTML = `<p class="info-note">${this.i18nManager.t("ui.selectGoodPrompt")}</p>`;
 	}
 	handleSettingsChange() {
 		if (this.productionView.hasSelection()) this.productionView.applySettingsToCurrentView();
@@ -7575,8 +7577,8 @@ var App = class App {
 			if (good) {
 				this.applyItemsFromUrl(good.id, state.items ?? []);
 				this.handleGoodSelection(good);
-			}
-		}
+			} else this.showSelectionView();
+		} else this.showSelectionView();
 	}
 	pushUrl() {
 		const activeItems = this.getActiveItemsForCurrentChain();
@@ -7822,4 +7824,4 @@ document.addEventListener("DOMContentLoaded", async () => {
 });
 //#endregion
 
-//# sourceMappingURL=index-BXgGBhmK.js.map
+//# sourceMappingURL=index-ZCWToDib.js.map
