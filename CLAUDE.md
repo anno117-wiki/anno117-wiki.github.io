@@ -73,20 +73,19 @@ anno_db2/                        ← workspaces root
 | 4 | ツリー型商品選択UI（4カテゴリ・48商品） | ✅ 完了 |
 | 5 | 3カラムレイアウト | ✅ 完了 |
 | 7 | モノレポ再編 + VitePress wiki | ✅ 完了（第0-5段＋E2E 35/35全通過） |
+| 8 | wikiコンテンツ充実（進行中） | 🔄 進行中 |
 
-フェーズ7詳細計画: `c:\Users\kojif\.claude\plans\claude-md-replicated-crown.md`
+### フェーズ8 完了済み（2026-06-14）
+- ✅ 商品一覧（カテゴリ別・48商品・VitePress データローダー）
+- ✅ 地域別商品（ローマ固有/ケルト固有/共通の3分類）
+- ✅ 生産チェーン一覧（商品名・建物・対応地域・生産時間・直接素材）
+- ✅ 住民層（9層のニーズ情報・ローマ/ケルト分岐ツリー）
+- ✅ 建物効果（48件・効果10列・anno.land出典・buildings-effects.json管理）
 
-### フェーズ7 完了済み段（2026-06-13）
-- ✅ 第0段: git/作業ツリー整理
-- ✅ 第1段: workspaces骨組み
-- ✅ 第2段: @anno/shared 切り出し
-- ✅ 第3段: calculator アプリ化（src/→apps/calculator/src/、publicDir共有化、BASE_URL化）
-- ✅ 第4段: VitePress wiki 骨組み
-- ✅ 第5段: 一体ビルド（bun run build:site、exit0確認済み）
-- ✅ E2E検証: 33 failed→**35/35 全通過**（2026-06-14）。原因はテスト陳腐化6件＋
-  既存バグ2件（SVGズームの pointer-events / 地域切替レート保持）でモノレポ移行とは無関係。
-  詳細は docs-notes/handover-phase7-verification.md
-- 残課題（軽微・任意）: フォント警告（theme.css のフォントパス、serifフォールバックで実害なし）
+### フェーズ8 残作業
+- 建物効果: パトリキ向け・ケルト建物の追記、日本語名の補完
+- アイテム一覧: 現在プレースホルダー（data/items/ にデータあり）
+- 住民層: パトリキ公共サービス欄が未収録（画像不鮮明のため）
 
 ## 制作の基本行動【MUST】
 

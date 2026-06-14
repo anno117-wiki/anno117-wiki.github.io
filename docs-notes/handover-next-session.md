@@ -1,70 +1,77 @@
 # 次回セッション 引き継ぎプラン
 
-作成日: 2026-06-14（夕）／ 作成: 家老（指揮役）
-前回からの更新: 本日さらに数件のfix（アイコンパス・初期メッセージi18n）がコミット済み。
+作成日: 2026-06-14（夜）／ 作成: 家老（指揮役）
 
 ---
 
-## 1. 最優先：未コミット作業ツリーの整理
+## 現在の状態
 
-次回セッション開始時、作業ツリーに以下が残っている。まず方針を決めてから着手すること。
+- ブランチ: master、作業ツリー: クリーン（未コミット変更なし）
+- 最終ビルド: `bun run build:site` exit 0 確認済み
 
-```
- M apps/calculator/src/css/theme.css            フォント@font-faceパスの調整（下記2参照）
- M docs/calculator/index.html                    配信物の再生成差分
- D docs/calculator/assets/index-CDae4jS0.css      旧配信物（再ビルドで置換）
- D docs/calculator/assets/index-DtcrVN0J.js       同上
- D docs/calculator/assets/index-DtcrVN0J.js.map   同上
-?? docs/calculator/assets/NotoSerif-Dh5ICAPK.ttf  フォントがバンドルされた新配信物
-?? docs/calculator/assets/index-BUz9ZXon.css       新配信物
-?? docs/calculator/assets/index-DNuxasI1.js        新配信物
-?? docs/calculator/assets/index-DNuxasI1.js.map    新配信物
-?? .claude/settings.json                          設定ファイル（追跡可否を殿に確認）
-?? serve_err.txt / serve_out.txt                  bunx serve の一時ログ。不要なら削除
-```
+---
 
-### 判断が必要な点（殿に諮ること）
-- `.claude/settings.json` を追跡するか。個人設定ゆえ通常は追跡しない判断もある。
-- `serve_err.txt` / `serve_out.txt` は一時ログ。コミット前に削除推奨（.gitignore追加も検討）。
-- theme.css の変更が確定なら、docs/ の再ビルド配信物（新assets）とセットでコミットする。
+## 今セッションで完了した作業
 
-## 2. theme.css フォントパスの確認【重要・本日検分済み】
+- 生産チェーン一覧: 建物タイプ列削除→英語名列削除→生産時間を分・秒表示に変換
+- 住民層ページ: スクショ + `c:\Users\kojif\Desktop\anno_DB\data\population\tiers.md` からニーズ情報を収録
+- 建物効果ページ新設: anno.land から48件（ローマ Tier1〜3）の効果データを取得・JSON化
+- コミット粒度ルールを CLAUDE.md に追記済み
+- `.gitignore` に `tests/e2e/screenshots/` を追加済み
 
-- **実ファイルは正常**。`apps/calculator/src/css/theme.css` 5行目:
-  `src: url("../../../../packages/shared/public/fonts/NotoSerif.ttf")`
-  → publicDir(packages/shared/public/fonts/)の実体へFS相対で正しく遡る形。
-- 本日の `git diff` 出力が一見壊れて見えたが、それは**PowerShellの表示崩れ**であり
-  ファイル破損ではない。安心して扱ってよい。
-- 残課題: 配信(base=/calculator/)での解決可否を実ビルドで最終確認すること。
-  NotoSerif-Dh5ICAPK.ttf が docs/calculator/assets に出ている＝バンドル成功の兆候。
-  → `bun run build:site` の exit 0 と、実画面でserif字体が出るかを侍/忍者に検証させる。
+---
 
-## 3. 品質課題（前回メモ、進捗あり）
+## 次回の推奨作業（優先順）
 
-本日コミット済みで概ね対応:
-- アイコン絶対パス → BASE_URL基準に統一（b6fd69d）
-- 初期メッセージ "Select a good..." のi18n化（1de00c9）
-- 地域アイコンのテンプレートリテラル展開漏れ修正（a2b068e）
+### 1. 建物効果ページの補完【中優先】
 
-残る確認:
-- **アイコン欠けの実画面再検証**: 生産チェーンのノード/修正パネル/地域アイコンが
-  全て表示されるか、`bunx serve docs` で目視確認（E2EはhandleImageErrorで隠れ検出不可）。
+`apps/wiki/docs/wiki/buildings-effects.json` に追記が必要な建物:
 
-## 4. 三セッション並列の段取り（次回の推奨采配）
+- **パトリキ（Tier 4）向け建物**: anno.land の動的フィルターのため自動取得不可。手動追記が必要
+- **ケルト（アルビオン）全建物**: 同様に手動追記
+- **建物名の日本語訳**: `nameJa` フィールドが全て `null`。`https://anno.land/en/anno-117-buildings/` を参照して埋める
+- 追記方法: JSON の `buildings` 配列に同じ形式でオブジェクトを追加するだけ
 
-- **侍（実装役）**: theme.css確定 → `bun run build:site` で再ビルド → exit 0 を実出力で確認。
-- **忍者（支援役）**: アイコン欠けの実画面再検証＋E2E 35/35 維持確認。
-- **家老（指揮役）**: 未コミット分の方針を殿に諮り、整理後コミットを采配。
+### 2. 建物効果ページの値検証【低優先】
 
-## 5. 運用上の注意点
+- `Aqueduct Cistern` の効果（健康+3・火災安全+3）は WebFetch の解釈ベースのため要確認
+- `Mineral Quarry` / `Mineral Crusher` の tier が plebeian になっているが実際は equites の可能性あり
+- 一部の建物（Flax Farm）がリベルトゥスとエクィテスの両方に記載された → 現在は libertus に収録
 
-- ビルド可否は必ず実コマンド出力で確認（目視「成功」報告禁止）。
-- `@anno/shared` の fetch文字列・publicDir契約は変更しない。
-- 環境依存文字（丸数字・絵文字・罫線記号）は使わない（殿との約束）。
-- 解散フックはロックファイル方式（最初の1セッションのみ終了作業）。
+### 3. 生産チェーン一覧への建物列追加【要検討】
 
-## 6. 在陣していたPeer（本日）
+- 殿が「建物列は必要でした」と言っていた背景として、生産チェーンと建物効果の対応付けが最終目標の可能性あり
+- `production-chains.data.ts` には `buildingType` が既にある（表示を止めているだけ）
+- 建物効果ページと生産チェーンページをリンクさせる設計も検討価値あり
 
-- 侍（実装役）: peer 87wys5v9
-- 忍者（支援役）: peer w6l6o1ik
-※ peer IDは起動ごとに変わる。次回は list_peers(scope=repo) で再確認。
+### 4. アイテム一覧ページのコンテンツ充実【低優先】
+
+- `apps/wiki/docs/wiki/items.md` が現在「準備中」のままプレースホルダー
+- アイテムデータは `packages/shared/public/data/items/` 配下に存在
+
+### 5. 引き継ぎ前から継続の課題
+
+- **theme.css フォントパス**: `apps/calculator/src/css/theme.css` の変更が未コミット
+  - ただし `git status` でクリーンになっているため、前回セッション以降に解決済みの可能性あり
+  - 次回起動時に `git diff` で確認を推奨
+- **calculator のアイコン実画面確認**: `bunx serve docs` での目視確認（E2Eは handleImageError で隠れる）
+
+---
+
+## 注意点
+
+- wiki ページの日本語名は必ず ja.json（公式）から取得する。スクショ・推測による名称は禁止
+- `buildings-effects.json` の値は anno.land 出典（2026-06-14取得）。ゲームアップデートで変わる可能性あり
+- 住民層ページのパトリキ公共サービス欄は「画像不鮮明のため未収録」。要補完
+- `serve_docs_out.txt` が作業ツリーに残っている可能性あり → 不要なら削除、または .gitignore 追加
+
+---
+
+## データソース一覧（今後の作業用）
+
+| データ | 場所 |
+|--------|------|
+| 建物効果（自動取得可） | https://anno.land/en/anno-117-buildings/（Tier1-3のみ） |
+| 住民層ニーズ | `c:\Users\kojif\Desktop\anno_DB\data\population\tiers.md` |
+| 住民層スクショ | `C:\Users\kojif\Desktop\claude_TEMP\Tier需要資料\` |
+| 公式日本語名 | `packages/shared/public/i18n/locales/ja.json` |
