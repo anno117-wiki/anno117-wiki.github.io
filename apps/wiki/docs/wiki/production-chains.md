@@ -16,6 +16,13 @@ const regionLabels: Record<string, string> = {
 function regionText(regions: string[]): string {
   return regions.map((r) => regionLabels[r] ?? r).join(' / ')
 }
+
+function timeText(seconds: number): string {
+  if (seconds < 60) return `${seconds}秒`
+  const m = Math.floor(seconds / 60)
+  const s = seconds % 60
+  return s === 0 ? `${m}分` : `${m}分${s}秒`
+}
 </script>
 
 # 生産チェーン一覧
@@ -36,7 +43,7 @@ function regionText(regions: string[]): string {
 <td>{{ entry.nameJa }}</td>
 <td>{{ entry.nameEn }}</td>
 <td>{{ regionText(entry.regions) }}</td>
-<td>{{ entry.timeSeconds }}秒</td>
+<td>{{ timeText(entry.timeSeconds) }}</td>
 <td>{{ entry.inputs.join('、') || '—' }}</td>
 </tr>
 </tbody>
