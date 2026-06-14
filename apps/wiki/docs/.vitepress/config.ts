@@ -20,6 +20,10 @@ export default defineConfig({
       { text: 'ホーム', link: '/' },
       { text: 'ガイド', link: '/guide/getting-started' },
       { text: '商品', link: '/wiki/goods' },
+      { text: '生産品', link: '/wiki/production-chains' },
+      { text: '建物', link: '/wiki/buildings' },
+      { text: '住民', link: '/wiki/population' },
+      { text: 'アイテム', link: '/wiki/items' },
       // 計算機は別SPA。同タブ遷移で /calculator/ へ誘導。
       { text: '計算機', link: '/calculator/', target: '_self' },
     ],
@@ -30,14 +34,41 @@ export default defineConfig({
           text: 'ガイド',
           items: [
             { text: 'はじめに', link: '/guide/getting-started' },
+            { text: '計算機の使い方', link: '/guide/calculator-guide' },
+            { text: '用語集', link: '/guide/glossary' },
           ],
         },
       ],
       '/wiki/': [
         {
-          text: 'Wiki',
+          text: '商品',
           items: [
-            { text: '商品', link: '/wiki/goods' },
+            { text: '商品一覧', link: '/wiki/goods' },
+            { text: '地域別商品', link: '/wiki/regions' },
+          ],
+        },
+        {
+          text: '生産品',
+          items: [
+            { text: '生産チェーン一覧', link: '/wiki/production-chains' },
+          ],
+        },
+        {
+          text: '建物',
+          items: [
+            { text: '建物一覧', link: '/wiki/buildings' },
+          ],
+        },
+        {
+          text: '住民',
+          items: [
+            { text: '住民層', link: '/wiki/population' },
+          ],
+        },
+        {
+          text: 'アイテム',
+          items: [
+            { text: 'アイテム一覧', link: '/wiki/items' },
           ],
         },
       ],
