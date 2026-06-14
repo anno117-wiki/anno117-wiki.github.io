@@ -150,6 +150,7 @@
     "applyProductivityBoosts": "この生産チェーンに生産性ブーストを適用：",
     "noModifierSettings": "利用可能な修正設定はありません",
     "loadingProductionData": "生産データを読み込み中...",
+    "selectGoodPrompt": "表から生産品を選択すると、生産チェーンの詳細が表示されます。",
     "noDetailedProductionData": "詳細な生産データがありません",
     "none": "なし",
     "savedConfigurations": "保存された設定",
