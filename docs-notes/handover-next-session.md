@@ -1,62 +1,70 @@
 # 次回セッション 引き継ぎプラン
 
-作成日: 2026-06-14 ／ 作成: 家老（指揮役）
+作成日: 2026-06-14（夕）／ 作成: 家老（指揮役）
+前回からの更新: 本日さらに数件のfix（アイコンパス・初期メッセージi18n）がコミット済み。
 
 ---
 
-## 1. 最優先：未コミット分のコミット（殿の指示で次回に持ち越し）
+## 1. 最優先：未コミット作業ツリーの整理
 
-本日の作業ツリーに、未コミットの設定変更が残っている。次回まずこれをコミットすること。
+次回セッション開始時、作業ツリーに以下が残っている。まず方針を決めてから着手すること。
 
 ```
- M CLAUDE.md                           セッション開始時の引き継ぎ読み込み導線を追加
- M .claude/hooks/dismiss-trigger.js   解散フックをロックファイル方式へ改修＋出力先を固定名に統一
- M .gitignore                          .claude/.dismiss.lock を除外追加
-?? .claude/agents/e2e.md               三人衆作業中に生成されたエージェント定義
-?? docs-notes/handover-next-session.md この引き継ぎ書自体
+ M apps/calculator/src/css/theme.css            フォント@font-faceパスの調整（下記2参照）
+ M docs/calculator/index.html                    配信物の再生成差分
+ D docs/calculator/assets/index-CDae4jS0.css      旧配信物（再ビルドで置換）
+ D docs/calculator/assets/index-DtcrVN0J.js       同上
+ D docs/calculator/assets/index-DtcrVN0J.js.map   同上
+?? docs/calculator/assets/NotoSerif-Dh5ICAPK.ttf  フォントがバンドルされた新配信物
+?? docs/calculator/assets/index-BUz9ZXon.css       新配信物
+?? docs/calculator/assets/index-DNuxasI1.js        新配信物
+?? docs/calculator/assets/index-DNuxasI1.js.map    新配信物
+?? .claude/settings.json                          設定ファイル（追跡可否を殿に確認）
+?? serve_err.txt / serve_out.txt                  bunx serve の一時ログ。不要なら削除
 ```
 
-- コミット前に `.claude/agents/e2e.md` の中身を確認し、追跡してよいか殿に確認（要否未判断）。
-- `.claude/` 一式（hooks/・settings.local.json・agents/）を追跡するか方針を決める。
-  settings.local.json は個人設定ゆえ通常は追跡しない判断もある。殿に諮ること。
-- コミット例:
-  - `chore: 解散フックをロックファイル方式に変更（CLAUDE.md同時書き込み競合を解消）`
+### 判断が必要な点（殿に諮ること）
+- `.claude/settings.json` を追跡するか。個人設定ゆえ通常は追跡しない判断もある。
+- `serve_err.txt` / `serve_out.txt` は一時ログ。コミット前に削除推奨（.gitignore追加も検討）。
+- theme.css の変更が確定なら、docs/ の再ビルド配信物（新assets）とセットでコミットする。
 
-## 2. 完了済みの確認事項（再着手不要）
+## 2. theme.css フォントパスの確認【重要・本日検分済み】
 
-- **フェーズ7（モノレポ再編 + VitePress wiki）は完了**。E2E **35/35 全通過**。
-- 一体ビルド `bun run build:site` は exit 0、配信物 docs/ もコミット済み・最新。
-- 解散フックは「ロックファイルで最初の1セッションのみ終了作業」に改修済み
-  （詳細: メモリ project-dismiss-trigger-hook、本書末尾の注意点）。
+- **実ファイルは正常**。`apps/calculator/src/css/theme.css` 5行目:
+  `src: url("../../../../packages/shared/public/fonts/NotoSerif.ttf")`
+  → publicDir(packages/shared/public/fonts/)の実体へFS相対で正しく遡る形。
+- 本日の `git diff` 出力が一見壊れて見えたが、それは**PowerShellの表示崩れ**であり
+  ファイル破損ではない。安心して扱ってよい。
+- 残課題: 配信(base=/calculator/)での解決可否を実ビルドで最終確認すること。
+  NotoSerif-Dh5ICAPK.ttf が docs/calculator/assets に出ている＝バンドル成功の兆候。
+  → `bun run build:site` の exit 0 と、実画面でserif字体が出るかを侍/忍者に検証させる。
 
-## 3. 残課題（軽微・任意）
+## 3. 品質課題（前回メモ、進捗あり）
 
-- **NotoSerif フォント警告**: `apps/calculator/src/css/theme.css` の `url("../fonts/NotoSerif.ttf")`。
-  配信(build:site, base=/calculator/)では正しく解決され実害なし。serif フォールバックあり。
-  dev(base=/) では字体が出ないが開発時のみ。完全対応は優先度低。
-- **E2E テスト陳腐化の予防**: 今回 tree-navigation のカテゴリ体系ずれを修正済み。
-  今後 categories.json を変えたら E2E の期待値も追従させること。
+本日コミット済みで概ね対応:
+- アイコン絶対パス → BASE_URL基準に統一（b6fd69d）
+- 初期メッセージ "Select a good..." のi18n化（1de00c9）
+- 地域アイコンのテンプレートリテラル展開漏れ修正（a2b068e）
 
-## 4. 視覚確認で見えた品質メモ（次に着手するなら）
+残る確認:
+- **アイコン欠けの実画面再検証**: 生産チェーンのノード/修正パネル/地域アイコンが
+  全て表示されるか、`bunx serve docs` で目視確認（E2EはhandleImageErrorで隠れ検出不可）。
 
-`bunx serve docs` で実画面を確認した際の所見:
-- 計算機のアイコン画像が一部欠ける箇所があった（生産チェーンのノード、修正設定パネル、
-  地域アイコン）。E2E は handleImageError で隠れるため検出されない。
-  fetch/参照パスかアイコン配置の不整合が疑われる。要調査（今回は未着手）。
-- 計算機初期の "Select a good from the table..." が英語のまま（初期メッセージ未翻訳）。
+## 4. 三セッション並列の段取り（次回の推奨采配）
+
+- **侍（実装役）**: theme.css確定 → `bun run build:site` で再ビルド → exit 0 を実出力で確認。
+- **忍者（支援役）**: アイコン欠けの実画面再検証＋E2E 35/35 維持確認。
+- **家老（指揮役）**: 未コミット分の方針を殿に諮り、整理後コミットを采配。
 
 ## 5. 運用上の注意点
 
-- **解散フックは次回起動から有効**（hookはセッション開始時に読まれる）。
-- 3セッション並列が基本動作。同一 cwd で競合に注意（CLAUDE.md・handover は本日複数人が触れた）。
+- ビルド可否は必ず実コマンド出力で確認（目視「成功」報告禁止）。
 - `@anno/shared` の fetch文字列・publicDir契約は変更しない。
 - 環境依存文字（丸数字・絵文字・罫線記号）は使わない（殿との約束）。
+- 解散フックはロックファイル方式（最初の1セッションのみ終了作業）。
 
-## 6. 主要コミット履歴（本日分）
+## 6. 在陣していたPeer（本日）
 
-- bde8757 docs: フェーズ7を完了に更新（E2E 35/35）
-- c81c63a build: 配信物再生成（残バグ修正反映）
-- ad54bf8 test: E2Eを現行仕様に追従
-- 5ec8d63 fix: E2E残バグ修正（SVGズーム/地域切替/stale closure）
-- c0c99b4 build: 配信物再生成（fetchパス修正反映）
-- 62166b2 fix: E2E復旧（fetchパス・テンプレ内import.meta）
+- 侍（実装役）: peer 87wys5v9
+- 忍者（支援役）: peer w6l6o1ik
+※ peer IDは起動ごとに変わる。次回は list_peers(scope=repo) で再確認。

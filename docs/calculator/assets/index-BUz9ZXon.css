@@ -1,6 +1,8 @@
+/* フォント実体は publicDir(packages/shared/public/fonts/) にある。
+   CSS url() はビルド時にFS相対で解決されるため、src/css/ から実体まで遡る。 */
 @font-face {
   font-family: "NotoSerif";
-  src: url("../fonts/NotoSerif.ttf") format("truetype");
+  src: url("/calculator/assets/NotoSerif-Dh5ICAPK.ttf") format("truetype");
 }
 
 * {
@@ -26,7 +28,7 @@
   --shadow-inset-light: inset -4px -4px 8px var(--background-light);
   --shadow-inset-dark: inset 4px 4px 8px var(--background-dark);
 
-  --font-family: "NotoSerif", "Tim New Roman", serif;
+  --font-family: "NotoSerif", "Times New Roman", serif;
 
   /* 2カラムレイアウト設定 */
   --left-panel-width: 220px; /* 縮小: 250px → 220px */

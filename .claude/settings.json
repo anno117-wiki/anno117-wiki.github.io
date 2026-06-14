@@ -1,0 +1,25 @@
+{
+  "permissions": {
+    "allow": [
+      "mcp__claude-peers__list_peers",
+      "mcp__claude-peers__check_messages",
+      "Bash(bun run test)",
+      "Bash(bun run test *)",
+      "Bash(curl -s http://localhost*)"
+    ]
+  },
+  "hooks": {
+    "PreToolUse": [
+      {
+        "matcher": "Bash",
+        "hooks": [
+          {
+            "type": "command",
+            "command": "PYTHONIOENCODING=utf-8 python -c \"import sys,json,re; d=json.load(sys.stdin); cmd=d.get('tool_input',{}).get('command',''); re.search(r'(git commit|bun run build|bun run e2e|bunx playwright|bunx serve|playwright test)', cmd) and print('{\\\"systemMessage\\\": \\\"[家老警告] 重い実作業コマンドを検出。侍・忍者へ委譲または run_in_background で実行せよ。\\\"}')\" || true",
+            "statusMessage": "重い実作業チェック中..."
+          }
+        ]
+      }
+    ]
+  }
+}

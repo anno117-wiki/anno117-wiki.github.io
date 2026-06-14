@@ -3,6 +3,17 @@
 ## セッション開始時【MUST】
 - `docs-notes/handover-next-session.md` があれば**最初に読む**（前回からの引き継ぎ。残課題・未コミット分・注意点）。
 
+### 起動手順（審議せず順に実行＝考え込み時間を削減）
+3セッション並列時、家老は以下を機械的に実行する（毎回の手順検討を省く）:
+1. **第1バッチ（1メッセージで並列）**: `ToolSearch select:mcp__claude-peers__list_peers,mcp__claude-peers__send_message,mcp__claude-peers__check_messages,mcp__claude-peers__set_summary` ＋ handover読み込み。
+2. `list_peers(scope=repo)` で在陣確認 → `set_summary` で役割表明。
+3. 各peerへ役割指示（役割分担はメモリ project-three-session-roles 参照）。
+
+### シェル運用【重要】
+- グローバル `SHELL` は **Git Bash**（`C:\Program Files\Git\bin\bash.exe`）。BashツールもPowerShellツールも利用可。
+- どちらでもよいが迷わず実行する（起動時にシェル探索で往復しない）。
+- 不可避コスト（再調査不要）: deferredツールの `ToolSearch` 往復1回と、起動時のプロンプトキャッシュ冷えは仕様であり設定で無効化不可。
+
 ## 概要
 Anno 117（PS5/Steam）の日本語情報Wiki + 生産チェーン計算機を統合したWebアプリ。
 anno-calculator公式（GitHub: agentquackyt/Anno117Calculator）のデータを活用。
@@ -50,6 +61,7 @@ anno_db2/                        ← workspaces root
 - ❌ 不整合解決以外の目的で独自フォーマットを使用
 - ❌ 大きなサイズの並列処理（効率低下）
 - ❌ 絶対fetchパス（`/i18n/...` 等）の新規追加
+- ❌ 【家老】重い実作業を自ら実行（`git commit` / `bun run build:site` / E2E / `bunx serve`）→ 侍・忍者へ委譲。やむを得ない場合は `run_in_background` で実行し対話窓口を空けること
 
 ## フェーズ進捗
 
@@ -85,6 +97,7 @@ anno_db2/                        ← workspaces root
 5. エラー調査はサブエージェント（investigator）を使用
 6. 制作は3セッション並列起動を基本動作とする
 7. ビルド可否は必ず実コマンド出力で確認（目視「成功」報告禁止）
+8. 環境依存文字を受け答えでは使用しない(過去5回ほど経験)
 
 ## 重要な教訓
 - `@anno/shared` の fetch文字列は変更しない（publicDir契約を壊す）
