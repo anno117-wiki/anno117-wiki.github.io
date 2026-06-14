@@ -36,12 +36,11 @@ function timeText(seconds: number): string {
 
 <table>
 <thead>
-<tr><th>商品名</th><th>建物</th><th>対応地域</th><th>生産時間</th><th>直接素材</th></tr>
+<tr><th>商品名</th><th>対応地域</th><th>生産時間</th><th>直接素材</th></tr>
 </thead>
 <tbody>
 <tr v-for="entry in data.byCategory[cat]" :key="entry.id">
 <td>{{ entry.nameJa }}</td>
-<td>{{ entry.buildingType }}</td>
 <td>{{ regionText(entry.regions) }}</td>
 <td>{{ timeText(entry.timeSeconds) }}</td>
 <td>{{ entry.inputs.join('、') || '—' }}</td>
