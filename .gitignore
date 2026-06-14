@@ -24,6 +24,9 @@ apps/wiki/docs/.vitepress/dist/
 # 公式クローン（special_thanks）のビルド物は追跡不要
 special_thanks/**/docs/
 
+# 解散フック用の一時ロック
+.claude/.dismiss.lock
+
 # OS
 Thumbs.db
 
