@@ -209,7 +209,7 @@ export class App {
         const text = toggleBtn?.querySelector<HTMLElement>('.region-text');
 
         const updateButtonState = (region: string) => {
-            if (icon) icon.src = region === 'Roman' ? '${ASSETS_ICONS_PATH}latium.webp' : '${ASSETS_ICONS_PATH}albion.webp';
+            if (icon) icon.src = region === 'Roman' ? `${ASSETS_ICONS_PATH}latium.webp` : `${ASSETS_ICONS_PATH}albion.webp`;
             if (text) text.textContent = region === 'Roman' ? 'Latium' : 'Albion';
         };
 
@@ -352,7 +352,7 @@ export class App {
                 const toggleBtn = document.getElementById('region-toggle-btn');
                 const icon = toggleBtn?.querySelector<HTMLImageElement>('.region-icon');
                 const text = toggleBtn?.querySelector<HTMLElement>('.region-text');
-                if (icon) icon.src = region === 'Roman' ? '${ASSETS_ICONS_PATH}latium.webp' : '${ASSETS_ICONS_PATH}albion.webp';
+                if (icon) icon.src = region === 'Roman' ? `${ASSETS_ICONS_PATH}latium.webp` : `${ASSETS_ICONS_PATH}albion.webp`;
                 if (text) text.textContent = region === 'Roman' ? 'Latium' : 'Albion';
             }
         }

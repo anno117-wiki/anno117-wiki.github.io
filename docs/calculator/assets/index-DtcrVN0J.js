@@ -7482,7 +7482,7 @@ var App = class App {
 		const icon = toggleBtn?.querySelector(".region-icon");
 		const text = toggleBtn?.querySelector(".region-text");
 		const updateButtonState = (region) => {
-			if (icon) icon.src = region === "Roman" ? "${ASSETS_ICONS_PATH}latium.webp" : "${ASSETS_ICONS_PATH}albion.webp";
+			if (icon) icon.src = region === "Roman" ? `${ASSETS_ICONS_PATH}latium.webp` : `${ASSETS_ICONS_PATH}albion.webp`;
 			if (text) text.textContent = region === "Roman" ? "Latium" : "Albion";
 		};
 		const setRegion = (region) => {
@@ -7568,7 +7568,7 @@ var App = class App {
 				const toggleBtn = document.getElementById("region-toggle-btn");
 				const icon = toggleBtn?.querySelector(".region-icon");
 				const text = toggleBtn?.querySelector(".region-text");
-				if (icon) icon.src = region === "Roman" ? "${ASSETS_ICONS_PATH}latium.webp" : "${ASSETS_ICONS_PATH}albion.webp";
+				if (icon) icon.src = region === "Roman" ? `${ASSETS_ICONS_PATH}latium.webp` : `${ASSETS_ICONS_PATH}albion.webp`;
 				if (text) text.textContent = region === "Roman" ? "Latium" : "Albion";
 			}
 		}
@@ -7824,4 +7824,4 @@ document.addEventListener("DOMContentLoaded", async () => {
 });
 //#endregion
 
-//# sourceMappingURL=index-ZCWToDib.js.map
+//# sourceMappingURL=index-DtcrVN0J.js.map
