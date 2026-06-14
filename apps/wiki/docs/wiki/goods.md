@@ -1,22 +1,43 @@
-# 商品
+<script setup lang="ts">
+import { data } from './goods.data.ts'
 
-Anno 117 の商品（Goods）に関する情報をまとめます。
+const categoryLabels: Record<string, string> = {
+  food: '食料',
+  construction: '建設',
+  fashion: 'ファッション',
+  culture: '文化',
+}
 
-::: tip 準備中
-本ページは雛形です。商品ごとの詳細情報は順次追記します。
+const regionLabels: Record<string, string> = {
+  Roman: 'ローマ',
+  Celtic: 'ケルト',
+}
+
+function regionText(regions: string[]): string {
+  return regions.map((r) => regionLabels[r] ?? r).join(' / ')
+}
+</script>
+
+# 商品一覧
+
+Anno 117 で生産・消費される全 {{ data.categories.reduce((n, c) => n + data.byCategory[c].length, 0) }} 商品の一覧です。
 個別の生産チェーンと必要量の計算は[計算機](/calculator/)をご利用ください。
-:::
 
-## 商品とは
+<div v-for="cat in data.categories" :key="cat">
 
-商品は、住民の需要を満たし、また他の商品を生産するための原料となる資源です。
-多くの商品は生産チェーンを持ち、原料から段階的に加工されて作られます。
+<h2>{{ categoryLabels[cat] ?? cat }}</h2>
 
-## カテゴリ
+<table>
+<thead>
+<tr><th>商品名</th><th>英語名</th><th>対応地域</th></tr>
+</thead>
+<tbody>
+<tr v-for="good in data.byCategory[cat]" :key="good.id">
+<td>{{ good.nameJa }}</td>
+<td>{{ good.nameEn }}</td>
+<td>{{ regionText(good.regions) }}</td>
+</tr>
+</tbody>
+</table>
 
-商品は用途に応じて複数のカテゴリに分類されます。詳細は順次追記します。
-
-## 関連
-
-- [はじめに](/guide/getting-started)
-- [計算機](/calculator/) — 生産チェーンと必要量を計算する
+</div>
