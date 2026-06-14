@@ -35,3 +35,4 @@ test-results/
 playwright-report/
 playwright/.cache/
 test-reports/
+tests/e2e/screenshots/
