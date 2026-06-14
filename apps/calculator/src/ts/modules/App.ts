@@ -194,6 +194,8 @@ export class App {
             if (updatedGood) {
                 await this.handleGoodSelection(updatedGood);
             }
+        } else {
+            this.showSelectionView();
         }
     }
 
@@ -321,7 +323,7 @@ export class App {
         // this.selectionContainer.classList.remove('hidden');
 
         // 右側パネルを初期状態に戻す
-        this.calculatorContainer.innerHTML = '<p class="info-note">Select a good from the table to view its production chain details.</p>';
+        this.calculatorContainer.innerHTML = `<p class="info-note">${this.i18nManager.t('ui.selectGoodPrompt')}</p>`;
     }
 
     // -----------------------------------------------------------------------
@@ -360,7 +362,11 @@ export class App {
             if (good) {
                 this.applyItemsFromUrl(good.id, state.items ?? []);
                 this.handleGoodSelection(good);
+            } else {
+                this.showSelectionView();
             }
+        } else {
+            this.showSelectionView();
         }
     }
 

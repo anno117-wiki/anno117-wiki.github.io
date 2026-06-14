@@ -150,6 +150,7 @@
     "applyProductivityBoosts": "Apply productivity boosts for this chain:",
     "noModifierSettings": "No modifier settings available",
     "loadingProductionData": "Loading production data...",
+    "selectGoodPrompt": "Select a good from the table to view its production chain details.",
     "noDetailedProductionData": "No detailed production data available",
     "none": "None",
     "savedConfigurations": "Saved Configurations",
