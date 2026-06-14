@@ -21,7 +21,6 @@ export default defineConfig({
       { text: 'ガイド', link: '/guide/getting-started' },
       { text: '商品', link: '/wiki/goods' },
       { text: '生産品', link: '/wiki/production-chains' },
-      { text: '建物', link: '/wiki/buildings' },
       { text: '住民', link: '/wiki/population' },
       { text: 'アイテム', link: '/wiki/items' },
       // 計算機は別SPA。同タブ遷移で /calculator/ へ誘導。
@@ -51,12 +50,6 @@ export default defineConfig({
           text: '生産品',
           items: [
             { text: '生産チェーン一覧', link: '/wiki/production-chains' },
-          ],
-        },
-        {
-          text: '建物',
-          items: [
-            { text: '建物一覧', link: '/wiki/buildings' },
           ],
         },
         {
