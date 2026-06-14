@@ -1,5 +1,8 @@
 # Anno 117 統合Wikiプロジェクト
 
+## セッション開始時【MUST】
+- `docs-notes/handover-next-session.md` があれば**最初に読む**（前回からの引き継ぎ。残課題・未コミット分・注意点）。
+
 ## 概要
 Anno 117（PS5/Steam）の日本語情報Wiki + 生産チェーン計算機を統合したWebアプリ。
 anno-calculator公式（GitHub: agentquackyt/Anno117Calculator）のデータを活用。
