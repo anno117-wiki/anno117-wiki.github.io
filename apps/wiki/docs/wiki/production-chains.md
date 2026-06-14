@@ -13,26 +13,8 @@ const regionLabels: Record<string, string> = {
   Celtic: 'ケルト',
 }
 
-const buildingLabels: Record<string, string> = {
-  armoury: '武器庫',
-  artisanal_studio: '工芸スタジオ',
-  clothier: '仕立て屋',
-  fishery: '漁場',
-  gatherer: '採取場',
-  kitchen: '台所',
-  livestock_farm: '畜産農場',
-  refinery: '精製所',
-  upholsterer: '家具工房',
-  victualler: '食料商',
-  workshop: '工房',
-}
-
 function regionText(regions: string[]): string {
   return regions.map((r) => regionLabels[r] ?? r).join(' / ')
-}
-
-function buildingText(type: string): string {
-  return buildingLabels[type] ?? type
 }
 </script>
 
@@ -47,14 +29,13 @@ function buildingText(type: string): string {
 
 <table>
 <thead>
-<tr><th>商品名</th><th>英語名</th><th>対応地域</th><th>建物タイプ</th><th>生産時間</th><th>直接素材</th></tr>
+<tr><th>商品名</th><th>英語名</th><th>対応地域</th><th>生産時間</th><th>直接素材</th></tr>
 </thead>
 <tbody>
 <tr v-for="entry in data.byCategory[cat]" :key="entry.id">
 <td>{{ entry.nameJa }}</td>
 <td>{{ entry.nameEn }}</td>
 <td>{{ regionText(entry.regions) }}</td>
-<td>{{ buildingText(entry.buildingType) }}</td>
 <td>{{ entry.timeSeconds }}秒</td>
 <td>{{ entry.inputs.join('、') || '—' }}</td>
 </tr>
