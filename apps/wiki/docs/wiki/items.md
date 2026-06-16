@@ -18,12 +18,11 @@ Anno 117 で使用できる全 {{ totalItems }} アイテムの一覧です。
 
 <table>
 <thead>
-<tr><th>名称</th><th>英語名</th><th>レアリティ</th><th>効果</th><th>説明</th><th>価格</th></tr>
+<tr><th>名称</th><th>レアリティ</th><th>効果</th><th>説明</th><th>価格</th></tr>
 </thead>
 <tbody>
 <tr v-for="item in data.byNiche[niche]" :key="item.guid">
 <td>{{ item.nameJa }}</td>
-<td>{{ item.nameEn }}</td>
 <td>{{ item.rarityJa }}</td>
 <td>{{ item.effects.length ? item.effects.join('、') : '—' }}</td>
 <td>{{ item.description || '—' }}</td>
