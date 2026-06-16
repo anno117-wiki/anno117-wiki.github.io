@@ -1212,8 +1212,7 @@ var GraphRenderer = class GraphRenderer {
 		edgeGroup.appendChild(line);
 	}
 	resolveLabelGeometry(params) {
-		const { x, y, textAlign, depth, startOfChain } = params;
-		const offset = 45;
+		const { x, y, depth, startOfChain } = params;
 		if (depth >= 2 && startOfChain) return {
 			labelX: x,
 			labelY: y + 50,
@@ -1221,10 +1220,10 @@ var GraphRenderer = class GraphRenderer {
 			labelAnchor: "middle"
 		};
 		return {
-			labelX: x - offset,
-			labelY: y - 5,
-			buildingsY: y + 12,
-			labelAnchor: "end"
+			labelX: x,
+			labelY: y - 52,
+			buildingsY: y - 37,
+			labelAnchor: "middle"
 		};
 	}
 	addCornerImage(group, x, y, size, href, filled = false) {
@@ -7836,4 +7835,4 @@ document.addEventListener("DOMContentLoaded", async () => {
 });
 //#endregion
 
-//# sourceMappingURL=index-DELBeifm.js.map
+//# sourceMappingURL=index-Dzntby9O.js.map
