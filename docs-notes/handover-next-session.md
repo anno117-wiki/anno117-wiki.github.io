@@ -1,54 +1,65 @@
 # 次回セッション 引き継ぎプラン
 
-作成日: 2026-06-16 / 作成: 侍（終了ルーチン担当）
+作成日: 2026-06-16 / 作成: 家老（指揮役）
 
 ---
 
 ## 現在の状態【クリーン】
 
 - ブランチ: master
-- 作業ツリー: クリーン（handover-next-session.md 除く）
-- ビルド: exit 0 確認済み（bun run build:site）
+- 作業ツリー: クリーン（handover-next-session.md・CLAUDE.md の本更新分を除く）
+- ビルド: `bun run build:site` exit 0 確認済み
 
 ---
 
 ## 今セッションで完了した作業
 
-### buildings-effects.json 全件補完完了
-- **コミット `7fa97ef`**: アルビオン4件 nameEn/nameJa 修正（実機確認値に統一）
-  - albion_cockle_farm: nameEn "Cockle Picker"
-  - albion_burial_mound: nameEn "Barrow" / nameJa "バロウ"
-  - albion_resort: nameEn "Recreation Ground"
-  - albion_sacred_grove: nameJa "聖なる森"
-- **コミット `18915c0`**: パトリキ・equites 19件 nameJa 補完 + nameEn 実機修正11件
-  - 出典: 殿提供 CSV（実機確認済み）
-  - nameJa=null 0件達成（全142件補完完了）
-- **コミット `3ba4d22`**: ビルド出力 docs/ 更新（exit 0 確認）
+### 1. 建物効果データ補完（buildings-effects.json 全142件）
+- `8a7d084` feat: 建物効果テーブルのStatBar可視化とヘッダー固定・列調整
+- `53fd9f2` fix: アルビオン建物2件のnameJaを実機確認値に修正（塚・神聖な森）
+- nameJa=null 0件達成。パトリキ19件・アルビオン補完すべて殿の実機確認済み
 
-### 最終検証済み（忍者）
-- 総件数 142件、nameJa=null 0件
+### 2. 生産チェーン一覧の多段階Mermaid図
+- `fd28983` feat: 生産チェーン一覧に多段階Mermaid図を追加
+- クリック展開（details/summary）・再帰トラバースで全段階描画・各ノードに生産時間・graph LR
+- mermaid パッケージを apps/wiki に追加（案B＝クライアント側レンダリング）
+- 配信物 docs/ に mermaid チャンク50件超（500KB級）追加＝案B の必然コスト
+
+### 3. 住民層の進化図をSVG化
+- `50d7cde` feat: 住民層の進化図をSVG化
+- ラティウム（直線4層）・アルビオン（ローマ/ケルト分岐）を静的SVGに置換
+- SVG配置: `apps/wiki/docs/public/diagrams/{latium,albion}-tiers.svg`
+- Tier番号表記なし・住民層名のみ・ローマ赤/ケルト緑で色分け
+
+### 4. リポジトリ整理
+- `85b287c` chore: special_thanksをローカル退避しコミット対象外に変更
+- `special_thanks/`（350件）を `_local/special_thanks/` へ移動し .gitignore に `_local/` 追加
+- ビルド・実行コードから未参照を確認済み。データはディスク上に保持
+
+### 配信物ビルドコミット
+- `082ffee` / `e20de20` chore: wikiビルド出力を更新（docs/ 再ビルド）
 
 ---
 
 ## 次回の優先作業
 
-### 1. アイテム一覧ページの実装
-- データは `packages/shared/public/data/items/` に存在（55件程度）
-- 現在 wiki ページはプレースホルダー表示のみ
-- 商品一覧ページ（wiki/goods）と同様のアプローチで実装可能
+### 1. アイテム一覧ページの実装【最優先】
+- データ: `packages/shared/public/data/items/`（55件・未着手）
+- 現状: wiki はプレースホルダー（apps/wiki/docs/wiki/items.md）
+- 参考実装: 商品一覧（goods.md + goods.data.ts）の VitePress データローダー方式
 
-### 2. 住民層：パトリキ公共サービス欄の追記
-- 画像不鮮明のため未収録
-- 殿に実機スクリーンショット提供を依頼するか、次回実機確認時に収集
+### 2. 住民層: パトリキ公共サービス欄の追記
+- 現状未収録（画像不鮮明のため）。殿の実機スクショ提供が前提
 
 ---
 
-## 注意点
+## 運用メモ（次回の効率化）
 
-- docs/ の build 出力は fix/feat コミットと同時に含めるのが本来のルール
-  今回は JSON コミット後にビルドしたため chore として別コミットになった
-  次回は build 後にコミットする手順を守ること
-- lectus_maker: nameJa "鎖職人"（殿実機確認済み確定値）
+- **ローカル退避の仕組み**: 不要ファイルは `_local/` へ移動すればコミット対象外。
+  既に追跡済みのファイルは `git rm --cached` で追跡解除が別途必要（移動だけでは止まらない）
+- **コミット粒度**: theme/index.ts が custom.css・複数コンポーネントを import するため、
+  概念別コミットには index.ts の段階的ステージングが必要だった（今回4機能を分割）
+- **「解散」は禁止語**: hook が起動しセッションが終了する。撤収指示は別語を使う
 
 ---
 
@@ -57,5 +68,9 @@
 | データ | 場所 |
 |--------|------|
 | 建物効果JSON（完成） | `apps/wiki/docs/wiki/buildings-effects.json` |
-| アイテムデータ | `packages/shared/public/data/items/` |
-| 公式日本語名(商品のみ) | `packages/shared/public/i18n/locales/ja.json` |
+| 住民層SVG図 | `apps/wiki/docs/public/diagrams/` |
+| 生産チェーンMermaidコンポーネント | `apps/wiki/docs/.vitepress/components/ProductionMermaid.vue` |
+| アイテムデータ（未着手） | `packages/shared/public/data/items/` |
+| 公式日本語名（商品のみ） | `packages/shared/public/i18n/locales/ja.json` |
+| anno-calculator サンプル（退避済み） | `_local/special_thanks/`（未追跡） |
+| 殿の建物名CSV | `c:\Users\kojif\Desktop\claude_TEMP\Tier需要資料\` |

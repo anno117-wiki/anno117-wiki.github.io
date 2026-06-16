@@ -38,7 +38,8 @@ anno_db2/                        ← workspaces root
 ├── docs/                        # 配信出力（wiki=/, calculator=/calculator）
 ├── .claude/agents/              # カスタムサブエージェント
 ├── tools/                       # データ生成スクリプト
-└── special_thanks/              # anno-calculator data sample
+└── _local/                      # ローカル退避（.gitignore・コミット対象外）
+    └── special_thanks/          # anno-calculator data sample（参照用・未追跡）
 ```
 
 詳細アーキテクチャ: `docs-notes/architecture-monorepo.md` 参照
@@ -78,9 +79,9 @@ anno_db2/                        ← workspaces root
 ### フェーズ8 完了済み（2026-06-16）
 - ✅ 商品一覧（カテゴリ別・48商品・VitePress データローダー）
 - ✅ 地域別商品（ローマ固有/ケルト固有/共通の3分類）
-- ✅ 生産チェーン一覧（商品名・建物・対応地域・生産時間・直接素材）
-- ✅ 住民層（9層のニーズ情報・ローマ/ケルト分岐ツリー）
-- ✅ 建物効果（142件・全tier・nameJa=null 0件・殿実機確認済み）
+- ✅ 生産チェーン一覧（多段階Mermaid図・クリック展開・生産時間表示）
+- ✅ 住民層（9層のニーズ情報・進化図を静的SVG化＝ラティウム直線/アルビオン分岐）
+- ✅ 建物効果（142件・全tier・nameJa=null 0件・殿実機確認済み・StatBar可視化・ヘッダー固定）
 
 ### フェーズ8 残作業
 - アイテム一覧: 現在プレースホルダー（data/items/ にデータあり・55件）
