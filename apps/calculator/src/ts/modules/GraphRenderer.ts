@@ -363,14 +363,9 @@ export class GraphRenderer {
         isLeaf: boolean;
         startOfChain: boolean;
     }): LabelGeometry {
-        const { x, y, depth, startOfChain } = params;
+        const { x, y } = params;
 
-        if (depth >= 2 && startOfChain) {
-            // チェーン末端ノードはノードの下に配置
-            return { labelX: x, labelY: y + 50, buildingsY: y + 67, labelAnchor: 'middle' };
-        }
-
-        // 通常ノード: アイコン上部に中央寄せ配置（エッジ線との重なり回避）
+        // 全ノード共通: アイコン上部に中央寄せ配置（エッジ線との重なり回避）
         // アイコンは size=64（中心yから±32）。上端(y-32)より上にラベルを置く。
         return {
             labelX: x,
