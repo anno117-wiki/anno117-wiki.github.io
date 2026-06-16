@@ -1,0 +1,27 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 710 200" width="710" height="200" font-family="sans-serif">
+  <defs>
+    <marker id="arrow" markerWidth="8" markerHeight="8" refX="6" refY="3" orient="auto">
+      <path d="M0,0 L6,3 L0,6 Z" fill="#888888"/>
+    </marker>
+  </defs>
+
+  <rect x="10" y="73" width="170" height="54" rx="8" fill="#e8eef9" stroke="#3b6db5" stroke-width="1.5"/>
+  <text x="95" y="105" text-anchor="middle" font-size="15" fill="#213547">ウェーダー</text>
+
+  <rect x="240" y="20" width="210" height="54" rx="8" fill="#fbe9e7" stroke="#c0563b" stroke-width="1.5"/>
+  <text x="345" y="52" text-anchor="middle" font-size="15" fill="#213547">メルカトル（ローマ）</text>
+
+  <rect x="490" y="20" width="210" height="54" rx="8" fill="#fbe9e7" stroke="#c0563b" stroke-width="1.5"/>
+  <text x="595" y="52" text-anchor="middle" font-size="15" fill="#213547">ノビレス（ローマ）</text>
+
+  <rect x="240" y="126" width="210" height="54" rx="8" fill="#e8f5e9" stroke="#4a9b5e" stroke-width="1.5"/>
+  <text x="345" y="158" text-anchor="middle" font-size="15" fill="#213547">スミス（ケルト）</text>
+
+  <rect x="490" y="126" width="210" height="54" rx="8" fill="#e8f5e9" stroke="#4a9b5e" stroke-width="1.5"/>
+  <text x="595" y="158" text-anchor="middle" font-size="15" fill="#213547">アルダー（ケルト）</text>
+
+  <line x1="182" y1="88" x2="236" y2="52" stroke="#888888" stroke-width="2" marker-end="url(#arrow)"/>
+  <line x1="182" y1="112" x2="236" y2="148" stroke="#888888" stroke-width="2" marker-end="url(#arrow)"/>
+  <line x1="452" y1="47" x2="486" y2="47" stroke="#888888" stroke-width="2" marker-end="url(#arrow)"/>
+  <line x1="452" y1="153" x2="486" y2="153" stroke="#888888" stroke-width="2" marker-end="url(#arrow)"/>
+</svg>

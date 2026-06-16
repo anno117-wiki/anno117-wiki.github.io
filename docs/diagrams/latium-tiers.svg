@@ -1,0 +1,23 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 792 94" width="792" height="94" font-family="sans-serif">
+  <defs>
+    <marker id="arrow" markerWidth="8" markerHeight="8" refX="6" refY="3" orient="auto">
+      <path d="M0,0 L6,3 L0,6 Z" fill="#888888"/>
+    </marker>
+  </defs>
+
+  <rect x="10" y="20" width="160" height="54" rx="8" fill="#e8eef9" stroke="#3b6db5" stroke-width="1.5"/>
+  <text x="90" y="52" text-anchor="middle" font-size="15" fill="#213547">リベルトゥス</text>
+
+  <rect x="214" y="20" width="160" height="54" rx="8" fill="#e8eef9" stroke="#3b6db5" stroke-width="1.5"/>
+  <text x="294" y="52" text-anchor="middle" font-size="15" fill="#213547">プレブス</text>
+
+  <rect x="418" y="20" width="160" height="54" rx="8" fill="#e8eef9" stroke="#3b6db5" stroke-width="1.5"/>
+  <text x="498" y="52" text-anchor="middle" font-size="15" fill="#213547">エクィテス</text>
+
+  <rect x="622" y="20" width="160" height="54" rx="8" fill="#e8eef9" stroke="#3b6db5" stroke-width="1.5"/>
+  <text x="702" y="52" text-anchor="middle" font-size="15" fill="#213547">パトリキ</text>
+
+  <line x1="172" y1="47" x2="208" y2="47" stroke="#888888" stroke-width="2" marker-end="url(#arrow)"/>
+  <line x1="376" y1="47" x2="412" y2="47" stroke="#888888" stroke-width="2" marker-end="url(#arrow)"/>
+  <line x1="580" y1="47" x2="616" y2="47" stroke="#888888" stroke-width="2" marker-end="url(#arrow)"/>
+</svg>
