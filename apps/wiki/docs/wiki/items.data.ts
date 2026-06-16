@@ -34,10 +34,13 @@ const RARITY_RANK: Record<string, number> = {
   'Quest Item': 6,
 }
 
+const RARITY_EN_FROM_JA: Record<string, string> = Object.fromEntries(
+  Object.entries(RARITY_JA).map(([en, ja]) => [ja, en])
+)
+
 interface ItemEntry {
   guid: string
   nameJa: string
-  nameEn: string
   rarityJa: string
   nicheJa: string
   price: string
@@ -46,34 +49,42 @@ interface ItemEntry {
 }
 
 export default {
-  load(): { byNiche: Record<string, ItemEntry[]>; niches: string[] } {
-    const items: ItemEntry[] = (itemsFull as any[]).map((row) => ({
-      guid: row.guid,
-      nameJa: row.nameJa ?? row.nameEn,
-      nameEn: row.nameEn ?? '',
-      rarityJa: RARITY_JA[row.rarity] ?? row.rarity,
-      nicheJa: NICHE_JA[row.niche] ?? row.niche,
-      price: row.price ?? '',
-      effects: Array.isArray(row.effects) ? row.effects : [],
-      description: row.description ?? '',
-    }))
+  load(): { items: ItemEntry[]; niches: string[]; rarities: string[] } {
+    const nicheIndex = Object.fromEntries(NICHE_ORDER.map((n, i) => [n, i]))
 
-    const byNiche: Record<string, ItemEntry[]> = {}
-    for (const item of items) {
-      if (!byNiche[item.nicheJa]) byNiche[item.nicheJa] = []
-      byNiche[item.nicheJa].push(item)
-    }
-    for (const niche of Object.keys(byNiche)) {
-      byNiche[niche].sort((a, b) => {
-        const ra = RARITY_RANK[Object.keys(RARITY_JA).find((k) => RARITY_JA[k] === a.rarityJa) ?? ''] ?? 99
-        const rb = RARITY_RANK[Object.keys(RARITY_JA).find((k) => RARITY_JA[k] === b.rarityJa) ?? ''] ?? 99
-        if (ra !== rb) return ra - rb
+    const items: ItemEntry[] = (itemsFull as any[])
+      .map((row) => ({
+        guid: row.guid,
+        nameJa: row.nameJa ?? row.nameEn,
+        rarityJa: RARITY_JA[row.rarity] ?? row.rarity,
+        nicheJa: NICHE_JA[row.niche] ?? row.niche,
+        price: row.price ?? '',
+        effects: Array.isArray(row.effects) ? row.effects : [],
+        description: row.description ?? '',
+        _nicheRank: nicheIndex[row.niche] ?? 99,
+        _rarityRank: RARITY_RANK[row.rarity] ?? 99,
+      }))
+      .sort((a: any, b: any) => {
+        if (a._nicheRank !== b._nicheRank) return a._nicheRank - b._nicheRank
+        if (a._rarityRank !== b._rarityRank) return a._rarityRank - b._rarityRank
         return a.nameJa.localeCompare(b.nameJa, 'ja')
       })
+      .map(({ _nicheRank: _n, _rarityRank: _r, ...item }: any) => item)
+
+    const niches = NICHE_ORDER.map((n) => NICHE_JA[n]).filter((ja) =>
+      items.some((i) => i.nicheJa === ja)
+    )
+
+    const seenRarities = new Set<string>()
+    const rarities: string[] = []
+    for (const rank of Object.keys(RARITY_RANK).sort((a, b) => RARITY_RANK[a] - RARITY_RANK[b])) {
+      const ja = RARITY_JA[rank]
+      if (!seenRarities.has(ja) && items.some((i) => i.rarityJa === ja)) {
+        seenRarities.add(ja)
+        rarities.push(ja)
+      }
     }
 
-    const niches = NICHE_ORDER.map((n) => NICHE_JA[n]).filter((ja) => byNiche[ja])
-
-    return { byNiche, niches }
+    return { items, niches, rarities }
   },
 }
