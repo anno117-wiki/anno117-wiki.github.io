@@ -940,6 +940,15 @@ input[type="number"]:focus,
   margin-top: 0.5rem;
 }
 
+.usage-note {
+  margin: 4px 0 8px;
+  padding: 6px 10px;
+  font-size: 0.85rem;
+  color: var(--text-secondary);
+  background: var(--background-accent);
+  border-radius: 4px;
+}
+
 .error {
   color: #c00;
   font-weight: bold;
