@@ -1,10 +1,5 @@
 <script setup lang="ts">
 import { data } from './buildings.data.ts'
-
-function val(n: number): string {
-  if (n === 0) return '—'
-  return n > 0 ? `+${n}` : `${n}`
-}
 </script>
 
 # 建物効果
@@ -17,7 +12,7 @@ function val(n: number): string {
 <table>
 <thead>
 <tr>
-  <th>建物（英語名）</th>
+  <th>建物</th>
   <th>需要Tier</th>
   <th>維持費</th>
   <th>人口</th>
@@ -27,7 +22,7 @@ function val(n: number): string {
   <th>名声</th>
   <th>健康度</th>
   <th>幸福</th>
-  <th>火災安全度</th>
+  <th>防火</th>
 </tr>
 </thead>
 <tbody>
@@ -35,14 +30,14 @@ function val(n: number): string {
   <td>{{ b.nameJa ?? b.nameEn }}</td>
   <td>{{ b.tierJa }}</td>
   <td>{{ b.maintenance }}</td>
-  <td>{{ val(b.population) }}</td>
-  <td>{{ val(b.income) }}</td>
-  <td>{{ val(b.faith) }}</td>
-  <td>{{ val(b.knowledge) }}</td>
-  <td>{{ val(b.prestige) }}</td>
-  <td>{{ val(b.health) }}</td>
-  <td>{{ val(b.happiness) }}</td>
-  <td>{{ val(b.fireSafety) }}</td>
+  <td><StatBar :n="b.population" :maxAbs="3" /></td>
+  <td><StatBar :n="b.income" :maxAbs="3" /></td>
+  <td><StatBar :n="b.faith" :maxAbs="6" /></td>
+  <td><StatBar :n="b.knowledge" :maxAbs="7" /></td>
+  <td><StatBar :n="b.prestige" :maxAbs="7" /></td>
+  <td><StatBar :n="b.health" :maxAbs="3" /></td>
+  <td><StatBar :n="b.happiness" :maxAbs="3" /></td>
+  <td><StatBar :n="b.fireSafety" :maxAbs="3" /></td>
 </tr>
 </tbody>
 </table>

@@ -1,0 +1,45 @@
+:root {
+  --vp-sidebar-width: 120px;
+}
+
+/* サイドバー内パディング縮小・折り返し禁止 */
+.VPSidebar {
+  padding: 24px 8px !important;
+}
+
+.VPSidebarItem .text {
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
+/* コンテンツ左余白縮小 */
+.VPDoc {
+  padding-left: 0 !important;
+}
+
+@media (min-width: 960px) {
+  .VPDoc.has-sidebar .content-container {
+    max-width: 100% !important;
+  }
+}
+
+.vp-doc table {
+  overflow-x: clip;
+}
+
+.vp-doc table thead th {
+  position: sticky;
+  top: var(--vp-nav-height, 64px);
+  z-index: 2;
+  background-color: var(--vp-c-bg);
+}
+
+/* 建物名・需要Tier列を折り返し禁止 */
+.vp-doc table td:nth-child(1),
+.vp-doc table th:nth-child(1),
+.vp-doc table td:nth-child(2),
+.vp-doc table th:nth-child(2) {
+  white-space: nowrap;
+}
+
