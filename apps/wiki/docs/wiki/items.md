@@ -26,7 +26,7 @@ function fmtPrice(p: string): string {
 :::
 
 <div style="display:flex;gap:1rem;align-items:center;margin:1rem 0;flex-wrap:wrap">
-  <label>ニッチ:
+  <label>分類:
     <select v-model="selNiche" style="margin-left:.4rem">
       <option value="">すべて</option>
       <option v-for="n in data.niches" :key="n" :value="n">{{ n }}</option>
@@ -43,7 +43,7 @@ function fmtPrice(p: string): string {
 
 <table>
 <thead>
-<tr><th>名称</th><th>レアリティ</th><th>ニッチ</th><th>効果</th><th>説明</th><th>価格</th></tr>
+<tr><th>名称</th><th>レアリティ</th><th>分類</th><th>効果</th><th>説明</th><th>価格</th></tr>
 </thead>
 <tbody>
 <tr v-for="item in filtered" :key="item.guid">
