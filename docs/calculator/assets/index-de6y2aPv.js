@@ -7459,8 +7459,9 @@ var App = class App {
 		const url = new URL(window.location.href);
 		const state = ParameterParser.parse(url);
 		const storedLang = this.settingsManager.getSettingRaw("language");
-		const initialLang = state.lang || storedLang || "en";
+		const initialLang = state.lang || storedLang || "ja";
 		await this.i18nManager.init(initialLang);
+		this.applyStaticTranslations();
 		this.settingsManager.init();
 		if (initialLang !== storedLang) this.settingsManager.setSettingValue("language", initialLang);
 		this.settingsManager.onChange(() => this.handleSettingsChange());
@@ -7470,6 +7471,7 @@ var App = class App {
 		this.restoreFromUrl();
 	}
 	async handleLanguageChange() {
+		this.applyStaticTranslations();
 		this.allGoods = this.goodsRepository.getGoodsList();
 		this.updateGoodsList();
 		if (this.currentGood) {
@@ -7607,6 +7609,12 @@ var App = class App {
 		if (!this.currentGood) return [];
 		const settings = this.settingsManager.getConfig();
 		return Item.getActiveGuidsForChain(settings, this.currentGood.id);
+	}
+	applyStaticTranslations() {
+		document.querySelectorAll("[data-i18n]").forEach((el) => {
+			const key = el.dataset.i18n;
+			if (key) el.textContent = this.i18nManager.t(key);
+		});
 	}
 };
 //#endregion
@@ -7824,4 +7832,4 @@ document.addEventListener("DOMContentLoaded", async () => {
 });
 //#endregion
 
-//# sourceMappingURL=index-DNuxasI1.js.map
+//# sourceMappingURL=index-de6y2aPv.js.map

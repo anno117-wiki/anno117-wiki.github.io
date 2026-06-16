@@ -177,7 +177,17 @@
     "featureCostAnalysis": "Cost Analysis: View total building costs and maintenance requirements",
     "tipText": "Tip: On touch, drag with one finger to pan and pinch to zoom. On desktop, hold right mouse button to pan and use the mouse wheel to zoom.",
     "footerText": "Developed by AgentQuack. Not affiliated with Ubisoft or Ubisoft Mainz. All trademarks are the property of their respective owners.",
-    "githubLink": "GitHub repository"
+    "githubLink": "GitHub repository",
+    "help.title": "Controls",
+    "help.desktop": "Desktop",
+    "help.pan": "Pan",
+    "help.panDesc": "Hold left mouse button and drag",
+    "help.zoom": "Zoom",
+    "help.zoomDesc": "Use mouse wheel",
+    "help.touch": "Touch Devices",
+    "help.panTouchDesc": "Drag with one finger",
+    "help.zoomTouchDesc": "Pinch with two fingers",
+    "usage.note": "Auto-ratio shows the optimal number of buildings; Output/min shows production per minute."
   },
   "regions": {
     "latium": "Latium",
