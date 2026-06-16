@@ -27,6 +27,9 @@ special_thanks/**/docs/
 # 解散フック用の一時ロック
 .claude/.dismiss.lock
 
+# ローカル退避（コミット対象外）
+_local/
+
 # OS
 Thumbs.db
 
