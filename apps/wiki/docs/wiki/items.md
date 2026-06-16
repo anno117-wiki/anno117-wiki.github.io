@@ -8,8 +8,8 @@ const totalItems = Object.values(data.byNiche).reduce((n, arr) => n + arr.length
 
 Anno 117 で使用できる全 {{ totalItems }} アイテムの一覧です。
 
-::: tip 日本語対応状況
-アイテム名・効果・対象は英語表記（公式日本語訳がないため）。レアリティ・ニッチは日本語化済み。出典: コミュニティ作成のAnno 117アイテムDB
+::: tip 出典・日本語対応状況
+出典: Anno 117 公式ゲームデータ（Item Inspector 抽出データより生成）。アイテム名・説明・効果は公式日本語。効果の一部（軍事・海事）は機械訳のため表現が粗い場合があります。
 :::
 
 <div v-for="niche in data.niches" :key="niche">
@@ -18,17 +18,16 @@ Anno 117 で使用できる全 {{ totalItems }} アイテムの一覧です。
 
 <table>
 <thead>
-<tr><th>名称</th><th>レアリティ</th><th>ニッチ</th><th>効果</th><th>対象</th><th>取引価格</th><th>DLC</th></tr>
+<tr><th>名称</th><th>英語名</th><th>レアリティ</th><th>効果</th><th>説明</th><th>価格</th></tr>
 </thead>
 <tbody>
 <tr v-for="item in data.byNiche[niche]" :key="item.guid">
-<td>{{ item.name }}</td>
+<td>{{ item.nameJa }}</td>
+<td>{{ item.nameEn }}</td>
 <td>{{ item.rarityJa }}</td>
-<td>{{ item.nicheJa }}</td>
-<td>{{ item.buffs || '—' }}</td>
-<td>{{ item.targets || '—' }}</td>
-<td>{{ item.tradePrice || '—' }}</td>
-<td>{{ item.isDlc ? 'DLC' : '' }}</td>
+<td>{{ item.effects.length ? item.effects.join('、') : '—' }}</td>
+<td>{{ item.description || '—' }}</td>
+<td>{{ item.price || '—' }}</td>
 </tr>
 </tbody>
 </table>
