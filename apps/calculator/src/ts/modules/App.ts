@@ -160,7 +160,7 @@ export class App {
         const url = new URL(window.location.href);
         const state = ParameterParser.parse(url);
         const storedLang = this.settingsManager.getSettingRaw('language') as Locale | undefined;
-        const initialLang: Locale = state.lang || storedLang || 'en';
+        const initialLang: Locale = state.lang || storedLang || 'ja';
 
         await this.i18nManager.init(initialLang);
         this.settingsManager.init();
