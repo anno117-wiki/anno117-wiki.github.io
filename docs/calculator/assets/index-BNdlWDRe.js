@@ -1212,13 +1212,7 @@ var GraphRenderer = class GraphRenderer {
 		edgeGroup.appendChild(line);
 	}
 	resolveLabelGeometry(params) {
-		const { x, y, depth, startOfChain } = params;
-		if (depth >= 2 && startOfChain) return {
-			labelX: x,
-			labelY: y + 50,
-			buildingsY: y + 67,
-			labelAnchor: "middle"
-		};
+		const { x, y } = params;
 		return {
 			labelX: x,
 			labelY: y - 52,
@@ -7835,4 +7829,4 @@ document.addEventListener("DOMContentLoaded", async () => {
 });
 //#endregion
 
-//# sourceMappingURL=index-Dzntby9O.js.map
+//# sourceMappingURL=index-BNdlWDRe.js.map
