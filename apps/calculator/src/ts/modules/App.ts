@@ -163,6 +163,7 @@ export class App {
         const initialLang: Locale = state.lang || storedLang || 'ja';
 
         await this.i18nManager.init(initialLang);
+        this.applyStaticTranslations();
         this.settingsManager.init();
 
         // 言語設定を永続化
@@ -182,6 +183,7 @@ export class App {
     // -----------------------------------------------------------------------
 
     private async handleLanguageChange(): Promise<void> {
+        this.applyStaticTranslations();
         // 言語変更時にUIを再描画
         // GoodsRepositoryから最新のローカライズされたリストを取得
         this.allGoods = this.goodsRepository.getGoodsList();
@@ -401,6 +403,13 @@ export class App {
         if (!this.currentGood) return [];
         const settings = this.settingsManager.getConfig();
         return Item.getActiveGuidsForChain(settings, this.currentGood.id);
+    }
+
+    private applyStaticTranslations(): void {
+        document.querySelectorAll<HTMLElement>('[data-i18n]').forEach((el) => {
+            const key = el.dataset.i18n;
+            if (key) el.textContent = this.i18nManager.t(key);
+        });
     }
 
     // -----------------------------------------------------------------------

@@ -177,7 +177,16 @@
     "featureCostAnalysis": "コスト分析：合計建築コストと維持費要件を表示",
     "tipText": "ヒント：タッチ操作では1本指でドラッグして移動、ピンチでズーム。デスクトップでは左クリックでドラッグして移動、マウスホイールでズームします。",
     "footerText": "AgentQuackによって開発されました。UbisoftまたはUbisoft Mainzとは提携していません。すべての商標はそれぞれの所有者の財産です。",
-    "githubLink": "GitHubリポジトリ"
+    "githubLink": "GitHubリポジトリ",
+    "help.title": "操作方法",
+    "help.desktop": "デスクトップ",
+    "help.pan": "移動",
+    "help.panDesc": "左クリックを長押ししてドラッグ",
+    "help.zoom": "拡大縮小",
+    "help.zoomDesc": "マウスホイールを使用",
+    "help.touch": "タッチデバイス",
+    "help.panTouchDesc": "1本指でドラッグ",
+    "help.zoomTouchDesc": "2本指でピンチ"
   },
   "regions": {
     "latium": "ラティウム",
