@@ -43,7 +43,10 @@ function timeText(seconds: number): string {
 <td>{{ entry.nameJa }}</td>
 <td>{{ regionText(entry.regions) }}</td>
 <td>{{ timeText(entry.timeSeconds) }}</td>
-<td>{{ entry.inputs.join('、') || '—' }}</td>
+<td>
+  {{ entry.inputs.join('、') || '—' }}
+  <ProductionMermaid v-if="entry.mermaidDef" :definition="entry.mermaidDef" />
+</td>
 </tr>
 </tbody>
 </table>

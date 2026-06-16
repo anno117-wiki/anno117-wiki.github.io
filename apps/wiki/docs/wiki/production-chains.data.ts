@@ -18,9 +18,43 @@ interface ProductionEntry {
   timeSeconds: number
   needsFuel: boolean
   inputs: string[]
+  mermaidDef: string
 }
 
 const CATEGORY_ORDER = ['food', 'construction', 'fashion', 'culture']
+
+function fmtTime(seconds: number): string {
+  if (!seconds) return ''
+  if (seconds < 60) return `${seconds}秒`
+  const m = Math.floor(seconds / 60)
+  const s = seconds % 60
+  return s === 0 ? `${m}分` : `${m}分${s}秒`
+}
+
+function buildMermaidDef(prod: any, jaGoods: Record<string, string>): string {
+  const nodeLines: string[] = []
+  const edgeLines: string[] = []
+  const seen = new Set<string>()
+
+  function traverse(node: any, childId?: string) {
+    const id = node.id.replace(/[^a-zA-Z0-9_]/g, '_')
+    const label = jaGoods[node.id] ?? node.name ?? node.id
+    const time = fmtTime(node.time ?? 0)
+    const nodeLabel = time ? `${label}\n${time}` : label
+    if (!seen.has(id)) {
+      seen.add(id)
+      nodeLines.push(`  ${id}["${nodeLabel}"]`)
+    }
+    if (childId) edgeLines.push(`  ${id} --> ${childId}`)
+    for (const inp of (node.input ?? [])) {
+      traverse(inp, id)
+    }
+  }
+
+  traverse(prod)
+  if (nodeLines.length <= 1) return ''
+  return `graph LR\n${nodeLines.join('\n')}\n${edgeLines.join('\n')}`
+}
 
 function readProduction(filename: string): any | null {
   try {
@@ -48,9 +82,10 @@ export default {
         jaGoods[inp.id] ?? inp.name ?? inp.id
       )
 
+      const nameJa = jaGoods[good.id] ?? good.displayName
       entries.push({
         id: good.id,
-        nameJa: jaGoods[good.id] ?? good.displayName,
+        nameJa,
         nameEn: good.displayName,
         category: good.category,
         regions: good.regions,
@@ -58,6 +93,7 @@ export default {
         timeSeconds: prod.time ?? 0,
         needsFuel: prod.needs_fuel ?? false,
         inputs,
+        mermaidDef: buildMermaidDef(prod, jaGoods),
       })
     }
 
