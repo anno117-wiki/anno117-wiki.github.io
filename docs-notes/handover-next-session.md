@@ -43,17 +43,35 @@
 - 上位互換ルール: 公共広場・浴場はエクィテス段で充足のためパトリキ脅威は円形闘技場のみ
 - これによりパトリキ公共サービス欄（旧フェーズ8残作業）は解消済み
 
+### 6. アイテム一覧を公式日本語データ(421件)で全面刷新【完了】
+- 計算機の Anno 117 Item Inspector（PyInstaller製exe）を静的展開し公式ゲームデータを入手
+- `tools/build-items-ja.py` で CSV + texts_japanese.xml + assets.xml を突合し生成
+- 公式日本語の 名称・効果・フレーバー説明、効果内GUIDも公式名へ解決（例 浴場/スミスの労働力）
+- 生成物 `packages/shared/public/data/items-full.json`（421件）
+- items.md: 分類別/レアリティ別の絞り込み、価格k/M簡略表記、列=名称/レアリティ/分類/効果/説明/価格
+- 注意: 効果の一部（軍事・海事）は機械訳。実機照合で微修正可。再生成は build-items-ja.py
+
+### 7. 計算機の各種改修【完了】
+- Aboutボタン/モーダル削除、デフォルト言語を日本語化、Helpモーダル多言語化（data-i18n機構）
+- 使い方説明文をメイン画面常時表示、生産チェーンの建物件数を「軒」表記（末尾ゼロ除去）
+- 生産チェーン図ラベルをアイコン上部へ移動（エッジ重なり解消）、フォントをゴシック体化
+- ページタイトル/メタを自サイト向けに変更（公式anno-calculator.org由来の表記を除去）
+
 ### 配信物ビルドコミット
-- `082ffee` / `e20de20` / `bfcbdba` / `92d0aa0` / `74f2283` / `a0b3f90` chore: wikiビルド出力を更新（docs/ 再ビルド）
+- 各fix/featに対応する chore: ビルド出力更新コミットを併せて作成済み
 
 ---
 
-## 次回の優先作業
+## 次回の好機・優先作業
 
-### 1. アイテム一覧ページの実装【最優先・フェーズ8唯一の残作業】
-- データ: `packages/shared/public/data/items/`（55件・未着手）
-- 現状: wiki はプレースホルダー（apps/wiki/docs/wiki/items.md）
-- 参考実装: 商品一覧（goods.md + goods.data.ts）の VitePress データローダー方式
+### 1. 建物名・商品名の公式日本語化【最有力】
+- 前セッションで手作業した建物nameJa等を、入手した**公式ゲームデータで一括補完・検証**できる
+- 仕組み: アセットGUID → assets.xml の `<Text><OasisId>` → texts_japanese.xml で公式日本語名
+- 参考スクリプト: `tools/build-items-ja.py`（同じ突合ロジックを流用可）
+- 対象候補: buildings-effects.json の nameEn↔nameJa 照合、goods(ja.json) の検証
+
+### 2. アイテム効果の機械訳の精査（任意）
+- 軍事・海事の効果訳を実機/公式表記と照合し微修正
 
 ---
 
@@ -74,7 +92,13 @@
 | 建物効果JSON（完成） | `apps/wiki/docs/wiki/buildings-effects.json` |
 | 住民層SVG図 | `apps/wiki/docs/public/diagrams/` |
 | 生産チェーンMermaidコンポーネント | `apps/wiki/docs/.vitepress/components/ProductionMermaid.vue` |
-| アイテムデータ（未着手） | `packages/shared/public/data/items/` |
+| アイテム一覧データ（421件・完成） | `packages/shared/public/data/items-full.json` |
+| アイテム生成スクリプト | `tools/build-items-ja.py`（CSV+公式XML突合） |
+| 計算機用 旧アイテムデータ（保護） | `packages/shared/public/data/items/`（55件・計算機Item.tsが使用） |
 | 公式日本語名（商品のみ） | `packages/shared/public/i18n/locales/ja.json` |
+| **公式ゲームデータ一式（退避・最重要）** | `_local/anno-official-data/config/`（未追跡・94.9MB） |
+| └ 公式日本語テキスト | `_local/anno-official-data/config/gui/texts_japanese.xml`（GUID/OasisId→日本語） |
+| └ アセットデータ | `_local/anno-official-data/config/export/assets.xml`（GUID→OasisId）|
+| └ 他言語テキスト | 同 `gui/` に英独仏韓中露等 全12言語 |
 | anno-calculator サンプル（退避済み） | `_local/special_thanks/`（未追跡） |
 | 殿の建物名CSV | `c:\Users\kojif\Desktop\claude_TEMP\Tier需要資料\` |
