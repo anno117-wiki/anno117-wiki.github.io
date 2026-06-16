@@ -25,21 +25,54 @@ function fmtPrice(p: string): string {
 出典: Anno 117 公式ゲームデータ（Item Inspector 抽出データより生成）。アイテム名・説明・効果は公式日本語。効果の一部（軍事・海事）は機械訳のため表現が粗い場合があります。
 :::
 
-<div style="display:flex;gap:1rem;align-items:center;margin:1rem 0;flex-wrap:wrap">
-  <label>分類:
-    <select v-model="selNiche" style="margin-left:.4rem">
+<div class="item-filters">
+  <label><strong>分類:</strong>
+    <select v-model="selNiche">
       <option value="">すべて</option>
       <option v-for="n in data.niches" :key="n" :value="n">{{ n }}</option>
     </select>
   </label>
-  <label>レアリティ:
-    <select v-model="selRarity" style="margin-left:.4rem">
+  <label><strong>レアリティ:</strong>
+    <select v-model="selRarity">
       <option value="">すべて</option>
       <option v-for="r in data.rarities" :key="r" :value="r">{{ r }}</option>
     </select>
   </label>
-  <span>{{ filtered.length }} 件</span>
+  <span class="item-count">{{ filtered.length }} 件</span>
 </div>
+
+<style scoped>
+.item-filters {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 16px;
+  align-items: center;
+  margin: 12px 0;
+  padding: 12px;
+  background: var(--vp-c-bg-soft);
+  border: 1px solid var(--vp-c-divider);
+  border-radius: 8px;
+}
+.item-filters label {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+}
+.item-filters select {
+  padding: 6px 10px;
+  border: 1px solid var(--vp-c-divider);
+  border-radius: 6px;
+  background: var(--vp-c-bg);
+  color: var(--vp-c-text-1);
+  font-size: 0.9rem;
+  cursor: pointer;
+  min-width: 140px;
+}
+.item-count {
+  color: var(--vp-c-text-2);
+  margin-left: auto;
+}
+</style>
 
 <table>
 <thead>
