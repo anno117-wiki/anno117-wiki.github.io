@@ -62,16 +62,21 @@
 
 ---
 
-## 次回の好機・優先作業
+## 8. 公式データで日本語名を照合（実施済み・一部残）
+- 公式マスタ `official_master.csv`（30,719 asset・GUID/internalName/officialEN/officialJA）を生成し `_local/anno-official-data/` に保存（再利用資産）
+- 建物142件: 133件が公式と整合確認。実機確認で不一致を公式へ修正済み（grain_mill粉ひき所/cockle_farmザル貝採り/dairy乳工房/resort運動場/copper_mine銅鉱/tin_mine錫鉱）
+- 商品: ほぼ整合。公式へ修正済み（ブドウ/蜂の巣/牡蠣/縄/木材）。※wine「ワインレッド」は誤マッチで不採用
+- 照合CSV群: `c:\Users\kojif\Desktop\claude_TEMP\日本語名照合\`（buildings/goods_name_check, unmatched_reverse_check, albion9_candidates, official_master）
 
-### 1. 建物名・商品名の公式日本語化【最有力】
-- 前セッションで手作業した建物nameJa等を、入手した**公式ゲームデータで一括補完・検証**できる
-- 仕組み: アセットGUID → assets.xml の `<Text><OasisId>` → texts_japanese.xml で公式日本語名
-- 参考スクリプト: `tools/build-items-ja.py`（同じ突合ロジックを流用可）
-- 対象候補: buildings-effects.json の nameEn↔nameJa 照合、goods(ja.json) の検証
+### 【次回・最優先の残作業】アルビオン建物9件の公式名（実機確認待ち）
+逆引きで公式テキストに無く要確認。忍者がマスタから候補を抽出済み。実機で確認し採否を裁定:
+- 有力6件（既存→公式候補）: albion_logging_camp きこり→木こり / albion_malt_house 麦芽工房→麦芽製造所 / albion_pants_maker 靴下工房→靴下職人 / albion_horn_smithy 角細工師→角杯職人 / albion_council アルダー評議会→市議会 / albion_chariot_body シャーシ工房→シャーシの組立工
+- 要確認3件: albion_glasswort_site ウェルド農場→（候補ウォールド畑/Weld・植物名相違）/ albion_cattle_farm 牛農場（候補なし）/ albion_underground_pit 土窯（候補なし）
+- 詳細CSV: `albion9_candidates.csv`
 
-### 2. アイテム効果の機械訳の精査（任意）
-- 軍事・海事の効果訳を実機/公式表記と照合し微修正
+## 次回の好機（その他）
+- 建物・商品名の更なる公式照合（official_master.csv 一枚で完結。assets.xml再パース不要）
+- アイテム効果の機械訳（軍事・海事）の実機照合・微修正
 
 ---
 
