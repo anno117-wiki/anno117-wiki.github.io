@@ -958,6 +958,38 @@ var ProductionCalculator = class ProductionCalculator {
 	}
 };
 //#endregion
+//#region apps/calculator/src/ts/modules/Utils.ts
+function formatDuration(seconds = 0) {
+	const safeSeconds = Math.max(0, Number(seconds) || 0);
+	const minutes = Math.floor(safeSeconds / 60);
+	const secs = Math.round(safeSeconds % 60);
+	return `${minutes}:${String(secs).padStart(2, "0")}`;
+}
+var URLTools = {
+	/**
+	* Converts a object of boolean values into a single query URL parameters.
+	* If key is true, the keys are merged into a comma separated list under the "key" parameter.
+	* 
+	*/
+	toGetParam(values) {
+		let list = [];
+		for (const [k, v] of Object.entries(values)) if (v) list.push(k);
+		return `${list.join("~")}`;
+	},
+	fromGetParam(key, paramString, defaults) {
+		const value = new URLSearchParams(paramString).get(key);
+		if (!value) return defaults;
+		const enabled = new Set(value.split("~").map((s) => s.trim()));
+		const result = { ...defaults };
+		for (const key of Object.keys(result)) result[key] = enabled.has(key);
+		return result;
+	}
+};
+/** 建物件数を整形（末尾ゼロ除去＋単位付与）。例: 0.50→"0.5件", 1.00→"1件" */
+function formatBuildingCount(n, unit) {
+	return `${Number((n || 0).toFixed(2))}${unit}`;
+}
+//#endregion
 //#region apps/calculator/src/ts/modules/GraphRenderer.ts
 var CENTER_X = 360;
 var CENTER_Y = 150;
@@ -1159,7 +1191,7 @@ var GraphRenderer = class GraphRenderer {
 		buildingText.setAttribute("class", "graph-subtext");
 		buildingText.setAttribute("data-role", "buildings");
 		buildingText.setAttribute("data-good-id", good.id || "");
-		buildingText.textContent = `${buildings.toFixed(2)}x`;
+		buildingText.textContent = formatBuildingCount(buildings, this.i18n.t("ui.buildingUnit"));
 		group.appendChild(buildingText);
 		this.svgElement.appendChild(group);
 	}
@@ -1508,7 +1540,7 @@ var GraphRenderer = class GraphRenderer {
 			productivityInfo.innerHTML = `<strong>${this.i18n.t("ui.productivity")}:</strong> ${(productivity * 100 * Math.min(buildings, 1)).toFixed(0)}%`;
 			content.appendChild(productivityInfo);
 		}
-		countInfo.innerHTML = `<strong>${this.i18n.t("ui.required")}:</strong> ${buildings ? buildings.toFixed(2) : "0.00"}x`;
+		countInfo.innerHTML = `<strong>${this.i18n.t("ui.required")}:</strong> ${formatBuildingCount(buildings || 0, this.i18n.t("ui.buildingUnit"))}`;
 		content.appendChild(countInfo);
 		const renderCostList = (titleKey, costs) => {
 			if (!costs || Object.keys(costs).length === 0) return null;
@@ -1733,34 +1765,6 @@ var Item = class Item extends AbstractProductionModifier {
 function registerItemModifier() {
 	ModifierRegistry.getInstance().register(new Item());
 }
-//#endregion
-//#region apps/calculator/src/ts/modules/Utils.ts
-function formatDuration(seconds = 0) {
-	const safeSeconds = Math.max(0, Number(seconds) || 0);
-	const minutes = Math.floor(safeSeconds / 60);
-	const secs = Math.round(safeSeconds % 60);
-	return `${minutes}:${String(secs).padStart(2, "0")}`;
-}
-var URLTools = {
-	/**
-	* Converts a object of boolean values into a single query URL parameters.
-	* If key is true, the keys are merged into a comma separated list under the "key" parameter.
-	* 
-	*/
-	toGetParam(values) {
-		let list = [];
-		for (const [k, v] of Object.entries(values)) if (v) list.push(k);
-		return `${list.join("~")}`;
-	},
-	fromGetParam(key, paramString, defaults) {
-		const value = new URLSearchParams(paramString).get(key);
-		if (!value) return defaults;
-		const enabled = new Set(value.split("~").map((s) => s.trim()));
-		const result = { ...defaults };
-		for (const key of Object.keys(result)) result[key] = enabled.has(key);
-		return result;
-	}
-};
 //#endregion
 //#region apps/calculator/src/ts/modules/ProductionChainView.ts
 var ProductionChainView = class {
@@ -2034,7 +2038,7 @@ var ProductionChainView = class {
 		Object.entries(allBuildings).forEach(([goodId, buildings]) => {
 			if (goodId === "_metadata") return;
 			const target = this.container.querySelector(`[data-building-count="${goodId}"]`);
-			if (target && typeof buildings === "number") target.textContent = `${(buildings || 0).toFixed(2)}x`;
+			if (target && typeof buildings === "number") target.textContent = formatBuildingCount(buildings || 0, this.i18n.t("ui.buildingUnit"));
 		});
 	}
 	updateCostSummary(allBuildings) {
@@ -2050,7 +2054,7 @@ var ProductionChainView = class {
 		}, 0) : 0;
 		if (charcoalFuelBuildings > 0) {
 			const charcoalLabel = this.i18n.t("goods.charcoal");
-			maintenanceContainer.appendChild(this.buildCostElement("charcoal", `${charcoalFuelBuildings.toFixed(2)}x`, charcoalLabel !== "charcoal" ? charcoalLabel : "Coal"));
+			maintenanceContainer.appendChild(this.buildCostElement("charcoal", formatBuildingCount(charcoalFuelBuildings, this.i18n.t("ui.buildingUnit")), charcoalLabel !== "charcoal" ? charcoalLabel : "Coal"));
 		}
 		this.maintenanceElement.replaceChildren(maintenanceContainer);
 	}
@@ -7832,4 +7836,4 @@ document.addEventListener("DOMContentLoaded", async () => {
 });
 //#endregion
 
-//# sourceMappingURL=index-de6y2aPv.js.map
+//# sourceMappingURL=index-Dnr1sPfm.js.map

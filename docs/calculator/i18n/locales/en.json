@@ -187,7 +187,8 @@
     "help.touch": "Touch Devices",
     "help.panTouchDesc": "Drag with one finger",
     "help.zoomTouchDesc": "Pinch with two fingers",
-    "usage.note": "Auto-ratio shows the optimal number of buildings; Output/min shows production per minute."
+    "usage.note": "Auto-ratio shows the optimal number of buildings; Output/min shows production per minute.",
+    "buildingUnit": "x"
   },
   "regions": {
     "latium": "Latium",
