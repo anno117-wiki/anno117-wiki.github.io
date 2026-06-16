@@ -5,7 +5,7 @@ import { ModifierRegistry } from './ModifierRegistry';
 import { Item } from './modifier/Item';
 import { SettingsManager } from './SettingsManager';
 import { I18nManager } from '@anno/shared';
-import { formatDuration } from './Utils';
+import { formatDuration, formatBuildingCount } from './Utils';
 import type { BuildingsMap } from './ProductionCalculator';
 import { ASSETS_ICONS_PATH } from '../constants';
 
@@ -475,7 +475,7 @@ class ProductionChainView {
             if (goodId === '_metadata') return;
             const target = this.container.querySelector(`[data-building-count="${goodId}"]`) as HTMLElement | null;
             if (target && typeof buildings === 'number') {
-                target.textContent = `${(buildings || 0).toFixed(2)}x`;
+                target.textContent = formatBuildingCount(buildings || 0, this.i18n.t('ui.buildingUnit'));
             }
         });
     }
@@ -504,7 +504,7 @@ class ProductionChainView {
 
         if (charcoalFuelBuildings > 0) {
             const charcoalLabel = this.i18n.t('goods.charcoal');
-            maintenanceContainer.appendChild(this.buildCostElement('charcoal', `${charcoalFuelBuildings.toFixed(2)}x`, charcoalLabel !== 'charcoal' ? charcoalLabel : 'Coal'));
+            maintenanceContainer.appendChild(this.buildCostElement('charcoal', formatBuildingCount(charcoalFuelBuildings, this.i18n.t('ui.buildingUnit')), charcoalLabel !== 'charcoal' ? charcoalLabel : 'Coal'));
         }
 
         this.maintenanceElement.replaceChildren(maintenanceContainer);

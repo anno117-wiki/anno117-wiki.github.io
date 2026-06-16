@@ -33,4 +33,10 @@ const URLTools = {
     } 
 };
 
+/** 建物件数を整形（末尾ゼロ除去＋単位付与）。例: 0.50→"0.5件", 1.00→"1件" */
+export function formatBuildingCount(n: number, unit: string): string {
+    const rounded = Number((n || 0).toFixed(2));
+    return `${rounded}${unit}`;
+}
+
 export { formatDuration, URLTools};

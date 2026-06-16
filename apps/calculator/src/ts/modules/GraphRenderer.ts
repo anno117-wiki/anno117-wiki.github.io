@@ -4,6 +4,7 @@ import { ProductionCalculator, type BuildingsMap } from './ProductionCalculator'
 import { GoodsRepository } from '@anno/shared';
 import { I18nManager } from '@anno/shared';
 import { SVG_NS, XLINK_NS, ASSETS_ICONS_PATH } from '../constants';
+import { formatBuildingCount } from './Utils';
 
 // 横配置（RL: Right to Left）用の定数
 const CENTER_X = 360; // 右端の開始位置
@@ -325,7 +326,7 @@ export class GraphRenderer {
         buildingText.setAttribute('class', 'graph-subtext');
         buildingText.setAttribute('data-role', 'buildings');
         buildingText.setAttribute('data-good-id', good.id || '');
-        buildingText.textContent = `${buildings.toFixed(2)}x`;
+        buildingText.textContent = formatBuildingCount(buildings, this.i18n.t('ui.buildingUnit'));
         group.appendChild(buildingText);
 
         this.svgElement.appendChild(group);
@@ -733,7 +734,7 @@ export class GraphRenderer {
             content.appendChild(productivityInfo);
         }
 
-        countInfo.innerHTML = `<strong>${this.i18n.t('ui.required')}:</strong> ${buildings ? buildings.toFixed(2) : '0.00'}x`;
+        countInfo.innerHTML = `<strong>${this.i18n.t('ui.required')}:</strong> ${formatBuildingCount(buildings || 0, this.i18n.t('ui.buildingUnit'))}`;
         content.appendChild(countInfo);
 
         // Helper to render cost list
