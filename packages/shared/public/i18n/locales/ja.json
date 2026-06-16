@@ -187,7 +187,7 @@
     "help.touch": "タッチデバイス",
     "help.panTouchDesc": "1本指でドラッグ",
     "help.zoomTouchDesc": "2本指でピンチ",
-    "usage.note": "自動比率で建物の最適件数を表示、生産数/分に1分あたりの生産数を表示",
+    "usage.note": "自動比率で建物の最適軒数を表示、生産数/分に1分あたりの生産数を表示",
     "buildingUnit": "軒"
   },
   "regions": {
