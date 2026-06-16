@@ -8,6 +8,15 @@ const filtered = computed(() => data.items.filter(i =>
   (!selNiche.value || i.nicheJa === selNiche.value) &&
   (!selRarity.value || i.rarityJa === selRarity.value)
 ))
+
+function fmtPrice(p: string): string {
+  if (!p) return '—'
+  const n = Number(p)
+  if (!Number.isFinite(n) || n === 0) return p || '—'
+  if (n >= 1_000_000) return (n / 1_000_000).toString().replace(/\.0$/, '') + 'M'
+  if (n >= 1_000) return (n / 1_000).toString().replace(/\.0$/, '') + 'k'
+  return String(n)
+}
 </script>
 
 # アイテム一覧
@@ -43,7 +52,7 @@ const filtered = computed(() => data.items.filter(i =>
 <td>{{ item.nicheJa }}</td>
 <td>{{ item.effects.length ? item.effects.join('、') : '—' }}</td>
 <td>{{ item.description || '—' }}</td>
-<td>{{ item.price || '—' }}</td>
+<td>{{ fmtPrice(item.price) }}</td>
 </tr>
 </tbody>
 </table>
