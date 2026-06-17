@@ -17,7 +17,8 @@
 ### 起動手順（審議せず順に実行＝考え込み時間を削減）
 1. **第1バッチ（1メッセージで並列）**: `ToolSearch select:mcp__claude-peers__list_peers,mcp__claude-peers__send_message,mcp__claude-peers__check_messages,mcp__claude-peers__set_summary` ＋ handover読み込み。
 2. **役割の自動決定（上記）を実行** → 空席の最上位役を `set_summary` で名乗る。
-3. 家老になった場合のみ、各peerへ役割指示（役割分担はメモリ project-three-session-roles 参照）。
+3. **役を名乗ったら、自分の役の `docs-notes/roles/{karo|samurai|ninja}.md` を読む**（役固有の責務・手順を定義。共通項目は本CLAUDE.mdに残す）。
+4. 家老になった場合のみ、各peerへ役割指示（役割分担はメモリ project-three-session-roles 参照）。
 
 ### シェル運用【重要】
 - グローバル `SHELL` は **Git Bash**（`C:\Program Files\Git\bin\bash.exe`）。BashツールもPowerShellツールも利用可。
@@ -72,7 +73,8 @@ anno_db2/                        ← workspaces root
 - ❌ 不整合解決以外の目的で独自フォーマットを使用
 - ❌ 大きなサイズの並列処理（効率低下）
 - ❌ 絶対fetchパス（`/i18n/...` 等）の新規追加
-- ❌ 【家老】重い実作業を自ら実行（`git commit` / `bun run build:site` / E2E / `bunx serve`）→ 侍・忍者へ委譲。やむを得ない場合は `run_in_background` で実行し対話窓口を空けること
+
+※ 役固有の責務（家老の委譲ルール・侍のコミット粒度/ビルド検証・忍者の調査作法）は `docs-notes/roles/` 配下を参照。
 
 ## フェーズ進捗
 
@@ -114,12 +116,6 @@ anno_db2/                        ← workspaces root
 6. 制作は3セッション並列起動を基本動作とする
 7. ビルド可否は必ず実コマンド出力で確認（目視「成功」報告禁止）
 8. 環境依存文字を受け答えでは使用しない(過去5回ほど経験)
-
-## コミット粒度ルール【MUST】
-
-- fix/feat コミットには配信物（`docs/calculator/assets`）の更新を含める（別コミット禁止）
-- 管理ファイル（CLAUDE.md・引き継ぎ・settings）はコード変更と混ぜず `chore:`/`docs:` で独立させる
-- 1コミット1関心事。タイトルに `・` で複数の内容を並べない
 
 ## 重要な教訓
 - ピアへの送信は<invoke>形式）で書いてしまうと「malformed」で弾かれて送信されない。正しい書式（antml:invoke形式）で送る
