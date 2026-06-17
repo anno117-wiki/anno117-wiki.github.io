@@ -3,8 +3,19 @@ import { ref, computed } from 'vue'
 import { withBase } from 'vitepress'
 import { data } from './buildings.data.ts'
 
+const categoryLabels: Record<string, string> = {
+  public: '公共施設',
+  wonder: '驚異',
+  harbour: '港湾',
+  military: '軍事',
+  institution: '施設',
+  base: '住居',
+  production: '生産施設',
+}
+
 const searchText = ref('')
 const selectedTier = ref('')
+const selectedCategory = ref('')
 
 const tiers = computed(() => {
   const seen = new Set<string>()
@@ -13,12 +24,20 @@ const tiers = computed(() => {
     .map(b => ({ value: b.tier, label: b.tierJa }))
 })
 
+const categories = computed(() => {
+  const seen = new Set<string>()
+  return data.buildings
+    .filter(b => !seen.has(b.category) && seen.add(b.category))
+    .map(b => ({ value: b.category, label: categoryLabels[b.category] ?? b.category }))
+})
+
 const filtered = computed(() => {
   const q = searchText.value.trim().toLowerCase()
   return data.buildings.filter(b => {
     const matchName = !q || (b.nameJa ?? b.nameEn).toLowerCase().includes(q) || b.nameEn.toLowerCase().includes(q)
     const matchTier = !selectedTier.value || b.tier === selectedTier.value
-    return matchName && matchTier
+    const matchCategory = !selectedCategory.value || b.category === selectedCategory.value
+    return matchName && matchTier && matchCategory
   })
 })
 </script>
@@ -37,6 +56,13 @@ const filtered = computed(() => {
     placeholder="建物名で検索..."
     style="padding:6px 10px;border:1px solid var(--vp-c-divider);border-radius:6px;font-size:14px;background:var(--vp-c-bg);color:var(--vp-c-text-1);width:200px;"
   />
+  <select
+    v-model="selectedCategory"
+    style="padding:6px 10px;border:1px solid var(--vp-c-divider);border-radius:6px;font-size:14px;background:var(--vp-c-bg);color:var(--vp-c-text-1);"
+  >
+    <option value="">すべてのカテゴリー</option>
+    <option v-for="c in categories" :key="c.value" :value="c.value">{{ c.label }}</option>
+  </select>
   <select
     v-model="selectedTier"
     style="padding:6px 10px;border:1px solid var(--vp-c-divider);border-radius:6px;font-size:14px;background:var(--vp-c-bg);color:var(--vp-c-text-1);"
