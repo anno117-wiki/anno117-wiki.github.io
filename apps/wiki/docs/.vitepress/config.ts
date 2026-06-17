@@ -15,6 +15,10 @@ export default defineConfig({
   // 内部リンク判定で dead-link 扱いされるのを避けるため除外する。
   ignoreDeadLinks: [/^\/calculator/],
 
+  search: {
+    provider: 'local',
+  },
+
   themeConfig: {
     nav: [
       { text: 'ホーム', link: '/' },
