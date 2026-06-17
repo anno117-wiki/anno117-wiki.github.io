@@ -5,7 +5,7 @@ import { data } from './buildings.data.ts'
 
 const categoryLabels: Record<string, string> = {
   public: '公共施設',
-  wonder: '脅威',
+  wonder: '驚異',
   harbour: '港湾',
   military: '軍事',
   institution: '施設',
