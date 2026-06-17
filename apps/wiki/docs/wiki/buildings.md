@@ -66,7 +66,7 @@ const filtered = computed(() => {
 <tbody>
 <tr v-for="b in filtered" :key="b.id">
   <td style="white-space:nowrap;">
-    <img v-if="b.icon" :src="withBase('icons/buildings/icon_3d_' + b.icon + '.png')" :alt="b.nameJa ?? b.nameEn" style="width:32px;height:32px;vertical-align:middle;margin-right:6px;object-fit:contain;" />
+    <img v-if="b.icon" :src="withBase('/icons/buildings/icon_3d_' + b.icon + '.png')" :alt="b.nameJa ?? b.nameEn" style="width:32px;height:32px;vertical-align:middle;margin-right:6px;object-fit:contain;" />
     {{ b.nameJa ?? b.nameEn }}
   </td>
   <td>{{ b.tierJa }}</td>
