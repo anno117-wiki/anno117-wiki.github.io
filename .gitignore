@@ -39,3 +39,6 @@ playwright-report/
 playwright/.cache/
 test-reports/
 tests/e2e/screenshots/
+
+# 個人運用の起動プロンプト控え（追跡対象外）
+prompts/
