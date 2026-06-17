@@ -6,6 +6,7 @@ interface BuildingEffect {
   nameEn: string
   nameJa: string | null
   tier: string
+  icon?: string
   maintenance: number
   population: number
   income: number

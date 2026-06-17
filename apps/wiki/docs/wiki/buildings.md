@@ -1,5 +1,6 @@
 <script setup lang="ts">
 import { ref, computed } from 'vue'
+import { withBase } from 'vitepress'
 import { data } from './buildings.data.ts'
 
 const searchText = ref('')
@@ -64,7 +65,10 @@ const filtered = computed(() => {
 </thead>
 <tbody>
 <tr v-for="b in filtered" :key="b.id">
-  <td>{{ b.nameJa ?? b.nameEn }}</td>
+  <td style="white-space:nowrap;">
+    <img v-if="b.icon" :src="withBase('icons/buildings/icon_3d_' + b.icon + '.png')" :alt="b.nameJa ?? b.nameEn" style="width:32px;height:32px;vertical-align:middle;margin-right:6px;object-fit:contain;" />
+    {{ b.nameJa ?? b.nameEn }}
+  </td>
   <td>{{ b.tierJa }}</td>
   <td>{{ b.maintenance }}</td>
   <td><StatBar :n="b.population" :maxAbs="3" /></td>
