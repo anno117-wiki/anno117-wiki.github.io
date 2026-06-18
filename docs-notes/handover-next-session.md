@@ -1,6 +1,6 @@
 # 次回セッション 引き継ぎプラン
 
-作成日: 2026-06-17（更新2回目） / 作成: 家老（指揮役）
+作成日: 2026-06-18（更新） / 作成: 侍（実装役）
 
 ---
 
@@ -39,14 +39,25 @@
 
 ---
 
+## 今セッション完了（2026-06-18）
+
+### buildings-effects.json データ修正（殿承認済み、全コミット済み）
+- theatre: tier `libertus` → `equites`（commit 2e88e27）
+- albion_bird_charmer: icon フィールド削除（commit 2e88e27）
+- albion_resort: icon `public_celtic_sportsfield` 追加漏れ修正（commit 64e9ad2）
+- albion_panam: icon `public_celtic_fanum` 追加漏れ修正（commit 64e9ad2）
+
+### 港湾・軍事・施設・住居系 16建物 追加（commit 1a4ed94）
+PNG 16件を 2箇所へコピー済み（packages/shared/public/icons/buildings/ と apps/wiki/docs/public/icons/buildings/）。
+追加エントリ: warehouse / residence / governor_villa / officium / depot / trading_post / shipyard / trading_pier / repair_crane / vigiles / custodia / medici / barracks / military_camp / siege_workshop / equitum_campus
+
+**建物効果JSON現況: 総156件・アイコン付き34件（家老確認済み）**
+
 ## 次の一手（優先順）
 
-1. **本handoverのコミット**: 管理文書なので `docs:` で独立。侍へ委譲。
-2. **タスク3（残課題・要削除）**: アルビオン建物 `albion_underground_pit`「土窯」。
-   - **2026-06-17 殿の実機確認で「実機に存在しないデータ」と判明**。公式名確認は不要になった。
-   - 対応: 前回の `albion_glasswort_site` 削除と同様、不存在建物として該当データを削除する（忍者が影響範囲調査→侍が削除＋ビルド＋コミット）。
-   - 今セッションは保留。次セッションで削除実施。
-3. **役別docs運用の検証**: 次回起動時、各役が起動手順step3で自分の `roles/{役}.md` を実際に読むか確認。読まれなければCLAUDE.mdの指示を強化。
+1. **albion_underground_pit（土窯）削除**: 2026-06-17 殿の実機確認で「実機に存在しないデータ」と判明。忍者が影響範囲調査→侍が削除＋ビルド＋コミット。
+2. **新規追加16件の効果値補完**: 現在全フィールド0またはmaintenanceのみ。殿確認後に実値を入れる。
+3. **役別docs運用の継続検証**: 各役が起動時に `docs-notes/roles/{役}.md` を読む運用定着確認。
 
 ---
 
@@ -65,4 +76,4 @@
 - 公式ゲームデータ一式: `_local/anno-official-data/`（未追跡・最重要資産）。GUID→公式日本語名は official_master.csv 一枚で解決。
 - アイテム一覧: `packages/shared/public/data/items-full.json`（421件）
 - アイテム生成: `tools/build-items-ja.py`
-- 建物効果JSON: `apps/wiki/docs/wiki/buildings-effects.json`（141件）
+- 建物効果JSON: `apps/wiki/docs/wiki/buildings-effects.json`（156件・アイコン付き34件）
