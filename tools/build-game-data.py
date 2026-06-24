@@ -17,6 +17,7 @@ BASE = Path(__file__).parent.parent
 ASSETS_XML   = BASE / "_local/anno-official-data/config/export/assets.xml"
 OFFICIAL_CSV = BASE / "_local/anno-official-data/official_master.csv"
 OUTPUT_JSON  = BASE / "_local/anno-official-data/game-data.json"
+TECHS_JSON   = BASE / "apps/wiki/docs/wiki/techs.json"
 
 DRY_RUN = "--dry-run" in sys.argv
 
@@ -204,12 +205,15 @@ for asset in root.iter("Asset"):
 
     techs.append({
         "guid":           g,
+        "internalName":   name,
         "nameEn":         guid_to_en.get(g, name),
         "nameJa":         guid_to_ja.get(g, ""),
         "iconKey":        icon_key_2d(icon_path),
         "isGate":         is_gate,
         "color":          color,
         "knowledgeCost":  knowledge_cost,
+        "gridX":          int(asset.findtext(".//Tech/GridPosition/X") or 0),
+        "gridY":          int(asset.findtext(".//Tech/GridPosition/Y") or 0),
     })
 
 print(f"  {len(techs)} techs", file=sys.stderr)
@@ -268,7 +272,7 @@ summary = {k: len(v) for k, v in out.items()}
 print(f"Summary: {summary}", file=sys.stderr)
 
 if DRY_RUN:
-    print("\n--- DRY RUN: game-data.json は書き込みません ---")
+    print("\n--- DRY RUN: game-data.json / techs.json は書き込みません ---")
     print(json.dumps(summary, ensure_ascii=False, indent=2))
 else:
     OUTPUT_JSON.write_text(
@@ -276,5 +280,10 @@ else:
         encoding="utf-8",
     )
     print(f"Wrote {OUTPUT_JSON}", file=sys.stderr)
+    TECHS_JSON.write_text(
+        json.dumps({"techs": techs}, ensure_ascii=False, indent=2),
+        encoding="utf-8",
+    )
+    print(f"Wrote {TECHS_JSON}", file=sys.stderr)
 
 print("Done.", file=sys.stderr)

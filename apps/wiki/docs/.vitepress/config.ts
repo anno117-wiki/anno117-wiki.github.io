@@ -59,6 +59,12 @@ export default defineConfig({
           ],
         },
         {
+          text: '技術',
+          items: [
+            { text: '技術ツリー', link: '/wiki/techs' },
+          ],
+        },
+        {
           text: '住民',
           items: [
             { text: '住民層', link: '/wiki/population' },
