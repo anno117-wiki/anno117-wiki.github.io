@@ -1,4 +1,5 @@
 <script setup lang="ts">
+import { withBase } from 'vitepress'
 import { data } from './production-chains.data.ts'
 
 const categoryLabels: Record<string, string> = {
@@ -36,7 +37,7 @@ function timeText(seconds: number): string {
 
 <table>
 <thead>
-<tr><th>商品名</th><th>対応地域</th><th>生産時間</th><th>直接素材</th></tr>
+<tr><th>商品名</th><th>対応地域</th><th>生産時間</th><th>直接素材</th><th></th></tr>
 </thead>
 <tbody>
 <tr v-for="entry in data.byCategory[cat]" :key="entry.id">
@@ -47,6 +48,7 @@ function timeText(seconds: number): string {
   {{ entry.inputs.join('、') || '—' }}
   <ProductionMermaid v-if="entry.mermaidDef" :definition="entry.mermaidDef" />
 </td>
+<td><a :href="withBase(`/calculator/?good=${entry.id}`)" target="_self">計算</a></td>
 </tr>
 </tbody>
 </table>
