@@ -1,6 +1,6 @@
 {
-    "id": "standing_lyres",
-    "name": "Standing Lyres",
+    "id": "lyres",
+    "name": "Lyres",
     "type": "workshop",
     "guid": "4832",
     "time": 60,
