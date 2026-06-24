@@ -48,7 +48,7 @@ function timeText(seconds: number): string {
   {{ entry.inputs.join('、') || '—' }}
   <ProductionMermaid v-if="entry.mermaidDef" :definition="entry.mermaidDef" />
 </td>
-<td><a :href="withBase(`/calculator/?good=${entry.id}`)" target="_self">計算</a></td>
+<td><a :href="withBase(`/calculator/?good=${entry.id}`)" target="_blank" rel="noopener noreferrer">計算</a></td>
 </tr>
 </tbody>
 </table>
