@@ -191,6 +191,17 @@ print(f"  {len(pop_levels)} population levels", file=sys.stderr)
 # ---- Step 6: Techs（技術ツリー） ----
 print("Extracting techs...", file=sys.stderr)
 
+# 既存 techs.json の nameJa を保護（手動追加分を上書きしない）
+existing_tech_name_ja: dict[str, str] = {}
+if TECHS_JSON.exists():
+    try:
+        _existing = json.loads(TECHS_JSON.read_text(encoding="utf-8"))
+        for _t in _existing.get("techs", []):
+            if _t.get("guid") and _t.get("nameJa"):
+                existing_tech_name_ja[_t["guid"]] = _t["nameJa"]
+    except Exception:
+        pass
+
 # Trigger → 解禁コスト取得ヘルパー
 def get_knowledge_cost(trigger_guid: str) -> int | None:
     a = guid_to_asset.get(trigger_guid)
@@ -227,7 +238,7 @@ for asset in root.iter("Asset"):
         "guid":           g,
         "internalName":   name,
         "nameEn":         guid_to_en.get(g, name),
-        "nameJa":         guid_to_ja.get(g, ""),
+        "nameJa":         existing_tech_name_ja.get(g) or guid_to_ja.get(g, ""),
         "iconKey":        icon_key_2d(icon_path),
         "isGate":         is_gate,
         "color":          color,
