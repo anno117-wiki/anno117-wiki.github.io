@@ -1,0 +1,133 @@
+{
+    "id": "latrunculi_sets",
+    "name": "Latrunculi Sets",
+    "type": "workshop",
+    "guid": "145230",
+    "time": 90,
+    "needs_fuel": false,
+    "building_cost": {
+        "money": 0,
+        "timber": 0,
+        "tiles": 0,
+        "concrete": 0,
+        "marble": 0,
+        "mosaics": 0
+    },
+    "maintanance_cost": {
+        "money": 32
+    },
+    "input": [
+        {
+            "id": "obsidian",
+            "name": "Obsidian",
+            "type": "volcanic_event",
+            "guid": "145102",
+            "time": 60,
+            "needs_fuel": false,
+            "building_cost": {
+                "money": 0,
+                "timber": 0,
+                "tiles": 0,
+                "concrete": 0,
+                "marble": 0,
+                "mosaics": 0
+            },
+            "maintanance_cost": {
+                "money": 0
+            },
+            "input": [],
+            "start_of_chain": true
+        },
+        {
+            "id": "ornate_wood",
+            "name": "Ornate Wood",
+            "type": "workshop",
+            "guid": "3081",
+            "time": 60,
+            "needs_fuel": false,
+            "building_cost": {
+                "money": 0,
+                "timber": 1,
+                "tiles": 2,
+                "concrete": 3,
+                "marble": 2,
+                "mosaics": 3
+            },
+            "maintanance_cost": {
+                "money": 14,
+                "patrician": 8
+            },
+            "input": [
+                {
+                    "id": "sandarac_wood",
+                    "name": "Sandarac Wood",
+                    "type": "forest_camp",
+                    "guid": "8579",
+                    "time": 90,
+                    "needs_fuel": false,
+                    "building_cost": {
+                        "money": 0,
+                        "timber": 2,
+                        "tiles": 3,
+                        "concrete": 1,
+                        "marble": 0,
+                        "mosaics": 0
+                    },
+                    "maintanance_cost": {
+                        "money": 8,
+                        "libertus": 3
+                    },
+                    "input": [],
+                    "start_of_chain": true
+                },
+                {
+                    "id": "gold",
+                    "name": "Gold",
+                    "type": "smelter",
+                    "guid": "31755",
+                    "time": 60,
+                    "needs_fuel": true,
+                    "building_cost": {
+                        "money": 0,
+                        "timber": 1,
+                        "tiles": 3,
+                        "concrete": 3,
+                        "marble": 2,
+                        "mosaics": 0
+                    },
+                    "maintanance_cost": {
+                        "money": 26,
+                        "patrician": 10
+                    },
+                    "input": [
+                        {
+                            "id": "gold_ore",
+                            "name": "Gold Ore",
+                            "type": "pit",
+                            "guid": "31753",
+                            "time": 240,
+                            "needs_fuel": false,
+                            "building_cost": {
+                                "money": 0,
+                                "timber": 2,
+                                "tiles": 2,
+                                "concrete": 2,
+                                "marble": 0,
+                                "mosaics": 0
+                            },
+                            "maintanance_cost": {
+                                "money": 20,
+                                "plebeian": 4
+                            },
+                            "input": [],
+                            "start_of_chain": true
+                        }
+                    ]
+                }
+            ]
+        }
+    ],
+    "region": [
+        "Roman"
+    ]
+}
