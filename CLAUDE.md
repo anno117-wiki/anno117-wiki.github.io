@@ -99,13 +99,26 @@ anno_db2/                        ← workspaces root
 - ✅ 公式ゲームデータで日本語名を照合（建物・商品を公式値へ修正、アルビオン建物7件公式名化・不存在1件削除）
 - ✅ 3セッション開発体制整備（roles/分離・ホワイトボード・CLAUDE.mdディスパッチャ化）
 
+### フェーズ8 完了済み（2026-06-24）
+- ✅ wiki↔計算機 双方向ナビ整備（計算機ヘッダーにWikiリンク・wiki側リンクを新タブ化・calculator-guide充実）
+- ✅ 建物効果データ大幅拡充（173件・全件アイコン設定・tier修正・維持費・効果値を公式データで補完）
+  - 新規追加: ミニ施設3件・祭壇8件（DLC含む）・生産建物6件
+  - 全建物カテゴリーにshrineを追加、tier順ソート
+- ✅ 公式データ自動生成インフラ整備
+  - `tools/build-buildings-data.py`: assets.xml→buildings-effects.json 自動更新（169/173照合）
+  - `tools/build-game-data.py`: 商品154件・ニーズ81件・住民層9件・技術193件を一括抽出
+  - 出力先: `_local/anno-official-data/buildings-data.json` / `game-data.json`（gitignore済）
+
 ### フェーズ8 残作業
-- wiki↔計算機の連携改善・軽量化（次回提案予定）
+- 技術ツリーwikiページ作成（game-data.jsonのtechs活用）
+- buildings-effects.jsonの未照合4件手動確認（military_camp/aqueduct_cistern/albion_water_gate/albion_panam）
+- 建物効果の実機確認・維持費補完（anno.landで要確認分）
 
 ### 公式ゲームデータ（最重要資産）
 - `_local/anno-official-data/`（gitignore済・未追跡）に公式全12言語テキスト＋assets.xml＋official_master.csv（30,719 asset）
 - GUID→公式日本語名の解決済みマスタ。今後の名称照合は official_master.csv 一枚で完結
-- 突合ロジック参考: `tools/build-items-ja.py`
+- 自動抽出スクリプト: `tools/build-buildings-data.py`（建物）/ `tools/build-game-data.py`（商品・ニーズ・住民・技術）
+- 軽量参照JSON: `_local/anno-official-data/buildings-data.json` / `game-data.json`（gitignore）
 
 ## 制作の基本行動【MUST】
 
