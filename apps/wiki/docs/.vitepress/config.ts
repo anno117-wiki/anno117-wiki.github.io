@@ -55,6 +55,7 @@ export default defineConfig({
           text: '生産品',
           items: [
             { text: '生産チェーン一覧', link: '/wiki/production-chains' },
+            { text: '公式チェーン索引', link: '/wiki/production-chains-official' },
             { text: '建物効果', link: '/wiki/buildings' },
           ],
         },
@@ -68,6 +69,7 @@ export default defineConfig({
           text: '住民',
           items: [
             { text: '住民層', link: '/wiki/population' },
+            { text: '商品需要逆引き', link: '/wiki/needs-index' },
           ],
         },
         {

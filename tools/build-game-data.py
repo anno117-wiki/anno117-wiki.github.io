@@ -17,7 +17,9 @@ BASE = Path(__file__).parent.parent
 ASSETS_XML   = BASE / "_local/anno-official-data/config/export/assets.xml"
 OFFICIAL_CSV = BASE / "_local/anno-official-data/official_master.csv"
 OUTPUT_JSON  = BASE / "_local/anno-official-data/game-data.json"
-TECHS_JSON   = BASE / "apps/wiki/docs/wiki/techs.json"
+TECHS_JSON         = BASE / "apps/wiki/docs/wiki/techs.json"
+PROD_CHAINS_JSON   = BASE / "apps/wiki/docs/wiki/production-chains-official.json"
+NEEDS_INDEX_JSON   = BASE / "apps/wiki/docs/wiki/needs-index.json"
 
 DRY_RUN = "--dry-run" in sys.argv
 
@@ -119,11 +121,29 @@ for asset in root.iter("Asset"):
                 except ValueError:
                     pass
 
+    # Need名パターン "Need {region} {category} ..." から region/category を抽出
+    _REGIONS = ["Roman Celtic", "Roman", "Celtic"]
+    _CATS    = ["Public", "Food", "Fashion", "Household", "Wonder", "Wonders",
+                "Culture", "Boardgames"]
+    need_region = need_category = ""
+    tail = name.removeprefix("Tech ").removeprefix("Need ").strip()
+    for r in _REGIONS:
+        if tail.startswith(r):
+            need_region = r
+            tail = tail[len(r):].strip()
+            break
+    for c in _CATS:
+        if tail.startswith(c):
+            need_category = "Wonder" if c == "Wonders" else c
+            break
+
     needs.append({
         "guid":           g,
         "nameEn":         guid_to_en.get(g, name),
         "nameJa":         guid_to_ja.get(g, ""),
         "needProductGuid": product_guid,
+        "region":         need_region,
+        "category":       need_category,
         **bonuses,
     })
 
@@ -285,5 +305,43 @@ else:
         encoding="utf-8",
     )
     print(f"Wrote {TECHS_JSON}", file=sys.stderr)
+    PROD_CHAINS_JSON.write_text(
+        json.dumps({"chains": chains}, ensure_ascii=False, indent=2),
+        encoding="utf-8",
+    )
+    print(f"Wrote {PROD_CHAINS_JSON}", file=sys.stderr)
+
+    # needs 逆引き: product_guid → 商品名 + [{region, category}]
+    guid_to_product = {p["guid"]: p for p in products}
+    needs_by_guid: dict[str, dict] = {}
+    for need in needs:
+        pg = need["needProductGuid"]
+        if not pg:
+            continue
+        if pg not in needs_by_guid:
+            prod = guid_to_product.get(pg, {})
+            needs_by_guid[pg] = {
+                "productGuid":   pg,
+                "productNameEn": prod.get("nameEn", ""),
+                "productNameJa": prod.get("nameJa", ""),
+                "demands": [],
+            }
+        r, c = need.get("region", ""), need.get("category", "")
+        if r and c:
+            entry = {"region": r, "category": c}
+            if entry not in needs_by_guid[pg]["demands"]:
+                needs_by_guid[pg]["demands"].append(entry)
+
+    CAT_ORDER = ["Food", "Fashion", "Household", "Public", "Culture", "Boardgames", "Wonder"]
+    needs_index = sorted(
+        needs_by_guid.values(),
+        key=lambda x: (CAT_ORDER.index(x["demands"][0]["category"]) if x["demands"] and x["demands"][0]["category"] in CAT_ORDER else 99,
+                       x["productNameJa"] or x["productNameEn"]),
+    )
+    NEEDS_INDEX_JSON.write_text(
+        json.dumps({"needsByProduct": needs_index}, ensure_ascii=False, indent=2),
+        encoding="utf-8",
+    )
+    print(f"Wrote {NEEDS_INDEX_JSON}", file=sys.stderr)
 
 print("Done.", file=sys.stderr)
