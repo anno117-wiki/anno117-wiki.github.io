@@ -48,7 +48,7 @@ export default {
     const techs: TechEntry[] = (techsJson as { techs: any[] }).techs.map((t: any) => ({
       guid: t.guid,
       internalName: t.internalName ?? '',
-      label: parseLabel(t.internalName ?? t.guid),
+      label: t.nameJa || parseLabel(t.internalName ?? t.guid),
       branch: parseBranch(t.internalName ?? ''),
       branchLabel: BRANCH_LABELS[parseBranch(t.internalName ?? '')] ?? 'その他',
       iconKey: t.iconKey ?? null,
