@@ -2146,7 +2146,7 @@
     },
     {
       "id": "albion_water_gate",
-      "nameEn": "Water Gate",
+      "nameEn": "Sluice Gate",
       "nameJa": "水門",
       "tier": "wader",
       "maintenance": -16,
@@ -2418,7 +2418,7 @@
     },
     {
       "id": "albion_panam",
-      "nameEn": "Panam",
+      "nameEn": "Fanum",
       "nameJa": "聖所",
       "tier": "smith",
       "icon": "public_celtic_fanum",
