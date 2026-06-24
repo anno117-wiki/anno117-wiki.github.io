@@ -18,7 +18,7 @@ export default defineConfig({
 
   use: {
     // ベースURL（Vite開発サーバー）
-    baseURL: 'http://localhost:5173',
+    baseURL: 'http://localhost:5200',
 
     // トレース設定
     trace: 'on-first-retry',
@@ -59,7 +59,7 @@ export default defineConfig({
   // 開発サーバー設定
   webServer: {
     command: 'bun run dev',
-    url: 'http://localhost:5173',
+    url: 'http://localhost:5200',
     reuseExistingServer: !process.env.CI,
     timeout: 180000,  // Vite起動待機時間を延長
   },

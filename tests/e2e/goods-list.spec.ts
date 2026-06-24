@@ -38,7 +38,7 @@ test.describe('商品一覧の表示と選択', () => {
 
     // 商品名テキストが存在する
     const name = firstItem.locator('.tree-item-name');
-    await expect(name).toContainText(/\w+/);
+    await expect(name).toContainText(/\S+/);
   });
 
   test('商品を選択すると生産チェーンが表示される', async ({ page }) => {
