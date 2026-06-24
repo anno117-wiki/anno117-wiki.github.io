@@ -26,6 +26,7 @@ function getCategory(icon?: string | null): string {
   if (icon.startsWith('harbour_')) return 'harbour'
   if (icon.startsWith('military_')) return 'military'
   if (icon.startsWith('institution_')) return 'institution'
+  if (icon.startsWith('shrine_')) return 'shrine'
   if (icon.startsWith('base_')) return 'base'
   return 'production'
 }

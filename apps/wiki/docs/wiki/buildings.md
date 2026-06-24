@@ -9,6 +9,7 @@ const categoryLabels: Record<string, string> = {
   harbour: '港湾',
   military: '軍事',
   institution: '施設',
+  shrine: '祭壇',
   base: '住居',
   production: '生産施設',
 }
