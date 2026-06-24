@@ -6,8 +6,8 @@
       "nameJa": "漁師小屋",
       "tier": "libertus",
       "maintenance": -6,
-      "population": 1,
-      "income": 1,
+      "population": 0,
+      "income": 0,
       "faith": 0,
       "knowledge": 0,
       "prestige": 0,
@@ -38,7 +38,7 @@
       "nameJa": "お粥の屋台",
       "tier": "libertus",
       "maintenance": -8,
-      "population": 2,
+      "population": 0,
       "income": 0,
       "faith": 0,
       "knowledge": 0,
@@ -103,7 +103,7 @@
       "tier": "libertus",
       "maintenance": -8,
       "population": 0,
-      "income": 2,
+      "income": 1,
       "faith": 0,
       "knowledge": 0,
       "prestige": 0,
@@ -140,7 +140,7 @@
       "knowledge": 0,
       "prestige": 0,
       "health": 0,
-      "happiness": 1,
+      "happiness": 0,
       "fireSafety": 0,
       "icon": "farmer_hat_goods"
     },
@@ -173,7 +173,7 @@
       "prestige": 0,
       "health": 0,
       "happiness": 0,
-      "fireSafety": -2,
+      "fireSafety": -4,
       "icon": "glass_goods"
     },
     {
@@ -182,7 +182,7 @@
       "nameJa": "倉庫",
       "tier": "libertus",
       "icon": "base_warehouse",
-      "maintenance": -6,
+      "maintenance": 0,
       "population": 0,
       "income": 0,
       "faith": 0,
@@ -361,7 +361,7 @@
       "population": 0,
       "income": 0,
       "faith": 0,
-      "knowledge": 0,
+      "knowledge": 1,
       "prestige": 0,
       "health": 0,
       "happiness": 0,
@@ -374,14 +374,14 @@
       "nameJa": "パン屋",
       "tier": "plebeian",
       "maintenance": -14,
-      "population": 2,
-      "income": 1,
+      "population": 0,
+      "income": 2,
       "faith": 0,
       "knowledge": 0,
       "prestige": 0,
       "health": 0,
       "happiness": 0,
-      "fireSafety": -2,
+      "fireSafety": -4,
       "icon": "bread_goods"
     },
     {
@@ -423,12 +423,12 @@
       "tier": "plebeian",
       "maintenance": -12,
       "population": 0,
-      "income": 2,
+      "income": 1,
       "faith": 0,
       "knowledge": 0,
       "prestige": 0,
       "health": 0,
-      "happiness": 1,
+      "happiness": -4,
       "fireSafety": 0,
       "icon": "garum_goods"
     },
@@ -438,7 +438,7 @@
       "nameJa": "聖域",
       "tier": "plebeian",
       "maintenance": -26,
-      "population": 1,
+      "population": 0,
       "income": 0,
       "faith": 2,
       "knowledge": 0,
@@ -475,7 +475,7 @@
       "faith": 0,
       "knowledge": 0,
       "prestige": 0,
-      "health": 0,
+      "health": -4,
       "happiness": 0,
       "fireSafety": 0,
       "icon": "pigs_goods"
@@ -492,7 +492,7 @@
       "knowledge": 0,
       "prestige": 0,
       "health": 0,
-      "happiness": -2,
+      "happiness": -4,
       "fireSafety": 0,
       "icon": "leather_goods"
     },
@@ -502,8 +502,8 @@
       "nameJa": "サンダル職人",
       "tier": "plebeian",
       "maintenance": -12,
-      "population": 1,
-      "income": 2,
+      "population": 0,
+      "income": 1,
       "faith": 0,
       "knowledge": 0,
       "prestige": 0,
@@ -540,8 +540,8 @@
       "knowledge": 0,
       "prestige": 0,
       "health": 0,
-      "happiness": -2,
-      "fireSafety": -2,
+      "happiness": -4,
+      "fireSafety": -4,
       "icon": "pig_lard_goods"
     },
     {
@@ -550,13 +550,13 @@
       "nameJa": "石鹸工房",
       "tier": "plebeian",
       "maintenance": -12,
-      "population": 1,
+      "population": 0,
       "income": 0,
       "faith": 0,
       "knowledge": 0,
       "prestige": 0,
-      "health": 2,
-      "happiness": -1,
+      "health": 1,
+      "happiness": -2,
       "fireSafety": 0,
       "icon": "lavender_soap_goods"
     },
@@ -598,14 +598,14 @@
       "nameJa": "陶工",
       "tier": "plebeian",
       "maintenance": -14,
-      "population": 2,
+      "population": 0,
       "income": 1,
       "faith": 0,
       "knowledge": 0,
       "prestige": 0,
       "health": 0,
       "happiness": 0,
-      "fireSafety": -2,
+      "fireSafety": -4,
       "icon": "amphorae_goods"
     },
     {
@@ -630,8 +630,8 @@
       "nameJa": "オリーブ圧搾所",
       "tier": "plebeian",
       "maintenance": -16,
-      "population": 1,
-      "income": 1,
+      "population": 0,
+      "income": 0,
       "faith": 0,
       "knowledge": 0,
       "prestige": 0,
@@ -651,7 +651,7 @@
       "faith": 0,
       "knowledge": 0,
       "prestige": 0,
-      "health": -2,
+      "health": -4,
       "happiness": 0,
       "fireSafety": 0,
       "icon": "minerals_goods"
@@ -667,7 +667,7 @@
       "faith": 0,
       "knowledge": 0,
       "prestige": 0,
-      "health": -3,
+      "health": -6,
       "happiness": 0,
       "fireSafety": 0,
       "icon": "pigments_goods"
@@ -747,8 +747,8 @@
       "income": 0,
       "faith": 0,
       "knowledge": 0,
-      "prestige": 0,
-      "health": -1,
+      "prestige": 1,
+      "health": -2,
       "happiness": 0,
       "fireSafety": 0
     },
@@ -758,7 +758,7 @@
       "nameJa": "劇場",
       "tier": "equites",
       "maintenance": -60,
-      "population": 3,
+      "population": 0,
       "income": 0,
       "faith": 0,
       "knowledge": 1,
@@ -807,12 +807,12 @@
       "tier": "equites",
       "maintenance": -30,
       "population": 0,
-      "income": 3,
-      "faith": 2,
-      "knowledge": -1,
-      "prestige": 0,
+      "income": 1,
+      "faith": 0,
+      "knowledge": 0,
+      "prestige": 1,
       "health": 0,
-      "happiness": 1,
+      "happiness": 0,
       "fireSafety": 0,
       "icon": "wine_goods"
     },
@@ -821,7 +821,7 @@
       "nameEn": "Aqueduct Source",
       "nameJa": "水源",
       "tier": "equites",
-      "maintenance": -26,
+      "maintenance": 0,
       "population": 0,
       "income": 0,
       "faith": 0,
@@ -837,7 +837,7 @@
       "nameEn": "Aqueduct",
       "nameJa": "水道",
       "tier": "equites",
-      "maintenance": -5,
+      "maintenance": 0,
       "population": 0,
       "income": 0,
       "faith": 0,
@@ -924,7 +924,7 @@
       "knowledge": 0,
       "prestige": 0,
       "health": 0,
-      "happiness": -3,
+      "happiness": -6,
       "fireSafety": 0,
       "icon": "tyrian_purple_goods"
     },
@@ -934,11 +934,11 @@
       "nameJa": "織機工",
       "tier": "equites",
       "maintenance": -20,
-      "population": 2,
+      "population": 0,
       "income": 2,
       "faith": 0,
       "knowledge": 0,
-      "prestige": 3,
+      "prestige": 0,
       "health": 0,
       "happiness": 0,
       "fireSafety": 0,
@@ -967,9 +967,9 @@
       "tier": "equites",
       "maintenance": -22,
       "population": 0,
-      "income": 2,
+      "income": 0,
       "faith": 0,
-      "knowledge": 3,
+      "knowledge": 1,
       "prestige": 0,
       "health": 0,
       "happiness": 0,
@@ -999,13 +999,13 @@
       "tier": "equites",
       "maintenance": -26,
       "population": 0,
-      "income": 3,
+      "income": 0,
       "faith": 0,
       "knowledge": 0,
       "prestige": 2,
       "health": 0,
       "happiness": 0,
-      "fireSafety": -2,
+      "fireSafety": -4,
       "icon": "fine_glass_goods"
     },
     {
@@ -1227,10 +1227,10 @@
       "income": 0,
       "faith": 0,
       "knowledge": 0,
-      "prestige": 0,
+      "prestige": 2,
       "health": 0,
       "happiness": 0,
-      "fireSafety": -1
+      "fireSafety": -2
     },
     {
       "id": "horse_breeder",
@@ -1244,8 +1244,8 @@
       "faith": 0,
       "knowledge": 0,
       "prestige": 0,
-      "health": -1,
-      "happiness": 0,
+      "health": -2,
+      "happiness": 1,
       "fireSafety": 0
     },
     {
@@ -1259,8 +1259,8 @@
       "income": 0,
       "faith": 0,
       "knowledge": 0,
-      "prestige": 0,
-      "health": 0,
+      "prestige": 2,
+      "health": -1,
       "happiness": 0,
       "fireSafety": 0
     },
@@ -1272,12 +1272,12 @@
       "icon": "boardgame_goods",
       "maintenance": -32,
       "population": 0,
-      "income": 0,
+      "income": 1,
       "faith": 0,
       "knowledge": 0,
       "prestige": 0,
       "health": 0,
-      "happiness": 0,
+      "happiness": 1,
       "fireSafety": 0
     },
     {
@@ -1290,7 +1290,7 @@
       "income": 0,
       "faith": 0,
       "knowledge": 0,
-      "prestige": 7,
+      "prestige": 507,
       "health": 0,
       "happiness": 3,
       "fireSafety": 0,
@@ -1419,7 +1419,7 @@
       "faith": 0,
       "knowledge": 0,
       "prestige": 0,
-      "health": 0,
+      "health": -4,
       "happiness": 0,
       "fireSafety": 0,
       "icon": "gold_ore_mine_goods"
@@ -1437,7 +1437,7 @@
       "prestige": 0,
       "health": 0,
       "happiness": 0,
-      "fireSafety": -2,
+      "fireSafety": -4,
       "icon": "gold_goods"
     },
     {
@@ -1453,7 +1453,7 @@
       "prestige": 3,
       "health": 0,
       "happiness": 0,
-      "fireSafety": -2,
+      "fireSafety": -4,
       "icon": "necklaces_goods"
     },
     {
@@ -1485,7 +1485,7 @@
       "prestige": 2,
       "health": 0,
       "happiness": 0,
-      "fireSafety": -1,
+      "fireSafety": -2,
       "icon": "lounger_goods"
     },
     {
@@ -1500,7 +1500,7 @@
       "knowledge": 0,
       "prestige": 0,
       "health": 0,
-      "happiness": -1,
+      "happiness": -2,
       "fireSafety": 0,
       "icon": "strings_goods"
     },
@@ -1549,7 +1549,7 @@
       "prestige": 2,
       "health": 0,
       "happiness": 0,
-      "fireSafety": -2,
+      "fireSafety": -4,
       "icon": "mosaics_goods"
     },
     {
@@ -1611,7 +1611,7 @@
       "faith": 0,
       "knowledge": 0,
       "prestige": 0,
-      "health": 0,
+      "health": -1,
       "happiness": 0,
       "fireSafety": 0,
       "icon": "flour_goods"
@@ -1629,7 +1629,7 @@
       "prestige": 0,
       "health": 0,
       "happiness": 0,
-      "fireSafety": -2,
+      "fireSafety": -4,
       "icon": "bread_goods"
     },
     {
@@ -1643,7 +1643,7 @@
       "faith": 0,
       "knowledge": 0,
       "prestige": 0,
-      "health": -2,
+      "health": -4,
       "happiness": 0,
       "fireSafety": 0,
       "icon": "pigs_goods"
@@ -1677,7 +1677,7 @@
       "prestige": 0,
       "health": 0,
       "happiness": 0,
-      "fireSafety": -2,
+      "fireSafety": -4,
       "icon": "sausages_goods"
     },
     {
@@ -1691,7 +1691,7 @@
       "faith": 0,
       "knowledge": 0,
       "prestige": 0,
-      "health": -2,
+      "health": -4,
       "happiness": 0,
       "fireSafety": 0,
       "icon": "silver_ore_goods"
@@ -1709,7 +1709,7 @@
       "prestige": 0,
       "health": 0,
       "happiness": 0,
-      "fireSafety": -2,
+      "fireSafety": -4,
       "icon": "silver_goods"
     },
     {
@@ -1725,7 +1725,7 @@
       "prestige": 0,
       "health": 0,
       "happiness": 0,
-      "fireSafety": -2,
+      "fireSafety": -4,
       "icon": "brooch_goods"
     },
     {
@@ -1757,7 +1757,7 @@
       "prestige": 0,
       "health": 0,
       "happiness": 0,
-      "fireSafety": -2,
+      "fireSafety": -4,
       "icon": "amphorae_goods"
     },
     {
@@ -1788,7 +1788,7 @@
       "knowledge": 0,
       "prestige": 0,
       "health": 0,
-      "happiness": -2,
+      "happiness": -4,
       "fireSafety": 0,
       "icon": "bird_tongue_goods"
     },
@@ -1804,8 +1804,8 @@
       "knowledge": 0,
       "prestige": 0,
       "health": 0,
-      "happiness": -2,
-      "fireSafety": -2,
+      "happiness": -4,
+      "fireSafety": -4,
       "icon": "pig_lard_goods"
     },
     {
@@ -1820,7 +1820,7 @@
       "knowledge": 0,
       "prestige": 0,
       "health": 0,
-      "happiness": -1,
+      "happiness": -2,
       "fireSafety": 0,
       "icon": "tongue_in_aspic_goods"
     },
@@ -1931,7 +1931,7 @@
       "faith": 0,
       "knowledge": 0,
       "prestige": 0,
-      "health": -1,
+      "health": -2,
       "happiness": 1,
       "fireSafety": 0,
       "icon": "horses_goods"
@@ -1949,7 +1949,7 @@
       "prestige": 0,
       "health": 0,
       "happiness": 1,
-      "fireSafety": -1,
+      "fireSafety": -2,
       "icon": "wig_goods"
     },
     {
@@ -1981,7 +1981,7 @@
       "prestige": 0,
       "health": 0,
       "happiness": 2,
-      "fireSafety": -2,
+      "fireSafety": -4,
       "icon": "handmirros_goods"
     },
     {
@@ -2059,9 +2059,9 @@
       "faith": 0,
       "knowledge": 0,
       "prestige": 0,
-      "health": -3,
+      "health": -6,
       "happiness": 0,
-      "fireSafety": -3,
+      "fireSafety": -6,
       "icon": "coal_ore_forest_goods"
     },
     {
@@ -2107,7 +2107,7 @@
       "faith": 0,
       "knowledge": 0,
       "prestige": 0,
-      "health": -2,
+      "health": -4,
       "happiness": 0,
       "fireSafety": 0,
       "icon": "iron_ore_goods"
@@ -2125,7 +2125,7 @@
       "prestige": 0,
       "health": 0,
       "happiness": 0,
-      "fireSafety": -2,
+      "fireSafety": -4,
       "icon": "iron_goods"
     },
     {
@@ -2141,7 +2141,7 @@
       "prestige": 0,
       "health": 0,
       "happiness": 0,
-      "fireSafety": -2,
+      "fireSafety": -4,
       "icon": "weapons_goods"
     },
     {
@@ -2165,7 +2165,7 @@
       "nameEn": "Drainage Channel",
       "nameJa": "排水溝",
       "tier": "wader",
-      "maintenance": -4,
+      "maintenance": 0,
       "population": 0,
       "income": 0,
       "faith": 0,
@@ -2293,9 +2293,9 @@
       "nameEn": "Weaver (Albion)",
       "nameJa": "織物工房",
       "tier": "wader",
-      "maintenance": -8,
+      "maintenance": -12,
       "population": 0,
-      "income": 1,
+      "income": 0,
       "faith": 0,
       "knowledge": 0,
       "prestige": 0,
@@ -2317,7 +2317,7 @@
       "prestige": 0,
       "health": 0,
       "happiness": 0,
-      "fireSafety": -2,
+      "fireSafety": -4,
       "icon": "armory_goods"
     },
     {
@@ -2331,7 +2331,7 @@
       "faith": 0,
       "knowledge": 0,
       "prestige": 0,
-      "health": -2,
+      "health": -4,
       "happiness": 0,
       "fireSafety": 0,
       "icon": "auroch_goods"
@@ -2397,7 +2397,7 @@
       "prestige": 0,
       "health": 0,
       "happiness": 0,
-      "fireSafety": -2,
+      "fireSafety": -4,
       "icon": "beer_goods"
     },
     {
@@ -2491,7 +2491,7 @@
       "faith": 0,
       "knowledge": 0,
       "prestige": 0,
-      "health": -2,
+      "health": -4,
       "happiness": 0,
       "fireSafety": 0,
       "icon": "copper_ore_goods"
@@ -2509,7 +2509,7 @@
       "prestige": 2,
       "health": 0,
       "happiness": 0,
-      "fireSafety": -2,
+      "fireSafety": -4,
       "icon": "torcs_goods"
     },
     {
@@ -2523,7 +2523,7 @@
       "faith": 0,
       "knowledge": 0,
       "prestige": 0,
-      "health": -2,
+      "health": -4,
       "happiness": 0,
       "fireSafety": 0,
       "icon": "tin_ore_goods"
@@ -2557,7 +2557,7 @@
       "prestige": 0,
       "health": 0,
       "happiness": 0,
-      "fireSafety": -2,
+      "fireSafety": -4,
       "icon": "bronze_goods"
     },
     {
@@ -2587,8 +2587,8 @@
       "income": 0,
       "faith": 0,
       "knowledge": 0,
-      "prestige": 0,
-      "health": -1,
+      "prestige": 1,
+      "health": -2,
       "happiness": 0,
       "fireSafety": 0
     },
@@ -2667,9 +2667,9 @@
       "faith": 0,
       "knowledge": 0,
       "prestige": 0,
-      "health": -2,
+      "health": -4,
       "happiness": 0,
-      "fireSafety": -2,
+      "fireSafety": -4,
       "icon": "lye_goods"
     },
     {
@@ -2684,7 +2684,7 @@
       "knowledge": 0,
       "prestige": 1,
       "health": 0,
-      "happiness": -1,
+      "happiness": -2,
       "fireSafety": 0,
       "icon": "pelt_hat_goods"
     },
