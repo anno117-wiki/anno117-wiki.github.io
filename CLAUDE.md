@@ -100,7 +100,6 @@ anno_db2/                        ← workspaces root
 - ✅ 3セッション開発体制整備（roles/分離・ホワイトボード・CLAUDE.mdディスパッチャ化）
 
 ### フェーズ8 残作業
-- albion_underground_pit: 実機非存在確定 → 要削除（次回対応）
 - wiki↔計算機の連携改善・軽量化（次回提案予定）
 
 ### 公式ゲームデータ（最重要資産）

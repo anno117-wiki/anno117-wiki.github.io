@@ -42,9 +42,9 @@
 
 ## 次の一手（優先順）
 
-1. **未コミット**: docs-notes/building-icon-mapping.md をコミットせよ（侍へ委譲）
-2. **albion_underground_pit 削除**: 実機非存在確定。忍者が影響範囲調査→侍が削除＋ビルド＋コミット。
-3. **wikiと計算機の連携改善**（殿が冒頭で言及・D-2着手で後回し）: 軽量化も視野に入れた改善案を改めて提案する。
+1. ~~**未コミット**: docs-notes/building-icon-mapping.md をコミットせよ~~ → ✅ cd6e48f で完了済み
+2. ~~**albion_underground_pit 削除**~~ → ✅ データファイル上は既に存在せず。CLAUDE.md・handoverの注記を削除済み（2026-06-24）
+3. **wikiと計算機の連携改善**（軽量化も視野に入れた改善案を提案する）
 4. **public_celtic_library**: 対応建物追加のタイミングでアイコン設定を行う。
 
 ---
