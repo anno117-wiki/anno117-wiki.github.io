@@ -215,12 +215,53 @@ for asset in root.iter("Asset"):
 print(f"  {len(techs)} techs", file=sys.stderr)
 
 
-# ---- Step 7: 出力 ----
+# ---- Step 7: ProductionChains（生産チェーン） ----
+print("Extracting production chains...", file=sys.stderr)
+chains: list[dict] = []
+
+for asset in root.iter("Asset"):
+    if (asset.findtext("Template") or "").strip() != "ProductionChain":
+        continue
+    g = (asset.findtext(".//Standard/GUID") or "").strip()
+    name = (asset.findtext(".//Standard/Name") or "").strip()
+    pcn = asset.find(".//ProductionChain")
+    if pcn is None:
+        continue
+
+    building_guid = (pcn.findtext("Building") or "").strip()
+    input_guids = [
+        (item.findtext("Building") or "").strip()
+        for item in pcn.findall("Tier1/Item")
+        if (item.findtext("Building") or "").strip()
+    ]
+
+    # Roman/Celtic 判定（internalName から。"Roman Celtic"=共通はCelticに寄せる前にRoman優先）
+    if "Celtic" in name:
+        region = "Roman Celtic" if "Roman" in name else "Celtic"
+    else:
+        region = "Roman"
+
+    chains.append({
+        "guid":               g,
+        "nameEn":             guid_to_en.get(g, name),
+        "nameJa":             guid_to_ja.get(g, ""),
+        "region":             region,
+        "buildingGuid":       building_guid,
+        "buildingNameEn":     guid_to_en.get(building_guid, ""),
+        "buildingNameJa":     guid_to_ja.get(building_guid, ""),
+        "inputBuildingGuids": input_guids,
+    })
+
+print(f"  {len(chains)} production chains", file=sys.stderr)
+
+
+# ---- Step 8: 出力 ----
 out = {
-    "products":        products,
-    "needs":           needs,
+    "products":         products,
+    "needs":            needs,
     "populationLevels": pop_levels,
-    "techs":           techs,
+    "techs":            techs,
+    "productionChains": chains,
 }
 
 summary = {k: len(v) for k, v in out.items()}
