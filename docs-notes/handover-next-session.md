@@ -23,8 +23,9 @@
   - assets.xml + official_master.csv → buildings-effects.json 自動更新
   - Matched 169/173（未照合4件は現行値維持）
 - `tools/build-game-data.py` 新規作成（92995df）
-  - products:154件 / needs:81件 / populationLevels:9件 / techs:193件
+  - products:154件 / needs:81件 / populationLevels:9件 / techs:193件 / productionChains:77件
   - 出力: `_local/anno-official-data/game-data.json`
+  - DLC確認済み: DLC専用独立チェーンなし・全DLC要素は統合済み
 
 ---
 
