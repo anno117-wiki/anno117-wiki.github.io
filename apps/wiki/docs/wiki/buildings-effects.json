@@ -13,7 +13,8 @@
       "prestige": 0,
       "health": 0,
       "happiness": 0,
-      "fireSafety": 0
+      "fireSafety": 0,
+      "icon": "sardines_goods"
     },
     {
       "id": "oat_farm",
@@ -28,7 +29,8 @@
       "prestige": 0,
       "health": 0,
       "happiness": 0,
-      "fireSafety": 0
+      "fireSafety": 0,
+      "icon": "oats_goods"
     },
     {
       "id": "porridge_stand",
@@ -43,7 +45,8 @@
       "prestige": 0,
       "health": 0,
       "happiness": 0,
-      "fireSafety": 0
+      "fireSafety": 0,
+      "icon": "porridge_goods"
     },
     {
       "id": "market",
@@ -90,7 +93,8 @@
       "prestige": 0,
       "health": 0,
       "happiness": 0,
-      "fireSafety": 0
+      "fireSafety": 0,
+      "icon": "hemp_goods"
     },
     {
       "id": "spinner",
@@ -105,7 +109,8 @@
       "prestige": 0,
       "health": 0,
       "happiness": 0,
-      "fireSafety": 0
+      "fireSafety": 0,
+      "icon": "cloth_goods"
     },
     {
       "id": "sheep_farm",
@@ -120,7 +125,8 @@
       "prestige": 0,
       "health": 0,
       "happiness": 0,
-      "fireSafety": 0
+      "fireSafety": 0,
+      "icon": "sheep_goods"
     },
     {
       "id": "pileus_felter",
@@ -135,7 +141,8 @@
       "prestige": 0,
       "health": 0,
       "happiness": 1,
-      "fireSafety": 0
+      "fireSafety": 0,
+      "icon": "farmer_hat_goods"
     },
     {
       "id": "flax_farm",
@@ -150,7 +157,8 @@
       "prestige": 0,
       "health": 0,
       "happiness": 0,
-      "fireSafety": 0
+      "fireSafety": 0,
+      "icon": "flax_goods"
     },
     {
       "id": "glass_smelter",
@@ -165,7 +173,8 @@
       "prestige": 0,
       "health": 0,
       "happiness": 0,
-      "fireSafety": -2
+      "fireSafety": -2,
+      "icon": "glass_goods"
     },
     {
       "id": "warehouse",
@@ -301,7 +310,7 @@
       "nameJa": "井戸",
       "tier": "libertus",
       "icon": "institution_well",
-      "maintenance": 0,
+      "maintenance": -3,
       "population": 0,
       "income": 0,
       "faith": 0,
@@ -317,7 +326,7 @@
       "nameJa": "監視塔",
       "tier": "libertus",
       "icon": "institution_watchtower",
-      "maintenance": 0,
+      "maintenance": -5,
       "population": 0,
       "income": 0,
       "faith": 0,
@@ -340,7 +349,8 @@
       "prestige": 0,
       "health": 0,
       "happiness": 0,
-      "fireSafety": 0
+      "fireSafety": 0,
+      "icon": "wheat_goods"
     },
     {
       "id": "grain_mill",
@@ -355,7 +365,8 @@
       "prestige": 0,
       "health": 0,
       "happiness": 0,
-      "fireSafety": 0
+      "fireSafety": 0,
+      "icon": "flour_goods"
     },
     {
       "id": "bakery",
@@ -370,7 +381,8 @@
       "prestige": 0,
       "health": 0,
       "happiness": 0,
-      "fireSafety": -2
+      "fireSafety": -2,
+      "icon": "bread_goods"
     },
     {
       "id": "scombers_shack",
@@ -385,7 +397,8 @@
       "prestige": 0,
       "health": 0,
       "happiness": 0,
-      "fireSafety": 0
+      "fireSafety": 0,
+      "icon": "mackerels_goods"
     },
     {
       "id": "salt_ponds",
@@ -400,7 +413,8 @@
       "prestige": 0,
       "health": 0,
       "happiness": 0,
-      "fireSafety": 0
+      "fireSafety": 0,
+      "icon": "salt_goods"
     },
     {
       "id": "garum_works",
@@ -415,7 +429,8 @@
       "prestige": 0,
       "health": 0,
       "happiness": 1,
-      "fireSafety": 0
+      "fireSafety": 0,
+      "icon": "garum_goods"
     },
     {
       "id": "sanctuary",
@@ -462,7 +477,8 @@
       "prestige": 0,
       "health": 0,
       "happiness": 0,
-      "fireSafety": 0
+      "fireSafety": 0,
+      "icon": "pigs_goods"
     },
     {
       "id": "tannery",
@@ -477,7 +493,8 @@
       "prestige": 0,
       "health": 0,
       "happiness": -2,
-      "fireSafety": 0
+      "fireSafety": 0,
+      "icon": "leather_goods"
     },
     {
       "id": "sandal_maker",
@@ -492,7 +509,8 @@
       "prestige": 0,
       "health": 0,
       "happiness": 0,
-      "fireSafety": 0
+      "fireSafety": 0,
+      "icon": "sandals_goods"
     },
     {
       "id": "lavender_grower",
@@ -507,7 +525,8 @@
       "prestige": 0,
       "health": 0,
       "happiness": 1,
-      "fireSafety": 0
+      "fireSafety": 0,
+      "icon": "lavender_goods"
     },
     {
       "id": "renderer",
@@ -522,7 +541,8 @@
       "prestige": 0,
       "health": 0,
       "happiness": -2,
-      "fireSafety": -2
+      "fireSafety": -2,
+      "icon": "pig_lard_goods"
     },
     {
       "id": "soap_maker",
@@ -537,7 +557,8 @@
       "prestige": 0,
       "health": 2,
       "happiness": -1,
-      "fireSafety": 0
+      "fireSafety": 0,
+      "icon": "lavender_soap_goods"
     },
     {
       "id": "clay_pit",
@@ -552,7 +573,8 @@
       "prestige": 0,
       "health": 0,
       "happiness": 0,
-      "fireSafety": 0
+      "fireSafety": 0,
+      "icon": "clay_goods"
     },
     {
       "id": "resin_trapper",
@@ -567,7 +589,8 @@
       "prestige": 0,
       "health": 0,
       "happiness": 0,
-      "fireSafety": 0
+      "fireSafety": 0,
+      "icon": "resin_goods"
     },
     {
       "id": "potter",
@@ -582,7 +605,8 @@
       "prestige": 0,
       "health": 0,
       "happiness": 0,
-      "fireSafety": -2
+      "fireSafety": -2,
+      "icon": "amphorae_goods"
     },
     {
       "id": "olive_grower",
@@ -597,7 +621,8 @@
       "prestige": 0,
       "health": 0,
       "happiness": 0,
-      "fireSafety": 0
+      "fireSafety": 0,
+      "icon": "olives_goods"
     },
     {
       "id": "olive_press",
@@ -612,7 +637,8 @@
       "prestige": 0,
       "health": 1,
       "happiness": 0,
-      "fireSafety": 0
+      "fireSafety": 0,
+      "icon": "olive_oil_goods"
     },
     {
       "id": "mineral_quarry",
@@ -627,7 +653,8 @@
       "prestige": 0,
       "health": -2,
       "happiness": 0,
-      "fireSafety": 0
+      "fireSafety": 0,
+      "icon": "minerals_goods"
     },
     {
       "id": "mineral_crusher",
@@ -642,7 +669,8 @@
       "prestige": 0,
       "health": -3,
       "happiness": 0,
-      "fireSafety": 0
+      "fireSafety": 0,
+      "icon": "pigments_goods"
     },
     {
       "id": "custodia",
@@ -698,7 +726,7 @@
       "nameJa": "トイレ",
       "tier": "plebeian",
       "icon": "institution_latrine",
-      "maintenance": 0,
+      "maintenance": -8,
       "population": 0,
       "income": 0,
       "faith": 0,
@@ -753,7 +781,8 @@
       "prestige": 0,
       "health": 0,
       "happiness": 0,
-      "fireSafety": 0
+      "fireSafety": 0,
+      "icon": "grapes_goods"
     },
     {
       "id": "apiary",
@@ -768,7 +797,8 @@
       "prestige": 0,
       "health": 0,
       "happiness": 0,
-      "fireSafety": 0
+      "fireSafety": 0,
+      "icon": "honeycombs_goods"
     },
     {
       "id": "vintner",
@@ -783,7 +813,8 @@
       "prestige": 0,
       "health": 0,
       "happiness": 1,
-      "fireSafety": 0
+      "fireSafety": 0,
+      "icon": "wine_goods"
     },
     {
       "id": "aqueduct_source",
@@ -798,7 +829,8 @@
       "prestige": 0,
       "health": 0,
       "happiness": 0,
-      "fireSafety": 0
+      "fireSafety": 0,
+      "icon": "aqueduct_source"
     },
     {
       "id": "aqueduct",
@@ -813,7 +845,8 @@
       "prestige": 0,
       "health": 0,
       "happiness": 0,
-      "fireSafety": 0
+      "fireSafety": 0,
+      "icon": "aqueduct_segment"
     },
     {
       "id": "aqueduct_cistern",
@@ -828,7 +861,8 @@
       "prestige": 0,
       "health": 3,
       "happiness": 0,
-      "fireSafety": 3
+      "fireSafety": 3,
+      "icon": "aqueduct_source"
     },
     {
       "id": "gambling_house",
@@ -859,7 +893,8 @@
       "prestige": 0,
       "health": 0,
       "happiness": 0,
-      "fireSafety": 0
+      "fireSafety": 0,
+      "icon": "tunics_goods"
     },
     {
       "id": "snailery",
@@ -874,7 +909,8 @@
       "prestige": 0,
       "health": 0,
       "happiness": 0,
-      "fireSafety": 0
+      "fireSafety": 0,
+      "icon": "murex_snails_goods"
     },
     {
       "id": "dye_works",
@@ -889,7 +925,8 @@
       "prestige": 0,
       "health": 0,
       "happiness": -3,
-      "fireSafety": 0
+      "fireSafety": 0,
+      "icon": "tyrian_purple_goods"
     },
     {
       "id": "loom_weavery",
@@ -904,7 +941,8 @@
       "prestige": 3,
       "health": 0,
       "happiness": 0,
-      "fireSafety": 0
+      "fireSafety": 0,
+      "icon": "togas_goods"
     },
     {
       "id": "sandarac_nursery",
@@ -919,7 +957,8 @@
       "prestige": 0,
       "health": 0,
       "happiness": 0,
-      "fireSafety": 0
+      "fireSafety": 0,
+      "icon": "cypress_wood_goods"
     },
     {
       "id": "tabulus",
@@ -934,7 +973,8 @@
       "prestige": 0,
       "health": 0,
       "happiness": 0,
-      "fireSafety": 0
+      "fireSafety": 0,
+      "icon": "wax_tablets_goods"
     },
     {
       "id": "sand_refinery",
@@ -949,7 +989,8 @@
       "prestige": 0,
       "health": 0,
       "happiness": 0,
-      "fireSafety": 0
+      "fireSafety": 0,
+      "icon": "silica_goods"
     },
     {
       "id": "glassblower",
@@ -964,7 +1005,8 @@
       "prestige": 2,
       "health": 0,
       "happiness": 0,
-      "fireSafety": -2
+      "fireSafety": -2,
+      "icon": "fine_glass_goods"
     },
     {
       "id": "forum",
@@ -1251,7 +1293,8 @@
       "prestige": 7,
       "health": 0,
       "happiness": 3,
-      "fireSafety": 0
+      "fireSafety": 0,
+      "icon": "colosseum"
     },
     {
       "id": "oyster_farm",
@@ -1266,7 +1309,8 @@
       "prestige": 0,
       "health": 0,
       "happiness": 0,
-      "fireSafety": 0
+      "fireSafety": 0,
+      "icon": "oysters_goods"
     },
     {
       "id": "sturgeon_hatchery",
@@ -1281,7 +1325,8 @@
       "prestige": 0,
       "health": 0,
       "happiness": 0,
-      "fireSafety": 0
+      "fireSafety": 0,
+      "icon": "sturgeons_goods"
     },
     {
       "id": "fish_prep_station",
@@ -1296,7 +1341,8 @@
       "prestige": 0,
       "health": 0,
       "happiness": 0,
-      "fireSafety": 0
+      "fireSafety": 0,
+      "icon": "caviar_goods"
     },
     {
       "id": "epicure_of_water",
@@ -1311,7 +1357,8 @@
       "prestige": 0,
       "health": 1,
       "happiness": 0,
-      "fireSafety": 0
+      "fireSafety": 0,
+      "icon": "oysters_and_caviar_goods"
     },
     {
       "id": "temple",
@@ -1358,7 +1405,8 @@
       "prestige": 0,
       "health": 0,
       "happiness": 0,
-      "fireSafety": 0
+      "fireSafety": 0,
+      "icon": "gold_ore_river_goods"
     },
     {
       "id": "gold_mine",
@@ -1373,7 +1421,8 @@
       "prestige": 0,
       "health": 0,
       "happiness": 0,
-      "fireSafety": 0
+      "fireSafety": 0,
+      "icon": "gold_ore_mine_goods"
     },
     {
       "id": "gold_smelter",
@@ -1388,7 +1437,8 @@
       "prestige": 0,
       "health": 0,
       "happiness": 0,
-      "fireSafety": -2
+      "fireSafety": -2,
+      "icon": "gold_goods"
     },
     {
       "id": "jeweler",
@@ -1403,7 +1453,8 @@
       "prestige": 3,
       "health": 0,
       "happiness": 0,
-      "fireSafety": -2
+      "fireSafety": -2,
+      "icon": "necklaces_goods"
     },
     {
       "id": "cushion_maker",
@@ -1418,7 +1469,8 @@
       "prestige": 0,
       "health": 0,
       "happiness": 0,
-      "fireSafety": 0
+      "fireSafety": 0,
+      "icon": "cushion_goods"
     },
     {
       "id": "lectus_maker",
@@ -1433,7 +1485,8 @@
       "prestige": 2,
       "health": 0,
       "happiness": 0,
-      "fireSafety": -1
+      "fireSafety": -1,
+      "icon": "lounger_goods"
     },
     {
       "id": "string_factory",
@@ -1448,7 +1501,8 @@
       "prestige": 0,
       "health": 0,
       "happiness": -1,
-      "fireSafety": 0
+      "fireSafety": 0,
+      "icon": "strings_goods"
     },
     {
       "id": "gilded_workshop",
@@ -1463,7 +1517,8 @@
       "prestige": 0,
       "health": 0,
       "happiness": 0,
-      "fireSafety": 0
+      "fireSafety": 0,
+      "icon": "ornamented_wood_goods"
     },
     {
       "id": "lyre_factory",
@@ -1478,7 +1533,8 @@
       "prestige": 0,
       "health": 0,
       "happiness": 1,
-      "fireSafety": 0
+      "fireSafety": 0,
+      "icon": "string_instrument_goods"
     },
     {
       "id": "mosaic_workshop",
@@ -1493,7 +1549,8 @@
       "prestige": 2,
       "health": 0,
       "happiness": 0,
-      "fireSafety": -2
+      "fireSafety": -2,
+      "icon": "mosaics_goods"
     },
     {
       "id": "governor_villa",
@@ -1540,7 +1597,8 @@
       "prestige": 0,
       "health": 0,
       "happiness": 0,
-      "fireSafety": 0
+      "fireSafety": 0,
+      "icon": "wheat_goods"
     },
     {
       "id": "albion_donkey_mill",
@@ -1555,7 +1613,8 @@
       "prestige": 0,
       "health": 0,
       "happiness": 0,
-      "fireSafety": 0
+      "fireSafety": 0,
+      "icon": "flour_goods"
     },
     {
       "id": "albion_bakery",
@@ -1570,7 +1629,8 @@
       "prestige": 0,
       "health": 0,
       "happiness": 0,
-      "fireSafety": -2
+      "fireSafety": -2,
+      "icon": "bread_goods"
     },
     {
       "id": "albion_pig_farm",
@@ -1585,7 +1645,8 @@
       "prestige": 0,
       "health": -2,
       "happiness": 0,
-      "fireSafety": 0
+      "fireSafety": 0,
+      "icon": "pigs_goods"
     },
     {
       "id": "albion_herb_garden",
@@ -1600,7 +1661,8 @@
       "prestige": 0,
       "health": 1,
       "happiness": 0,
-      "fireSafety": 0
+      "fireSafety": 0,
+      "icon": "herbs_goods"
     },
     {
       "id": "albion_sausage_factory",
@@ -1615,7 +1677,8 @@
       "prestige": 0,
       "health": 0,
       "happiness": 0,
-      "fireSafety": -2
+      "fireSafety": -2,
+      "icon": "sausages_goods"
     },
     {
       "id": "albion_silver_mine",
@@ -1630,7 +1693,8 @@
       "prestige": 0,
       "health": -2,
       "happiness": 0,
-      "fireSafety": 0
+      "fireSafety": 0,
+      "icon": "silver_ore_goods"
     },
     {
       "id": "albion_silver_smithy",
@@ -1645,7 +1709,8 @@
       "prestige": 0,
       "health": 0,
       "happiness": 0,
-      "fireSafety": -2
+      "fireSafety": -2,
+      "icon": "silver_goods"
     },
     {
       "id": "albion_brooch_factory",
@@ -1660,7 +1725,8 @@
       "prestige": 0,
       "health": 0,
       "happiness": 0,
-      "fireSafety": -2
+      "fireSafety": -2,
+      "icon": "brooch_goods"
     },
     {
       "id": "albion_resin_trapper",
@@ -1675,7 +1741,8 @@
       "prestige": 0,
       "health": 0,
       "happiness": 0,
-      "fireSafety": 0
+      "fireSafety": 0,
+      "icon": "resin_goods"
     },
     {
       "id": "albion_potter",
@@ -1690,7 +1757,8 @@
       "prestige": 0,
       "health": 0,
       "happiness": 0,
-      "fireSafety": -2
+      "fireSafety": -2,
+      "icon": "amphorae_goods"
     },
     {
       "id": "albion_bird_charmer",
@@ -1705,7 +1773,8 @@
       "prestige": 0,
       "health": 0,
       "happiness": 0,
-      "fireSafety": 0
+      "fireSafety": 0,
+      "icon": "marsh_birds_goods"
     },
     {
       "id": "albion_tongue_extractor",
@@ -1720,7 +1789,8 @@
       "prestige": 0,
       "health": 0,
       "happiness": -2,
-      "fireSafety": 0
+      "fireSafety": 0,
+      "icon": "bird_tongue_goods"
     },
     {
       "id": "albion_renderer",
@@ -1735,7 +1805,8 @@
       "prestige": 0,
       "health": 0,
       "happiness": -2,
-      "fireSafety": -2
+      "fireSafety": -2,
+      "icon": "pig_lard_goods"
     },
     {
       "id": "albion_epicure_of_air",
@@ -1750,7 +1821,8 @@
       "prestige": 0,
       "health": 0,
       "happiness": -1,
-      "fireSafety": 0
+      "fireSafety": 0,
+      "icon": "tongue_in_aspic_goods"
     },
     {
       "id": "albion_vineyard",
@@ -1765,7 +1837,8 @@
       "prestige": 0,
       "health": 0,
       "happiness": 0,
-      "fireSafety": 0
+      "fireSafety": 0,
+      "icon": "grapes_goods"
     },
     {
       "id": "albion_apiary",
@@ -1780,7 +1853,8 @@
       "prestige": 0,
       "health": 0,
       "happiness": 0,
-      "fireSafety": 0
+      "fireSafety": 0,
+      "icon": "honeycombs_goods"
     },
     {
       "id": "albion_winery",
@@ -1795,7 +1869,8 @@
       "prestige": 1,
       "health": 0,
       "happiness": 0,
-      "fireSafety": 0
+      "fireSafety": 0,
+      "icon": "wine_goods"
     },
     {
       "id": "albion_theatre",
@@ -1826,7 +1901,8 @@
       "prestige": 0,
       "health": 0,
       "happiness": 0,
-      "fireSafety": 0
+      "fireSafety": 0,
+      "icon": "flax_goods"
     },
     {
       "id": "albion_headgear_factory",
@@ -1841,7 +1917,8 @@
       "prestige": 0,
       "health": 0,
       "happiness": 0,
-      "fireSafety": 0
+      "fireSafety": 0,
+      "icon": "pelt_hat_goods"
     },
     {
       "id": "albion_horse_farm",
@@ -1856,7 +1933,8 @@
       "prestige": 0,
       "health": -1,
       "happiness": 1,
-      "fireSafety": 0
+      "fireSafety": 0,
+      "icon": "horses_goods"
     },
     {
       "id": "albion_wig_factory",
@@ -1871,7 +1949,8 @@
       "prestige": 0,
       "health": 0,
       "happiness": 1,
-      "fireSafety": -1
+      "fireSafety": -1,
+      "icon": "wig_goods"
     },
     {
       "id": "albion_shell_fishing",
@@ -1886,7 +1965,8 @@
       "prestige": 0,
       "health": 0,
       "happiness": 0,
-      "fireSafety": 0
+      "fireSafety": 0,
+      "icon": "seashells_goods"
     },
     {
       "id": "albion_mirror_factory",
@@ -1901,7 +1981,8 @@
       "prestige": 0,
       "health": 0,
       "happiness": 2,
-      "fireSafety": -2
+      "fireSafety": -2,
+      "icon": "handmirros_goods"
     },
     {
       "id": "albion_logging_camp",
@@ -1916,7 +1997,8 @@
       "prestige": 0,
       "health": 0,
       "happiness": 0,
-      "fireSafety": 0
+      "fireSafety": 0,
+      "icon": "wood_goods"
     },
     {
       "id": "albion_sawmill",
@@ -1931,7 +2013,8 @@
       "prestige": 0,
       "health": 0,
       "happiness": 0,
-      "fireSafety": 0
+      "fireSafety": 0,
+      "icon": "timber_goods"
     },
     {
       "id": "albion_mud_hut",
@@ -1946,7 +2029,8 @@
       "prestige": 0,
       "health": 0,
       "happiness": 0,
-      "fireSafety": 0
+      "fireSafety": 0,
+      "icon": "mud_goods"
     },
     {
       "id": "albion_tile_factory",
@@ -1961,7 +2045,8 @@
       "prestige": 0,
       "health": 0,
       "happiness": 0,
-      "fireSafety": -2
+      "fireSafety": -2,
+      "icon": "tiles_goods"
     },
     {
       "id": "albion_charcoal_factory",
@@ -1976,7 +2061,8 @@
       "prestige": 0,
       "health": -3,
       "happiness": 0,
-      "fireSafety": -3
+      "fireSafety": -3,
+      "icon": "coal_ore_forest_goods"
     },
     {
       "id": "albion_sail_factory",
@@ -1991,7 +2077,8 @@
       "prestige": 0,
       "health": 0,
       "happiness": 0,
-      "fireSafety": 0
+      "fireSafety": 0,
+      "icon": "sails_goods"
     },
     {
       "id": "albion_rope_mill",
@@ -2006,7 +2093,8 @@
       "prestige": 0,
       "health": 0,
       "happiness": 0,
-      "fireSafety": 0
+      "fireSafety": 0,
+      "icon": "ropes_goods"
     },
     {
       "id": "albion_iron_mine",
@@ -2021,7 +2109,8 @@
       "prestige": 0,
       "health": -2,
       "happiness": 0,
-      "fireSafety": 0
+      "fireSafety": 0,
+      "icon": "iron_ore_goods"
     },
     {
       "id": "albion_furnace",
@@ -2036,7 +2125,8 @@
       "prestige": 0,
       "health": 0,
       "happiness": 0,
-      "fireSafety": -2
+      "fireSafety": -2,
+      "icon": "iron_goods"
     },
     {
       "id": "albion_weapon_workshop",
@@ -2051,7 +2141,8 @@
       "prestige": 0,
       "health": 0,
       "happiness": 0,
-      "fireSafety": -2
+      "fireSafety": -2,
+      "icon": "weapons_goods"
     },
     {
       "id": "albion_water_gate",
@@ -2066,7 +2157,8 @@
       "prestige": 0,
       "health": 0,
       "happiness": 0,
-      "fireSafety": 0
+      "fireSafety": 0,
+      "icon": "marsh_drainage_gate"
     },
     {
       "id": "albion_drainage",
@@ -2081,7 +2173,8 @@
       "prestige": 0,
       "health": 0,
       "happiness": 0,
-      "fireSafety": 0
+      "fireSafety": 0,
+      "icon": "marsh_canal"
     },
     {
       "id": "albion_cockle_farm",
@@ -2096,7 +2189,8 @@
       "prestige": 0,
       "health": 0,
       "happiness": 0,
-      "fireSafety": 0
+      "fireSafety": 0,
+      "icon": "cockles_goods"
     },
     {
       "id": "albion_eel_catcher",
@@ -2111,7 +2205,8 @@
       "prestige": 0,
       "health": 0,
       "happiness": 0,
-      "fireSafety": 0
+      "fireSafety": 0,
+      "icon": "eels_goods"
     },
     {
       "id": "albion_market",
@@ -2158,7 +2253,8 @@
       "prestige": 0,
       "health": 0,
       "happiness": 0,
-      "fireSafety": 0
+      "fireSafety": 0,
+      "icon": "reed_goods"
     },
     {
       "id": "albion_shoe_maker",
@@ -2173,7 +2269,8 @@
       "prestige": 0,
       "health": 0,
       "happiness": 1,
-      "fireSafety": 0
+      "fireSafety": 0,
+      "icon": "reed_shoes_goods"
     },
     {
       "id": "albion_hemp_farm",
@@ -2188,7 +2285,8 @@
       "prestige": 0,
       "health": 0,
       "happiness": 0,
-      "fireSafety": 0
+      "fireSafety": 0,
+      "icon": "hemp_goods"
     },
     {
       "id": "albion_weaver",
@@ -2203,7 +2301,8 @@
       "prestige": 0,
       "health": 0,
       "happiness": 0,
-      "fireSafety": 0
+      "fireSafety": 0,
+      "icon": "cloth_goods"
     },
     {
       "id": "albion_armor_workshop",
@@ -2218,7 +2317,8 @@
       "prestige": 0,
       "health": 0,
       "happiness": 0,
-      "fireSafety": -2
+      "fireSafety": -2,
+      "icon": "armory_goods"
     },
     {
       "id": "albion_cattle_farm",
@@ -2233,7 +2333,8 @@
       "prestige": 0,
       "health": -2,
       "happiness": 0,
-      "fireSafety": 0
+      "fireSafety": 0,
+      "icon": "auroch_goods"
     },
     {
       "id": "albion_dairy",
@@ -2248,7 +2349,8 @@
       "prestige": 0,
       "health": 0,
       "happiness": 2,
-      "fireSafety": 0
+      "fireSafety": 0,
+      "icon": "cheese_goods"
     },
     {
       "id": "albion_barley_farm",
@@ -2263,7 +2365,8 @@
       "prestige": 0,
       "health": 0,
       "happiness": 0,
-      "fireSafety": 0
+      "fireSafety": 0,
+      "icon": "barley_goods"
     },
     {
       "id": "albion_malt_house",
@@ -2278,7 +2381,8 @@
       "prestige": 0,
       "health": 0,
       "happiness": 0,
-      "fireSafety": 0
+      "fireSafety": 0,
+      "icon": "malt_goods"
     },
     {
       "id": "albion_brewery",
@@ -2293,7 +2397,8 @@
       "prestige": 0,
       "health": 0,
       "happiness": 0,
-      "fireSafety": -2
+      "fireSafety": -2,
+      "icon": "beer_goods"
     },
     {
       "id": "albion_resort",
@@ -2340,7 +2445,8 @@
       "prestige": 0,
       "health": 0,
       "happiness": 0,
-      "fireSafety": 0
+      "fireSafety": 0,
+      "icon": "sheep_goods"
     },
     {
       "id": "albion_dye_plant_field",
@@ -2355,7 +2461,8 @@
       "prestige": 0,
       "health": 0,
       "happiness": 0,
-      "fireSafety": 0
+      "fireSafety": 0,
+      "icon": "dye_plants_goods"
     },
     {
       "id": "albion_pants_maker",
@@ -2370,7 +2477,8 @@
       "prestige": 0,
       "health": 1,
       "happiness": 0,
-      "fireSafety": 0
+      "fireSafety": 0,
+      "icon": "trouser_goods"
     },
     {
       "id": "albion_copper_mine",
@@ -2385,7 +2493,8 @@
       "prestige": 0,
       "health": -2,
       "happiness": 0,
-      "fireSafety": 0
+      "fireSafety": 0,
+      "icon": "copper_ore_goods"
     },
     {
       "id": "albion_torque_workshop",
@@ -2400,7 +2509,8 @@
       "prestige": 2,
       "health": 0,
       "happiness": 0,
-      "fireSafety": -2
+      "fireSafety": -2,
+      "icon": "torcs_goods"
     },
     {
       "id": "albion_tin_mine",
@@ -2415,7 +2525,8 @@
       "prestige": 0,
       "health": -2,
       "happiness": 0,
-      "fireSafety": 0
+      "fireSafety": 0,
+      "icon": "tin_ore_goods"
     },
     {
       "id": "albion_horn_smithy",
@@ -2430,7 +2541,8 @@
       "prestige": 0,
       "health": 0,
       "happiness": 1,
-      "fireSafety": 0
+      "fireSafety": 0,
+      "icon": "drinkhorns_goods"
     },
     {
       "id": "albion_bronze_smelter",
@@ -2445,7 +2557,8 @@
       "prestige": 0,
       "health": 0,
       "happiness": 0,
-      "fireSafety": -2
+      "fireSafety": -2,
+      "icon": "bronze_goods"
     },
     {
       "id": "albion_shield_factory",
@@ -2460,7 +2573,8 @@
       "prestige": 1,
       "health": 0,
       "happiness": 0,
-      "fireSafety": 0
+      "fireSafety": 0,
+      "icon": "clan_shields_goods"
     },
     {
       "id": "granite_cutter",
@@ -2507,7 +2621,8 @@
       "prestige": 0,
       "health": 0,
       "happiness": 0,
-      "fireSafety": 0
+      "fireSafety": 0,
+      "icon": "celtic_green_goods"
     },
     {
       "id": "albion_cloak_maker",
@@ -2522,7 +2637,8 @@
       "prestige": 0,
       "health": 2,
       "happiness": 0,
-      "fireSafety": 0
+      "fireSafety": 0,
+      "icon": "cloak_goods"
     },
     {
       "id": "albion_beaver_hunter",
@@ -2537,7 +2653,8 @@
       "prestige": 0,
       "health": 0,
       "happiness": 0,
-      "fireSafety": 0
+      "fireSafety": 0,
+      "icon": "beaver_goods"
     },
     {
       "id": "albion_saltwort_kiln",
@@ -2552,7 +2669,8 @@
       "prestige": 0,
       "health": -2,
       "happiness": 0,
-      "fireSafety": -2
+      "fireSafety": -2,
+      "icon": "lye_goods"
     },
     {
       "id": "albion_beaver_hat",
@@ -2567,7 +2685,8 @@
       "prestige": 1,
       "health": 0,
       "happiness": -1,
-      "fireSafety": 0
+      "fireSafety": 0,
+      "icon": "pelt_hat_goods"
     },
     {
       "id": "albion_pony_farm",
@@ -2582,7 +2701,8 @@
       "prestige": 0,
       "health": 0,
       "happiness": 0,
-      "fireSafety": 0
+      "fireSafety": 0,
+      "icon": "ponies_goods"
     },
     {
       "id": "albion_chariot_body",
@@ -2597,7 +2717,8 @@
       "prestige": 0,
       "health": 0,
       "happiness": 0,
-      "fireSafety": 0
+      "fireSafety": 0,
+      "icon": "chassis_goods"
     },
     {
       "id": "albion_chariot_workshop",
@@ -2612,7 +2733,8 @@
       "prestige": 1,
       "health": 0,
       "happiness": 0,
-      "fireSafety": 0
+      "fireSafety": 0,
+      "icon": "chariot_goods"
     },
     {
       "id": "albion_burial_mound",
