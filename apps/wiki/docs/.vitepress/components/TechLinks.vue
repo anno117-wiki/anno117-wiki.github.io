@@ -56,6 +56,9 @@ const segments = computed(() => {
   function addSeg(a: TechEntry, b: TechEntry) {
     const key = [a.guid, b.guid].sort().join('-')
     if (added.has(key)) return
+    const dx = Math.abs(a.gridX - b.gridX)
+    const dy = Math.abs(a.gridY - b.gridY)
+    if (dx + dy > 3) return
     added.add(key)
     result.push({ x1: cx(a), y1: cy(a), x2: cx(b), y2: cy(b) })
   }
