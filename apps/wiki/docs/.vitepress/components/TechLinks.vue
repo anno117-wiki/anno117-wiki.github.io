@@ -5,14 +5,15 @@
     style="position:absolute;top:4px;left:4px;pointer-events:none;z-index:0;"
     aria-hidden="true"
   >
-    <line
+    <polyline
       v-for="(seg, i) in segments"
       :key="i"
-      :x1="seg.x1" :y1="seg.y1"
-      :x2="seg.x2" :y2="seg.y2"
+      :points="`${seg.x1},${seg.y1} ${seg.x2},${seg.y1} ${seg.x2},${seg.y2}`"
       :stroke="`${color}99`"
-      stroke-width="2.5"
+      stroke-width="1.5"
+      fill="none"
       stroke-linecap="round"
+      stroke-linejoin="round"
     />
   </svg>
 </template>
