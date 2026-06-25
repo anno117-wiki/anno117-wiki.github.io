@@ -2,7 +2,7 @@
    CSS url() はビルド時にFS相対で解決されるため、src/css/ から実体まで遡る。 */
 @font-face {
   font-family: "NotoSerif";
-  src: url("/calculator/assets/NotoSerif-Dh5ICAPK.ttf") format("truetype");
+  src: url("/assets/NotoSerif-Dh5ICAPK.ttf") format("truetype");
 }
 
 * {
