@@ -10,8 +10,8 @@ const categoryLabels: Record<string, string> = {
 }
 
 const regionLabels: Record<string, string> = {
-  Roman: 'ローマ',
-  Celtic: 'ケルト',
+  Roman: 'ラティウム',
+  Celtic: 'アルビオン',
 }
 
 function regionText(regions: string[]): string {

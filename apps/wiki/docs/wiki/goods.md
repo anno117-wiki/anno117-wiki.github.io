@@ -12,8 +12,8 @@ const categoryLabels: Record<string, string> = {
 }
 
 const regionLabels: Record<string, string> = {
-  Roman: 'ローマ',
-  Celtic: 'ケルト',
+  Roman: 'ラティウム',
+  Celtic: 'アルビオン',
 }
 
 function regionText(regions: string[]): string {
@@ -33,12 +33,11 @@ Anno 117 で生産・消費される全 {{ data.categories.reduce((n, c) => n + 
 
 <table>
 <thead>
-<tr><th>商品名</th><th>英語名</th><th>対応地域</th><th></th></tr>
+<tr><th>商品名</th><th>対応地域</th><th></th></tr>
 </thead>
 <tbody>
 <tr v-for="good in data.byCategory[cat]" :key="good.id">
 <td>{{ good.nameJa }}</td>
-<td>{{ good.nameEn }}</td>
 <td>{{ regionText(good.regions) }}</td>
 <td>
   <a v-if="cat !== 'intermediate' && cat !== 'resource'" :href="withBase(`/calculator/?good=${good.id}`)" target="_blank" rel="noopener noreferrer">計算</a>
