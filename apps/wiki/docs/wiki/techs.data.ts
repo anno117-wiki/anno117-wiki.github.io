@@ -1,6 +1,11 @@
 import techsJson from './techs.json'
 
-function parseBranch(internalName: string): string {
+function parseBranch(internalName: string, annoNodeId?: string): string {
+  if (annoNodeId) {
+    if (annoNodeId.startsWith('m')) return 'military'
+    if (annoNodeId.startsWith('s')) return 'civic'
+    if (annoNodeId.startsWith('w')) return 'economy'
+  }
   if (internalName.includes('Economy')) return 'economy'
   if (internalName.includes('Civic')) return 'civic'
   if (internalName.includes('Military')) return 'military'
@@ -29,12 +34,19 @@ export interface TechEntry {
   label: string
   branch: string
   branchLabel: string
+  descJa: string
+  descEn: string
+  effectJa: string
+  effectEn: string
   iconKey: string | null
+  techIconPath: string
   isGate: boolean
   color: string
   knowledgeCost: number | null
   gridX: number
   gridY: number
+  annoNodeId: string
+  connections: string[]
 }
 
 const BRANCH_ORDER = ['economy', 'civic', 'military', 'dlc01', 'other']
@@ -49,14 +61,21 @@ export default {
       guid: t.guid,
       internalName: t.internalName ?? '',
       label: t.nameJa || parseLabel(t.internalName ?? t.guid),
-      branch: parseBranch(t.internalName ?? ''),
+      branch: parseBranch(t.internalName ?? '', t.annoNodeId),
       branchLabel: BRANCH_LABELS[parseBranch(t.internalName ?? '')] ?? 'その他',
+      descJa: t.descJa ?? '',
+      descEn: t.descEn ?? '',
+      effectJa: t.effectJa ?? '',
+      effectEn: t.effectEn ?? '',
       iconKey: t.iconKey ?? null,
+      techIconPath: t.techIconPath ?? '',
       isGate: t.isGate ?? false,
       color: t.color ?? '',
       knowledgeCost: t.knowledgeCost ?? null,
       gridX: t.gridX ?? 0,
       gridY: t.gridY ?? 0,
+      annoNodeId: t.annoNodeId ?? '',
+      connections: t.connections ?? [],
     }))
 
     const byBranch: Record<string, TechEntry[]> = {}
