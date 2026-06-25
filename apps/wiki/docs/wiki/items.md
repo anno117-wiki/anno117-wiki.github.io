@@ -21,10 +21,6 @@ function fmtPrice(p: string): string {
 
 # アイテム一覧
 
-::: tip 出典・日本語対応状況
-出典: Anno 117 公式ゲームデータ（Item Inspector 抽出データより生成）。アイテム名・説明・効果は公式日本語。効果の一部（軍事・海事）は機械訳のため表現が粗い場合があります。
-:::
-
 <div class="item-filters">
   <label><strong>分類:</strong>
     <select v-model="selNiche">
