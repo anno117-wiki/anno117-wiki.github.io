@@ -108,7 +108,7 @@ const sortedFiltered = computed(() => {
 </div>
 
 <div style="overflow-x:auto;">
-<table>
+<table style="min-width:900px;">
 <thead>
 <tr>
   <th>建物</th>
