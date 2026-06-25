@@ -334,30 +334,22 @@ class ProductionChainView {
     }
 
     buildMarkup(good: RecipeListItem): string {
-        // modifierToolbarは右パネルのVue SettingsPanelに移動したため削除
         const chainLabel = this.i18n.t('ui.dependencyGraph');
-        const buildingCostLabel = this.i18n.t('ui.buildingCost');
-        const maintenanceLabel = this.i18n.t('ui.maintenance');
         const backLabel = this.i18n.t('ui.back');
 
         return `
             <div class="calculator-content">
-                <div class="production-details-top single-column">
-                    <div class="production-header-left">
-                        <div class="calculator-header">
-                            <button class="back-button" type="button" data-action="back" aria-label="${backLabel}">${backLabel}</button>
-                            <h3>${chainLabel}: ${good.displayName}</h3>
-                        </div>
-                        <div class="production-rate-inline">
-                            <label for="target-rate">${this.i18n.t('ui.outputPerMinute')}</label>
-                            <input id="target-rate" type="number" min="0" step="1" value="${this.currentRate ?? 1}" />
-                            <button id="recommend-ratio-btn" type="button" class="recommend-button" title="整数建物数になる最適レートを自動設定します">${this.i18n.t('ui.autoRatio')}</button>
-                        </div>
-                    </div>
+                <div class="calculator-topbar">
+                    <button class="back-button" type="button" data-action="back" aria-label="${backLabel}">${backLabel}</button>
+                    <span class="topbar-separator">|</span>
+                    <span class="topbar-title">${chainLabel}: ${good.displayName}</span>
+                    <span class="topbar-separator">|</span>
+                    <label for="target-rate">${this.i18n.t('ui.outputPerMinute')}</label>
+                    <input id="target-rate" type="number" min="0" step="1" value="${this.currentRate ?? 1}" />
+                    <button id="recommend-ratio-btn" type="button" class="recommend-button" title="整数建物数になる最適レートを自動設定します">${this.i18n.t('ui.autoRatio')}</button>
                 </div>
                 <div class="graph-panel">
                     <div class="production-graph">
-                        <h4>${chainLabel}</h4>
                         <div class="graph-host" data-role="graph-host"></div>
                     </div>
                 </div>

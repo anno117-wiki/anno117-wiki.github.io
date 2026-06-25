@@ -518,6 +518,32 @@ input[type="number"]:focus,
   color: var(--theme-color);
 }
 
+.calculator-topbar {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+  flex-wrap: wrap;
+  border-bottom: 2px solid var(--theme-color);
+  padding-bottom: 0.5rem;
+}
+
+.topbar-separator {
+  color: var(--border-color);
+  font-weight: 300;
+  flex-shrink: 0;
+}
+
+.topbar-title {
+  color: var(--theme-color);
+  font-weight: 700;
+  font-size: 1rem;
+  flex: 1;
+  min-width: 0;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
 .back-button {
   background: var(--background);
   border: none;
