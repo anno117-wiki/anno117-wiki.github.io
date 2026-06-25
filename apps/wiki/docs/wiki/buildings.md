@@ -17,6 +17,30 @@ const categoryLabels: Record<string, string> = {
 const searchText = ref('')
 const selectedTier = ref('')
 const selectedCategory = ref('')
+const sortKey = ref('')
+const sortDir = ref<1 | -1>(1)
+
+function toggleSort(key: string) {
+  if (sortKey.value === key) {
+    sortDir.value = sortDir.value === 1 ? -1 : 1
+  } else {
+    sortKey.value = key
+    sortDir.value = -1
+  }
+}
+
+function resetFilters() {
+  searchText.value = ''
+  selectedTier.value = ''
+  selectedCategory.value = ''
+  sortKey.value = ''
+  sortDir.value = 1
+}
+
+function sortArrow(key: string) {
+  if (sortKey.value !== key) return '⇅'
+  return sortDir.value === 1 ? '↑' : '↓'
+}
 
 const tiers = computed(() => {
   const seen = new Set<string>()
@@ -39,6 +63,17 @@ const filtered = computed(() => {
     const matchTier = !selectedTier.value || b.tier === selectedTier.value
     const matchCategory = !selectedCategory.value || b.category === selectedCategory.value
     return matchName && matchTier && matchCategory
+  })
+})
+
+const sortedFiltered = computed(() => {
+  const key = sortKey.value
+  if (!key) return filtered.value
+  const dir = sortDir.value
+  return [...filtered.value].sort((a, b) => {
+    const av = (a as any)[key] ?? 0
+    const bv = (b as any)[key] ?? 0
+    return (av - bv) * dir
   })
 })
 </script>
@@ -71,7 +106,8 @@ const filtered = computed(() => {
     <option value="">すべてのTier</option>
     <option v-for="t in tiers" :key="t.value" :value="t.value">{{ t.label }}</option>
   </select>
-  <span style="font-size:13px;color:var(--vp-c-text-2);">{{ filtered.length }} / {{ data.buildings.length }} 件</span>
+  <button @click="resetFilters()" style="padding:6px 12px;border:1px solid var(--vp-c-divider);border-radius:6px;font-size:14px;background:var(--vp-c-bg);color:var(--vp-c-text-1);cursor:pointer;">リセット</button>
+  <span style="font-size:13px;color:var(--vp-c-text-2);">{{ sortedFiltered.length }} / {{ data.buildings.length }} 件</span>
 </div>
 
 <table>
@@ -80,18 +116,18 @@ const filtered = computed(() => {
   <th>建物</th>
   <th>需要Tier</th>
   <th>維持費</th>
-  <th>人口</th>
-  <th>収入</th>
-  <th>信仰</th>
-  <th>知識</th>
-  <th>名声</th>
-  <th>健康度</th>
-  <th>幸福</th>
-  <th>防火</th>
+  <th @click="toggleSort('population')" style="cursor:pointer;white-space:nowrap;">人口 {{ sortArrow('population') }}</th>
+  <th @click="toggleSort('income')" style="cursor:pointer;white-space:nowrap;">収入 {{ sortArrow('income') }}</th>
+  <th @click="toggleSort('faith')" style="cursor:pointer;white-space:nowrap;">信仰 {{ sortArrow('faith') }}</th>
+  <th @click="toggleSort('knowledge')" style="cursor:pointer;white-space:nowrap;">知識 {{ sortArrow('knowledge') }}</th>
+  <th @click="toggleSort('prestige')" style="cursor:pointer;white-space:nowrap;">名声 {{ sortArrow('prestige') }}</th>
+  <th @click="toggleSort('health')" style="cursor:pointer;white-space:nowrap;">健康度 {{ sortArrow('health') }}</th>
+  <th @click="toggleSort('happiness')" style="cursor:pointer;white-space:nowrap;">幸福 {{ sortArrow('happiness') }}</th>
+  <th @click="toggleSort('fireSafety')" style="cursor:pointer;white-space:nowrap;">防火 {{ sortArrow('fireSafety') }}</th>
 </tr>
 </thead>
 <tbody>
-<tr v-for="b in filtered" :key="b.id">
+<tr v-for="b in sortedFiltered" :key="b.id">
   <td style="white-space:nowrap;">
     <img v-if="b.icon" :src="withBase('/icons/buildings/icon_3d_' + b.icon + '.png')" :alt="b.nameJa ?? b.nameEn" style="width:32px;height:32px;vertical-align:middle;margin-right:6px;object-fit:contain;" />
     {{ b.nameJa ?? b.nameEn }}
