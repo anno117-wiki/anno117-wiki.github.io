@@ -1,7 +1,7 @@
 @import url('https://fonts.googleapis.com/css2?family=Noto+Sans+JP:wght@400;500;700&display=swap');
 
 :root {
-  --vp-sidebar-width: 180px;
+  --vp-sidebar-width: 140px;
 
   /* ネイビー×ゴールド テーマ */
   --vp-c-brand-1: #1e3a5f;
@@ -81,6 +81,11 @@
   text-decoration-color: #c9a84c;
 }
 
+/* 右サイドバー（目次） */
+.aside-container {
+  width: 160px !important;
+}
+
 /* サイドバー */
 .VPSidebar {
   background-color: #eef0f4 !important;
@@ -129,9 +134,6 @@
 }
 
 .vp-doc table thead th {
-  position: sticky;
-  top: var(--vp-nav-height, 64px);
-  z-index: 2;
   background-color: var(--vp-c-bg);
 }
 

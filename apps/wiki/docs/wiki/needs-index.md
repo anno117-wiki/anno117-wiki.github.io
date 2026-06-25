@@ -39,14 +39,12 @@ const TIER_CSS: Record<string, string> = {
   <thead>
     <tr>
       <th>商品名</th>
-      <th>English</th>
       <th>需要住民層</th>
     </tr>
   </thead>
   <tbody>
     <tr v-for="item in filtered" :key="item.productGuid">
       <td>{{ item.productNameJa || item.productNameEn }}</td>
-      <td class="en">{{ item.productNameEn }}</td>
       <td>
         <span
           v-for="t in item.tiers"
