@@ -318,7 +318,6 @@ main {
 /* Input Fields - Neumorph Style */
 input[type="text"],
 input[type="number"],
-.tree-search input,
 #preset-name-input {
   background: var(--background);
   border: none;
