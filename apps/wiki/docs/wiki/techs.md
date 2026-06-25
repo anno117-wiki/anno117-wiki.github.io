@@ -115,11 +115,11 @@ const branchColorMap: Record<string, string> = {
         @click="selectTech(tech)"
       >
         <img
-          v-if="tech.annoNodeId"
-          :src="`${BASE}icons/tech/${tech.annoNodeId}.webp`"
+          v-if="tech.annoNodeId || tech.isGate"
+          :src="tech.annoNodeId ? `${BASE}icons/tech/${tech.annoNodeId}.webp` : `${BASE}icons/tech/gate.webp`"
           class="tech-icon"
           :alt="tech.label"
-          @error="($event.target as HTMLImageElement).style.display='none'"
+          @error="($event.target as HTMLImageElement).src = `${BASE}icons/tech/gate.webp`"
         />
         <span v-if="tech.isGate && tech.knowledgeCost" class="gate-cost">{{ tech.knowledgeCost.toLocaleString() }}</span>
         <span class="tech-label">{{ tech.label }}</span>
