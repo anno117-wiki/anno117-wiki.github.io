@@ -15,7 +15,7 @@
   /* ネイビー×ゴールド カラーパレット */
   --background: #f8f8f6;
   --background-light: #ffffff;
-  --background-dark: #d8d9d7;
+  --background-dark: #b8bfc9;
   --background-accent: #f0f0ee;
 
   --theme-color: #1e3a5f;
@@ -23,6 +23,8 @@
   --theme-color-dark: #0f1f33;
   --accent-color: #c9a84c;
   --border-color: #d0d5de;
+  --text-primary: #0f1f33;
+  --text-secondary: #5a7092;
 
   /* ネオモーフィズムシャドウ */
   --shadow-light: -8px -8px 16px var(--background-light);
