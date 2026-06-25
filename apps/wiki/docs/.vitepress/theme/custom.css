@@ -175,3 +175,19 @@
   box-shadow: var(--neo-inset) !important;
   transform: translateY(1px);
 }
+
+/* サイドバーメニュー項目 ネオモーフィズム */
+.VPSidebarItem .item {
+  border-radius: 8px;
+  margin: 2px 4px;
+  transition: box-shadow 0.2s;
+}
+.VPSidebarItem .item:hover {
+  box-shadow: var(--neo-shadow);
+  background: #eef0f4;
+}
+.VPSidebarItem.is-active .item {
+  box-shadow: var(--neo-inset);
+  background: #eef0f4;
+  color: #c9a84c;
+}
