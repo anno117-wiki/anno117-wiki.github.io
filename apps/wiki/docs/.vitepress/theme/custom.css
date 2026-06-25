@@ -26,9 +26,9 @@
 
   /* ネオモーフィズム変数 */
   --neo-shadow-light: -6px -6px 12px rgba(255, 255, 255, 0.8);
-  --neo-shadow-dark: 6px 6px 12px rgba(163, 177, 198, 0.5);
+  --neo-shadow-dark: 6px 6px 12px rgba(168, 179, 192, 0.6);
   --neo-shadow: var(--neo-shadow-light), var(--neo-shadow-dark);
-  --neo-inset: inset 4px 4px 8px rgba(163, 177, 198, 0.4), inset -4px -4px 8px rgba(255, 255, 255, 0.7);
+  --neo-inset: inset 4px 4px 8px rgba(168, 179, 192, 0.5), inset -4px -4px 8px rgba(255, 255, 255, 0.7);
 }
 
 /* ナビバー */
@@ -41,8 +41,16 @@
   box-shadow: 0 4px 12px rgba(30, 58, 95, 0.35) !important;
 }
 
+.VPNavBarTitle {
+  position: absolute;
+  left: 50%;
+  transform: translateX(-50%);
+  pointer-events: none;
+}
+
 .VPNavBarTitle .title {
   color: #f8f8f6 !important;
+  pointer-events: auto;
 }
 
 .VPNavBarMenuLink {
@@ -103,6 +111,7 @@
 .VPSidebarItem .text {
   font-size: 13px;
   white-space: nowrap;
+  padding: 3px;
   overflow: hidden;
   text-overflow: ellipsis;
 }
@@ -180,6 +189,7 @@
 .VPSidebarItem .item {
   border-radius: 8px;
   margin: 2px 4px;
+  padding: 5px;
   transition: box-shadow 0.2s;
 }
 .VPSidebarItem .item:hover {

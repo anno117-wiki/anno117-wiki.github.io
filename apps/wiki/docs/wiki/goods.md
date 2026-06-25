@@ -37,7 +37,10 @@ Anno 117 で生産・消費される全 {{ data.categories.reduce((n, c) => n + 
 </thead>
 <tbody>
 <tr v-for="good in data.byCategory[cat]" :key="good.id">
-<td>{{ good.nameJa }}</td>
+<td style="white-space:nowrap;">
+  <img v-if="good.icon" :src="withBase('/icons/goods/' + good.icon + '.png')" :alt="good.nameJa" style="width:28px;height:28px;vertical-align:middle;margin-right:6px;object-fit:contain;" />
+  {{ good.nameJa }}
+</td>
 <td>{{ regionText(good.regions) }}</td>
 <td>
   <a v-if="cat !== 'intermediate' && cat !== 'resource'" :href="withBase(`/calculator/?good=${good.id}`)" target="_blank" rel="noopener noreferrer">計算</a>

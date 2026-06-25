@@ -5,6 +5,7 @@ interface GoodEntry {
   id: string
   nameJa: string
   nameEn: string
+  icon: string
   category: string
   regions: string[]
 }
@@ -19,6 +20,7 @@ export default {
       id: g.id,
       nameJa: jaGoods[g.id] ?? g.displayName,
       nameEn: g.displayName,
+      icon: g.icon ?? '',
       category: g.category,
       regions: g.regions as string[],
     }))

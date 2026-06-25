@@ -12,6 +12,7 @@ interface ProductionEntry {
   id: string
   nameJa: string
   nameEn: string
+  icon: string
   category: string
   regions: string[]
   buildingType: string
@@ -88,6 +89,7 @@ export default {
         id: good.id,
         nameJa,
         nameEn: good.displayName,
+        icon: good.icon ?? '',
         category: good.category,
         regions: good.regions,
         buildingType: prod.type ?? '',

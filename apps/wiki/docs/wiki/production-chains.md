@@ -41,7 +41,10 @@ function timeText(seconds: number): string {
 </thead>
 <tbody>
 <tr v-for="entry in data.byCategory[cat]" :key="entry.id">
-<td>{{ entry.nameJa }}</td>
+<td style="white-space:nowrap;">
+  <img v-if="entry.icon" :src="withBase('/icons/goods/' + entry.icon + '.png')" :alt="entry.nameJa" style="width:28px;height:28px;vertical-align:middle;margin-right:6px;object-fit:contain;" />
+  {{ entry.nameJa }}
+</td>
 <td>{{ regionText(entry.regions) }}</td>
 <td>{{ timeText(entry.timeSeconds) }}</td>
 <td>
