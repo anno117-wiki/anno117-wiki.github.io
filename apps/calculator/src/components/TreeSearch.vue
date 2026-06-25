@@ -91,7 +91,7 @@ function clearSearch() {
 .search-input {
   flex: 1;
   border: none;
-  background: transparent;
+  background: var(--background);
   color: var(--text-primary);
   font-size: 14px;
   outline: none;
