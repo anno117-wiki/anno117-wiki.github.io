@@ -44,40 +44,14 @@ export default defineConfig({
         },
       ],
       '/wiki/': [
-        {
-          text: '商品',
-          items: [
-            { text: '商品一覧', link: '/wiki/goods' },
-            { text: '地域別商品', link: '/wiki/regions' },
-          ],
-        },
-        {
-          text: '生産品',
-          items: [
-            { text: '生産チェーン一覧', link: '/wiki/production-chains' },
-            { text: '公式チェーン索引', link: '/wiki/production-chains-official' },
-            { text: '建物効果', link: '/wiki/buildings' },
-          ],
-        },
-        {
-          text: '技術',
-          items: [
-            { text: '技術ツリー', link: '/wiki/techs' },
-          ],
-        },
-        {
-          text: '住民',
-          items: [
-            { text: '住民層', link: '/wiki/population' },
-            { text: '商品需要逆引き', link: '/wiki/needs-index' },
-          ],
-        },
-        {
-          text: 'アイテム',
-          items: [
-            { text: 'アイテム一覧', link: '/wiki/items' },
-          ],
-        },
+        { text: '生産品一覧', link: '/wiki/goods' },
+        { text: '地域別商品', link: '/wiki/regions' },
+        { text: '生産チェーン一覧', link: '/wiki/production-chains' },
+        { text: '建物効果', link: '/wiki/buildings' },
+        { text: 'スキルツリー', link: '/wiki/techs' },
+        { text: '住民層', link: '/wiki/population' },
+        { text: '生産品需要逆引き', link: '/wiki/needs-index' },
+        { text: 'アイテム一覧', link: '/wiki/items' },
       ],
     },
 

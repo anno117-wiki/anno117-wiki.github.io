@@ -1,13 +1,23 @@
 :root {
-  --vp-sidebar-width: 120px;
+  --vp-sidebar-width: 180px;
 }
 
 /* サイドバー内パディング縮小・折り返し禁止 */
 .VPSidebar {
-  padding: 24px 8px !important;
+  padding: calc(var(--vp-nav-height) + 16px) 8px 24px !important;
+}
+
+.VPSidebar .group {
+  padding-top: 0 !important;
+}
+
+.VPSidebar .group + .group {
+  padding-top: 0 !important;
+  border-top: none !important;
 }
 
 .VPSidebarItem .text {
+  font-size: 13px;
   white-space: nowrap;
   overflow: hidden;
   text-overflow: ellipsis;
