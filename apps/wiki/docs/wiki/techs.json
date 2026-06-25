@@ -2961,6 +2961,7 @@
     {
       "guid": "24278",
       "internalName": "Tech Civic 10 6 Repeat Buff Hitpoints Towers",
+      "branchOverride": "military",
       "nameEn": "",
       "nameJa": "頑丈な構造",
       "descEn": "We have learned a lot from many years of carpentry.",

@@ -61,7 +61,7 @@ export default {
       guid: t.guid,
       internalName: t.internalName ?? '',
       label: t.nameJa || parseLabel(t.internalName ?? t.guid),
-      branch: parseBranch(t.internalName ?? '', t.annoNodeId),
+      branch: t.branchOverride ?? parseBranch(t.internalName ?? '', t.annoNodeId),
       branchLabel: BRANCH_LABELS[parseBranch(t.internalName ?? '')] ?? 'その他',
       descJa: t.descJa ?? '',
       descEn: t.descEn ?? '',
