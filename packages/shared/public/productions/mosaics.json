@@ -63,8 +63,8 @@
             ]
         },
         {
-            "id": "coal",
-            "name": "Coal",
+            "id": "charcoal",
+            "name": "Charcoal",
             "type": "charcoal_burner",
             "guid": "5977",
             "time": 60,
