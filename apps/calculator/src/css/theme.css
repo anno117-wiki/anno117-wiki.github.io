@@ -12,15 +12,17 @@
 }
 
 :root {
-  /* ネオモーフィズム用カラーパレット */
-  --background: #e0e5ec;
+  /* ネイビー×ゴールド カラーパレット */
+  --background: #f8f8f6;
   --background-light: #ffffff;
-  --background-dark: #a3b1c6;
-  --background-accent: #f5f7fa;
+  --background-dark: #d8d9d7;
+  --background-accent: #f0f0ee;
 
-  --theme-color: #4a90e2;
-  --theme-color-hover: #357abd;
-  --theme-color-dark: #2c5282;
+  --theme-color: #1e3a5f;
+  --theme-color-hover: #16305a;
+  --theme-color-dark: #0f1f33;
+  --accent-color: #c9a84c;
+  --border-color: #d0d5de;
 
   /* ネオモーフィズムシャドウ */
   --shadow-light: -8px -8px 16px var(--background-light);
@@ -70,7 +72,7 @@ body {
 }
 
 header {
-  background-color: var(--theme-color-dark);
+  background-color: var(--theme-color);
   color: var(--background);
   display: flex;
   align-items: center;
@@ -266,7 +268,7 @@ main {
 }
 
 .resize-handle:hover {
-  background: linear-gradient(to bottom, #5ba3f0, #4a90e2);
+  background: linear-gradient(to bottom, #d4b254, #c9a84c);
   box-shadow: -6px -6px 12px var(--background-light),
               6px 6px 12px var(--background-dark);
 }
@@ -389,7 +391,7 @@ input[type="number"]:focus,
 }
 
 .goods-card.selected {
-  background: linear-gradient(145deg, #5ba3f0, #4a90e2);
+  background: linear-gradient(145deg, #254d7a, #1e3a5f);
   box-shadow: var(--shadow-light), var(--shadow-dark);
   color: white;
 }
@@ -456,7 +458,7 @@ input[type="number"]:focus,
 }
 
 .tree-item.selected {
-  background: linear-gradient(145deg, #5ba3f0, #4a90e2);
+  background: linear-gradient(145deg, #254d7a, #1e3a5f);
   box-shadow: var(--shadow-light), var(--shadow-dark);
   color: white;
 }
