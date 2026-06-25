@@ -107,6 +107,7 @@ const sortedFiltered = computed(() => {
   <span style="font-size:13px;color:var(--vp-c-text-2);">{{ sortedFiltered.length }} / {{ data.buildings.length }} 件</span>
 </div>
 
+<div style="overflow-x:auto;">
 <table>
 <thead>
 <tr>
@@ -142,3 +143,4 @@ const sortedFiltered = computed(() => {
 </tr>
 </tbody>
 </table>
+</div>

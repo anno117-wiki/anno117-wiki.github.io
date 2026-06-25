@@ -70,6 +70,7 @@ function fmtPrice(p: string): string {
 }
 </style>
 
+<div style="overflow-x:auto;">
 <table>
 <thead>
 <tr><th>名称</th><th>レアリティ</th><th>分類</th><th>効果</th><th>説明</th><th>価格</th></tr>
@@ -85,3 +86,4 @@ function fmtPrice(p: string): string {
 </tr>
 </tbody>
 </table>
+</div>
