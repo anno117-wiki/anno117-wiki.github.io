@@ -10,14 +10,21 @@ const filtered = computed(() =>
   )
 )
 
-function regionBadge(region: string): string {
-  return data.regionLabels[region] ?? region
+function tierName(tier: string, region: string): string {
+  return (data.tierLabels[region] ?? {})[tier] ?? tier
+}
+
+const TIER_CSS: Record<string, string> = {
+  libertus:  'tier-lib',
+  plebeian:  'tier-ple',
+  equites:   'tier-equ',
+  patrician: 'tier-pat',
 }
 </script>
 
-# 商品需要逆引き
+# 生産品需要逆引き
 
-住民が必要とする商品を需要カテゴリ別に分類した一覧です。公式ゲームデータから抽出（{{ data.items.length }}商品）。
+住民が必要とする生産品を需要カテゴリ別に分類した一覧です。公式ゲームデータから抽出（{{ data.items.length }}件）。
 
 <div class="cat-tabs">
   <button
@@ -33,7 +40,7 @@ function regionBadge(region: string): string {
     <tr>
       <th>商品名</th>
       <th>English</th>
-      <th>需要地域</th>
+      <th>需要住民層</th>
     </tr>
   </thead>
   <tbody>
@@ -42,10 +49,10 @@ function regionBadge(region: string): string {
       <td class="en">{{ item.productNameEn }}</td>
       <td>
         <span
-          v-for="d in item.demands.filter(d => d.category === activeCategory)"
-          :key="d.region"
-          :class="['region-badge', d.region.replace(' ', '-').toLowerCase()]"
-        >{{ regionBadge(d.region) }}</span>
+          v-for="t in item.tiers"
+          :key="t.region + t.tier"
+          :class="['tier-badge', TIER_CSS[t.tier] ?? '']"
+        >{{ tierName(t.tier, t.region) }}</span>
       </td>
     </tr>
   </tbody>
@@ -93,16 +100,22 @@ function regionBadge(region: string): string {
   color: var(--vp-c-text-2);
   font-size: 0.85rem;
 }
-.region-badge {
+.tier-badge {
   display: inline-block;
   padding: 2px 8px;
   border-radius: 4px;
-  font-size: 0.8rem;
+  font-size: 0.78rem;
   margin-right: 4px;
+  margin-bottom: 2px;
   background: var(--vp-c-bg-mute);
   border: 1px solid var(--vp-c-divider);
 }
-.region-badge.roman { border-color: #e85d2a; color: #e85d2a; }
-.region-badge.celtic { border-color: #2a7ae8; color: #2a7ae8; }
-.region-badge.roman-celtic { border-color: #6b2ae8; color: #6b2ae8; }
+.tier-lib { border-color: #6b7280; color: #6b7280; }
+.tier-ple { border-color: #2563eb; color: #2563eb; }
+.tier-equ { border-color: #d97706; color: #d97706; }
+.tier-pat { border-color: #9333ea; color: #9333ea; }
+.dark .tier-lib { border-color: #9ca3af; color: #9ca3af; }
+.dark .tier-ple { border-color: #60a5fa; color: #60a5fa; }
+.dark .tier-equ { border-color: #fbbf24; color: #fbbf24; }
+.dark .tier-pat { border-color: #c084fc; color: #c084fc; }
 </style>

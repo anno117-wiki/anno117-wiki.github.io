@@ -47,6 +47,12 @@ function zoomStep(d: number) {
   zoom.value = Math.min(1.0, Math.max(0.3, +(zoom.value + d).toFixed(2)))
 }
 
+function formatKnowledge(n: number): string {
+  if (n >= 1_000_000) return parseFloat((n / 1_000_000).toFixed(1)) + 'M'
+  if (n >= 1_000) return parseFloat((n / 1_000).toFixed(1)) + 'k'
+  return String(n)
+}
+
 const branchLabelMap: Record<string, string> = {
   economy: '経済', civic: '市民', military: '軍事', dlc01: 'DLC',
 }
@@ -55,9 +61,9 @@ const branchColorMap: Record<string, string> = {
 }
 </script>
 
-# 技術ツリー
+# スキルツリー
 
-知識を消費して解放できる技術の一覧です。**ゲート**（太枠）は次フェーズへの解放条件です。セルをクリックで詳細表示。
+知識を消費して解放できるスキルの一覧です。**ゲート**（太枠）は次フェーズへの解放条件です。セルをクリックで詳細表示。
 
 <div class="zoom-bar">
   <button class="zoom-btn" @click="zoomStep(-0.05)" :disabled="zoom <= 0.3">−</button>
@@ -76,7 +82,7 @@ const branchColorMap: Record<string, string> = {
   <div class="detail-body">
     <div v-if="selected.knowledgeCost" class="detail-row">
       <span class="detail-key">知識コスト</span>
-      <span class="detail-val">{{ selected.knowledgeCost.toLocaleString() }}</span>
+      <span class="detail-val">{{ formatKnowledge(selected.knowledgeCost) }}</span>
     </div>
     <div v-if="selected.effectJa" class="detail-row full">
       <span class="detail-key">効果</span>
@@ -121,7 +127,7 @@ const branchColorMap: Record<string, string> = {
           :alt="tech.label"
           @error="($event.target as HTMLImageElement).src = `${BASE}icons/tech/gate.webp`"
         />
-        <span v-if="tech.isGate && tech.knowledgeCost" class="gate-cost">{{ tech.knowledgeCost.toLocaleString() }}</span>
+        <span v-if="tech.isGate && tech.knowledgeCost" class="gate-cost">{{ formatKnowledge(tech.knowledgeCost) }}</span>
         <span class="tech-label">{{ tech.label }}</span>
       </div>
     </div>
@@ -133,7 +139,7 @@ const branchColorMap: Record<string, string> = {
   <div v-if="hoveredTech && !selected" class="tech-tooltip" :style="tooltipStyle">
     <div class="tt-name">{{ hoveredTech.label }}</div>
     <div v-if="hoveredTech.effectJa" class="tt-effect">{{ stripTags(hoveredTech.effectJa) }}</div>
-    <div v-if="hoveredTech.knowledgeCost" class="tt-cost">知識コスト: {{ hoveredTech.knowledgeCost.toLocaleString() }}</div>
+    <div v-if="hoveredTech.knowledgeCost" class="tt-cost">知識コスト: {{ formatKnowledge(hoveredTech.knowledgeCost) }}</div>
     <div v-if="hoveredTech.isGate" class="tt-gate">ゲート（フェーズ解放条件）</div>
   </div>
 </Teleport>

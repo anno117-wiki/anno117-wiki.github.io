@@ -1,15 +1,16 @@
 import raw from './needs-index.json'
 
-export interface DemandEntry {
+export interface TierEntry {
+  tier: string
   region: string
-  category: string
 }
 
 export interface NeedsByProduct {
   productGuid: string
   productNameEn: string
   productNameJa: string
-  demands: DemandEntry[]
+  demands: { region: string; category: string }[]
+  tiers: TierEntry[]
 }
 
 const CATEGORY_LABELS: Record<string, string> = {
@@ -22,10 +23,10 @@ const CATEGORY_LABELS: Record<string, string> = {
   Wonder:     '驚異',
 }
 
-const REGION_LABELS: Record<string, string> = {
-  'Roman':        'ローマ',
-  'Celtic':       'ケルト',
-  'Roman Celtic': '共通',
+const TIER_LABELS: Record<string, Record<string, string>> = {
+  Roman:       { libertus: 'リベルトゥス', plebeian: 'プレブス', equites: 'エクィテス', patrician: 'パトリキ' },
+  Celtic:      { libertus: 'ウェーダー',   plebeian: 'スミス',   equites: 'アルダー' },
+  RomanCeltic: { plebeian: 'メルカトル',   equites: 'ノビレス' },
 }
 
 const CAT_ORDER = ['Food', 'Fashion', 'Household', 'Public', 'Culture', 'Boardgames', 'Wonder']
@@ -35,7 +36,7 @@ export default {
     items: NeedsByProduct[]
     categories: string[]
     categoryLabels: Record<string, string>
-    regionLabels: Record<string, string>
+    tierLabels: Record<string, Record<string, string>>
   } {
     const items = (raw as any).needsByProduct as NeedsByProduct[]
 
@@ -45,6 +46,6 @@ export default {
     }
     const categories = CAT_ORDER.filter(c => catSet.has(c))
 
-    return { items, categories, categoryLabels: CATEGORY_LABELS, regionLabels: REGION_LABELS }
+    return { items, categories, categoryLabels: CATEGORY_LABELS, tierLabels: { ...TIER_LABELS } }
   },
 }

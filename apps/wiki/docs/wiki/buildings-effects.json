@@ -173,7 +173,7 @@
       "prestige": 0,
       "health": 0,
       "happiness": 0,
-      "fireSafety": -4,
+      "fireSafety": -2,
       "icon": "glass_goods"
     },
     {
@@ -381,7 +381,7 @@
       "prestige": 0,
       "health": 0,
       "happiness": 0,
-      "fireSafety": -4,
+      "fireSafety": -2,
       "icon": "bread_goods"
     },
     {
@@ -428,7 +428,7 @@
       "knowledge": 0,
       "prestige": 0,
       "health": 0,
-      "happiness": -4,
+      "happiness": -2,
       "fireSafety": 0,
       "icon": "garum_goods"
     },
@@ -475,7 +475,7 @@
       "faith": 0,
       "knowledge": 0,
       "prestige": 0,
-      "health": -4,
+      "health": -2,
       "happiness": 0,
       "fireSafety": 0,
       "icon": "pigs_goods"
@@ -492,7 +492,7 @@
       "knowledge": 0,
       "prestige": 0,
       "health": 0,
-      "happiness": -4,
+      "happiness": -2,
       "fireSafety": 0,
       "icon": "leather_goods"
     },
@@ -540,8 +540,8 @@
       "knowledge": 0,
       "prestige": 0,
       "health": 0,
-      "happiness": -4,
-      "fireSafety": -4,
+      "happiness": -2,
+      "fireSafety": -2,
       "icon": "pig_lard_goods"
     },
     {
@@ -556,7 +556,7 @@
       "knowledge": 0,
       "prestige": 0,
       "health": 1,
-      "happiness": -2,
+      "happiness": -1,
       "fireSafety": 0,
       "icon": "lavender_soap_goods"
     },
@@ -605,7 +605,7 @@
       "prestige": 0,
       "health": 0,
       "happiness": 0,
-      "fireSafety": -4,
+      "fireSafety": -2,
       "icon": "amphorae_goods"
     },
     {
@@ -651,7 +651,7 @@
       "faith": 0,
       "knowledge": 0,
       "prestige": 0,
-      "health": -4,
+      "health": -2,
       "happiness": 0,
       "fireSafety": 0,
       "icon": "minerals_goods"
@@ -667,7 +667,7 @@
       "faith": 0,
       "knowledge": 0,
       "prestige": 0,
-      "health": -6,
+      "health": -3,
       "happiness": 0,
       "fireSafety": 0,
       "icon": "pigments_goods"
@@ -748,7 +748,7 @@
       "faith": 0,
       "knowledge": 0,
       "prestige": 1,
-      "health": -2,
+      "health": -1,
       "happiness": 0,
       "fireSafety": 0
     },
@@ -924,7 +924,7 @@
       "knowledge": 0,
       "prestige": 0,
       "health": 0,
-      "happiness": -6,
+      "happiness": -3,
       "fireSafety": 0,
       "icon": "tyrian_purple_goods"
     },
@@ -1005,7 +1005,7 @@
       "prestige": 2,
       "health": 0,
       "happiness": 0,
-      "fireSafety": -4,
+      "fireSafety": -2,
       "icon": "fine_glass_goods"
     },
     {
@@ -1230,7 +1230,7 @@
       "prestige": 2,
       "health": 0,
       "happiness": 0,
-      "fireSafety": -2
+      "fireSafety": -1
     },
     {
       "id": "horse_breeder",
@@ -1244,7 +1244,7 @@
       "faith": 0,
       "knowledge": 0,
       "prestige": 0,
-      "health": -2,
+      "health": -1,
       "happiness": 1,
       "fireSafety": 0
     },
@@ -1290,7 +1290,7 @@
       "income": 0,
       "faith": 0,
       "knowledge": 0,
-      "prestige": 507,
+      "prestige": 7,
       "health": 0,
       "happiness": 3,
       "fireSafety": 0,
@@ -1419,7 +1419,7 @@
       "faith": 0,
       "knowledge": 0,
       "prestige": 0,
-      "health": -4,
+      "health": -2,
       "happiness": 0,
       "fireSafety": 0,
       "icon": "gold_ore_mine_goods"
@@ -1437,7 +1437,7 @@
       "prestige": 0,
       "health": 0,
       "happiness": 0,
-      "fireSafety": -4,
+      "fireSafety": -2,
       "icon": "gold_goods"
     },
     {
@@ -1453,7 +1453,7 @@
       "prestige": 3,
       "health": 0,
       "happiness": 0,
-      "fireSafety": -4,
+      "fireSafety": -2,
       "icon": "necklaces_goods"
     },
     {
@@ -1485,7 +1485,7 @@
       "prestige": 2,
       "health": 0,
       "happiness": 0,
-      "fireSafety": -2,
+      "fireSafety": -1,
       "icon": "lounger_goods"
     },
     {
@@ -1500,7 +1500,7 @@
       "knowledge": 0,
       "prestige": 0,
       "health": 0,
-      "happiness": -2,
+      "happiness": -1,
       "fireSafety": 0,
       "icon": "strings_goods"
     },
@@ -1549,7 +1549,7 @@
       "prestige": 2,
       "health": 0,
       "happiness": 0,
-      "fireSafety": -4,
+      "fireSafety": -2,
       "icon": "mosaics_goods"
     },
     {
@@ -1629,7 +1629,7 @@
       "prestige": 0,
       "health": 0,
       "happiness": 0,
-      "fireSafety": -4,
+      "fireSafety": -2,
       "icon": "bread_goods"
     },
     {
@@ -1643,7 +1643,7 @@
       "faith": 0,
       "knowledge": 0,
       "prestige": 0,
-      "health": -4,
+      "health": -2,
       "happiness": 0,
       "fireSafety": 0,
       "icon": "pigs_goods"
@@ -1677,7 +1677,7 @@
       "prestige": 0,
       "health": 0,
       "happiness": 0,
-      "fireSafety": -4,
+      "fireSafety": -2,
       "icon": "sausages_goods"
     },
     {
@@ -1691,7 +1691,7 @@
       "faith": 0,
       "knowledge": 0,
       "prestige": 0,
-      "health": -4,
+      "health": -2,
       "happiness": 0,
       "fireSafety": 0,
       "icon": "silver_ore_goods"
@@ -1709,7 +1709,7 @@
       "prestige": 0,
       "health": 0,
       "happiness": 0,
-      "fireSafety": -4,
+      "fireSafety": -2,
       "icon": "silver_goods"
     },
     {
@@ -1725,7 +1725,7 @@
       "prestige": 0,
       "health": 0,
       "happiness": 0,
-      "fireSafety": -4,
+      "fireSafety": -2,
       "icon": "brooch_goods"
     },
     {
@@ -1757,7 +1757,7 @@
       "prestige": 0,
       "health": 0,
       "happiness": 0,
-      "fireSafety": -4,
+      "fireSafety": -2,
       "icon": "amphorae_goods"
     },
     {
@@ -1788,7 +1788,7 @@
       "knowledge": 0,
       "prestige": 0,
       "health": 0,
-      "happiness": -4,
+      "happiness": -2,
       "fireSafety": 0,
       "icon": "bird_tongue_goods"
     },
@@ -1804,8 +1804,8 @@
       "knowledge": 0,
       "prestige": 0,
       "health": 0,
-      "happiness": -4,
-      "fireSafety": -4,
+      "happiness": -2,
+      "fireSafety": -2,
       "icon": "pig_lard_goods"
     },
     {
@@ -1820,7 +1820,7 @@
       "knowledge": 0,
       "prestige": 0,
       "health": 0,
-      "happiness": -2,
+      "happiness": -1,
       "fireSafety": 0,
       "icon": "tongue_in_aspic_goods"
     },
@@ -1931,7 +1931,7 @@
       "faith": 0,
       "knowledge": 0,
       "prestige": 0,
-      "health": -2,
+      "health": -1,
       "happiness": 1,
       "fireSafety": 0,
       "icon": "horses_goods"
@@ -1949,7 +1949,7 @@
       "prestige": 0,
       "health": 0,
       "happiness": 1,
-      "fireSafety": -2,
+      "fireSafety": -1,
       "icon": "wig_goods"
     },
     {
@@ -1981,7 +1981,7 @@
       "prestige": 0,
       "health": 0,
       "happiness": 2,
-      "fireSafety": -4,
+      "fireSafety": -2,
       "icon": "handmirros_goods"
     },
     {
@@ -2059,9 +2059,9 @@
       "faith": 0,
       "knowledge": 0,
       "prestige": 0,
-      "health": -6,
+      "health": -3,
       "happiness": 0,
-      "fireSafety": -6,
+      "fireSafety": -3,
       "icon": "coal_ore_forest_goods"
     },
     {
@@ -2107,7 +2107,7 @@
       "faith": 0,
       "knowledge": 0,
       "prestige": 0,
-      "health": -4,
+      "health": -2,
       "happiness": 0,
       "fireSafety": 0,
       "icon": "iron_ore_goods"
@@ -2125,7 +2125,7 @@
       "prestige": 0,
       "health": 0,
       "happiness": 0,
-      "fireSafety": -4,
+      "fireSafety": -2,
       "icon": "iron_goods"
     },
     {
@@ -2141,7 +2141,7 @@
       "prestige": 0,
       "health": 0,
       "happiness": 0,
-      "fireSafety": -4,
+      "fireSafety": -2,
       "icon": "weapons_goods"
     },
     {
@@ -2317,7 +2317,7 @@
       "prestige": 0,
       "health": 0,
       "happiness": 0,
-      "fireSafety": -4,
+      "fireSafety": -2,
       "icon": "armory_goods"
     },
     {
@@ -2331,7 +2331,7 @@
       "faith": 0,
       "knowledge": 0,
       "prestige": 0,
-      "health": -4,
+      "health": -2,
       "happiness": 0,
       "fireSafety": 0,
       "icon": "auroch_goods"
@@ -2397,7 +2397,7 @@
       "prestige": 0,
       "health": 0,
       "happiness": 0,
-      "fireSafety": -4,
+      "fireSafety": -2,
       "icon": "beer_goods"
     },
     {
@@ -2491,7 +2491,7 @@
       "faith": 0,
       "knowledge": 0,
       "prestige": 0,
-      "health": -4,
+      "health": -2,
       "happiness": 0,
       "fireSafety": 0,
       "icon": "copper_ore_goods"
@@ -2509,7 +2509,7 @@
       "prestige": 2,
       "health": 0,
       "happiness": 0,
-      "fireSafety": -4,
+      "fireSafety": -2,
       "icon": "torcs_goods"
     },
     {
@@ -2523,7 +2523,7 @@
       "faith": 0,
       "knowledge": 0,
       "prestige": 0,
-      "health": -4,
+      "health": -2,
       "happiness": 0,
       "fireSafety": 0,
       "icon": "tin_ore_goods"
@@ -2557,7 +2557,7 @@
       "prestige": 0,
       "health": 0,
       "happiness": 0,
-      "fireSafety": -4,
+      "fireSafety": -2,
       "icon": "bronze_goods"
     },
     {
@@ -2588,7 +2588,7 @@
       "faith": 0,
       "knowledge": 0,
       "prestige": 1,
-      "health": -2,
+      "health": -1,
       "happiness": 0,
       "fireSafety": 0
     },
@@ -2667,9 +2667,9 @@
       "faith": 0,
       "knowledge": 0,
       "prestige": 0,
-      "health": -4,
+      "health": -2,
       "happiness": 0,
-      "fireSafety": -4,
+      "fireSafety": -2,
       "icon": "lye_goods"
     },
     {
@@ -2684,7 +2684,7 @@
       "knowledge": 0,
       "prestige": 1,
       "health": 0,
-      "happiness": -2,
+      "happiness": -1,
       "fireSafety": 0,
       "icon": "pelt_hat_goods"
     },

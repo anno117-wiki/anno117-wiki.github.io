@@ -172,9 +172,6 @@ for asset in root.iter("Asset"):
         eff_guid = (eff_item.text or "").strip()
         for k, v in effect_buff_values(eff_guid).items():
             combined[k] += v
-    # 直接効果を上書き合算（直接効果は建物自体の負値が主）
-    for k, v in direct.items():
-        combined[k] = combined.get(k, 0) + v
 
     extracted[g] = {
         "guid":         g,

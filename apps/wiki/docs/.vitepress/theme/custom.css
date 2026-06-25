@@ -1,9 +1,74 @@
+@import url('https://fonts.googleapis.com/css2?family=Noto+Sans+JP:wght@400;500;700&display=swap');
+
 :root {
   --vp-sidebar-width: 180px;
+
+  /* ネイビー×ゴールド テーマ */
+  --vp-c-brand-1: #1e3a5f;
+  --vp-c-brand-2: #2a4f82;
+  --vp-c-brand-3: #3a6499;
+  --vp-c-brand-soft: rgba(30, 58, 95, 0.12);
+
+  --vp-c-bg: #f8f8f6;
+  --vp-c-bg-alt: #eef0f4;
+  --vp-c-bg-soft: #eef0f4;
+  --vp-c-bg-mute: #e4e7ee;
+
+  --vp-c-border: #d0d5de;
+  --vp-c-divider: #d0d5de;
+
+  --vp-c-text-1: #0f1f33;
+  --vp-c-text-2: #1e3a5f;
+
+  --vp-font-family-base: 'Noto Sans JP', 'Hiragino Kaku Gothic ProN', 'Hiragino Sans', 'Yu Gothic', 'Meiryo', system-ui, sans-serif;
+
+  --vp-sidebar-bg-color: #eef0f4;
 }
 
-/* サイドバー内パディング縮小・折り返し禁止 */
+/* ナビバー */
+.VPNav,
+.VPNavBar,
+.VPNavBar.has-shadow {
+  background-color: #1e3a5f !important;
+  backdrop-filter: none !important;
+  border-bottom: 2px solid #c9a84c !important;
+}
+
+.VPNavBarTitle .title {
+  color: #f8f8f6 !important;
+}
+
+.VPNavBarMenuLink {
+  color: rgba(255, 255, 255, 0.85) !important;
+}
+
+.VPNavBarMenuLink:hover,
+.VPNavBarMenuLink.active {
+  color: #c9a84c !important;
+}
+
+/* ハンバーガーメニューアイコン */
+.VPNavBarHamburger .top,
+.VPNavBarHamburger .middle,
+.VPNavBarHamburger .bottom {
+  background-color: #f8f8f6 !important;
+}
+
+/* リンク色 */
+.vp-doc a {
+  color: #1e3a5f;
+  text-decoration-color: rgba(30, 58, 95, 0.35);
+}
+
+.vp-doc a:hover {
+  color: #c9a84c;
+  text-decoration-color: #c9a84c;
+}
+
+/* サイドバー */
 .VPSidebar {
+  background-color: #eef0f4 !important;
+  border-right: 1px solid #d0d5de;
   padding: calc(var(--vp-nav-height) + 16px) 8px 24px !important;
 }
 
@@ -14,6 +79,17 @@
 .VPSidebar .group + .group {
   padding-top: 0 !important;
   border-top: none !important;
+}
+
+/* サイドバーアクティブリンク */
+.VPSidebarItem.is-active > .item .link .text,
+.VPSidebarItem.is-active > .item > .link .text {
+  color: #c9a84c !important;
+  font-weight: 700;
+}
+
+.VPSidebarItem.is-active > .item .indicator {
+  background-color: #c9a84c !important;
 }
 
 .VPSidebarItem .text {
@@ -52,4 +128,3 @@
 .vp-doc table th:nth-child(2) {
   white-space: nowrap;
 }
-

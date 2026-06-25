@@ -9,7 +9,7 @@ interface GoodEntry {
   regions: string[]
 }
 
-const CATEGORY_ORDER = ['food', 'construction', 'fashion', 'culture']
+const CATEGORY_ORDER = ['food', 'construction', 'fashion', 'culture', 'intermediate', 'resource']
 
 export default {
   load(): { byCategory: Record<string, GoodEntry[]>; categories: string[] } {
