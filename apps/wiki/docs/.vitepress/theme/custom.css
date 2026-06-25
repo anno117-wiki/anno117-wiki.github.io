@@ -156,7 +156,7 @@
   background-color: var(--vp-c-bg);
   border-radius: 16px;
   box-shadow: var(--neo-shadow);
-  padding: 2rem !important;
+  padding: 2rem 0 !important;
   margin: 1rem 0;
 }
 
