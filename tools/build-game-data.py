@@ -45,6 +45,33 @@ with open(OFFICIAL_CSV, encoding="utf-8-sig") as f:
         guid_to_ja[g] = (row["officialJA"] or "").strip()
 print(f"  {len(guid_to_en)} entries", file=sys.stderr)
 
+TEXTS_DIR = BASE / "_local/anno-official-data/config/gui"
+
+
+def load_texts(path: Path) -> dict[str, str]:
+    """texts_*.xml から LineId→Text の辞書を返す。outer <Text> のみ対象。"""
+    store: dict[str, str] = {}
+    for _, el in ET.iterparse(str(path), events=("end",)):
+        if el.tag == "Text" and el.find("LineId") is not None:
+            lid = (el.findtext("LineId") or "").strip()
+            txt = (el.findtext("Text") or "").strip()
+            if lid:
+                store[lid] = txt
+            el.clear()
+        elif el.tag == "Texts":
+            el.clear()
+    return store
+
+
+print("Loading texts_japanese.xml / texts_english.xml...", file=sys.stderr)
+line_to_ja: dict[str, str] = load_texts(TEXTS_DIR / "texts_japanese.xml")
+line_to_en: dict[str, str] = load_texts(TEXTS_DIR / "texts_english.xml")
+print(f"  JA: {len(line_to_ja)}, EN: {len(line_to_en)}", file=sys.stderr)
+
+
+def clean_text(t: str) -> str:
+    return re.sub(r"​", "", t)
+
 
 # ---- Step 2: assets.xml パース ----
 print("Parsing assets.xml (31 MB, may take ~10 sec)...", file=sys.stderr)
@@ -231,15 +258,55 @@ for asset in root.iter("Asset"):
     is_gate = (asset.findtext(".//Tech/IsGate") or "0").strip() == "1"
     color = (asset.findtext(".//Tech/Color") or "").strip()
     researchable_trigger = (asset.findtext(".//Tech/TechResearchableTrigger") or "").strip()
+    desc_line_id = (asset.findtext(".//Tech/TechDescription") or "").strip()
+    tech_icon_guid = (asset.findtext(".//Tech/TechIcon") or "").strip()
 
-    knowledge_cost = get_knowledge_cost(researchable_trigger) if researchable_trigger else None
+    knowledge_needed = (asset.findtext(".//Tech/KnowledgeNeeded") or "").strip()
+    if knowledge_needed:
+        try:
+            knowledge_cost = int(knowledge_needed)
+        except ValueError:
+            knowledge_cost = None
+    else:
+        knowledge_cost = get_knowledge_cost(researchable_trigger) if researchable_trigger else None
+
+    # TechIcon GUID → IconFilename
+    tech_icon_asset = guid_to_asset.get(tech_icon_guid)
+    tech_icon_path = (tech_icon_asset.findtext(".//Standard/IconFilename") or "").strip() if tech_icon_asset is not None else ""
+
+    # Rewards（Unlocks / Effects）の InfoDescription → 効果説明
+    reward_guids = (
+        [(i.findtext("UnlockReward") or "").strip() for i in asset.findall(".//Rewards/Unlocks/Item")]
+        + [(i.findtext("EffectAsset") or "").strip() for i in asset.findall(".//Rewards/Effects/Item")]
+    )
+    effect_ja_parts: list[str] = []
+    effect_en_parts: list[str] = []
+    for rg in reward_guids:
+        if not rg:
+            continue
+        ra = guid_to_asset.get(rg)
+        if ra is None:
+            continue
+        info_id = (ra.findtext(".//Standard/InfoDescription") or "").strip()
+        if info_id:
+            t_ja = clean_text(line_to_ja.get(info_id, ""))
+            t_en = clean_text(line_to_en.get(info_id, ""))
+            if t_ja:
+                effect_ja_parts.append(t_ja)
+            if t_en:
+                effect_en_parts.append(t_en)
 
     techs.append({
         "guid":           g,
         "internalName":   name,
         "nameEn":         guid_to_en.get(g, name),
         "nameJa":         existing_tech_name_ja.get(g) or guid_to_ja.get(g, ""),
+        "descEn":         clean_text(line_to_en.get(desc_line_id, "")),
+        "descJa":         clean_text(line_to_ja.get(desc_line_id, "")),
+        "effectJa":       " / ".join(effect_ja_parts),
+        "effectEn":       " / ".join(effect_en_parts),
         "iconKey":        icon_key_2d(icon_path),
+        "techIconPath":   tech_icon_path,
         "isGate":         is_gate,
         "color":          color,
         "knowledgeCost":  knowledge_cost,
@@ -322,7 +389,35 @@ else:
     )
     print(f"Wrote {PROD_CHAINS_JSON}", file=sys.stderr)
 
-    # needs 逆引き: product_guid → 商品名 + [{region, category}]
+    # ResidenceBuilding から need GUID → [(tier, region)] のマッピングを構築
+    _TIER_NUM_MAP = {"01": "libertus", "02": "plebeian", "03": "equites", "04": "patrician"}
+    need_guid_to_tiers: dict[str, list[dict]] = defaultdict(list)
+    for asset in root.iter("Asset"):
+        if (asset.findtext("Template") or "").strip() != "ResidenceBuilding":
+            continue
+        name = (asset.findtext(".//Standard/Name") or "").strip()
+        if not name.startswith("Residence "):
+            continue
+        if "Roman Celtic" in name:
+            res_region = "RomanCeltic"
+        elif "Celtic" in name:
+            res_region = "Celtic"
+        else:
+            res_region = "Roman"
+        m = re.search(r"\b(0[1-4])\b", name)
+        if not m:
+            continue
+        tier_key = _TIER_NUM_MAP.get(m.group(1), "")
+        if not tier_key:
+            continue
+        for el in asset.iter("Need"):
+            guid = (el.text or "").strip()
+            if guid and guid.isdigit():
+                entry = {"tier": tier_key, "region": res_region}
+                if entry not in need_guid_to_tiers[guid]:
+                    need_guid_to_tiers[guid].append(entry)
+
+    # needs 逆引き: product_guid → 商品名 + [{region, category}] + [tiers]
     guid_to_product = {p["guid"]: p for p in products}
     needs_by_guid: dict[str, dict] = {}
     for need in needs:
@@ -336,12 +431,16 @@ else:
                 "productNameEn": prod.get("nameEn", ""),
                 "productNameJa": prod.get("nameJa", ""),
                 "demands": [],
+                "tiers": [],
             }
         r, c = need.get("region", ""), need.get("category", "")
         if r and c:
             entry = {"region": r, "category": c}
             if entry not in needs_by_guid[pg]["demands"]:
                 needs_by_guid[pg]["demands"].append(entry)
+        for tier_entry in need_guid_to_tiers.get(need["guid"], []):
+            if tier_entry not in needs_by_guid[pg]["tiers"]:
+                needs_by_guid[pg]["tiers"].append(tier_entry)
 
     CAT_ORDER = ["Food", "Fashion", "Household", "Public", "Culture", "Boardgames", "Wonder"]
     needs_index = sorted(

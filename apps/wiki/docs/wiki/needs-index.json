@@ -9,6 +9,24 @@
           "region": "Roman",
           "category": "Food"
         }
+      ],
+      "tiers": [
+        {
+          "tier": "libertus",
+          "region": "Roman"
+        },
+        {
+          "tier": "plebeian",
+          "region": "Roman"
+        },
+        {
+          "tier": "equites",
+          "region": "Roman"
+        },
+        {
+          "tier": "patrician",
+          "region": "Roman"
+        }
       ]
     },
     {
@@ -20,6 +38,24 @@
           "region": "Roman",
           "category": "Food"
         }
+      ],
+      "tiers": [
+        {
+          "tier": "libertus",
+          "region": "Roman"
+        },
+        {
+          "tier": "plebeian",
+          "region": "Roman"
+        },
+        {
+          "tier": "equites",
+          "region": "Roman"
+        },
+        {
+          "tier": "patrician",
+          "region": "Roman"
+        }
       ]
     },
     {
@@ -30,6 +66,28 @@
         {
           "region": "Roman Celtic",
           "category": "Food"
+        }
+      ],
+      "tiers": [
+        {
+          "tier": "plebeian",
+          "region": "RomanCeltic"
+        },
+        {
+          "tier": "equites",
+          "region": "RomanCeltic"
+        },
+        {
+          "tier": "libertus",
+          "region": "Celtic"
+        },
+        {
+          "tier": "plebeian",
+          "region": "Celtic"
+        },
+        {
+          "tier": "equites",
+          "region": "Celtic"
         }
       ]
     },
@@ -46,6 +104,40 @@
           "region": "Celtic",
           "category": "Food"
         }
+      ],
+      "tiers": [
+        {
+          "tier": "plebeian",
+          "region": "Roman"
+        },
+        {
+          "tier": "equites",
+          "region": "Roman"
+        },
+        {
+          "tier": "patrician",
+          "region": "Roman"
+        },
+        {
+          "tier": "plebeian",
+          "region": "RomanCeltic"
+        },
+        {
+          "tier": "equites",
+          "region": "RomanCeltic"
+        },
+        {
+          "tier": "libertus",
+          "region": "Celtic"
+        },
+        {
+          "tier": "plebeian",
+          "region": "Celtic"
+        },
+        {
+          "tier": "equites",
+          "region": "Celtic"
+        }
       ]
     },
     {
@@ -57,6 +149,28 @@
           "region": "Celtic",
           "category": "Food"
         }
+      ],
+      "tiers": [
+        {
+          "tier": "plebeian",
+          "region": "RomanCeltic"
+        },
+        {
+          "tier": "equites",
+          "region": "RomanCeltic"
+        },
+        {
+          "tier": "libertus",
+          "region": "Celtic"
+        },
+        {
+          "tier": "plebeian",
+          "region": "Celtic"
+        },
+        {
+          "tier": "equites",
+          "region": "Celtic"
+        }
       ]
     },
     {
@@ -67,6 +181,16 @@
         {
           "region": "Roman Celtic",
           "category": "Food"
+        }
+      ],
+      "tiers": [
+        {
+          "tier": "plebeian",
+          "region": "RomanCeltic"
+        },
+        {
+          "tier": "equites",
+          "region": "RomanCeltic"
         }
       ]
     },
@@ -83,6 +207,24 @@
           "region": "Celtic",
           "category": "Food"
         }
+      ],
+      "tiers": [
+        {
+          "tier": "equites",
+          "region": "Roman"
+        },
+        {
+          "tier": "patrician",
+          "region": "Roman"
+        },
+        {
+          "tier": "plebeian",
+          "region": "Celtic"
+        },
+        {
+          "tier": "equites",
+          "region": "Celtic"
+        }
       ]
     },
     {
@@ -97,6 +239,28 @@
         {
           "region": "Roman Celtic",
           "category": "Food"
+        }
+      ],
+      "tiers": [
+        {
+          "tier": "plebeian",
+          "region": "Roman"
+        },
+        {
+          "tier": "equites",
+          "region": "Roman"
+        },
+        {
+          "tier": "patrician",
+          "region": "Roman"
+        },
+        {
+          "tier": "plebeian",
+          "region": "RomanCeltic"
+        },
+        {
+          "tier": "equites",
+          "region": "RomanCeltic"
         }
       ]
     },
@@ -113,6 +277,32 @@
           "region": "Roman",
           "category": "Food"
         }
+      ],
+      "tiers": [
+        {
+          "tier": "plebeian",
+          "region": "Celtic"
+        },
+        {
+          "tier": "equites",
+          "region": "Celtic"
+        },
+        {
+          "tier": "libertus",
+          "region": "Roman"
+        },
+        {
+          "tier": "plebeian",
+          "region": "Roman"
+        },
+        {
+          "tier": "equites",
+          "region": "Roman"
+        },
+        {
+          "tier": "patrician",
+          "region": "Roman"
+        }
       ]
     },
     {
@@ -123,6 +313,12 @@
         {
           "region": "Celtic",
           "category": "Food"
+        }
+      ],
+      "tiers": [
+        {
+          "tier": "equites",
+          "region": "Celtic"
         }
       ]
     },
@@ -139,6 +335,24 @@
           "region": "Roman Celtic",
           "category": "Food"
         }
+      ],
+      "tiers": [
+        {
+          "tier": "equites",
+          "region": "Roman"
+        },
+        {
+          "tier": "patrician",
+          "region": "Roman"
+        },
+        {
+          "tier": "equites",
+          "region": "RomanCeltic"
+        },
+        {
+          "tier": "equites",
+          "region": "Celtic"
+        }
       ]
     },
     {
@@ -149,6 +363,12 @@
         {
           "region": "Roman",
           "category": "Food"
+        }
+      ],
+      "tiers": [
+        {
+          "tier": "patrician",
+          "region": "Roman"
         }
       ]
     },
@@ -165,6 +385,16 @@
           "region": "Roman Celtic",
           "category": "Food"
         }
+      ],
+      "tiers": [
+        {
+          "tier": "patrician",
+          "region": "Roman"
+        },
+        {
+          "tier": "equites",
+          "region": "RomanCeltic"
+        }
       ]
     },
     {
@@ -175,6 +405,12 @@
         {
           "region": "Roman Celtic",
           "category": "Fashion"
+        }
+      ],
+      "tiers": [
+        {
+          "tier": "equites",
+          "region": "RomanCeltic"
         }
       ]
     },
@@ -187,6 +423,20 @@
           "region": "Roman",
           "category": "Fashion"
         }
+      ],
+      "tiers": [
+        {
+          "tier": "plebeian",
+          "region": "Roman"
+        },
+        {
+          "tier": "equites",
+          "region": "Roman"
+        },
+        {
+          "tier": "patrician",
+          "region": "Roman"
+        }
       ]
     },
     {
@@ -197,6 +447,16 @@
         {
           "region": "Celtic",
           "category": "Fashion"
+        }
+      ],
+      "tiers": [
+        {
+          "tier": "plebeian",
+          "region": "Celtic"
+        },
+        {
+          "tier": "equites",
+          "region": "Celtic"
         }
       ]
     },
@@ -213,6 +473,44 @@
           "region": "Roman Celtic",
           "category": "Fashion"
         }
+      ],
+      "tiers": [
+        {
+          "tier": "libertus",
+          "region": "Roman"
+        },
+        {
+          "tier": "plebeian",
+          "region": "Roman"
+        },
+        {
+          "tier": "equites",
+          "region": "Roman"
+        },
+        {
+          "tier": "patrician",
+          "region": "Roman"
+        },
+        {
+          "tier": "plebeian",
+          "region": "RomanCeltic"
+        },
+        {
+          "tier": "equites",
+          "region": "RomanCeltic"
+        },
+        {
+          "tier": "libertus",
+          "region": "Celtic"
+        },
+        {
+          "tier": "plebeian",
+          "region": "Celtic"
+        },
+        {
+          "tier": "equites",
+          "region": "Celtic"
+        }
       ]
     },
     {
@@ -228,6 +526,20 @@
           "region": "Roman Celtic",
           "category": "Fashion"
         }
+      ],
+      "tiers": [
+        {
+          "tier": "equites",
+          "region": "Roman"
+        },
+        {
+          "tier": "patrician",
+          "region": "Roman"
+        },
+        {
+          "tier": "equites",
+          "region": "RomanCeltic"
+        }
       ]
     },
     {
@@ -239,6 +551,12 @@
           "region": "Roman",
           "category": "Fashion"
         }
+      ],
+      "tiers": [
+        {
+          "tier": "patrician",
+          "region": "Roman"
+        }
       ]
     },
     {
@@ -249,6 +567,24 @@
         {
           "region": "Roman",
           "category": "Fashion"
+        }
+      ],
+      "tiers": [
+        {
+          "tier": "libertus",
+          "region": "Roman"
+        },
+        {
+          "tier": "plebeian",
+          "region": "Roman"
+        },
+        {
+          "tier": "equites",
+          "region": "Roman"
+        },
+        {
+          "tier": "patrician",
+          "region": "Roman"
         }
       ]
     },
@@ -265,6 +601,24 @@
           "region": "Roman Celtic",
           "category": "Fashion"
         }
+      ],
+      "tiers": [
+        {
+          "tier": "equites",
+          "region": "Roman"
+        },
+        {
+          "tier": "patrician",
+          "region": "Roman"
+        },
+        {
+          "tier": "plebeian",
+          "region": "RomanCeltic"
+        },
+        {
+          "tier": "equites",
+          "region": "RomanCeltic"
+        }
       ]
     },
     {
@@ -280,6 +634,16 @@
           "region": "Celtic",
           "category": "Fashion"
         }
+      ],
+      "tiers": [
+        {
+          "tier": "patrician",
+          "region": "Roman"
+        },
+        {
+          "tier": "equites",
+          "region": "Celtic"
+        }
       ]
     },
     {
@@ -290,6 +654,12 @@
         {
           "region": "Celtic",
           "category": "Fashion"
+        }
+      ],
+      "tiers": [
+        {
+          "tier": "equites",
+          "region": "Celtic"
         }
       ]
     },
@@ -306,6 +676,28 @@
           "region": "Roman Celtic",
           "category": "Fashion"
         }
+      ],
+      "tiers": [
+        {
+          "tier": "plebeian",
+          "region": "Roman"
+        },
+        {
+          "tier": "equites",
+          "region": "Roman"
+        },
+        {
+          "tier": "patrician",
+          "region": "Roman"
+        },
+        {
+          "tier": "plebeian",
+          "region": "RomanCeltic"
+        },
+        {
+          "tier": "equites",
+          "region": "RomanCeltic"
+        }
       ]
     },
     {
@@ -317,6 +709,28 @@
           "region": "Celtic",
           "category": "Fashion"
         }
+      ],
+      "tiers": [
+        {
+          "tier": "plebeian",
+          "region": "RomanCeltic"
+        },
+        {
+          "tier": "equites",
+          "region": "RomanCeltic"
+        },
+        {
+          "tier": "libertus",
+          "region": "Celtic"
+        },
+        {
+          "tier": "plebeian",
+          "region": "Celtic"
+        },
+        {
+          "tier": "equites",
+          "region": "Celtic"
+        }
       ]
     },
     {
@@ -327,6 +741,16 @@
         {
           "region": "Celtic",
           "category": "Fashion"
+        }
+      ],
+      "tiers": [
+        {
+          "tier": "plebeian",
+          "region": "Celtic"
+        },
+        {
+          "tier": "equites",
+          "region": "Celtic"
         }
       ]
     },
@@ -343,6 +767,28 @@
           "region": "Roman Celtic",
           "category": "Household"
         }
+      ],
+      "tiers": [
+        {
+          "tier": "plebeian",
+          "region": "Roman"
+        },
+        {
+          "tier": "equites",
+          "region": "Roman"
+        },
+        {
+          "tier": "patrician",
+          "region": "Roman"
+        },
+        {
+          "tier": "plebeian",
+          "region": "RomanCeltic"
+        },
+        {
+          "tier": "equites",
+          "region": "RomanCeltic"
+        }
       ]
     },
     {
@@ -357,6 +803,28 @@
         {
           "region": "Roman Celtic",
           "category": "Household"
+        }
+      ],
+      "tiers": [
+        {
+          "tier": "plebeian",
+          "region": "Roman"
+        },
+        {
+          "tier": "equites",
+          "region": "Roman"
+        },
+        {
+          "tier": "patrician",
+          "region": "Roman"
+        },
+        {
+          "tier": "plebeian",
+          "region": "RomanCeltic"
+        },
+        {
+          "tier": "equites",
+          "region": "RomanCeltic"
         }
       ]
     },
@@ -373,6 +841,24 @@
           "region": "Roman Celtic",
           "category": "Household"
         }
+      ],
+      "tiers": [
+        {
+          "tier": "equites",
+          "region": "Roman"
+        },
+        {
+          "tier": "patrician",
+          "region": "Roman"
+        },
+        {
+          "tier": "plebeian",
+          "region": "RomanCeltic"
+        },
+        {
+          "tier": "equites",
+          "region": "RomanCeltic"
+        }
       ]
     },
     {
@@ -388,6 +874,16 @@
           "region": "Roman Celtic",
           "category": "Household"
         }
+      ],
+      "tiers": [
+        {
+          "tier": "patrician",
+          "region": "Roman"
+        },
+        {
+          "tier": "equites",
+          "region": "RomanCeltic"
+        }
       ]
     },
     {
@@ -398,6 +894,16 @@
         {
           "region": "Roman",
           "category": "Household"
+        }
+      ],
+      "tiers": [
+        {
+          "tier": "equites",
+          "region": "Roman"
+        },
+        {
+          "tier": "patrician",
+          "region": "Roman"
         }
       ]
     },
@@ -410,6 +916,12 @@
           "region": "Roman",
           "category": "Household"
         }
+      ],
+      "tiers": [
+        {
+          "tier": "patrician",
+          "region": "Roman"
+        }
       ]
     },
     {
@@ -421,6 +933,16 @@
           "region": "Celtic",
           "category": "Household"
         }
+      ],
+      "tiers": [
+        {
+          "tier": "plebeian",
+          "region": "Celtic"
+        },
+        {
+          "tier": "equites",
+          "region": "Celtic"
+        }
       ]
     },
     {
@@ -431,6 +953,16 @@
         {
           "region": "Celtic",
           "category": "Household"
+        }
+      ],
+      "tiers": [
+        {
+          "tier": "plebeian",
+          "region": "Celtic"
+        },
+        {
+          "tier": "equites",
+          "region": "Celtic"
         }
       ]
     },
@@ -447,6 +979,24 @@
           "region": "Roman Celtic",
           "category": "Household"
         }
+      ],
+      "tiers": [
+        {
+          "tier": "equites",
+          "region": "Roman"
+        },
+        {
+          "tier": "patrician",
+          "region": "Roman"
+        },
+        {
+          "tier": "equites",
+          "region": "RomanCeltic"
+        },
+        {
+          "tier": "equites",
+          "region": "Celtic"
+        }
       ]
     },
     {
@@ -461,6 +1011,28 @@
         {
           "region": "Roman Celtic",
           "category": "Public"
+        }
+      ],
+      "tiers": [
+        {
+          "tier": "plebeian",
+          "region": "Roman"
+        },
+        {
+          "tier": "equites",
+          "region": "Roman"
+        },
+        {
+          "tier": "patrician",
+          "region": "Roman"
+        },
+        {
+          "tier": "plebeian",
+          "region": "RomanCeltic"
+        },
+        {
+          "tier": "equites",
+          "region": "RomanCeltic"
         }
       ]
     },
@@ -477,6 +1049,24 @@
           "region": "Roman Celtic",
           "category": "Public"
         }
+      ],
+      "tiers": [
+        {
+          "tier": "equites",
+          "region": "Roman"
+        },
+        {
+          "tier": "patrician",
+          "region": "Roman"
+        },
+        {
+          "tier": "equites",
+          "region": "RomanCeltic"
+        },
+        {
+          "tier": "equites",
+          "region": "Celtic"
+        }
       ]
     },
     {
@@ -488,6 +1078,28 @@
           "region": "Celtic",
           "category": "Public"
         }
+      ],
+      "tiers": [
+        {
+          "tier": "plebeian",
+          "region": "RomanCeltic"
+        },
+        {
+          "tier": "equites",
+          "region": "RomanCeltic"
+        },
+        {
+          "tier": "libertus",
+          "region": "Celtic"
+        },
+        {
+          "tier": "plebeian",
+          "region": "Celtic"
+        },
+        {
+          "tier": "equites",
+          "region": "Celtic"
+        }
       ]
     },
     {
@@ -498,6 +1110,12 @@
         {
           "region": "Roman",
           "category": "Public"
+        }
+      ],
+      "tiers": [
+        {
+          "tier": "patrician",
+          "region": "Roman"
         }
       ]
     },
@@ -514,6 +1132,44 @@
           "region": "Roman Celtic",
           "category": "Public"
         }
+      ],
+      "tiers": [
+        {
+          "tier": "libertus",
+          "region": "Roman"
+        },
+        {
+          "tier": "plebeian",
+          "region": "Roman"
+        },
+        {
+          "tier": "equites",
+          "region": "Roman"
+        },
+        {
+          "tier": "patrician",
+          "region": "Roman"
+        },
+        {
+          "tier": "plebeian",
+          "region": "RomanCeltic"
+        },
+        {
+          "tier": "equites",
+          "region": "RomanCeltic"
+        },
+        {
+          "tier": "libertus",
+          "region": "Celtic"
+        },
+        {
+          "tier": "plebeian",
+          "region": "Celtic"
+        },
+        {
+          "tier": "equites",
+          "region": "Celtic"
+        }
       ]
     },
     {
@@ -524,6 +1180,12 @@
         {
           "region": "Celtic",
           "category": "Public"
+        }
+      ],
+      "tiers": [
+        {
+          "tier": "equites",
+          "region": "Celtic"
         }
       ]
     },
@@ -540,6 +1202,16 @@
           "region": "Roman Celtic",
           "category": "Wonder"
         }
+      ],
+      "tiers": [
+        {
+          "tier": "patrician",
+          "region": "Roman"
+        },
+        {
+          "tier": "equites",
+          "region": "RomanCeltic"
+        }
       ]
     },
     {
@@ -551,6 +1223,20 @@
           "region": "Roman",
           "category": "Public"
         }
+      ],
+      "tiers": [
+        {
+          "tier": "plebeian",
+          "region": "Roman"
+        },
+        {
+          "tier": "equites",
+          "region": "Roman"
+        },
+        {
+          "tier": "patrician",
+          "region": "Roman"
+        }
       ]
     },
     {
@@ -561,6 +1247,24 @@
         {
           "region": "Roman Celtic",
           "category": "Public"
+        }
+      ],
+      "tiers": [
+        {
+          "tier": "plebeian",
+          "region": "RomanCeltic"
+        },
+        {
+          "tier": "equites",
+          "region": "RomanCeltic"
+        },
+        {
+          "tier": "plebeian",
+          "region": "Celtic"
+        },
+        {
+          "tier": "equites",
+          "region": "Celtic"
         }
       ]
     },
@@ -577,6 +1281,20 @@
           "region": "Roman Celtic",
           "category": "Public"
         }
+      ],
+      "tiers": [
+        {
+          "tier": "equites",
+          "region": "Roman"
+        },
+        {
+          "tier": "patrician",
+          "region": "Roman"
+        },
+        {
+          "tier": "equites",
+          "region": "RomanCeltic"
+        }
       ]
     },
     {
@@ -592,6 +1310,24 @@
           "region": "Roman Celtic",
           "category": "Public"
         }
+      ],
+      "tiers": [
+        {
+          "tier": "equites",
+          "region": "Roman"
+        },
+        {
+          "tier": "patrician",
+          "region": "Roman"
+        },
+        {
+          "tier": "equites",
+          "region": "RomanCeltic"
+        },
+        {
+          "tier": "equites",
+          "region": "Celtic"
+        }
       ]
     },
     {
@@ -603,6 +1339,16 @@
           "region": "Celtic",
           "category": "Public"
         }
+      ],
+      "tiers": [
+        {
+          "tier": "plebeian",
+          "region": "Celtic"
+        },
+        {
+          "tier": "equites",
+          "region": "Celtic"
+        }
       ]
     },
     {
@@ -613,6 +1359,24 @@
         {
           "region": "Roman",
           "category": "Public"
+        }
+      ],
+      "tiers": [
+        {
+          "tier": "libertus",
+          "region": "Roman"
+        },
+        {
+          "tier": "plebeian",
+          "region": "Roman"
+        },
+        {
+          "tier": "equites",
+          "region": "Roman"
+        },
+        {
+          "tier": "patrician",
+          "region": "Roman"
         }
       ]
     },
@@ -629,6 +1393,16 @@
           "region": "Celtic",
           "category": "Household"
         }
+      ],
+      "tiers": [
+        {
+          "tier": "patrician",
+          "region": "Roman"
+        },
+        {
+          "tier": "equites",
+          "region": "Celtic"
+        }
       ]
     },
     {
@@ -639,6 +1413,12 @@
         {
           "region": "Roman",
           "category": "Culture"
+        }
+      ],
+      "tiers": [
+        {
+          "tier": "patrician",
+          "region": "Roman"
         }
       ]
     },
@@ -655,6 +1435,16 @@
           "region": "Celtic",
           "category": "Boardgames"
         }
+      ],
+      "tiers": [
+        {
+          "tier": "patrician",
+          "region": "Roman"
+        },
+        {
+          "tier": "equites",
+          "region": "Celtic"
+        }
       ]
     },
     {
@@ -665,6 +1455,16 @@
         {
           "region": "Roman",
           "category": "Wonder"
+        }
+      ],
+      "tiers": [
+        {
+          "tier": "equites",
+          "region": "Roman"
+        },
+        {
+          "tier": "patrician",
+          "region": "Roman"
         }
       ]
     },
@@ -677,6 +1477,12 @@
           "region": "Roman",
           "category": "Wonder"
         }
+      ],
+      "tiers": [
+        {
+          "tier": "patrician",
+          "region": "Roman"
+        }
       ]
     },
     {
@@ -687,6 +1493,12 @@
         {
           "region": "Celtic",
           "category": "Wonder"
+        }
+      ],
+      "tiers": [
+        {
+          "tier": "equites",
+          "region": "Celtic"
         }
       ]
     },
@@ -703,6 +1515,20 @@
           "region": "Roman Celtic",
           "category": "Wonder"
         }
+      ],
+      "tiers": [
+        {
+          "tier": "equites",
+          "region": "Roman"
+        },
+        {
+          "tier": "patrician",
+          "region": "Roman"
+        },
+        {
+          "tier": "equites",
+          "region": "RomanCeltic"
+        }
       ]
     },
     {
@@ -713,6 +1539,12 @@
         {
           "region": "Celtic",
           "category": "Wonder"
+        }
+      ],
+      "tiers": [
+        {
+          "tier": "equites",
+          "region": "Celtic"
         }
       ]
     }
