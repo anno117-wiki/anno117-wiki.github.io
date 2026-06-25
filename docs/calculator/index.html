@@ -4,7 +4,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
-    <title>Anno 117 統合Wiki - 生産計算機</title>
+    <title>生産計算機 | Anno 117 統合Wiki</title>
     <meta name="description"
         content="Anno 117（PS5/Steam）の生産チェーン計算機。建物の必要数・生産比率を計算し、依存関係グラフで生産チェーンを可視化します。">
     <meta name="keywords"
@@ -14,13 +14,13 @@
 
     <!-- Open Graph / Facebook -->
     <meta property="og:type" content="website">
-    <meta property="og:title" content="Anno 117 統合Wiki - 生産計算機">
+    <meta property="og:title" content="生産計算機 | Anno 117 統合Wiki">
     <meta property="og:description"
         content="Anno 117（PS5/Steam）の生産チェーン計算機。建物の必要数・生産比率を計算し、依存関係グラフで生産チェーンを可視化します。">
 
     <!-- Twitter -->
     <meta property="twitter:card" content="summary_large_image">
-    <meta property="twitter:title" content="Anno 117 統合Wiki - 生産計算機">
+    <meta property="twitter:title" content="生産計算機 | Anno 117 統合Wiki">
     <meta property="twitter:description"
         content="Anno 117（PS5/Steam）の生産チェーン計算機。建物の必要数・生産比率を計算し、依存関係グラフで生産チェーンを可視化します。">
 
@@ -37,7 +37,7 @@
     {
       "@context": "https://schema.org",
       "@type": "WebApplication",
-      "name": "Anno 117 統合Wiki - 生産計算機",
+      "name": "生産計算機 | Anno 117 統合Wiki",
       "description": "Anno 117（PS5/Steam）の生産チェーン計算機。建物の必要数・生産比率を計算し、依存関係グラフで生産チェーンを可視化します。",
       "applicationCategory": "GameApplication",
       "operatingSystem": "Any",
@@ -52,26 +52,17 @@
       }
     }
     </script>
-  <script type="module" crossorigin src="/calculator/assets/index-CBQ286rE.js"></script>
-  <link rel="stylesheet" crossorigin href="/calculator/assets/index-CeaHMGb2.css">
+  <script type="module" crossorigin src="/calculator/assets/index-C182wgFZ.js"></script>
+  <link rel="stylesheet" crossorigin href="/calculator/assets/index-PrCYg63A.css">
 </head>
 
 <body>
     <header>
-        <h1 style="display: none;">Anno 117 Production Calculator</h1>
+        <h1 class="site-title"><a href="/">Anno 117 統合Wiki</a></h1>
         <button id="language-toggle-btn" class="language-toggle-btn" aria-label="Toggle Language">EN</button>
         <button id="region-toggle-btn" class="region-toggle-btn" aria-label="Toggle Region">
             <img src="./icons/latium.webp" alt="Region Icon" class="region-icon">
             <span class="region-text">Latium</span>
-        </button>
-        <button id="saved-store-toggle" class="saved-store-button" aria-label="Open Storage">
-            <svg xmlns="http://www.w3.org/2000/svg" height="24px" viewBox="0 -960 960 960" width="24px"
-                stroke="currentColor" fill="currentColor">
-                <path
-                    d="M200-160q-33 0-56.5-23.5T120-240v-560q0-33 23.5-56.5T200-880h560q33 0 56.5 23.5T840-800v284q-10-2-19.5-3t-20.5-1h-40v-280H200v560h124q4 22 10.5 42t17.5 38H200Zm0-120v40-560 520Zm80-40h44q8-49 35-90.5t69-69.5H280v160Zm0-240h160v-160H280v160Zm280 440q-66 0-113-47t-47-113q0-66 47-113t113-47h80v80h-80q-33 0-56.5 23.5T480-280q0 33 23.5 56.5T560-200h80v80h-80Zm-40-440h160v-160H520v160Zm40 320v-80h240v80H560Zm160 120v-80h80q33 0 56.5-23.5T880-280q0-33-23.5-56.5T800-360h-80v-80h80q66 0 113 46.5T960-280q0 66-47 113t-113 47h-80Z" />
-            </svg>
-
-            <span class="button-text">Storage</span>
         </button>
         <button id="help-toggle" class="help-button" aria-label="Help">
             <svg xmlns="http://www.w3.org/2000/svg" height="24px" viewBox="0 -960 960 960" width="24px"
@@ -81,6 +72,7 @@
             </svg>
             <span class="button-text">Help</span>
         </button>
+        <button id="dark-mode-toggle" class="dark-mode-btn" aria-label="Toggle Dark Mode">🌙</button>
         <a href="/" class="language-toggle-btn wiki-link-btn" aria-label="Wiki">Wiki</a>
     </header>
     <main>
@@ -143,6 +135,27 @@
             their respective owners. Visit the <a href="https://github.com/agentquackyt/Anno117Calculator"
                 target="_blank" rel="noopener noreferrer">GitHub repository</a> for source code and updates.</p>
     </footer>
+    <script>
+  (function() {
+    const saved = localStorage.getItem('anno-dark-mode');
+    const prefersDark = window.matchMedia('(prefers-color-scheme: dark)').matches;
+    if (saved === 'dark' || (!saved && prefersDark)) {
+      document.body.classList.add('dark');
+    }
+    document.addEventListener('DOMContentLoaded', function() {
+      const btn = document.getElementById('dark-mode-toggle');
+      if (btn) {
+        btn.addEventListener('click', function() {
+          document.body.classList.toggle('dark');
+          const isDark = document.body.classList.contains('dark');
+          localStorage.setItem('anno-dark-mode', isDark ? 'dark' : 'light');
+          btn.textContent = isDark ? '☀️' : '🌙';
+        });
+        btn.textContent = document.body.classList.contains('dark') ? '☀️' : '🌙';
+      }
+    });
+  })();
+    </script>
 </body>
 
 </html>

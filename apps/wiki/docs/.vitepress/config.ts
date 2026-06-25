@@ -6,7 +6,13 @@ import { defineConfig } from 'vitepress'
 export default defineConfig({
   lang: 'ja-JP',
   title: 'Anno 117 統合Wiki',
+  titleTemplate: ':title | Anno 117 統合Wiki',
   description: 'Anno 117（PS5/Steam）の日本語情報Wiki + 生産チェーン計算機',
+
+  head: [
+    ['link', { rel: 'icon', type: 'image/png', sizes: '48x48', href: '/images/anno_icon.png' }],
+    ['link', { rel: 'apple-touch-icon', href: '/images/anno_icon.png' }],
+  ],
 
   // 配信規約: wiki はルート配信
   base: '/',

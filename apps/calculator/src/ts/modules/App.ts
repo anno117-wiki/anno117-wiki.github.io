@@ -8,7 +8,7 @@ import { I18nManager, type Locale } from '@anno/shared';
 import { TreeApp } from '../tree-app';
 import type { RecipeListItem } from '@anno/shared';
 import type { Goods } from '@anno/shared';
-import { initSettingsPanel, initModifierPanel } from '../vue-app';
+import { initModifierPanel } from '../vue-app';
 import { ASSETS_ICONS_PATH } from '../constants';
 
 // ---------------------------------------------------------------------------
@@ -145,9 +145,6 @@ export class App {
             onSelect: (good) => this.handleGoodSelection(good),
         });
         // mount()はloadGoodsList()完了後に呼び出す
-
-        // SettingsPanelをVue化
-        initSettingsPanel();
 
         // 右パネルにModifierPanelをマウント
         initModifierPanel();

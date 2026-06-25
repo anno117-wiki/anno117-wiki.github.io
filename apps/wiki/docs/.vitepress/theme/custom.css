@@ -23,6 +23,7 @@
   --vp-font-family-base: 'Noto Sans JP', 'Hiragino Kaku Gothic ProN', 'Hiragino Sans', 'Yu Gothic', 'Meiryo', system-ui, sans-serif;
 
   --vp-sidebar-bg-color: #eef0f4;
+  --vp-nav-bg-color: #1e3a5f;
 
   /* ネオモーフィズム変数 */
   --neo-shadow-light: -6px -6px 12px rgba(255, 255, 255, 0.8);
@@ -199,5 +200,66 @@
 .VPSidebarItem.is-active .item {
   box-shadow: var(--neo-inset);
   background: #eef0f4;
+  color: #c9a84c;
+}
+
+/* ダークモード */
+.dark {
+  --vp-c-bg: #0e1a2e;
+  --vp-c-bg-alt: #131f30;
+  --vp-c-bg-soft: #131f30;
+  --vp-c-bg-mute: #1a2840;
+  --vp-c-border: #2a3f5a;
+  --vp-c-divider: #2a3f5a;
+  --vp-c-text-1: #d8e4f0;
+  --vp-c-text-2: #7a9ab8;
+  --vp-sidebar-bg-color: #131f30;
+  --vp-c-brand-1: #7ab4d8;
+  --vp-c-brand-2: #88bfe0;
+  --vp-c-brand-3: #5a9ec8;
+
+  --neo-shadow-light: -6px -6px 12px rgba(31, 47, 69, 0.6);
+  --neo-shadow-dark: 6px 6px 12px rgba(8, 15, 26, 0.8);
+  --neo-shadow: var(--neo-shadow-light), var(--neo-shadow-dark);
+  --neo-inset: inset 4px 4px 8px rgba(8, 15, 26, 0.7), inset -4px -4px 8px rgba(31, 47, 69, 0.5);
+}
+
+.dark .VPSidebar {
+  background-color: #131f30 !important;
+  border-right-color: #2a3f5a;
+  box-shadow: 4px 0 12px rgba(8, 15, 26, 0.5);
+}
+
+.dark .VPSidebarItem .item:hover {
+  background: #1a2840;
+}
+
+.dark .VPSidebarItem.is-active .item {
+  background: #1a2840;
+}
+
+.dark .vp-doc {
+  background-color: #0e1a2e;
+}
+
+.dark .vp-doc table thead th {
+  background-color: #0e1a2e;
+}
+
+.dark .vp-doc div[class*="language-"] {
+  background-color: #131f30 !important;
+}
+
+.dark .VPNavBar,
+.dark .VPNavBar.has-shadow {
+  background-color: #080f1a !important;
+  border-bottom-color: #c9a84c !important;
+}
+
+.dark .vp-doc a {
+  color: #7ab4d8;
+}
+
+.dark .vp-doc a:hover {
   color: #c9a84c;
 }

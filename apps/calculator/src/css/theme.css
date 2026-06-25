@@ -15,7 +15,7 @@
   /* ネイビー×ゴールド カラーパレット */
   --background: #f8f8f6;
   --background-light: #ffffff;
-  --background-dark: #b8bfc9;
+  --background-dark: #a8b3c0;
   --background-accent: #f0f0ee;
 
   --theme-color: #1e3a5f;
@@ -27,10 +27,10 @@
   --text-secondary: #5a7092;
 
   /* ネオモーフィズムシャドウ */
-  --shadow-light: -8px -8px 16px var(--background-light);
-  --shadow-dark: 8px 8px 16px var(--background-dark);
-  --shadow-inset-light: inset -4px -4px 8px var(--background-light);
-  --shadow-inset-dark: inset 4px 4px 8px var(--background-dark);
+  --shadow-light: -10px -10px 20px var(--background-light);
+  --shadow-dark: 10px 10px 20px var(--background-dark);
+  --shadow-inset-light: inset -5px -5px 10px var(--background-light);
+  --shadow-inset-dark: inset 5px 5px 10px var(--background-dark);
 
   --font-family: "Noto Sans JP", "Hiragino Kaku Gothic ProN", "Hiragino Sans", "Yu Gothic", "Meiryo", system-ui, sans-serif;
 
@@ -78,8 +78,9 @@ header {
   color: var(--background);
   display: flex;
   align-items: center;
+  justify-content: space-between;
   gap: 1rem;
-  padding: 0.5rem;
+  padding: 0.5rem 1rem;
 }
 
 header img {
@@ -87,9 +88,19 @@ header img {
 }
 
 header h1 {
-  font-size: 1.5rem;
+  font-size: 1rem;
   margin: 0;
-  font-weight: 600;
+  font-weight: 700;
+  letter-spacing: 0.04em;
+}
+
+header h1 a {
+  color: #f8f8f6;
+  text-decoration: none;
+}
+
+header h1 a:hover {
+  color: #c9a84c;
 }
 
 main {
@@ -1870,4 +1881,44 @@ footer {
 /* デスクトップ（1024px以上）: デフォルト設定 */
 @media (min-width: 1024px) {
   /* デフォルトのCSS変数を使用 */
+}
+
+/* ダークモード（.dark クラス） */
+.dark {
+  --background: #141e2e;
+  --background-light: #1f2f45;
+  --background-dark: #080f1a;
+  --background-accent: #1a2840;
+  --theme-color: #c9a84c;
+  --theme-color-hover: #d4b35a;
+  --theme-color-dark: #e8d4a0;
+  --accent-color: #c9a84c;
+  --border-color: #2a3f5a;
+  --text-primary: #d8e4f0;
+  --text-secondary: #7a9ab8;
+  --shadow-light: -10px -10px 20px rgba(31, 47, 69, 0.8);
+  --shadow-dark: 10px 10px 20px rgba(8, 15, 26, 0.8);
+  --shadow-inset-light: inset -5px -5px 10px rgba(31, 47, 69, 0.6);
+  --shadow-inset-dark: inset 5px 5px 10px rgba(8, 15, 26, 0.8);
+}
+
+.dark header h1 a {
+  color: #c9a84c;
+}
+
+.dark ::-webkit-scrollbar-thumb {
+  background: #2a3f5a;
+}
+
+.dark-mode-btn {
+  background: none;
+  border: none;
+  font-size: 1.2rem;
+  cursor: pointer;
+  padding: 4px 8px;
+  border-radius: 8px;
+  transition: background 0.2s;
+}
+.dark-mode-btn:hover {
+  background: rgba(255,255,255,0.15);
 }

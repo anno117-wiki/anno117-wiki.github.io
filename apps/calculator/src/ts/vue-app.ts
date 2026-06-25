@@ -5,7 +5,6 @@
 
 import { createApp } from 'vue';
 import LanguageToggle from '../components/LanguageToggle.vue';
-import SettingsPanelRoot from '../components/SettingsPanelRoot.vue';
 import ModifierPanel from '../components/ModifierPanel.vue';
 
 /**
@@ -35,44 +34,6 @@ export function initVueComponents() {
   }
 }
 
-
-/**
- * 設定パネルをVueコンポーネントとして初期化
- */
-export function initSettingsPanel() {
-  const modifierContainer = document.getElementById('modifier-container');
-
-  if (!modifierContainer) {
-    console.warn('[Vue] #modifier-container not found, falling back to body');
-    const settingsPanelContainer = document.createElement('div');
-    settingsPanelContainer.id = 'settings-panel-vue';
-    document.body.appendChild(settingsPanelContainer);
-
-    const app = createApp(SettingsPanelRoot);
-    app.mount(settingsPanelContainer);
-    return app;
-  }
-
-  const settingsPanelContainer = document.createElement('div');
-  settingsPanelContainer.id = 'settings-panel-vue';
-  modifierContainer.appendChild(settingsPanelContainer);
-
-  const app = createApp(SettingsPanelRoot);
-  app.mount(settingsPanelContainer);
-
-  // Storageボタンのクリックイベントを設定（CustomEventで通知）
-  const toggleButton = document.getElementById('saved-store-toggle');
-  if (toggleButton) {
-    toggleButton.addEventListener('click', () => {
-      // CustomEventを発火してSettingsPanelRootに通知
-      window.dispatchEvent(new Event('openSettingsPanel'));
-    });
-  }
-
-  console.log('[Vue] SettingsPanel component mounted');
-
-  return app;
-}
 
 /**
  * 右パネルにModifierPanelをマウント
