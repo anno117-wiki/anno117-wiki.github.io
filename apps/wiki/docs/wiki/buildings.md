@@ -82,9 +82,6 @@ const sortedFiltered = computed(() => {
 
 各建物が周辺住民に与える効果の一覧です。
 
-> 出典: [anno.land/en/anno-117-buildings](https://anno.land/en/anno-117-buildings/)
-> パトリキ向け建物・ケルト建物は未収録（動的フィルターのため自動取得不可）。
-
 <div style="display:flex;gap:8px;align-items:center;margin:16px 0;flex-wrap:wrap;">
   <input
     v-model="searchText"
