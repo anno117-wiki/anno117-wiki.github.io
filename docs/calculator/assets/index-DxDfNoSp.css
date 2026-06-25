@@ -316,7 +316,7 @@ main {
 }
 
 /* Input Fields - Neumorph Style */
-input[type="text"],
+input[type="text"]:not(.search-input),
 input[type="number"],
 #preset-name-input {
   background: var(--background);
@@ -330,9 +330,8 @@ input[type="number"],
   transition: box-shadow 0.3s ease;
 }
 
-input[type="text"]:focus,
+input[type="text"]:not(.search-input):focus,
 input[type="number"]:focus,
-.tree-search input:focus,
 #preset-name-input:focus {
   outline: none;
   box-shadow: inset -6px -6px 12px var(--background-light),
@@ -1872,11 +1871,11 @@ footer {
 @media (min-width: 1024px) {
   /* デフォルトのCSS変数を使用 */
 }
-.tree-search[data-v-24b2d621] {
+.tree-search[data-v-635aa8d7] {
   padding: 12px;
   border-bottom: 1px solid var(--border-color);
 }
-.search-input-container[data-v-24b2d621] {
+.search-input-container[data-v-635aa8d7] {
   position: relative;
   display: flex;
   align-items: center;
@@ -1886,29 +1885,30 @@ footer {
   padding: 8px 12px;
   box-shadow: inset 4px 4px 8px rgba(163, 177, 198, 0.4), inset -4px -4px 8px rgba(255, 255, 255, 0.7);
 }
-.search-input-container[data-v-24b2d621]:focus-within {
+.search-input-container[data-v-635aa8d7]:focus-within {
   outline: 2px solid var(--theme-color);
   outline-offset: 2px;
 }
-.search-icon[data-v-24b2d621] {
+.search-icon[data-v-635aa8d7] {
   font-size: 16px;
   color: var(--text-secondary);
   margin-right: 8px;
   flex-shrink: 0;
 }
-.search-input[data-v-24b2d621] {
+.search-input[data-v-635aa8d7] {
   flex: 1;
   border: none;
-  background: var(--background);
+  background: transparent;
+  box-shadow: none;
   color: var(--text-primary);
   font-size: 14px;
   outline: none;
 }
-.search-input[data-v-24b2d621]::placeholder {
+.search-input[data-v-635aa8d7]::placeholder {
   color: var(--text-secondary);
   opacity: 0.6;
 }
-.clear-button[data-v-24b2d621] {
+.clear-button[data-v-635aa8d7] {
   background: none;
   border: none;
   color: var(--text-secondary);
@@ -1922,11 +1922,11 @@ footer {
   transition: background-color 0.2s ease;
   flex-shrink: 0;
 }
-.clear-button[data-v-24b2d621]:hover {
+.clear-button[data-v-635aa8d7]:hover {
   background-color: var(--background-accent);
   color: var(--text-primary);
 }
-.clear-button[data-v-24b2d621]:focus {
+.clear-button[data-v-635aa8d7]:focus {
   outline: 2px solid var(--theme-color);
   outline-offset: 2px;
 }
