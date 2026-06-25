@@ -196,23 +196,6 @@ main {
   margin-bottom: 0.5rem; /* 縮小: 1rem→0.5rem */
 }
 
-.header-btn {
-  background: var(--background);
-  border: none;
-  border-radius: 12px;
-  padding: 8px 16px;
-  cursor: pointer;
-  box-shadow: var(--shadow-light), var(--shadow-dark);
-  transition: all 0.2s ease;
-  font-size: 14px;
-  font-weight: 500;
-  color: var(--text-primary);
-}
-
-.header-btn:hover {
-  box-shadow: var(--shadow-inset-light), var(--shadow-inset-dark);
-}
-
 .production-input-wrapper {
   display: flex;
   align-items: center;
