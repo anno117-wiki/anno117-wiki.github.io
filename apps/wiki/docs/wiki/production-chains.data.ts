@@ -40,7 +40,7 @@ function buildMermaidDef(prod: any, jaGoods: Record<string, string>): string {
     const id = node.id.replace(/[^a-zA-Z0-9_]/g, '_')
     const label = jaGoods[node.id] ?? node.name ?? node.id
     const time = fmtTime(node.time ?? 0)
-    const nodeLabel = time ? `${label}\n${time}` : label
+    const nodeLabel = time ? `${label}<br/>${time}` : label
     if (!seen.has(id)) {
       seen.add(id)
       nodeLines.push(`  ${id}["${nodeLabel}"]`)
@@ -72,6 +72,7 @@ export default {
     const entries: ProductionEntry[] = []
 
     for (const good of (listJson as { goods: any[] }).goods) {
+      if (!good.files) continue
       const firstFile = Object.values(good.files as Record<string, string>)[0]
       if (!firstFile) continue
 
