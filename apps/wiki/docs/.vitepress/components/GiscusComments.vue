@@ -7,7 +7,7 @@ import { ref, onMounted, watch } from 'vue'
 import { useData } from 'vitepress'
 
 // giscus.app で取得した値を設定する
-const GISCUS_REPO = 'kojifujita0822/anno117_JP_WIKI'
+const GISCUS_REPO = 'anno117-wiki/anno117-wiki.github.io'
 const GISCUS_REPO_ID = 'R_kgDOTExLIA'
 const GISCUS_CATEGORY = 'Announcements'
 const GISCUS_CATEGORY_ID = 'DIC_kwDOTExLIM4C_25Y'
