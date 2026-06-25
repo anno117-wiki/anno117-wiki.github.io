@@ -45,7 +45,6 @@ export default defineConfig({
       ],
       '/wiki/': [
         { text: '生産品一覧', link: '/wiki/goods' },
-        { text: '地域別商品', link: '/wiki/regions' },
         { text: '生産チェーン一覧', link: '/wiki/production-chains' },
         { text: '建物効果', link: '/wiki/buildings' },
         { text: 'スキルツリー', link: '/wiki/techs' },
