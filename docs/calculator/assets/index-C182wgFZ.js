@@ -137,7 +137,7 @@ var I18nManager = class I18nManager {
 	*/
 	async fetchTranslationData(locale) {
 		try {
-			const response = await fetch(`/i18n/locales/${locale}.json`);
+			const response = await fetch(`/calculator/i18n/locales/${locale}.json`);
 			if (!response.ok) throw new Error(`Failed to load locale: ${locale} (${response.status})`);
 			const data = await response.json();
 			this.translations.set(locale, data);
@@ -176,7 +176,7 @@ var GoodsRepository = class GoodsRepository {
 	itemProductivityByGuid = /* @__PURE__ */ new Map();
 	itemTargetsByGuid = /* @__PURE__ */ new Map();
 	i18n;
-	constructor(goodsUrl = `/productions/list.json`, productionBaseUrl = `/productions`) {
+	constructor(goodsUrl = `/calculator/productions/list.json`, productionBaseUrl = `/calculator/productions`) {
 		this.goodsUrl = goodsUrl;
 		this.productionBaseUrl = productionBaseUrl;
 		this.i18n = I18nManager.getInstance();
@@ -302,7 +302,7 @@ var GoodsRepository = class GoodsRepository {
 		const cached = this.itemProductivityByGuid.get(guid);
 		if (cached !== void 0) return cached;
 		try {
-			const response = await fetch(`/data/items/${guid}.json`);
+			const response = await fetch(`/calculator/data/items/${guid}.json`);
 			if (!response.ok) {
 				this.itemProductivityByGuid.set(guid, 0);
 				return 0;
@@ -401,7 +401,7 @@ var ModifierRegistry = class ModifierRegistry {
 /**
 * アプリケーション全体で使用する定数
 */
-var ASSETS_ICONS_PATH = `/icons/`;
+var ASSETS_ICONS_PATH = `/calculator/icons/`;
 var SVG_NS = "http://www.w3.org/2000/svg";
 var XLINK_NS = "http://www.w3.org/1999/xlink";
 //#endregion
@@ -6548,7 +6548,7 @@ var TreeSearch_vue_vue_type_script_setup_true_lang_default = /*@__PURE__*/ defin
 					class: "clear-button",
 					onClick: clearSearch,
 					"aria-label": "検索をクリア"
-				}, " ✕ ")) : createCommentVNode("", true)
+				}, " ✕ ")) : createCommentVNode("v-if", true)
 			])]);
 		};
 	}
@@ -6606,7 +6606,7 @@ var TreeItem_default = /*#__PURE__*/ _plugin_vue_export_helper_default(/* @__PUR
 		const displayName = computed(() => {
 			return i18n.t(`goods.${props.good.id}`) || props.good.displayName;
 		});
-		const iconSrc = computed(() => `/icons/${props.good.icon}.png`);
+		const iconSrc = computed(() => `/calculator/icons/${props.good.icon}.png`);
 		function handleClick() {
 			if (!props.disabled) emit("select", props.good);
 		}
@@ -6637,7 +6637,7 @@ var TreeItem_default = /*#__PURE__*/ _plugin_vue_export_helper_default(/* @__PUR
 					key: tag,
 					class: "tag"
 				}, toDisplayString(tag), 1);
-			}), 128))])) : createCommentVNode("", true)])], 42, _hoisted_1$3);
+			}), 128))])) : createCommentVNode("v-if", true)])], 42, _hoisted_1$3);
 		};
 	}
 }), [["__scopeId", "data-v-9ab57aeb"]]);
@@ -6714,7 +6714,7 @@ var TreeCategory_default = /*#__PURE__*/ _plugin_vue_export_helper_default(/* @_
 					"show-tags": false,
 					onSelect: handleSelectItem
 				}, null, 8, ["good", "selected"]);
-			}), 128))])) : createCommentVNode("", true)], 10, _hoisted_1$2);
+			}), 128))])) : createCommentVNode("v-if", true)], 10, _hoisted_1$2);
 		};
 	}
 }), [["__scopeId", "data-v-9a26c6e3"]]);
@@ -6726,10 +6726,7 @@ var _hoisted_3$1 = {
 	key: 0,
 	class: "tree-categories"
 };
-var _hoisted_4$1 = {
-	key: 1,
-	class: "no-results"
-};
+var _hoisted_4$1 = { class: "no-results" };
 var _hoisted_5$1 = {
 	key: 2,
 	class: "recent-section"
@@ -6759,7 +6756,7 @@ var GoodsTreeView_default = /*#__PURE__*/ _plugin_vue_export_helper_default(/* @
 		const categories = /* @__PURE__ */ ref([]);
 		onMounted(async () => {
 			try {
-				categories.value = (await (await fetch(`/data/categories.json`)).json()).categories.sort((a, b) => a.order - b.order);
+				categories.value = (await (await fetch(`/calculator/data/categories.json`)).json()).categories.sort((a, b) => a.order - b.order);
 				console.log("[GoodsTreeView] Loaded", categories.value.length, "categories");
 			} catch (error) {
 				console.error("[GoodsTreeView] Failed to load categories:", error);
@@ -6848,33 +6845,43 @@ var GoodsTreeView_default = /*#__PURE__*/ _plugin_vue_export_helper_default(/* @
 			return i18n.t("ui.recentlyViewed") || "最近表示";
 		});
 		return (_ctx, _cache) => {
-			return openBlock(), createElementBlock("div", _hoisted_1$1, [createVNode(TreeSearch_default, {
-				modelValue: searchQuery.value,
-				"onUpdate:modelValue": _cache[0] || (_cache[0] = ($event) => searchQuery.value = $event)
-			}, null, 8, ["modelValue"]), createBaseVNode("div", _hoisted_2$1, [filteredCategories.value.length > 0 ? (openBlock(), createElementBlock("div", _hoisted_3$1, [(openBlock(true), createElementBlock(Fragment, null, renderList(filteredCategories.value, (cat) => {
-				return openBlock(), createBlock(TreeCategory_default, {
-					key: cat.category.id,
-					category: cat.category,
-					goods: cat.goods,
-					expanded: expandedCategories.value.has(cat.category.id),
-					"selected-id": __props.selectedId,
-					onToggle: ($event) => toggleCategory(cat.category.id),
-					onSelectItem: handleSelectItem
-				}, null, 8, [
-					"category",
-					"goods",
-					"expanded",
-					"selected-id",
-					"onToggle"
-				]);
-			}), 128))])) : (openBlock(), createElementBlock("div", _hoisted_4$1, [createBaseVNode("p", null, toDisplayString(noResultsText.value), 1)])), recentGoods.value.length > 0 && !searchQuery.value ? (openBlock(), createElementBlock("div", _hoisted_5$1, [createBaseVNode("div", _hoisted_6$1, [_cache[1] || (_cache[1] = createBaseVNode("span", { class: "recent-icon" }, "🕒", -1)), createBaseVNode("span", _hoisted_7$1, toDisplayString(recentTitle.value), 1)]), createBaseVNode("div", _hoisted_8$1, [(openBlock(true), createElementBlock(Fragment, null, renderList(recentGoods.value, (good) => {
-				return openBlock(), createBlock(TreeItem_default, {
-					key: good.id,
-					good,
-					selected: good.id === __props.selectedId,
-					onSelect: handleSelectItem
-				}, null, 8, ["good", "selected"]);
-			}), 128))])])) : createCommentVNode("", true)])]);
+			return openBlock(), createElementBlock("div", _hoisted_1$1, [
+				createCommentVNode(" 検索 "),
+				createVNode(TreeSearch_default, {
+					modelValue: searchQuery.value,
+					"onUpdate:modelValue": _cache[0] || (_cache[0] = ($event) => searchQuery.value = $event)
+				}, null, 8, ["modelValue"]),
+				createCommentVNode(" ツリー本体 "),
+				createBaseVNode("div", _hoisted_2$1, [
+					createCommentVNode(" カテゴリとアイテム "),
+					filteredCategories.value.length > 0 ? (openBlock(), createElementBlock("div", _hoisted_3$1, [(openBlock(true), createElementBlock(Fragment, null, renderList(filteredCategories.value, (cat) => {
+						return openBlock(), createBlock(TreeCategory_default, {
+							key: cat.category.id,
+							category: cat.category,
+							goods: cat.goods,
+							expanded: expandedCategories.value.has(cat.category.id),
+							"selected-id": __props.selectedId,
+							onToggle: ($event) => toggleCategory(cat.category.id),
+							onSelectItem: handleSelectItem
+						}, null, 8, [
+							"category",
+							"goods",
+							"expanded",
+							"selected-id",
+							"onToggle"
+						]);
+					}), 128))])) : (openBlock(), createElementBlock(Fragment, { key: 1 }, [createCommentVNode(" 検索結果なし "), createBaseVNode("div", _hoisted_4$1, [createBaseVNode("p", null, toDisplayString(noResultsText.value), 1)])], 2112)),
+					createCommentVNode(" 最近表示した商品 "),
+					recentGoods.value.length > 0 && !searchQuery.value ? (openBlock(), createElementBlock("div", _hoisted_5$1, [createBaseVNode("div", _hoisted_6$1, [_cache[1] || (_cache[1] = createBaseVNode("span", { class: "recent-icon" }, "🕒", -1)), createBaseVNode("span", _hoisted_7$1, toDisplayString(recentTitle.value), 1)]), createBaseVNode("div", _hoisted_8$1, [(openBlock(true), createElementBlock(Fragment, null, renderList(recentGoods.value, (good) => {
+						return openBlock(), createBlock(TreeItem_default, {
+							key: good.id,
+							good,
+							selected: good.id === __props.selectedId,
+							onSelect: handleSelectItem
+						}, null, 8, ["good", "selected"]);
+					}), 128))])])) : createCommentVNode("v-if", true)
+				])
+			]);
 		};
 	}
 }), [["__scopeId", "data-v-9e5864d1"]]);
@@ -7030,7 +7037,7 @@ var ModifierPanel_default = /*#__PURE__*/ _plugin_vue_export_helper_default(/* @
 		const i18n = I18nManager.getInstance();
 		const modifierRegistry = ModifierRegistry.getInstance();
 		const settingsManager = SettingsManager.getInstance();
-		const iconsPath = "/icons/";
+		const iconsPath = "/calculator/icons/";
 		const $t = (key, fallback) => {
 			const result = i18n.t(key);
 			const subKey = key.split(".").slice(1).join(".");
@@ -7096,7 +7103,7 @@ var ModifierPanel_default = /*#__PURE__*/ _plugin_vue_export_helper_default(/* @
 						src: `${iconsPath}${toggle.icon}`,
 						alt: toggle.label,
 						class: "toggle-icon"
-					}, null, 8, _hoisted_7)) : createCommentVNode("", true), createBaseVNode("span", _hoisted_8, toDisplayString($t(`modifiers.${toggle.key}`, toggle.label)), 1)], 10, _hoisted_6);
+					}, null, 8, _hoisted_7)) : createCommentVNode("v-if", true), createBaseVNode("span", _hoisted_8, toDisplayString($t(`modifiers.${toggle.key}`, toggle.label)), 1)], 10, _hoisted_6);
 				}), 128))])]);
 			}), 128))])]);
 		};
@@ -7597,4 +7604,4 @@ document.addEventListener("DOMContentLoaded", async () => {
 });
 //#endregion
 
-//# sourceMappingURL=index-CHa7r1g_.js.map
+//# sourceMappingURL=index-C182wgFZ.js.map
