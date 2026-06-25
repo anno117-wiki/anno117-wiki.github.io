@@ -113,32 +113,34 @@ const sortedFiltered = computed(() => {
   <th>建物</th>
   <th>需要Tier</th>
   <th>維持費</th>
-  <th @click="toggleSort('population')" style="cursor:pointer;white-space:nowrap;">人口 {{ sortArrow('population') }}</th>
-  <th @click="toggleSort('income')" style="cursor:pointer;white-space:nowrap;">収入 {{ sortArrow('income') }}</th>
-  <th @click="toggleSort('faith')" style="cursor:pointer;white-space:nowrap;">信仰 {{ sortArrow('faith') }}</th>
-  <th @click="toggleSort('knowledge')" style="cursor:pointer;white-space:nowrap;">知識 {{ sortArrow('knowledge') }}</th>
-  <th @click="toggleSort('prestige')" style="cursor:pointer;white-space:nowrap;">名声 {{ sortArrow('prestige') }}</th>
-  <th @click="toggleSort('health')" style="cursor:pointer;white-space:nowrap;">健康度 {{ sortArrow('health') }}</th>
-  <th @click="toggleSort('happiness')" style="cursor:pointer;white-space:nowrap;">幸福 {{ sortArrow('happiness') }}</th>
-  <th @click="toggleSort('fireSafety')" style="cursor:pointer;white-space:nowrap;">防火 {{ sortArrow('fireSafety') }}</th>
+  <th @click="toggleSort('population')" style="cursor:pointer;white-space:nowrap;padding:8px 4px;">人口 {{ sortArrow('population') }}</th>
+  <th @click="toggleSort('income')" style="cursor:pointer;white-space:nowrap;padding:8px 4px;">収入 {{ sortArrow('income') }}</th>
+  <th @click="toggleSort('faith')" style="cursor:pointer;white-space:nowrap;padding:8px 4px;">信仰 {{ sortArrow('faith') }}</th>
+  <th @click="toggleSort('knowledge')" style="cursor:pointer;white-space:nowrap;padding:8px 4px;">知識 {{ sortArrow('knowledge') }}</th>
+  <th @click="toggleSort('prestige')" style="cursor:pointer;white-space:nowrap;padding:8px 4px;">名声 {{ sortArrow('prestige') }}</th>
+  <th @click="toggleSort('health')" style="cursor:pointer;white-space:nowrap;padding:8px 4px;">健康度 {{ sortArrow('health') }}</th>
+  <th @click="toggleSort('happiness')" style="cursor:pointer;white-space:nowrap;padding:8px 4px;">幸福 {{ sortArrow('happiness') }}</th>
+  <th @click="toggleSort('fireSafety')" style="cursor:pointer;white-space:nowrap;padding:8px 4px;">防火 {{ sortArrow('fireSafety') }}</th>
 </tr>
 </thead>
 <tbody>
 <tr v-for="b in sortedFiltered" :key="b.id">
-  <td style="white-space:nowrap;">
-    <img v-if="b.icon" :src="withBase('/icons/buildings/icon_3d_' + b.icon + '.png')" :alt="b.nameJa ?? b.nameEn" style="width:32px;height:32px;vertical-align:middle;margin-right:6px;object-fit:contain;" />
-    {{ b.nameJa ?? b.nameEn }}
+  <td style="white-space:normal;">
+    <div style="max-width:140px;word-break:break-all;">
+      <img v-if="b.icon" :src="withBase('/icons/buildings/icon_3d_' + b.icon + '.png')" :alt="b.nameJa ?? b.nameEn" style="width:28px;height:28px;vertical-align:middle;margin-right:4px;object-fit:contain;" />
+      {{ b.nameJa ?? b.nameEn }}
+    </div>
   </td>
   <td>{{ b.tierJa }}</td>
   <td>{{ b.maintenance }}</td>
-  <td><StatBar :n="b.population" :maxAbs="3" /></td>
-  <td><StatBar :n="b.income" :maxAbs="3" /></td>
-  <td><StatBar :n="b.faith" :maxAbs="6" /></td>
-  <td><StatBar :n="b.knowledge" :maxAbs="7" /></td>
-  <td><StatBar :n="b.prestige" :maxAbs="7" /></td>
-  <td><StatBar :n="b.health" :maxAbs="3" /></td>
-  <td><StatBar :n="b.happiness" :maxAbs="3" /></td>
-  <td><StatBar :n="b.fireSafety" :maxAbs="3" /></td>
+  <td style="padding:8px 4px;"><StatBar :n="b.population" :maxAbs="3" /></td>
+  <td style="padding:8px 4px;"><StatBar :n="b.income" :maxAbs="3" /></td>
+  <td style="padding:8px 4px;"><StatBar :n="b.faith" :maxAbs="6" /></td>
+  <td style="padding:8px 4px;"><StatBar :n="b.knowledge" :maxAbs="7" /></td>
+  <td style="padding:8px 4px;"><StatBar :n="b.prestige" :maxAbs="7" /></td>
+  <td style="padding:8px 4px;"><StatBar :n="b.health" :maxAbs="3" /></td>
+  <td style="padding:8px 4px;"><StatBar :n="b.happiness" :maxAbs="3" /></td>
+  <td style="padding:8px 4px;"><StatBar :n="b.fireSafety" :maxAbs="3" /></td>
 </tr>
 </tbody>
 </table>

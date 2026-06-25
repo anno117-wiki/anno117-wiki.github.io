@@ -72,15 +72,14 @@ function fmtPrice(p: string): string {
 
 <table>
 <thead>
-<tr><th>名称</th><th>レアリティ</th><th>分類</th><th>効果</th><th>説明</th><th>価格</th></tr>
+<tr><th>名称</th><th>レアリティ</th><th>分類</th><th>効果</th><th>価格</th></tr>
 </thead>
 <tbody>
 <tr v-for="item in filtered" :key="item.guid">
-<td>{{ item.nameJa }}</td>
+<td style="white-space:normal;"><div style="min-width:350px;word-break:break-all;">{{ item.nameJa }}</div></td>
 <td>{{ item.rarityJa }}</td>
 <td>{{ item.nicheJa }}</td>
-<td>{{ item.effects.length ? item.effects.join('、') : '—' }}</td>
-<td>{{ item.description || '—' }}</td>
+<td style="white-space:normal;">{{ item.effects.length ? item.effects.join('、') : '—' }}</td>
 <td>{{ fmtPrice(item.price) }}</td>
 </tr>
 </tbody>
