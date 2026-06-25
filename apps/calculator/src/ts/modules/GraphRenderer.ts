@@ -188,8 +188,11 @@ export class GraphRenderer {
         // 横配置（RL）: 次のノードは左方向（X軸）に展開
         const nextX = x - 180;
 
+        // needs_fuel=true のノードでは charcoal は燃料として扱い独立ノードから除外
+        const visibleInputs = hasFuel ? inputs.filter((inp) => inp.id !== 'charcoal') : inputs;
+
         // 横配置: 各inputの縦幅（高さ）を計算
-        const inputHeights = inputs.map((input) => {
+        const inputHeights = visibleInputs.map((input) => {
             if (Array.isArray(input.input)) return this.calculateTreeWidth(input);
             return 1;
         });
@@ -199,7 +202,7 @@ export class GraphRenderer {
         const nodeSpacing = 120;
         let currentOffset = y - (totalHeight * nodeSpacing) / 2;
 
-        inputs.forEach((input, index) => {
+        visibleInputs.forEach((input, index) => {
             if (!input.id) return;
             const heightUnits = inputHeights[index] ?? 1;
             const inputY = currentOffset + (heightUnits * nodeSpacing) / 2;
@@ -410,7 +413,10 @@ export class GraphRenderer {
         if (!prodData || !Array.isArray(prodData.input) || !prodData.input.length) {
             return 1;
         }
-        return prodData.input.reduce((sum, input) => {
+        const effectiveInputs = prodData.needs_fuel
+            ? prodData.input.filter((inp) => inp.id !== 'charcoal')
+            : prodData.input;
+        return effectiveInputs.reduce((sum, input) => {
             if (Array.isArray(input.input)) {
                 return sum + this.calculateTreeWidth(input);
             }
