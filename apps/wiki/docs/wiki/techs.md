@@ -89,7 +89,7 @@ const branchColorMap: Record<string, string> = {
   </div>
 </div>
 
-<div class="branch-row">
+<div :class="['branch-row']">
 <div v-for="b in data.branches" :key="b" class="branch-section">
   <div class="branch-heading" :style="`border-left-color: ${branchColorMap[b] || '#888'};`">
     {{ branchLabelMap[b] || b }}
