@@ -1,6 +1,10 @@
 <script setup lang="ts">
 import { ref, computed } from 'vue'
+import { useData } from 'vitepress'
 import { data } from './techs.data.ts'
+
+const { site } = useData()
+const BASE = computed(() => site.value.base || '/')
 
 const hoveredTech = ref<any>(null)
 const tooltipStyle = ref('')
@@ -110,6 +114,13 @@ const branchColorMap: Record<string, string> = {
         @mouseleave="onLeave"
         @click="selectTech(tech)"
       >
+        <img
+          v-if="tech.annoNodeId"
+          :src="`${BASE}icons/tech/${tech.annoNodeId}.webp`"
+          class="tech-icon"
+          :alt="tech.label"
+          @error="($event.target as HTMLImageElement).style.display='none'"
+        />
         <span v-if="tech.isGate && tech.knowledgeCost" class="gate-cost">{{ tech.knowledgeCost.toLocaleString() }}</span>
         <span class="tech-label">{{ tech.label }}</span>
       </div>
@@ -242,6 +253,13 @@ const branchColorMap: Record<string, string> = {
 .is-selected { outline: 2px solid #fff; outline-offset: 1px; box-shadow: 0 0 0 3px rgba(0,0,0,0.3); z-index: 3; position: relative; }
 .gate-cost { font-size: 0.68rem; font-weight: 700; margin-bottom: 2px; }
 .tech-label { line-height: 1.2; }
+.tech-icon {
+  width: 28px;
+  height: 28px;
+  object-fit: contain;
+  margin-bottom: 2px;
+  flex-shrink: 0;
+}
 
 .color-green   { background: #dcfce7; border-color: #86efac; color: #14532d; }
 .color-green   .gate-cost { color: #16a34a; }
