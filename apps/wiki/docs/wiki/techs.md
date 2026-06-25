@@ -89,6 +89,7 @@ const branchColorMap: Record<string, string> = {
   </div>
 </div>
 
+<div class="branch-row">
 <div v-for="b in data.branches" :key="b" class="branch-section">
   <div class="branch-heading" :style="`border-left-color: ${branchColorMap[b] || '#888'};`">
     {{ branchLabelMap[b] || b }}
@@ -96,7 +97,7 @@ const branchColorMap: Record<string, string> = {
   </div>
   <div class="tree-viewport" :style="`zoom: ${zoom};`">
     <ClientOnly>
-      <TechLinks :branch="b" :meta="data.branchMeta[b]" :techs="data.byBranch[b] || []" />
+      <TechLinks :branch="b" :meta="data.branchMeta[b]" :techs="data.byBranch[b] || []" :color="branchColorMap[b] || '#888888'" />
     </ClientOnly>
     <div class="tech-grid" :style="gridVars(b)">
       <div
@@ -114,6 +115,7 @@ const branchColorMap: Record<string, string> = {
       </div>
     </div>
   </div>
+</div>
 </div>
 
 <Teleport to="body">
@@ -182,7 +184,16 @@ const branchColorMap: Record<string, string> = {
 .detail-val { color: var(--vp-c-text-1); }
 .detail-val.mono { font-family: monospace; font-size: 0.76rem; }
 
-.branch-section { margin-bottom: 32px; }
+.branch-row {
+  display: flex;
+  flex-direction: row;
+  gap: 16px;
+  overflow-x: auto;
+  padding-bottom: 12px;
+}
+.branch-section {
+  flex-shrink: 0;
+}
 .branch-heading {
   font-size: 1rem; font-weight: 600;
   border-left: 4px solid #888;

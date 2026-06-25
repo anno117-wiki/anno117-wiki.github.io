@@ -10,8 +10,8 @@
       :key="i"
       :x1="seg.x1" :y1="seg.y1"
       :x2="seg.x2" :y2="seg.y2"
-      stroke="rgba(0,0,0,0.18)"
-      stroke-width="1.5"
+      :stroke="`${color}99`"
+      stroke-width="2.5"
       stroke-linecap="round"
     />
   </svg>
@@ -24,12 +24,14 @@ interface TechEntry {
   guid: string
   gridX: number
   gridY: number
+  connections?: string[]
 }
 
 const props = defineProps<{
   branch: string
   meta: { minX: number; minY: number; maxX: number; maxY: number }
   techs: TechEntry[]
+  color: string
 }>()
 
 const CELL_W = 101
@@ -45,22 +47,20 @@ function cy(t: TechEntry) {
   return (t.gridY - props.meta.minY) * CELL_H + 34
 }
 
-const DIRS = [[1, 0], [0, 1], [1, 1], [1, -1]] as const
-
 const segments = computed(() => {
-  const map = new Map<string, TechEntry>()
+  const guidMap = new Map(props.techs.map(t => [t.guid, t]))
+  const result: { x1: number; y1: number; x2: number; y2: number }[] = []
+  const added = new Set<string>()
   for (const t of props.techs) {
-    map.set(`${t.gridX},${t.gridY}`, t)
-  }
-  const lines: { x1: number; y1: number; x2: number; y2: number }[] = []
-  for (const t of props.techs) {
-    for (const [dx, dy] of DIRS) {
-      const nb = map.get(`${t.gridX + dx},${t.gridY + dy}`)
-      if (nb) {
-        lines.push({ x1: cx(t), y1: cy(t), x2: cx(nb), y2: cy(nb) })
-      }
+    for (const targetGuid of (t.connections || [])) {
+      const target = guidMap.get(targetGuid)
+      if (!target) continue
+      const key = [t.guid, targetGuid].sort().join('-')
+      if (added.has(key)) continue
+      added.add(key)
+      result.push({ x1: cx(t), y1: cy(t), x2: cx(target), y2: cy(target) })
     }
   }
-  return lines
+  return result
 })
 </script>
