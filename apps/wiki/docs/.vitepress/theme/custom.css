@@ -153,11 +153,7 @@
 /* ネオモーフィズム: テーブル */
 .vp-doc table {
   overflow-x: clip;
-  border-radius: 12px;
   box-shadow: var(--neo-shadow);
-  border-collapse: separate;
-  border-spacing: 0;
-  overflow: hidden;
 }
 
 /* ネオモーフィズム: コードブロック（凹型） */
