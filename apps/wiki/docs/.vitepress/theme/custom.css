@@ -128,10 +128,6 @@
   }
 }
 
-.vp-doc table {
-  overflow-x: clip;
-}
-
 .vp-doc table thead th {
   position: sticky;
   top: var(--vp-nav-height, 64px);
@@ -162,7 +158,6 @@
 
 /* ネオモーフィズム: テーブル */
 .vp-doc table {
-  overflow-x: clip;
   box-shadow: var(--neo-shadow);
 }
 
