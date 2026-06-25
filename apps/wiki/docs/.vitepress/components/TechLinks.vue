@@ -52,14 +52,27 @@ const segments = computed(() => {
   const guidMap = new Map(props.techs.map(t => [t.guid, t]))
   const result: { x1: number; y1: number; x2: number; y2: number }[] = []
   const added = new Set<string>()
+
+  function addSeg(a: TechEntry, b: TechEntry) {
+    const key = [a.guid, b.guid].sort().join('-')
+    if (added.has(key)) return
+    added.add(key)
+    result.push({ x1: cx(a), y1: cy(a), x2: cx(b), y2: cy(b) })
+  }
+
   for (const t of props.techs) {
-    for (const targetGuid of (t.connections || [])) {
-      const target = guidMap.get(targetGuid)
-      if (!target) continue
-      const key = [t.guid, targetGuid].sort().join('-')
-      if (added.has(key)) continue
-      added.add(key)
-      result.push({ x1: cx(t), y1: cy(t), x2: cx(target), y2: cy(target) })
+    if (t.connections && t.connections.length > 0) {
+      for (const targetGuid of t.connections) {
+        const target = guidMap.get(targetGuid)
+        if (target) addSeg(t, target)
+      }
+    } else {
+      for (const other of props.techs) {
+        if (other.guid === t.guid) continue
+        const dx = Math.abs(t.gridX - other.gridX)
+        const dy = Math.abs(t.gridY - other.gridY)
+        if (dx <= 1 && dy <= 1 && dx + dy <= 1) addSeg(t, other)
+      }
     }
   }
   return result
