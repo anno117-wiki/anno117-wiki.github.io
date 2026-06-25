@@ -70,16 +70,15 @@ function clearSearch() {
   display: flex;
   align-items: center;
   background-color: var(--background);
-  border: 1px solid var(--border-color);
+  border: none;
   border-radius: 8px;
   padding: 8px 12px;
-  transition: border-color 0.2s ease;
+  box-shadow: inset 4px 4px 8px rgba(163, 177, 198, 0.4), inset -4px -4px 8px rgba(255, 255, 255, 0.7);
 }
 
 .search-input-container:focus-within {
-  border-color: var(--theme-color);
   outline: 2px solid var(--theme-color);
-  outline-offset: 1px;
+  outline-offset: 2px;
 }
 
 .search-icon {

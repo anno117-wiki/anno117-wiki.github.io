@@ -1871,32 +1871,31 @@ footer {
 @media (min-width: 1024px) {
   /* デフォルトのCSS変数を使用 */
 }
-.tree-search[data-v-89115f36] {
+.tree-search[data-v-5392f3a0] {
   padding: 12px;
   border-bottom: 1px solid var(--border-color);
 }
-.search-input-container[data-v-89115f36] {
+.search-input-container[data-v-5392f3a0] {
   position: relative;
   display: flex;
   align-items: center;
   background-color: var(--background);
-  border: 1px solid var(--border-color);
+  border: none;
   border-radius: 8px;
   padding: 8px 12px;
-  transition: border-color 0.2s ease;
+  box-shadow: inset 4px 4px 8px rgba(163, 177, 198, 0.4), inset -4px -4px 8px rgba(255, 255, 255, 0.7);
 }
-.search-input-container[data-v-89115f36]:focus-within {
-  border-color: var(--theme-color);
+.search-input-container[data-v-5392f3a0]:focus-within {
   outline: 2px solid var(--theme-color);
-  outline-offset: 1px;
+  outline-offset: 2px;
 }
-.search-icon[data-v-89115f36] {
+.search-icon[data-v-5392f3a0] {
   font-size: 16px;
   color: var(--text-secondary);
   margin-right: 8px;
   flex-shrink: 0;
 }
-.search-input[data-v-89115f36] {
+.search-input[data-v-5392f3a0] {
   flex: 1;
   border: none;
   background: transparent;
@@ -1904,11 +1903,11 @@ footer {
   font-size: 14px;
   outline: none;
 }
-.search-input[data-v-89115f36]::placeholder {
+.search-input[data-v-5392f3a0]::placeholder {
   color: var(--text-secondary);
   opacity: 0.6;
 }
-.clear-button[data-v-89115f36] {
+.clear-button[data-v-5392f3a0] {
   background: none;
   border: none;
   color: var(--text-secondary);
@@ -1922,11 +1921,11 @@ footer {
   transition: background-color 0.2s ease;
   flex-shrink: 0;
 }
-.clear-button[data-v-89115f36]:hover {
+.clear-button[data-v-5392f3a0]:hover {
   background-color: var(--background-accent);
   color: var(--text-primary);
 }
-.clear-button[data-v-89115f36]:focus {
+.clear-button[data-v-5392f3a0]:focus {
   outline: 2px solid var(--theme-color);
   outline-offset: 2px;
 }
