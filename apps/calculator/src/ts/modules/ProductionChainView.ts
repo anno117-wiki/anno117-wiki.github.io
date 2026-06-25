@@ -192,7 +192,10 @@ class ProductionChainView {
     }
 
     setBackHandler(handler: () => void): void {
-        this.onBack = handler;
+        this.onBack = () => {
+            document.getElementById('app-topbar-slot')?.replaceChildren();
+            handler();
+        };
     }
 
     hasSelection(): boolean {
@@ -238,11 +241,15 @@ class ProductionChainView {
         const recipe = this.calculator.cloneRecipe(this.sourceRecipe);
         this.baseInputs = this.calculator.collectBaseInputs(recipe);
         this.container.classList.remove('hidden');
-        this.container.innerHTML = this.buildMarkup(this.currentGood);
+        // topbarを上段スロットに描画
+        const topbarSlot = document.getElementById('app-topbar-slot');
+        if (topbarSlot) topbarSlot.innerHTML = this.buildTopbarMarkup(this.currentGood);
+        // center-panelにはgraph-panelのみ
+        this.container.innerHTML = this.buildMarkup();
         this.graphHost = this.container.querySelector('[data-role="graph-host"]') as HTMLElement | null;
-        this.targetInput = this.container.querySelector('#target-rate') as HTMLInputElement | null;
-        this.recommendButton = this.container.querySelector('#recommend-ratio-btn') as HTMLElement | null;
-        // フッター要素は#calculator-containerの外にあるため、documentから取得
+        // topbarの要素はdocumentレベルで取得
+        this.targetInput = document.querySelector('#target-rate') as HTMLInputElement | null;
+        this.recommendButton = document.querySelector('#recommend-ratio-btn') as HTMLElement | null;
         this.buildingCostElement = document.querySelector('#total-construction-cost') as HTMLElement | null;
         this.maintenanceElement = document.querySelector('#total-maintenance-cost') as HTMLElement | null;
         this.bindBackButton();
@@ -269,7 +276,7 @@ class ProductionChainView {
     }
 
     bindBackButton(): void {
-        const backButton = this.container.querySelector('[data-action="back"]') as HTMLElement;
+        const backButton = document.querySelector('[data-action="back"]') as HTMLElement;
         backButton?.addEventListener('click', () => this.onBack?.());
     }
 
@@ -333,21 +340,25 @@ class ProductionChainView {
         });
     }
 
-    buildMarkup(good: RecipeListItem): string {
+    buildTopbarMarkup(good: RecipeListItem): string {
         const chainLabel = this.i18n.t('ui.dependencyGraph');
         const backLabel = this.i18n.t('ui.back');
+        return `
+            <div class="calculator-topbar">
+                <button class="back-button" type="button" data-action="back" aria-label="${backLabel}">${backLabel}</button>
+                <span class="topbar-separator">|</span>
+                <span class="topbar-title">${chainLabel}: ${good.displayName}</span>
+                <span class="topbar-separator">|</span>
+                <label for="target-rate">${this.i18n.t('ui.outputPerMinute')}</label>
+                <input id="target-rate" type="number" min="0" step="1" value="${this.currentRate ?? 1}" />
+                <button id="recommend-ratio-btn" type="button" class="recommend-button" title="整数建物数になる最適レートを自動設定します">${this.i18n.t('ui.autoRatio')}</button>
+            </div>
+        `;
+    }
 
+    buildMarkup(): string {
         return `
             <div class="calculator-content">
-                <div class="calculator-topbar">
-                    <button class="back-button" type="button" data-action="back" aria-label="${backLabel}">${backLabel}</button>
-                    <span class="topbar-separator">|</span>
-                    <span class="topbar-title">${chainLabel}: ${good.displayName}</span>
-                    <span class="topbar-separator">|</span>
-                    <label for="target-rate">${this.i18n.t('ui.outputPerMinute')}</label>
-                    <input id="target-rate" type="number" min="0" step="1" value="${this.currentRate ?? 1}" />
-                    <button id="recommend-ratio-btn" type="button" class="recommend-button" title="整数建物数になる最適レートを自動設定します">${this.i18n.t('ui.autoRatio')}</button>
-                </div>
                 <div class="graph-panel">
                     <div class="production-graph">
                         <div class="graph-host" data-role="graph-host"></div>

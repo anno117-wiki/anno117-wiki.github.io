@@ -52,7 +52,7 @@
       }
     }
     </script>
-  <script type="module" crossorigin src="/calculator/assets/index-zTl_BD9Y.js"></script>
+  <script type="module" crossorigin src="/calculator/assets/index-BczXBPCf.js"></script>
   <link rel="stylesheet" crossorigin href="/calculator/assets/index-BYjriojd.css">
 </head>
 
@@ -85,10 +85,8 @@
     </header>
     <main>
         <section class="calculator-section">
-            <!-- ヘッダー追加 -->
-            <div class="app-header">
-                <button id="back-btn" class="header-btn">← 戻る</button>
-            </div>
+            <!-- calculator-topbar が動的にマウントされるスロット -->
+            <div id="app-topbar-slot" class="app-header"></div>
 
             <p class="usage-note" data-i18n="ui.usage.note">自動比率で建物の最適件数を表示、生産数/分に1分あたりの生産数を表示</p>
 

@@ -1800,7 +1800,10 @@ var ProductionChainView = class {
 		this.onBack = null;
 	}
 	setBackHandler(handler) {
-		this.onBack = handler;
+		this.onBack = () => {
+			document.getElementById("app-topbar-slot")?.replaceChildren();
+			handler();
+		};
 	}
 	hasSelection() {
 		return Boolean(this.currentGood && this.sourceRecipe);
@@ -1837,10 +1840,12 @@ var ProductionChainView = class {
 		const recipe = this.calculator.cloneRecipe(this.sourceRecipe);
 		this.baseInputs = this.calculator.collectBaseInputs(recipe);
 		this.container.classList.remove("hidden");
-		this.container.innerHTML = this.buildMarkup(this.currentGood);
+		const topbarSlot = document.getElementById("app-topbar-slot");
+		if (topbarSlot) topbarSlot.innerHTML = this.buildTopbarMarkup(this.currentGood);
+		this.container.innerHTML = this.buildMarkup();
 		this.graphHost = this.container.querySelector("[data-role=\"graph-host\"]");
-		this.targetInput = this.container.querySelector("#target-rate");
-		this.recommendButton = this.container.querySelector("#recommend-ratio-btn");
+		this.targetInput = document.querySelector("#target-rate");
+		this.recommendButton = document.querySelector("#recommend-ratio-btn");
 		this.buildingCostElement = document.querySelector("#total-construction-cost");
 		this.maintenanceElement = document.querySelector("#total-maintenance-cost");
 		this.bindBackButton();
@@ -1861,7 +1866,7 @@ var ProductionChainView = class {
 		await this.renderFromSource({ preserveRate: true });
 	}
 	bindBackButton() {
-		this.container.querySelector("[data-action=\"back\"]")?.addEventListener("click", () => this.onBack?.());
+		document.querySelector("[data-action=\"back\"]")?.addEventListener("click", () => this.onBack?.());
 	}
 	bindControls(recipe) {
 		if (this.targetInput) {
@@ -1916,20 +1921,24 @@ var ProductionChainView = class {
 			});
 		});
 	}
-	buildMarkup(good) {
+	buildTopbarMarkup(good) {
 		const chainLabel = this.i18n.t("ui.dependencyGraph");
 		const backLabel = this.i18n.t("ui.back");
 		return `
+            <div class="calculator-topbar">
+                <button class="back-button" type="button" data-action="back" aria-label="${backLabel}">${backLabel}</button>
+                <span class="topbar-separator">|</span>
+                <span class="topbar-title">${chainLabel}: ${good.displayName}</span>
+                <span class="topbar-separator">|</span>
+                <label for="target-rate">${this.i18n.t("ui.outputPerMinute")}</label>
+                <input id="target-rate" type="number" min="0" step="1" value="${this.currentRate ?? 1}" />
+                <button id="recommend-ratio-btn" type="button" class="recommend-button" title="整数建物数になる最適レートを自動設定します">${this.i18n.t("ui.autoRatio")}</button>
+            </div>
+        `;
+	}
+	buildMarkup() {
+		return `
             <div class="calculator-content">
-                <div class="calculator-topbar">
-                    <button class="back-button" type="button" data-action="back" aria-label="${backLabel}">${backLabel}</button>
-                    <span class="topbar-separator">|</span>
-                    <span class="topbar-title">${chainLabel}: ${good.displayName}</span>
-                    <span class="topbar-separator">|</span>
-                    <label for="target-rate">${this.i18n.t("ui.outputPerMinute")}</label>
-                    <input id="target-rate" type="number" min="0" step="1" value="${this.currentRate ?? 1}" />
-                    <button id="recommend-ratio-btn" type="button" class="recommend-button" title="整数建物数になる最適レートを自動設定します">${this.i18n.t("ui.autoRatio")}</button>
-                </div>
                 <div class="graph-panel">
                     <div class="production-graph">
                         <div class="graph-host" data-role="graph-host"></div>
@@ -7823,4 +7832,4 @@ document.addEventListener("DOMContentLoaded", async () => {
 });
 //#endregion
 
-//# sourceMappingURL=index-zTl_BD9Y.js.map
+//# sourceMappingURL=index-BczXBPCf.js.map
