@@ -7,6 +7,8 @@ const categoryLabels: Record<string, string> = {
   construction: '建設',
   fashion: 'ファッション',
   culture: '文化',
+  intermediate: '中間品',
+  resource: '原材料',
 }
 
 const regionLabels: Record<string, string> = {
@@ -15,6 +17,7 @@ const regionLabels: Record<string, string> = {
 }
 
 function regionText(regions: string[]): string {
+  if (!regions || regions.length === 0) return '—'
   return regions.map((r) => regionLabels[r] ?? r).join(' / ')
 }
 </script>
@@ -37,7 +40,10 @@ Anno 117 で生産・消費される全 {{ data.categories.reduce((n, c) => n + 
 <td>{{ good.nameJa }}</td>
 <td>{{ good.nameEn }}</td>
 <td>{{ regionText(good.regions) }}</td>
-<td><a :href="withBase(`/calculator/?good=${good.id}`)" target="_blank" rel="noopener noreferrer">計算</a></td>
+<td>
+  <a v-if="cat !== 'intermediate' && cat !== 'resource'" :href="withBase(`/calculator/?good=${good.id}`)" target="_blank" rel="noopener noreferrer">計算</a>
+  <span v-else>—</span>
+</td>
 </tr>
 </tbody>
 </table>
