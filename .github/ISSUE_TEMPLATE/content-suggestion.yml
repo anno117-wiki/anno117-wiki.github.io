@@ -1,0 +1,44 @@
+name: 内容の提案・修正
+description: Wiki記事の内容について提案・修正を送る
+title: "【提案】"
+labels: ["content-suggestion"]
+body:
+  - type: input
+    id: page
+    attributes:
+      label: 対象ページ
+      placeholder: 例）/wiki/goods、/wiki/buildings
+    validations:
+      required: true
+
+  - type: dropdown
+    id: type
+    attributes:
+      label: 提案の種類
+      options:
+        - 誤りの修正
+        - 情報の追加
+        - 情報の更新
+        - その他
+    validations:
+      required: true
+
+  - type: textarea
+    id: current
+    attributes:
+      label: 現在の内容（問題がある場合）
+      placeholder: 現在の記述をここに貼り付けてください
+
+  - type: textarea
+    id: suggestion
+    attributes:
+      label: 提案内容
+      placeholder: こうしてほしい、これを追加してほしい、など
+    validations:
+      required: true
+
+  - type: textarea
+    id: source
+    attributes:
+      label: 情報源（あれば）
+      placeholder: 実機確認・公式サイト・動画URLなど
