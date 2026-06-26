@@ -1,7 +1,7 @@
 @import url('https://fonts.googleapis.com/css2?family=Noto+Sans+JP:wght@400;500;700&display=swap');
 
 :root {
-  --vp-sidebar-width: 140px;
+  --vp-sidebar-width: 220px;
 
   /* ネイビー×ゴールド テーマ */
   --vp-c-brand-1: #1e3a5f;
@@ -120,10 +120,9 @@
 
 .VPSidebarItem .text {
   font-size: 13px;
-  white-space: nowrap;
   padding: 3px;
-  overflow: hidden;
-  text-overflow: ellipsis;
+  white-space: normal;
+  word-break: keep-all;
 }
 
 /* コンテンツ左余白縮小 */

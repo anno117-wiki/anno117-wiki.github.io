@@ -1,4 +1,34 @@
 import { defineConfig } from 'vitepress'
+import { execSync } from 'child_process'
+
+function gitHistoryPlugin() {
+  return {
+    name: 'vite-plugin-git-history',
+    resolveId(id: string) {
+      if (id === 'virtual:git-history') return '\0virtual:git-history'
+    },
+    load(id: string) {
+      if (id !== '\0virtual:git-history') return
+      try {
+        const raw = execSync(
+          'git log --pretty=format:"%ad|||%s" --date=short -20 -- apps/wiki/docs/guide/ apps/wiki/docs/wiki/',
+          { encoding: 'utf-8' }
+        ).trim()
+        const entries = raw.split('\n').filter(Boolean).slice(0, 5).map(line => {
+          const sep = line.indexOf('|||')
+          const date = line.slice(0, sep)
+          const msg = line.slice(sep + 3)
+          const type = msg.startsWith('feat:') ? 'post' : 'fix'
+          const text = msg.replace(/^(feat|fix|chore|docs|refactor|style|test|build|ci):\s*/, '')
+          return { date, text, type }
+        })
+        return `export const gitHistory = ${JSON.stringify(entries)}`
+      } catch {
+        return 'export const gitHistory = []'
+      }
+    },
+  }
+}
 
 // Anno 117 統合Wiki — VitePress 設定
 // 配信規約: wiki = '/'（ルート）、calculator = '/calculator/'
@@ -23,6 +53,10 @@ export default defineConfig({
 
   search: {
     provider: 'local',
+  },
+
+  vite: {
+    plugins: [gitHistoryPlugin()],
   },
 
   themeConfig: {
