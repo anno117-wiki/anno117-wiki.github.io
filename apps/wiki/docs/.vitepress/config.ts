@@ -48,6 +48,7 @@ export default defineConfig({
             { text: '経済・収入最適化', link: '/guide/economy-guide' },
             { text: '研究・スキルツリー・専門家', link: '/guide/research-guide' },
             { text: '交易・交易ルート', link: '/guide/trade-guide' },
+            { text: '軍事・戦闘', link: '/guide/military-guide' },
           ],
         },
         {
