@@ -40,8 +40,9 @@ playwright/.cache/
 test-reports/
 tests/e2e/screenshots/
 
-# 個人運用の起動プロンプト控え（追跡対象外）
+# 個人運用の起動プロンプト控え・一時ファイル（追跡対象外）
 prompts/
+temp/
 
 # セッション内部メモ（引き継ぎ・役割定義・作業ホワイトボード等）
 docs-notes/*
