@@ -42,3 +42,9 @@ tests/e2e/screenshots/
 
 # 個人運用の起動プロンプト控え（追跡対象外）
 prompts/
+
+# セッション内部メモ（引き継ぎ・役割定義・作業ホワイトボード等）
+docs-notes/*
+!docs-notes/wiki/
+!docs-notes/wiki/**
+!docs-notes/building-icon-mapping.md
