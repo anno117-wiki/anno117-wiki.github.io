@@ -1,0 +1,4 @@
+User-agent: *
+Allow: /
+
+Sitemap: https://anno117-wiki.github.io/sitemap.xml

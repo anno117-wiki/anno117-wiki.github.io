@@ -39,6 +39,11 @@ export default defineConfig({
   titleTemplate: ':title | Anno117DB',
   description: 'Anno 117（PS5/Steam）の日本語情報Wiki + 生産チェーン計算機',
 
+  // Google検索向け sitemap.xml をビルド時に自動生成
+  sitemap: {
+    hostname: 'https://anno117-wiki.github.io/',
+  },
+
   head: [
     ['link', { rel: 'icon', type: 'image/png', sizes: '48x48', href: '/images/anno_icon.png' }],
     ['link', { rel: 'apple-touch-icon', href: '/images/anno_icon.png' }],
