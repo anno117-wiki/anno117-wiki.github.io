@@ -13,10 +13,16 @@ hero:
       text: はじめに
       link: /guide/getting-started
     - theme: alt
+      text: 序盤攻略
+      link: /wiki/early-game-strategy
+    - theme: alt
       text: 商品一覧
       link: /wiki/goods
 
 features:
+  - title: 序盤攻略・基本戦略
+    details: 建設順・木材チェーン・住民ニーズ・経済管理・落とし穴など、初プレイから役立つ攻略情報をまとめています。
+    link: /wiki/early-game-strategy
   - title: 生産チェーン計算機
     details: 商品ごとの生産チェーンを展開し、必要な建物数・原料を計算する。計算機は別ページ（/calculator/）で動作する。
   - title: 日本語情報Wiki
