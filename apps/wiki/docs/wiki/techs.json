@@ -100,7 +100,8 @@
       "color": "Green",
       "knowledgeCost": 9000,
       "gridX": -8,
-      "gridY": 4
+      "gridY": 4,
+      "connections": ["38702"]
     },
     {
       "guid": "81180",
@@ -2123,7 +2124,8 @@
       "color": "RustRed",
       "knowledgeCost": 9000,
       "gridX": 9,
-      "gridY": 4
+      "gridY": 4,
+      "connections": ["94254"]
     },
     {
       "guid": "37737",

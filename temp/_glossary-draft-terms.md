@@ -169,18 +169,18 @@
 | クィンクェレメ | Quinquereme / Quinquireme | B,C,E | 綴り・カナゆれ(#1) |
 | 民間船 | Civilian Ships | B,C | |
 | 軍船／軍用船 | Legio / Military | B,C | 訳ゆれ(#38) |
-| 補助歩兵 | Auxilia | C | 文書内3訳(#33) |
+| アウクシリア | Auxilia | C | 文書内3訳(#33) |
 | 軍団兵 | Legionaries | C,E | |
-| 射手 | Archers | C | |
+| 弓兵 | Archers | C | |
 | 騎兵 | Equestrian Cavalry | C | |
-| 砲兵 | Scorpios / Onagers / Scorpions | C,E | 綴りゆれ(#37) |
+| 攻城兵器 | Scorpios / Onagers / Scorpions | C,E | 綴りゆれ(#37) |
 | 親衛隊 | Praetorians | E | |
-| 艦載射手 | Ship Archers / Archer Towers | C | |
-| 艦載スコルピオ | Ship Scorpion | C | |
-| 艦載カタパルト | Ship Catapult | C | |
-| 帆柱 | Ship Mast | C | |
-| 櫂 | Ship Oars / Oars | B,C | B「櫂（Oars）モジュール」 |
-| 船体 | Ship Hull | C | |
+| 船上弓兵 | Ship Archers / Archer Towers | C | |
+| 船上バリスタ | Ship Scorpion | C | |
+| 船上カタパルト | Ship Catapult | C | |
+| マスト | Ship Mast | C | |
+| オール | Ship Oars / Oars | B,C | B「櫂（Oars）モジュール」 |
+| 船体装甲 | Ship Hull | C | |
 | 帆 | Sails / Sail | B,C | B「Sails」C「Sail」 |
 | ロープ | Rope | B,C | |
 | 専門家/船長 | Specialist / Captain | B,D,E | (#27) |

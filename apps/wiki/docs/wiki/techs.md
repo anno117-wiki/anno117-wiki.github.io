@@ -1,5 +1,5 @@
 <script setup lang="ts">
-import { ref, computed } from 'vue'
+import { ref, computed, onMounted, onUnmounted } from 'vue'
 import { useData } from 'vitepress'
 import { data } from './techs.data.ts'
 
@@ -36,6 +36,7 @@ function positionTooltip(e: MouseEvent) {
 function onLeave() { hoveredTech.value = null }
 
 function selectTech(tech: any) {
+  if (panState.value?.didMove) return
   selected.value = selected.value?.guid === tech.guid ? null : tech
 }
 
@@ -59,6 +60,58 @@ const branchLabelMap: Record<string, string> = {
 const branchColorMap: Record<string, string> = {
   economy: '#16a34a', civic: '#7c3aed', military: '#dc2626', dlc01: '#d97706',
 }
+
+// パン操作
+interface PanState {
+  viewportEl: HTMLElement
+  startX: number
+  startY: number
+  scrollLeft: number
+  scrollTop: number
+  didMove: boolean
+}
+const panState = ref<PanState | null>(null)
+const viewportRefs: Record<string, HTMLElement> = {}
+
+function setViewportRef(b: string, el: any) {
+  if (el) viewportRefs[b] = el as HTMLElement
+}
+
+function onViewportMousedown(b: string, e: MouseEvent) {
+  if (e.button !== 0) return
+  const el = viewportRefs[b]
+  if (!el) return
+  panState.value = {
+    viewportEl: el,
+    startX: e.clientX,
+    startY: e.clientY,
+    scrollLeft: el.scrollLeft,
+    scrollTop: el.scrollTop,
+    didMove: false,
+  }
+}
+
+function onWindowMousemove(e: MouseEvent) {
+  if (!panState.value) return
+  const dx = e.clientX - panState.value.startX
+  const dy = e.clientY - panState.value.startY
+  if (Math.abs(dx) > 3 || Math.abs(dy) > 3) panState.value.didMove = true
+  panState.value.viewportEl.scrollLeft = panState.value.scrollLeft - dx
+  panState.value.viewportEl.scrollTop = panState.value.scrollTop - dy
+}
+
+function onWindowMouseup() {
+  panState.value = null
+}
+
+onMounted(() => {
+  window.addEventListener('mousemove', onWindowMousemove)
+  window.addEventListener('mouseup', onWindowMouseup)
+})
+onUnmounted(() => {
+  window.removeEventListener('mousemove', onWindowMousemove)
+  window.removeEventListener('mouseup', onWindowMouseup)
+})
 </script>
 
 # スキルツリー
@@ -105,7 +158,13 @@ const branchColorMap: Record<string, string> = {
     {{ branchLabelMap[b] || b }}
     <span class="branch-count">{{ (data.byBranch[b] || []).length }}件</span>
   </div>
-  <div class="tree-viewport" :style="`zoom: ${zoom};`">
+  <div
+    class="tree-viewport"
+    :style="`zoom: ${zoom};`"
+    :class="{ 'is-panning': panState?.viewportEl === viewportRefs[b] }"
+    :ref="(el: any) => setViewportRef(b, el)"
+    @mousedown="onViewportMousedown(b, $event)"
+  >
     <ClientOnly>
       <TechLinks :branch="b" :meta="data.branchMeta[b]" :techs="data.byBranch[b] || []" :color="branchColorMap[b] || '#888888'" />
     </ClientOnly>
@@ -203,13 +262,12 @@ const branchColorMap: Record<string, string> = {
 
 .branch-row {
   display: flex;
-  flex-direction: row;
+  flex-direction: column;
   gap: 16px;
-  overflow-x: auto;
   padding-bottom: 12px;
 }
 .branch-section {
-  flex-shrink: 0;
+  min-width: 0;
 }
 .branch-heading {
   font-size: 1rem; font-weight: 600;
@@ -230,6 +288,11 @@ const branchColorMap: Record<string, string> = {
   background: var(--vp-c-bg-soft);
   padding: 4px;
   position: relative;
+  cursor: grab;
+  user-select: none;
+}
+.tree-viewport.is-panning {
+  cursor: grabbing;
 }
 
 .tech-grid {
