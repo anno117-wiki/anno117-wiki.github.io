@@ -17,12 +17,11 @@
 
 ユニットの相性（三すくみ）:
 
-```mermaid
-graph LR
+<MermaidDiagram definition="graph LR
   歩兵 -->|強い| 騎兵
   騎兵 -->|強い| 遠隔
   遠隔 -->|強い| 歩兵
-```
+" />
 
 ### ユニット・艦船の操作・スタンス
 
