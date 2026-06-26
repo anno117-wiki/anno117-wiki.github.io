@@ -45,7 +45,7 @@
 | 28 | オフィキウム | Officium | D:「Officium」（無訳） / E:「Officium（オフィキウム, 小型行政施設）」 | カナ・訳併記に統一。Guest House 別称問題も注記 |
 | 29 | スキルツリー | Discovery Tree / Research Tree | C:「Discovery Tree（研究ツリー）」 / E:「研究ツリー(Discovery Tree)」「Discovery Tree / 発見ツリー」 | → **スキルツリー** に統一確定 |
 | 30 | 士気 | Morale | C:「士気（Morale）」 / E:「士気(morale)」 | 「士気」で一致（確認用） |
-| 31 | オーラ／エリア効果 | Area Effect | D:「収入エリア効果（Area Effect / 「オーラ」）」「見えないオーラ」 | 同一文書内で「エリア効果」「オーラ」併用。用語を一本化 |
+| 31 | 範囲効果 | Area Effect | D:「収入エリア効果（Area Effect / 「オーラ」）」「見えないオーラ」 | → **範囲効果** に統一確定 |
 | 32 | 需要／需要 | Needs / Need | A:「needs」「基本needs」「needsカテゴリ」 / D:「需要（need）」「需要」 | A は英字「needs」のまま、D は「需要」。「需要」に統一 |
 | 33 | 補助歩兵 | Auxilia | C:「Auxilia（槍歩兵）」「Auxilia（補助歩兵）」「Auxilia（槍を持つ中装歩兵）」 | 同一文書C内で訳語が3通り。1つに統一 |
 | 34 | 軍団兵 | Legionaries | C:「Legionaries（高規律の軍団兵）」「Legionaries（軍団兵）」 / E:「Legionaries」 | 「軍団兵」で統一 |
