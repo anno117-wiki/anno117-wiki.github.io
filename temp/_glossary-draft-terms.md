@@ -46,7 +46,7 @@
 | 29 | 研究ツリー／発見ツリー | Discovery Tree / Research Tree | C:「Discovery Tree（研究ツリー）」 / E:「研究ツリー(Discovery Tree)」「Discovery Tree / 発見ツリー」 | 「発見ツリー」vs「研究ツリー」で訳ゆれ。どちらかに統一 |
 | 30 | 士気 | Morale | C:「士気（Morale）」 / E:「士気(morale)」 | 「士気」で一致（確認用） |
 | 31 | オーラ／エリア効果 | Area Effect | D:「収入エリア効果（Area Effect / 「オーラ」）」「見えないオーラ」 | 同一文書内で「エリア効果」「オーラ」併用。用語を一本化 |
-| 32 | ニーズ／需要 | Needs / Need | A:「needs」「基本needs」「needsカテゴリ」 / D:「ニーズ（need）」「ニーズ」 | A は英字「needs」のまま、D は「ニーズ」。「ニーズ」に統一 |
+| 32 | 需要／需要 | Needs / Need | A:「needs」「基本needs」「needsカテゴリ」 / D:「需要（need）」「需要」 | A は英字「needs」のまま、D は「需要」。「需要」に統一 |
 | 33 | 補助歩兵 | Auxilia | C:「Auxilia（槍歩兵）」「Auxilia（補助歩兵）」「Auxilia（槍を持つ中装歩兵）」 | 同一文書C内で訳語が3通り。1つに統一 |
 | 34 | 軍団兵 | Legionaries | C:「Legionaries（高規律の軍団兵）」「Legionaries（軍団兵）」 / E:「Legionaries」 | 「軍団兵」で統一 |
 | 35 | 射手 | Archers | C:「Archers（射手）」「射手（archers）」 | 「射手」で一致（確認用） |
@@ -120,8 +120,8 @@
 
 | 日本語 | 英語名 | 登場草稿 | 備考・表記ゆれ |
 |--------|--------|----------|----------------|
-| ニーズ／需要 | Needs | A,D | A は英字のまま(#32) |
-| オプショナルニーズ | optional needs | A | |
+| 需要／需要 | Needs | A,D | A は英字のまま(#32) |
+| オプショナル需要 | optional needs | A | |
 | 税収 | Taxation | D | |
 | 収支／バランス | Balance | D | |
 | エリア効果／オーラ | Area Effect | D | 同義併用(#31) |
@@ -259,4 +259,4 @@
 - 船3種（Penteconter / Trireme / Quinquereme）はカナ・英綴りとも草稿間で全て不一致。公式日本語名 or 公式英綴りを1つ確定。
 - Warehouse と Depots がともに「倉庫」と訳されている。Depot は研究/容量概念として訳し分ける。
 - 「総督邸」は Villa 単独表記が散在。初出のみ英名併記、以降は日本語に統一。
-- needs/ニーズ、Knowledge/知識、Prestige(威信/名声) など英字とカナ訳の混在を本文方針で一本化。
+- needs/需要、Knowledge/知識、Prestige(威信/名声) など英字とカナ訳の混在を本文方針で一本化。

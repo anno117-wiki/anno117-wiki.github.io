@@ -36,7 +36,7 @@
 Knowledge はゲームの**8つのコア属性**の一つ（population / income / belief / knowledge / prestige / health / happiness / fire safety）。（gamerant / xboxplay）
 
 - **Knowledge が高いほど研究が速くなる**。Knowledge は研究の通貨/速度因子として働く。（thegamer / allthings.how）
-- Knowledge は**建物のニーズが満たされたとき、または関連バフを受けたとき**に産出される。（allthings.how）
+- Knowledge は**建物の需要が満たされたとき、または関連バフを受けたとき**に産出される。（allthings.how）
 
 ### Knowledge を産む主な建物・要素
 
@@ -44,7 +44,7 @@ Knowledge はゲームの**8つのコア属性**の一つ（population / income 
 - **Fanum（ファヌム）** — 序盤に Knowledge を上げるもう一つの建物。（thegamer）
 - **Library（図書館）** — 「大きなボーナス」を与えるとされる。（vortexgaming）**※要検証（建物名英語要確認）**
 - **Tabulus Workshop（タブルス工房 / 書字板工房）** — writing tablets（書字板）と lyres（竪琴）を供給すると Knowledge を産出。（vortexgaming）**※要検証**
-- **Writing Tablets for Eques（エクィテス向け書字板, Tier3 ニーズ）** — 供給時に **+3 Knowledge**。（allthings.how）
+- **Writing Tablets for Eques（エクィテス向け書字板, Tier3 需要）** — 供給時に **+3 Knowledge**。（allthings.how）
 
 ### Knowledge を増やすコツ
 
