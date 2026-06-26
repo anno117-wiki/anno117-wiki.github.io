@@ -17,11 +17,29 @@
 
 ユニットの相性（三すくみ）:
 
-<MermaidDiagram definition="graph LR
-  歩兵 -->|強い| 騎兵
-  騎兵 -->|強い| 遠隔
-  遠隔 -->|強い| 歩兵
-" />
+<svg viewBox="0 0 300 240" width="300" height="240" xmlns="http://www.w3.org/2000/svg" style="display:block;margin:1rem auto;font-family:inherit">
+  <defs>
+    <marker id="arr" markerWidth="8" markerHeight="8" refX="6" refY="3" orient="auto">
+      <path d="M0,0 L0,6 L8,3 z" fill="#666" />
+    </marker>
+  </defs>
+  <!-- 歩兵(top) 騎兵(right) 遠隔(left) -->
+  <!-- arrows: 歩兵→騎兵, 騎兵→遠隔, 遠隔→歩兵 -->
+  <line x1="168" y1="52" x2="222" y2="145" stroke="#666" stroke-width="1.5" marker-end="url(#arr)" />
+  <line x1="208" y1="168" x2="108" y2="168" stroke="#666" stroke-width="1.5" marker-end="url(#arr)" />
+  <line x1="78"  y1="145" x2="132" y2="52"  stroke="#666" stroke-width="1.5" marker-end="url(#arr)" />
+  <!-- labels on arrows -->
+  <text x="210" y="108" font-size="11" fill="#555" text-anchor="middle">強い</text>
+  <text x="150" y="190" font-size="11" fill="#555" text-anchor="middle">強い</text>
+  <text x="90"  y="108" font-size="11" fill="#555" text-anchor="middle">強い</text>
+  <!-- nodes -->
+  <rect x="110" y="20"  width="80" height="36" rx="6" fill="#e8f0fe" stroke="#4a7fd4" stroke-width="1.5"/>
+  <text x="150" y="43"  font-size="14" font-weight="bold" fill="#1a3a6b" text-anchor="middle">歩兵</text>
+  <rect x="210" y="150" width="80" height="36" rx="6" fill="#fce8e8" stroke="#d44a4a" stroke-width="1.5"/>
+  <text x="250" y="173" font-size="14" font-weight="bold" fill="#6b1a1a" text-anchor="middle">騎兵</text>
+  <rect x="10"  y="150" width="80" height="36" rx="6" fill="#e8fce8" stroke="#4ad44a" stroke-width="1.5"/>
+  <text x="50"  y="173" font-size="14" font-weight="bold" fill="#1a6b1a" text-anchor="middle">遠隔</text>
+</svg>
 
 ### ユニット・艦船の操作・スタンス
 
