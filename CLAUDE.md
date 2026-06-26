@@ -40,8 +40,6 @@ anno_db2/
     └── anno-official-data/   # 公式全言語テキスト+assets.xml+official_master.csv
 ```
 
-詳細: `docs-notes/architecture-monorepo.md` 参照
-
 ## 言語ルール【絶対順守】
 - **内部キー（フォルダ名・ID・変数）**: すべて英語
 - **表示テキスト**: 日本語切替→全て日本語、英語切替→全て英語
