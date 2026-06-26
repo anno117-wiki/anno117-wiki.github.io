@@ -43,7 +43,7 @@
 | 26 | ミネルヴァ（知の女神） | Minerva | E:「守護神 Minerva（ミネルヴァ）」 | E のみ。確認用 |
 | 27 | 専門家／アイテム | Specialists / Items | B:「専門家（Specialist / 船長 Captain）アイテム」 / D:「専門家（Specialists）」 / E:「専門家(Specialists)」「アイテム」 | 旧称 items と新称 Specialists の関係を脚注で明示し、本文は「専門家」に統一 |
 | 28 | オフィキウム | Officium | D:「Officium」（無訳） / E:「Officium（オフィキウム, 小型行政施設）」 | カナ・訳併記に統一。Guest House 別称問題も注記 |
-| 29 | 研究ツリー／発見ツリー | Discovery Tree / Research Tree | C:「Discovery Tree（研究ツリー）」 / E:「研究ツリー(Discovery Tree)」「Discovery Tree / 発見ツリー」 | 「発見ツリー」vs「研究ツリー」で訳ゆれ。どちらかに統一 |
+| 29 | スキルツリー | Discovery Tree / Research Tree | C:「Discovery Tree（研究ツリー）」 / E:「研究ツリー(Discovery Tree)」「Discovery Tree / 発見ツリー」 | → **スキルツリー** に統一確定 |
 | 30 | 士気 | Morale | C:「士気（Morale）」 / E:「士気(morale)」 | 「士気」で一致（確認用） |
 | 31 | オーラ／エリア効果 | Area Effect | D:「収入エリア効果（Area Effect / 「オーラ」）」「見えないオーラ」 | 同一文書内で「エリア効果」「オーラ」併用。用語を一本化 |
 | 32 | 需要／需要 | Needs / Need | A:「needs」「基本needs」「needsカテゴリ」 / D:「需要（need）」「需要」 | A は英字「needs」のまま、D は「需要」。「需要」に統一 |
@@ -80,7 +80,7 @@
 | 日本語 | 英語名 | 登場草稿 | 備考・表記ゆれ |
 |--------|--------|----------|----------------|
 | 倉庫 | Warehouse | A,D | Depots とも訳されゆれ(#13) |
-| デポ／集積所 | Depots | B,E | 研究で容量増。Warehouse と訳衝突 |
+| 貯蔵所 | Depots | B,E | 研究で容量増。Warehouse と訳衝突 |
 | 交易所／取引所 | Trading Post | A,B,D | A は「取引所」(#14) |
 | 港 | Harbour | B,C | タブ名ゆれ(#15) |
 | 造船所 | Shipyard | B,C | 一致 |
@@ -95,15 +95,15 @@
 | 学校 | Schola / 文法学校 | A,D | A「文法学校」、D「Schola（学校）」 |
 | 漁師小屋／釣り小屋 | Fishing Hut | A,D | 訳ゆれ(#40) |
 | お粥スタンド | Porridge Stall | A,D | |
-| メディキ（医療） | Medici | A | 無訳カナ |
-| ヴィジレス／自警団 | Vigiles / City Watch | A | 「ヴィジレス／City Watch」併記 |
+| 医院 | Medici | A | 無訳カナ |
+| 衛兵詰所 | Vigiles / City Watch | A | 「ヴィジレス／City Watch」併記 |
 | 兵舎 | Barracks | C | |
-| 総督邸 | Governor's Villa | C,D,E | 単に Villa とも(#4) |
+| 総督のヴィラ | Governor's Villa | C,D,E | 単に Villa とも(#4) |
 | オフィキウム | Officium | D,E | カナ訳ゆれ(#28)・Guest House別称 |
-| グラマティクス | Grammaticus | D,E | カナ併記ゆれ(#20) |
-| ファヌム | Fanum | E | |
+| ラテン語教室 | Grammaticus | D,E | カナ併記ゆれ(#20) |
+| 聖所 | Fanum | E | |
 | 図書館 | Library | E | 英語要確認 |
-| タブルス工房 | Tabulus Workshop | E | 要検証 |
+| 筆記板工房 | Tabulus Workshop | E | 要検証 |
 | 聖域 | Sanctuary | D | 守護神選択施設 |
 | 劇場 | Theatre | A | 「劇場」 |
 | 灯台 | Lighthouse | D,E | 契約(Contracts)の発生源 |
@@ -111,7 +111,7 @@
 | 木柵 | Palisade | C | 「palisade（木製の柵）」 |
 | 石壁 | Walls / Stone Walls | C | |
 | 殿堂 | Hall of Fame | E | fame points |
-| 鉱山(鉄) | Iron Mine | D | |
+| 鉄鉱山 | Iron Mine | D | |
 | 炉／製錬所 | Furnace / 製錬所 | C,D | C「furnace（炉）」D「Furnace」「製錬所」 |
 | 鍛冶／武器鍛冶 | Smith / Weaponsmith | C,D | |
 | 各種農場 | Oat Farm / Hemp Farm / Wheat Farm / Flax Farm / Olive Grower / Vineyard 等 | D | 生産チェーン節に多数 |
@@ -123,8 +123,8 @@
 | 需要／需要 | Needs | A,D | A は英字のまま(#32) |
 | オプショナル需要 | optional needs | A | |
 | 税収 | Taxation | D | |
-| 収支／バランス | Balance | D | |
-| エリア効果／オーラ | Area Effect | D | 同義併用(#31) |
+| 収支| Balance | D | |
+| 範囲効果 | Area Effect | D | 同義併用(#31) |
 | 配置ボーナス | placement bonus | A | |
 | 維持費 | Upkeep | C,D | |
 | 労働力 | Workforce | C,D | |
@@ -144,7 +144,7 @@
 | 交易禁輸 | trade embargo | B | |
 | 遠征 | Expeditions | B | 存在自体が要検証 |
 | 研究／発見ツリー | Discovery Tree / Research Tree | C,E | 訳ゆれ(#29) |
-| ディスカバリー | discoveries | E | |
+| 発見 | discoveries | E | |
 | インスピレーション | Inspirations | E | 研究解放ゲート |
 | 知識 | Knowledge | E | (#54) |
 | 信仰／信心 | Belief / Devotion | C,E | |
@@ -164,9 +164,9 @@
 
 | 日本語 | 英語名 | 登場草稿 | 備考・表記ゆれ |
 |--------|--------|----------|----------------|
-| ペンテコンテル/ペンテコンター | Penteconter | B,C | カナゆれ(#3) |
-| トリレメ/トリレーム | Trireme | B,C | カナゆれ(#2) |
-| クィンクエレメ/クィンクェレーメ | Quinquereme / Quinquireme | B,C,E | 綴り・カナゆれ(#1) |
+| ペンテコンター | Penteconter | B,C | カナゆれ(#3) |
+| トライリーメ | Trireme | B,C | カナゆれ(#2) |
+| クィンクェレメ | Quinquereme / Quinquireme | B,C,E | 綴り・カナゆれ(#1) |
 | 民間船 | Civilian Ships | B,C | |
 | 軍船／軍用船 | Legio / Military | B,C | 訳ゆれ(#38) |
 | 補助歩兵 | Auxilia | C | 文書内3訳(#33) |
@@ -217,9 +217,9 @@
 | 靴 | Shoes | B,D | |
 | 馬 | Horses | D | |
 | ブローチ | Brooches | D | |
-| チャリオット | Chariots | D | 専門家効果対象 |
-| リラ（竪琴） | Lyres | D,E | |
-| 書字板 | Writing Tablets | E | |
+| 戦車 | Chariots | D | 専門家効果対象 |
+| 竪琴 | Lyres | D,E | |
+| 筆記板 | Writing Tablets | E | |
 
 ### 住民層・地域・人物
 
@@ -237,20 +237,21 @@
 | ドリアン | Dorian | B,D | ライバル知事 |
 | タラゴン | Tarragon | B | ライバル知事 |
 | コンコルディア | Concordia | B,E | 知事/専門家名 |
-| アスル | Athr | B | ケルト系知事 |
-| NPC商人各種 | Diana / Valeria / Sarina / Corvinus / Manx 等 | B,E | |
+| アーサー | Athr | B | ケルト系知事 |
+| NPC商人各種 | ダイアナ / ヴァレリア / コルヴィヌス / マンクス 等 | B,E | |
 
 ### 守護神（神格）
 
 | 日本語 | 英語名 | 登場草稿 | 備考 |
 |--------|--------|----------|------|
-| セレス/サラス（農業） | Ceres? / Saras | A,D | 同一神か要確認(#22) |
-| ネプトゥヌス（海） | Neptune | B,D | (#23) |
-| メルクリウス（交易） | Mercury / Mercury-Lugus | B,D | (#24) |
+| ケレース（農業/人口） | Ceres? / Saras | A,D | 同一神か要確認(#22) |
+| ネプトゥーヌス（海/船） | Neptune | B,D | (#23) |
+| メルクリウス・ルグス（交易/名声） | Mercury / Mercury-Lugus | B,D | (#24) |
 | マルス（戦争） | Mars | D | |
-| ミネルヴァ（知） | Minerva | E | |
-| エポナ（馬） | Epona | C | Epona's Hoofbeat 研究 |
-
+| ミネルヴァ（知識） | Minerva | E | |
+| エポナ（動物/人口） | Epona | C | Epona's Hoofbeat 研究 |
+| ケルヌンノス（自然/健康度・知識）
+| ウルカヌス（労働力/鉱物類）
 ---
 
 ## 統一作業時の注意（メモ）
