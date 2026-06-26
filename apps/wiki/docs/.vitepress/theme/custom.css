@@ -195,6 +195,35 @@
   color: #c9a84c;
 }
 
+/* ========================================
+   モバイル対応（≤959px）
+   VitePressがサイドバーを隠す幅に統一。
+   デスクトップ(≥960px)は完全無変化。
+   ======================================== */
+@media (max-width: 959px) {
+  /* (1) 本文の左右余白復活
+     グローバルの .VPDoc{padding-left:0!important} と
+     .vp-doc{padding:2rem 0!important} が左右0にしているのを上書き */
+  .VPDoc {
+    padding-left: unset !important;
+  }
+
+  .vp-doc {
+    padding: 1.5rem 1rem !important;
+    border-radius: 8px;
+    margin: 0.5rem 0;
+  }
+
+  /* (2) 多列テーブル横スクロール化
+     白-nowrap(136-141行)は維持し横スクロールで救う */
+  .vp-doc table {
+    display: block;
+    overflow-x: auto;
+    -webkit-overflow-scrolling: touch;
+    max-width: 100%;
+  }
+}
+
 /* ダークモード */
 .dark {
   --vp-c-bg: #0e1a2e;
