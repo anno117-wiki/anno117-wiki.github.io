@@ -28,7 +28,7 @@ export default defineConfig({
   themeConfig: {
     nav: [
       { text: 'ホーム', link: '/' },
-      { text: 'ガイド', link: '/guide/getting-started' },
+      { text: '攻略ガイド', link: '/guide/strategy' },
       { text: '商品', link: '/wiki/goods' },
       { text: '生産品', link: '/wiki/production-chains' },
       { text: '建物効果', link: '/wiki/buildings' },
@@ -41,7 +41,14 @@ export default defineConfig({
     sidebar: {
       '/guide/': [
         {
-          text: 'ガイド',
+          text: '攻略ガイド',
+          items: [
+            { text: '攻略ガイド一覧', link: '/guide/strategy' },
+            { text: '序盤攻略・基本戦略', link: '/guide/early-game-strategy' },
+          ],
+        },
+        {
+          text: 'このWikiについて',
           items: [
             { text: 'はじめに', link: '/guide/getting-started' },
             { text: '計算機の使い方', link: '/guide/calculator-guide' },
@@ -50,7 +57,6 @@ export default defineConfig({
         },
       ],
       '/wiki/': [
-        { text: '序盤攻略・基本戦略', link: '/wiki/early-game-strategy' },
         { text: '生産品一覧', link: '/wiki/goods' },
         { text: '生産チェーン一覧', link: '/wiki/production-chains' },
         { text: '建物効果', link: '/wiki/buildings' },

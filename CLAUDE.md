@@ -97,6 +97,8 @@ anno_db2/
 - 並列セッションでの同一ファイル競合に注意
 - VitePressデータローダーからnamed exportは不可（`export default { load() }` のみ）
 - 建物効果: FunctionalEffectsのみ集計・AttributeProviderは二重計上になるため除外
+- **ビルドは必ず `bun run build:site`**（`bun run build` は計算機のみ・wikiが docs/ から消える）
+- build:site 実行後は `ls docs/` で wiki ファイルの存在を確認してからコミット
 
 ## 参考リンク
 - anno-calculator公式: GitHub: agentquackyt/Anno117Calculator

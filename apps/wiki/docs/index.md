@@ -10,23 +10,20 @@ hero:
       text: 計算機を開く
       link: /calculator/
     - theme: alt
-      text: はじめに
-      link: /guide/getting-started
+      text: 攻略ガイド
+      link: /guide/strategy
     - theme: alt
-      text: 序盤攻略
-      link: /wiki/early-game-strategy
-    - theme: alt
-      text: 商品一覧
+      text: データベース
       link: /wiki/goods
 
 features:
-  - title: 序盤攻略・基本戦略
-    details: 建設順・木材チェーン・住民ニーズ・経済管理・落とし穴など、初プレイから役立つ攻略情報をまとめています。
-    link: /wiki/early-game-strategy
+  - title: 攻略ガイド
+    details: 序盤攻略・交易・軍事・経済など、プレイヤー向け攻略情報をまとめています。
+    link: /guide/strategy
+  - title: データベース
+    details: 商品・建物効果・住民層・アイテムなどのゲームデータを日本語で整理。公式データ準拠。
+    link: /wiki/goods
   - title: 生産チェーン計算機
-    details: 商品ごとの生産チェーンを展開し、必要な建物数・原料を計算する。計算機は別ページ（/calculator/）で動作する。
-  - title: 日本語情報Wiki
-    details: 商品・生産・地域などの情報を日本語で整理。表示テキストは言語切替に対応する。
-  - title: 公式データ準拠
-    details: "anno-calculator公式（GitHub: agentquackyt/Anno117Calculator）のデータを活用。"
+    details: 商品ごとの生産チェーンを展開し、必要な建物数・原料を計算する。
+    link: /calculator/
 ---
