@@ -50,6 +50,7 @@ export default defineConfig({
         },
       ],
       '/wiki/': [
+        { text: '序盤攻略・基本戦略', link: '/wiki/early-game-strategy' },
         { text: '生産品一覧', link: '/wiki/goods' },
         { text: '生産チェーン一覧', link: '/wiki/production-chains' },
         { text: '建物効果', link: '/wiki/buildings' },
