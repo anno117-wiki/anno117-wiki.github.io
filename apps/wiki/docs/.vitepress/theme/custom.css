@@ -82,8 +82,12 @@
 }
 
 /* 右サイドバー（目次） */
-.aside-container {
+.VPDoc .aside {
   width: 160px !important;
+  padding-left: 16px !important;
+}
+.aside-container {
+  width: 144px !important;
 }
 
 /* サイドバー */
