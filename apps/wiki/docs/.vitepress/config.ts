@@ -46,6 +46,7 @@ export default defineConfig({
             { text: '攻略ガイド一覧', link: '/guide/strategy' },
             { text: '序盤攻略・基本戦略', link: '/guide/early-game-strategy' },
             { text: '経済・収入最適化', link: '/guide/economy-guide' },
+            { text: '研究・スキルツリー・専門家', link: '/guide/research-guide' },
           ],
         },
         {
