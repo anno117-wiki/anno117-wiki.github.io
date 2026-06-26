@@ -35,8 +35,8 @@ function gitHistoryPlugin() {
 // 計算機本体は別SPA。本wikiからは誘導リンクで案内する（フルUI埋め込みはしない）。
 export default defineConfig({
   lang: 'ja-JP',
-  title: 'Anno 117 統合Wiki',
-  titleTemplate: ':title | Anno 117 統合Wiki',
+  title: 'Anno117DB',
+  titleTemplate: ':title | Anno117DB',
   description: 'Anno 117（PS5/Steam）の日本語情報Wiki + 生産チェーン計算機',
 
   head: [
