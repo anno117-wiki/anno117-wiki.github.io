@@ -42,16 +42,8 @@
   box-shadow: 0 4px 12px rgba(30, 58, 95, 0.35) !important;
 }
 
-.VPNavBarTitle {
-  position: absolute;
-  left: 50%;
-  transform: translateX(-50%);
-  pointer-events: none;
-}
-
 .VPNavBarTitle .title {
   color: #f8f8f6 !important;
-  pointer-events: auto;
 }
 
 .VPNavBarMenuLink {
