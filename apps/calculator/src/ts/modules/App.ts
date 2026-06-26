@@ -296,6 +296,8 @@ export class App {
         this.currentGood = good;
         Item.setActiveChain(good.id);
         this.pushUrl();
+        // モバイルボトムシートを閉じる
+        (window as { __closeMobileSheets?: () => void }).__closeMobileSheets?.();
         // 2カラムレイアウトのため、両方を常に表示
         // this.selectionContainer.classList.add('hidden');
         // this.calculatorContainer.classList.remove('hidden');

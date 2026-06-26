@@ -7108,7 +7108,7 @@ var ModifierPanel_default = /*#__PURE__*/ _plugin_vue_export_helper_default(/* @
 			}), 128))])]);
 		};
 	}
-}), [["__scopeId", "data-v-5008e8e4"]]);
+}), [["__scopeId", "data-v-f7b56003"]]);
 //#endregion
 //#region apps/calculator/src/ts/vue-app.ts
 /**
@@ -7312,6 +7312,7 @@ var App = class App {
 		this.currentGood = good;
 		Item.setActiveChain(good.id);
 		this.pushUrl();
+		window.__closeMobileSheets?.();
 		this.productionView.showLoading(good);
 		try {
 			const recipe = await this.goodsRepository.loadProductionChain(good.id, this.currentRegion);
@@ -7595,13 +7596,38 @@ var PanelResizer = class PanelResizer {
 };
 //#endregion
 //#region apps/calculator/src/ts/entry.ts
+function initMobileSheets() {
+	const overlay = document.getElementById("mobile-sheet-overlay");
+	const goodsSheet = document.getElementById("selection-container");
+	const modifierSheet = document.getElementById("modifier-container");
+	const btnGoods = document.getElementById("mobile-btn-goods");
+	const btnModifier = document.getElementById("mobile-btn-modifier");
+	function closeSheets() {
+		goodsSheet?.classList.remove("sheet-open");
+		modifierSheet?.classList.remove("sheet-open");
+		overlay?.classList.remove("active");
+		btnGoods?.classList.remove("active");
+		btnModifier?.classList.remove("active");
+	}
+	function openSheet(sheet, btn) {
+		closeSheets();
+		sheet?.classList.add("sheet-open");
+		overlay?.classList.add("active");
+		btn?.classList.add("active");
+	}
+	btnGoods?.addEventListener("click", () => openSheet(goodsSheet, btnGoods));
+	btnModifier?.addEventListener("click", () => openSheet(modifierSheet, btnModifier));
+	overlay?.addEventListener("click", closeSheets);
+	window.__closeMobileSheets = closeSheets;
+}
 document.addEventListener("DOMContentLoaded", async () => {
 	registerAqueductModifier();
 	registerItemModifier();
 	await App.getInstance().initialize();
 	initVueComponents();
 	PanelResizer.getInstance().restoreSavedWidth();
+	initMobileSheets();
 });
 //#endregion
 
-//# sourceMappingURL=index-C182wgFZ.js.map
+//# sourceMappingURL=index-DUTE7OGM.js.map

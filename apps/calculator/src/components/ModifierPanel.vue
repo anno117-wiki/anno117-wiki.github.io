@@ -211,4 +211,39 @@ onUnmounted(() => {
   flex: 1;
   text-align: left;
 }
+
+@media (max-width: 768px) {
+  /* .modifier-section にgridを当ててボタンを全幅整列 */
+  .modifier-section {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(80px, 1fr));
+    gap: 0.5rem;
+  }
+
+  /* セクション名は全幅で表示 */
+  .modifier-section-header {
+    grid-column: 1 / -1;
+  }
+
+  /* .modifier-toggles を透過させてボタンをgridセルとして整列 */
+  .modifier-toggles {
+    display: contents;
+  }
+
+  .modifier-toggle-btn {
+    width: 100%;
+    height: auto;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    padding: 0.5rem 0.25rem;
+  }
+
+  .toggle-label {
+    font-size: 0.7rem;
+    text-align: center;
+    line-height: 1.2;
+    flex: none;
+  }
+}
 </style>
