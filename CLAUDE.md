@@ -57,7 +57,7 @@ anno_db2/
 | フェーズ | 内容 | 状態 |
 |---------|------|------|
 | 1〜7 | 言語基盤・E2E・Vue移行・UI・モノレポ | ✅ 完了 |
-| 8 | wikiコンテンツ充実 | 🔄 進行中 |
+| 8 | wikiコンテンツ充実 | ✅ 完了 |
 
 ### フェーズ8 完了済み（〜2026-06-27）
 - 商品一覧（食料/建設/ファッション/文化/中間品/原材料の6分類・全商品）
@@ -68,12 +68,12 @@ anno_db2/
 - 公式データ自動生成インフラ（build-buildings-data.py / build-game-data.py）
 - 建物効果2倍バグ修正（AttributeProvider二重計上を除去）
 - スマホ対応一式（計算機ボトムシート・WIKI余白・横向き・SOG15対応・セクションナビ）
-
-### フェーズ8 残作業
-- アイテム効果値の検証・更新（`_local/annolayouts-items-data.json` に差分27件保存済み）
+- アイテム効果値の検証・更新
 - DLC商品アイコン差し替え（Statuettes/Latrunculi Sets）
 - military_camp 建物効果の実機確認
-- 計算機のMermaid生産チェーン表示が全商品空白（既存問題）
+- 計算機Mermaid生産チェーン表示修正
+- DLC01攻略ページ添削・goods.mdに商品行アンカー追加（`:id="good.id"`）
+- calculator-guide.md Storage説明削除・言語切替表記を「EN / 日本語」に修正
 
 ### モバイルCSS設計メモ（2026-06-27確定）
 - 縦向きモバイル: `@media (max-width:768px)` in theme.css
@@ -105,6 +105,7 @@ anno_db2/
 - 建物効果: FunctionalEffectsのみ集計・AttributeProviderは二重計上になるため除外
 - **ビルドは必ず `bun run build:site`**（`bun run build` は計算機のみ・wikiが docs/ から消える）
 - build:site 実行後は `ls docs/` で wiki ファイルの存在を確認してからコミット
+- VitePressで日本語文字の直後の `**太字**` 記法は機能しない → `<strong>` タグを使う
 
 ## 参考リンク
 - anno-calculator公式: GitHub: agentquackyt/Anno117Calculator
