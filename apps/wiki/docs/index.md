@@ -9,6 +9,7 @@ hero:
     - theme: brand
       text: 計算機を開く
       link: /calculator/
+      target: _self
     - theme: alt
       text: 攻略ガイド
       link: /guide/strategy
@@ -26,4 +27,5 @@ features:
   - title: 生産チェーン計算機
     details: 商品ごとの生産チェーンを展開し、必要な建物数・原料を計算する。
     link: /calculator/
+    target: _self
 ---
