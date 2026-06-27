@@ -59,7 +59,7 @@ anno_db2/
 | 1〜7 | 言語基盤・E2E・Vue移行・UI・モノレポ | ✅ 完了 |
 | 8 | wikiコンテンツ充実 | 🔄 進行中 |
 
-### フェーズ8 完了済み（〜2026-06-25）
+### フェーズ8 完了済み（〜2026-06-27）
 - 商品一覧（食料/建設/ファッション/文化/中間品/原材料の6分類・全商品）
 - 生産チェーン一覧（Mermaid図）・地域別商品・住民層・建物効果（173件）
 - アイテム一覧（421件）・生産品需要逆引き（tier表示・上位互換含む）
@@ -67,12 +67,20 @@ anno_db2/
 - wiki↔計算機 双方向ナビ
 - 公式データ自動生成インフラ（build-buildings-data.py / build-game-data.py）
 - 建物効果2倍バグ修正（AttributeProvider二重計上を除去）
+- スマホ対応一式（計算機ボトムシート・WIKI余白・横向き・SOG15対応・セクションナビ）
 
 ### フェーズ8 残作業
 - アイテム効果値の検証・更新（`_local/annolayouts-items-data.json` に差分27件保存済み）
 - DLC商品アイコン差し替え（Statuettes/Latrunculi Sets）
 - military_camp 建物効果の実機確認
 - 計算機のMermaid生産チェーン表示が全商品空白（既存問題）
+
+### モバイルCSS設計メモ（2026-06-27確定）
+- 縦向きモバイル: `@media (max-width:768px)` in theme.css
+- 横向きスマホ全機種(SOG15含む): `@media (orientation:landscape) and (max-height:500px) and (max-width:1024px)` — ボトムシート+生産チェーン表示を含む
+- WIKIモバイル: `@media (max-width:959px)` in custom.css
+- セクションナビ: Layout.vue `onContentUpdated` DOM直接挿入（Teleport廃止）
+- 計算機リンク: Layout.vue `fixCalculatorLinks()` でSPAルーター横取り回避
 
 ### 公式ゲームデータ（最重要資産）
 - `_local/anno-official-data/`（gitignore・未追跡）: assets.xml + official_master.csv（30,719件）
