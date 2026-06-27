@@ -195,6 +195,39 @@
   color: #c9a84c;
 }
 
+/* セクション間ナビボタン（Layout.vue DOM注入）*/
+.section-nav-links {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  padding: 0 12px;
+}
+
+.section-nav-link {
+  display: inline-block;
+  padding: 3px 10px;
+  font-size: 11px;
+  font-weight: 600;
+  color: var(--vp-c-brand-1);
+  border: 1px solid var(--vp-c-brand-1);
+  border-radius: 12px;
+  text-decoration: none;
+  white-space: nowrap;
+  transition: background-color 0.2s, color 0.2s;
+}
+
+.section-nav-link:hover {
+  background-color: var(--vp-c-brand-1);
+  color: #fff;
+}
+
+/* デスクトップ(≥960px)では VPLocalNav 自体が非表示になるため不要 */
+@media (min-width: 960px) {
+  .section-nav-links {
+    display: none;
+  }
+}
+
 /* ========================================
    モバイル対応（≤959px）
    VitePressがサイドバーを隠す幅に統一。
