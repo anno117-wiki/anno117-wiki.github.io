@@ -2063,8 +2063,8 @@ footer {
   background: rgba(255,255,255,0.15);
 }
 
-/* スマホ横向き対応: モバイル(≤768px)かつ低高(≤500px)限定。縦向き/デスクトップは無変化 */
-@media (orientation: landscape) and (max-height: 500px) and (max-width: 768px) {
+/* スマホ横向き対応: 低高(≤500px)かつ≤1024px限定。iPad横向きはmax-heightで除外、デスクトップは除外 */
+@media (orientation: landscape) and (max-height: 500px) and (max-width: 1024px) {
   /* app-headerを1行コンパクト化（119px→約50px）して生産チェーンに高さを確保 */
   .app-header {
     padding: 4px 12px;
