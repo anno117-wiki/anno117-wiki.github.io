@@ -103,7 +103,6 @@ export default defineConfig({
               link: '/guide/getting-started',
               items: [
                 { text: '計算機の使い方', link: '/guide/calculator-guide' },
-                { text: '用語集', link: '/guide/glossary' },
               ],
             },
           ],
