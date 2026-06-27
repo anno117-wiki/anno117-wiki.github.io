@@ -61,4 +61,14 @@ const issueUrl = computed(() => {
   background-color: var(--vp-c-brand-1);
   color: var(--vp-c-white);
 }
+
+/* モバイルで本文(.vp-doc)と左右余白を揃える。
+   ContributionPanel は #doc-after スロット経由で .vp-doc の外側に置かれるため、
+   本文側の左右paddingが効かず左端に張り付く。同じ 1rem を与えて揃える。 */
+@media (max-width: 959px) {
+  .contribution-panel {
+    padding-left: 1rem;
+    padding-right: 1rem;
+  }
+}
 </style>
