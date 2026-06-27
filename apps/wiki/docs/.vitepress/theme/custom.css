@@ -317,3 +317,15 @@
 .dark .vp-doc a:hover {
   color: #c9a84c;
 }
+
+/* サイドバーのリンクなしグループヘッダーをプレーンテキスト化 */
+.VPSidebarItem.level-0:not(.is-link) > .item {
+  cursor: default;
+  pointer-events: none;
+}
+.VPSidebarItem.level-0:not(.is-link) > .item .caret {
+  display: none;
+}
+.VPSidebarItem.level-0:not(.is-link) > .item:hover .text {
+  color: var(--vp-c-text-1);
+}
