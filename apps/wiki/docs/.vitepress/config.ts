@@ -98,9 +98,14 @@ export default defineConfig({
         {
           text: 'このWikiについて',
           items: [
-            { text: 'はじめに', link: '/guide/getting-started' },
-            { text: '計算機の使い方', link: '/guide/calculator-guide' },
-            { text: '用語集', link: '/guide/glossary' },
+            {
+              text: 'はじめに',
+              link: '/guide/getting-started',
+              items: [
+                { text: '計算機の使い方', link: '/guide/calculator-guide' },
+                { text: '用語集', link: '/guide/glossary' },
+              ],
+            },
           ],
         },
       ],
