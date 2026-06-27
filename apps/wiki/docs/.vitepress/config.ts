@@ -82,12 +82,17 @@ export default defineConfig({
         {
           text: '攻略ガイド',
           items: [
-            { text: '攻略ガイド一覧', link: '/guide/strategy' },
-            { text: '序盤攻略・基本戦略', link: '/guide/early-game-strategy' },
-            { text: '経済・収入最適化', link: '/guide/economy-guide' },
-            { text: '研究・スキルツリー・専門家', link: '/guide/research-guide' },
-            { text: '交易・交易ルート', link: '/guide/trade-guide' },
-            { text: '軍事・戦闘', link: '/guide/military-guide' },
+            {
+              text: '攻略ガイド一覧',
+              link: '/guide/strategy',
+              items: [
+                { text: '序盤攻略・基本戦略', link: '/guide/early-game-strategy' },
+                { text: '経済・収入最適化', link: '/guide/economy-guide' },
+                { text: '研究・スキルツリー・専門家', link: '/guide/research-guide' },
+                { text: '交易・交易ルート', link: '/guide/trade-guide' },
+                { text: '軍事・戦闘', link: '/guide/military-guide' },
+              ],
+            },
           ],
         },
         {
