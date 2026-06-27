@@ -2106,4 +2106,66 @@ footer {
   .calculator-section {
     overflow-y: auto;
   }
+
+  /* 横向き低高でもボトムシートUIを有効化（768px超スマホ対応: SOG15等880x411px）
+     max-width:768pxのモバイルCSSが当たらない機種のためにここで再定義 */
+  .calculator-layout.three-column,
+  .calculator-layout.two-column,
+  .calculator-layout {
+    grid-template-columns: 1fr;
+    grid-template-rows: 1fr;
+    overflow: hidden;
+    height: 100%;
+  }
+
+  #selection-container {
+    position: fixed;
+    bottom: 60px;
+    left: 0;
+    right: 0;
+    z-index: 200;
+    height: 75vh;
+    max-height: 75vh;
+    border-radius: 20px 20px 0 0;
+    transform: translateY(calc(100% + 60px));
+    transition: transform 0.3s cubic-bezier(0.32, 0.72, 0, 1);
+    overflow-y: auto;
+    overflow-x: hidden;
+    padding: 1rem;
+  }
+
+  #selection-container.sheet-open {
+    transform: translateY(0);
+  }
+
+  #modifier-container {
+    position: fixed;
+    bottom: 60px;
+    left: 0;
+    right: 0;
+    z-index: 200;
+    height: 60vh;
+    max-height: 60vh;
+    border-radius: 20px 20px 0 0;
+    transform: translateY(calc(100% + 60px));
+    transition: transform 0.3s cubic-bezier(0.32, 0.72, 0, 1);
+    overflow-y: auto;
+    overflow-x: hidden;
+  }
+
+  #modifier-container.sheet-open {
+    transform: translateY(0);
+  }
+
+  #resize-handle {
+    display: none !important;
+  }
+
+  #mobile-sheet-overlay {
+    display: block;
+  }
+
+  #mobile-toolbar {
+    display: flex;
+  }
 }
