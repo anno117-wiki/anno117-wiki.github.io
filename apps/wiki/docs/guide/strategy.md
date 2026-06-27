@@ -9,3 +9,11 @@ Anno 117 のプレイヤー向け攻略情報をまとめています。
 - [研究・スキルツリー・専門家](/guide/research-guide) — スキルツリーの仕組み・知識の増やし方・専門家の装着と入手方法など
 - [交易・交易ルート](/guide/trade-guide) — 交易ルートの設定・船の選択・外交・運用のコツなど
 - [軍事・戦闘](/guide/military-guide) — ユニット相性・兵舎・艦船・防衛施設・戦闘スタンスなど
+
+## DLC要素
+
+### Year1
+
+- [DLC01・灰の予言](/guide/dlc01-ashes-of-prophecy) — 2026/5/1 追加
+- [DLC02・競馬場](/guide/dlc02-hippodrome) — 2026/8月予定
+- [DLC03・デルタの夜明け](/guide/dlc03-dawn-of-delta) — 2026/11月予定

@@ -93,6 +93,14 @@ export default defineConfig({
                 { text: '軍事・戦闘', link: '/guide/military-guide' },
               ],
             },
+            {
+              text: 'DLC要素',
+              items: [
+                { text: 'DLC01・灰の予言', link: '/guide/dlc01-ashes-of-prophecy' },
+                { text: 'DLC02・競馬場', link: '/guide/dlc02-hippodrome' },
+                { text: 'DLC03・デルタの夜明け', link: '/guide/dlc03-dawn-of-delta' },
+              ],
+            },
           ],
         },
         {
