@@ -8,7 +8,7 @@
 
 - **初プレイはキャンペーン推奨。** 物語を通じて基本を順に学べます（チュートリアル代わり）。設定で「フルチュートリアル」を有効化するとより親切です。
 - **開始地域はラティウム（ローマ）を推奨。** アルビオン（ケルト）より易しいです。
-- ロード直後に**一時停止（ポーズ）**して、資金を消費せずにレイアウトを計画しましょう。いきなり建設せず計画モードで検討するのがコツです。
+- ロード直後に **一時停止（ポーズ）** して、資金を消費せずにレイアウトを計画しましょう。いきなり建設せず計画モードで検討するのがコツです。
 
 ---
 
@@ -94,14 +94,3 @@
 - **宗教:** 初心者は「ケレス信仰」（農業・肥沃度の女神）推奨。ケルヌンノス信仰もおすすめです。
 - **軍事:** 海軍・陸軍とも市民から徴兵されます。維持に労働力が必要なため、兵力を急成長させると労働力不足になるので注意。労働力は他の島から調達することも可能です。
 - **拡張の本質:** 上位Tierの需要を満たすためには別種の生産力を持つ島が必要になってきます（序盤ではサバ・樹脂・オリーブなど）。木材等を船に積んで新しい交易所を作りますが、入植には多額の資金と維持費が必要なため、財政に余裕ができてから検討しましょう。
-
----
-
-## 出典
-
-- [Ubisoft News - 5 Tips For Getting Started](https://news.ubisoft.com/en-us/article/4fvALjiPTxYODChSgRb1Mk/anno-117-pax-romana-5-tips-for-getting-started)
-- [Anno Union - Getting started in Anno 117](https://www.anno-union.com/getting-started-in-anno-117-pax-romana/)
-- [TheGamer - Complete Beginner's Guide](https://www.thegamer.com/anno-117-pax-romana-beginner-guide/)
-- [GamesGG - Ultimate Beginner's Guide](https://games.gg/anno-117-pax-romana/guides/anno-117-pax-romana-ultimate-beginners-guide/)
-- [GameRant - Beginner Tips & Tricks](https://gamerant.com/anno-117-pax-romana-beginner-tips-tricks-starter-guide-how-play/)
-- [Into Indie Games - Beginner's Guide](https://intoindiegames.com/walkthroughs/anno-117-pax-romana-beginners-guide/)
