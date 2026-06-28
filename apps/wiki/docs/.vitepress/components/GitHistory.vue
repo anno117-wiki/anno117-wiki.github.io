@@ -2,17 +2,22 @@
   <details class="git-history" open>
     <summary>更新履歴</summary>
     <ul>
-      <li v-for="(entry, i) in gitHistory" :key="i">
+      <li v-for="(entry, i) in recent" :key="i">
         <span class="gh-badge" :class="entry.type">{{ entry.type === 'post' ? '投稿' : '修正' }}</span>
         <span class="gh-date">{{ entry.date }}</span>
-        <span class="gh-text">{{ entry.text }}</span>
+        <a v-if="entry.link" class="gh-text" :href="withBase(entry.link)">{{ entry.title }}</a>
+        <span v-else class="gh-text">{{ entry.title }}</span>
       </li>
     </ul>
+    <a class="gh-all" :href="withBase('/updates')">すべて見る →</a>
   </details>
 </template>
 
 <script setup lang="ts">
-import { gitHistory } from 'virtual:git-history'
+import { withBase } from 'vitepress'
+import updates from '../data/updates.json'
+
+const recent = updates.slice(0, 5)
 </script>
 
 <style scoped>
@@ -81,5 +86,20 @@ li {
   color: var(--vp-c-text-1);
   line-height: 1.4;
   word-break: keep-all;
+  text-decoration: none;
+}
+a.gh-text:hover {
+  text-decoration: underline;
+}
+
+.gh-all {
+  display: block;
+  margin-top: 8px;
+  font-size: 10px;
+  color: var(--vp-c-brand-1);
+  text-decoration: none;
+}
+.gh-all:hover {
+  text-decoration: underline;
 }
 </style>

@@ -5,6 +5,7 @@ import ProductionMermaid from '../components/ProductionMermaid.vue'
 import MermaidDiagram from '../components/MermaidDiagram.vue'
 import StatBar from '../components/StatBar.vue'
 import TechLinks from '../components/TechLinks.vue'
+import UpdateLog from '../components/UpdateLog.vue'
 import type { App } from 'vue'
 
 export default {
@@ -15,5 +16,6 @@ export default {
     app.component('MermaidDiagram', MermaidDiagram)
     app.component('StatBar', StatBar)
     app.component('TechLinks', TechLinks)
+    app.component('UpdateLog', UpdateLog)
   },
 }

@@ -1,30 +1,35 @@
 import { defineConfig } from 'vitepress'
-import { execSync } from 'child_process'
+import { spawnSync } from 'child_process'
 
-function gitHistoryPlugin() {
+function giscusCommentsPlugin() {
   return {
-    name: 'vite-plugin-git-history',
+    name: 'vite-plugin-giscus-comments',
     resolveId(id: string) {
-      if (id === 'virtual:git-history') return '\0virtual:git-history'
+      if (id === 'virtual:giscus-comments') return '\0virtual:giscus-comments'
     },
     load(id: string) {
-      if (id !== '\0virtual:git-history') return
+      if (id !== '\0virtual:giscus-comments') return
       try {
-        const raw = execSync(
-          'git log --pretty=format:"%ad|||%s" --date=short -20 -- apps/wiki/docs/guide/ apps/wiki/docs/wiki/',
-          { encoding: 'utf-8' }
-        ).trim()
-        const entries = raw.split('\n').filter(Boolean).slice(0, 5).map(line => {
-          const sep = line.indexOf('|||')
-          const date = line.slice(0, sep)
-          const msg = line.slice(sep + 3)
-          const type = msg.startsWith('feat:') ? 'post' : 'fix'
-          const text = msg.replace(/^(feat|fix|chore|docs|refactor|style|test|build|ci):\s*/, '')
-          return { date, text, type }
-        })
-        return `export const gitHistory = ${JSON.stringify(entries)}`
+        const query = '{ repository(owner:"anno117-wiki", name:"anno117-wiki.github.io"){ discussions(first:50, orderBy:{field:UPDATED_AT,direction:DESC}){ totalCount nodes{ title url updatedAt comments(first:20){ totalCount nodes{ author{login} bodyText createdAt url } } } } } }'
+        const result = spawnSync('gh', ['api', 'graphql', '-f', `query=${query}`], { encoding: 'utf-8' })
+        if (result.error || result.status !== 0) throw new Error(result.stderr ?? 'gh failed')
+        const data = JSON.parse(result.stdout)
+        const discussions: Array<{ title: string; url: string; comments: { nodes: Array<{ author: { login: string } | null; bodyText: string; createdAt: string; url: string }> } }> =
+          data.data.repository.discussions.nodes
+        const allComments = discussions.flatMap(d =>
+          d.comments.nodes.map(c => ({
+            author: c.author?.login ?? 'anonymous',
+            bodyText: c.bodyText,
+            createdAt: c.createdAt,
+            url: c.url,
+            discussionTitle: d.title,
+            discussionUrl: d.url,
+          }))
+        )
+        allComments.sort((a, b) => b.createdAt.localeCompare(a.createdAt))
+        return `export const giscusComments = ${JSON.stringify(allComments.slice(0, 10))}`
       } catch {
-        return 'export const gitHistory = []'
+        return 'export const giscusComments = []'
       }
     },
   }
@@ -61,7 +66,7 @@ export default defineConfig({
   },
 
   vite: {
-    plugins: [gitHistoryPlugin()],
+    plugins: [giscusCommentsPlugin()],
   },
 
   themeConfig: {
@@ -73,6 +78,7 @@ export default defineConfig({
       { text: '建物効果', link: '/wiki/buildings' },
       { text: '住民', link: '/wiki/population' },
       { text: 'アイテム', link: '/wiki/items' },
+      { text: '更新履歴', link: '/updates' },
       // 計算機は別SPA。同タブ遷移で /calculator/ へ誘導。
       { text: '計算機', link: '/calculator/', target: '_self' },
     ],
