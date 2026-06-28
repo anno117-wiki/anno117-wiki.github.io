@@ -264,6 +264,8 @@
 /* buildings テーブルパン操作 */
 .buildings-table-wrap {
   overflow-x: auto;
+  overflow-y: auto;
+  max-height: 75vh;
   -webkit-overflow-scrolling: touch;
   touch-action: pan-y;
   cursor: grab;
@@ -271,6 +273,28 @@
 }
 .buildings-table-wrap.is-panning {
   cursor: grabbing;
+}
+
+/* buildings フィルタバー sticky 固定 */
+.buildings-filter-bar {
+  position: sticky;
+  top: var(--vp-nav-height);
+  z-index: 10;
+  background: var(--vp-c-bg);
+  padding: 4px 0;
+  margin-bottom: 0 !important;
+}
+
+/* buildings thead sticky（wrap がスクロールボックスのため top:0 で wrap 基準に固定） */
+.buildings-table-wrap table {
+  display: table;
+  width: 100%;
+}
+.buildings-table-wrap table thead tr th {
+  position: sticky;
+  top: 0;
+  background: var(--vp-c-bg);
+  z-index: 4;
 }
 
 /* buildings 第1列 sticky 固定（buildings限定・他ページ不変） */
@@ -281,7 +305,7 @@
   background: var(--vp-c-bg);
 }
 .buildings-table-wrap table th:first-child {
-  z-index: 3;
+  z-index: 5;
 }
 .buildings-table-wrap table td:first-child {
   z-index: 2;

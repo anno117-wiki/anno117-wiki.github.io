@@ -112,7 +112,7 @@ const sortedFiltered = computed(() => {
 
 各建物が周辺住民に与える効果の一覧です。
 
-<div style="display:flex;gap:8px;align-items:center;margin:16px 0;flex-wrap:wrap;">
+<div class="buildings-filter-bar" style="display:flex;gap:8px;align-items:center;margin:16px 0;flex-wrap:wrap;">
   <input
     v-model="searchText"
     type="text"
