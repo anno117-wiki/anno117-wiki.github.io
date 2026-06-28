@@ -158,10 +158,6 @@ onUnmounted(() => {
       <span class="detail-key">研究条件</span>
       <span class="detail-val">{{ stripTags(selected.descJa) }}</span>
     </div>
-    <div class="detail-row">
-      <span class="detail-key">GUID</span>
-      <span class="detail-val mono">{{ selected.guid }}</span>
-    </div>
   </div>
 </div>
 
