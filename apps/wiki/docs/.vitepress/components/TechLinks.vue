@@ -37,26 +37,16 @@ const props = defineProps<{
 }>()
 
 const CELL_W = 120
-const CELL_H = 73
 const CELL_R = 60
 
-const useAnnoR = computed(() => props.meta.minR !== undefined && props.meta.maxR !== undefined)
-
 const svgW = computed(() => (props.meta.maxX - props.meta.minX) * CELL_W + 96)
-const svgH = computed(() =>
-  useAnnoR.value
-    ? (props.meta.maxR! - props.meta.minR!) * CELL_R + 40
-    : (props.meta.maxY - props.meta.minY) * CELL_H + 40
-)
+const svgH = computed(() => (props.meta.maxR! - props.meta.minR!) * CELL_R + 40)
 
 function cx(t: TechEntry) {
   return (t.gridX - props.meta.minX) * CELL_W + 48
 }
 function cy(t: TechEntry) {
-  if (useAnnoR.value && t.annoR !== undefined) {
-    return (t.annoR - props.meta.minR!) * CELL_R + 20
-  }
-  return (t.gridY - props.meta.minY) * CELL_H + 34
+  return (t.annoR! - props.meta.minR!) * CELL_R + 20
 }
 
 const segments = computed(() => {

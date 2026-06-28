@@ -12,16 +12,13 @@ const selected = ref<any>(null)
 const zoom = ref(0.6)
 
 const CELL_W = 120
-const CELL_H = 73
 const CELL_R = 60
 
 function gridStyle(tech: any) {
   const m = data.branchMeta[tech.branch]
   if (!m) return ''
   const x = (tech.gridX - m.minX) * CELL_W
-  const y = (m.minR !== undefined && tech.annoR !== undefined)
-    ? (tech.annoR - m.minR) * CELL_R
-    : (tech.gridY - m.minY) * CELL_H
+  const y = (tech.annoR - m.minR) * CELL_R
   return `position:absolute;left:${x}px;top:${y}px;width:96px;height:40px;`
 }
 
@@ -29,9 +26,7 @@ function gridVars(b: string) {
   const m = data.branchMeta[b]
   if (!m) return ''
   const w = (m.maxX - m.minX) * CELL_W + 96
-  const h = m.minR !== undefined
-    ? (m.maxR! - m.minR) * CELL_R + 40
-    : (m.maxY - m.minY) * CELL_H + 40
+  const h = (m.maxR - m.minR) * CELL_R + 40
   return `width:${w}px;height:${h}px;`
 }
 
@@ -67,7 +62,13 @@ function formatKnowledge(n: number): string {
 }
 
 const branchLabelMap: Record<string, string> = {
-  economy: '経済', civic: '市民', military: '軍事', dlc01: 'DLC',
+  economy: '経済', civic: '市民', military: '軍事',
+}
+function getBranchDisplayLabel(b: string): string {
+  if (branchLabelMap[b]) return branchLabelMap[b]
+  const m = b.match(/^dlc(\d+)$/)
+  if (m) return `DLC${Number(m[1])}`
+  return b
 }
 const branchColorMap: Record<string, string> = {
   economy: '#16a34a', civic: '#7c3aed', military: '#dc2626', dlc01: '#d97706',
@@ -167,7 +168,7 @@ onUnmounted(() => {
 <div :class="['branch-row']">
 <div v-for="b in data.branches" :key="b" class="branch-section">
   <div class="branch-heading" :style="`border-left-color: ${branchColorMap[b] || '#888'};`">
-    {{ branchLabelMap[b] || b }}
+    {{ getBranchDisplayLabel(b) }}
     <span class="branch-count">{{ (data.byBranch[b] || []).length }}件</span>
   </div>
   <div

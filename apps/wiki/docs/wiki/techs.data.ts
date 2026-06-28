@@ -24,8 +24,13 @@ const BRANCH_LABELS: Record<string, string> = {
   economy: '経済',
   civic: '市民',
   military: '軍事',
-  dlc01: 'DLC',
   other: 'その他',
+}
+
+function getBranchLabel(branch: string): string {
+  const dlcMatch = branch.match(/^dlc(\d+)$/)
+  if (dlcMatch) return `DLC${parseInt(dlcMatch[1], 10)}`
+  return BRANCH_LABELS[branch] ?? 'その他'
 }
 
 export interface TechEntry {
@@ -59,12 +64,14 @@ export default {
     byBranch: Record<string, TechEntry[]>
     branchMeta: Record<string, { minX: number; minY: number; maxX: number; maxY: number; minR?: number; maxR?: number }>
   } {
-    const techs: TechEntry[] = (techsJson as { techs: any[] }).techs.filter((t: any) => !t.hidden).map((t: any) => ({
+    const techs: TechEntry[] = (techsJson as { techs: any[] }).techs.filter((t: any) => !t.hidden).map((t: any) => {
+      const branch = t.branchOverride ?? parseBranch(t.internalName ?? '', t.annoNodeId)
+      return {
       guid: t.guid,
       internalName: t.internalName ?? '',
       label: t.nameJa || parseLabel(t.internalName ?? t.guid),
-      branch: t.branchOverride ?? parseBranch(t.internalName ?? '', t.annoNodeId),
-      branchLabel: BRANCH_LABELS[parseBranch(t.internalName ?? '')] ?? 'その他',
+      branch,
+      branchLabel: getBranchLabel(branch),
       descJa: t.descJa ?? '',
       descEn: t.descEn ?? '',
       effectJa: t.effectJa ?? '',
@@ -80,7 +87,8 @@ export default {
       connections: t.connections ?? [],
       ...(t.annoS !== undefined ? { annoS: t.annoS } : {}),
       ...(t.annoR !== undefined ? { annoR: t.annoR } : {}),
-    }))
+    }
+    })
 
     const byBranch: Record<string, TechEntry[]> = {}
     for (const tech of techs) {
