@@ -45,6 +45,8 @@ export interface TechEntry {
   knowledgeCost: number | null
   gridX: number
   gridY: number
+  annoS?: number
+  annoR?: number
   annoNodeId: string
   connections: string[]
 }
@@ -55,9 +57,9 @@ export default {
   load(): {
     branches: string[]
     byBranch: Record<string, TechEntry[]>
-    branchMeta: Record<string, { minX: number; minY: number; maxX: number; maxY: number }>
+    branchMeta: Record<string, { minX: number; minY: number; maxX: number; maxY: number; minR?: number; maxR?: number }>
   } {
-    const techs: TechEntry[] = (techsJson as { techs: any[] }).techs.map((t: any) => ({
+    const techs: TechEntry[] = (techsJson as { techs: any[] }).techs.filter((t: any) => !t.hidden).map((t: any) => ({
       guid: t.guid,
       internalName: t.internalName ?? '',
       label: t.nameJa || parseLabel(t.internalName ?? t.guid),
@@ -76,6 +78,8 @@ export default {
       gridY: t.gridY ?? 0,
       annoNodeId: t.annoNodeId ?? '',
       connections: t.connections ?? [],
+      ...(t.annoS !== undefined ? { annoS: t.annoS } : {}),
+      ...(t.annoR !== undefined ? { annoR: t.annoR } : {}),
     }))
 
     const byBranch: Record<string, TechEntry[]> = {}
@@ -84,15 +88,17 @@ export default {
       byBranch[tech.branch].push(tech)
     }
 
-    const branchMeta: Record<string, { minX: number; minY: number; maxX: number; maxY: number }> = {}
+    const branchMeta: Record<string, { minX: number; minY: number; maxX: number; maxY: number; minR?: number; maxR?: number }> = {}
     for (const [branch, items] of Object.entries(byBranch)) {
       const xs = items.map((i) => i.gridX)
       const ys = items.map((i) => i.gridY)
+      const rs = items.map((i) => i.annoR).filter((r): r is number => r !== undefined)
       branchMeta[branch] = {
         minX: Math.min(...xs),
         maxX: Math.max(...xs),
         minY: Math.min(...ys),
         maxY: Math.max(...ys),
+        ...(rs.length > 0 ? { minR: Math.min(...rs), maxR: Math.max(...rs) } : {}),
       }
     }
 

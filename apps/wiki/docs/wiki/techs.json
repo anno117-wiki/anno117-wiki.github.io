@@ -15,7 +15,14 @@
       "color": "Green",
       "knowledgeCost": 50,
       "gridX": -1,
-      "gridY": 0
+      "gridY": 0,
+      "connections": [
+        "23320",
+        "24686",
+        "38533"
+      ],
+      "annoS": 22,
+      "annoR": 2
     },
     {
       "guid": "37725",
@@ -32,7 +39,14 @@
       "color": "Green",
       "knowledgeCost": 500,
       "gridX": -5,
-      "gridY": 0
+      "gridY": 0,
+      "connections": [
+        "37861",
+        "81190",
+        "81219"
+      ],
+      "annoS": 17,
+      "annoR": 3
     },
     {
       "guid": "37728",
@@ -49,7 +63,15 @@
       "color": "Green",
       "knowledgeCost": 500,
       "gridX": -2,
-      "gridY": 3
+      "gridY": 3,
+      "connections": [
+        "24930",
+        "37890",
+        "38708",
+        "81193"
+      ],
+      "annoS": 20,
+      "annoR": 8
     },
     {
       "guid": "81184",
@@ -66,7 +88,13 @@
       "color": "Green",
       "knowledgeCost": 1602,
       "gridX": -6,
-      "gridY": 4
+      "gridY": 4,
+      "connections": [
+        "31669",
+        "38702"
+      ],
+      "annoS": 16,
+      "annoR": 10
     },
     {
       "guid": "81182",
@@ -83,7 +111,14 @@
       "color": "Green",
       "knowledgeCost": 1503,
       "gridX": -4,
-      "gridY": 5
+      "gridY": 5,
+      "connections": [
+        "37858",
+        "37896",
+        "81188"
+      ],
+      "annoS": 18,
+      "annoR": 12
     },
     {
       "guid": "37727",
@@ -101,7 +136,12 @@
       "knowledgeCost": 9000,
       "gridX": -8,
       "gridY": 4,
-      "connections": ["38702"]
+      "connections": [
+        "38446",
+        "38702"
+      ],
+      "annoS": 14,
+      "annoR": 10
     },
     {
       "guid": "81180",
@@ -118,7 +158,15 @@
       "color": "Green",
       "knowledgeCost": 17000,
       "gridX": -7,
-      "gridY": 7
+      "gridY": 7,
+      "connections": [
+        "24446",
+        "24695",
+        "28282",
+        "80779"
+      ],
+      "annoS": 15,
+      "annoR": 17
     },
     {
       "guid": "37726",
@@ -135,7 +183,14 @@
       "color": "Green",
       "knowledgeCost": 9000,
       "gridX": -3,
-      "gridY": 7
+      "gridY": 7,
+      "connections": [
+        "28285",
+        "37864",
+        "94181"
+      ],
+      "annoS": 19,
+      "annoR": 17
     },
     {
       "guid": "23320",
@@ -152,7 +207,15 @@
       "color": "Green",
       "knowledgeCost": 4800,
       "gridX": -1,
-      "gridY": 1
+      "gridY": 1,
+      "connections": [
+        "24930",
+        "37724",
+        "38533",
+        "38708"
+      ],
+      "annoS": 21,
+      "annoR": 5
     },
     {
       "guid": "37861",
@@ -169,7 +232,14 @@
       "color": "Green",
       "knowledgeCost": 11800,
       "gridX": -4,
-      "gridY": 0
+      "gridY": 0,
+      "connections": [
+        "37725",
+        "38710",
+        "54119"
+      ],
+      "annoS": 18,
+      "annoR": 2
     },
     {
       "guid": "24686",
@@ -186,7 +256,15 @@
       "color": "Green",
       "knowledgeCost": 4800,
       "gridX": -2,
-      "gridY": 0
+      "gridY": 0,
+      "connections": [
+        "37724",
+        "38533",
+        "38710",
+        "54119"
+      ],
+      "annoS": 20,
+      "annoR": 2
     },
     {
       "guid": "38533",
@@ -203,7 +281,16 @@
       "color": "Green",
       "knowledgeCost": 4800,
       "gridX": -2,
-      "gridY": 1
+      "gridY": 1,
+      "connections": [
+        "23320",
+        "24686",
+        "37724",
+        "38708",
+        "54119"
+      ],
+      "annoS": 20,
+      "annoR": 4
     },
     {
       "guid": "38708",
@@ -220,7 +307,15 @@
       "color": "Blue",
       "knowledgeCost": 8000,
       "gridX": -2,
-      "gridY": 2
+      "gridY": 2,
+      "connections": [
+        "23320",
+        "24930",
+        "37728",
+        "38533"
+      ],
+      "annoS": 20,
+      "annoR": 6
     },
     {
       "guid": "38710",
@@ -237,7 +332,14 @@
       "color": "Green",
       "knowledgeCost": 8000,
       "gridX": -3,
-      "gridY": -1
+      "gridY": -1,
+      "connections": [
+        "24686",
+        "37861",
+        "54119"
+      ],
+      "annoS": 19,
+      "annoR": 1
     },
     {
       "guid": "54119",
@@ -254,7 +356,15 @@
       "color": "Blue",
       "knowledgeCost": 8000,
       "gridX": -3,
-      "gridY": 0
+      "gridY": 0,
+      "connections": [
+        "24686",
+        "37861",
+        "38533",
+        "38710"
+      ],
+      "annoS": 19,
+      "annoR": 3
     },
     {
       "guid": "24930",
@@ -271,7 +381,14 @@
       "color": "Green",
       "knowledgeCost": 8000,
       "gridX": -1,
-      "gridY": 2
+      "gridY": 2,
+      "connections": [
+        "23320",
+        "37728",
+        "38708"
+      ],
+      "annoS": 21,
+      "annoR": 7
     },
     {
       "guid": "21648",
@@ -288,7 +405,13 @@
       "color": "Blue",
       "knowledgeCost": 64000,
       "gridX": -4,
-      "gridY": 2
+      "gridY": 2,
+      "connections": [
+        "38540",
+        "81190"
+      ],
+      "annoS": 18,
+      "annoR": 6
     },
     {
       "guid": "81190",
@@ -305,7 +428,16 @@
       "color": "Green",
       "knowledgeCost": 36000,
       "gridX": -5,
-      "gridY": 1
+      "gridY": 1,
+      "connections": [
+        "21648",
+        "37725",
+        "38540",
+        "81219",
+        "82022"
+      ],
+      "annoS": 17,
+      "annoR": 5
     },
     {
       "guid": "38540",
@@ -322,7 +454,15 @@
       "color": "Blue",
       "knowledgeCost": 64000,
       "gridX": -5,
-      "gridY": 2
+      "gridY": 2,
+      "connections": [
+        "21648",
+        "37863",
+        "81190",
+        "82022"
+      ],
+      "annoS": 17,
+      "annoR": 7
     },
     {
       "guid": "81219",
@@ -339,7 +479,15 @@
       "color": "Green",
       "knowledgeCost": 36000,
       "gridX": -6,
-      "gridY": 1
+      "gridY": 1,
+      "connections": [
+        "37725",
+        "37862",
+        "81190",
+        "82022"
+      ],
+      "annoS": 16,
+      "annoR": 4
     },
     {
       "guid": "82022",
@@ -356,7 +504,17 @@
       "color": "Green",
       "knowledgeCost": 64000,
       "gridX": -6,
-      "gridY": 2
+      "gridY": 2,
+      "connections": [
+        "26917",
+        "37862",
+        "37863",
+        "38540",
+        "81190",
+        "81219"
+      ],
+      "annoS": 16,
+      "annoR": 6
     },
     {
       "guid": "37863",
@@ -373,7 +531,15 @@
       "color": "Green",
       "knowledgeCost": 92000,
       "gridX": -6,
-      "gridY": 3
+      "gridY": 3,
+      "connections": [
+        "26917",
+        "38540",
+        "38702",
+        "82022"
+      ],
+      "annoS": 16,
+      "annoR": 8
     },
     {
       "guid": "37862",
@@ -390,7 +556,14 @@
       "color": "Blue",
       "knowledgeCost": 64000,
       "gridX": -7,
-      "gridY": 1
+      "gridY": 1,
+      "connections": [
+        "26917",
+        "81219",
+        "82022"
+      ],
+      "annoS": 15,
+      "annoR": 5
     },
     {
       "guid": "26917",
@@ -407,7 +580,15 @@
       "color": "Blue",
       "knowledgeCost": 92000,
       "gridX": -7,
-      "gridY": 2
+      "gridY": 2,
+      "connections": [
+        "37862",
+        "37863",
+        "38702",
+        "82022"
+      ],
+      "annoS": 15,
+      "annoR": 7
     },
     {
       "guid": "38702",
@@ -425,7 +606,14 @@
       "knowledgeCost": 128000,
       "gridX": -7,
       "gridY": 3,
-      "connections": ["81184"]
+      "connections": [
+        "26917",
+        "37727",
+        "37863",
+        "81184"
+      ],
+      "annoS": 15,
+      "annoR": 9
     },
     {
       "guid": "26909",
@@ -442,7 +630,13 @@
       "color": "Green",
       "knowledgeCost": 64000,
       "gridX": -1,
-      "gridY": 4
+      "gridY": 4,
+      "connections": [
+        "37890",
+        "81192"
+      ],
+      "annoS": 21,
+      "annoR": 11
     },
     {
       "guid": "37890",
@@ -459,7 +653,16 @@
       "color": "Green",
       "knowledgeCost": 36000,
       "gridX": -2,
-      "gridY": 4
+      "gridY": 4,
+      "connections": [
+        "26909",
+        "37728",
+        "37858",
+        "81192",
+        "81193"
+      ],
+      "annoS": 20,
+      "annoR": 10
     },
     {
       "guid": "81192",
@@ -476,7 +679,16 @@
       "color": "Green",
       "knowledgeCost": 64000,
       "gridX": -2,
-      "gridY": 5
+      "gridY": 5,
+      "connections": [
+        "26909",
+        "37858",
+        "37890",
+        "37896",
+        "38534"
+      ],
+      "annoS": 20,
+      "annoR": 12
     },
     {
       "guid": "38534",
@@ -493,7 +705,14 @@
       "color": "Green",
       "knowledgeCost": 92000,
       "gridX": -2,
-      "gridY": 6
+      "gridY": 6,
+      "connections": [
+        "37864",
+        "37896",
+        "81192"
+      ],
+      "annoS": 20,
+      "annoR": 14
     },
     {
       "guid": "81193",
@@ -510,7 +729,14 @@
       "color": "Green",
       "knowledgeCost": 36000,
       "gridX": -3,
-      "gridY": 3
+      "gridY": 3,
+      "connections": [
+        "37728",
+        "37858",
+        "37890"
+      ],
+      "annoS": 19,
+      "annoR": 9
     },
     {
       "guid": "37858",
@@ -527,7 +753,16 @@
       "color": "Green",
       "knowledgeCost": 64000,
       "gridX": -3,
-      "gridY": 4
+      "gridY": 4,
+      "connections": [
+        "37890",
+        "37896",
+        "81182",
+        "81192",
+        "81193"
+      ],
+      "annoS": 19,
+      "annoR": 11
     },
     {
       "guid": "37896",
@@ -544,7 +779,16 @@
       "color": "Green",
       "knowledgeCost": 92000,
       "gridX": -3,
-      "gridY": 5
+      "gridY": 5,
+      "connections": [
+        "37858",
+        "37864",
+        "38534",
+        "81182",
+        "81192"
+      ],
+      "annoS": 19,
+      "annoR": 13
     },
     {
       "guid": "37864",
@@ -561,7 +805,14 @@
       "color": "Green",
       "knowledgeCost": 128000,
       "gridX": -3,
-      "gridY": 6
+      "gridY": 6,
+      "connections": [
+        "37726",
+        "37896",
+        "38534"
+      ],
+      "annoS": 19,
+      "annoR": 15
     },
     {
       "guid": "81188",
@@ -578,7 +829,15 @@
       "color": "Green",
       "knowledgeCost": 360000,
       "gridX": -5,
-      "gridY": 5
+      "gridY": 5,
+      "connections": [
+        "31669",
+        "37859",
+        "81182",
+        "94190"
+      ],
+      "annoS": 17,
+      "annoR": 13
     },
     {
       "guid": "37859",
@@ -595,7 +854,14 @@
       "color": "Green",
       "knowledgeCost": 360000,
       "gridX": -5,
-      "gridY": 6
+      "gridY": 6,
+      "connections": [
+        "24446",
+        "81188",
+        "94190"
+      ],
+      "annoS": 17,
+      "annoR": 15
     },
     {
       "guid": "31669",
@@ -612,7 +878,15 @@
       "color": "Green",
       "knowledgeCost": 220000,
       "gridX": -6,
-      "gridY": 5
+      "gridY": 5,
+      "connections": [
+        "81184",
+        "81188",
+        "81194",
+        "94190"
+      ],
+      "annoS": 16,
+      "annoR": 12
     },
     {
       "guid": "94190",
@@ -629,7 +903,17 @@
       "color": "Green",
       "knowledgeCost": 220000,
       "gridX": -6,
-      "gridY": 6
+      "gridY": 6,
+      "connections": [
+        "24446",
+        "24695",
+        "31669",
+        "37859",
+        "81188",
+        "81194"
+      ],
+      "annoS": 16,
+      "annoR": 14
     },
     {
       "guid": "24446",
@@ -646,7 +930,15 @@
       "color": "Green",
       "knowledgeCost": 750000,
       "gridX": -6,
-      "gridY": 7
+      "gridY": 7,
+      "connections": [
+        "24695",
+        "37859",
+        "81180",
+        "94190"
+      ],
+      "annoS": 16,
+      "annoR": 16
     },
     {
       "guid": "81194",
@@ -663,7 +955,14 @@
       "color": "Green",
       "knowledgeCost": 360000,
       "gridX": -7,
-      "gridY": 5
+      "gridY": 5,
+      "connections": [
+        "24695",
+        "31669",
+        "94190"
+      ],
+      "annoS": 15,
+      "annoR": 13
     },
     {
       "guid": "24695",
@@ -680,7 +979,15 @@
       "color": "Green",
       "knowledgeCost": 750000,
       "gridX": -7,
-      "gridY": 6
+      "gridY": 6,
+      "connections": [
+        "24446",
+        "81180",
+        "81194",
+        "94190"
+      ],
+      "annoS": 15,
+      "annoR": 15
     },
     {
       "guid": "38446",
@@ -697,7 +1004,14 @@
       "color": "Green",
       "knowledgeCost": 1500000,
       "gridX": -9,
-      "gridY": 4
+      "gridY": 4,
+      "connections": [
+        "37727",
+        "38701",
+        "82032"
+      ],
+      "annoS": 13,
+      "annoR": 11
     },
     {
       "guid": "38701",
@@ -714,7 +1028,15 @@
       "color": "Green",
       "knowledgeCost": 1500000,
       "gridX": -9,
-      "gridY": 5
+      "gridY": 5,
+      "connections": [
+        "28273",
+        "37870",
+        "38446",
+        "82032"
+      ],
+      "annoS": 13,
+      "annoR": 13
     },
     {
       "guid": "28273",
@@ -731,7 +1053,13 @@
       "color": "Blue",
       "knowledgeCost": 1500000,
       "gridX": -9,
-      "gridY": 6
+      "gridY": 6,
+      "connections": [
+        "37870",
+        "38701"
+      ],
+      "annoS": 13,
+      "annoR": 15
     },
     {
       "guid": "37870",
@@ -748,7 +1076,14 @@
       "color": "Brown",
       "knowledgeCost": 3000000,
       "gridX": -10,
-      "gridY": 6
+      "gridY": 6,
+      "connections": [
+        "28273",
+        "38701",
+        "82032"
+      ],
+      "annoS": 12,
+      "annoR": 14
     },
     {
       "guid": "82032",
@@ -765,7 +1100,14 @@
       "color": "Blue",
       "knowledgeCost": 1500000,
       "gridX": -10,
-      "gridY": 5
+      "gridY": 5,
+      "connections": [
+        "37870",
+        "38446",
+        "38701"
+      ],
+      "annoS": 12,
+      "annoR": 12
     },
     {
       "guid": "31672",
@@ -782,7 +1124,13 @@
       "color": "Green",
       "knowledgeCost": 1500000,
       "gridX": -6,
-      "gridY": 9
+      "gridY": 9,
+      "connections": [
+        "80779",
+        "81195"
+      ],
+      "annoS": 16,
+      "annoR": 20
     },
     {
       "guid": "80779",
@@ -799,7 +1147,16 @@
       "color": "Green",
       "knowledgeCost": 1500000,
       "gridX": -7,
-      "gridY": 8
+      "gridY": 8,
+      "connections": [
+        "28282",
+        "31672",
+        "37860",
+        "81180",
+        "81195"
+      ],
+      "annoS": 15,
+      "annoR": 19
     },
     {
       "guid": "81195",
@@ -816,7 +1173,14 @@
       "color": "Brown",
       "knowledgeCost": 3000000,
       "gridX": -7,
-      "gridY": 9
+      "gridY": 9,
+      "connections": [
+        "31672",
+        "37860",
+        "80779"
+      ],
+      "annoS": 15,
+      "annoR": 21
     },
     {
       "guid": "28282",
@@ -833,7 +1197,14 @@
       "color": "Green",
       "knowledgeCost": 1500000,
       "gridX": -8,
-      "gridY": 8
+      "gridY": 8,
+      "connections": [
+        "37860",
+        "80779",
+        "81180"
+      ],
+      "annoS": 14,
+      "annoR": 18
     },
     {
       "guid": "37860",
@@ -850,7 +1221,14 @@
       "color": "Green",
       "knowledgeCost": 1500000,
       "gridX": -8,
-      "gridY": 9
+      "gridY": 9,
+      "connections": [
+        "28282",
+        "80779",
+        "81195"
+      ],
+      "annoS": 14,
+      "annoR": 20
     },
     {
       "guid": "28285",
@@ -867,7 +1245,14 @@
       "color": "Green",
       "knowledgeCost": 1500000,
       "gridX": -4,
-      "gridY": 8
+      "gridY": 8,
+      "connections": [
+        "37726",
+        "38706",
+        "94181"
+      ],
+      "annoS": 18,
+      "annoR": 18
     },
     {
       "guid": "82033",
@@ -884,7 +1269,13 @@
       "color": "Blue",
       "knowledgeCost": 1500000,
       "gridX": -2,
-      "gridY": 9
+      "gridY": 9,
+      "connections": [
+        "37883",
+        "94181"
+      ],
+      "annoS": 20,
+      "annoR": 20
     },
     {
       "guid": "94181",
@@ -901,7 +1292,16 @@
       "color": "Green",
       "knowledgeCost": 1500000,
       "gridX": -3,
-      "gridY": 8
+      "gridY": 8,
+      "connections": [
+        "28285",
+        "37726",
+        "37883",
+        "38706",
+        "82033"
+      ],
+      "annoS": 19,
+      "annoR": 19
     },
     {
       "guid": "37883",
@@ -918,7 +1318,14 @@
       "color": "Brown",
       "knowledgeCost": 3000000,
       "gridX": -3,
-      "gridY": 9
+      "gridY": 9,
+      "connections": [
+        "38706",
+        "82033",
+        "94181"
+      ],
+      "annoS": 19,
+      "annoR": 21
     },
     {
       "guid": "38706",
@@ -935,7 +1342,14 @@
       "color": "Blue",
       "knowledgeCost": 1500000,
       "gridX": -4,
-      "gridY": 9
+      "gridY": 9,
+      "connections": [
+        "28285",
+        "37883",
+        "94181"
+      ],
+      "annoS": 18,
+      "annoR": 20
     },
     {
       "guid": "37730",
@@ -952,7 +1366,13 @@
       "color": "Purple",
       "knowledgeCost": 50,
       "gridX": 0,
-      "gridY": 1
+      "gridY": 1,
+      "connections": [
+        "37891",
+        "37903"
+      ],
+      "annoS": 25,
+      "annoR": 3
     },
     {
       "guid": "37731",
@@ -969,7 +1389,14 @@
       "color": "Purple",
       "knowledgeCost": 500,
       "gridX": -2,
-      "gridY": 4
+      "gridY": 4,
+      "connections": [
+        "38532",
+        "82035",
+        "94280"
+      ],
+      "annoS": 23,
+      "annoR": 11
     },
     {
       "guid": "81176",
@@ -986,7 +1413,15 @@
       "color": "Purple",
       "knowledgeCost": 500,
       "gridX": 2,
-      "gridY": 4
+      "gridY": 4,
+      "connections": [
+        "37902",
+        "38537",
+        "82036",
+        "94316"
+      ],
+      "annoS": 27,
+      "annoR": 11
     },
     {
       "guid": "37736",
@@ -1003,7 +1438,14 @@
       "color": "Purple",
       "knowledgeCost": 1701,
       "gridX": -3,
-      "gridY": 7
+      "gridY": 7,
+      "connections": [
+        "24590",
+        "31675",
+        "38528"
+      ],
+      "annoS": 22,
+      "annoR": 18
     },
     {
       "guid": "81223",
@@ -1020,7 +1462,15 @@
       "color": "Purple",
       "knowledgeCost": 1404,
       "gridX": 0,
-      "gridY": 8
+      "gridY": 8,
+      "connections": [
+        "37898",
+        "38677",
+        "71726",
+        "81204"
+      ],
+      "annoS": 25,
+      "annoR": 19
     },
     {
       "guid": "37732",
@@ -1037,7 +1487,14 @@
       "color": "Purple",
       "knowledgeCost": 2070,
       "gridX": 3,
-      "gridY": 6
+      "gridY": 6,
+      "connections": [
+        "38679",
+        "38680",
+        "38681"
+      ],
+      "annoS": 28,
+      "annoR": 16
     },
     {
       "guid": "37734",
@@ -1054,7 +1511,15 @@
       "color": "Purple",
       "knowledgeCost": 9000,
       "gridX": -3,
-      "gridY": 9
+      "gridY": 9,
+      "connections": [
+        "37918",
+        "38528",
+        "81221",
+        "94341"
+      ],
+      "annoS": 22,
+      "annoR": 22
     },
     {
       "guid": "81172",
@@ -1071,7 +1536,15 @@
       "color": "Purple",
       "knowledgeCost": 17000,
       "gridX": 0,
-      "gridY": 11
+      "gridY": 11,
+      "connections": [
+        "24722",
+        "37905",
+        "37907",
+        "38682"
+      ],
+      "annoS": 25,
+      "annoR": 25
     },
     {
       "guid": "37733",
@@ -1088,7 +1561,15 @@
       "color": "Purple",
       "knowledgeCost": 9000,
       "gridX": 3,
-      "gridY": 9
+      "gridY": 9,
+      "connections": [
+        "37892",
+        "81203",
+        "82037",
+        "94322"
+      ],
+      "annoS": 28,
+      "annoR": 22
     },
     {
       "guid": "38535",
@@ -1105,7 +1586,14 @@
       "color": "Purple",
       "knowledgeCost": 8000,
       "gridX": -2,
-      "gridY": 2
+      "gridY": 2,
+      "connections": [
+        "37891",
+        "37914",
+        "82035"
+      ],
+      "annoS": 23,
+      "annoR": 7
     },
     {
       "guid": "82035",
@@ -1122,7 +1610,15 @@
       "color": "Blue",
       "knowledgeCost": 11800,
       "gridX": -2,
-      "gridY": 3
+      "gridY": 3,
+      "connections": [
+        "37731",
+        "37914",
+        "38535",
+        "94280"
+      ],
+      "annoS": 23,
+      "annoR": 9
     },
     {
       "guid": "97103",
@@ -1139,7 +1635,16 @@
       "color": "Purple",
       "knowledgeCost": 11800,
       "gridX": 0,
-      "gridY": 3
+      "gridY": 3,
+      "connections": [
+        "37886",
+        "37893",
+        "37902",
+        "37914",
+        "94280"
+      ],
+      "annoS": 25,
+      "annoR": 9
     },
     {
       "guid": "37914",
@@ -1156,7 +1661,16 @@
       "color": "Purple",
       "knowledgeCost": 8000,
       "gridX": -1,
-      "gridY": 2
+      "gridY": 2,
+      "connections": [
+        "37891",
+        "38535",
+        "82035",
+        "94280",
+        "97103"
+      ],
+      "annoS": 24,
+      "annoR": 8
     },
     {
       "guid": "94280",
@@ -1173,7 +1687,16 @@
       "color": "Purple",
       "knowledgeCost": 11800,
       "gridX": -1,
-      "gridY": 3
+      "gridY": 3,
+      "connections": [
+        "37731",
+        "37886",
+        "37914",
+        "82035",
+        "97103"
+      ],
+      "annoS": 24,
+      "annoR": 10
     },
     {
       "guid": "37891",
@@ -1190,7 +1713,14 @@
       "color": "Purple",
       "knowledgeCost": 4800,
       "gridX": -1,
-      "gridY": 1
+      "gridY": 1,
+      "connections": [
+        "37730",
+        "37914",
+        "38535"
+      ],
+      "annoS": 24,
+      "annoR": 6
     },
     {
       "guid": "37886",
@@ -1207,7 +1737,14 @@
       "color": "Purple",
       "knowledgeCost": 18000,
       "gridX": 0,
-      "gridY": 4
+      "gridY": 4,
+      "connections": [
+        "37902",
+        "94280",
+        "97103"
+      ],
+      "annoS": 25,
+      "annoR": 11
     },
     {
       "guid": "37903",
@@ -1224,7 +1761,14 @@
       "color": "Purple",
       "knowledgeCost": 4800,
       "gridX": 1,
-      "gridY": 1
+      "gridY": 1,
+      "connections": [
+        "37730",
+        "37893",
+        "38536"
+      ],
+      "annoS": 26,
+      "annoR": 6
     },
     {
       "guid": "37893",
@@ -1241,7 +1785,16 @@
       "color": "Purple",
       "knowledgeCost": 8000,
       "gridX": 1,
-      "gridY": 2
+      "gridY": 2,
+      "connections": [
+        "37902",
+        "37903",
+        "38536",
+        "82036",
+        "97103"
+      ],
+      "annoS": 26,
+      "annoR": 8
     },
     {
       "guid": "37902",
@@ -1258,7 +1811,16 @@
       "color": "Purple",
       "knowledgeCost": 11800,
       "gridX": 1,
-      "gridY": 3
+      "gridY": 3,
+      "connections": [
+        "37886",
+        "37893",
+        "81176",
+        "82036",
+        "97103"
+      ],
+      "annoS": 26,
+      "annoR": 10
     },
     {
       "guid": "38536",
@@ -1275,7 +1837,14 @@
       "color": "Purple",
       "knowledgeCost": 8000,
       "gridX": 2,
-      "gridY": 2
+      "gridY": 2,
+      "connections": [
+        "37893",
+        "37903",
+        "82036"
+      ],
+      "annoS": 27,
+      "annoR": 7
     },
     {
       "guid": "82036",
@@ -1292,7 +1861,15 @@
       "color": "Blue",
       "knowledgeCost": 11800,
       "gridX": 2,
-      "gridY": 3
+      "gridY": 3,
+      "connections": [
+        "37893",
+        "37902",
+        "38536",
+        "81176"
+      ],
+      "annoS": 27,
+      "annoR": 9
     },
     {
       "guid": "94350",
@@ -1309,7 +1886,14 @@
       "color": "Purple",
       "knowledgeCost": 64000,
       "gridX": -3,
-      "gridY": 5
+      "gridY": 5,
+      "connections": [
+        "31675",
+        "38532",
+        "71725"
+      ],
+      "annoS": 22,
+      "annoR": 14
     },
     {
       "guid": "31675",
@@ -1326,7 +1910,14 @@
       "color": "Purple",
       "knowledgeCost": 92000,
       "gridX": -3,
-      "gridY": 6
+      "gridY": 6,
+      "connections": [
+        "37736",
+        "71725",
+        "94350"
+      ],
+      "annoS": 22,
+      "annoR": 16
     },
     {
       "guid": "38532",
@@ -1343,7 +1934,15 @@
       "color": "Purple",
       "knowledgeCost": 36000,
       "gridX": -2,
-      "gridY": 5
+      "gridY": 5,
+      "connections": [
+        "37731",
+        "38703",
+        "71725",
+        "94350"
+      ],
+      "annoS": 23,
+      "annoR": 13
     },
     {
       "guid": "71725",
@@ -1360,7 +1959,16 @@
       "color": "Blue",
       "knowledgeCost": 64000,
       "gridX": -2,
-      "gridY": 6
+      "gridY": 6,
+      "connections": [
+        "31675",
+        "37901",
+        "38532",
+        "38703",
+        "94350"
+      ],
+      "annoS": 23,
+      "annoR": 15
     },
     {
       "guid": "38703",
@@ -1377,7 +1985,15 @@
       "color": "Blue",
       "knowledgeCost": 64000,
       "gridX": -1,
-      "gridY": 5
+      "gridY": 5,
+      "connections": [
+        "37899",
+        "37901",
+        "38532",
+        "71725"
+      ],
+      "annoS": 24,
+      "annoR": 14
     },
     {
       "guid": "37901",
@@ -1394,7 +2010,15 @@
       "color": "Purple",
       "knowledgeCost": 92000,
       "gridX": -1,
-      "gridY": 6
+      "gridY": 6,
+      "connections": [
+        "37899",
+        "38703",
+        "71725",
+        "81204"
+      ],
+      "annoS": 24,
+      "annoR": 16
     },
     {
       "guid": "37899",
@@ -1411,7 +2035,16 @@
       "color": "Purple",
       "knowledgeCost": 92000,
       "gridX": 0,
-      "gridY": 6
+      "gridY": 6,
+      "connections": [
+        "37887",
+        "37901",
+        "37911",
+        "38703",
+        "81204"
+      ],
+      "annoS": 25,
+      "annoR": 15
     },
     {
       "guid": "81204",
@@ -1428,7 +2061,15 @@
       "color": "Purple",
       "knowledgeCost": 128000,
       "gridX": 0,
-      "gridY": 7
+      "gridY": 7,
+      "connections": [
+        "37899",
+        "37901",
+        "37911",
+        "81223"
+      ],
+      "annoS": 25,
+      "annoR": 17
     },
     {
       "guid": "37887",
@@ -1445,7 +2086,15 @@
       "color": "Blue",
       "knowledgeCost": 64000,
       "gridX": 1,
-      "gridY": 5
+      "gridY": 5,
+      "connections": [
+        "37899",
+        "37911",
+        "38537",
+        "38681"
+      ],
+      "annoS": 26,
+      "annoR": 14
     },
     {
       "guid": "37911",
@@ -1462,7 +2111,15 @@
       "color": "Purple",
       "knowledgeCost": 92000,
       "gridX": 1,
-      "gridY": 6
+      "gridY": 6,
+      "connections": [
+        "37887",
+        "37899",
+        "38681",
+        "81204"
+      ],
+      "annoS": 26,
+      "annoR": 16
     },
     {
       "guid": "38537",
@@ -1479,7 +2136,16 @@
       "color": "Purple",
       "knowledgeCost": 36000,
       "gridX": 2,
-      "gridY": 5
+      "gridY": 5,
+      "connections": [
+        "37887",
+        "38680",
+        "38681",
+        "81176",
+        "94316"
+      ],
+      "annoS": 27,
+      "annoR": 13
     },
     {
       "guid": "38681",
@@ -1496,7 +2162,16 @@
       "color": "Blue",
       "knowledgeCost": 64000,
       "gridX": 2,
-      "gridY": 6
+      "gridY": 6,
+      "connections": [
+        "37732",
+        "37887",
+        "37911",
+        "38537",
+        "38680"
+      ],
+      "annoS": 27,
+      "annoR": 15
     },
     {
       "guid": "94316",
@@ -1513,7 +2188,14 @@
       "color": "Purple",
       "knowledgeCost": 36000,
       "gridX": 3,
-      "gridY": 4
+      "gridY": 4,
+      "connections": [
+        "38537",
+        "38680",
+        "81176"
+      ],
+      "annoS": 28,
+      "annoR": 12
     },
     {
       "guid": "38680",
@@ -1530,7 +2212,15 @@
       "color": "Purple",
       "knowledgeCost": 64000,
       "gridX": 3,
-      "gridY": 5
+      "gridY": 5,
+      "connections": [
+        "37732",
+        "38537",
+        "38681",
+        "94316"
+      ],
+      "annoS": 28,
+      "annoR": 14
     },
     {
       "guid": "38528",
@@ -1547,7 +2237,15 @@
       "color": "Purple",
       "knowledgeCost": 220000,
       "gridX": -3,
-      "gridY": 8
+      "gridY": 8,
+      "connections": [
+        "24590",
+        "37734",
+        "37736",
+        "94341"
+      ],
+      "annoS": 22,
+      "annoR": 20
     },
     {
       "guid": "24590",
@@ -1564,7 +2262,15 @@
       "color": "Purple",
       "knowledgeCost": 220000,
       "gridX": -2,
-      "gridY": 8
+      "gridY": 8,
+      "connections": [
+        "37736",
+        "37898",
+        "38528",
+        "94341"
+      ],
+      "annoS": 23,
+      "annoR": 19
     },
     {
       "guid": "94341",
@@ -1581,7 +2287,16 @@
       "color": "Purple",
       "knowledgeCost": 360000,
       "gridX": -2,
-      "gridY": 9
+      "gridY": 9,
+      "connections": [
+        "24590",
+        "37734",
+        "37895",
+        "37898",
+        "38528"
+      ],
+      "annoS": 23,
+      "annoR": 21
     },
     {
       "guid": "37898",
@@ -1598,7 +2313,16 @@
       "color": "Purple",
       "knowledgeCost": 220000,
       "gridX": -1,
-      "gridY": 8
+      "gridY": 8,
+      "connections": [
+        "24590",
+        "37895",
+        "71726",
+        "81223",
+        "94341"
+      ],
+      "annoS": 24,
+      "annoR": 20
     },
     {
       "guid": "37895",
@@ -1615,7 +2339,16 @@
       "color": "Blue",
       "knowledgeCost": 360000,
       "gridX": -1,
-      "gridY": 9
+      "gridY": 9,
+      "connections": [
+        "37898",
+        "37905",
+        "37907",
+        "71726",
+        "94341"
+      ],
+      "annoS": 24,
+      "annoR": 22
     },
     {
       "guid": "37905",
@@ -1632,7 +2365,14 @@
       "color": "Purple",
       "knowledgeCost": 750000,
       "gridX": -1,
-      "gridY": 10
+      "gridY": 10,
+      "connections": [
+        "37895",
+        "37907",
+        "81172"
+      ],
+      "annoS": 24,
+      "annoR": 24
     },
     {
       "guid": "71726",
@@ -1649,7 +2389,17 @@
       "color": "Purple",
       "knowledgeCost": 220000,
       "gridX": 0,
-      "gridY": 9
+      "gridY": 9,
+      "connections": [
+        "37895",
+        "37898",
+        "37907",
+        "38677",
+        "81191",
+        "81223"
+      ],
+      "annoS": 25,
+      "annoR": 21
     },
     {
       "guid": "37907",
@@ -1666,7 +2416,17 @@
       "color": "Purple",
       "knowledgeCost": 360000,
       "gridX": 0,
-      "gridY": 10
+      "gridY": 10,
+      "connections": [
+        "37895",
+        "37905",
+        "38682",
+        "71726",
+        "81172",
+        "81191"
+      ],
+      "annoS": 25,
+      "annoR": 23
     },
     {
       "guid": "38677",
@@ -1683,7 +2443,16 @@
       "color": "Purple",
       "knowledgeCost": 220000,
       "gridX": 1,
-      "gridY": 8
+      "gridY": 8,
+      "connections": [
+        "37889",
+        "71726",
+        "81191",
+        "81223",
+        "94322"
+      ],
+      "annoS": 26,
+      "annoR": 20
     },
     {
       "guid": "81191",
@@ -1700,7 +2469,16 @@
       "color": "Blue",
       "knowledgeCost": 360000,
       "gridX": 1,
-      "gridY": 9
+      "gridY": 9,
+      "connections": [
+        "37907",
+        "38677",
+        "38682",
+        "71726",
+        "94322"
+      ],
+      "annoS": 26,
+      "annoR": 22
     },
     {
       "guid": "38682",
@@ -1717,7 +2495,14 @@
       "color": "Purple",
       "knowledgeCost": 750000,
       "gridX": 1,
-      "gridY": 10
+      "gridY": 10,
+      "connections": [
+        "37907",
+        "81172",
+        "81191"
+      ],
+      "annoS": 26,
+      "annoR": 24
     },
     {
       "guid": "37889",
@@ -1734,7 +2519,15 @@
       "color": "Purple",
       "knowledgeCost": 360000,
       "gridX": 2,
-      "gridY": 8
+      "gridY": 8,
+      "connections": [
+        "38677",
+        "38679",
+        "81203",
+        "94322"
+      ],
+      "annoS": 27,
+      "annoR": 19
     },
     {
       "guid": "94322",
@@ -1751,7 +2544,16 @@
       "color": "Purple",
       "knowledgeCost": 360000,
       "gridX": 2,
-      "gridY": 9
+      "gridY": 9,
+      "connections": [
+        "37733",
+        "37889",
+        "38677",
+        "81191",
+        "81203"
+      ],
+      "annoS": 27,
+      "annoR": 21
     },
     {
       "guid": "38679",
@@ -1768,7 +2570,15 @@
       "color": "Purple",
       "knowledgeCost": 220000,
       "gridX": 3,
-      "gridY": 7
+      "gridY": 7,
+      "connections": [
+        "37732",
+        "37889",
+        "37904",
+        "81203"
+      ],
+      "annoS": 28,
+      "annoR": 18
     },
     {
       "guid": "81203",
@@ -1785,7 +2595,16 @@
       "color": "Purple",
       "knowledgeCost": 360000,
       "gridX": 3,
-      "gridY": 8
+      "gridY": 8,
+      "connections": [
+        "37733",
+        "37889",
+        "37904",
+        "38679",
+        "94322"
+      ],
+      "annoS": 28,
+      "annoR": 20
     },
     {
       "guid": "37904",
@@ -1802,7 +2621,13 @@
       "color": "Purple",
       "knowledgeCost": 360000,
       "gridX": 4,
-      "gridY": 8
+      "gridY": 8,
+      "connections": [
+        "38679",
+        "81203"
+      ],
+      "annoS": 29,
+      "annoR": 19
     },
     {
       "guid": "37916",
@@ -1819,7 +2644,13 @@
       "color": "Purple",
       "knowledgeCost": 1500000,
       "gridX": -5,
-      "gridY": 10
+      "gridY": 10,
+      "connections": [
+        "81207",
+        "81221"
+      ],
+      "annoS": 20,
+      "annoR": 24
     },
     {
       "guid": "81221",
@@ -1836,7 +2667,15 @@
       "color": "Purple",
       "knowledgeCost": 1500000,
       "gridX": -4,
-      "gridY": 10
+      "gridY": 10,
+      "connections": [
+        "37734",
+        "37916",
+        "37918",
+        "81207"
+      ],
+      "annoS": 21,
+      "annoR": 23
     },
     {
       "guid": "81207",
@@ -1853,7 +2692,15 @@
       "color": "Brown",
       "knowledgeCost": 3000000,
       "gridX": -4,
-      "gridY": 11
+      "gridY": 11,
+      "connections": [
+        "37916",
+        "37917",
+        "37918",
+        "81221"
+      ],
+      "annoS": 21,
+      "annoR": 25
     },
     {
       "guid": "37918",
@@ -1870,7 +2717,15 @@
       "color": "Purple",
       "knowledgeCost": 1500000,
       "gridX": -3,
-      "gridY": 10
+      "gridY": 10,
+      "connections": [
+        "37734",
+        "37917",
+        "81207",
+        "81221"
+      ],
+      "annoS": 22,
+      "annoR": 24
     },
     {
       "guid": "37917",
@@ -1887,7 +2742,13 @@
       "color": "Purple",
       "knowledgeCost": 1500000,
       "gridX": -3,
-      "gridY": 11
+      "gridY": 11,
+      "connections": [
+        "37918",
+        "81207"
+      ],
+      "annoS": 22,
+      "annoR": 26
     },
     {
       "guid": "24722",
@@ -1904,7 +2765,13 @@
       "color": "Purple",
       "knowledgeCost": 1500000,
       "gridX": 0,
-      "gridY": 12
+      "gridY": 12,
+      "connections": [
+        "37910",
+        "81172"
+      ],
+      "annoS": 25,
+      "annoR": 27
     },
     {
       "guid": "37910",
@@ -1921,7 +2788,12 @@
       "color": "Brown",
       "knowledgeCost": 3000000,
       "gridX": 0,
-      "gridY": 13
+      "gridY": 13,
+      "connections": [
+        "24722"
+      ],
+      "annoS": 25,
+      "annoR": 29
     },
     {
       "guid": "82037",
@@ -1938,7 +2810,14 @@
       "color": "Purple",
       "knowledgeCost": 1500000,
       "gridX": 3,
-      "gridY": 10
+      "gridY": 10,
+      "connections": [
+        "37733",
+        "37892",
+        "81196"
+      ],
+      "annoS": 28,
+      "annoR": 24
     },
     {
       "guid": "37892",
@@ -1955,7 +2834,15 @@
       "color": "Purple",
       "knowledgeCost": 1500000,
       "gridX": 4,
-      "gridY": 10
+      "gridY": 10,
+      "connections": [
+        "37733",
+        "38713",
+        "81196",
+        "82037"
+      ],
+      "annoS": 29,
+      "annoR": 23
     },
     {
       "guid": "38713",
@@ -1972,7 +2859,12 @@
       "color": "Purple",
       "knowledgeCost": 1500000,
       "gridX": 5,
-      "gridY": 10
+      "gridY": 10,
+      "connections": [
+        "37892"
+      ],
+      "annoS": 30,
+      "annoR": 24
     },
     {
       "guid": "81196",
@@ -1989,7 +2881,13 @@
       "color": "Brown",
       "knowledgeCost": 3000000,
       "gridX": 4,
-      "gridY": 11
+      "gridY": 11,
+      "connections": [
+        "37892",
+        "82037"
+      ],
+      "annoS": 29,
+      "annoR": 25
     },
     {
       "guid": "37643",
@@ -2007,7 +2905,13 @@
       "knowledgeCost": 50,
       "gridX": 1,
       "gridY": 0,
-      "connections": ["81222", "37737", "94976"]
+      "connections": [
+        "37737",
+        "81222",
+        "94976"
+      ],
+      "annoS": 28,
+      "annoR": 2
     },
     {
       "guid": "37722",
@@ -2024,7 +2928,15 @@
       "color": "RustRed",
       "knowledgeCost": 500,
       "gridX": 2,
-      "gridY": 3
+      "gridY": 3,
+      "connections": [
+        "38529",
+        "38707",
+        "38752",
+        "68312"
+      ],
+      "annoS": 30,
+      "annoR": 8
     },
     {
       "guid": "37718",
@@ -2041,7 +2953,15 @@
       "color": "RustRed",
       "knowledgeCost": 500,
       "gridX": 5,
-      "gridY": 0
+      "gridY": 0,
+      "connections": [
+        "37627",
+        "37654",
+        "38695",
+        "94978"
+      ],
+      "annoS": 33,
+      "annoR": 3
     },
     {
       "guid": "37723",
@@ -2058,7 +2978,15 @@
       "color": "RustRed",
       "knowledgeCost": 2205,
       "gridX": 3,
-      "gridY": 5
+      "gridY": 5,
+      "connections": [
+        "37787",
+        "37900",
+        "37919",
+        "82039"
+      ],
+      "annoS": 31,
+      "annoR": 13
     },
     {
       "guid": "81169",
@@ -2075,7 +3003,15 @@
       "color": "RustRed",
       "knowledgeCost": 1800,
       "gridX": 6,
-      "gridY": 3
+      "gridY": 3,
+      "connections": [
+        "37775",
+        "37788",
+        "37797",
+        "81205"
+      ],
+      "annoS": 34,
+      "annoR": 8
     },
     {
       "guid": "37720",
@@ -2092,7 +3028,15 @@
       "color": "RustRed",
       "knowledgeCost": 9000,
       "gridX": 4,
-      "gridY": 8
+      "gridY": 8,
+      "connections": [
+        "32676",
+        "37770",
+        "37789",
+        "38678"
+      ],
+      "annoS": 32,
+      "annoR": 18
     },
     {
       "guid": "37721",
@@ -2109,7 +3053,15 @@
       "color": "RustRed",
       "knowledgeCost": 17000,
       "gridX": 7,
-      "gridY": 6
+      "gridY": 6,
+      "connections": [
+        "28247",
+        "37776",
+        "37801",
+        "37865"
+      ],
+      "annoS": 35,
+      "annoR": 15
     },
     {
       "guid": "81165",
@@ -2127,7 +3079,14 @@
       "knowledgeCost": 9000,
       "gridX": 9,
       "gridY": 4,
-      "connections": ["94254"]
+      "connections": [
+        "28253",
+        "38704",
+        "94254",
+        "95020"
+      ],
+      "annoS": 37,
+      "annoR": 11
     },
     {
       "guid": "37737",
@@ -2144,7 +3103,15 @@
       "color": "RustRed",
       "knowledgeCost": 4800,
       "gridX": 1,
-      "gridY": 1
+      "gridY": 1,
+      "connections": [
+        "37643",
+        "38752",
+        "68312",
+        "94976"
+      ],
+      "annoS": 29,
+      "annoR": 5
     },
     {
       "guid": "68312",
@@ -2161,7 +3128,14 @@
       "color": "Blue",
       "knowledgeCost": 8000,
       "gridX": 1,
-      "gridY": 2
+      "gridY": 2,
+      "connections": [
+        "37722",
+        "37737",
+        "38752"
+      ],
+      "annoS": 29,
+      "annoR": 7
     },
     {
       "guid": "81222",
@@ -2178,7 +3152,15 @@
       "color": "RustRed",
       "knowledgeCost": 4800,
       "gridX": 2,
-      "gridY": 0
+      "gridY": 0,
+      "connections": [
+        "37643",
+        "38709",
+        "81220",
+        "94976"
+      ],
+      "annoS": 30,
+      "annoR": 2
     },
     {
       "guid": "94976",
@@ -2195,7 +3177,17 @@
       "color": "RustRed",
       "knowledgeCost": 4800,
       "gridX": 2,
-      "gridY": 1
+      "gridY": 1,
+      "connections": [
+        "37643",
+        "37737",
+        "37774",
+        "38752",
+        "81220",
+        "81222"
+      ],
+      "annoS": 30,
+      "annoR": 4
     },
     {
       "guid": "38752",
@@ -2212,7 +3204,16 @@
       "color": "RustRed",
       "knowledgeCost": 8000,
       "gridX": 2,
-      "gridY": 2
+      "gridY": 2,
+      "connections": [
+        "37722",
+        "37737",
+        "37774",
+        "68312",
+        "94976"
+      ],
+      "annoS": 30,
+      "annoR": 6
     },
     {
       "guid": "38709",
@@ -2229,7 +3230,14 @@
       "color": "RustRed",
       "knowledgeCost": 8000,
       "gridX": 3,
-      "gridY": -1
+      "gridY": -1,
+      "connections": [
+        "38695",
+        "81220",
+        "81222"
+      ],
+      "annoS": 31,
+      "annoR": 1
     },
     {
       "guid": "81220",
@@ -2246,7 +3254,16 @@
       "color": "RustRed",
       "knowledgeCost": 8000,
       "gridX": 3,
-      "gridY": 0
+      "gridY": 0,
+      "connections": [
+        "37774",
+        "38695",
+        "38709",
+        "81222",
+        "94976"
+      ],
+      "annoS": 31,
+      "annoR": 3
     },
     {
       "guid": "37774",
@@ -2263,7 +3280,14 @@
       "color": "RustRed",
       "knowledgeCost": 8000,
       "gridX": 3,
-      "gridY": 1
+      "gridY": 1,
+      "connections": [
+        "38752",
+        "81220",
+        "94976"
+      ],
+      "annoS": 31,
+      "annoR": 5
     },
     {
       "guid": "38695",
@@ -2280,7 +3304,14 @@
       "color": "RustRed",
       "knowledgeCost": 11800,
       "gridX": 4,
-      "gridY": 0
+      "gridY": 0,
+      "connections": [
+        "37718",
+        "38709",
+        "81220"
+      ],
+      "annoS": 32,
+      "annoR": 2
     },
     {
       "guid": "38529",
@@ -2297,7 +3328,15 @@
       "color": "RustRed",
       "knowledgeCost": 36000,
       "gridX": 2,
-      "gridY": 4
+      "gridY": 4,
+      "connections": [
+        "37722",
+        "37900",
+        "38707",
+        "82039"
+      ],
+      "annoS": 30,
+      "annoR": 10
     },
     {
       "guid": "37900",
@@ -2314,7 +3353,14 @@
       "color": "RustRed",
       "knowledgeCost": 64000,
       "gridX": 2,
-      "gridY": 5
+      "gridY": 5,
+      "connections": [
+        "37723",
+        "38529",
+        "82039"
+      ],
+      "annoS": 30,
+      "annoR": 12
     },
     {
       "guid": "38707",
@@ -2331,7 +3377,15 @@
       "color": "RustRed",
       "knowledgeCost": 36000,
       "gridX": 3,
-      "gridY": 3
+      "gridY": 3,
+      "connections": [
+        "37722",
+        "38529",
+        "38530",
+        "82039"
+      ],
+      "annoS": 31,
+      "annoR": 9
     },
     {
       "guid": "82039",
@@ -2348,7 +3402,16 @@
       "color": "RustRed",
       "knowledgeCost": 64000,
       "gridX": 3,
-      "gridY": 4
+      "gridY": 4,
+      "connections": [
+        "37723",
+        "37900",
+        "38529",
+        "38530",
+        "38707"
+      ],
+      "annoS": 31,
+      "annoR": 11
     },
     {
       "guid": "38530",
@@ -2365,7 +3428,13 @@
       "color": "RustRed",
       "knowledgeCost": 64000,
       "gridX": 4,
-      "gridY": 4
+      "gridY": 4,
+      "connections": [
+        "38707",
+        "82039"
+      ],
+      "annoS": 32,
+      "annoR": 10
     },
     {
       "guid": "94978",
@@ -2382,7 +3451,15 @@
       "color": "RustRed",
       "knowledgeCost": 36000,
       "gridX": 5,
-      "gridY": 1
+      "gridY": 1,
+      "connections": [
+        "37627",
+        "37718",
+        "37775",
+        "37797"
+      ],
+      "annoS": 33,
+      "annoR": 5
     },
     {
       "guid": "37775",
@@ -2399,7 +3476,14 @@
       "color": "RustRed",
       "knowledgeCost": 64000,
       "gridX": 5,
-      "gridY": 2
+      "gridY": 2,
+      "connections": [
+        "37797",
+        "81169",
+        "94978"
+      ],
+      "annoS": 33,
+      "annoR": 7
     },
     {
       "guid": "37654",
@@ -2416,7 +3500,14 @@
       "color": "Blue",
       "knowledgeCost": 36000,
       "gridX": 6,
-      "gridY": 0
+      "gridY": 0,
+      "connections": [
+        "37627",
+        "37718",
+        "37771"
+      ],
+      "annoS": 34,
+      "annoR": 2
     },
     {
       "guid": "37627",
@@ -2433,7 +3524,17 @@
       "color": "RustRed",
       "knowledgeCost": 36000,
       "gridX": 6,
-      "gridY": 1
+      "gridY": 1,
+      "connections": [
+        "37654",
+        "37718",
+        "37738",
+        "37771",
+        "37797",
+        "94978"
+      ],
+      "annoS": 34,
+      "annoR": 4
     },
     {
       "guid": "37797",
@@ -2450,7 +3551,17 @@
       "color": "RustRed",
       "knowledgeCost": 64000,
       "gridX": 6,
-      "gridY": 2
+      "gridY": 2,
+      "connections": [
+        "37627",
+        "37738",
+        "37775",
+        "37788",
+        "81169",
+        "94978"
+      ],
+      "annoS": 34,
+      "annoR": 6
     },
     {
       "guid": "37771",
@@ -2467,7 +3578,15 @@
       "color": "RustRed",
       "knowledgeCost": 64000,
       "gridX": 7,
-      "gridY": 0
+      "gridY": 0,
+      "connections": [
+        "37627",
+        "37654",
+        "37738",
+        "37790"
+      ],
+      "annoS": 35,
+      "annoR": 3
     },
     {
       "guid": "37738",
@@ -2484,7 +3603,17 @@
       "color": "RustRed",
       "knowledgeCost": 64000,
       "gridX": 7,
-      "gridY": 1
+      "gridY": 1,
+      "connections": [
+        "28250",
+        "37627",
+        "37771",
+        "37788",
+        "37790",
+        "37797"
+      ],
+      "annoS": 35,
+      "annoR": 5
     },
     {
       "guid": "37788",
@@ -2501,7 +3630,15 @@
       "color": "RustRed",
       "knowledgeCost": 92000,
       "gridX": 7,
-      "gridY": 2
+      "gridY": 2,
+      "connections": [
+        "28250",
+        "37738",
+        "37797",
+        "81169"
+      ],
+      "annoS": 35,
+      "annoR": 7
     },
     {
       "guid": "37790",
@@ -2518,7 +3655,14 @@
       "color": "RustRed",
       "knowledgeCost": 92000,
       "gridX": 8,
-      "gridY": 1
+      "gridY": 1,
+      "connections": [
+        "28250",
+        "37738",
+        "37771"
+      ],
+      "annoS": 36,
+      "annoR": 4
     },
     {
       "guid": "28250",
@@ -2535,7 +3679,14 @@
       "color": "RustRed",
       "knowledgeCost": 92000,
       "gridX": 8,
-      "gridY": 2
+      "gridY": 2,
+      "connections": [
+        "37738",
+        "37788",
+        "37790"
+      ],
+      "annoS": 36,
+      "annoR": 6
     },
     {
       "guid": "38689",
@@ -2552,7 +3703,13 @@
       "color": "Blue",
       "knowledgeCost": 360000,
       "gridX": 2,
-      "gridY": 7
+      "gridY": 7,
+      "connections": [
+        "37770",
+        "37787"
+      ],
+      "annoS": 30,
+      "annoR": 16
     },
     {
       "guid": "37787",
@@ -2569,7 +3726,16 @@
       "color": "RustRed",
       "knowledgeCost": 220000,
       "gridX": 3,
-      "gridY": 6
+      "gridY": 6,
+      "connections": [
+        "37723",
+        "37770",
+        "37789",
+        "37919",
+        "38689"
+      ],
+      "annoS": 31,
+      "annoR": 15
     },
     {
       "guid": "37770",
@@ -2586,7 +3752,15 @@
       "color": "RustRed",
       "knowledgeCost": 360000,
       "gridX": 3,
-      "gridY": 7
+      "gridY": 7,
+      "connections": [
+        "37720",
+        "37787",
+        "37789",
+        "38689"
+      ],
+      "annoS": 31,
+      "annoR": 17
     },
     {
       "guid": "37919",
@@ -2603,7 +3777,16 @@
       "color": "RustRed",
       "knowledgeCost": 220000,
       "gridX": 4,
-      "gridY": 6
+      "gridY": 6,
+      "connections": [
+        "37647",
+        "37723",
+        "37787",
+        "37789",
+        "95019"
+      ],
+      "annoS": 32,
+      "annoR": 14
     },
     {
       "guid": "37789",
@@ -2620,7 +3803,16 @@
       "color": "Blue",
       "knowledgeCost": 360000,
       "gridX": 4,
-      "gridY": 7
+      "gridY": 7,
+      "connections": [
+        "37647",
+        "37720",
+        "37770",
+        "37787",
+        "37919"
+      ],
+      "annoS": 32,
+      "annoR": 16
     },
     {
       "guid": "95019",
@@ -2637,7 +3829,15 @@
       "color": "RustRed",
       "knowledgeCost": 360000,
       "gridX": 5,
-      "gridY": 5
+      "gridY": 5,
+      "connections": [
+        "28247",
+        "37647",
+        "37919",
+        "38694"
+      ],
+      "annoS": 33,
+      "annoR": 13
     },
     {
       "guid": "37647",
@@ -2654,7 +3854,15 @@
       "color": "RustRed",
       "knowledgeCost": 360000,
       "gridX": 5,
-      "gridY": 6
+      "gridY": 6,
+      "connections": [
+        "28247",
+        "37789",
+        "37919",
+        "95019"
+      ],
+      "annoS": 33,
+      "annoR": 15
     },
     {
       "guid": "81205",
@@ -2671,7 +3879,14 @@
       "color": "RustRed",
       "knowledgeCost": 220000,
       "gridX": 6,
-      "gridY": 4
+      "gridY": 4,
+      "connections": [
+        "38694",
+        "81169",
+        "81206"
+      ],
+      "annoS": 34,
+      "annoR": 10
     },
     {
       "guid": "38694",
@@ -2688,7 +3903,16 @@
       "color": "RustRed",
       "knowledgeCost": 360000,
       "gridX": 6,
-      "gridY": 5
+      "gridY": 5,
+      "connections": [
+        "28247",
+        "37776",
+        "81205",
+        "81206",
+        "95019"
+      ],
+      "annoS": 34,
+      "annoR": 12
     },
     {
       "guid": "28247",
@@ -2705,7 +3929,16 @@
       "color": "RustRed",
       "knowledgeCost": 750000,
       "gridX": 6,
-      "gridY": 6
+      "gridY": 6,
+      "connections": [
+        "37647",
+        "37721",
+        "37776",
+        "38694",
+        "95019"
+      ],
+      "annoS": 34,
+      "annoR": 14
     },
     {
       "guid": "81206",
@@ -2722,7 +3955,16 @@
       "color": "RustRed",
       "knowledgeCost": 360000,
       "gridX": 7,
-      "gridY": 4
+      "gridY": 4,
+      "connections": [
+        "37776",
+        "38694",
+        "38704",
+        "81205",
+        "95020"
+      ],
+      "annoS": 35,
+      "annoR": 11
     },
     {
       "guid": "37776",
@@ -2739,7 +3981,16 @@
       "color": "Blue",
       "knowledgeCost": 750000,
       "gridX": 7,
-      "gridY": 5
+      "gridY": 5,
+      "connections": [
+        "28247",
+        "37721",
+        "38694",
+        "81206",
+        "95020"
+      ],
+      "annoS": 35,
+      "annoR": 13
     },
     {
       "guid": "38704",
@@ -2756,7 +4007,15 @@
       "color": "RustRed",
       "knowledgeCost": 750000,
       "gridX": 8,
-      "gridY": 4
+      "gridY": 4,
+      "connections": [
+        "28253",
+        "81165",
+        "81206",
+        "95020"
+      ],
+      "annoS": 36,
+      "annoR": 10
     },
     {
       "guid": "95020",
@@ -2773,7 +4032,15 @@
       "color": "RustRed",
       "knowledgeCost": 750000,
       "gridX": 8,
-      "gridY": 5
+      "gridY": 5,
+      "connections": [
+        "37776",
+        "38704",
+        "81165",
+        "81206"
+      ],
+      "annoS": 36,
+      "annoR": 12
     },
     {
       "guid": "28253",
@@ -2790,7 +4057,13 @@
       "color": "Blue",
       "knowledgeCost": 750000,
       "gridX": 9,
-      "gridY": 3
+      "gridY": 3,
+      "connections": [
+        "38704",
+        "81165"
+      ],
+      "annoS": 37,
+      "annoR": 9
     },
     {
       "guid": "38678",
@@ -2807,7 +4080,15 @@
       "color": "RustRed",
       "knowledgeCost": 1500000,
       "gridX": 4,
-      "gridY": 9
+      "gridY": 9,
+      "connections": [
+        "32676",
+        "37720",
+        "37773",
+        "38693"
+      ],
+      "annoS": 32,
+      "annoR": 20
     },
     {
       "guid": "37773",
@@ -2824,7 +4105,13 @@
       "color": "Blue",
       "knowledgeCost": 1500000,
       "gridX": 4,
-      "gridY": 10
+      "gridY": 10,
+      "connections": [
+        "38678",
+        "38693"
+      ],
+      "annoS": 32,
+      "annoR": 22
     },
     {
       "guid": "32676",
@@ -2841,7 +4128,14 @@
       "color": "RustRed",
       "knowledgeCost": 1500000,
       "gridX": 5,
-      "gridY": 8
+      "gridY": 8,
+      "connections": [
+        "37720",
+        "38678",
+        "38693"
+      ],
+      "annoS": 33,
+      "annoR": 19
     },
     {
       "guid": "38693",
@@ -2858,7 +4152,14 @@
       "color": "Brown",
       "knowledgeCost": 3000000,
       "gridX": 5,
-      "gridY": 9
+      "gridY": 9,
+      "connections": [
+        "32676",
+        "37773",
+        "38678"
+      ],
+      "annoS": 33,
+      "annoR": 21
     },
     {
       "guid": "37865",
@@ -2875,7 +4176,14 @@
       "color": "RustRed",
       "knowledgeCost": 1500000,
       "gridX": 7,
-      "gridY": 7
+      "gridY": 7,
+      "connections": [
+        "37721",
+        "37801",
+        "37806"
+      ],
+      "annoS": 35,
+      "annoR": 17
     },
     {
       "guid": "37801",
@@ -2892,7 +4200,14 @@
       "color": "RustRed",
       "knowledgeCost": 1500000,
       "gridX": 8,
-      "gridY": 7
+      "gridY": 7,
+      "connections": [
+        "37721",
+        "37806",
+        "37865"
+      ],
+      "annoS": 36,
+      "annoR": 16
     },
     {
       "guid": "37806",
@@ -2909,7 +4224,13 @@
       "color": "Brown",
       "knowledgeCost": 3000000,
       "gridX": 8,
-      "gridY": 8
+      "gridY": 8,
+      "connections": [
+        "37801",
+        "37865"
+      ],
+      "annoS": 36,
+      "annoR": 18
     },
     {
       "guid": "94254",
@@ -2926,7 +4247,15 @@
       "color": "RustRed",
       "knowledgeCost": 1500000,
       "gridX": 10,
-      "gridY": 5
+      "gridY": 5,
+      "connections": [
+        "126778",
+        "24278",
+        "37800",
+        "81165"
+      ],
+      "annoS": 38,
+      "annoR": 12
     },
     {
       "guid": "126778",
@@ -2944,7 +4273,12 @@
       "knowledgeCost": 1500000,
       "gridX": 11,
       "gridY": 4,
-      "connections": ["94254", "37800"]
+      "connections": [
+        "37800",
+        "94254"
+      ],
+      "annoS": 39,
+      "annoR": 11
     },
     {
       "guid": "37800",
@@ -2961,7 +4295,14 @@
       "color": "Blue",
       "knowledgeCost": 1500000,
       "gridX": 11,
-      "gridY": 5
+      "gridY": 5,
+      "connections": [
+        "126778",
+        "24278",
+        "94254"
+      ],
+      "annoS": 39,
+      "annoR": 13
     },
     {
       "guid": "24278",
@@ -2979,7 +4320,13 @@
       "color": "Brown",
       "knowledgeCost": 3000000,
       "gridX": 10,
-      "gridY": 6
+      "gridY": 6,
+      "connections": [
+        "37800",
+        "94254"
+      ],
+      "annoS": 38,
+      "annoR": 14
     },
     {
       "guid": "145332",
@@ -2996,7 +4343,10 @@
       "color": "Yellow",
       "knowledgeCost": 750,
       "gridX": 0,
-      "gridY": -1
+      "gridY": -1,
+      "connections": [
+        "145068"
+      ]
     },
     {
       "guid": "145334",
@@ -3013,7 +4363,13 @@
       "color": "Yellow",
       "knowledgeCost": 5000,
       "gridX": -1,
-      "gridY": -4
+      "gridY": -4,
+      "connections": [
+        "145070",
+        "145106",
+        "145376",
+        "151419"
+      ]
     },
     {
       "guid": "145384",
@@ -3030,7 +4386,12 @@
       "color": "Yellow",
       "knowledgeCost": 5000,
       "gridX": 1,
-      "gridY": -5
+      "gridY": -5,
+      "connections": [
+        "145105",
+        "145382",
+        "145383"
+      ]
     },
     {
       "guid": "145068",
@@ -3047,7 +4408,13 @@
       "color": "Yellow",
       "knowledgeCost": 8000,
       "gridX": 0,
-      "gridY": -2
+      "gridY": -2,
+      "connections": [
+        "145069",
+        "145070",
+        "145332",
+        "151419"
+      ]
     },
     {
       "guid": "151419",
@@ -3064,7 +4431,12 @@
       "color": "Yellow",
       "knowledgeCost": 11800,
       "gridX": -1,
-      "gridY": -3
+      "gridY": -3,
+      "connections": [
+        "145068",
+        "145334",
+        "145070"
+      ]
     },
     {
       "guid": "145070",
@@ -3081,7 +4453,14 @@
       "color": "Yellow",
       "knowledgeCost": 11800,
       "gridX": 0,
-      "gridY": -3
+      "gridY": -3.5,
+      "connections": [
+        "145068",
+        "145334",
+        "151419",
+        "145105",
+        "145069"
+      ]
     },
     {
       "guid": "145069",
@@ -3098,7 +4477,12 @@
       "color": "Yellow",
       "knowledgeCost": 11800,
       "gridX": 1,
-      "gridY": -3
+      "gridY": -3,
+      "connections": [
+        "145068",
+        "145105",
+        "145070"
+      ]
     },
     {
       "guid": "145105",
@@ -3115,24 +4499,12 @@
       "color": "Yellow",
       "knowledgeCost": 18000,
       "gridX": 1,
-      "gridY": -4
-    },
-    {
-      "guid": "145375",
-      "internalName": "Tech DLC01 Food Rationing -UNUSED",
-      "nameEn": "",
-      "nameJa": "食糧配給",
-      "descEn": "Only those who share sensibly will survive to see the next banquet.",
-      "descJa": "賢明に分かち合う者だけが、次の宴を見届けるまで生き残るだろう。",
-      "effectJa": "火山の冬の間、需要の消費量が減少する。",
-      "effectEn": "Reduces the consumption of needs during the Volcanic Winter.",
-      "iconKey": "food_rationing",
-      "techIconPath": "data/ui/fhd/dlc01/icon_content/generic/icon_2d_food_rationing.png",
-      "isGate": false,
-      "color": "Yellow",
-      "knowledgeCost": 750000,
-      "gridX": -1,
-      "gridY": -7
+      "gridY": -4,
+      "connections": [
+        "145069",
+        "145384",
+        "145070"
+      ]
     },
     {
       "guid": "145376",
@@ -3149,7 +4521,12 @@
       "color": "Yellow",
       "knowledgeCost": 750000,
       "gridX": -1,
-      "gridY": -5
+      "gridY": -5,
+      "connections": [
+        "145334",
+        "148041",
+        "145377"
+      ]
     },
     {
       "guid": "145106",
@@ -3166,7 +4543,11 @@
       "color": "Yellow",
       "knowledgeCost": 750000,
       "gridX": -2,
-      "gridY": -4
+      "gridY": -4.5,
+      "connections": [
+        "145334",
+        "145377"
+      ]
     },
     {
       "guid": "145377",
@@ -3183,7 +4564,13 @@
       "color": "Yellow",
       "knowledgeCost": 1500000,
       "gridX": -2,
-      "gridY": -5
+      "gridY": -5.5,
+      "connections": [
+        "145106",
+        "145107",
+        "148041",
+        "145376"
+      ]
     },
     {
       "guid": "145107",
@@ -3200,7 +4587,11 @@
       "color": "Brown",
       "knowledgeCost": 3000000,
       "gridX": -2,
-      "gridY": -6
+      "gridY": -6.5,
+      "connections": [
+        "145377",
+        "148041"
+      ]
     },
     {
       "guid": "148041",
@@ -3217,7 +4608,12 @@
       "color": "Yellow",
       "knowledgeCost": 1500000,
       "gridX": -1,
-      "gridY": -6
+      "gridY": -6,
+      "connections": [
+        "145376",
+        "145377",
+        "145107"
+      ]
     },
     {
       "guid": "145380",
@@ -3234,7 +4630,11 @@
       "color": "Blue",
       "knowledgeCost": 1500000,
       "gridX": 1,
-      "gridY": -7
+      "gridY": -7,
+      "connections": [
+        "145382",
+        "145381"
+      ]
     },
     {
       "guid": "145382",
@@ -3251,7 +4651,13 @@
       "color": "Yellow",
       "knowledgeCost": 750000,
       "gridX": 1,
-      "gridY": -6
+      "gridY": -6,
+      "connections": [
+        "145380",
+        "145384",
+        "145381",
+        "145383"
+      ]
     },
     {
       "guid": "145381",
@@ -3268,7 +4674,12 @@
       "color": "Blue",
       "knowledgeCost": 1500000,
       "gridX": 2,
-      "gridY": -6
+      "gridY": -6.5,
+      "connections": [
+        "145383",
+        "145382",
+        "145380"
+      ]
     },
     {
       "guid": "145383",
@@ -3285,7 +4696,12 @@
       "color": "Yellow",
       "knowledgeCost": 750000,
       "gridX": 2,
-      "gridY": -5
+      "gridY": -5.5,
+      "connections": [
+        "145384",
+        "145381",
+        "145382"
+      ]
     }
   ]
 }

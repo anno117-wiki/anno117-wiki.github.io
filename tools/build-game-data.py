@@ -218,14 +218,22 @@ print(f"  {len(pop_levels)} population levels", file=sys.stderr)
 # ---- Step 6: Techs（技術ツリー） ----
 print("Extracting techs...", file=sys.stderr)
 
-# 既存 techs.json の nameJa を保護（手動追加分を上書きしない）
+# 既存 techs.json の保護フィールドを読み込む（再実行で上書きしない）
 existing_tech_name_ja: dict[str, str] = {}
+existing_tech_protected: dict[str, dict] = {}
+_PROTECTED_FIELDS = ["connections", "gridX", "gridY", "annoS", "annoR"]
 if TECHS_JSON.exists():
     try:
         _existing = json.loads(TECHS_JSON.read_text(encoding="utf-8"))
         for _t in _existing.get("techs", []):
-            if _t.get("guid") and _t.get("nameJa"):
-                existing_tech_name_ja[_t["guid"]] = _t["nameJa"]
+            g = _t.get("guid")
+            if not g:
+                continue
+            if _t.get("nameJa"):
+                existing_tech_name_ja[g] = _t["nameJa"]
+            saved = {f: _t[f] for f in _PROTECTED_FIELDS if f in _t}
+            if saved:
+                existing_tech_protected[g] = saved
     except Exception:
         pass
 
@@ -296,7 +304,7 @@ for asset in root.iter("Asset"):
             if t_en:
                 effect_en_parts.append(t_en)
 
-    techs.append({
+    _entry: dict = {
         "guid":           g,
         "internalName":   name,
         "nameEn":         guid_to_en.get(g, name),
@@ -312,7 +320,14 @@ for asset in root.iter("Asset"):
         "knowledgeCost":  knowledge_cost,
         "gridX":          int(asset.findtext(".//Tech/GridPosition/X") or 0),
         "gridY":          int(asset.findtext(".//Tech/GridPosition/Y") or 0),
-    })
+    }
+    # -UNUSED タグを持つノードはスキップ（殿裁定: 存在しないノードとして扱う）
+    if "-UNUSED" in name:
+        continue
+    # 保護フィールドを上書きしない（connections/gridX/gridY/annoS/annoR）
+    for _f, _v in existing_tech_protected.get(g, {}).items():
+        _entry[_f] = _v
+    techs.append(_entry)
 
 print(f"  {len(techs)} techs", file=sys.stderr)
 
