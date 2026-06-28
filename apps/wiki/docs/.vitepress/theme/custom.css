@@ -132,11 +132,15 @@
   background-color: var(--vp-c-bg);
 }
 
-/* 建物名・需要Tier列を折り返し禁止 */
-.vp-doc table td:nth-child(1),
-.vp-doc table th:nth-child(1),
-.vp-doc table td:nth-child(2),
-.vp-doc table th:nth-child(2) {
+/* 建物名・需要Tier列を折り返し禁止 — buildings・needs-index のみに限定 */
+.vp-doc._wiki_buildings table td:nth-child(1),
+.vp-doc._wiki_buildings table th:nth-child(1),
+.vp-doc._wiki_buildings table td:nth-child(2),
+.vp-doc._wiki_buildings table th:nth-child(2),
+.vp-doc._wiki_needs-index table td:nth-child(1),
+.vp-doc._wiki_needs-index table th:nth-child(1),
+.vp-doc._wiki_needs-index table td:nth-child(2),
+.vp-doc._wiki_needs-index table th:nth-child(2) {
   white-space: nowrap;
 }
 
