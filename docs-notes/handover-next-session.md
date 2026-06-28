@@ -2,8 +2,8 @@
 
 ## git状態
 - ブランチ: master
-- 本セッションで「更新履歴(GitHistory)改修」を **1コミット作成（push保留）**。殿の指示で未公開。
-- **次回まず push 可否を殿に確認**（未公開のため最優先）。
+- 本セッションの成果3件を master へ **push 済み・公開**（`3b95630` 更新履歴改修 / `773bd4e` 表崩れ修正 / `e1803a9` 建物効果パン操作）。push: 2cca403..e1803a9。
+- GitHub Pages 反映確認も**完了**（公開URL で /updates・サイドバー更新履歴5件・/wiki/buildings のパン・research-guide/military-guide の表、すべて正常反映を忍者が確認済み）。
 
 ## フェーズ9 完了（2026-06-28）
 
@@ -55,9 +55,15 @@
 - E2E 35件全パス、PC・モバイル(390×844)目視OK
 - 検証記録: `_local/dlc01-edge-verification.md`・`_local/skilltree-full-data.json`・`_local/anno_land_graph.json`
 
-## フェーズ10 完了（2026-06-28）: 更新履歴(GitHistory)改修
+## フェーズ10 完了（2026-06-28）: 更新履歴改修＋スマホ表UI改善
 
-第1段・第2段を実装・検証完了。1コミット作成済み・**push保留**（殿指示で未公開）。
+本日の成果3件を master へ push 済み・公開。
+- `3b95630` 更新履歴(GitHistory)改修（第1段・第2段／下記詳細）
+- `773bd4e` スマホ表の縦長崩れ修正（custom.css の第1・2列 nowrap を `_wiki_buildings`/`_wiki_needs-index` 限定に。research-guide「装着先」・military-guide「ユニット4分類」「艦船モジュール」の説明表が縦長化していた不具合。三系統調査で原因特定）
+- `e1803a9` 建物効果表にドラッグパン操作追加（buildings.md＋custom.css・pointer events+setPointerCapture で PC+スマホ対応・`touch-action:pan-y` で縦ページスクロール非阻害・`.buildings-table-wrap` でラップ。スキルツリー techs.md のパン機構を pointer 化して流用）
+
+### 更新履歴改修(3b95630)詳細
+第1段・第2段を実装・検証完了。
 
 ### 第1段: ユーザー向け要約データ化＋バグ解消
 - `gitHistoryPlugin` 撤去で **cwd二重パスバグ根絶**（git log がビルドcwd=apps/wiki でパス二重→0件→空配列だった不具合）
@@ -74,8 +80,8 @@
 ### 検証（忍者・機械検証）
 - `bun run build:site` exit0・`docs/updates.html` 生成・**E2E 35件全パス**（両段）・withBaseリンク確認
 
-### 次回タスク（更新履歴関連）
-1. **push可否を殿に確認**（最優先・未公開のため）→ 可なら push 後 GitHub Pages 反映確認
+### 次回タスク
+1. ~~GitHub Pages 反映確認~~ → **完了**（公開側で全項目正常反映を確認済み）
 2. giscus 実コメント投稿時の表示確認（現状0件のためフォールバックのみ確認済み）
 
 ## 次回セッションの候補タスク
