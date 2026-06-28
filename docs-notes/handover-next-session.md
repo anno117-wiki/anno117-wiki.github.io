@@ -2,8 +2,19 @@
 
 ## git状態
 - ブランチ: master
-- 本セッションの成果3件を master へ **push 済み・公開**（`3b95630` 更新履歴改修 / `773bd4e` 表崩れ修正 / `e1803a9` 建物効果パン操作）。push: 2cca403..e1803a9。
-- GitHub Pages 反映確認も**完了**（公開URL で /updates・サイドバー更新履歴5件・/wiki/buildings のパン・research-guide/military-guide の表、すべて正常反映を忍者が確認済み）。
+- 最新コミット: `e8f9ee7` 建物効果表 thead sticky 修正（2026-06-28 push済み・公開）
+- push 範囲: 3b9c18d..e8f9ee7
+
+## 本セッション成果（2026-06-28）
+
+### 建物効果表 thead sticky 修正（e8f9ee7）
+- **問題**: `overflow-x:auto` がブラウザに `overflow-y:auto` を強制し、wrap がスクロールコンテナ化。thead sticky が page 基準でなく wrap 基準で動き、ヘッダが消える不具合
+- **修正**:
+  - custom.css: `.buildings-table-wrap` に `max-height:75vh` + `overflow-y:auto` 追加
+  - custom.css: `thead th { top: 0 }`（wrap基準）に変更
+  - custom.css: corner セル `z-index: 3→5`
+  - buildings.md: `filterBarRef` / `updateFilterBarH` / `onMounted` / `onUnmounted` を削除
+- **検証**: 忍者による全5点クリア（thead/フィルタバー/第1列/パン/他ページ副作用）
 
 ## フェーズ9 完了（2026-06-28）
 
@@ -86,11 +97,14 @@
 
 ## 次回セッションの候補タスク
 
-1. GitHub Pages 反映確認（URL: anno117-wiki.github.io）
-2. DLC02/DLC03 ノードの実機確認と追加（現在 DLC01 のみ）
-3. ~~スキルツリーのパネル選択時GUID表示を修正~~ → **対応済み**（コミット 2cca403・master公開済み。techs.md 詳細パネルの GUID detail-row を削除）
+- 殿のご指示待ち（積み残しタスクなし）
 
-4. ~~更新履歴(GitHistory)改修~~ → **フェーズ10で完了（push保留）**。上記「フェーズ10 完了」セクション参照。残るは push 可否確認のみ。
+### 確定方針（2026-06-28 殿裁可）
+- DLC02/DLC03 スキルツリー: ゲーム未リリースのため**考慮外**（将来リリース時に対応）
+- giscus コメント: 実コメント投稿があったら殿から声がかかる。それまで待機。
+- ~~GitHub Pages 反映確認~~ → 完了済み
+- ~~スキルツリーのパネル選択時GUID表示を修正~~ → 対応済み（コミット 2cca403）
+- ~~更新履歴(GitHistory)改修~~ → フェーズ10で完了・push 済み
 
 ## 注意点（変わらず有効）
 
