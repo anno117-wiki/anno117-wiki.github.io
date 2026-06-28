@@ -1,21 +1,9 @@
 # Anno 117 統合Wikiプロジェクト
 
+@prompts/startup-auto.md
+
 ## セッション開始時【MUST】
 - `docs-notes/handover-next-session.md` があれば**最初に読む**（前回からの引き継ぎ。残課題・未コミット分・注意点）。
-
-### 役割の自動決定【MUST・名乗り前に必ず実行】
-役は**起動順で自動決定**する。優先順位は **家老 > 侍 > 忍者**。**空いている最上位の役**を名乗る。
-1. `list_peers(scope=repo)` で既に名乗られている役を確認する。
-2. 空いている最上位の役を名乗る：誰もいない→家老 / 家老だけ→侍 / 家老＋侍→忍者。
-3. `set_summary` に**必ず役名を含めて**名乗る。
-4. 名乗った直後に再度 `list_peers` で重複確認。重複なら下位側が譲って人間に確認。
-5. **4人目以降／判断できない時は名乗らず人間に確認**（推測で兼任しない）。
-
-### 起動手順（審議せず順に実行）
-1. **第1バッチ（並列）**: `ToolSearch select:mcp__claude-peers__list_peers,...` ＋ handover読み込み。
-2. 役割の自動決定 → `set_summary` で名乗る。
-3. 自分の役の `docs-notes/roles/{karo|samurai|ninja}.md` を読む。
-4. 家老のみ各peerへ役割指示（メモリ project-three-session-roles 参照）。
 
 ### シェル運用
 - `SHELL` は **Git Bash**。BashツールもPowerShellツールも利用可。迷わず実行する。

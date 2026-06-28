@@ -7,14 +7,25 @@
 
 ## 本セッション成果（2026-06-28）
 
-### 建物効果表 thead sticky 修正（e8f9ee7）
-- **問題**: `overflow-x:auto` がブラウザに `overflow-y:auto` を強制し、wrap がスクロールコンテナ化。thead sticky が page 基準でなく wrap 基準で動き、ヘッダが消える不具合
-- **修正**:
-  - custom.css: `.buildings-table-wrap` に `max-height:75vh` + `overflow-y:auto` 追加
-  - custom.css: `thead th { top: 0 }`（wrap基準）に変更
-  - custom.css: corner セル `z-index: 3→5`
-  - buildings.md: `filterBarRef` / `updateFilterBarH` / `onMounted` / `onUnmounted` を削除
+### 建物効果表 フィルタバー・thead・第1列 sticky 実装（3b9c18d + e8f9ee7）
+
+**3b9c18d** (第1列sticky + フィルタバーsticky 初版)
+- custom.css: `.buildings-table-wrap table th/td:first-child { position:sticky; left:0; background:var(--vp-c-bg) }` / th z-index:3 / td z-index:2
+- custom.css: `.buildings-filter-bar { position:sticky; top:var(--vp-nav-height); z-index:10 }`
+- custom.css: `.buildings-table-wrap table { display:table }` (mobile display:block 上書き)
+- custom.css: `thead tr th { position:sticky; top:calc(--vp-nav-height + --filter-bar-h) }`
+- buildings.md: filterBarRef / updateFilterBarH / onMounted (フィルタバー高さ動的測定 → CSS変数 `--filter-bar-h`)
+
+**e8f9ee7** (thead sticky 不具合修正)
+- **問題**: `overflow-x:auto` がブラウザに `overflow-y:auto` を強制 → wrap がスクロールコンテナ化 → thead sticky が wrap 基準になりヘッダが消える
+- **修正**: wrap に `max-height:75vh` 追加し自己完結スクロールボックス化、thead `top:0`（wrap基準）に変更、corner z-index:3→5、filterBarRef 削除
 - **検証**: 忍者による全5点クリア（thead/フィルタバー/第1列/パン/他ページ副作用）
+
+**設計メモ（thead sticky）**:
+- `overflow-x:auto` 単独設定はブラウザが `overflow-y:auto` を強制 → vertical scroll container になり page-scroll sticky が効かない
+- 解決: wrap を `max-height:75vh + overflow-y:auto` の自己完結スクロールボックスにし、thead `top:0`（wrap基準）で sticky
+- フィルタバーは wrap の外にあるため window sticky `top:64px` は独立して正常動作
+- `--vp-nav-height: 64px`（PC・スマホ共通）
 
 ## フェーズ9 完了（2026-06-28）
 
