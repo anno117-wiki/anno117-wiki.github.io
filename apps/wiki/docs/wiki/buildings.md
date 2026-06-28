@@ -3,6 +3,36 @@ import { ref, computed } from 'vue'
 import { withBase } from 'vitepress'
 import { data } from './buildings.data.ts'
 
+// テーブルパン操作（pointer events でPC+スマホ両対応）
+const tableWrap = ref<HTMLElement | null>(null)
+const isPanning = ref(false)
+
+interface PanState { pointerId: number; startX: number; scrollLeft: number }
+let _panState: PanState | null = null
+
+function onTablePointerdown(e: PointerEvent) {
+  if (e.pointerType === 'mouse' && e.button !== 0) return
+  const el = tableWrap.value
+  if (!el) return
+  el.setPointerCapture(e.pointerId)
+  _panState = { pointerId: e.pointerId, startX: e.clientX, scrollLeft: el.scrollLeft }
+  isPanning.value = true
+}
+
+function onTablePointermove(e: PointerEvent) {
+  if (!_panState || _panState.pointerId !== e.pointerId) return
+  const el = tableWrap.value
+  if (!el) return
+  el.scrollLeft = _panState.scrollLeft - (e.clientX - _panState.startX)
+}
+
+function onTablePointerup(e: PointerEvent) {
+  if (_panState && _panState.pointerId === e.pointerId) {
+    _panState = null
+    isPanning.value = false
+  }
+}
+
 const categoryLabels: Record<string, string> = {
   public: '公共施設',
   wonder: '驚異',
@@ -107,6 +137,15 @@ const sortedFiltered = computed(() => {
   <span style="font-size:13px;color:var(--vp-c-text-2);">{{ sortedFiltered.length }} / {{ data.buildings.length }} 件</span>
 </div>
 
+<div
+  class="buildings-table-wrap"
+  :class="{ 'is-panning': isPanning }"
+  ref="tableWrap"
+  @pointerdown="onTablePointerdown"
+  @pointermove="onTablePointermove"
+  @pointerup="onTablePointerup"
+  @pointercancel="onTablePointerup"
+>
 <table>
 <thead>
 <tr>
@@ -144,3 +183,4 @@ const sortedFiltered = computed(() => {
 </tr>
 </tbody>
 </table>
+</div>

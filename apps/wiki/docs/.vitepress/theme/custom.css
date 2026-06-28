@@ -261,6 +261,18 @@
   }
 }
 
+/* buildings テーブルパン操作 */
+.buildings-table-wrap {
+  overflow-x: auto;
+  -webkit-overflow-scrolling: touch;
+  touch-action: pan-y;
+  cursor: grab;
+  user-select: none;
+}
+.buildings-table-wrap.is-panning {
+  cursor: grabbing;
+}
+
 /* ダークモード */
 .dark {
   --vp-c-bg: #0e1a2e;
