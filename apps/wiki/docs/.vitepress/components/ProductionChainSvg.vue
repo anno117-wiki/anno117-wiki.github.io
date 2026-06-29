@@ -144,5 +144,6 @@ const layout = computed(() => {
   overflow-x: auto;
   -webkit-overflow-scrolling: touch;
   width: 100%;
+  max-width: 100vw;
 }
 </style>
