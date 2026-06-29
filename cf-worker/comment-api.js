@@ -1,4 +1,5 @@
 const REPO = 'anno117-wiki/anno117-wiki.github.io';
+const OWNER_LOGIN = 'kojifujita0822';
 const GH_API = 'https://api.github.com';
 
 const TYPE_JA = {
@@ -141,7 +142,7 @@ async function handleGet(request, env) {
             const rData = await rRes.json();
             replies = rData.map((c) => ({
               id: c.id,
-              author: c.user?.login ?? '',
+              author: c.user?.login === OWNER_LOGIN ? '運営' : (c.user?.login ?? ''),
               body: c.body ?? '',
               createdAt: c.created_at,
             }));
