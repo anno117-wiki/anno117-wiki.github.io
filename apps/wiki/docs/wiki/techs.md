@@ -322,6 +322,7 @@ onUnmounted(() => {
   cursor: pointer;
   transition: transform 0.1s, box-shadow 0.1s;
   line-height: 1.2;
+  position: relative;
 }
 .tech-cell:hover { transform: scale(1.06); box-shadow: 0 2px 8px rgba(0,0,0,0.2); z-index: 2; position: relative; }
 .is-gate { border-width: 3px; font-weight: 600; border-color: #d4a017; box-shadow: 0 0 5px rgba(212,160,23,0.5); }
@@ -334,6 +335,14 @@ onUnmounted(() => {
   object-fit: contain;
   margin-bottom: 1px;
   flex-shrink: 0;
+}
+.is-gate .tech-icon {
+  position: absolute;
+  top: 2px;
+  left: 2px;
+  width: 14px;
+  height: 14px;
+  margin: 0;
 }
 
 .color-green   { background: #dcfce7; border-color: #86efac; color: #14532d; }
