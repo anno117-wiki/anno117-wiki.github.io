@@ -43,8 +43,15 @@ async function handlePost(request, env) {
     return json({ error: 'リクエストボディが不正です' }, 400);
   }
 
-  const { name, type, body: text, page } = body;
-  if (!name || !type || !text || !page) return json({ error: 'name / type / body / page は必須です' }, 400);
+  const { type } = body;
+  const name = (body.name ?? '').trim().replaceAll('\n', '').replaceAll('\r', '');
+  const text = (body.body ?? '').trim();
+  const page = (body.page ?? '').trim();
+
+  if (!name || name.length > 100) return json({ error: 'name は1〜100文字で入力してください' }, 400);
+  if (!text || text.length > 5000) return json({ error: 'body は1〜5000文字で入力してください' }, 400);
+  if (!page) return json({ error: 'page は必須です' }, 400);
+  if (!type) return json({ error: 'type は必須です' }, 400);
   if (!TYPE_JA[type]) return json({ error: 'type は comment / report / bug のいずれかです' }, 400);
 
   const typeJa = TYPE_JA[type];
@@ -122,17 +129,26 @@ async function handleGet(request, env) {
 
       let replies = [];
       try {
-        const rRes = await fetch(`${GH_API}/repos/${REPO}/issues/${issue.number}/comments?per_page=50`, {
-          headers: ghHeaders,
-        });
-        if (rRes.ok) {
-          const rData = await rRes.json();
-          replies = rData.map((c) => ({
-            id: c.id,
-            author: c.user?.login ?? '',
-            body: c.body ?? '',
-            createdAt: c.created_at,
-          }));
+        const cacheKey = `replies:${issue.number}`;
+        const cached = env.COMMENT_KV ? await env.COMMENT_KV.get(cacheKey) : null;
+        if (cached) {
+          replies = JSON.parse(cached);
+        } else {
+          const rRes = await fetch(`${GH_API}/repos/${REPO}/issues/${issue.number}/comments?per_page=50`, {
+            headers: ghHeaders,
+          });
+          if (rRes.ok) {
+            const rData = await rRes.json();
+            replies = rData.map((c) => ({
+              id: c.id,
+              author: c.user?.login ?? '',
+              body: c.body ?? '',
+              createdAt: c.created_at,
+            }));
+            if (env.COMMENT_KV) {
+              await env.COMMENT_KV.put(cacheKey, JSON.stringify(replies), { expirationTtl: 300 });
+            }
+          }
         }
       } catch {
         // フォールバック: replies は空配列のまま
