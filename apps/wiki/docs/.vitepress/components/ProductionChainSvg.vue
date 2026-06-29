@@ -1,12 +1,12 @@
 <template>
   <details class="production-chain" @toggle="onToggle">
     <summary>生産チェーン図を表示</summary>
+    <div v-if="isOpen" class="chain-scroll">
     <svg
-      v-if="isOpen"
       :viewBox="layout.viewBox"
-      width="100%"
+      :width="layout.totalW"
       :height="layout.totalH"
-      style="max-width:100%;overflow:visible;display:block"
+      style="display:block"
     >
       <defs>
         <marker id="arrow" markerWidth="8" markerHeight="8" refX="6" refY="3" orient="auto">
@@ -28,6 +28,7 @@
         <text :x="n.x + 60" :y="n.y + 32" text-anchor="middle" font-size="11" fill="#666">{{ n.time }}</text>
       </g>
     </svg>
+    </div>
   </details>
 </template>
 
@@ -124,6 +125,7 @@ const layout = computed(() => {
     posNodes,
     edgePaths,
     viewBox: `${-PADDING} ${-PADDING} ${totalW} ${totalH}`,
+    totalW,
     totalH,
   }
 })
@@ -137,5 +139,10 @@ const layout = computed(() => {
   cursor: pointer;
   color: var(--vp-c-brand);
   user-select: none;
+}
+.chain-scroll {
+  overflow-x: auto;
+  -webkit-overflow-scrolling: touch;
+  width: 100%;
 }
 </style>
