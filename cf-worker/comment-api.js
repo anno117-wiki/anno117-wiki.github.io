@@ -99,10 +99,8 @@ async function handleGet(request, env) {
   const url = new URL(request.url);
   const page = url.searchParams.get('page');
 
-  const q = page
-    ? encodeURIComponent(`repo:${REPO} is:open label:user-comment "${page}" in:body`)
-    : encodeURIComponent(`repo:${REPO} is:open label:user-comment`);
-  const res = await fetch(`${GH_API}/search/issues?q=${q}&sort=created&order=desc&per_page=50`, {
+  const apiUrl = `${GH_API}/repos/${REPO}/issues?state=open&labels=user-comment&sort=created&direction=desc&per_page=100`;
+  const res = await fetch(apiUrl, {
     headers: {
       Authorization: `Bearer ${env.GITHUB_TOKEN}`,
       Accept: 'application/vnd.github+json',
@@ -116,7 +114,9 @@ async function handleGet(request, env) {
     return json({ error: 'GitHub API エラー', detail: err }, 502);
   }
 
-  const data = await res.json();
+  const issues = (await res.json()).filter((issue) =>
+    !page || (issue.body || '').includes(`**ページ**: ${page}`)
+  );
   const ghHeaders = {
     Authorization: `Bearer ${env.GITHUB_TOKEN}`,
     Accept: 'application/vnd.github+json',
@@ -125,7 +125,7 @@ async function handleGet(request, env) {
   };
 
   const comments = await Promise.all(
-    (data.items || []).map(async (issue) => {
+    issues.map(async (issue) => {
       const { name, typeJa, text } = parseIssueBody(issue.body || '');
 
       let replies = [];
