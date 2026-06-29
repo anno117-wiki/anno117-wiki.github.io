@@ -14,6 +14,15 @@
           <span class="uc-date">{{ c.createdAt.slice(0, 10) }}</span>
         </div>
         <p class="uc-body">{{ c.body }}</p>
+        <div v-if="c.replies && c.replies.length > 0" class="uc-replies">
+          <div v-for="r in c.replies" :key="r.id" class="uc-reply">
+            <div class="uc-reply-meta">
+              <span class="uc-reply-author">{{ r.author }}</span>
+              <span class="uc-date">{{ r.createdAt.slice(0, 10) }}</span>
+            </div>
+            <p class="uc-body">{{ r.body }}</p>
+          </div>
+        </div>
       </div>
     </div>
 
@@ -66,6 +75,13 @@ const TYPE_LABEL: Record<string, string> = {
   bug: 'バグ報告',
 }
 
+interface Reply {
+  id: number
+  author: string
+  body: string
+  createdAt: string
+}
+
 interface Comment {
   id: number
   page: string
@@ -73,6 +89,7 @@ interface Comment {
   type: string
   body: string
   createdAt: string
+  replies: Reply[]
 }
 
 const { page } = useData()
@@ -212,6 +229,33 @@ watch(() => page.value.relativePath, fetchComments)
   color: var(--vp-c-text-1);
   line-height: 1.6;
   white-space: pre-wrap;
+}
+
+.uc-replies {
+  margin-top: 8px;
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+}
+
+.uc-reply {
+  padding: 8px 12px;
+  border-left: 3px solid var(--vp-c-brand-1);
+  background: var(--vp-c-bg-soft);
+  border-radius: 0 4px 4px 0;
+}
+
+.uc-reply-meta {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  margin-bottom: 4px;
+}
+
+.uc-reply-author {
+  font-size: 12px;
+  font-weight: 600;
+  color: var(--vp-c-brand-1);
 }
 
 /* フォーム */

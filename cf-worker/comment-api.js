@@ -109,18 +109,47 @@ async function handleGet(request, env) {
   }
 
   const data = await res.json();
-  const comments = (data.items || []).map((issue) => {
-    const { name, typeJa, text } = parseIssueBody(issue.body || '');
-    return {
-      id: issue.id,
-      number: issue.number,
-      title: issue.title,
-      name,
-      type: typeJa,
-      body: text,
-      createdAt: issue.created_at,
-    };
-  });
+  const ghHeaders = {
+    Authorization: `Bearer ${env.GITHUB_TOKEN}`,
+    Accept: 'application/vnd.github+json',
+    'X-GitHub-Api-Version': '2022-11-28',
+    'User-Agent': 'anno117-wiki-worker',
+  };
+
+  const comments = await Promise.all(
+    (data.items || []).map(async (issue) => {
+      const { name, typeJa, text } = parseIssueBody(issue.body || '');
+
+      let replies = [];
+      try {
+        const rRes = await fetch(`${GH_API}/repos/${REPO}/issues/${issue.number}/comments?per_page=50`, {
+          headers: ghHeaders,
+        });
+        if (rRes.ok) {
+          const rData = await rRes.json();
+          replies = rData.map((c) => ({
+            id: c.id,
+            author: c.user?.login ?? '',
+            body: c.body ?? '',
+            createdAt: c.created_at,
+          }));
+        }
+      } catch {
+        // フォールバック: replies は空配列のまま
+      }
+
+      return {
+        id: issue.id,
+        number: issue.number,
+        title: issue.title,
+        name,
+        type: typeJa,
+        body: text,
+        createdAt: issue.created_at,
+        replies,
+      };
+    })
+  );
 
   return json(comments);
 }
