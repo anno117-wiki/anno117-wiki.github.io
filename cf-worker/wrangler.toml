@@ -1,0 +1,10 @@
+name = "anno-comments"
+main = "comment-api.js"
+compatibility_date = "2024-01-01"
+
+[vars]
+# GITHUB_TOKEN は secrets で設定（wrangler secret put GITHUB_TOKEN）
+
+[[kv_namespaces]]
+binding = "COMMENT_KV"
+id = "b102b98e22de49729c8702ddc7abaae5"
