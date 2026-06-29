@@ -92,8 +92,8 @@ async function handleGet(request, env) {
   const page = url.searchParams.get('page');
 
   const q = page
-    ? encodeURIComponent(`repo:${REPO} label:user-comment "${page}" in:body`)
-    : encodeURIComponent(`repo:${REPO} label:user-comment`);
+    ? encodeURIComponent(`repo:${REPO} is:open label:user-comment "${page}" in:body`)
+    : encodeURIComponent(`repo:${REPO} is:open label:user-comment`);
   const res = await fetch(`${GH_API}/search/issues?q=${q}&sort=created&order=desc&per_page=50`, {
     headers: {
       Authorization: `Bearer ${env.GITHUB_TOKEN}`,
