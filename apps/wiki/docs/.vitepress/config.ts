@@ -1,39 +1,4 @@
 import { defineConfig } from 'vitepress'
-import { spawnSync } from 'child_process'
-
-function giscusCommentsPlugin() {
-  return {
-    name: 'vite-plugin-giscus-comments',
-    resolveId(id: string) {
-      if (id === 'virtual:giscus-comments') return '\0virtual:giscus-comments'
-    },
-    load(id: string) {
-      if (id !== '\0virtual:giscus-comments') return
-      try {
-        const query = '{ repository(owner:"anno117-wiki", name:"anno117-wiki.github.io"){ discussions(first:50, orderBy:{field:UPDATED_AT,direction:DESC}){ totalCount nodes{ title url updatedAt comments(first:20){ totalCount nodes{ author{login} bodyText createdAt url } } } } } }'
-        const result = spawnSync('gh', ['api', 'graphql', '-f', `query=${query}`], { encoding: 'utf-8' })
-        if (result.error || result.status !== 0) throw new Error(result.stderr ?? 'gh failed')
-        const data = JSON.parse(result.stdout)
-        const discussions: Array<{ title: string; url: string; comments: { nodes: Array<{ author: { login: string } | null; bodyText: string; createdAt: string; url: string }> } }> =
-          data.data.repository.discussions.nodes
-        const allComments = discussions.flatMap(d =>
-          d.comments.nodes.map(c => ({
-            author: c.author?.login ?? 'anonymous',
-            bodyText: c.bodyText,
-            createdAt: c.createdAt,
-            url: c.url,
-            discussionTitle: d.title,
-            discussionUrl: d.url,
-          }))
-        )
-        allComments.sort((a, b) => b.createdAt.localeCompare(a.createdAt))
-        return `export const giscusComments = ${JSON.stringify(allComments.slice(0, 10))}`
-      } catch {
-        return 'export const giscusComments = []'
-      }
-    },
-  }
-}
 
 // Anno 117 統合Wiki — VitePress 設定
 // 配信規約: wiki = '/'（ルート）、calculator = '/calculator/'
@@ -63,10 +28,6 @@ export default defineConfig({
 
   search: {
     provider: 'local',
-  },
-
-  vite: {
-    plugins: [giscusCommentsPlugin()],
   },
 
   themeConfig: {
