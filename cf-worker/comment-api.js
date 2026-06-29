@@ -2,24 +2,32 @@ const REPO = 'anno117-wiki/anno117-wiki.github.io';
 const OWNER_LOGIN = 'kojifujita0822';
 const GH_API = 'https://api.github.com';
 
+const ALLOWED_ORIGINS = [
+  'https://anno117-wiki.github.io',
+  'http://localhost:5173',
+  'http://localhost:4173',
+];
+
 const TYPE_JA = {
   comment: 'コメント',
   report: '誤り報告',
   bug: 'バグ報告',
 };
 
-function corsHeaders() {
+function corsHeaders(origin) {
+  const allowed = ALLOWED_ORIGINS.includes(origin) ? origin : ALLOWED_ORIGINS[0];
   return {
-    'Access-Control-Allow-Origin': '*',
+    'Access-Control-Allow-Origin': allowed,
     'Access-Control-Allow-Methods': 'GET, POST, OPTIONS',
     'Access-Control-Allow-Headers': 'Content-Type',
+    'Vary': 'Origin',
   };
 }
 
-function json(data, status = 200) {
+function json(data, status = 200, origin = '') {
   return new Response(JSON.stringify(data), {
     status,
-    headers: { 'Content-Type': 'application/json; charset=utf-8', ...corsHeaders() },
+    headers: { 'Content-Type': 'application/json; charset=utf-8', ...corsHeaders(origin) },
   });
 }
 
@@ -32,28 +40,30 @@ async function checkRateLimit(env, ip) {
   return true;
 }
 
-async function handlePost(request, env) {
+async function handlePost(request, env, origin) {
   const ip = request.headers.get('CF-Connecting-IP') || 'unknown';
   const allowed = await checkRateLimit(env, ip);
-  if (!allowed) return json({ error: '1日の投稿上限（10件）に達しました' }, 429);
+  if (!allowed) return json({ error: '1日の投稿上限（20件）に達しました' }, 429, origin);
 
   let body;
   try {
     body = await request.json();
   } catch {
-    return json({ error: 'リクエストボディが不正です' }, 400);
+    return json({ error: 'リクエストボディが不正です' }, 400, origin);
   }
 
   const { type } = body;
-  const name = (body.name ?? '').trim().replaceAll('\n', '').replaceAll('\r', '');
+  let name = (body.name ?? '').trim().replaceAll('\n', '').replaceAll('\r', '');
   const text = (body.body ?? '').trim();
   const page = (body.page ?? '').trim();
 
-  if (!name || name.length > 100) return json({ error: 'name は1〜100文字で入力してください' }, 400);
-  if (!text || text.length > 5000) return json({ error: 'body は1〜5000文字で入力してください' }, 400);
-  if (!page) return json({ error: 'page は必須です' }, 400);
-  if (!type) return json({ error: 'type は必須です' }, 400);
-  if (!TYPE_JA[type]) return json({ error: 'type は comment / report / bug のいずれかです' }, 400);
+  if (!name || name.length > 100) return json({ error: 'name は1〜100文字で入力してください' }, 400, origin);
+  if (!text || text.length > 5000) return json({ error: 'body は1〜5000文字で入力してください' }, 400, origin);
+  if (!page) return json({ error: 'page は必須です' }, 400, origin);
+  if (!type) return json({ error: 'type は必須です' }, 400, origin);
+  if (!TYPE_JA[type]) return json({ error: 'type は comment / report / bug のいずれかです' }, 400, origin);
+
+  name = name.replace(/[*_`#\[\]]/g, '');
 
   const typeJa = TYPE_JA[type];
   const title = `[${typeJa}] ${page} — ${name}`;
@@ -76,12 +86,11 @@ async function handlePost(request, env) {
   });
 
   if (!res.ok) {
-    const err = await res.text();
-    return json({ error: 'GitHub API エラー', detail: err }, 502);
+    return json({ error: 'GitHub API エラー' }, 502, origin);
   }
 
   const issue = await res.json();
-  return json({ number: issue.number, url: issue.html_url }, 201);
+  return json({ number: issue.number, url: issue.html_url }, 201, origin);
 }
 
 function parseIssueBody(rawBody) {
@@ -95,7 +104,7 @@ function parseIssueBody(rawBody) {
   };
 }
 
-async function handleGet(request, env) {
+async function handleGet(request, env, origin) {
   const url = new URL(request.url);
   const page = url.searchParams.get('page');
 
@@ -110,8 +119,7 @@ async function handleGet(request, env) {
   });
 
   if (!res.ok) {
-    const err = await res.text();
-    return json({ error: 'GitHub API エラー', detail: err }, 502);
+    return json({ error: 'GitHub API エラー' }, 502, origin);
   }
 
   const issues = (await res.json()).filter((issue) =>
@@ -147,7 +155,7 @@ async function handleGet(request, env) {
               createdAt: c.created_at,
             }));
             if (env.COMMENT_KV) {
-              await env.COMMENT_KV.put(cacheKey, JSON.stringify(replies), { expirationTtl: 300 });
+              await env.COMMENT_KV.put(cacheKey, JSON.stringify(replies), { expirationTtl: 60 });
             }
           }
         }
@@ -168,21 +176,27 @@ async function handleGet(request, env) {
     })
   );
 
-  return json(comments);
+  return json(comments, 200, origin);
 }
 
 export default {
   async fetch(request, env) {
+    const origin = request.headers.get('Origin') || '';
+
     if (request.method === 'OPTIONS') {
-      return new Response(null, { status: 204, headers: corsHeaders() });
+      return new Response(null, { status: 204, headers: corsHeaders(origin) });
+    }
+
+    if (request.method === 'POST' && !ALLOWED_ORIGINS.includes(origin)) {
+      return json({ error: '許可されていないオリジンです' }, 403, origin);
     }
 
     const url = new URL(request.url);
     const path = url.pathname;
 
-    if (path === '/comment' && request.method === 'POST') return handlePost(request, env);
-    if (path === '/comments' && request.method === 'GET') return handleGet(request, env);
+    if (path === '/comment' && request.method === 'POST') return handlePost(request, env, origin);
+    if (path === '/comments' && request.method === 'GET') return handleGet(request, env, origin);
 
-    return json({ error: 'Not Found' }, 404);
+    return json({ error: 'Not Found' }, 404, origin);
   },
 };
