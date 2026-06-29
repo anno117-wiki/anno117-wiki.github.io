@@ -1,6 +1,7 @@
 <script setup lang="ts">
 import { withBase } from 'vitepress'
 import { data } from './production-chains.data.ts'
+import ProductionChainSvg from '../.vitepress/components/ProductionChainSvg.vue'
 
 const categoryLabels: Record<string, string> = {
   food: '食料',
@@ -49,7 +50,7 @@ function timeText(seconds: number): string {
 <td>{{ timeText(entry.timeSeconds) }}</td>
 <td>
   {{ entry.inputs.join('、') || '—' }}
-  <ProductionMermaid v-if="entry.mermaidDef" :definition="entry.mermaidDef" />
+  <ProductionChainSvg v-if="entry.graph" :graph="entry.graph" />
 </td>
 <td><a :href="withBase(`/calculator/?good=${entry.id}`)" target="_blank" rel="noopener noreferrer">計算</a></td>
 </tr>

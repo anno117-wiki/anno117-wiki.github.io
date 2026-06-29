@@ -8,6 +8,22 @@ const __filename = fileURLToPath(import.meta.url)
 const __dirname = dirname(__filename)
 const PRODUCTIONS_DIR = resolve(__dirname, '../../../../packages/shared/public/productions')
 
+export interface GraphNode {
+  id: string
+  label: string
+  time: string
+}
+
+export interface GraphEdge {
+  from: string
+  to: string
+}
+
+export interface ProductionGraph {
+  nodes: GraphNode[]
+  edges: GraphEdge[]
+}
+
 interface ProductionEntry {
   id: string
   nameJa: string
@@ -19,7 +35,7 @@ interface ProductionEntry {
   timeSeconds: number
   needsFuel: boolean
   inputs: string[]
-  mermaidDef: string
+  graph: ProductionGraph | null
 }
 
 const CATEGORY_ORDER = ['food', 'construction', 'fashion', 'culture']
@@ -32,29 +48,28 @@ function fmtTime(seconds: number): string {
   return s === 0 ? `${m}分` : `${m}分${s}秒`
 }
 
-function buildMermaidDef(prod: any, jaGoods: Record<string, string>): string {
-  const nodeLines: string[] = []
-  const edgeLines: string[] = []
+function buildProductionGraph(prod: any, jaGoods: Record<string, string>): ProductionGraph | null {
+  const nodes: GraphNode[] = []
+  const edges: GraphEdge[] = []
   const seen = new Set<string>()
 
   function traverse(node: any, childId?: string) {
     const id = node.id.replace(/[^a-zA-Z0-9_]/g, '_')
     const label = jaGoods[node.id] ?? node.name ?? node.id
     const time = fmtTime(node.time ?? 0)
-    const nodeLabel = time ? `${label}\n${time}` : label
     if (!seen.has(id)) {
       seen.add(id)
-      nodeLines.push(`  ${id}["${nodeLabel}"]`)
+      nodes.push({ id, label, time })
     }
-    if (childId) edgeLines.push(`  ${id} --> ${childId}`)
+    if (childId) edges.push({ from: id, to: childId })
     for (const inp of (node.input ?? [])) {
       traverse(inp, id)
     }
   }
 
   traverse(prod)
-  if (nodeLines.length <= 1) return ''
-  return `graph LR\n${nodeLines.join('\n')}\n${edgeLines.join('\n')}`
+  if (nodes.length <= 1) return null
+  return { nodes, edges }
 }
 
 function readProduction(filename: string): any | null {
@@ -96,7 +111,7 @@ export default {
         timeSeconds: prod.time ?? 0,
         needsFuel: prod.needs_fuel ?? false,
         inputs,
-        mermaidDef: buildMermaidDef(prod, jaGoods),
+        graph: buildProductionGraph(prod, jaGoods),
       })
     }
 

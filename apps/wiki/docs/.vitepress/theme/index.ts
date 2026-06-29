@@ -1,7 +1,6 @@
 import DefaultTheme from 'vitepress/theme'
 import './custom.css'
 import Layout from './Layout.vue'
-import ProductionMermaid from '../components/ProductionMermaid.vue'
 import StatBar from '../components/StatBar.vue'
 import TechLinks from '../components/TechLinks.vue'
 import UpdateLog from '../components/UpdateLog.vue'
@@ -11,7 +10,6 @@ export default {
   ...DefaultTheme,
   Layout,
   enhanceApp({ app }: { app: App }) {
-    app.component('ProductionMermaid', ProductionMermaid)
     app.component('StatBar', StatBar)
     app.component('TechLinks', TechLinks)
     app.component('UpdateLog', UpdateLog)
