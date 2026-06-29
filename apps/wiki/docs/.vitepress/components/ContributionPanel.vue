@@ -6,7 +6,8 @@
         編集を提案
       </a>
     </div>
-    <GiscusComments />
+    <GiscusComments v-if="page.relativePath === 'updates.md'" />
+    <UserComments v-else />
   </div>
 </template>
 
@@ -14,6 +15,7 @@
 import { computed } from 'vue'
 import { useData } from 'vitepress'
 import GiscusComments from './GiscusComments.vue'
+import UserComments from './UserComments.vue'
 
 const GITHUB_REPO = 'kojifujita0822/anno117_JP_WIKI'
 
