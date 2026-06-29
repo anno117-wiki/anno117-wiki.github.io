@@ -13,13 +13,11 @@
     </div>
   </div>
 
-  <UserComments />
 </template>
 
 <script setup lang="ts">
 import { withBase } from 'vitepress'
 import updates from '../data/updates.json'
-import UserComments from './UserComments.vue'
 
 function formatDate(iso: string): string {
   return iso.slice(0, 10)
