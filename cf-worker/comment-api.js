@@ -108,21 +108,26 @@ async function handleGet(request, env, origin) {
   const url = new URL(request.url);
   const page = url.searchParams.get('page');
 
-  const apiUrl = `${GH_API}/repos/${REPO}/issues?state=open&labels=user-comment&sort=created&direction=desc&per_page=100`;
-  const res = await fetch(apiUrl, {
-    headers: {
-      Authorization: `Bearer ${env.GITHUB_TOKEN}`,
-      Accept: 'application/vnd.github+json',
-      'X-GitHub-Api-Version': '2022-11-28',
-      'User-Agent': 'anno117-wiki-worker',
-    },
-  });
-
-  if (!res.ok) {
-    return json({ error: 'GitHub API エラー' }, 502, origin);
+  const MAX_PAGES = 5;
+  let issues = [];
+  let nextUrl = `${GH_API}/repos/${REPO}/issues?state=open&labels=user-comment&sort=created&direction=desc&per_page=100`;
+  for (let p = 0; p < MAX_PAGES && nextUrl; p++) {
+    const res = await fetch(nextUrl, {
+      headers: {
+        Authorization: `Bearer ${env.GITHUB_TOKEN}`,
+        Accept: 'application/vnd.github+json',
+        'X-GitHub-Api-Version': '2022-11-28',
+        'User-Agent': 'anno117-wiki-worker',
+      },
+    });
+    if (!res.ok) return json({ error: 'GitHub API エラー' }, 502, origin);
+    const batch = await res.json();
+    issues = issues.concat(batch);
+    const link = res.headers.get('Link') || '';
+    const m = link.match(/<([^>]+)>;\s*rel="next"/);
+    nextUrl = m ? m[1] : null;
   }
-
-  const issues = (await res.json()).filter((issue) =>
+  const filtered = issues.filter((issue) =>
     !page || (issue.body || '').includes(`**ページ**: ${page}`)
   );
   const ghHeaders = {
@@ -133,7 +138,7 @@ async function handleGet(request, env, origin) {
   };
 
   const comments = await Promise.all(
-    issues.map(async (issue) => {
+    filtered.map(async (issue) => {
       const { name, typeJa, text } = parseIssueBody(issue.body || '');
 
       let replies = [];
