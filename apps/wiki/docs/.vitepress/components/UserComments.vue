@@ -103,17 +103,24 @@ const submitting = ref(false)
 const submitError = ref('')
 const submitSuccess = ref(false)
 
+let currentAbort: AbortController | null = null
+
 async function fetchComments() {
+  currentAbort?.abort()
+  currentAbort = new AbortController()
+  const signal = currentAbort.signal
+
   loading.value = true
   fetchError.value = ''
   try {
     const url = props.allPages
       ? `${WORKER_URL}/comments`
       : `${WORKER_URL}/comments?page=${encodeURIComponent(page.value.relativePath)}`
-    const res = await fetch(url)
+    const res = await fetch(url, { signal })
     if (!res.ok) throw new Error(`HTTP ${res.status}`)
     comments.value = await res.json()
   } catch (e) {
+    if (e instanceof DOMException && e.name === 'AbortError') return
     fetchError.value = 'コメントの取得に失敗しました。'
   } finally {
     loading.value = false
