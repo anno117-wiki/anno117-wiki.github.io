@@ -220,8 +220,10 @@ print("Extracting techs...", file=sys.stderr)
 
 # 既存 techs.json の保護フィールドを読み込む（再実行で上書きしない）
 existing_tech_name_ja: dict[str, str] = {}
+existing_tech_effect_ja: dict[str, str] = {}
+existing_tech_effect_en: dict[str, str] = {}
 existing_tech_protected: dict[str, dict] = {}
-_PROTECTED_FIELDS = ["connections", "gridX", "gridY", "annoS", "annoR"]
+_PROTECTED_FIELDS = ["connections", "gridX", "gridY", "annoS", "annoR", "branchOverride"]
 if TECHS_JSON.exists():
     try:
         _existing = json.loads(TECHS_JSON.read_text(encoding="utf-8"))
@@ -231,6 +233,10 @@ if TECHS_JSON.exists():
                 continue
             if _t.get("nameJa"):
                 existing_tech_name_ja[g] = _t["nameJa"]
+            if _t.get("effectJa"):
+                existing_tech_effect_ja[g] = _t["effectJa"]
+            if _t.get("effectEn"):
+                existing_tech_effect_en[g] = _t["effectEn"]
             saved = {f: _t[f] for f in _PROTECTED_FIELDS if f in _t}
             if saved:
                 existing_tech_protected[g] = saved
@@ -282,10 +288,12 @@ for asset in root.iter("Asset"):
     tech_icon_asset = guid_to_asset.get(tech_icon_guid)
     tech_icon_path = (tech_icon_asset.findtext(".//Standard/IconFilename") or "").strip() if tech_icon_asset is not None else ""
 
-    # Rewards（Unlocks / Effects）の InfoDescription → 効果説明
+    # Rewards（Unlocks / Effects / Resources / Items）の InfoDescription → 効果説明
     reward_guids = (
         [(i.findtext("UnlockReward") or "").strip() for i in asset.findall(".//Rewards/Unlocks/Item")]
         + [(i.findtext("EffectAsset") or "").strip() for i in asset.findall(".//Rewards/Effects/Item")]
+        + [(i.findtext("Resource") or "").strip() for i in asset.findall(".//Rewards/Resources/Item")]
+        + [(i.findtext("ItemAsset") or "").strip() for i in asset.findall(".//Rewards/Items/Item")]
     )
     effect_ja_parts: list[str] = []
     effect_en_parts: list[str] = []
@@ -295,14 +303,32 @@ for asset in root.iter("Asset"):
         ra = guid_to_asset.get(rg)
         if ra is None:
             continue
-        info_id = (ra.findtext(".//Standard/InfoDescription") or "").strip()
-        if info_id:
-            t_ja = clean_text(line_to_ja.get(info_id, ""))
-            t_en = clean_text(line_to_en.get(info_id, ""))
-            if t_ja:
-                effect_ja_parts.append(t_ja)
-            if t_en:
-                effect_en_parts.append(t_en)
+        pool_items = ra.findall(".//AssetPool/AssetList/Item")
+        if pool_items:
+            for item in pool_items:
+                mg = (item.findtext("Asset") or "").strip()
+                if not mg:
+                    continue
+                ma = guid_to_asset.get(mg)
+                if ma is None:
+                    continue
+                info_id = (ma.findtext(".//Standard/InfoDescription") or "").strip()
+                if info_id:
+                    t_ja = clean_text(line_to_ja.get(info_id, ""))
+                    t_en = clean_text(line_to_en.get(info_id, ""))
+                    if t_ja and t_ja not in effect_ja_parts:
+                        effect_ja_parts.append(t_ja)
+                    if t_en and t_en not in effect_en_parts:
+                        effect_en_parts.append(t_en)
+        else:
+            info_id = (ra.findtext(".//Standard/InfoDescription") or "").strip()
+            if info_id:
+                t_ja = clean_text(line_to_ja.get(info_id, ""))
+                t_en = clean_text(line_to_en.get(info_id, ""))
+                if t_ja and t_ja not in effect_ja_parts:
+                    effect_ja_parts.append(t_ja)
+                if t_en and t_en not in effect_en_parts:
+                    effect_en_parts.append(t_en)
 
     _entry: dict = {
         "guid":           g,
@@ -311,8 +337,8 @@ for asset in root.iter("Asset"):
         "nameJa":         existing_tech_name_ja.get(g) or guid_to_ja.get(g, ""),
         "descEn":         clean_text(line_to_en.get(desc_line_id, "")),
         "descJa":         clean_text(line_to_ja.get(desc_line_id, "")),
-        "effectJa":       " / ".join(effect_ja_parts),
-        "effectEn":       " / ".join(effect_en_parts),
+        "effectJa":       existing_tech_effect_ja.get(g) or " / ".join(effect_ja_parts),
+        "effectEn":       existing_tech_effect_en.get(g) or " / ".join(effect_en_parts),
         "iconKey":        icon_key_2d(icon_path),
         "techIconPath":   tech_icon_path,
         "isGate":         is_gate,
