@@ -18,6 +18,7 @@
     </div>
 
     <!-- 投稿フォーム -->
+    <template v-if="props.showForm">
     <form class="uc-form" @submit.prevent="submit">
       <h3 class="uc-form-title">コメントを投稿する</h3>
 
@@ -47,12 +48,15 @@
         {{ submitting ? '送信中...' : '投稿する' }}
       </button>
     </form>
+    </template>
   </div>
 </template>
 
 <script setup lang="ts">
 import { ref, onMounted, watch } from 'vue'
 import { useData } from 'vitepress'
+
+const props = withDefaults(defineProps<{ showForm?: boolean; allPages?: boolean }>(), { showForm: true, allPages: false })
 
 const WORKER_URL = 'https://anno-comments.anno117wiki.workers.dev'
 
@@ -86,7 +90,10 @@ async function fetchComments() {
   loading.value = true
   fetchError.value = ''
   try {
-    const res = await fetch(`${WORKER_URL}/comments?page=${encodeURIComponent(page.value.relativePath)}`)
+    const url = props.allPages
+      ? `${WORKER_URL}/comments`
+      : `${WORKER_URL}/comments?page=${encodeURIComponent(page.value.relativePath)}`
+    const res = await fetch(url)
     if (!res.ok) throw new Error(`HTTP ${res.status}`)
     comments.value = await res.json()
   } catch (e) {

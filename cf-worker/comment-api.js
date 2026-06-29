@@ -90,9 +90,10 @@ function parseIssueBody(rawBody) {
 async function handleGet(request, env) {
   const url = new URL(request.url);
   const page = url.searchParams.get('page');
-  if (!page) return json({ error: 'page パラメータが必要です' }, 400);
 
-  const q = encodeURIComponent(`repo:${REPO} label:user-comment "${page}" in:body`);
+  const q = page
+    ? encodeURIComponent(`repo:${REPO} label:user-comment "${page}" in:body`)
+    : encodeURIComponent(`repo:${REPO} label:user-comment`);
   const res = await fetch(`${GH_API}/search/issues?q=${q}&sort=created&order=desc&per_page=50`, {
     headers: {
       Authorization: `Bearer ${env.GITHUB_TOKEN}`,

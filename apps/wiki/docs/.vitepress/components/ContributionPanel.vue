@@ -6,7 +6,8 @@
         編集を提案
       </a>
     </div>
-    <UserComments />
+    <UserComments v-if="page.relativePath === 'updates.md'" :show-form="false" :all-pages="true" />
+    <UserComments v-else />
   </div>
 </template>
 
