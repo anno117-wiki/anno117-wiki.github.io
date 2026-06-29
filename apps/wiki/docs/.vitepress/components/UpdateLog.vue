@@ -13,27 +13,13 @@
     </div>
   </div>
 
-  <div class="comment-log">
-    <h2>みんなのコメント</h2>
-    <p v-if="giscusComments.length === 0" class="no-comments">まだコメントはありません</p>
-    <div v-else>
-      <div v-for="(c, i) in giscusComments" :key="i" class="comment-entry">
-        <div class="comment-meta">
-          <span class="comment-author">{{ c.author }}</span>
-          <span class="comment-date">{{ formatDate(c.createdAt) }}</span>
-          <a class="comment-discussion" :href="c.discussionUrl" target="_blank" rel="noopener">{{ c.discussionTitle }}</a>
-        </div>
-        <p class="comment-body">{{ excerpt(c.bodyText) }}</p>
-        <a class="comment-link" :href="c.url" target="_blank" rel="noopener">コメントを見る →</a>
-      </div>
-    </div>
-  </div>
+  <UserComments />
 </template>
 
 <script setup lang="ts">
 import { withBase } from 'vitepress'
 import updates from '../data/updates.json'
-import { giscusComments } from 'virtual:giscus-comments'
+import UserComments from './UserComments.vue'
 
 function formatDate(iso: string): string {
   return iso.slice(0, 10)
@@ -104,74 +90,5 @@ a.ul-title:hover {
   font-size: 13px;
   color: var(--vp-c-text-2);
   line-height: 1.6;
-}
-
-.comment-log {
-  margin-top: 40px;
-}
-
-.comment-log h2 {
-  font-size: 18px;
-  font-weight: 700;
-  margin-bottom: 16px;
-  padding-bottom: 8px;
-  border-bottom: 1px solid var(--vp-c-divider);
-}
-
-.no-comments {
-  color: var(--vp-c-text-2);
-  font-size: 14px;
-}
-
-.comment-entry {
-  display: flex;
-  flex-direction: column;
-  gap: 6px;
-  padding: 12px 0;
-  border-bottom: 1px solid var(--vp-c-divider);
-}
-
-.comment-meta {
-  display: flex;
-  align-items: center;
-  gap: 10px;
-  flex-wrap: wrap;
-}
-
-.comment-author {
-  font-size: 13px;
-  font-weight: 600;
-  color: var(--vp-c-text-1);
-}
-
-.comment-date {
-  font-size: 12px;
-  color: var(--vp-c-text-2);
-}
-
-.comment-discussion {
-  font-size: 12px;
-  color: var(--vp-c-brand-1);
-  text-decoration: none;
-}
-.comment-discussion:hover {
-  text-decoration: underline;
-}
-
-.comment-body {
-  margin: 0;
-  font-size: 13px;
-  color: var(--vp-c-text-1);
-  line-height: 1.6;
-  white-space: pre-wrap;
-}
-
-.comment-link {
-  font-size: 12px;
-  color: var(--vp-c-brand-1);
-  text-decoration: none;
-}
-.comment-link:hover {
-  text-decoration: underline;
 }
 </style>
