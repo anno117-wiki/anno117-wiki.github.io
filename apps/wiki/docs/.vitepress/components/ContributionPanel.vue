@@ -16,7 +16,7 @@ import { computed } from 'vue'
 import { useData } from 'vitepress'
 import UserComments from './UserComments.vue'
 
-const GITHUB_REPO = 'kojifujita0822/anno117_JP_WIKI'
+const GITHUB_REPO = 'anno117-wiki/anno117-wiki.github.io'
 
 const { page } = useData()
 
