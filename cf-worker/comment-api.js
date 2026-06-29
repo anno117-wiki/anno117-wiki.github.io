@@ -27,7 +27,7 @@ async function checkRateLimit(env, ip) {
   if (!env.COMMENT_KV) return true;
   const key = `rate:${ip}:${new Date().toISOString().slice(0, 10)}`;
   const count = parseInt((await env.COMMENT_KV.get(key)) || '0', 10);
-  if (count >= 10) return false;
+  if (count >= 20) return false;
   await env.COMMENT_KV.put(key, String(count + 1), { expirationTtl: 86400 });
   return true;
 }
