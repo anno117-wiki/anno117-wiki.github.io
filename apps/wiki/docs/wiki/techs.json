@@ -373,8 +373,8 @@
       "nameJa": "舗装道路",
       "descEn": "Fast Roman roads for fast Romans.",
       "descJa": "高速ローマ人のための高速ローマ街道。",
-      "effectJa": "品物のより速い輸送を可能にすることで、建物の影響範囲を拡大する。 / 建物同士を結び、品物の輸送を可能にする。 / 水上をまたいで品物のより速い輸送を可能にすることで、建物の影響範囲を拡大する。",
-      "effectEn": "Allows for faster transport of goods, thus extending the reach of buildings. / Connects buildings and enables transport of goods. / Allows for faster transport of goods over rivers, thus extending the reach of buildings.",
+      "effectJa": "品物のより速い輸送を可能にすることで、建物の影響範囲を拡大する。",
+      "effectEn": "Allows for faster transport of goods, thus extending the reach of buildings.",
       "iconKey": null,
       "techIconPath": "data/ui/fhd/base/icon_content/infrastructure/icon_3d_road_stone.png",
       "isGate": false,
@@ -1653,8 +1653,8 @@
       "nameJa": "井戸",
       "descEn": "A city's lifeblood is its water supply.",
       "descJa": "都市の生命線は水の供給である。",
-      "effectJa": "付近の火災安全度を高める。 / 付近の小範囲の火災安全度を高める。",
-      "effectEn": "Increases Fire Safety nearby. / Increases Fire Safety in a small area around it.",
+      "effectJa": "付近の火災安全度を高める。",
+      "effectEn": "Increases Fire Safety nearby.",
       "iconKey": null,
       "techIconPath": "data/ui/fhd/base/icon_content/infrastructure/icon_3d_institution_well.png",
       "isGate": false,
@@ -1729,8 +1729,8 @@
       "nameJa": "トイレ",
       "descEn": "Healthy roads beget healthy bodies, and healthy bodies beget healthy cities.",
       "descJa": "健全な道路は健全な肉体を作る。そして健全な肉体は健全な都市を作る。",
-      "effectJa": "付近の健康度を高める。 / 付近の小範囲の健康度を高める。",
-      "effectEn": "Increases Health nearby. / Increases Health in a small area around it.",
+      "effectJa": "付近の健康度を高める。",
+      "effectEn": "Increases Health nearby.",
       "iconKey": null,
       "techIconPath": "data/ui/fhd/base/icon_content/infrastructure/icon_3d_institution_latrine.png",
       "isGate": false,
@@ -1777,8 +1777,8 @@
       "nameJa": "監視塔",
       "descEn": "Our watchmen shall watch; we shall watch them in turn.",
       "descJa": "見張りは見張りをするのが仕事だ。彼らを見張るのは我らの仕事だ。",
-      "effectJa": "付近の幸福度を高める。 / 付近の小範囲の幸福度を高める。",
-      "effectEn": "Increases Happiness nearby. / Increases Happiness in a small area around it.",
+      "effectJa": "付近の幸福度を高める。",
+      "effectEn": "Increases Happiness nearby.",
       "iconKey": null,
       "techIconPath": "data/ui/fhd/base/icon_content/infrastructure/icon_3d_institution_watch_tower.png",
       "isGate": false,
@@ -2229,8 +2229,8 @@
       "nameJa": "五段櫂船",
       "descEn": "The princeps of the waves.",
       "descJa": "波の第一人者。",
-      "effectJa": "耐久性の高い五段櫂船。改造に使えるスロットが非常に多い。 / 侵略者の船は性能が高められており、独自のモジュール改造を備えている。",
-      "effectEn": "An advanced hull type with many more slots for modifications. / Raider ships have increased stats and unique modular modifications.",
+      "effectJa": "耐久性の高い五段櫂船。改造に使えるスロットが非常に多い。",
+      "effectEn": "An advanced hull type with many more slots for modifications.",
       "iconKey": null,
       "techIconPath": "data/ui/fhd/base/icon_content/ship/icon_3d_ship_quinquereme_civil.png",
       "isGate": false,
@@ -2613,8 +2613,8 @@
       "nameJa": "大理石の道",
       "descEn": "Bright, shining paths; a far cry from the dirt they were built on.",
       "descJa": "光り輝く小道。その下の土埃とは大違いだ。",
-      "effectJa": "この装飾的な道は、品物のより速い輸送を可能にすることで、建物の影響範囲を拡大する。さらに名声もわずかに得られる。 / 建物同士を結び、品物の輸送を可能にする。 / 水上をまたいで品物のより速い輸送を可能にすることで、建物の影響範囲を拡大する。",
-      "effectEn": "An ornamental road that gives small amounts of Prestige and allows for faster transportation of goods, extending the reach of buildings. / Connects buildings and enables transport of goods. / Allows for faster transport of goods over rivers, thus extending the reach of buildings.",
+      "effectJa": "品物のより速い輸送を可能にすることで、建物の影響範囲を拡大する。さらに名声もわずかに得られる。",
+      "effectEn": "An ornamental road that gives small amounts of Prestige and allows for faster transportation of goods, extending the reach of buildings.",
       "iconKey": null,
       "techIconPath": "data/ui/fhd/base/icon_content/infrastructure/icon_3d_road_marble.png",
       "isGate": false,
@@ -2636,7 +2636,7 @@
       "nameJa": "公的資金",
       "descEn": "Near, far, wherever they are, trained public servants are here to ensure the plague does not go on and on.",
       "descJa": "近くだろうと遠くだろうと、訓練を受けた公務員がやってきて疫病が延々と広がらないようにしてくれる。",
-      "effectJa": "都市警備施設の近くにある住宅やその他の建物が恩恵を受ける範囲を拡大する。 / 都市警備施設が事件に対応できる範囲を拡大する。",
+      "effectJa": "都市警備施設の近くにある建物が恩恵を受ける範囲と、施設が事件に対応できる範囲を拡大する。",
       "effectEn": "Increases the distance at which residences and other buildings benefit from a nearby City Watch. / Increases the distance at which City Watches can respond to incidents.",
       "iconKey": null,
       "techIconPath": "data/ui/fhd/base/icon_content/building/icon_3d_construction_category_institution.png",
@@ -2851,8 +2851,8 @@
       "nameJa": "税金街道",
       "descEn": "The public shall pay for the public good.",
       "descJa": "市民は公共の利益のために負担するべきだ。",
-      "effectJa": "すべての舗装道路の建設費が半減する。 / すべての大理石の道の建設費が半減する。",
-      "effectEn": "Halved Construction Costs for all Paved Roads. / Halved Construction Costs for all Marble Roads.",
+      "effectJa": "すべての舗装道路と大理石の道の建設費が半減する。",
+      "effectEn": "Halved Construction Costs for all Paved Roads and Marble Roads.",
       "iconKey": null,
       "techIconPath": "data/ui/fhd/base/icon_content/infrastructure/icon_3d_road_stone.png",
       "isGate": false,
@@ -3516,8 +3516,8 @@
       "nameJa": "石の壁",
       "descEn": "Stone stands strong and stalwart.",
       "descJa": "石は頑強にして強固だ。",
-      "effectJa": "防壁は、敵部隊があなたの都市に侵入するのを防ぐ。 / 都市への出入りを管理する。襲撃の間、門は自動的に閉じる。 / 民を守る / 弓兵は視界内の敵を攻撃し、都市を防衛する。",
-      "effectEn": "Walls prevent enemy troops from advancing into your city. / Controls access to the city. The gate will close during an attack. / Protects the People / Archers attack enemies on sight to protect the city.",
+      "effectJa": "耐久力の高い石の壁、石の門、石の塔を建設できる。",
+      "effectEn": "Unlocks Stone Walls, Stone Gates, and Stone Towers to protect your city.",
       "iconKey": null,
       "techIconPath": "data/ui/fhd/base/icon_content/infrastructure/icon_3d_stone_wall.png",
       "isGate": false,
@@ -4466,7 +4466,7 @@
         "145105",
         "145069"
       ],
-      "annoR": -7.0
+      "annoR": -7
     },
     {
       "guid": "145069",
@@ -4557,7 +4557,7 @@
         "145334",
         "145377"
       ],
-      "annoR": -9.0
+      "annoR": -9
     },
     {
       "guid": "145377",
@@ -4581,7 +4581,7 @@
         "148041",
         "145376"
       ],
-      "annoR": -11.0
+      "annoR": -11
     },
     {
       "guid": "145107",
@@ -4603,7 +4603,7 @@
         "145377",
         "148041"
       ],
-      "annoR": -13.0
+      "annoR": -13
     },
     {
       "guid": "148041",
@@ -4695,7 +4695,7 @@
         "145382",
         "145380"
       ],
-      "annoR": -13.0
+      "annoR": -13
     },
     {
       "guid": "145383",
@@ -4718,7 +4718,7 @@
         "145381",
         "145382"
       ],
-      "annoR": -11.0
+      "annoR": -11
     }
   ]
 }
