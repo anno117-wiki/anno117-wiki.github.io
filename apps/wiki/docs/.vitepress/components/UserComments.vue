@@ -67,7 +67,7 @@ import { useData } from 'vitepress'
 
 const props = withDefaults(defineProps<{ showForm?: boolean; allPages?: boolean }>(), { showForm: true, allPages: false })
 
-const WORKER_URL = 'https://anno-comments.anno117wiki.workers.dev'
+const WORKER_URL = import.meta.env.VITE_WORKER_URL as string
 
 const TYPE_LABEL: Record<string, string> = {
   comment: 'コメント',
