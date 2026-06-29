@@ -15,7 +15,7 @@ async function render() {
   if (!container.value) return
   try {
     const { default: mermaid } = await import('mermaid')
-    mermaid.initialize({ startOnLoad: false, theme: 'neutral' })
+    mermaid.initialize({ startOnLoad: false, theme: 'neutral', flowchart: { htmlLabels: false } })
     const id = 'mermaid-' + Math.random().toString(36).slice(2)
     const { svg } = await mermaid.render(id, props.definition)
     container.value.innerHTML = svg

@@ -41,7 +41,7 @@ function buildMermaidDef(prod: any, jaGoods: Record<string, string>): string {
     const id = node.id.replace(/[^a-zA-Z0-9_]/g, '_')
     const label = jaGoods[node.id] ?? node.name ?? node.id
     const time = fmtTime(node.time ?? 0)
-    const nodeLabel = time ? `${label}<br/>${time}` : label
+    const nodeLabel = time ? `${label}\n${time}` : label
     if (!seen.has(id)) {
       seen.add(id)
       nodeLines.push(`  ${id}["${nodeLabel}"]`)
