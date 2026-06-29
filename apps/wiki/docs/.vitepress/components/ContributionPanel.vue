@@ -3,7 +3,7 @@
     <div class="suggest-bar">
       <span class="suggest-label">この記事の内容について</span>
       <a :href="issueUrl" target="_blank" rel="noopener" class="suggest-button">
-        編集を提案
+        GitHubで編集を提案
       </a>
     </div>
     <UserComments v-if="page.relativePath === 'updates.md'" :show-form="false" :all-pages="true" />
