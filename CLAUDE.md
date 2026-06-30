@@ -46,6 +46,13 @@ anno_db2/
 |---------|------|------|
 | 1〜7 | 言語基盤・E2E・Vue移行・UI・モノレポ | ✅ 完了 |
 | 8 | wikiコンテンツ充実 | ✅ 完了 |
+| 9 | コード品質・v1.0リリース | ✅ 完了 |
+
+### フェーズ9 完了済み（2026-06-30）
+- GraphRenderer.ts 神クラス解体（813行→91行ファサード＋3クラス分割）
+- NodeInfoPopup.ts / GraphInteractionHandler.ts / GraphNodeRenderer.ts 切り出し
+- /code-review --fix によるバグ修正20件超（XSS・viewBox上書き・タッチ移行等）
+- v1.0 正式リリース（git tag v1.0・UpdateLog更新）
 
 ### フェーズ8 完了済み（〜2026-06-27）
 - 商品一覧（食料/建設/ファッション/文化/中間品/原材料の6分類・全商品）

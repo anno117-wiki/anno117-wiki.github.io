@@ -2,16 +2,22 @@
 
 ## git状態
 - ブランチ: master
-- 最新コミット: 77b7061（2026-06-30 push済み・公開）
+- 最新コミット: e7e47de（2026-06-30 push済み・公開）
+- タグ: v1.0 付与済み・push済み
 
 ## 本日完了分（push済み）
 
 | コミット | 内容 |
 |---------|------|
-| 2f70f45 | refactor: NodeInfoPopup.ts・GraphTypes.ts 切り出し（Step 1） |
-| 8a36564 | refactor: GraphInteractionHandler.ts 切り出し（Step 2） |
-| 67a0565 | refactor: GraphNodeRenderer.ts 切り出し（Step 3） |
-| 77b7061 | refactor: GraphRenderer.ts ファサード最終整理（Step 4） |
+| 3682656 | chore: セーフポイント（リファクタ前） |
+| 2f70f45 | refactor: Step 1 — NodeInfoPopup.ts・GraphTypes.ts 切り出し（10件修正込み） |
+| 8a36564 | refactor: Step 2 — GraphInteractionHandler.ts 切り出し（viewBoxバグ等修正込み） |
+| 67a0565 | refactor: Step 3 — GraphNodeRenderer.ts 切り出し（DOM最適化・キャッシュ改善込み） |
+| 1122cd5 | refactor: Step 4 — GraphRenderer.ts ファサード整理（svgMarkup削除・private化） |
+| 77b7061 | refactor: Step 4 追加改善（createElementNS簡略化） |
+| e7e47de | chore: v1.0 正式リリース — UpdateLog更新・ビルド成果物反映 |
+
+GraphRenderer.ts: 813行の神クラス → 91行ファサード + 3クラスに分割完了
 
 ## 未コミット作業
 なし（全てpush済み）
@@ -24,9 +30,6 @@
 
 ### C. コンテンツ品質
 - C-1【低】スキルツリー複数結合3件のeffectEnが2文のまま（意図的）
-
-### L. 低優先度（保留）
-- （L-1 GraphRenderer.ts 神クラス解体 → 2026-06-30 完了済み）
 
 ## 注意点（変わらず有効）
 
@@ -49,22 +52,12 @@
 
 ## 次セッションのミッション【重要】
 
-### STEP 1: L-1 GraphRenderer.ts 神クラス解体
-- 実装プラン: `docs-notes/plan-graph-renderer-refactor.md` を参照
-- 分割構成: GraphRenderer.ts（ファサード約120行）+ GraphNodeRenderer.ts + GraphInteractionHandler.ts + NodeInfoPopup.ts
-- 外部API変更なし（呼び出し元 ProductionChainView.ts の修正不要）
-- 完了後 bun run build:site でビルド確認必須
-
-#### 進捗（2026-06-30）
-- [x] Step 1: NodeInfoPopup.ts・GraphTypes.ts切り出し完了（code-review --fix 10件修正込み）
-- [x] Step 2: GraphInteractionHandler.ts 切り出し完了（viewBox上書きバグ・rAF汚染・タッチ移行バグ修正込み、コミット 8a36564）
-- [x] Step 3: GraphNodeRenderer.ts 切り出し完了（private化・DOM最適化・キャッシュ改善込み、コミット 67a0565）
-- [x] Step 4: GraphRenderer.ts ファサード整理完了（svgMarkup削除・private化・createElementNS簡略化、コミット 77b7061）
-- [x] ビルド確認（bun run build:site）完了・E2E 35件全通過・push済み
-
-### STEP 2: バージョン 1.0 リリース（L-1完了後）
-1. UpdateLog.vue のデータを全クリアして「v1.0 正式リリース」エントリ1件のみに更新
-   - 日付: リリース当日
-   - 内容: Anno 117 統合Wiki v1.0 正式リリース（wiki・生産チェーン計算機）
-2. bun run build:site → push
-3. git tag v1.0 && git push origin v1.0
+### STEP 1: v1.0 実機確認
+- GitHub Pages でデプロイされたサイトを実機（ブラウザ）で目視確認
+- 確認項目:
+  - 生産チェーン図の描画・全ノード正常表示
+  - パン/ズーム・ピンチ操作
+  - アイコンクリックでポップアップ開閉・Esc/外クリック閉鎖
+  - グッド切り替え時の viewBox 復元
+  - 言語切替（日本語/英語）
+  - スマホ表示（縦向き・横向き）
