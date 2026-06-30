@@ -7,8 +7,12 @@ import { SVG_NS, XLINK_NS, ASSETS_ICONS_PATH } from '../constants';
 import { formatBuildingCount, attachCostTooltip } from './Utils';
 
 // 横配置（RL: Right to Left）用の定数
-const CENTER_X = 360; // 右端の開始位置
-const CENTER_Y = 150; // 縦方向の位置（上寄りに調整）
+const CENTER_X = 360;              // 右端の開始位置
+const CENTER_Y = 150;              // 縦方向の位置（上寄りに調整）
+const NODE_X_SPACING = 180;        // ノード間隔（横方向）
+const NODE_Y_SPACING = 120;        // ノード間隔（縦方向）
+const NODE_ICON_SIZE = 64;         // ノードアイコンサイズ（px）
+const NODE_CORNER_ICON_RATIO = 0.56; // コーナーアイコンのサイズ比率
 
 interface GraphRendererConfig {
     templatePath?: string;
@@ -186,7 +190,7 @@ export class GraphRenderer {
 
         if (!inputs.length) return;
         // 横配置（RL）: 次のノードは左方向（X軸）に展開
-        const nextX = x - 180;
+        const nextX = x - NODE_X_SPACING;
 
         // needs_fuel=true のノードでは charcoal は燃料として扱い独立ノードから除外
         const visibleInputs = hasFuel ? inputs.filter((inp) => inp.id !== 'charcoal') : inputs;
@@ -198,15 +202,13 @@ export class GraphRenderer {
         });
         const totalHeight = inputHeights.reduce((sum, height) => sum + height, 0);
 
-        // ノード間隔（縦方向）
-        const nodeSpacing = 120;
-        let currentOffset = y - (totalHeight * nodeSpacing) / 2;
+        let currentOffset = y - (totalHeight * NODE_Y_SPACING) / 2;
 
         visibleInputs.forEach((input, index) => {
             if (!input.id) return;
             const heightUnits = inputHeights[index] ?? 1;
-            const inputY = currentOffset + (heightUnits * nodeSpacing) / 2;
-            currentOffset += heightUnits * nodeSpacing;
+            const inputY = currentOffset + (heightUnits * NODE_Y_SPACING) / 2;
+            currentOffset += heightUnits * NODE_Y_SPACING;
 
             if (Array.isArray(input.input)) {
                 this.renderRecursiveGraph(input, nextX, inputY, depth + 1, allBuildings, x, y, maxDepth);
@@ -250,7 +252,7 @@ export class GraphRenderer {
         group.setAttribute('class', 'node');
 
         const rect = document.createElementNS(SVG_NS, 'rect');
-        const size = 64;
+        const size = NODE_ICON_SIZE;
         rect.setAttribute('x', String(x - size / 2));
         rect.setAttribute('y', String(y - size / 2));
         rect.setAttribute('width', String(size));
@@ -380,7 +382,7 @@ export class GraphRenderer {
 
     addCornerImage(group: SVGGElement, x: number, y: number, size: number, href: string, filled: boolean = false): void {
         const icon = document.createElementNS(SVG_NS, 'image');
-        const iconSize = Math.round(size * 0.56);
+        const iconSize = Math.round(size * NODE_CORNER_ICON_RATIO);
         const cornerX = x + size / 2 - iconSize + 6;
         const cornerY = y + size / 2 - iconSize + 6;
         icon.setAttributeNS(XLINK_NS, 'href', href);

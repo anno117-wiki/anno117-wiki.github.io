@@ -7,6 +7,8 @@ const SECONDS_PER_MINUTE = 60;
 const RECOMMENDED_RATE_STEP = 0.1;
 const MAX_RECOMMENDED_RATE = 25;
 const ACCEPTABLE_BUILDING_ERROR = 0.05;
+const CHARCOAL_BURNING_TIME = 120;    // charcoal 1個が燃える時間（秒）
+const CHARCOAL_PRODUCTION_DURATION = 30; // charcoal 1個を生産する時間（秒）
 
 /**
  * BuildingsMap型定義
@@ -135,10 +137,9 @@ export class ProductionCalculator {
         const parentNeedsCharcoal = (parentProduction as any).fuel?.some((fuel: { id: string }) => fuel.id === 'charcoal') || parentProduction.needs_fuel;
 
         if (input.id === 'charcoal' && parentNeedsCharcoal) {
-            const charcoalConsumptionPerBuildingPerMinute = SECONDS_PER_MINUTE / 120;
+            const charcoalConsumptionPerBuildingPerMinute = SECONDS_PER_MINUTE / CHARCOAL_BURNING_TIME;
             const charcoalRequiredPerMinute = consumingBuildings * charcoalConsumptionPerBuildingPerMinute;
-            const charcoalProductionDuration = 30;
-            const perBuildingRate = SECONDS_PER_MINUTE / charcoalProductionDuration;
+            const perBuildingRate = SECONDS_PER_MINUTE / CHARCOAL_PRODUCTION_DURATION;
             return perBuildingRate > 0 ? charcoalRequiredPerMinute / perBuildingRate : 0;
         }
 
@@ -175,15 +176,15 @@ export class ProductionCalculator {
             (productionData as any).fuel?.length
                 ? (productionData as any).fuel
                 : productionData.needs_fuel
-                    ? [{ id: 'charcoal', burning_time: 120 }]
+                    ? [{ id: 'charcoal', burning_time: CHARCOAL_BURNING_TIME }]
                     : [];
 
         if (!fuelList.length) return [];
         const consumingBuildings = productionData.id ? ((allBuildings[productionData.id] as number) || 0) : 0;
 
         return fuelList.map((fuel) => {
-            const burningTime = fuel.burning_time || 120;
-            const fuelBuildingDuration = 30;
+            const burningTime = fuel.burning_time || CHARCOAL_BURNING_TIME;
+            const fuelBuildingDuration = CHARCOAL_PRODUCTION_DURATION;
             const fuelPerBuildingPerMinute = burningTime > 0 ? SECONDS_PER_MINUTE / burningTime : 0;
             const totalFuelNeededPerMinute = consumingBuildings * fuelPerBuildingPerMinute;
             const fuelProductionPerBuilding = fuelBuildingDuration > 0 ? SECONDS_PER_MINUTE / fuelBuildingDuration : 0;
