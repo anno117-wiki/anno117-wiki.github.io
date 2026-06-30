@@ -1,55 +1,8 @@
 [
   {
-    "date": "2026-06-29",
-    "type": "fix",
-    "title": "コメント機能を改善",
-    "summary": "コメントが多いページでも全件表示されるよう改善しました。"
-  },
-  {
-    "date": "2026-06-29",
-    "type": "fix",
-    "title": "内部コードの整理",
-    "summary": "不要なコードの削除・設定値の修正など、動作品質を改善しました。"
-  },
-  {
-    "date": "2026-06-28",
+    "date": "2026-06-30",
     "type": "post",
-    "title": "スキルツリーを刷新",
-    "summary": "研究ツリーの接続線と配置を公式準拠に直し、見やすくしました。DLC1の研究ノードも追加。",
-    "link": "/wiki/techs"
-  },
-  {
-    "date": "2026-06-27",
-    "type": "post",
-    "title": "DLC攻略ガイドを追加",
-    "summary": "DLC01「灰の予言」・DLC02「競馬場」・DLC03「デルタの夜明け」の攻略ページを新設。",
-    "link": "/guide/dlc01-ashes-of-prophecy"
-  },
-  {
-    "date": "2026-06-27",
-    "type": "fix",
-    "title": "計算機の使い方を改善",
-    "summary": "計算機ガイドの説明をわかりやすく整理しました。",
-    "link": "/guide/calculator-guide"
-  },
-  {
-    "date": "2026-06-26",
-    "type": "post",
-    "title": "軍事・戦闘ガイドを追加",
-    "summary": "ユニットの三すくみ図つきで、軍事と戦闘の基本をまとめました。",
-    "link": "/guide/military-guide"
-  },
-  {
-    "date": "2026-06-26",
-    "type": "post",
-    "title": "交易ガイドを追加",
-    "summary": "交易と交易ルートの組み方を解説するページを追加。",
-    "link": "/guide/trade-guide"
-  },
-  {
-    "date": "2026-06-26",
-    "type": "fix",
-    "title": "表記ゆれ・誤字を修正",
-    "summary": "Wiki全体の用語統一と誤字脱字の修正を行いました。"
+    "title": "Anno 117 統合Wiki v1.0 正式リリース",
+    "summary": "Anno 117（PS5/Steam）の日本語情報Wikiと生産チェーン計算機を統合したWebアプリを正式リリースしました。"
   }
 ]
