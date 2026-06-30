@@ -39,4 +39,21 @@ export function formatBuildingCount(n: number, unit: string): string {
     return `${rounded}${unit}`;
 }
 
-export { formatDuration, URLTools};
+/** コスト要素にホバーツールチップを付与する共通関数 */
+export function attachCostTooltip(item: HTMLElement, label: string): void {
+    item.addEventListener('mouseenter', () => {
+        const tip = document.createElement('div');
+        tip.className = 'cost-tooltip';
+        tip.textContent = label;
+        document.body.appendChild(tip);
+        const rect = item.getBoundingClientRect();
+        const tipRect = tip.getBoundingClientRect();
+        tip.style.left = `${rect.left + rect.width / 2 - tipRect.width / 2}px`;
+        tip.style.top = `${rect.top - tipRect.height - 4}px`;
+    });
+    item.addEventListener('mouseleave', () => {
+        document.querySelectorAll('.cost-tooltip').forEach(el => el.remove());
+    });
+}
+
+export { formatDuration, URLTools };

@@ -202,20 +202,21 @@ export class App {
     // Region toggle
     // -----------------------------------------------------------------------
 
-    private bindRegionToggle(): void {
+    private updateRegionButtonState(region: string): void {
         const toggleBtn = document.getElementById('region-toggle-btn');
         const icon = toggleBtn?.querySelector<HTMLImageElement>('.region-icon');
         const text = toggleBtn?.querySelector<HTMLElement>('.region-text');
+        if (icon) icon.src = region === 'Roman' ? `${ASSETS_ICONS_PATH}latium.webp` : `${ASSETS_ICONS_PATH}albion.webp`;
+        if (text) text.textContent = region === 'Roman' ? 'Latium' : 'Albion';
+    }
 
-        const updateButtonState = (region: string) => {
-            if (icon) icon.src = region === 'Roman' ? `${ASSETS_ICONS_PATH}latium.webp` : `${ASSETS_ICONS_PATH}albion.webp`;
-            if (text) text.textContent = region === 'Roman' ? 'Latium' : 'Albion';
-        };
+    private bindRegionToggle(): void {
+        const toggleBtn = document.getElementById('region-toggle-btn');
 
         const setRegion = (region: string) => {
             if (this.currentRegion === region) return;
             this.currentRegion = region;
-            updateButtonState(region);
+            this.updateRegionButtonState(region);
             this.pushUrl();
             this.updateGoodsList();
             if (this.currentGood) {
@@ -227,7 +228,7 @@ export class App {
             setRegion(this.currentRegion === 'Roman' ? 'Celtic' : 'Roman');
         });
 
-        updateButtonState(this.currentRegion);
+        this.updateRegionButtonState(this.currentRegion);
     }
 
     // -----------------------------------------------------------------------
@@ -349,11 +350,7 @@ export class App {
             const region = state.region.charAt(0).toUpperCase() + state.region.slice(1).toLowerCase();
             if (region === 'Roman' || region === 'Celtic') {
                 this.currentRegion = region;
-                const toggleBtn = document.getElementById('region-toggle-btn');
-                const icon = toggleBtn?.querySelector<HTMLImageElement>('.region-icon');
-                const text = toggleBtn?.querySelector<HTMLElement>('.region-text');
-                if (icon) icon.src = region === 'Roman' ? `${ASSETS_ICONS_PATH}latium.webp` : `${ASSETS_ICONS_PATH}albion.webp`;
-                if (text) text.textContent = region === 'Roman' ? 'Latium' : 'Albion';
+                this.updateRegionButtonState(region);
             }
         }
 

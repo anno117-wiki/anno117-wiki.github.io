@@ -5,7 +5,7 @@ import { ModifierRegistry } from './ModifierRegistry';
 import { Item } from './modifier/Item';
 import { SettingsManager } from './SettingsManager';
 import { I18nManager } from '@anno/shared';
-import { formatDuration, formatBuildingCount } from './Utils';
+import { formatDuration, formatBuildingCount, attachCostTooltip } from './Utils';
 import type { BuildingsMap } from './ProductionCalculator';
 import { ASSETS_ICONS_PATH } from '../constants';
 
@@ -458,12 +458,6 @@ class ProductionChainView {
     buildCostElements(costs: Record<string, number> = {}): HTMLElement {
         const container = document.createElement('div');
         container.className = 'cost-list';
-        // 強制的に横並びにする
-        container.style.display = 'flex';
-        container.style.flexDirection = 'row';
-        container.style.flexWrap = 'wrap';
-        container.style.gap = '0.5rem';
-        container.style.alignItems = 'center';
 
         const entries = Object.entries(costs).filter(([, amount]) => amount > 0);
         if (!entries.length) {
@@ -490,20 +484,7 @@ class ProductionChainView {
         item.className = 'cost-resource';
         item.innerHTML = `<img src="${ASSETS_ICONS_PATH}${resource}.png" alt="${label}" class="cost-icon" onerror="this.style.display='none';"/><span class="cost-amount">${amountText}</span>`;
 
-        item.addEventListener('mouseenter', () => {
-            const tip = document.createElement('div');
-            tip.className = 'cost-tooltip';
-            tip.textContent = label;
-            document.body.appendChild(tip);
-            const rect = item.getBoundingClientRect();
-            const tipRect = tip.getBoundingClientRect();
-            tip.style.left = `${rect.left + rect.width / 2 - tipRect.width / 2}px`;
-            tip.style.top = `${rect.top - tipRect.height - 4}px`;
-        });
-
-        item.addEventListener('mouseleave', () => {
-            document.querySelectorAll('.cost-tooltip').forEach(el => el.remove());
-        });
+        attachCostTooltip(item, label);
 
         return item;
     }

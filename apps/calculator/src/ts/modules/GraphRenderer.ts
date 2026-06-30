@@ -4,7 +4,7 @@ import { ProductionCalculator, type BuildingsMap } from './ProductionCalculator'
 import { GoodsRepository } from '@anno/shared';
 import { I18nManager } from '@anno/shared';
 import { SVG_NS, XLINK_NS, ASSETS_ICONS_PATH } from '../constants';
-import { formatBuildingCount } from './Utils';
+import { formatBuildingCount, attachCostTooltip } from './Utils';
 
 // 横配置（RL: Right to Left）用の定数
 const CENTER_X = 360; // 右端の開始位置
@@ -748,12 +748,6 @@ export class GraphRenderer {
 
             const list = document.createElement('div');
             list.className = 'cost-list';
-            // 強制的に横並びにする
-            list.style.display = 'flex';
-            list.style.flexDirection = 'row';
-            list.style.flexWrap = 'wrap';
-            list.style.gap = '0.5rem';
-            list.style.alignItems = 'center';
 
             validCosts.forEach(([resource, amount]) => {
                 const item = document.createElement('div');
@@ -762,20 +756,7 @@ export class GraphRenderer {
                 const label = translatedName !== resource ? translatedName : resource.replace(/_/g, ' ').replace(/\b\w/g, c => c.toUpperCase());
                 item.innerHTML = `<img src="${ASSETS_ICONS_PATH}${resource}.png" alt="${label}" class="cost-icon-small" onerror="this.style.display='none';"/><span>${amount}</span>`;
 
-                item.addEventListener('mouseenter', () => {
-                    const tip = document.createElement('div');
-                    tip.className = 'cost-tooltip';
-                    tip.textContent = label;
-                    document.body.appendChild(tip);
-                    const rect = item.getBoundingClientRect();
-                    const tipRect = tip.getBoundingClientRect();
-                    tip.style.left = `${rect.left + rect.width / 2 - tipRect.width / 2}px`;
-                    tip.style.top = `${rect.top - tipRect.height - 4}px`;
-                });
-
-                item.addEventListener('mouseleave', () => {
-                    document.querySelectorAll('.cost-tooltip').forEach(el => el.remove());
-                });
+                attachCostTooltip(item, label);
 
                 list.appendChild(item);
             });
