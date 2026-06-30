@@ -33,6 +33,9 @@ _local/
 # Cloudflare Workers ローカルキャッシュ
 cf-worker/.wrangler/
 
+# 中間成果物（ビルド非依存）
+apps/wiki/docs/wiki/production-chains-official.json
+
 # OS
 Thumbs.db
 
