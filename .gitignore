@@ -30,6 +30,9 @@ special_thanks/**/docs/
 # ローカル退避（コミット対象外）
 _local/
 
+# Cloudflare Workers ローカルキャッシュ
+cf-worker/.wrangler/
+
 # OS
 Thumbs.db
 
