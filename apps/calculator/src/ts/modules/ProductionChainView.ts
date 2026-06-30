@@ -5,7 +5,7 @@ import { ModifierRegistry } from './ModifierRegistry';
 import { Item } from './modifier/Item';
 import { SettingsManager } from './SettingsManager';
 import { I18nManager } from '@anno/shared';
-import { formatDuration, formatBuildingCount, attachCostTooltip } from './Utils';
+import { formatDuration, formatBuildingCount, attachCostTooltip, toTitleCase } from './Utils';
 import type { BuildingsMap } from './ProductionCalculator';
 import { ASSETS_ICONS_PATH } from '../constants';
 
@@ -471,8 +471,7 @@ class ProductionChainView {
         entries.forEach(([resource, amount]) => {
             // I18nManagerから翻訳を取得、見つからない場合はTitle Case形式にフォールバック
             const translatedLabel = this.i18n.t(`goods.${resource}`);
-            const fallbackLabel = resource.replace(/_/g, ' ').replace(/\b\w/g, c => c.toUpperCase());
-            const label = (translatedLabel !== resource) ? translatedLabel : fallbackLabel;
+            const label = (translatedLabel !== resource) ? translatedLabel : toTitleCase(resource);
             container.appendChild(this.buildCostElement(resource, String(amount), label));
         });
 

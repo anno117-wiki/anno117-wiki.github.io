@@ -4,7 +4,9 @@ import { ProductionCalculator, type BuildingsMap } from './ProductionCalculator'
 import { GoodsRepository } from '@anno/shared';
 import { I18nManager } from '@anno/shared';
 import { SVG_NS, XLINK_NS, ASSETS_ICONS_PATH } from '../constants';
-import { formatBuildingCount, attachCostTooltip } from './Utils';
+import { formatBuildingCount } from './Utils';
+import type { ViewBox, Point, GoodMetadata, NodeData, LabelGeometry } from './GraphTypes';
+import { NodeInfoPopup } from './NodeInfoPopup';
 
 // 横配置（RL: Right to Left）用の定数
 const CENTER_X = 360;              // 右端の開始位置
@@ -16,49 +18,6 @@ const NODE_CORNER_ICON_RATIO = 0.56; // コーナーアイコンのサイズ比�
 
 interface GraphRendererConfig {
     templatePath?: string;
-}
-
-interface ViewBox {
-    x: number;
-    y: number;
-    width: number;
-    height: number;
-}
-
-interface Point {
-    x: number;
-    y: number;
-}
-
-interface GoodMetadata {
-    id: string;
-    displayName: string;
-    icon: string;
-}
-
-interface NodeData {
-    x: number;
-    y: number;
-    good: GoodMetadata;
-    buildings: number;
-    textAlign: 'left' | 'right';
-    hasFuel: boolean;
-    buildingType: string;
-    prodNode: Goods;
-    depth: number;
-    maxDepth: number;
-    isLeaf: boolean;
-    startOfChain: boolean;
-    buildingCost?: Record<string, number>;
-    maintenanceCost?: Record<string, number>;
-    productivity: number;
-}
-
-interface LabelGeometry {
-    labelX: number;
-    labelY: number;
-    labelAnchor: 'start' | 'middle' | 'end';
-    buildingsY: number;
 }
 
 /**
@@ -84,6 +43,7 @@ export class GraphRenderer {
     private i18n: I18nManager;
     private goodsRepository: GoodsRepository;
     private nodeDataMap: WeakMap<SVGElement, NodeData> = new WeakMap();
+    private popup: NodeInfoPopup = new NodeInfoPopup();
 
     private constructor(config: GraphRendererConfig = {}) {
         const { templatePath = 'svg/dependency-graph.svg' } = config;
@@ -94,7 +54,6 @@ export class GraphRenderer {
         this.svgMarkup = null;
         this.svgElement = null;
         this.interactionsBound = false;
-        this.displayInfoMenu = this.displayInfoMenu.bind(this);
     }
 
     async attach(container: HTMLElement | null, goodId?: string): Promise<void> {
@@ -135,6 +94,7 @@ export class GraphRenderer {
     }
 
     clearSvg(): void {
+        this.popup.close();
         if (!this.svgElement) return;
         while (this.svgElement.firstChild) {
             this.svgElement.removeChild(this.svgElement.firstChild);
@@ -289,7 +249,7 @@ export class GraphRenderer {
             productivity
         });
 
-        img.addEventListener('mousedown', this.displayInfoMenu);
+        img.addEventListener('mousedown', (e) => this.popup.show(e, this.nodeDataMap.get(img), this.i18n));
         group.appendChild(img);
 
         if (hasFuel) {
@@ -689,124 +649,4 @@ export class GraphRenderer {
         return Math.hypot(dx, dy);
     }
 
-    /**
-     * Click Event on the icon
-     */
-    displayInfoMenu(event: MouseEvent): void {
-        if (event.button !== 0) return;
-
-        event.preventDefault();
-        event.stopPropagation();
-
-        const currentTarget = event.currentTarget as SVGElement;
-        const nodeData = this.nodeDataMap.get(currentTarget);
-        if (!nodeData) return;
-
-        const { buildingCost, maintenanceCost, buildings, good, productivity } = nodeData;
-
-        let infoContainer = document.createElement('div');
-        infoContainer.classList.add("metadata-container");
-        infoContainer.style.position = "absolute";
-        infoContainer.style.left = `${event.clientX}px`;
-        infoContainer.style.top = `${event.clientY}px`;
-        infoContainer.tabIndex = -1;
-        infoContainer.style.zIndex = '1000';
-
-        const content = document.createElement('div');
-        content.className = 'metadata-content';
-
-        // Header
-        const header = document.createElement('div');
-        header.className = 'metadata-header';
-        header.innerHTML = `
-            <img src="${ASSETS_ICONS_PATH}${good.icon || good.id}.png" alt="${good.displayName}" class="metadata-icon" onerror="this.style.display='none';"/>
-            <h4>${good.displayName || good.id}</h4>
-        `;
-        content.appendChild(header);
-
-        // Building Count
-        const countInfo = document.createElement('div');
-        countInfo.className = 'metadata-row';
-
-        if (productivity) {
-            const productivityInfo = document.createElement('div');
-            productivityInfo.className = 'metadata-row';
-            productivityInfo.innerHTML = `<strong>${this.i18n.t('ui.productivity')}:</strong> ${((productivity * 100) * Math.min(buildings, 1)).toFixed(0)}%`;
-            content.appendChild(productivityInfo);
-        }
-
-        countInfo.innerHTML = `<strong>${this.i18n.t('ui.required')}:</strong> ${formatBuildingCount(buildings || 0, this.i18n.t('ui.buildingUnit'))}`;
-        content.appendChild(countInfo);
-
-        // Helper to render cost list
-        const renderCostList = (titleKey: string, costs?: Record<string, number>) => {
-            if (!costs || Object.keys(costs).length === 0) return null;
-            const validCosts = Object.entries(costs).filter(([, amount]) => amount > 0);
-            if (validCosts.length === 0) return null;
-
-            const container = document.createElement('div');
-            container.className = 'metadata-section';
-            container.innerHTML = `<h5>${this.i18n.t(titleKey)}</h5>`;
-
-            const list = document.createElement('div');
-            list.className = 'cost-list';
-
-            validCosts.forEach(([resource, amount]) => {
-                const item = document.createElement('div');
-                item.className = 'cost-resource';
-                const translatedName = this.i18n.t(`goods.${resource}`);
-                const label = translatedName !== resource ? translatedName : resource.replace(/_/g, ' ').replace(/\b\w/g, c => c.toUpperCase());
-                item.innerHTML = `<img src="${ASSETS_ICONS_PATH}${resource}.png" alt="${label}" class="cost-icon-small" onerror="this.style.display='none';"/><span>${amount}</span>`;
-
-                attachCostTooltip(item, label);
-
-                list.appendChild(item);
-            });
-            container.appendChild(list);
-            return container;
-        };
-
-        // Costs
-        const buildingCostEl = renderCostList('ui.constructionCost', buildingCost);
-        if (buildingCostEl) content.appendChild(buildingCostEl);
-
-        const maintenanceCostEl = renderCostList('ui.maintenance', maintenanceCost);
-        if (maintenanceCostEl) content.appendChild(maintenanceCostEl);
-
-        infoContainer.appendChild(content);
-        document.body.appendChild(infoContainer);
-
-        // Focus and cleanup
-        setTimeout(() => {
-            infoContainer.focus();
-        }, 10);
-
-        let closed = false;
-        const closeMenu = () => {
-            if (closed) return;
-            closed = true;
-            infoContainer.remove();
-            document.removeEventListener('mousedown', outsideClickListener);
-        };
-
-        const outsideClickListener = (e: MouseEvent) => {
-            if (!infoContainer.contains(e.target as Node)) {
-                closeMenu();
-            }
-        };
-
-        setTimeout(() => {
-            document.addEventListener('mousedown', outsideClickListener);
-        }, 0);
-
-        infoContainer.addEventListener("focusout", (e: FocusEvent) => {
-            if (infoContainer.contains(e.relatedTarget as Node)) return;
-            closeMenu();
-        });
-
-        // Also close on Escape
-        infoContainer.addEventListener('keydown', (e: KeyboardEvent) => {
-            if (e.key === 'Escape') closeMenu();
-        });
-    }
 }

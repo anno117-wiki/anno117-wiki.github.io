@@ -56,4 +56,9 @@ export function attachCostTooltip(item: HTMLElement, label: string): void {
     });
 }
 
+/** snake_case または kebab-case の文字列を Title Case に変換する */
+export function toTitleCase(s: string): string {
+    return s.replace(/_/g, ' ').replace(/\b\w/g, c => c.toUpperCase());
+}
+
 export { formatDuration, URLTools };

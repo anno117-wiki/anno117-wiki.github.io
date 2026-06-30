@@ -989,6 +989,109 @@ function attachCostTooltip(item, label) {
 		document.querySelectorAll(".cost-tooltip").forEach((el) => el.remove());
 	});
 }
+/** snake_case または kebab-case の文字列を Title Case に変換する */
+function toTitleCase(s) {
+	return s.replace(/_/g, " ").replace(/\b\w/g, (c) => c.toUpperCase());
+}
+//#endregion
+//#region apps/calculator/src/ts/modules/NodeInfoPopup.ts
+var NodeInfoPopup = class {
+	activeCloseMenu = null;
+	show(event, nodeData, i18n) {
+		if (event.button !== 0) return;
+		this.close();
+		if (!nodeData) return;
+		event.preventDefault();
+		event.stopPropagation();
+		const { buildingCost, maintenanceCost, buildings, good, productivity } = nodeData;
+		const infoContainer = document.createElement("div");
+		infoContainer.classList.add("metadata-container");
+		infoContainer.style.position = "absolute";
+		infoContainer.style.left = `${event.pageX}px`;
+		infoContainer.style.top = `${event.pageY}px`;
+		infoContainer.tabIndex = -1;
+		infoContainer.style.zIndex = "1000";
+		const content = document.createElement("div");
+		content.className = "metadata-content";
+		const header = document.createElement("div");
+		header.className = "metadata-header";
+		const iconEl = document.createElement("img");
+		iconEl.src = `${ASSETS_ICONS_PATH}${good.icon || good.id}.png`;
+		iconEl.alt = good.displayName;
+		iconEl.className = "metadata-icon";
+		iconEl.onerror = () => {
+			iconEl.style.display = "none";
+		};
+		const h4 = document.createElement("h4");
+		h4.textContent = good.displayName || good.id;
+		header.appendChild(iconEl);
+		header.appendChild(h4);
+		content.appendChild(header);
+		const countInfo = document.createElement("div");
+		countInfo.className = "metadata-row";
+		if (productivity) {
+			const productivityInfo = document.createElement("div");
+			productivityInfo.className = "metadata-row";
+			productivityInfo.innerHTML = `<strong>${i18n.t("ui.productivity")}:</strong> ${(productivity * 100).toFixed(0)}%`;
+			content.appendChild(productivityInfo);
+		}
+		countInfo.innerHTML = `<strong>${i18n.t("ui.required")}:</strong> ${formatBuildingCount(buildings || 0, i18n.t("ui.buildingUnit"))}`;
+		content.appendChild(countInfo);
+		const buildingCostEl = this.renderCostList("ui.constructionCost", buildingCost, i18n);
+		if (buildingCostEl) content.appendChild(buildingCostEl);
+		const maintenanceCostEl = this.renderCostList("ui.maintenance", maintenanceCost, i18n);
+		if (maintenanceCostEl) content.appendChild(maintenanceCostEl);
+		infoContainer.appendChild(content);
+		document.body.appendChild(infoContainer);
+		let closed = false;
+		const closeMenu = () => {
+			if (closed) return;
+			closed = true;
+			if (this.activeCloseMenu === closeMenu) this.activeCloseMenu = null;
+			infoContainer.remove();
+			document.removeEventListener("mousedown", outsideClickListener);
+		};
+		this.activeCloseMenu = closeMenu;
+		const outsideClickListener = (e) => {
+			if (!infoContainer.contains(e.target)) closeMenu();
+		};
+		setTimeout(() => {
+			infoContainer.focus();
+			document.addEventListener("mousedown", outsideClickListener);
+		}, 10);
+		infoContainer.addEventListener("focusout", (e) => {
+			if (!e.relatedTarget || infoContainer.contains(e.relatedTarget)) return;
+			closeMenu();
+		});
+		infoContainer.addEventListener("keydown", (e) => {
+			if (e.key === "Escape") closeMenu();
+		});
+	}
+	close() {
+		this.activeCloseMenu?.();
+	}
+	renderCostList(titleKey, costs, i18n) {
+		if (!costs || Object.keys(costs).length === 0) return null;
+		const validCosts = Object.entries(costs).filter(([, amount]) => amount > 0);
+		if (validCosts.length === 0) return null;
+		const container = document.createElement("div");
+		container.className = "metadata-section";
+		container.innerHTML = `<h5>${i18n.t(titleKey)}</h5>`;
+		const list = document.createElement("div");
+		list.className = "cost-list";
+		validCosts.forEach(([resource, amount]) => {
+			const item = document.createElement("div");
+			item.className = "cost-resource";
+			const translatedName = i18n.t(`goods.${resource}`);
+			const label = translatedName !== resource ? translatedName : toTitleCase(resource);
+			item.innerHTML = `<img src="${ASSETS_ICONS_PATH}${resource}.png" alt="${label}" class="cost-icon-small" onerror="this.style.display='none';"/><span>${amount}</span>`;
+			attachCostTooltip(item, label);
+			list.appendChild(item);
+		});
+		container.appendChild(list);
+		return container;
+	}
+};
 //#endregion
 //#region apps/calculator/src/ts/modules/GraphRenderer.ts
 var CENTER_X = 360;
@@ -1016,6 +1119,7 @@ var GraphRenderer = class GraphRenderer {
 	i18n;
 	goodsRepository;
 	nodeDataMap = /* @__PURE__ */ new WeakMap();
+	popup = new NodeInfoPopup();
 	constructor(config = {}) {
 		const { templatePath = "svg/dependency-graph.svg" } = config;
 		this.templatePath = templatePath;
@@ -1024,7 +1128,6 @@ var GraphRenderer = class GraphRenderer {
 		this.svgMarkup = null;
 		this.svgElement = null;
 		this.interactionsBound = false;
-		this.displayInfoMenu = this.displayInfoMenu.bind(this);
 	}
 	async attach(container, goodId) {
 		if (!container) return;
@@ -1052,6 +1155,7 @@ var GraphRenderer = class GraphRenderer {
 		this.fitToView();
 	}
 	clearSvg() {
+		this.popup.close();
 		if (!this.svgElement) return;
 		while (this.svgElement.firstChild) this.svgElement.removeChild(this.svgElement.firstChild);
 	}
@@ -1163,7 +1267,7 @@ var GraphRenderer = class GraphRenderer {
 			maintenanceCost,
 			productivity
 		});
-		img.addEventListener("mousedown", this.displayInfoMenu);
+		img.addEventListener("mousedown", (e) => this.popup.show(e, this.nodeDataMap.get(img), this.i18n));
 		group.appendChild(img);
 		if (hasFuel) this.addCornerImage(group, x, y, size, `${ASSETS_ICONS_PATH}charcoal.png`);
 		else for (const icon of ProductionCalculator.getInstance().getActiveVisualModifiersForNode(prodNode)) this.addCornerImage(group, x, y, size, `${ASSETS_ICONS_PATH}${icon}`, true);
@@ -1500,94 +1604,6 @@ var GraphRenderer = class GraphRenderer {
 		const dx = p1.x - p2.x;
 		const dy = p1.y - p2.y;
 		return Math.hypot(dx, dy);
-	}
-	/**
-	* Click Event on the icon
-	*/
-	displayInfoMenu(event) {
-		if (event.button !== 0) return;
-		event.preventDefault();
-		event.stopPropagation();
-		const currentTarget = event.currentTarget;
-		const nodeData = this.nodeDataMap.get(currentTarget);
-		if (!nodeData) return;
-		const { buildingCost, maintenanceCost, buildings, good, productivity } = nodeData;
-		let infoContainer = document.createElement("div");
-		infoContainer.classList.add("metadata-container");
-		infoContainer.style.position = "absolute";
-		infoContainer.style.left = `${event.clientX}px`;
-		infoContainer.style.top = `${event.clientY}px`;
-		infoContainer.tabIndex = -1;
-		infoContainer.style.zIndex = "1000";
-		const content = document.createElement("div");
-		content.className = "metadata-content";
-		const header = document.createElement("div");
-		header.className = "metadata-header";
-		header.innerHTML = `
-            <img src="${ASSETS_ICONS_PATH}${good.icon || good.id}.png" alt="${good.displayName}" class="metadata-icon" onerror="this.style.display='none';"/>
-            <h4>${good.displayName || good.id}</h4>
-        `;
-		content.appendChild(header);
-		const countInfo = document.createElement("div");
-		countInfo.className = "metadata-row";
-		if (productivity) {
-			const productivityInfo = document.createElement("div");
-			productivityInfo.className = "metadata-row";
-			productivityInfo.innerHTML = `<strong>${this.i18n.t("ui.productivity")}:</strong> ${(productivity * 100 * Math.min(buildings, 1)).toFixed(0)}%`;
-			content.appendChild(productivityInfo);
-		}
-		countInfo.innerHTML = `<strong>${this.i18n.t("ui.required")}:</strong> ${formatBuildingCount(buildings || 0, this.i18n.t("ui.buildingUnit"))}`;
-		content.appendChild(countInfo);
-		const renderCostList = (titleKey, costs) => {
-			if (!costs || Object.keys(costs).length === 0) return null;
-			const validCosts = Object.entries(costs).filter(([, amount]) => amount > 0);
-			if (validCosts.length === 0) return null;
-			const container = document.createElement("div");
-			container.className = "metadata-section";
-			container.innerHTML = `<h5>${this.i18n.t(titleKey)}</h5>`;
-			const list = document.createElement("div");
-			list.className = "cost-list";
-			validCosts.forEach(([resource, amount]) => {
-				const item = document.createElement("div");
-				item.className = "cost-resource";
-				const translatedName = this.i18n.t(`goods.${resource}`);
-				const label = translatedName !== resource ? translatedName : resource.replace(/_/g, " ").replace(/\b\w/g, (c) => c.toUpperCase());
-				item.innerHTML = `<img src="${ASSETS_ICONS_PATH}${resource}.png" alt="${label}" class="cost-icon-small" onerror="this.style.display='none';"/><span>${amount}</span>`;
-				attachCostTooltip(item, label);
-				list.appendChild(item);
-			});
-			container.appendChild(list);
-			return container;
-		};
-		const buildingCostEl = renderCostList("ui.constructionCost", buildingCost);
-		if (buildingCostEl) content.appendChild(buildingCostEl);
-		const maintenanceCostEl = renderCostList("ui.maintenance", maintenanceCost);
-		if (maintenanceCostEl) content.appendChild(maintenanceCostEl);
-		infoContainer.appendChild(content);
-		document.body.appendChild(infoContainer);
-		setTimeout(() => {
-			infoContainer.focus();
-		}, 10);
-		let closed = false;
-		const closeMenu = () => {
-			if (closed) return;
-			closed = true;
-			infoContainer.remove();
-			document.removeEventListener("mousedown", outsideClickListener);
-		};
-		const outsideClickListener = (e) => {
-			if (!infoContainer.contains(e.target)) closeMenu();
-		};
-		setTimeout(() => {
-			document.addEventListener("mousedown", outsideClickListener);
-		}, 0);
-		infoContainer.addEventListener("focusout", (e) => {
-			if (infoContainer.contains(e.relatedTarget)) return;
-			closeMenu();
-		});
-		infoContainer.addEventListener("keydown", (e) => {
-			if (e.key === "Escape") closeMenu();
-		});
 	}
 };
 //#endregion
@@ -2087,8 +2103,7 @@ var ProductionChainView = class {
 		}
 		entries.forEach(([resource, amount]) => {
 			const translatedLabel = this.i18n.t(`goods.${resource}`);
-			const fallbackLabel = resource.replace(/_/g, " ").replace(/\b\w/g, (c) => c.toUpperCase());
-			const label = translatedLabel !== resource ? translatedLabel : fallbackLabel;
+			const label = translatedLabel !== resource ? translatedLabel : toTitleCase(resource);
 			container.appendChild(this.buildCostElement(resource, String(amount), label));
 		});
 		return container;
@@ -7561,4 +7576,4 @@ document.addEventListener("DOMContentLoaded", async () => {
 });
 //#endregion
 
-//# sourceMappingURL=index-nw-oJvDI.js.map
+//# sourceMappingURL=index-CehupDW7.js.map
