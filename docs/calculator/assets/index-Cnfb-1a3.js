@@ -1317,69 +1317,33 @@ var GraphInteractionHandler = class {
 	}
 };
 //#endregion
-//#region apps/calculator/src/ts/modules/GraphRenderer.ts
+//#region apps/calculator/src/ts/modules/GraphNodeRenderer.ts
 var CENTER_X = 360;
 var CENTER_Y = 150;
 var NODE_X_SPACING = 180;
 var NODE_Y_SPACING = 120;
 var NODE_ICON_SIZE = 64;
 var NODE_CORNER_ICON_RATIO = .56;
-/**
-* Renders dependency graphs inside an external SVG template.
-* Singleton — always access via GraphRenderer.getInstance().
-*/
-var GraphRenderer = class GraphRenderer {
-	static _instance = null;
-	static getInstance() {
-		if (!GraphRenderer._instance) GraphRenderer._instance = new GraphRenderer();
-		return GraphRenderer._instance;
-	}
-	svgMarkup;
+var GraphNodeRenderer = class {
 	svgElement;
-	viewBoxes = /* @__PURE__ */ new Map();
-	currentGoodId = null;
 	i18n;
 	goodsRepository;
+	popup;
 	nodeDataMap = /* @__PURE__ */ new WeakMap();
-	popup = new NodeInfoPopup();
-	interactionHandler = null;
-	constructor() {
-		this.i18n = I18nManager.getInstance();
-		this.goodsRepository = GoodsRepository.getInstance();
-		this.svgMarkup = null;
-		this.svgElement = null;
+	calculator = ProductionCalculator.getInstance();
+	edgeGroup = null;
+	buildingUnit = "";
+	constructor(svgElement, i18n, goodsRepository, popup) {
+		this.svgElement = svgElement;
+		this.i18n = i18n;
+		this.goodsRepository = goodsRepository;
+		this.popup = popup;
 	}
-	async attach(container, goodId) {
-		if (!container) return;
-		if (this.interactionHandler && this.currentGoodId) this.viewBoxes.set(this.currentGoodId, this.interactionHandler.parseViewBox());
-		this.interactionHandler?.cancel();
-		this.currentGoodId = goodId ?? null;
-		const savedViewBox = goodId ? this.viewBoxes.get(goodId) : void 0;
-		const viewBoxAttr = savedViewBox ? `${savedViewBox.x} ${savedViewBox.y} ${savedViewBox.width} ${savedViewBox.height}` : "0 0 400 400";
-		const svgElement = document.createElement("svg");
-		svgElement.setAttribute("xmlns", SVG_NS);
-		svgElement.setAttribute("id", "dependency-graph");
-		svgElement.setAttribute("class", "dependency-graph");
-		svgElement.setAttribute("viewBox", viewBoxAttr);
-		this.svgMarkup = svgElement.outerHTML;
-		container.innerHTML = this.svgMarkup;
-		this.svgElement = container.querySelector("#dependency-graph");
-		if (this.svgElement) this.interactionHandler = new GraphInteractionHandler(this.svgElement, (vb) => {
-			if (this.currentGoodId) this.viewBoxes.set(this.currentGoodId, { ...vb });
-		});
-	}
-	render(productionData, allBuildings) {
-		if (!this.svgElement || !productionData) return;
-		this.clearSvg();
-		if (!allBuildings || Object.keys(allBuildings).length === 0) return;
+	renderGraph(productionData, allBuildings) {
+		this.edgeGroup = null;
+		this.buildingUnit = this.i18n.t("ui.buildingUnit");
 		const maxDepth = this.calculateMaxDepth(productionData);
 		this.renderRecursiveGraph(productionData, CENTER_X, CENTER_Y, 0, allBuildings, null, null, maxDepth);
-		if (!this.currentGoodId || !this.viewBoxes.has(this.currentGoodId)) this.interactionHandler?.fitToView();
-	}
-	clearSvg() {
-		this.popup.close();
-		if (!this.svgElement) return;
-		while (this.svgElement.firstChild) this.svgElement.removeChild(this.svgElement.firstChild);
 	}
 	renderRecursiveGraph(prodData, x, y, depth, allBuildings, parentX, parentY, maxDepth) {
 		if (!prodData || depth > 5) return;
@@ -1388,7 +1352,7 @@ var GraphRenderer = class GraphRenderer {
 		const buildingCount = allBuildings[prodData.id];
 		const buildings = typeof buildingCount === "number" ? buildingCount : 0;
 		const buildingType = prodData.type || "";
-		let textAlign = "right";
+		const textAlign = "right";
 		const inputs = Array.isArray(prodData.input) ? prodData.input : [];
 		const isLeaf = inputs.length === 0 || inputs.every((input) => input.start_of_chain);
 		this.addNode({
@@ -1451,8 +1415,7 @@ var GraphRenderer = class GraphRenderer {
 		});
 	}
 	addNode(nodeData) {
-		if (!this.svgElement) return;
-		const { x, y, good, buildings, textAlign, hasFuel, buildingType, prodNode, depth, maxDepth, isLeaf, startOfChain, buildingCost, maintenanceCost, productivity } = nodeData;
+		const { x, y, good, buildings, textAlign, hasFuel, prodNode, depth, maxDepth, isLeaf, startOfChain } = nodeData;
 		const group = document.createElementNS(SVG_NS, "g");
 		group.setAttribute("class", "node");
 		const rect = document.createElementNS(SVG_NS, "rect");
@@ -1472,27 +1435,11 @@ var GraphRenderer = class GraphRenderer {
 		img.setAttribute("width", String(size));
 		img.setAttribute("height", String(size));
 		img.dataset.goodId = good.id;
-		this.nodeDataMap.set(img, {
-			x,
-			y,
-			good,
-			buildings,
-			textAlign,
-			hasFuel,
-			buildingType,
-			prodNode,
-			depth,
-			maxDepth,
-			isLeaf,
-			startOfChain,
-			buildingCost,
-			maintenanceCost,
-			productivity
-		});
+		this.nodeDataMap.set(img, nodeData);
 		img.addEventListener("mousedown", (e) => this.popup.show(e, this.nodeDataMap.get(img), this.i18n));
 		group.appendChild(img);
 		if (hasFuel) this.addCornerImage(group, x, y, size, `${ASSETS_ICONS_PATH}charcoal.png`);
-		else for (const icon of ProductionCalculator.getInstance().getActiveVisualModifiersForNode(prodNode)) this.addCornerImage(group, x, y, size, `${ASSETS_ICONS_PATH}${icon}`, true);
+		else for (const icon of this.calculator.getActiveVisualModifiersForNode(prodNode)) this.addCornerImage(group, x, y, size, `${ASSETS_ICONS_PATH}${icon}`, true);
 		const { labelX, labelAnchor, labelY, buildingsY } = this.resolveLabelGeometry({
 			x,
 			y,
@@ -1520,17 +1467,15 @@ var GraphRenderer = class GraphRenderer {
 		buildingText.setAttribute("class", "graph-subtext");
 		buildingText.setAttribute("data-role", "buildings");
 		buildingText.setAttribute("data-good-id", good.id || "");
-		buildingText.textContent = formatBuildingCount(buildings, this.i18n.t("ui.buildingUnit"));
+		buildingText.textContent = formatBuildingCount(buildings, this.buildingUnit);
 		group.appendChild(buildingText);
 		this.svgElement.appendChild(group);
 	}
 	drawLink(x1, y1, x2, y2, primary) {
-		if (!this.svgElement) return;
-		let edgeGroup = this.svgElement.querySelector("g.edges");
-		if (!edgeGroup) {
-			edgeGroup = document.createElementNS(SVG_NS, "g");
-			edgeGroup.setAttribute("class", "edges");
-			this.svgElement.insertBefore(edgeGroup, this.svgElement.firstChild);
+		if (!this.edgeGroup) {
+			this.edgeGroup = document.createElementNS(SVG_NS, "g");
+			this.edgeGroup.setAttribute("class", "edges");
+			this.svgElement.insertBefore(this.edgeGroup, this.svgElement.firstChild);
 		}
 		const line = document.createElementNS(SVG_NS, "line");
 		line.setAttribute("x1", String(x1));
@@ -1538,7 +1483,7 @@ var GraphRenderer = class GraphRenderer {
 		line.setAttribute("x2", String(x2));
 		line.setAttribute("y2", String(y2));
 		line.setAttribute("class", primary ? "graph-link" : "graph-link-secondary");
-		edgeGroup.appendChild(line);
+		this.edgeGroup.appendChild(line);
 	}
 	resolveLabelGeometry(params) {
 		const { x, y } = params;
@@ -1573,7 +1518,7 @@ var GraphRenderer = class GraphRenderer {
 		group.appendChild(icon);
 	}
 	calculateProductivity(node) {
-		return ProductionCalculator.getInstance().getProductivity(node);
+		return this.calculator.getProductivity(node);
 	}
 	calculateTreeWidth(prodData) {
 		if (!prodData || !Array.isArray(prodData.input) || !prodData.input.length) return 1;
@@ -1608,6 +1553,71 @@ var GraphRenderer = class GraphRenderer {
 			displayName: fallbackName,
 			icon: id
 		};
+	}
+};
+//#endregion
+//#region apps/calculator/src/ts/modules/GraphRenderer.ts
+/**
+* Renders dependency graphs inside an external SVG template.
+* Singleton — always access via GraphRenderer.getInstance().
+*/
+var GraphRenderer = class GraphRenderer {
+	static _instance = null;
+	static getInstance() {
+		if (!GraphRenderer._instance) GraphRenderer._instance = new GraphRenderer();
+		return GraphRenderer._instance;
+	}
+	svgMarkup;
+	svgElement;
+	viewBoxes = /* @__PURE__ */ new Map();
+	currentGoodId = null;
+	i18n;
+	goodsRepository;
+	popup = new NodeInfoPopup();
+	interactionHandler = null;
+	nodeRenderer = null;
+	constructor() {
+		this.i18n = I18nManager.getInstance();
+		this.goodsRepository = GoodsRepository.getInstance();
+		this.svgMarkup = null;
+		this.svgElement = null;
+	}
+	async attach(container, goodId) {
+		if (!container) return;
+		if (this.interactionHandler && this.currentGoodId) this.viewBoxes.set(this.currentGoodId, this.interactionHandler.parseViewBox());
+		this.interactionHandler?.cancel();
+		this.currentGoodId = goodId ?? null;
+		const savedViewBox = goodId ? this.viewBoxes.get(goodId) : void 0;
+		const viewBoxAttr = savedViewBox ? `${savedViewBox.x} ${savedViewBox.y} ${savedViewBox.width} ${savedViewBox.height}` : "0 0 400 400";
+		const svgElement = document.createElement("svg");
+		svgElement.setAttribute("xmlns", SVG_NS);
+		svgElement.setAttribute("id", "dependency-graph");
+		svgElement.setAttribute("class", "dependency-graph");
+		svgElement.setAttribute("viewBox", viewBoxAttr);
+		this.svgMarkup = svgElement.outerHTML;
+		container.innerHTML = this.svgMarkup;
+		this.svgElement = container.querySelector("#dependency-graph");
+		if (this.svgElement) {
+			this.interactionHandler = new GraphInteractionHandler(this.svgElement, (vb) => {
+				if (this.currentGoodId) this.viewBoxes.set(this.currentGoodId, { ...vb });
+			});
+			this.nodeRenderer = new GraphNodeRenderer(this.svgElement, this.i18n, this.goodsRepository, this.popup);
+		} else {
+			this.interactionHandler = null;
+			this.nodeRenderer = null;
+		}
+	}
+	render(productionData, allBuildings) {
+		if (!this.svgElement || !productionData) return;
+		this.clearSvg();
+		if (!allBuildings || Object.keys(allBuildings).length === 0) return;
+		this.nodeRenderer?.renderGraph(productionData, allBuildings);
+		if (!this.currentGoodId || !this.viewBoxes.has(this.currentGoodId)) this.interactionHandler?.fitToView();
+	}
+	clearSvg() {
+		this.popup.close();
+		if (!this.svgElement) return;
+		while (this.svgElement.firstChild) this.svgElement.removeChild(this.svgElement.firstChild);
 	}
 };
 //#endregion
@@ -7580,4 +7590,4 @@ document.addEventListener("DOMContentLoaded", async () => {
 });
 //#endregion
 
-//# sourceMappingURL=index-jAYhyoJ6.js.map
+//# sourceMappingURL=index-Cnfb-1a3.js.map
