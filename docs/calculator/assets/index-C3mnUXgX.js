@@ -1567,7 +1567,6 @@ var GraphRenderer = class GraphRenderer {
 		if (!GraphRenderer._instance) GraphRenderer._instance = new GraphRenderer();
 		return GraphRenderer._instance;
 	}
-	svgMarkup;
 	svgElement;
 	viewBoxes = /* @__PURE__ */ new Map();
 	currentGoodId = null;
@@ -1579,7 +1578,6 @@ var GraphRenderer = class GraphRenderer {
 	constructor() {
 		this.i18n = I18nManager.getInstance();
 		this.goodsRepository = GoodsRepository.getInstance();
-		this.svgMarkup = null;
 		this.svgElement = null;
 	}
 	async attach(container, goodId) {
@@ -1594,8 +1592,7 @@ var GraphRenderer = class GraphRenderer {
 		svgElement.setAttribute("id", "dependency-graph");
 		svgElement.setAttribute("class", "dependency-graph");
 		svgElement.setAttribute("viewBox", viewBoxAttr);
-		this.svgMarkup = svgElement.outerHTML;
-		container.innerHTML = this.svgMarkup;
+		container.innerHTML = svgElement.outerHTML;
 		this.svgElement = container.querySelector("#dependency-graph");
 		if (this.svgElement) {
 			this.interactionHandler = new GraphInteractionHandler(this.svgElement, (vb) => {
@@ -7590,4 +7587,4 @@ document.addEventListener("DOMContentLoaded", async () => {
 });
 //#endregion
 
-//# sourceMappingURL=index-Cnfb-1a3.js.map
+//# sourceMappingURL=index-C3mnUXgX.js.map

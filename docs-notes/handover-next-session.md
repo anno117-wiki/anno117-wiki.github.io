@@ -63,6 +63,13 @@ JS総量: 277.69KB → 274.16KB（-3.53KB）
 - 外部API変更なし（呼び出し元 ProductionChainView.ts の修正不要）
 - 完了後 bun run build:site でビルド確認必須
 
+#### 進捗（2026-06-30）
+- [x] Step 1: NodeInfoPopup.ts・GraphTypes.ts切り出し完了（code-review --fix 10件修正込み）
+- [x] Step 2: GraphInteractionHandler.ts 切り出し完了（viewBox上書きバグ・rAF汚染・タッチ移行バグ修正込み、コミット 8a36564）
+- [x] Step 3: GraphNodeRenderer.ts 切り出し完了（private化・DOM最適化・キャッシュ改善込み、コミット 67a0565）
+- [ ] Step 4: GraphRenderer.ts ファサード整理
+- [ ] ビルド確認（bun run build:site）
+
 ### STEP 2: バージョン 1.0 リリース（L-1完了後）
 1. UpdateLog.vue のデータを全クリアして「v1.0 正式リリース」エントリ1件のみに更新
    - 日付: リリース当日

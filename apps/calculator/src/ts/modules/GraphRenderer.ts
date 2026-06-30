@@ -22,8 +22,7 @@ export class GraphRenderer {
         return GraphRenderer._instance;
     }
 
-    svgMarkup: string | null;
-    svgElement: SVGSVGElement | null;
+    private svgElement: SVGSVGElement | null;
     private viewBoxes: Map<string, ViewBox> = new Map();
     private currentGoodId: string | null = null;
     private i18n: I18nManager;
@@ -35,7 +34,6 @@ export class GraphRenderer {
     private constructor() {
         this.i18n = I18nManager.getInstance();
         this.goodsRepository = GoodsRepository.getInstance();
-        this.svgMarkup = null;
         this.svgElement = null;
     }
 
@@ -58,8 +56,7 @@ export class GraphRenderer {
         svgElement.setAttribute('id', 'dependency-graph');
         svgElement.setAttribute('class', 'dependency-graph');
         svgElement.setAttribute('viewBox', viewBoxAttr);
-        this.svgMarkup = svgElement.outerHTML;
-        container.innerHTML = this.svgMarkup;
+        container.innerHTML = svgElement.outerHTML;
         this.svgElement = container.querySelector('#dependency-graph') as SVGSVGElement | null;
         if (this.svgElement) {
             this.interactionHandler = new GraphInteractionHandler(this.svgElement, (vb) => {
