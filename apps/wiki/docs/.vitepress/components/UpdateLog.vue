@@ -18,15 +18,6 @@
 <script setup lang="ts">
 import { withBase } from 'vitepress'
 import updates from '../data/updates.json'
-
-function formatDate(iso: string): string {
-  return iso.slice(0, 10)
-}
-
-function excerpt(text: string, limit = 120): string {
-  if (text.length <= limit) return text
-  return text.slice(0, limit) + '…'
-}
 </script>
 
 <style scoped>

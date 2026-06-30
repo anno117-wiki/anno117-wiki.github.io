@@ -344,6 +344,7 @@ export class ProductionCalculator {
             if (metadata.building_cost) {
                 this.accumulateCosts(totals.buildingCost, metadata.building_cost, ceiled);
             }
+            // 公式データJSONキーのスペルミス（maintanance）のため変更不可
             if (metadata.maintanance_cost) {
                 this.accumulateCosts(totals.maintenance, metadata.maintanance_cost, ceiled);
             }

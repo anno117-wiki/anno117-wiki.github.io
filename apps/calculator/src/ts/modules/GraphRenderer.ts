@@ -90,7 +90,7 @@ export class GraphRenderer {
         this.svgMarkup = null;
         this.svgElement = null;
         this.interactionsBound = false;
-        this.displayInfoMenue = this.displayInfoMenue.bind(this);
+        this.displayInfoMenu = this.displayInfoMenu.bind(this);
     }
 
     async attach(container: HTMLElement | null, goodId?: string): Promise<void> {
@@ -175,7 +175,7 @@ export class GraphRenderer {
             isLeaf,
             startOfChain: prodData.start_of_chain === true,
             buildingCost: prodData.building_cost,
-            maintenanceCost: prodData.maintanance_cost,
+            maintenanceCost: prodData.maintanance_cost, // 公式データJSONキーのスペルミス（maintanance）のため変更不可
             productivity: this.calculateProductivity(prodData)
         });
 
@@ -234,7 +234,7 @@ export class GraphRenderer {
                     isLeaf: true,
                     startOfChain: true,
                     buildingCost: input.building_cost,
-                    maintenanceCost: input.maintanance_cost,
+                    maintenanceCost: input.maintanance_cost, // 公式データJSONキーのスペルミス（maintanance）のため変更不可
                     productivity: this.calculateProductivity(input)
                 });
                 // 横配置（RL）: 横方向のリンク（右から左へ）
@@ -287,7 +287,7 @@ export class GraphRenderer {
             productivity
         });
 
-        img.addEventListener('mousedown', this.displayInfoMenue);
+        img.addEventListener('mousedown', this.displayInfoMenu);
         group.appendChild(img);
 
         if (hasFuel) {
@@ -690,7 +690,7 @@ export class GraphRenderer {
     /**
      * Click Event on the icon
      */
-    displayInfoMenue(event: MouseEvent): void {
+    displayInfoMenu(event: MouseEvent): void {
         if (event.button !== 0) return;
 
         event.preventDefault();
