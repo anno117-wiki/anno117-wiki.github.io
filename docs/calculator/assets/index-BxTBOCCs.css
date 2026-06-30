@@ -2381,35 +2381,35 @@ to {
 }
 }
 
-.goods-tree-view[data-v-9e5864d1] {
+.goods-tree-view[data-v-68828c10] {
   display: flex;
   flex-direction: column;
   height: 100%;
   background-color: var(--background);
   overflow: hidden;
 }
-.tree-content[data-v-9e5864d1] {
+.tree-content[data-v-68828c10] {
   flex: 1;
   overflow-y: auto;
   padding: 8px;
 }
-.tree-categories[data-v-9e5864d1] {
+.tree-categories[data-v-68828c10] {
   display: flex;
   flex-direction: column;
   gap: 4px;
 }
-.no-results[data-v-9e5864d1] {
+.no-results[data-v-68828c10] {
   padding: 32px 16px;
   text-align: center;
   color: var(--text-secondary);
   font-size: 14px;
 }
-.recent-section[data-v-9e5864d1] {
+.recent-section[data-v-68828c10] {
   margin-top: 24px;
   padding-top: 16px;
   border-top: 1px solid var(--border-color);
 }
-.recent-header[data-v-9e5864d1] {
+.recent-header[data-v-68828c10] {
   display: flex;
   align-items: center;
   gap: 8px;
@@ -2418,41 +2418,41 @@ to {
   font-size: 14px;
   color: var(--text-primary);
 }
-.recent-icon[data-v-9e5864d1] {
+.recent-icon[data-v-68828c10] {
   font-size: 16px;
 }
-.recent-title[data-v-9e5864d1] {
+.recent-title[data-v-68828c10] {
   flex: 1;
 }
-.recent-list[data-v-9e5864d1] {
+.recent-list[data-v-68828c10] {
   margin-top: 4px;
 }
 
 /* スクロールバーのスタイル */
-.tree-content[data-v-9e5864d1]::-webkit-scrollbar {
+.tree-content[data-v-68828c10]::-webkit-scrollbar {
   width: 8px;
 }
-.tree-content[data-v-9e5864d1]::-webkit-scrollbar-track {
+.tree-content[data-v-68828c10]::-webkit-scrollbar-track {
   background: var(--background);
 }
-.tree-content[data-v-9e5864d1]::-webkit-scrollbar-thumb {
+.tree-content[data-v-68828c10]::-webkit-scrollbar-thumb {
   background: var(--border-color);
   border-radius: 4px;
 }
-.tree-content[data-v-9e5864d1]::-webkit-scrollbar-thumb:hover {
+.tree-content[data-v-68828c10]::-webkit-scrollbar-thumb:hover {
   background: var(--text-secondary);
 }
 
 /* Vueコンポーネント用のスタイル（必要に応じて追加） */
 
-.modifier-panel[data-v-f7b56003] {
+.modifier-panel[data-v-e3a26933] {
   display: flex;
   flex-direction: column;
   gap: 1rem;
   height: 100%;
   overflow-y: auto;
 }
-.modifier-panel-title[data-v-f7b56003] {
+.modifier-panel-title[data-v-e3a26933] {
   font-size: 1.1rem;
   font-weight: 700;
   color: var(--theme-color);
@@ -2460,28 +2460,28 @@ to {
   padding-bottom: 0.5rem;
   border-bottom: 2px solid var(--theme-color);
 }
-.modifier-sections[data-v-f7b56003] {
+.modifier-sections[data-v-e3a26933] {
   display: flex;
   flex-direction: column;
   gap: 1.5rem;
 }
-.modifier-section[data-v-f7b56003] {
+.modifier-section[data-v-e3a26933] {
   display: flex;
   flex-direction: column;
   gap: 0.75rem;
 }
-.modifier-section-header h4[data-v-f7b56003] {
+.modifier-section-header h4[data-v-e3a26933] {
   font-size: 0.9rem;
   font-weight: 600;
   color: var(--text-primary);
   margin: 0;
 }
-.modifier-toggles[data-v-f7b56003] {
+.modifier-toggles[data-v-e3a26933] {
   display: flex;
   flex-direction: column;
   gap: 0.5rem;
 }
-.modifier-toggle-btn[data-v-f7b56003] {
+.modifier-toggle-btn[data-v-e3a26933] {
   display: flex;
   align-items: center;
   gap: 0.5rem;
@@ -2492,22 +2492,22 @@ to {
   cursor: pointer;
   transition: all 0.2s ease;
 }
-.modifier-toggle-btn[data-v-f7b56003]:hover {
+.modifier-toggle-btn[data-v-e3a26933]:hover {
   background: rgba(255, 233, 222, 0.2);
   border-color: var(--theme-color);
 }
-.modifier-toggle-btn.active[data-v-f7b56003] {
+.modifier-toggle-btn.active[data-v-e3a26933] {
   background: var(--theme-color);
   border-color: var(--theme-color);
   color: var(--background);
 }
-.toggle-icon[data-v-f7b56003] {
+.toggle-icon[data-v-e3a26933] {
   width: 24px;
   height: 24px;
   object-fit: contain;
   flex-shrink: 0;
 }
-.toggle-label[data-v-f7b56003] {
+.toggle-label[data-v-e3a26933] {
   font-size: 0.85rem;
   font-weight: 500;
   flex: 1;
@@ -2515,22 +2515,22 @@ to {
 }
 @media (max-width: 768px) {
   /* .modifier-section にgridを当ててボタンを全幅整列 */
-.modifier-section[data-v-f7b56003] {
+.modifier-section[data-v-e3a26933] {
     display: grid;
     grid-template-columns: repeat(auto-fill, minmax(80px, 1fr));
     gap: 0.5rem;
 }
 
   /* セクション名は全幅で表示 */
-.modifier-section-header[data-v-f7b56003] {
+.modifier-section-header[data-v-e3a26933] {
     grid-column: 1 / -1;
 }
 
   /* .modifier-toggles を透過させてボタンをgridセルとして整列 */
-.modifier-toggles[data-v-f7b56003] {
+.modifier-toggles[data-v-e3a26933] {
     display: contents;
 }
-.modifier-toggle-btn[data-v-f7b56003] {
+.modifier-toggle-btn[data-v-e3a26933] {
     width: 100%;
     height: auto;
     flex-direction: column;
@@ -2538,7 +2538,7 @@ to {
     justify-content: center;
     padding: 0.5rem 0.25rem;
 }
-.toggle-label[data-v-f7b56003] {
+.toggle-label[data-v-e3a26933] {
     font-size: 0.7rem;
     text-align: center;
     line-height: 1.2;

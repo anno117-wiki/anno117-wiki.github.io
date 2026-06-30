@@ -720,6 +720,8 @@ var SettingsManager = class SettingsManager {
 var SECONDS_PER_MINUTE = 60;
 var RECOMMENDED_RATE_STEP = .1;
 var MAX_RECOMMENDED_RATE = 25;
+var CHARCOAL_BURNING_TIME = 120;
+var CHARCOAL_PRODUCTION_DURATION = 30;
 /**
 * Pure calculation utilities for production chains.
 * Singleton — always access via ProductionCalculator.getInstance().
@@ -763,7 +765,6 @@ var ProductionCalculator = class ProductionCalculator {
 			if (modType === "flat") productivity += modifier.getValue(node);
 			else if (modType === "percentage") productivity += 100 * modifier.getValue(node);
 		}
-		console.debug(`[ProductionCalculator] Productivity for ${node.name || node.id}: ${productivity.toFixed(2)}x`);
 		return productivity;
 	}
 	getAdjustedTime(node) {
@@ -796,7 +797,7 @@ var ProductionCalculator = class ProductionCalculator {
 	}
 	calculateStartOfChainBuildings(input, requiredInputPerMinute, consumingBuildings, parentProduction) {
 		const parentNeedsCharcoal = parentProduction.fuel?.some((fuel) => fuel.id === "charcoal") || parentProduction.needs_fuel;
-		if (input.id === "charcoal" && parentNeedsCharcoal) return consumingBuildings * (SECONDS_PER_MINUTE / 120) / (SECONDS_PER_MINUTE / 30);
+		if (input.id === "charcoal" && parentNeedsCharcoal) return consumingBuildings * (SECONDS_PER_MINUTE / CHARCOAL_BURNING_TIME) / (SECONDS_PER_MINUTE / CHARCOAL_PRODUCTION_DURATION);
 		const adjustedInputDuration = this.getAdjustedTime(input);
 		const inputRatePerBuilding = adjustedInputDuration > 0 ? SECONDS_PER_MINUTE / adjustedInputDuration : 0;
 		return inputRatePerBuilding > 0 ? requiredInputPerMinute / inputRatePerBuilding : 0;
@@ -816,13 +817,14 @@ var ProductionCalculator = class ProductionCalculator {
 	calculateFuelBuildings(productionData, allBuildings) {
 		const fuelList = productionData.fuel?.length ? productionData.fuel : productionData.needs_fuel ? [{
 			id: "charcoal",
-			burning_time: 120
+			burning_time: CHARCOAL_BURNING_TIME
 		}] : [];
 		if (!fuelList.length) return [];
 		const consumingBuildings = productionData.id ? allBuildings[productionData.id] || 0 : 0;
 		return fuelList.map((fuel) => {
-			const burningTime = fuel.burning_time || 120;
-			const fuelBuildingsNeeded = consumingBuildings * (burningTime > 0 ? SECONDS_PER_MINUTE / burningTime : 0) / (SECONDS_PER_MINUTE / 30);
+			const burningTime = fuel.burning_time || CHARCOAL_BURNING_TIME;
+			const fuelBuildingDuration = CHARCOAL_PRODUCTION_DURATION;
+			const fuelBuildingsNeeded = consumingBuildings * (burningTime > 0 ? SECONDS_PER_MINUTE / burningTime : 0) / (SECONDS_PER_MINUTE / fuelBuildingDuration);
 			return {
 				id: fuel.id,
 				count: fuelBuildingsNeeded
@@ -830,13 +832,8 @@ var ProductionCalculator = class ProductionCalculator {
 		});
 	}
 	findRecommendedRate(productionData) {
-		console.debug("[findRecommendedRate] Starting for good:", productionData.id);
 		const minRateForMainBuilding = this.getMinimumRateForMainBuilding(productionData);
-		console.debug("[findRecommendedRate] Minimum rate for main building:", minRateForMainBuilding);
-		if (minRateForMainBuilding > MAX_RECOMMENDED_RATE) {
-			console.debug("[findRecommendedRate] Min rate exceeds MAX, returning:", this.roundRate(minRateForMainBuilding));
-			return this.roundRate(minRateForMainBuilding);
-		}
+		if (minRateForMainBuilding > MAX_RECOMMENDED_RATE) return this.roundRate(minRateForMainBuilding);
 		let bestCandidateRate = minRateForMainBuilding;
 		let bestCandidateError = Number.POSITIVE_INFINITY;
 		let bestCandidateTotalError = Number.POSITIVE_INFINITY;
@@ -853,13 +850,7 @@ var ProductionCalculator = class ProductionCalculator {
 				bestCandidateTotalError = totalError;
 			}
 		}
-		if (firstIntegerRate !== null) {
-			console.debug(`[findRecommendedRate] ✅ Perfect integer rate found (excluding fuel): ${firstIntegerRate}`);
-			console.debug("[findRecommendedRate] Returning firstIntegerRate (priority: high)");
-			return firstIntegerRate;
-		}
-		console.debug(`[findRecommendedRate] ⚠️ No perfect integer rate. Best candidate: ${bestCandidateRate}`);
-		console.debug(`[findRecommendedRate] Max error: ${bestCandidateError.toFixed(4)}, Total error: ${bestCandidateTotalError.toFixed(4)}`);
+		if (firstIntegerRate !== null) return firstIntegerRate;
 		return this.roundRate(bestCandidateRate);
 	}
 	getMinimumRateForMainBuilding(productionData) {
@@ -943,13 +934,6 @@ var ProductionCalculator = class ProductionCalculator {
 			target[resource] = (target[resource] || 0) + total;
 		}
 	}
-	lcm(a, b) {
-		return a * b / this.gcd(a, b);
-	}
-	gcd(a, b) {
-		if (!b) return a;
-		return this.gcd(b, a % b);
-	}
 	roundRate(rate) {
 		return Math.ceil(rate * 10) / 10;
 	}
@@ -989,10 +973,30 @@ var URLTools = {
 function formatBuildingCount(n, unit) {
 	return `${Number((n || 0).toFixed(2))}${unit}`;
 }
+/** コスト要素にホバーツールチップを付与する共通関数 */
+function attachCostTooltip(item, label) {
+	item.addEventListener("mouseenter", () => {
+		const tip = document.createElement("div");
+		tip.className = "cost-tooltip";
+		tip.textContent = label;
+		document.body.appendChild(tip);
+		const rect = item.getBoundingClientRect();
+		const tipRect = tip.getBoundingClientRect();
+		tip.style.left = `${rect.left + rect.width / 2 - tipRect.width / 2}px`;
+		tip.style.top = `${rect.top - tipRect.height - 4}px`;
+	});
+	item.addEventListener("mouseleave", () => {
+		document.querySelectorAll(".cost-tooltip").forEach((el) => el.remove());
+	});
+}
 //#endregion
 //#region apps/calculator/src/ts/modules/GraphRenderer.ts
 var CENTER_X = 360;
 var CENTER_Y = 150;
+var NODE_X_SPACING = 180;
+var NODE_Y_SPACING = 120;
+var NODE_ICON_SIZE = 64;
+var NODE_CORNER_ICON_RATIO = .56;
 /**
 * Renders dependency graphs inside an external SVG template.
 * Singleton — always access via GraphRenderer.getInstance().
@@ -1020,7 +1024,7 @@ var GraphRenderer = class GraphRenderer {
 		this.svgMarkup = null;
 		this.svgElement = null;
 		this.interactionsBound = false;
-		this.displayInfoMenue = this.displayInfoMenue.bind(this);
+		this.displayInfoMenu = this.displayInfoMenu.bind(this);
 	}
 	async attach(container, goodId) {
 		if (!container) return;
@@ -1080,20 +1084,18 @@ var GraphRenderer = class GraphRenderer {
 		});
 		if (typeof parentX === "number" && typeof parentY === "number") this.drawLink(parentX - 32, parentY, x + 32, y, depth === 0);
 		if (!inputs.length) return;
-		const nextX = x - 180;
+		const nextX = x - NODE_X_SPACING;
 		const visibleInputs = hasFuel ? inputs.filter((inp) => inp.id !== "charcoal") : inputs;
 		const inputHeights = visibleInputs.map((input) => {
 			if (Array.isArray(input.input)) return this.calculateTreeWidth(input);
 			return 1;
 		});
-		const totalHeight = inputHeights.reduce((sum, height) => sum + height, 0);
-		const nodeSpacing = 120;
-		let currentOffset = y - totalHeight * nodeSpacing / 2;
+		let currentOffset = y - inputHeights.reduce((sum, height) => sum + height, 0) * NODE_Y_SPACING / 2;
 		visibleInputs.forEach((input, index) => {
 			if (!input.id) return;
 			const heightUnits = inputHeights[index] ?? 1;
-			const inputY = currentOffset + heightUnits * nodeSpacing / 2;
-			currentOffset += heightUnits * nodeSpacing;
+			const inputY = currentOffset + heightUnits * NODE_Y_SPACING / 2;
+			currentOffset += heightUnits * NODE_Y_SPACING;
 			if (Array.isArray(input.input)) {
 				this.renderRecursiveGraph(input, nextX, inputY, depth + 1, allBuildings, x, y, maxDepth);
 				return;
@@ -1128,7 +1130,7 @@ var GraphRenderer = class GraphRenderer {
 		const group = document.createElementNS(SVG_NS, "g");
 		group.setAttribute("class", "node");
 		const rect = document.createElementNS(SVG_NS, "rect");
-		const size = 64;
+		const size = NODE_ICON_SIZE;
 		rect.setAttribute("x", String(x - size / 2));
 		rect.setAttribute("y", String(y - size / 2));
 		rect.setAttribute("width", String(size));
@@ -1161,7 +1163,7 @@ var GraphRenderer = class GraphRenderer {
 			maintenanceCost,
 			productivity
 		});
-		img.addEventListener("mousedown", this.displayInfoMenue);
+		img.addEventListener("mousedown", this.displayInfoMenu);
 		group.appendChild(img);
 		if (hasFuel) this.addCornerImage(group, x, y, size, `${ASSETS_ICONS_PATH}charcoal.png`);
 		else for (const icon of ProductionCalculator.getInstance().getActiveVisualModifiersForNode(prodNode)) this.addCornerImage(group, x, y, size, `${ASSETS_ICONS_PATH}${icon}`, true);
@@ -1223,7 +1225,7 @@ var GraphRenderer = class GraphRenderer {
 	}
 	addCornerImage(group, x, y, size, href, filled = false) {
 		const icon = document.createElementNS(SVG_NS, "image");
-		const iconSize = Math.round(size * .56);
+		const iconSize = Math.round(size * NODE_CORNER_ICON_RATIO);
 		const cornerX = x + size / 2 - iconSize + 6;
 		const cornerY = y + size / 2 - iconSize + 6;
 		icon.setAttributeNS(XLINK_NS, "href", href);
@@ -1502,7 +1504,7 @@ var GraphRenderer = class GraphRenderer {
 	/**
 	* Click Event on the icon
 	*/
-	displayInfoMenue(event) {
+	displayInfoMenu(event) {
 		if (event.button !== 0) return;
 		event.preventDefault();
 		event.stopPropagation();
@@ -1545,30 +1547,13 @@ var GraphRenderer = class GraphRenderer {
 			container.innerHTML = `<h5>${this.i18n.t(titleKey)}</h5>`;
 			const list = document.createElement("div");
 			list.className = "cost-list";
-			list.style.display = "flex";
-			list.style.flexDirection = "row";
-			list.style.flexWrap = "wrap";
-			list.style.gap = "0.5rem";
-			list.style.alignItems = "center";
 			validCosts.forEach(([resource, amount]) => {
 				const item = document.createElement("div");
 				item.className = "cost-resource";
 				const translatedName = this.i18n.t(`goods.${resource}`);
 				const label = translatedName !== resource ? translatedName : resource.replace(/_/g, " ").replace(/\b\w/g, (c) => c.toUpperCase());
 				item.innerHTML = `<img src="${ASSETS_ICONS_PATH}${resource}.png" alt="${label}" class="cost-icon-small" onerror="this.style.display='none';"/><span>${amount}</span>`;
-				item.addEventListener("mouseenter", () => {
-					const tip = document.createElement("div");
-					tip.className = "cost-tooltip";
-					tip.textContent = label;
-					document.body.appendChild(tip);
-					const rect = item.getBoundingClientRect();
-					const tipRect = tip.getBoundingClientRect();
-					tip.style.left = `${rect.left + rect.width / 2 - tipRect.width / 2}px`;
-					tip.style.top = `${rect.top - tipRect.height - 4}px`;
-				});
-				item.addEventListener("mouseleave", () => {
-					document.querySelectorAll(".cost-tooltip").forEach((el) => el.remove());
-				});
+				attachCostTooltip(item, label);
 				list.appendChild(item);
 			});
 			container.appendChild(list);
@@ -1650,7 +1635,6 @@ var Item = class Item extends AbstractProductionModifier {
 	}
 	static setActiveChain(chainId) {
 		if (Item.activeChainId === chainId) return;
-		console.log("[Item] setActiveChain called with:", chainId);
 		Item.activeChainId = chainId;
 		try {
 			ModifierRegistry.getInstance().notifyDefinitionsChanged();
@@ -1685,28 +1669,21 @@ var Item = class Item extends AbstractProductionModifier {
 	getDefinition() {
 		const toggles = [];
 		const activeChainId = Item.activeChainId;
-		console.log("[Item] getDefinition called, activeChainId:", activeChainId);
 		if (activeChainId) {
-			const allChains = this.repository.getCompatibleItemChains();
-			console.log("[Item] Available chain IDs:", allChains.map((c) => c.id));
-			const chain = allChains.find((c) => c.id === activeChainId);
-			console.log("[Item] Found chain for activeChainId:", chain ? chain.id : "NOT FOUND");
-			if (chain) {
-				console.log("[Item] Chain items count:", chain.items.length);
-				for (const item of chain.items) {
-					const pct = this.repository.getItemProductivity(item.guid);
-					const icon = item.iconFilename ? `items/${item.iconFilename}` : "infrastructure/coastal.png";
-					const localizedName = this.i18n.t(`specialists.${item.guid}`);
-					toggles.push({
-						key: this.getItemKey(chain.id, item.guid),
-						label: localizedName,
-						description: `${chain.displayName}: +${this.formatPercent(pct)} productivity`,
-						icon
-					});
-				}
-			} else console.warn("[Item] No chain found for activeChainId:", activeChainId);
+			const chain = this.repository.getCompatibleItemChains().find((c) => c.id === activeChainId);
+			if (chain) for (const item of chain.items) {
+				const pct = this.repository.getItemProductivity(item.guid);
+				const icon = item.iconFilename ? `items/${item.iconFilename}` : "infrastructure/coastal.png";
+				const localizedName = this.i18n.t(`specialists.${item.guid}`);
+				toggles.push({
+					key: this.getItemKey(chain.id, item.guid),
+					label: localizedName,
+					description: `${chain.displayName}: +${this.formatPercent(pct)} productivity`,
+					icon
+				});
+			}
+			else console.warn("[Item] No chain found for activeChainId:", activeChainId);
 		}
-		console.log("[Item] Returning definition with toggles count:", toggles.length);
 		return {
 			id: "item",
 			label: "Items",
@@ -1878,15 +1855,9 @@ var ProductionChainView = class {
 			});
 		}
 		this.recommendButton?.addEventListener("click", () => {
-			console.debug("[Auto Ratio] Button clicked");
-			console.debug("[Auto Ratio] Current rate before:", this.currentRate);
 			const recommended = this.calculator.findRecommendedRate(recipe);
-			console.debug("[Auto Ratio] Recommended rate:", recommended);
 			this.currentRate = recommended;
-			if (this.targetInput) {
-				this.targetInput.value = recommended.toFixed(2);
-				console.debug("[Auto Ratio] Input field updated to:", this.targetInput.value);
-			}
+			if (this.targetInput) this.targetInput.value = recommended.toFixed(2);
 			this.updateCalculations(recipe);
 		});
 		this.container.querySelectorAll("[data-setting-key]").forEach((node) => {
@@ -2022,10 +1993,8 @@ var ProductionChainView = class {
 	updateCalculations(recipe) {
 		if (!recipe) return;
 		const rate = typeof this.currentRate === "number" ? this.currentRate : 1;
-		console.debug("[updateCalculations] Using rate:", rate, "for good:", recipe.id);
 		const workingRecipe = this.calculator.cloneRecipe(recipe);
 		const allBuildings = this.calculator.collectAllBuildings(workingRecipe, rate, {});
-		console.debug("[updateCalculations] Buildings calculated:", allBuildings);
 		this.updateBuildingCounts(allBuildings);
 		this.updateCostSummary(allBuildings);
 		this.graphRenderer.render(recipe, allBuildings);
@@ -2108,11 +2077,6 @@ var ProductionChainView = class {
 	buildCostElements(costs = {}) {
 		const container = document.createElement("div");
 		container.className = "cost-list";
-		container.style.display = "flex";
-		container.style.flexDirection = "row";
-		container.style.flexWrap = "wrap";
-		container.style.gap = "0.5rem";
-		container.style.alignItems = "center";
 		const entries = Object.entries(costs).filter(([, amount]) => amount > 0);
 		if (!entries.length) {
 			const none = document.createElement("span");
@@ -2133,19 +2097,7 @@ var ProductionChainView = class {
 		const item = document.createElement("span");
 		item.className = "cost-resource";
 		item.innerHTML = `<img src="${ASSETS_ICONS_PATH}${resource}.png" alt="${label}" class="cost-icon" onerror="this.style.display='none';"/><span class="cost-amount">${amountText}</span>`;
-		item.addEventListener("mouseenter", () => {
-			const tip = document.createElement("div");
-			tip.className = "cost-tooltip";
-			tip.textContent = label;
-			document.body.appendChild(tip);
-			const rect = item.getBoundingClientRect();
-			const tipRect = tip.getBoundingClientRect();
-			tip.style.left = `${rect.left + rect.width / 2 - tipRect.width / 2}px`;
-			tip.style.top = `${rect.top - tipRect.height - 4}px`;
-		});
-		item.addEventListener("mouseleave", () => {
-			document.querySelectorAll(".cost-tooltip").forEach((el) => el.remove());
-		});
+		attachCostTooltip(item, label);
 		return item;
 	}
 	showBasicInfo(good) {
@@ -6757,7 +6709,6 @@ var GoodsTreeView_default = /*#__PURE__*/ _plugin_vue_export_helper_default(/* @
 		onMounted(async () => {
 			try {
 				categories.value = (await (await fetch(`/calculator/data/categories.json`)).json()).categories.sort((a, b) => a.order - b.order);
-				console.log("[GoodsTreeView] Loaded", categories.value.length, "categories");
 			} catch (error) {
 				console.error("[GoodsTreeView] Failed to load categories:", error);
 			}
@@ -6884,7 +6835,7 @@ var GoodsTreeView_default = /*#__PURE__*/ _plugin_vue_export_helper_default(/* @
 			]);
 		};
 	}
-}), [["__scopeId", "data-v-9e5864d1"]]);
+}), [["__scopeId", "data-v-68828c10"]]);
 //#endregion
 //#region apps/calculator/src/components/TreeAppRoot.vue
 var TreeAppRoot_default = /* @__PURE__ */ defineComponent({
@@ -6900,11 +6851,9 @@ var TreeAppRoot_default = /* @__PURE__ */ defineComponent({
 		const selectedIdRef = /* @__PURE__ */ ref(props.initialSelectedId);
 		function updateGoods(goods) {
 			goodsRef.value = goods;
-			console.log("[TreeAppRoot] Goods updated:", goods.length, "items");
 		}
 		function updateSelection(selectedId) {
 			selectedIdRef.value = selectedId;
-			console.log("[TreeAppRoot] Selection updated:", selectedId);
 		}
 		function handleSelect(good) {
 			props.onSelect(good);
@@ -6949,7 +6898,6 @@ var TreeApp = class {
 			onSelect: this.config.onSelect
 		});
 		this.rootInstance = this.app.mount(this.config.container);
-		console.log("[TreeApp] Mounted successfully with", this.config.goods.length, "goods");
 	}
 	unmount() {
 		if (!this.app) {
@@ -6959,14 +6907,11 @@ var TreeApp = class {
 		this.app.unmount();
 		this.app = null;
 		this.rootInstance = null;
-		console.log("[TreeApp] Unmounted successfully");
 	}
 	updateGoods(goods) {
 		this.config.goods = goods;
-		if (this.rootInstance && typeof this.rootInstance.updateGoods === "function") {
-			this.rootInstance.updateGoods(goods);
-			console.log("[TreeApp] Updated goods:", goods.length, "items");
-		} else console.warn("[TreeApp] Cannot update goods: not mounted or method not exposed");
+		if (this.rootInstance && typeof this.rootInstance.updateGoods === "function") this.rootInstance.updateGoods(goods);
+		else console.warn("[TreeApp] Cannot update goods: not mounted or method not exposed");
 	}
 	updateSelection(selectedId) {
 		this.config.selectedId = selectedId;
@@ -7049,10 +6994,6 @@ var ModifierPanel_default = /*#__PURE__*/ _plugin_vue_export_helper_default(/* @
 		const loadModifiers = () => {
 			try {
 				modifiers.value = modifierRegistry.getDefinitions();
-				console.log("[ModifierPanel] Loaded modifiers:", modifiers.value.map((m) => ({
-					id: m.id,
-					toggleCount: m.toggles?.length ?? 0
-				})));
 				const allToggles = modifiers.value.flatMap((m) => m.toggles ?? []);
 				activeToggles.value = new Set(allToggles.filter((t) => settingsManager.getSetting(t.key)).map((t) => t.key));
 			} catch (error) {
@@ -7070,22 +7011,18 @@ var ModifierPanel_default = /*#__PURE__*/ _plugin_vue_export_helper_default(/* @
 			if (activeToggles.value.has(key)) activeToggles.value.delete(key);
 			else activeToggles.value.add(key);
 			activeToggles.value = new Set(activeToggles.value);
-			console.log(`[ModifierPanel] Toggled ${key} to ${!currentValue}`);
 		};
 		let unsubscribeRegistry = null;
 		onMounted(() => {
-			console.log("[ModifierPanel] Mounted");
 			loadModifiers();
 			settingsManager.onChange(() => {
 				loadModifiers();
 			});
 			unsubscribeRegistry = modifierRegistry.onDefinitionsChanged(() => {
-				console.log("[ModifierPanel] Definitions changed (activeChainId updated), reloading modifiers");
 				loadModifiers();
 			});
 		});
 		onUnmounted(() => {
-			console.log("[ModifierPanel] Unmounted");
 			if (unsubscribeRegistry) unsubscribeRegistry();
 		});
 		return (_ctx, _cache) => {
@@ -7108,7 +7045,7 @@ var ModifierPanel_default = /*#__PURE__*/ _plugin_vue_export_helper_default(/* @
 			}), 128))])]);
 		};
 	}
-}), [["__scopeId", "data-v-f7b56003"]]);
+}), [["__scopeId", "data-v-e3a26933"]]);
 //#endregion
 //#region apps/calculator/src/ts/vue-app.ts
 /**
@@ -7127,7 +7064,6 @@ function initVueComponents() {
 			container.id = "language-toggle-container";
 			parent.replaceChild(container, languageToggleElement);
 			createApp(LanguageToggle_default).mount("#language-toggle-container");
-			console.log("[Vue] LanguageToggle component mounted");
 		}
 	}
 }
@@ -7142,7 +7078,6 @@ function initModifierPanel() {
 	}
 	const app = createApp(ModifierPanel_default);
 	app.mount(modifierContainer);
-	console.log("[Vue] ModifierPanel component mounted");
 	return app;
 }
 //#endregion
@@ -7251,18 +7186,19 @@ var App = class App {
 			if (updatedGood) await this.handleGoodSelection(updatedGood);
 		} else this.showSelectionView();
 	}
-	bindRegionToggle() {
+	updateRegionButtonState(region) {
 		const toggleBtn = document.getElementById("region-toggle-btn");
 		const icon = toggleBtn?.querySelector(".region-icon");
 		const text = toggleBtn?.querySelector(".region-text");
-		const updateButtonState = (region) => {
-			if (icon) icon.src = region === "Roman" ? `${ASSETS_ICONS_PATH}latium.webp` : `${ASSETS_ICONS_PATH}albion.webp`;
-			if (text) text.textContent = region === "Roman" ? "Latium" : "Albion";
-		};
+		if (icon) icon.src = region === "Roman" ? `${ASSETS_ICONS_PATH}latium.webp` : `${ASSETS_ICONS_PATH}albion.webp`;
+		if (text) text.textContent = region === "Roman" ? "Latium" : "Albion";
+	}
+	bindRegionToggle() {
+		const toggleBtn = document.getElementById("region-toggle-btn");
 		const setRegion = (region) => {
 			if (this.currentRegion === region) return;
 			this.currentRegion = region;
-			updateButtonState(region);
+			this.updateRegionButtonState(region);
 			this.pushUrl();
 			this.updateGoodsList();
 			if (this.currentGood) this.handleGoodSelection(this.currentGood, { preserveRate: true });
@@ -7270,7 +7206,7 @@ var App = class App {
 		toggleBtn?.addEventListener("click", () => {
 			setRegion(this.currentRegion === "Roman" ? "Celtic" : "Roman");
 		});
-		updateButtonState(this.currentRegion);
+		this.updateRegionButtonState(this.currentRegion);
 	}
 	registerServiceWorker() {
 		if (!("serviceWorker" in navigator)) return;
@@ -7294,7 +7230,6 @@ var App = class App {
 			});
 			this.treeApp.mount();
 			this.treeApp.updateGoods(filtered);
-			console.log("[App] TreeApp mounted with", filtered.length, "goods");
 		} catch (error) {
 			console.error("Error loading goods list:", error);
 			this.selectionContainer.innerHTML = "<div class=\"error-message\" style=\"padding: 2rem; text-align: center; color: #721c24;\">Error loading goods list. Please try again later.</div>";
@@ -7340,11 +7275,7 @@ var App = class App {
 			const region = state.region.charAt(0).toUpperCase() + state.region.slice(1).toLowerCase();
 			if (region === "Roman" || region === "Celtic") {
 				this.currentRegion = region;
-				const toggleBtn = document.getElementById("region-toggle-btn");
-				const icon = toggleBtn?.querySelector(".region-icon");
-				const text = toggleBtn?.querySelector(".region-text");
-				if (icon) icon.src = region === "Roman" ? `${ASSETS_ICONS_PATH}latium.webp` : `${ASSETS_ICONS_PATH}albion.webp`;
-				if (text) text.textContent = region === "Roman" ? "Latium" : "Albion";
+				this.updateRegionButtonState(region);
 			}
 		}
 		if (state.good) {
@@ -7630,4 +7561,4 @@ document.addEventListener("DOMContentLoaded", async () => {
 });
 //#endregion
 
-//# sourceMappingURL=index-DMdsAXNu.js.map
+//# sourceMappingURL=index-nw-oJvDI.js.map
