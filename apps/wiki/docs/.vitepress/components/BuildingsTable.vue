@@ -6,6 +6,8 @@ import { data } from '../../wiki/buildings.data.ts'
 const tableWrap = ref<HTMLElement | null>(null)
 const isPanning = ref(false)
 
+const PAN_THRESHOLD = 5
+
 interface PanState { pointerId: number; startX: number; scrollLeft: number }
 let _panState: PanState | null = null
 
@@ -13,16 +15,20 @@ function onTablePointerdown(e: PointerEvent) {
   if (e.pointerType === 'mouse' && e.button !== 0) return
   const el = tableWrap.value
   if (!el) return
-  el.setPointerCapture(e.pointerId)
   _panState = { pointerId: e.pointerId, startX: e.clientX, scrollLeft: el.scrollLeft }
-  isPanning.value = true
 }
 
 function onTablePointermove(e: PointerEvent) {
   if (!_panState || _panState.pointerId !== e.pointerId) return
   const el = tableWrap.value
   if (!el) return
-  el.scrollLeft = _panState.scrollLeft - (e.clientX - _panState.startX)
+  const dx = e.clientX - _panState.startX
+  if (!isPanning.value) {
+    if (Math.abs(dx) < PAN_THRESHOLD) return
+    el.setPointerCapture(e.pointerId)
+    isPanning.value = true
+  }
+  el.scrollLeft = _panState.scrollLeft - dx
 }
 
 function onTablePointerup(e: PointerEvent) {
