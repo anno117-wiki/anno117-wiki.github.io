@@ -1,36 +1,26 @@
-# 引き継ぎ: 次回セッション向け（2026-06-29 更新）
+# 引き継ぎ: 次回セッション向け（2026-06-30 更新）
 
 ## git状態
 - ブランチ: master
-- 最新コミット: `9f75238`（2026-06-29 push済み・公開）
+- 最新コミット: 3c6e2a6（2026-06-30 push済み・公開）
 
 ## 本日完了分（push済み）
 
 | コミット | 内容 |
 |---------|------|
-| bbd9a7e | A-1: コメントWorkerページネーション対応（最大500件ループ取得） |
-| c70f54b | B-1/B-2: デッドコード削除（MermaidDiagram・giscus一式） |
-| 7101d0a | A-4: WORKER_URLを環境変数(VITE_WORKER_URL)に移動 |
-| 33b34f3 | ContributionPanelのGITHUB_REPOを正しいリポジトリ名に修正 |
-| 9f75238 | 更新履歴に2026-06-29分を追加 |
+| d760def | fix: 建物効果テーブルのソートクリック不具合を修正（ポインターキャプチャ閾値導入） |
+| 03199be | chore: GitHub Pages ビルド成果物を更新（ソートクリック修正反映） |
+| 5185b2e | chore: cf-worker/.wrangler/ を .gitignore に追加 |
+| 9c56a3d | chore: production-chains-official.json を .gitignore に追加（中間成果物） |
+| e621317 | refactor: ゾンビコード3件を削除（URLTools・GoodsListView・lcm/gcd） |
+| efe5815 | chore: 本番 console.log/debug 46件を削除（11ファイル） |
+| （M系）| refactor: 重複コード共通化・誤字修正・定数化（M-1〜M-7） |
+| 3c6e2a6 | chore: 未使用アイコン20件を削除（建物・商品・アイテム） |
 
-## 未コミット作業【重要】
+JS総量: 277.69KB → 274.16KB（-3.53KB）
 
-### E-1: 生産チェーン図 Mermaid → 独自SVG移行（実装完了・未コミット）
-
-**実装完了・動作確認済み**（dev server で表示確認）
-
-変更ファイル:
-- `apps/wiki/docs/.vitepress/components/ProductionChainSvg.vue`（新規）
-- `apps/wiki/docs/.vitepress/components/ProductionMermaid.vue`（削除）
-- `apps/wiki/docs/.vitepress/theme/index.ts`（ProductionMermaid登録を削除）
-- `apps/wiki/docs/wiki/production-chains.data.ts`（graph型に変更）
-- `apps/wiki/docs/wiki/production-chains.md`（import・props2行変更）
-- `apps/wiki/package.json`（mermaid依存を削除）
-- `bun.lock`（mermaid削除後のロック更新）
-- `docs/`（ビルド成果物・mermaidチャンク多数削除）
-
-コミットはまだ行っていない（殿の確認待ち）。
+## 未コミット作業
+なし（全てpush済み）
 
 ## 気になる点リスト（残存）
 
@@ -41,8 +31,10 @@
 ### C. コンテンツ品質
 - C-1【低】スキルツリー複数結合3件のeffectEnが2文のまま（意図的）
 
-### E. 新規
-- E-1【完了】生産チェーン図独自SVG移行（実装完了・未コミット）
+### L. 低優先度（保留）
+- L-1【別セッション推奨】GraphRenderer.ts 神クラス解体（830行 → ~300行に分割）
+  対象: GraphInteractionHandler.ts・NodeTooltip.ts への分割
+  理由: 大規模変更のため単独セッションで実施推奨
 
 ## 注意点（変わらず有効）
 
@@ -62,3 +54,18 @@
 - Worker URL: `https://anno-comments.anno117wiki.workers.dev`
 - KV namespace: COMMENT_KV（id=b102b98e22de49729c8702ddc7abaae5）
 - リポジトリ: anno117-wiki/anno117-wiki.github.io（Issues に user-comment ラベルで蓄積）
+
+## 次セッションのミッション【重要】
+
+### STEP 1: L-1 GraphRenderer.ts 神クラス解体
+- 実装プラン: `docs-notes/plan-graph-renderer-refactor.md` を参照
+- 分割構成: GraphRenderer.ts（ファサード約120行）+ GraphNodeRenderer.ts + GraphInteractionHandler.ts + NodeInfoPopup.ts
+- 外部API変更なし（呼び出し元 ProductionChainView.ts の修正不要）
+- 完了後 bun run build:site でビルド確認必須
+
+### STEP 2: バージョン 1.0 リリース（L-1完了後）
+1. UpdateLog.vue のデータを全クリアして「v1.0 正式リリース」エントリ1件のみに更新
+   - 日付: リリース当日
+   - 内容: Anno 117 統合Wiki v1.0 正式リリース（wiki・生産チェーン計算機）
+2. bun run build:site → push
+3. git tag v1.0 && git push origin v1.0
