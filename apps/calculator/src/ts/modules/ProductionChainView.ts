@@ -174,16 +174,12 @@ class ProductionChainView {
             });
         }
         this.recommendButton?.addEventListener('click', () => {
-            console.debug('[Auto Ratio] Button clicked');
-            console.debug('[Auto Ratio] Current rate before:', this.currentRate);
 
             const recommended = this.calculator.findRecommendedRate(recipe);
-            console.debug('[Auto Ratio] Recommended rate:', recommended);
 
             this.currentRate = recommended;
             if (this.targetInput) {
                 this.targetInput.value = recommended.toFixed(2);
-                console.debug('[Auto Ratio] Input field updated to:', this.targetInput.value);
             }
 
             this.updateCalculations(recipe);
@@ -346,11 +342,9 @@ class ProductionChainView {
     updateCalculations(recipe: Goods): void {
         if (!recipe) return;
         const rate = typeof this.currentRate === 'number' ? this.currentRate : 1;
-        console.debug('[updateCalculations] Using rate:', rate, 'for good:', recipe.id);
 
         const workingRecipe = this.calculator.cloneRecipe(recipe);
         const allBuildings = this.calculator.collectAllBuildings(workingRecipe, rate, {});
-        console.debug('[updateCalculations] Buildings calculated:', allBuildings);
 
         this.updateBuildingCounts(allBuildings);
         this.updateCostSummary(allBuildings);

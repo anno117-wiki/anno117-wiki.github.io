@@ -112,7 +112,6 @@ onMounted(async () => {
     const response = await fetch(`${import.meta.env.BASE_URL}data/categories.json`);
     const data: CategoriesData = await response.json();
     categories.value = data.categories.sort((a, b) => a.order - b.order);
-    console.log('[GoodsTreeView] Loaded', categories.value.length, 'categories');
   } catch (error) {
     console.error('[GoodsTreeView] Failed to load categories:', error);
   }

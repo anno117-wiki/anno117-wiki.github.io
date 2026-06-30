@@ -71,7 +71,6 @@ const activeToggles = ref<Set<string>>(new Set());
 const loadModifiers = () => {
   try {
     modifiers.value = modifierRegistry.getDefinitions();
-    console.log('[ModifierPanel] Loaded modifiers:', modifiers.value.map(m => ({ id: m.id, toggleCount: m.toggles?.length ?? 0 })));
 
     // アクティブな設定を読み込み
     const allToggles = modifiers.value.flatMap((m) => m.toggles ?? []);
@@ -103,13 +102,11 @@ const handleToggle = (key: string) => {
   // 強制的に再レンダリング
   activeToggles.value = new Set(activeToggles.value);
 
-  console.log(`[ModifierPanel] Toggled ${key} to ${!currentValue}`);
 };
 
 let unsubscribeRegistry: (() => void) | null = null;
 
 onMounted(() => {
-  console.log('[ModifierPanel] Mounted');
   loadModifiers();
 
   // SettingsManagerの変更を監視
@@ -119,13 +116,11 @@ onMounted(() => {
 
   // ModifierRegistryのDefinitions変更を監視（activeChainId変更対応）
   unsubscribeRegistry = modifierRegistry.onDefinitionsChanged(() => {
-    console.log('[ModifierPanel] Definitions changed (activeChainId updated), reloading modifiers');
     loadModifiers();
   });
 });
 
 onUnmounted(() => {
-  console.log('[ModifierPanel] Unmounted');
   if (unsubscribeRegistry) {
     unsubscribeRegistry();
   }

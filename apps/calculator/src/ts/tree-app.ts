@@ -48,7 +48,6 @@ export class TreeApp {
     // マウントして、exposeされたメソッドへの参照を保持
     this.rootInstance = this.app.mount(this.config.container) as ComponentPublicInstance & TreeAppRootExposed;
 
-    console.log('[TreeApp] Mounted successfully with', this.config.goods.length, 'goods');
   }
 
   public unmount(): void {
@@ -61,7 +60,6 @@ export class TreeApp {
     this.app = null;
     this.rootInstance = null;
 
-    console.log('[TreeApp] Unmounted successfully');
   }
 
   public updateGoods(goods: RecipeListItem[]): void {
@@ -70,7 +68,6 @@ export class TreeApp {
     if (this.rootInstance && typeof this.rootInstance.updateGoods === 'function') {
       // リアクティブに更新（再マウント不要）
       this.rootInstance.updateGoods(goods);
-      console.log('[TreeApp] Updated goods:', goods.length, 'items');
     } else {
       console.warn('[TreeApp] Cannot update goods: not mounted or method not exposed');
     }

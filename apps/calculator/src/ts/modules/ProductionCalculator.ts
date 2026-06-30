@@ -79,7 +79,6 @@ export class ProductionCalculator {
             }
         }
 
-        console.debug(`[ProductionCalculator] Productivity for ${node.name || node.id}: ${productivity.toFixed(2)}x`);
         return productivity;
     }
 
@@ -196,13 +195,10 @@ export class ProductionCalculator {
     }
 
     findRecommendedRate(productionData: Goods): number {
-        console.debug('[findRecommendedRate] Starting for good:', productionData.id);
 
         const minRateForMainBuilding = this.getMinimumRateForMainBuilding(productionData);
-        console.debug('[findRecommendedRate] Minimum rate for main building:', minRateForMainBuilding);
 
         if (minRateForMainBuilding > MAX_RECOMMENDED_RATE) {
-            console.debug('[findRecommendedRate] Min rate exceeds MAX, returning:', this.roundRate(minRateForMainBuilding));
             return this.roundRate(minRateForMainBuilding);
         }
 
@@ -241,14 +237,10 @@ export class ProductionCalculator {
 
         // 燃料建物を除くすべての建物が整数のレートが見つかればそれを返す（優先度：高）
         if (firstIntegerRate !== null) {
-            console.debug(`[findRecommendedRate] ✅ Perfect integer rate found (excluding fuel): ${firstIntegerRate}`);
-            console.debug('[findRecommendedRate] Returning firstIntegerRate (priority: high)');
             return firstIntegerRate;
         }
 
         // 整数レートが見つからない場合は、誤差が最小のレートを返す（優先度：低）
-        console.debug(`[findRecommendedRate] ⚠️ No perfect integer rate. Best candidate: ${bestCandidateRate}`);
-        console.debug(`[findRecommendedRate] Max error: ${bestCandidateError.toFixed(4)}, Total error: ${bestCandidateTotalError.toFixed(4)}`);
         return this.roundRate(bestCandidateRate);
     }
 

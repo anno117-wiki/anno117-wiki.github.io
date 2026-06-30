@@ -37,7 +37,6 @@ class Item extends AbstractProductionModifier {
 		// 変更がなければ何もしない（無駄な再描画を防ぐ）
 		if (Item.activeChainId === chainId) return;
 
-		console.log('[Item] setActiveChain called with:', chainId);
 		Item.activeChainId = chainId;
 
 		// ModifierPanelに変更を通知してアイテムリストを更新
@@ -89,17 +88,13 @@ class Item extends AbstractProductionModifier {
 		const toggles: ModifierToggleDefinition[] = [];
 
 		const activeChainId = Item.activeChainId;
-		console.log('[Item] getDefinition called, activeChainId:', activeChainId);
 
 		if (activeChainId) {
 			const allChains = this.repository.getCompatibleItemChains();
-			console.log('[Item] Available chain IDs:', allChains.map(c => c.id));
 
 			const chain = allChains.find((c) => c.id === activeChainId);
-			console.log('[Item] Found chain for activeChainId:', chain ? chain.id : 'NOT FOUND');
 
 			if (chain) {
-				console.log('[Item] Chain items count:', chain.items.length);
 				for (const item of chain.items) {
 					const pct = this.repository.getItemProductivity(item.guid);
 					const icon = item.iconFilename ? `items/${item.iconFilename}` : 'infrastructure/coastal.png';
@@ -116,7 +111,6 @@ class Item extends AbstractProductionModifier {
 			}
 		}
 
-		console.log('[Item] Returning definition with toggles count:', toggles.length);
 		return {
 			id: 'item',
 			label: 'Items',

@@ -268,7 +268,6 @@ export class App {
             this.treeApp.mount();
             // その後データを更新（rootInstanceが存在するのでリアクティブに更新）
             this.treeApp.updateGoods(filtered);
-            console.log('[App] TreeApp mounted with', filtered.length, 'goods');
 
         } catch (error) {
             console.error('Error loading goods list:', error);

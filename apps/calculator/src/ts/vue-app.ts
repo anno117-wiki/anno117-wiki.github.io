@@ -29,7 +29,6 @@ export function initVueComponents() {
       const app = createApp(LanguageToggle);
       app.mount('#language-toggle-container');
 
-      console.log('[Vue] LanguageToggle component mounted');
     }
   }
 }
@@ -49,7 +48,6 @@ export function initModifierPanel() {
   const app = createApp(ModifierPanel);
   app.mount(modifierContainer);
 
-  console.log('[Vue] ModifierPanel component mounted');
 
   return app;
 }

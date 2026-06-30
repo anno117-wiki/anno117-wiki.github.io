@@ -174,15 +174,11 @@ const formatDate = (timestamp: number): string => {
 
 // イベントハンドラ
 const handleClose = () => {
-  console.log('[SettingsPanel] Close button clicked');
   emit('close');
-  console.log('[SettingsPanel] Close event emitted');
 };
 
 const handleOverlayClick = () => {
-  console.log('[SettingsPanel] Overlay clicked');
   emit('close');
-  console.log('[SettingsPanel] Close event emitted (from overlay)');
 };
 
 const handleSavePreset = () => {
@@ -205,7 +201,6 @@ const handleDeletePreset = (id: string) => {
 
 // 設定変更を監視
 const onSettingsChange = () => {
-  console.log('[SettingsPanel] Settings changed');
   updateActiveToggles();
   updatePresets();
 };
@@ -214,7 +209,6 @@ let unsubscribe: (() => void) | null = null;
 
 // 初期化
 onMounted(() => {
-  console.log('[SettingsPanel] Mounted');
   updatePresets();
   updateActiveToggles();
 
@@ -224,7 +218,6 @@ onMounted(() => {
 
 // クリーンアップ
 onUnmounted(() => {
-  console.log('[SettingsPanel] Unmounted');
   if (unsubscribe) {
     unsubscribe();
   }
