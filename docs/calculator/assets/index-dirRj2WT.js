@@ -1587,13 +1587,13 @@ var GraphRenderer = class GraphRenderer {
 		this.currentGoodId = goodId ?? null;
 		const savedViewBox = goodId ? this.viewBoxes.get(goodId) : void 0;
 		const viewBoxAttr = savedViewBox ? `${savedViewBox.x} ${savedViewBox.y} ${savedViewBox.width} ${savedViewBox.height}` : "0 0 400 400";
-		const svgElement = document.createElement("svg");
-		svgElement.setAttribute("xmlns", SVG_NS);
+		container.innerHTML = "";
+		const svgElement = document.createElementNS(SVG_NS, "svg");
 		svgElement.setAttribute("id", "dependency-graph");
 		svgElement.setAttribute("class", "dependency-graph");
 		svgElement.setAttribute("viewBox", viewBoxAttr);
-		container.innerHTML = svgElement.outerHTML;
-		this.svgElement = container.querySelector("#dependency-graph");
+		container.appendChild(svgElement);
+		this.svgElement = svgElement;
 		if (this.svgElement) {
 			this.interactionHandler = new GraphInteractionHandler(this.svgElement, (vb) => {
 				if (this.currentGoodId) this.viewBoxes.set(this.currentGoodId, { ...vb });
@@ -7587,4 +7587,4 @@ document.addEventListener("DOMContentLoaded", async () => {
 });
 //#endregion
 
-//# sourceMappingURL=index-C3mnUXgX.js.map
+//# sourceMappingURL=index-dirRj2WT.js.map

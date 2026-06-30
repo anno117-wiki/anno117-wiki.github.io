@@ -51,13 +51,13 @@ export class GraphRenderer {
             ? `${savedViewBox.x} ${savedViewBox.y} ${savedViewBox.width} ${savedViewBox.height}`
             : '0 0 400 400';
 
-        const svgElement = document.createElement('svg');
-        svgElement.setAttribute('xmlns', SVG_NS);
+        container.innerHTML = '';
+        const svgElement = document.createElementNS(SVG_NS, 'svg') as SVGSVGElement;
         svgElement.setAttribute('id', 'dependency-graph');
         svgElement.setAttribute('class', 'dependency-graph');
         svgElement.setAttribute('viewBox', viewBoxAttr);
-        container.innerHTML = svgElement.outerHTML;
-        this.svgElement = container.querySelector('#dependency-graph') as SVGSVGElement | null;
+        container.appendChild(svgElement);
+        this.svgElement = svgElement;
         if (this.svgElement) {
             this.interactionHandler = new GraphInteractionHandler(this.svgElement, (vb) => {
                 if (this.currentGoodId) this.viewBoxes.set(this.currentGoodId, { ...vb });
