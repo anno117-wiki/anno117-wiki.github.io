@@ -9,11 +9,6 @@ import { formatDuration, formatBuildingCount } from './Utils';
 import type { BuildingsMap } from './ProductionCalculator';
 import { ASSETS_ICONS_PATH } from '../constants';
 
-interface GoodsListViewConfig {
-    container: HTMLElement;
-    onSelect?: (good: RecipeListItem) => void;
-}
-
 interface ProductionChainViewConfig {
     container: HTMLElement;
     calculator: {
@@ -38,117 +33,6 @@ interface FuelInfo {
 
 interface BaseBuildingInfo {
     id: string;
-}
-
-class GoodsListView {
-    container: HTMLElement;
-    onSelect?: (good: RecipeListItem) => void;
-    goods: RecipeListItem[];
-    heading: HTMLElement;
-    grid: HTMLElement | null;
-    searchInput: HTMLInputElement | null;
-    i18n: I18nManager;
-
-    constructor(config: GoodsListViewConfig) {
-        const { container, onSelect } = config;
-        this.container = container;
-        this.onSelect = onSelect;
-        this.goods = [];
-        this.i18n = I18nManager.getInstance();
-        this.heading = container.querySelector('h3') as HTMLElement | null || this.createHeading();
-        this.grid = null;
-        this.searchInput = null;
-    }
-
-    createHeading(): HTMLElement {
-        const heading = document.createElement('h3');
-        heading.textContent = this.i18n.t('ui.selectGood');
-        return heading;
-    }
-
-    render(goods: RecipeListItem[] = []): void {
-        this.goods = goods.slice();
-        this.container.classList.remove('hidden');
-        this.container.innerHTML = '';
-        this.heading.textContent = this.i18n.t('ui.selectGood');
-        this.container.appendChild(this.heading);
-
-        const searchContainer = document.createElement('div');
-        searchContainer.className = 'search-container';
-        const searchPlaceholder = this.i18n.t('ui.searchGoods');
-        searchContainer.innerHTML = `<input type="text" placeholder="${searchPlaceholder}" aria-label="${searchPlaceholder}" id="goods-search" />`;
-        this.searchInput = searchContainer.querySelector('input') as HTMLInputElement;
-
-        const gridContainer = document.createElement('div');
-        gridContainer.className = 'goods-grid-container';
-        this.grid = document.createElement('div');
-        this.grid.className = 'goods-grid';
-        this.grid.id = 'goods-grid';
-        gridContainer.appendChild(this.grid);
-
-        this.container.appendChild(searchContainer);
-        this.container.appendChild(gridContainer);
-
-        this.bindSearch();
-        this.renderCards(goods);
-    }
-
-    bindSearch(): void {
-        if (!this.searchInput) return;
-        this.searchInput.addEventListener('input', (event) => {
-            const target = event.target as HTMLInputElement;
-            const term = target.value.toLowerCase();
-            const filtered = this.goods.filter((good) => (
-                good.displayName?.toLowerCase().includes(term) ||
-                good.id?.toLowerCase().includes(term)
-            ));
-            this.renderCards(filtered);
-        });
-    }
-
-    renderCards(goods: RecipeListItem[]): void {
-        if (!this.grid) return;
-        this.grid.innerHTML = '';
-        const grid = this.grid;
-        goods.forEach((good) => {
-            if (good.startOfChain) return;
-            const card = document.createElement('div');
-            card.className = 'goods-card';
-            card.dataset.goodId = good.id;
-            card.innerHTML = `
-                <div class="goods-card-icon">
-                    <img src="${ASSETS_ICONS_PATH}${good.icon}.png" alt="${good.displayName}" loading="lazy" onerror="this.style.display='none'; this.nextElementSibling.style.display='flex';" />
-                    <div class="icon-placeholder" style="display:none;">${good.icon.substring(0, 2).toUpperCase()}</div>
-                </div>
-                <div class="goods-card-name">${good.displayName}</div>
-            `;
-            card.addEventListener('click', () => {
-                this.highlight(good.id);
-                this.onSelect?.(good);
-            });
-            grid.appendChild(card);
-        });
-    }
-
-    highlight(goodId: string): void {
-        if (!this.grid) return;
-        this.grid.querySelectorAll('.goods-card').forEach((card) => {
-            const cardElement = card as HTMLElement;
-            cardElement.classList.toggle('selected', cardElement.dataset.goodId === goodId);
-        });
-    }
-
-    show(): void {
-        this.container.classList.remove('hidden');
-    }
-
-    hide(): void {
-        this.container.classList.add('hidden');
-    }
-
-    showError(message: string): void {
-        this.container.innerHTML = `<p class="error">${message}</p>`;
-    }
 }
 
 class ProductionChainView {
@@ -652,4 +536,4 @@ class ProductionChainView {
     }
 }
 
-export { GoodsListView, ProductionChainView };
+export { ProductionChainView };

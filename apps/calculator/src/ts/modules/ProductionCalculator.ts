@@ -367,15 +367,6 @@ export class ProductionCalculator {
         }
     }
 
-    private lcm(a: number, b: number): number {
-        return (a * b) / this.gcd(a, b);
-    }
-
-    private gcd(a: number, b: number): number {
-        if (!b) return a;
-        return this.gcd(b, a % b);
-    }
-
     private roundRate(rate: number): number {
         return Math.ceil(rate * 10) / 10;
     }
