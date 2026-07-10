@@ -1,3 +1,8 @@
+---
+title: スキルツリー
+description: Anno 117のスキルツリーを4ブランチ・193件のスキルで一覧表示。研究順序と効果を日本語で確認できる。
+---
+
 <script setup lang="ts">
 import { ref, computed, onMounted, onUnmounted } from 'vue'
 import { useData } from 'vitepress'

@@ -1,3 +1,8 @@
+---
+title: アイテム一覧
+description: Anno 117の全アイテムをニッチ・レアリティ別に一覧表示。効果・入手方法を日本語で整理。
+---
+
 <script setup lang="ts">
 import { ref, computed } from 'vue'
 import { data } from './items.data.ts'

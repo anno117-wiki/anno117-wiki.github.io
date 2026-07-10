@@ -1,3 +1,8 @@
+---
+title: 生産チェーン一覧
+description: Anno 117の商品ごとの生産チェーンをMermaid図で可視化。必要建物・原材料の関係を一覧で確認できる。
+---
+
 <script setup lang="ts">
 import { withBase } from 'vitepress'
 import { data } from './production-chains.data.ts'

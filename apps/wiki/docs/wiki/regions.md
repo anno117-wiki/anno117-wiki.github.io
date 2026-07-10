@@ -1,3 +1,8 @@
+---
+title: 地域別商品
+description: Anno 117のラティウム・アルビオン地域別固有商品と両地域共通商品を一覧表示。
+---
+
 <script setup lang="ts">
 import { data } from './regions.data.ts'
 

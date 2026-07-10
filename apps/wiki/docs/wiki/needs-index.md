@@ -1,3 +1,8 @@
+---
+title: 生産品需要逆引き
+description: Anno 117の商品がどの住民層・カテゴリで必要とされるかを逆引き検索。tier別の需要を一覧表示。
+---
+
 <script setup lang="ts">
 import { ref, computed } from 'vue'
 import { data } from './needs-index.data.ts'
