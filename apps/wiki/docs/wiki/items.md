@@ -26,6 +26,8 @@ function fmtPrice(p: string): string {
 
 # アイテム一覧
 
+Anno 117 の専門家が装着できる全アイテムの一覧です。分類・レアリティ・効果・価格を掲載しています。
+
 <div class="item-filters">
   <label><strong>分類:</strong>
     <select v-model="selNiche">

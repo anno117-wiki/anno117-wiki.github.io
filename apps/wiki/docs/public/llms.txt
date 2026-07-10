@@ -1,0 +1,36 @@
+# Anno117DB — Anno 117 攻略Wiki
+
+> Anno 117（PS5/Steam）の日本語情報Wiki。商品・生産チェーン・建物効果・住民層・スキルツリー等のゲームデータを公式データ準拠で整理し、生産チェーン計算機で必要な建物数・原料を計算できる。
+
+Anno 117 は Ubisoft の都市builderシリーズ最新作。本サイトは日本語プレイヤー向けに、攻略ガイドとゲームデータベースを提供する。
+
+## データベース
+
+- [商品一覧](https://anno117-wiki.github.io/wiki/goods.html): 全商品を食料・建設・ファッション・文化・中間品・原材料の6分類で一覧
+- [生産チェーン一覧](https://anno117-wiki.github.io/wiki/production-chains.html): 商品ごとの生産チェーンをMermaid図で可視化
+- [建物効果](https://anno117-wiki.github.io/wiki/buildings.html): 各建物が周辺住民に与える効果の一覧
+- [住民層](https://anno117-wiki.github.io/wiki/population.html): ラティウム・アルビオンの住民層と昇格条件
+- [スキルツリー](https://anno117-wiki.github.io/wiki/techs.html): 研究スキルツリー193件を4ブランチで一覧
+- [生産品需要逆引き](https://anno117-wiki.github.io/wiki/needs-index.html): 商品がどの住民層・カテゴリで必要とされるかを逆引き
+- [アイテム一覧](https://anno117-wiki.github.io/wiki/items.html): 専門家アイテムをニッチ・レアリティ別に一覧
+- [地域別商品](https://anno117-wiki.github.io/wiki/regions.html): ラティウム・アルビオン地域別固有商品と共通商品
+
+## 攻略ガイド
+
+- [攻略ガイド一覧](https://anno117-wiki.github.io/guide/strategy.html): 全攻略ガイドの目次
+- [序盤攻略・基本戦略](https://anno117-wiki.github.io/guide/early-game-strategy.html): 建設順・木材チェーン・住民需要・経済管理
+- [経済・収入最適化ガイド](https://anno117-wiki.github.io/guide/economy-guide.html): 税収の仕組み・維持費削減・専門家・交易での利益
+- [研究・スキルツリー・専門家ガイド](https://anno117-wiki.github.io/guide/research-guide.html): 研究システムの仕組みと専門家の装着・入手方法
+- [交易・交易ルートガイド](https://anno117-wiki.github.io/guide/trade-guide.html): 交易ルートの設定・船の選択・外交
+- [軍事・戦闘ガイド](https://anno117-wiki.github.io/guide/military-guide.html): 陸戦・海戦の基本、ユニット相性、艦船・防衛
+- [DLC01・灰の予言](https://anno117-wiki.github.io/guide/dlc01-ashes-of-prophecy.html): 火山島・カエシリアの港・新祭神ウルカヌスなどの新要素
+
+## ツール
+
+- [生産チェーン計算機](https://anno117-wiki.github.io/calculator/): 商品を選択すると必要建物数・原料を自動計算
+- [計算機の使い方](https://anno117-wiki.github.io/guide/calculator-guide.html): 計算機の基本操作方法
+
+## Optional
+
+- [更新履歴](https://anno117-wiki.github.io/updates.html): サイトの更新履歴
+- [はじめに](https://anno117-wiki.github.io/guide/getting-started.html): サイト構成の説明
