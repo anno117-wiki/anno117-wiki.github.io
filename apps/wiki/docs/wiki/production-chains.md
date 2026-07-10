@@ -63,3 +63,7 @@ function timeText(seconds: number): string {
 </table>
 
 </div>
+
+## 関連ガイド
+
+- [序盤攻略・基本戦略](/guide/early-game-strategy) — 木材生産チェーンなど序盤の組み方

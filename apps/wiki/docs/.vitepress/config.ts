@@ -3,10 +3,27 @@ import { defineConfig } from 'vitepress'
 // Anno 117 統合Wiki — VitePress 設定
 // 配信規約: wiki = '/'（ルート）、calculator = '/calculator/'
 // 計算機本体は別SPA。本wikiからは誘導リンクで案内する（フルUI埋め込みはしない）。
+
+const SITE_HOSTNAME = 'https://anno117-wiki.github.io/'
+
+// パンくずJSON-LD用: サイドバー階層のうち「親ページ」を持つページだけ登録する。
+// 未登録ページは「ホーム > 自ページ」の2階層になる。
+const BREADCRUMB_PARENT: Record<string, { path: string; name: string }> = {
+  'guide/early-game-strategy.md': { path: '/guide/strategy', name: '攻略ガイド' },
+  'guide/economy-guide.md': { path: '/guide/strategy', name: '攻略ガイド' },
+  'guide/research-guide.md': { path: '/guide/strategy', name: '攻略ガイド' },
+  'guide/trade-guide.md': { path: '/guide/strategy', name: '攻略ガイド' },
+  'guide/military-guide.md': { path: '/guide/strategy', name: '攻略ガイド' },
+  'guide/dlc01-ashes-of-prophecy.md': { path: '/guide/strategy', name: '攻略ガイド' },
+  'guide/dlc02-hippodrome.md': { path: '/guide/strategy', name: '攻略ガイド' },
+  'guide/dlc03-dawn-of-delta.md': { path: '/guide/strategy', name: '攻略ガイド' },
+  'guide/calculator-guide.md': { path: '/guide/getting-started', name: 'はじめに' },
+}
+
 export default defineConfig({
   lang: 'ja-JP',
   title: 'Anno117DB',
-  titleTemplate: ':title | Anno117DB',
+  titleTemplate: ':title | Anno 117攻略Wiki',
   description: 'Anno 117（PS5/Steam）の日本語情報Wiki + 生産チェーン計算機',
 
   // Google検索向け sitemap.xml をビルド時に自動生成
@@ -18,6 +35,34 @@ export default defineConfig({
     ['link', { rel: 'icon', type: 'image/png', sizes: '48x48', href: '/images/anno_icon.png' }],
     ['link', { rel: 'apple-touch-icon', href: '/images/anno_icon.png' }],
   ],
+
+  // 検索結果にパンくずを表示させるための BreadcrumbList 構造化データ
+  transformHead: ({ pageData }) => {
+    const path = pageData.relativePath
+    const title = pageData.frontmatter.title || pageData.title
+    if (path === 'index.md' || !title) return []
+
+    const items: { name: string; url: string }[] = [{ name: 'ホーム', url: SITE_HOSTNAME }]
+
+    const parent = BREADCRUMB_PARENT[path]
+    if (parent) {
+      items.push({ name: parent.name, url: SITE_HOSTNAME + parent.path.slice(1) + '.html' })
+    }
+    items.push({ name: title, url: SITE_HOSTNAME + path.replace(/\.md$/, '.html') })
+
+    const jsonLd = {
+      '@context': 'https://schema.org',
+      '@type': 'BreadcrumbList',
+      itemListElement: items.map((item, i) => ({
+        '@type': 'ListItem',
+        position: i + 1,
+        name: item.name,
+        item: item.url,
+      })),
+    }
+
+    return [['script', { type: 'application/ld+json' }, JSON.stringify(jsonLd)]]
+  },
 
   // 配信規約: wiki はルート配信
   base: '/',

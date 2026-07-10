@@ -404,3 +404,7 @@ onUnmounted(() => {
 .tech-tooltip .tt-cost   { font-size: 0.78rem; color: #f59e0b; }
 .tech-tooltip .tt-gate   { font-size: 0.75rem; color: #6b7280; margin-top: 2px; }
 </style>
+
+## 関連ガイド
+
+- [研究・スキルツリー・専門家ガイド](/guide/research-guide) — 研究システムの仕組みと専門家の活用法

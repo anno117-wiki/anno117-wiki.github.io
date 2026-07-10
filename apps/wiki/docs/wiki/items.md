@@ -89,3 +89,7 @@ function fmtPrice(p: string): string {
 </tr>
 </tbody>
 </table>
+
+## 関連ガイド
+
+- [研究・スキルツリー・専門家ガイド](/guide/research-guide) — 専門家の装着先・入手方法

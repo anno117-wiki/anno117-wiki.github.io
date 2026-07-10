@@ -56,3 +56,8 @@ Anno 117 で生産・消費される全 {{ data.categories.reduce((n, c) => n + 
 </table>
 
 </div>
+
+## 関連ガイド
+
+- [序盤攻略・基本戦略](/guide/early-game-strategy) — 建設順・木材チェーン・住民需要の基本
+- [経済・収入最適化ガイド](/guide/economy-guide) — 税収・維持費・交易での利益

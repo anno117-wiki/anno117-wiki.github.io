@@ -22,3 +22,7 @@ Anno 117 のプレイヤー向け攻略情報をまとめています。
 - [DLC01・灰の予言](/guide/dlc01-ashes-of-prophecy) — 2026/5/1 追加
 - [DLC02・競馬場](/guide/dlc02-hippodrome) — 2026/8月予定
 - [DLC03・デルタの夜明け](/guide/dlc03-dawn-of-delta) — 2026/11月予定
+
+## 関連データ
+
+攻略ガイドと合わせて[商品一覧](/wiki/goods)・[生産チェーン一覧](/wiki/production-chains)・[建物効果](/wiki/buildings)・[住民層](/wiki/population)などのデータベースも参照してください。
