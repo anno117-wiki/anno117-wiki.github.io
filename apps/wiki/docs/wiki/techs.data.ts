@@ -10,12 +10,13 @@ function parseBranch(internalName: string, annoNodeId?: string): string {
   if (internalName.includes('Civic')) return 'civic'
   if (internalName.includes('Military')) return 'military'
   if (internalName.includes('DLC01')) return 'dlc01'
+  if (internalName.includes('DLC02')) return 'dlc02'
   return 'other'
 }
 
 function parseLabel(internalName: string): string {
   let s = internalName
-  s = s.replace(/^(Tech|Gate)\s+(Economy|Civic|Military|DLC01)\s+/, '')
+  s = s.replace(/^(Tech|Gate)\s+(Economy|Civic|Military|DLC0[12])\s+/, '')
   s = s.replace(/^-?\d+\s+-?\d+\s+/, '')
   return s.trim() || internalName
 }
@@ -24,13 +25,16 @@ const BRANCH_LABELS: Record<string, string> = {
   economy: '経済',
   civic: '市民',
   military: '軍事',
+  dlc01: '灰の予言',
+  dlc02: '競馬場',
   other: 'その他',
 }
 
 function getBranchLabel(branch: string): string {
+  if (BRANCH_LABELS[branch]) return BRANCH_LABELS[branch]
   const dlcMatch = branch.match(/^dlc(\d+)$/)
   if (dlcMatch) return `DLC${parseInt(dlcMatch[1], 10)}`
-  return BRANCH_LABELS[branch] ?? 'その他'
+  return 'その他'
 }
 
 export interface TechEntry {
@@ -56,7 +60,7 @@ export interface TechEntry {
   connections: string[]
 }
 
-const BRANCH_ORDER = ['economy', 'civic', 'military', 'dlc01', 'other']
+const BRANCH_ORDER = ['economy', 'civic', 'military', 'dlc01', 'dlc02', 'other']
 
 export default {
   load(): {

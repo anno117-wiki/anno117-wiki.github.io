@@ -1,6 +1,6 @@
 ---
 title: スキルツリー
-description: Anno 117のスキルツリーを4ブランチ・193件のスキルで一覧表示。研究順序と効果を日本語で確認できる。
+description: Anno 117のスキルツリーを5ブランチ・203件のスキルで一覧表示。研究順序と効果を日本語で確認できる。
 ---
 
 <script setup lang="ts">
@@ -68,6 +68,7 @@ function formatKnowledge(n: number): string {
 
 const branchLabelMap: Record<string, string> = {
   economy: '経済', civic: '市民', military: '軍事',
+  dlc01: '灰の予言', dlc02: '競馬場',
 }
 function getBranchDisplayLabel(b: string): string {
   if (branchLabelMap[b]) return branchLabelMap[b]
@@ -76,7 +77,7 @@ function getBranchDisplayLabel(b: string): string {
   return b
 }
 const branchColorMap: Record<string, string> = {
-  economy: '#16a34a', civic: '#7c3aed', military: '#dc2626', dlc01: '#d97706',
+  economy: '#16a34a', civic: '#7c3aed', military: '#dc2626', dlc01: '#d97706', dlc02: '#0891b2',
 }
 
 // パン操作
