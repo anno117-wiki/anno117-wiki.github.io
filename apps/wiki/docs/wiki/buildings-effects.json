@@ -1283,7 +1283,7 @@
     {
       "id": "amphitheatre",
       "nameEn": "Amphitheatre",
-      "nameJa": "円形闘技場",
+      "nameJa": "円形闘技場（基本効果）",
       "tier": "patrician",
       "maintenance": -400,
       "population": 3,
@@ -1299,7 +1299,7 @@
     {
       "id": "hippodrome",
       "nameEn": "Hippodrome",
-      "nameJa": "競馬場",
+      "nameJa": "競馬場（基本効果）",
       "tier": "patrician",
       "maintenance": -800,
       "population": 4,
