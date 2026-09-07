@@ -23,7 +23,7 @@
             "name": "Flour",
             "type": "extractor",
             "guid": "3075",
-            "time": 30,
+            "time": 20,
             "needs_fuel": false,
             "building_cost": {
                 "money": 0,
