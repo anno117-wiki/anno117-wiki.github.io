@@ -37,7 +37,7 @@ export default {
     const buildings = effectsJson.buildings.map((b) => ({
       ...b,
       tierJa: tierNames[b.tier] ?? b.tier,
-      category: (b as { category?: string }).category ?? getCategory(b.icon),
+      category: getCategory(b.icon),
     }))
     return { buildings }
   },

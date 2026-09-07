@@ -32,7 +32,7 @@ GraphRenderer.ts: 813行の神クラス → 91行ファサード + 3クラスに
 - C-1【低】スキルツリー複数結合3件のeffectEnが2文のまま（意図的）
 - C-2【解決】アルビオン版パンの小麦粉（Donkey Mill / `bread_albion.json` guid 5967, time 60）は2.0で変更なし。Patch 2.0 チェンジログは "Water Mills"（ラティウムの水車小屋）のみ言及、Donkey Millは別建物。ラティウム版（`bread.json` guid 3075）30→20 修正済み
 - C-3【完了】スキルツリー「競馬場」12ノードを `techs.json` に追加・確定。一次ソース: `_local/anno-official-data/v2.0.0.1/`（assets.xml v2.0.0.1・texts_japanese/english.xml＝GitHub Taludas/Anno-117-Item-Inspector）。正式GUID・正式知識コスト・`nameEn`/`descEn`/`effectEn`・アイコン（`annoNodeId`=GUID、webpは `public/icons/tech/15xxxx.webp`）すべて反映。ノード間接続もユーザーが実機確認済み。GUID対応: 157952競馬場/157959設計図/157954大胆な研究/157960最後まで/157964人物研究/157969襲歩/157962速度制限/157968大規模選考会/159795たゆまぬ訓練/158506名誉ある研究/159796残りのベスト/157971指導。残: DLC01ノードは依然アイコン非表示（`annoNodeId`空・`techIconPath`未使用）＝将来 techs.md を `iconKey`/`techIconPath` 対応にすれば統一可
-- C-4【暫定】建物効果に `hippodrome`（競馬場・tier patrician・category wonder）を追加（`buildings-effects.json`・スクショ準拠・`_source` タグ付き）。維持費800は assets.xml GUID 152714 で裏取り済み。残: 人口/収入/幸福/信仰/名声の実値照合、icon 未取得、輝きバフ10段階（`Effect Hippodrome 01-09`）。建設フェーズ材料も assets.xml GUID 153790-153793 に存在
+- C-4【暫定】建物効果に `hippodrome`（競馬場・tier patrician）を追加（`buildings-effects.json`）。維持費800は assets.xml GUID 152714 で裏取り済み。icon=`wonder_hippodrome`（`icon_3d_construction_category_hippodrome` を配置、`wonder_` prefix で category=驚異 に自動判定・`buildings.data.ts` の明示category対応は不要になり revert 済み）。残: 人口/収入/幸福/信仰/名声の実値照合（現状スクショのみ）、輝きバフ10段階（`Effect Hippodrome 01-09`）、建設フェーズ材料（assets.xml GUID 153790-153793）
 - C-5【新規データ源】`_local/anno-official-data/v2.0.0.1/`（gitignore）に assets.xml(33MB)・texts_japanese.xml・texts_english.xml を取得済み。従来の official_master.csv（2026年6月・DLC02なし）の後継。詳細は同フォルダ SOURCE.md
 
 ## セッション開始時の確認事項【削除禁止】

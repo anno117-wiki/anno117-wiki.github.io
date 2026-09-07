@@ -1310,9 +1310,8 @@
       "health": 0,
       "happiness": 1,
       "fireSafety": 0,
-      "icon": "",
-      "category": "wonder",
-      "_source": "screenshot 2026-09-07 (Desktop/DLC2)・アイコン未取得"
+      "icon": "wonder_hippodrome",
+      "_source": "効果値=screenshot 2026-09-07 (Desktop/DLC2)、維持費800=assets.xml GUID152714、アイコン=assets.xml IconFilename(icon_3d_construction_category_hippodrome)"
     },
     {
       "id": "oyster_farm",
