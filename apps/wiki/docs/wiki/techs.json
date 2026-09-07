@@ -4721,8 +4721,8 @@
       "annoR": -11
     },
     {
-      "guid": "dlc02_hippodrome",
-      "internalName": "Gate DLC02 Hippodrome",
+      "guid": "157952",
+      "internalName": "Gate DLC02 Early",
       "nameEn": "",
       "nameJa": "競馬場",
       "descEn": "",
@@ -4737,15 +4737,15 @@
       "gridX": 0,
       "gridY": 0,
       "connections": [
-        "dlc02_hippodrome_blueprint"
+        "157959"
       ],
       "annoR": 0,
       "branchOverride": "dlc02",
-      "_source": "screenshot 2026-09-07 (Desktop/DLC2)・GUID未確定の暫定ID"
+      "_source": "assets.xml v2.0.0.1 (GitHub:Taludas/Anno-117-Item-Inspector)+texts_japanese.xml / 効果文・配置はスクショ Desktop/DLC2 2026-09-07"
     },
     {
-      "guid": "dlc02_hippodrome_blueprint",
-      "internalName": "Tech DLC02 Hippodrome Blueprint",
+      "guid": "157959",
+      "internalName": "Tech DLC02 Hippodrome Building",
       "nameEn": "",
       "nameJa": "競馬場の設計図",
       "descEn": "",
@@ -4756,20 +4756,20 @@
       "techIconPath": "",
       "isGate": false,
       "color": "Yellow",
-      "knowledgeCost": 10000,
+      "knowledgeCost": 128000,
       "gridX": 0,
       "gridY": -1,
       "connections": [
-        "dlc02_hippodrome",
-        "dlc02_bold_research"
+        "157952",
+        "157954"
       ],
       "annoR": -1,
       "branchOverride": "dlc02",
-      "_source": "screenshot 2026-09-07 (Desktop/DLC2 14.png)・GUID未確定の暫定ID"
+      "_source": "assets.xml v2.0.0.1 (GitHub:Taludas/Anno-117-Item-Inspector)+texts_japanese.xml / 効果文・配置はスクショ Desktop/DLC2 2026-09-07"
     },
     {
-      "guid": "dlc02_bold_research",
-      "internalName": "Gate DLC02 Bold Research",
+      "guid": "157954",
+      "internalName": "Gate DLC02 Early to Mid",
       "nameEn": "",
       "nameJa": "大胆な研究",
       "descEn": "",
@@ -4784,18 +4784,18 @@
       "gridX": 0,
       "gridY": -2,
       "connections": [
-        "dlc02_hippodrome_blueprint",
-        "dlc02_see_it_through",
-        "dlc02_character_study",
-        "dlc02_gallop_sprint"
+        "157959",
+        "157960",
+        "157964",
+        "157969"
       ],
       "annoR": -2,
       "branchOverride": "dlc02",
-      "_source": "screenshot 2026-09-07 (Desktop/DLC2)・GUID未確定の暫定ID"
+      "_source": "assets.xml v2.0.0.1 (GitHub:Taludas/Anno-117-Item-Inspector)+texts_japanese.xml / 効果文・配置はスクショ Desktop/DLC2 2026-09-07"
     },
     {
-      "guid": "dlc02_see_it_through",
-      "internalName": "Tech DLC02 See It Through",
+      "guid": "157960",
+      "internalName": "Tech DLC02 Unhide StaminaPotential",
       "nameEn": "",
       "nameJa": "最後までやり遂げる",
       "descEn": "",
@@ -4806,21 +4806,21 @@
       "techIconPath": "",
       "isGate": false,
       "color": "Yellow",
-      "knowledgeCost": null,
+      "knowledgeCost": 220000,
       "gridX": -1,
       "gridY": -3.5,
       "connections": [
-        "dlc02_bold_research",
-        "dlc02_gallop_sprint",
-        "dlc02_mass_selection"
+        "157954",
+        "157969",
+        "157968"
       ],
       "annoR": -3.5,
       "branchOverride": "dlc02",
-      "_source": "screenshot 2026-09-07 (Desktop/DLC2)・GUID未確定の暫定ID"
+      "_source": "assets.xml v2.0.0.1 (GitHub:Taludas/Anno-117-Item-Inspector)+texts_japanese.xml / 効果文・配置はスクショ Desktop/DLC2 2026-09-07"
     },
     {
-      "guid": "dlc02_character_study",
-      "internalName": "Tech DLC02 Character Study",
+      "guid": "157964",
+      "internalName": "Tech DLC02 Unhide ConsistencyPotential",
       "nameEn": "",
       "nameJa": "人物研究",
       "descEn": "",
@@ -4831,21 +4831,21 @@
       "techIconPath": "",
       "isGate": false,
       "color": "Yellow",
-      "knowledgeCost": null,
+      "knowledgeCost": 220000,
       "gridX": 1,
       "gridY": -3.5,
       "connections": [
-        "dlc02_bold_research",
-        "dlc02_gallop_sprint",
-        "dlc02_tireless_training"
+        "157954",
+        "157969",
+        "159795"
       ],
       "annoR": -3.5,
       "branchOverride": "dlc02",
-      "_source": "screenshot 2026-09-07 (Desktop/DLC2)・GUID未確定の暫定ID"
+      "_source": "assets.xml v2.0.0.1 (GitHub:Taludas/Anno-117-Item-Inspector)+texts_japanese.xml / 効果文・配置はスクショ Desktop/DLC2 2026-09-07"
     },
     {
-      "guid": "dlc02_gallop_sprint",
-      "internalName": "Tech DLC02 Gallop Sprint",
+      "guid": "157969",
+      "internalName": "Tech DLC02 Unhide BoostPotential",
       "nameEn": "",
       "nameJa": "襲歩で疾走",
       "descEn": "",
@@ -4856,24 +4856,24 @@
       "techIconPath": "",
       "isGate": false,
       "color": "Yellow",
-      "knowledgeCost": null,
+      "knowledgeCost": 220000,
       "gridX": 0,
       "gridY": -5,
       "connections": [
-        "dlc02_see_it_through",
-        "dlc02_character_study",
-        "dlc02_mass_selection",
-        "dlc02_tireless_training",
-        "dlc02_speed_limit",
-        "dlc02_bold_research"
+        "157960",
+        "157964",
+        "157968",
+        "159795",
+        "157962",
+        "157954"
       ],
       "annoR": -5,
       "branchOverride": "dlc02",
-      "_source": "screenshot 2026-09-07 (Desktop/DLC2)・GUID未確定の暫定ID"
+      "_source": "assets.xml v2.0.0.1 (GitHub:Taludas/Anno-117-Item-Inspector)+texts_japanese.xml / 効果文・配置はスクショ Desktop/DLC2 2026-09-07"
     },
     {
-      "guid": "dlc02_mass_selection",
-      "internalName": "Tech DLC02 Mass Selection",
+      "guid": "157968",
+      "internalName": "Tech DLC02 Increase TestRaces",
       "nameEn": "",
       "nameJa": "大規模選考会",
       "descEn": "",
@@ -4884,21 +4884,21 @@
       "techIconPath": "",
       "isGate": false,
       "color": "Yellow",
-      "knowledgeCost": null,
+      "knowledgeCost": 750000,
       "gridX": -1,
       "gridY": -6.5,
       "connections": [
-        "dlc02_see_it_through",
-        "dlc02_gallop_sprint",
-        "dlc02_speed_limit"
+        "157960",
+        "157969",
+        "157962"
       ],
       "annoR": -6.5,
       "branchOverride": "dlc02",
-      "_source": "screenshot 2026-09-07 (Desktop/DLC2)・GUID未確定の暫定ID"
+      "_source": "assets.xml v2.0.0.1 (GitHub:Taludas/Anno-117-Item-Inspector)+texts_japanese.xml / 効果文・配置はスクショ Desktop/DLC2 2026-09-07"
     },
     {
-      "guid": "dlc02_tireless_training",
-      "internalName": "Tech DLC02 Tireless Training",
+      "guid": "159795",
+      "internalName": "Tech DLC02 Add Training Charges",
       "nameEn": "",
       "nameJa": "たゆまぬ訓練",
       "descEn": "",
@@ -4909,21 +4909,21 @@
       "techIconPath": "",
       "isGate": false,
       "color": "Yellow",
-      "knowledgeCost": null,
+      "knowledgeCost": 750000,
       "gridX": 1,
       "gridY": -6.5,
       "connections": [
-        "dlc02_character_study",
-        "dlc02_gallop_sprint",
-        "dlc02_speed_limit"
+        "157964",
+        "157969",
+        "157962"
       ],
       "annoR": -6.5,
       "branchOverride": "dlc02",
-      "_source": "screenshot 2026-09-07 (Desktop/DLC2)・GUID未確定の暫定ID"
+      "_source": "assets.xml v2.0.0.1 (GitHub:Taludas/Anno-117-Item-Inspector)+texts_japanese.xml / 効果文・配置はスクショ Desktop/DLC2 2026-09-07"
     },
     {
-      "guid": "dlc02_speed_limit",
-      "internalName": "Tech DLC02 Speed Limit",
+      "guid": "157962",
+      "internalName": "Tech DLC02 Unhide SpeedPotential",
       "nameEn": "",
       "nameJa": "速度制限",
       "descEn": "",
@@ -4934,22 +4934,22 @@
       "techIconPath": "",
       "isGate": false,
       "color": "Yellow",
-      "knowledgeCost": null,
+      "knowledgeCost": 360000,
       "gridX": 0,
       "gridY": -8,
       "connections": [
-        "dlc02_mass_selection",
-        "dlc02_tireless_training",
-        "dlc02_gallop_sprint",
-        "dlc02_honored_research"
+        "157968",
+        "159795",
+        "157969",
+        "158506"
       ],
       "annoR": -8,
       "branchOverride": "dlc02",
-      "_source": "screenshot 2026-09-07 (Desktop/DLC2)・GUID未確定の暫定ID"
+      "_source": "assets.xml v2.0.0.1 (GitHub:Taludas/Anno-117-Item-Inspector)+texts_japanese.xml / 効果文・配置はスクショ Desktop/DLC2 2026-09-07"
     },
     {
-      "guid": "dlc02_honored_research",
-      "internalName": "Gate DLC02 Honored Research",
+      "guid": "158506",
+      "internalName": "Gate DLC02 Mid to End",
       "nameEn": "",
       "nameJa": "名誉ある研究",
       "descEn": "",
@@ -4964,16 +4964,16 @@
       "gridX": 0,
       "gridY": -10,
       "connections": [
-        "dlc02_speed_limit",
-        "dlc02_rest_is_best"
+        "157962",
+        "159796"
       ],
       "annoR": -10,
       "branchOverride": "dlc02",
-      "_source": "screenshot 2026-09-07 (Desktop/DLC2)・GUID未確定の暫定ID"
+      "_source": "assets.xml v2.0.0.1 (GitHub:Taludas/Anno-117-Item-Inspector)+texts_japanese.xml / 効果文・配置はスクショ Desktop/DLC2 2026-09-07"
     },
     {
-      "guid": "dlc02_rest_is_best",
-      "internalName": "Tech DLC02 Rest Is Best",
+      "guid": "159796",
+      "internalName": "Tech DLC02 Increase Training Cap",
       "nameEn": "",
       "nameJa": "残りのベスト",
       "descEn": "",
@@ -4984,20 +4984,20 @@
       "techIconPath": "",
       "isGate": false,
       "color": "Yellow",
-      "knowledgeCost": null,
+      "knowledgeCost": 1500000,
       "gridX": 0,
       "gridY": -12,
       "connections": [
-        "dlc02_honored_research",
-        "dlc02_mentorship"
+        "158506",
+        "157971"
       ],
       "annoR": -12,
       "branchOverride": "dlc02",
-      "_source": "screenshot 2026-09-07 (Desktop/DLC2)・GUID未確定の暫定ID"
+      "_source": "assets.xml v2.0.0.1 (GitHub:Taludas/Anno-117-Item-Inspector)+texts_japanese.xml / 効果文・配置はスクショ Desktop/DLC2 2026-09-07"
     },
     {
-      "guid": "dlc02_mentorship",
-      "internalName": "Tech DLC02 Mentorship",
+      "guid": "157971",
+      "internalName": "Tech DLC02 Repeat Racer Specialist",
       "nameEn": "",
       "nameJa": "指導",
       "descEn": "",
@@ -5008,15 +5008,15 @@
       "techIconPath": "",
       "isGate": false,
       "color": "Yellow",
-      "knowledgeCost": null,
+      "knowledgeCost": 3000000,
       "gridX": 0,
       "gridY": -14,
       "connections": [
-        "dlc02_rest_is_best"
+        "159796"
       ],
       "annoR": -14,
       "branchOverride": "dlc02",
-      "_source": "screenshot 2026-09-07 (Desktop/DLC2)・GUID未確定の暫定ID"
+      "_source": "assets.xml v2.0.0.1 (GitHub:Taludas/Anno-117-Item-Inspector)+texts_japanese.xml / 効果文・配置はスクショ Desktop/DLC2 2026-09-07"
     }
   ]
 }

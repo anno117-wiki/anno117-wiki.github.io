@@ -30,9 +30,10 @@ GraphRenderer.ts: 813行の神クラス → 91行ファサード + 3クラスに
 
 ### C. コンテンツ品質
 - C-1【低】スキルツリー複数結合3件のeffectEnが2文のまま（意図的）
-- C-2【要確認】アルビオン版パンの小麦粉（`bread_albion.json`, guid 5967, 現在 time 60）が2.0で変更されたか未確認。ラティウム版（`bread.json`, guid 3075）は 30→20 に修正済み
-- C-3【暫定】スキルツリー「競馬場」12ノードを `techs.json` に追加（スクショ `Desktop/DLC2` 2026-09-07 準拠）。GUID未確定のため `guid`/`internalName` は暫定ID（`dlc02_*`）、`_source` タグ付き。要対応: (1)公式データ判明後に正式GUID・`annoNodeId`（アイコン）へ差し替え (2)`nameEn`/`descEn`/`effectEn` が全ノード空 (3)ノード間接続は全体図からの推定（六角形＋中心スポーク） (4)知識コストは各インスピレーションゲートのみ判明（7,500/10,000/15,000）、発見ノードは null
-- C-4【暫定】建物効果に `hippodrome`（競馬場・tier patrician・category wonder）を追加（`buildings-effects.json`・スクショ準拠・`_source` タグ付き）。アイコン未取得のため `icon: ""`。`buildings.data.ts` は明示 `category` を優先するよう1行変更済み。公式データ判明後に icon・効果値を要確認
+- C-2【解決】アルビオン版パンの小麦粉（Donkey Mill / `bread_albion.json` guid 5967, time 60）は2.0で変更なし。Patch 2.0 チェンジログは "Water Mills"（ラティウムの水車小屋）のみ言及、Donkey Millは別建物。ラティウム版（`bread.json` guid 3075）30→20 修正済み
+- C-3【概ね確定】スキルツリー「競馬場」12ノードを `techs.json` に追加。<strong>正式GUID・正式知識コストへ差し替え済み</strong>（一次ソース: `_local/anno-official-data/v2.0.0.1/assets.xml`＝GitHub Taludas/Anno-117-Item-Inspector・v2.0.0.1・texts_japanese.xml）。残: (1)`nameEn`/`descEn`/`effectEn` が全ノード空（texts_english.xml から補完可） (2)`annoNodeId` が空でアイコン非表示（DLC02アイコンは同リポジトリ `data/ui/fhd/dlc02/` にあり） (3)ノード間接続は全体図スクショからの推定（六角形＋中心スポーク）。GUID対応: 157952競馬場/157959設計図/157954大胆な研究/157960最後まで/157964人物研究/157969襲歩/157962速度制限/157968大規模選考会/159795たゆまぬ訓練/158506名誉ある研究/159796残りのベスト/157971指導
+- C-4【暫定】建物効果に `hippodrome`（競馬場・tier patrician・category wonder）を追加（`buildings-effects.json`・スクショ準拠・`_source` タグ付き）。維持費800は assets.xml GUID 152714 で裏取り済み。残: 人口/収入/幸福/信仰/名声の実値照合、icon 未取得、輝きバフ10段階（`Effect Hippodrome 01-09`）。建設フェーズ材料も assets.xml GUID 153790-153793 に存在
+- C-5【新規データ源】`_local/anno-official-data/v2.0.0.1/`（gitignore）に assets.xml(33MB)・texts_japanese.xml・texts_english.xml を取得済み。従来の official_master.csv（2026年6月・DLC02なし）の後継。詳細は同フォルダ SOURCE.md
 
 ## セッション開始時の確認事項【削除禁止】
 
