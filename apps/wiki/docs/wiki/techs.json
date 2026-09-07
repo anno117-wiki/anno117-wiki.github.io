@@ -4737,11 +4737,35 @@
       "gridX": 0,
       "gridY": 0,
       "connections": [
-        "dlc02_bold_research"
+        "dlc02_hippodrome_blueprint"
       ],
       "annoR": 0,
       "branchOverride": "dlc02",
       "_source": "screenshot 2026-09-07 (Desktop/DLC2)・GUID未確定の暫定ID"
+    },
+    {
+      "guid": "dlc02_hippodrome_blueprint",
+      "internalName": "Tech DLC02 Hippodrome Blueprint",
+      "nameEn": "",
+      "nameJa": "競馬場の設計図",
+      "descEn": "",
+      "descJa": "砂とアーチが存在する場所では、人々が貧富の差もなく一斉に歓声を上げる。",
+      "effectJa": "記念建造物「競馬場」（驚異カテゴリー）を解放する。",
+      "effectEn": "",
+      "iconKey": null,
+      "techIconPath": "",
+      "isGate": false,
+      "color": "Yellow",
+      "knowledgeCost": 10000,
+      "gridX": 0,
+      "gridY": -1,
+      "connections": [
+        "dlc02_hippodrome",
+        "dlc02_bold_research"
+      ],
+      "annoR": -1,
+      "branchOverride": "dlc02",
+      "_source": "screenshot 2026-09-07 (Desktop/DLC2 14.png)・GUID未確定の暫定ID"
     },
     {
       "guid": "dlc02_bold_research",
@@ -4760,7 +4784,7 @@
       "gridX": 0,
       "gridY": -2,
       "connections": [
-        "dlc02_hippodrome",
+        "dlc02_hippodrome_blueprint",
         "dlc02_see_it_through",
         "dlc02_character_study",
         "dlc02_gallop_sprint"

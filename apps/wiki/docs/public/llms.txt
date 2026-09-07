@@ -10,7 +10,7 @@ Anno 117 は Ubisoft の都市builderシリーズ最新作。本サイトは日�
 - [生産チェーン一覧](https://anno117-wiki.github.io/wiki/production-chains.html): 商品ごとの生産チェーンをMermaid図で可視化
 - [建物効果](https://anno117-wiki.github.io/wiki/buildings.html): 各建物が周辺住民に与える効果の一覧
 - [住民層](https://anno117-wiki.github.io/wiki/population.html): ラティウム・アルビオンの住民層と昇格条件
-- [スキルツリー](https://anno117-wiki.github.io/wiki/techs.html): 研究スキルツリー203件を5ブランチで一覧
+- [スキルツリー](https://anno117-wiki.github.io/wiki/techs.html): 研究スキルツリー204件を5ブランチで一覧
 - [生産品需要逆引き](https://anno117-wiki.github.io/wiki/needs-index.html): 商品がどの住民層・カテゴリで必要とされるかを逆引き
 - [アイテム一覧](https://anno117-wiki.github.io/wiki/items.html): 専門家アイテムをニッチ・レアリティ別に一覧
 - [地域別商品](https://anno117-wiki.github.io/wiki/regions.html): ラティウム・アルビオン地域別固有商品と共通商品
