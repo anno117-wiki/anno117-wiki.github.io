@@ -32,6 +32,7 @@ GraphRenderer.ts: 813行の神クラス → 91行ファサード + 3クラスに
 - C-1【低】スキルツリー複数結合3件のeffectEnが2文のまま（意図的）
 - C-2【要確認】アルビオン版パンの小麦粉（`bread_albion.json`, guid 5967, 現在 time 60）が2.0で変更されたか未確認。ラティウム版（`bread.json`, guid 3075）は 30→20 に修正済み
 - C-3【暫定】スキルツリー「競馬場」11ノードを `techs.json` に追加（スクショ `Desktop/DLC2` 2026-09-07 準拠）。GUID未確定のため `guid`/`internalName` は暫定ID（`dlc02_*`）、`_source` タグ付き。要対応: (1)公式データ判明後に正式GUID・`annoNodeId`（アイコン）へ差し替え (2)`nameEn`/`descEn`/`effectEn` が全ノード空 (3)ノード間接続は全体図からの推定（六角形＋中心スポーク） (4)知識コストは各インスピレーションゲートのみ判明（7,500/10,000/15,000）、発見ノードは null
+- C-4【暫定】建物効果に `hippodrome`（競馬場・tier patrician・category wonder）を追加（`buildings-effects.json`・スクショ準拠・`_source` タグ付き）。アイコン未取得のため `icon: ""`。`buildings.data.ts` は明示 `category` を優先するよう1行変更済み。公式データ判明後に icon・効果値を要確認
 
 ## セッション開始時の確認事項【削除禁止】
 

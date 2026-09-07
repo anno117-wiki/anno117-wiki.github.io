@@ -1297,6 +1297,24 @@
       "icon": "wonder_colosseum"
     },
     {
+      "id": "hippodrome",
+      "nameEn": "Hippodrome",
+      "nameJa": "競馬場",
+      "tier": "patrician",
+      "maintenance": -800,
+      "population": 4,
+      "income": 1,
+      "faith": 1,
+      "knowledge": 0,
+      "prestige": 8,
+      "health": 0,
+      "happiness": 1,
+      "fireSafety": 0,
+      "icon": "",
+      "category": "wonder",
+      "_source": "screenshot 2026-09-07 (Desktop/DLC2)・アイコン未取得"
+    },
+    {
       "id": "oyster_farm",
       "nameEn": "Oyster Bed",
       "nameJa": "カキ養殖場",
