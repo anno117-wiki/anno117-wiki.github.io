@@ -2,6 +2,10 @@
   <div class="user-comments">
     <h2 class="uc-heading">コメント</h2>
 
+    <p class="uc-intro">
+      このページは皆様からの情報提供・検証結果を募集しています。誤りの指摘や追加情報も歓迎です。
+    </p>
+
     <!-- コメント一覧 -->
     <p v-if="loading" class="uc-status">読み込み中...</p>
     <p v-else-if="fetchError" class="uc-status uc-error">{{ fetchError }}</p>
@@ -168,6 +172,16 @@ watch(() => page.value.relativePath, fetchComments)
   margin-bottom: 16px;
   padding-bottom: 8px;
   border-bottom: 1px solid var(--vp-c-divider);
+}
+
+.uc-intro {
+  font-size: 13px;
+  color: var(--vp-c-text-2);
+  line-height: 1.6;
+  margin: 0 0 16px;
+  padding: 10px 12px;
+  background: var(--vp-c-bg-soft);
+  border-radius: 6px;
 }
 
 .uc-status {
