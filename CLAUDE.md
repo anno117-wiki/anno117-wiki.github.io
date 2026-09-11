@@ -101,6 +101,7 @@ anno_db2/
 - **ビルドは必ず `bun run build:site`**（`bun run build` は計算機のみ・wikiが docs/ から消える）
 - build:site 実行後は `ls docs/` で wiki ファイルの存在を確認してからコミット
 - VitePressで日本語文字の直後の `**太字**` 記法は機能しない → `<strong>` タグを使う
+- VitePress SPA遷移後のアンカースクロール: `useRoute()` に `hash` は無い（`useData()` の `hash` を使う）。かつVitePress自身の遷移時スクロール処理と競合するため `setTimeout(100ms)` 程度遅延させて後勝ちにする必要がある（`nextTick` だけでは早すぎて負ける）
 
 ## 参考リンク
 - anno-calculator公式: GitHub: agentquackyt/Anno117Calculator

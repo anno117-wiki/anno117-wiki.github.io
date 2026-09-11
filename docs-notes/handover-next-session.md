@@ -1,50 +1,54 @@
-# 引き継ぎ: 次回セッション向け（2026-09-08 更新）
+# 引き継ぎ: 次回セッション向け（2026-09-11 更新）
 
 ## git状態
 - ブランチ: master（`origin/master` と一致・全 push 済み）
-- タグ: v1.0 付与済み・push済み
 - 作業ツリーはクリーン。未追跡は `.claude/skills/` と `agent-sops/` のみ（本セッション以前から存在・未対応）
-- 最新コミット: `ccb9bbc`
+- 最新コミット: `7a226bc`
 
-## 本セッション（2026-09-08）完了分 — 小修整とアイコン方針決定
+## 本セッション（2026-09-11）完了分 — DLC02アイテム反映・相互リンク・バグ修正
 
 | コミット | 内容 |
 |---------|------|
-| 08193ea | 攻略ガイド `strategy.md` DLC02競馬場の表記を「2026/8月予定」→「2026/8/20 追加」 |
-| e71f24d | `docs-notes/how-to-edit-site.md` 追加（サイト編集の初心者向け手順書）＋ .gitignore 例外登録 |
-| 05ba9a0 | 全WIKIページのコメント欄見出し直下に情報募集文を常時表示（`UserComments.vue`） |
-| ccb9bbc | 未使用のスキルツリーアイコン150枚を削除（`{m,s,w}00xx.webp`・下記参照） |
+| f08362d | 上部ナビにスキルツリーを追加 |
+| e670668 | 商品・生産チェーン一覧の「計算」リンクをボタン化 |
+| bb514b4 | DLC02(v2.0.0.1)アイテムデータ反映（421→480件）+効果テキスト公式ローカライズ化 |
+| fcb4a53 | アイテム効果表示改善（対象建物解決・災害名翻訳・相互リンク） |
+| 1d512d3 | 更新履歴にDLC02アイテム反映とUI改善を追記 |
+| af6d791 | 相互リンクのアンカースクロール不具合修正 |
+| f5c9b8a | 「〇〇の生産チェーン」対象を構成建物ごとに展開 |
+| 7a226bc | 計算機の修正設定トグルが押した場所と違う結果になるバグを修正 |
 
 すべて push 済み。
 
-### スキルツリーアイコン: 不採用を決定
-- 調査の結果、tech-tree ノード固有アイコンの画像ソースが **anno.land しか存在しない**（Item-Inspector は建物/商品/神のみ・73/192、公式アセットPNGは非公開、RDA抽出は要ゲーム本体）
-- anno.land 経由は slug→GUID のグラフマッチング復元が必要で工数3.5〜6h＋帰属表示の懸念
-- 費用対効果が見合わず **アイコンは設置しない方針で確定**（現状維持: ゲート31＋DLC02の9件のみ表示）
-- 孤立していた `apps/wiki/docs/public/icons/tech/{m,s,w}00xx.webp` 150枚を削除済み（`gate.webp`＋DLC02の9枚は保持）
-- 調査詳細: `docs-notes/research-tech-icons.md`（将来方針が変わった場合の再調査の起点）
+### DLC02アイテムデータ反映の詳細
+- データ源: GitHub `Taludas/Anno-117-Item-Inspector` から最新CSV（`items_export_with_effects.csv`、480行）を取得し `_local/anno-official-data/v2.0.0.1/` に保存（gitignore対象）
+- `tools/build-items-ja.py` を刷新:
+  - `BUFF_EFFECT_LOCA` 辞書（Item Inspectorの `BUFF_EFFECT_MAPPING` から抽出）で公式ローカライズを最優先使用。独自意訳の `ATTR`/`ETYPE` はフォールバックのみ（例:「基礎耐久」→「ヒットポイント」、「防火」→「火災安全度」に統一）
+  - `AdditionalOutput` 等、効果値にGUID参照（商品）を含むケースを商品名に解決
+  - `IncidentImmunity: Disease;Plague` のような災害名列挙を `INCIDENT_JA` で日本語化
+  - **Targets列（効果の適用対象建物）を解決し `targets` フィールドを新設**。`"〇〇の生産チェーン"` という名前のAssetPoolはメンバー建物を展開（例:「パンの生産チェーン」→「パン屋、粉ひき所、小麦農場、ロバの製粉所」）。「生産施設」等の数十件規模の総称プールは展開せずプール名のまま
+  - 新レアリティ「Mythic」（和訳「ミシック」）を`items.data.ts`のRARITY_JA/RARITY_RANKに追加
+- 新規62件（レーシング/競馬場ストーリー/Mythicスペシャリスト）、削除3件（v2.0.0.1で理由不明に除外されたペット系アイテム、詳細は`_local/anno-official-data/v2.0.0.1/SOURCE.md`）
+
+### items.md ⇔ buildings.md/population.md/production-chains.md 相互リンク
+- items.mdの「対象」列: 建物名→`buildings.html#<id>`、住居層名→`population.html#<層名>`、生産チェーン→`production-chains.html#<id>`（3種の判定ロジックは`items.data.ts`）
+- buildings.mdに「関連アイテム」列を追加（`BuildingsTable.vue`）。件数ボタンから`items.html?target=<建物名>`へ（items.md側で`onMounted`時にURLクエリを読んで対象フィルタを事前設定）
+- **アンカースクロールの罠**（CLAUDE.md本文にも追記済み）: `useRoute()`にhashプロパティは無い（`useData()`のhashを使う）。かつVitePress自身の遷移時スクロール処理と競合するため`setTimeout(100ms)`で後勝ちにする必要がある
+
+### 計算機バグ: ModifierPanel.vue 二重トグル
+- `handleToggle`が`settingsManager.setSetting()`呼び出し後（内部で同期的に`onChange`→`loadModifiers()`が発火し`activeToggles`を再構築済み）に、さらに手動で`activeToggles`を操作していたため二重トグルになり、奇数回目のクリックが反映されず偶数回目で反映される、という表示ズレが発生していた。冗長な手動操作を削除して修正。
 
 ## 未コミット作業
-なし（このハンドオーバー更新を除く）
+なし
 
-## 気になる点リスト（残存）
+## 保留・未解決（次セッションへ）
 
-### A. コメントシステム
-- A-2【解決】テスト Issue #1〜#7 は全て closed 済み（2026-09-08 確認）
-- A-5【低】レート制限がUTC日付境界リセット（実害小）
-- A-6【メモ】コメントは giscus ではなく自作（`UserComments.vue` → CF Worker `cf-worker/comment-api.js` → GitHub Issues label `user-comment`）。確認は `gh issue list --repo anno117-wiki/anno117-wiki.github.io --label user-comment --state open`。実ユーザーコメントは0件
-
-### C. コンテンツ品質
-- C-1【低】スキルツリー複数結合3件のeffectEnが2文のまま（意図的）
-- C-2【解決】アルビオン版パンの小麦粉（Donkey Mill / `bread_albion.json` guid 5967, time 60）は2.0で変更なし。Patch 2.0 チェンジログは "Water Mills"（ラティウムの水車小屋）のみ言及、Donkey Millは別建物。ラティウム版（`bread.json` guid 3075）30→20 修正済み
-- C-3【完了】スキルツリー「競馬場」12ノードを `techs.json` に追加・確定。一次ソース: `_local/anno-official-data/v2.0.0.1/`（assets.xml v2.0.0.1・texts_japanese/english.xml＝GitHub Taludas/Anno-117-Item-Inspector）。正式GUID・正式知識コスト・`nameEn`/`descEn`/`effectEn`・アイコン（`annoNodeId`=GUID、webpは `public/icons/tech/15xxxx.webp`）すべて反映。ノード間接続もユーザーが実機確認済み。GUID対応: 157952競馬場/157959設計図/157954大胆な研究/157960最後まで/157964人物研究/157969襲歩/157962速度制限/157968大規模選考会/159795たゆまぬ訓練/158506名誉ある研究/159796残りのベスト/157971指導。（基本ゲーム・DLC01のアイコン非表示は「D. スキルツリーアイコン整備」で不採用決定済み）
-- C-4【暫定】建物効果に `hippodrome`（競馬場・tier patrician）を追加（`buildings-effects.json`）。維持費800は assets.xml GUID 152714 で裏取り済み。icon=`wonder_hippodrome`（`icon_3d_construction_category_hippodrome` を配置、`wonder_` prefix で category=驚異 に自動判定・`buildings.data.ts` の明示category対応は不要になり revert 済み）。残: 人口/収入/幸福/信仰/名声の実値照合（現状スクショのみ）、輝きバフ10段階（`Effect Hippodrome 01-09`）、建設フェーズ材料（assets.xml GUID 153790-153793）
-- C-5【新規データ源】`_local/anno-official-data/v2.0.0.1/`（gitignore）に assets.xml(33MB)・texts_japanese.xml・texts_english.xml を取得済み。従来の official_master.csv（2026年6月・DLC02なし）の後継。詳細は同フォルダ SOURCE.md
-
-### D. スキルツリーアイコン整備 →【不採用決定・2026-09-08】
-
-ユーザー判断で<strong>アイコンは設置しない</strong>。理由と調査記録は上記「スキルツリーアイコン: 不採用を決定」および `docs-notes/research-tech-icons.md` 参照。
-再検討する場合の起点: anno.land slug→GUID のグラフ同型マッチング（`_local/anno_land_graph.json` slugエッジ327 ↔ `_local/skilltree-full-data.json` GUIDエッジ326、既知アンカー7件は research-skill-tree-connections.md）。
+- **未対応**: 「対象」データのうち55種類（「生産施設」「公共サービス」「壁」等の総称カテゴリ、および「アルビオンの倉庫」等の地域接頭辞付き表記）はbuildings-effects.jsonと名前が一致せず、リンク化されずプレーンテキストのまま。表記統一の当否は未検討
+- **未調査**: v2.0.0.1で削除された3件のアイテム（船上の猫-ケントゥリオ・キロテカ GUID106844／忠実な猟犬-フィデウス GUID106846／象使い-アブドフィル GUID42057）が公式エクスポート対象から外れた理由
+- **未着手・ユーザーが途中で取り下げ**: 「計算機で単独生産品（ザル貝・ウナギ・イワシ）の初期値が違う」という質問が出たが、調査開始直後にユーザーが「こちらの間違いだった」と取り下げ。対応不要（生産時間はcockles=45秒、eels/sardines=60秒で異なるため、必要建物数の初期表示が違うのは仕様通りの可能性が高いという仮説のみ、未検証のまま終了）
+- 前セッションからの持ち越し（未着手）:
+  - C-4【暫定】競馬場(`hippodrome`)の効果値実照合（人口/収入/幸福/信仰/名声）・輝きバフ10段階・建設フェーズ材料
+  - C-1【低】スキルツリー結合3件の effectEn が2文のまま（意図的）
 
 ## セッション開始時の確認事項【削除禁止】
 
@@ -60,34 +64,23 @@
 ### ビルド
 - 必ず `bun run build:site`（wikiも含む全ビルド）
 - build:site 後は `ls docs/` で wiki ファイルの存在確認
+- devサーバ(`bun run dev:wiki`)はCSRのためSPA遷移・アンカースクロールの検証には向かない。本番相当の検証は `bun run preview:wiki`（vitepress preview、ビルド後の静的配信）を使う
 
-### VitePress Markdown太字
+### VitePress
 - 日本語文字の直後の `**太字**` 記法は機能しない → `<strong>` タグを使う
-
-### モバイルCSS設計
-- 縦向きモバイル: `@media (max-width:768px)`
-- 横向きスマホ(全機種): `@media (orientation:landscape) and (max-height:500px) and (max-width:1024px)`
-- WIKIモバイル: `@media (max-width:959px)` in custom.css
+- SPA遷移後のアンカースクロール: `useRoute()`にhashは無い。`useData()`のhashを使い、VitePress自身のスクロール処理に`setTimeout(100ms)`で勝つ必要がある（詳細は上記・CLAUDE.md本文）
 
 ### コメントWorker情報
 - Worker URL: `https://anno-comments.anno117wiki.workers.dev`
 - KV namespace: COMMENT_KV（id=b102b98e22de49729c8702ddc7abaae5）
 - リポジトリ: anno117-wiki/anno117-wiki.github.io（Issues に user-comment ラベルで蓄積）
 
+### 環境
+- bun は 1.4.2 にアップグレード済み（グローバル環境、2026-09-11）。lockfile変更なし・ビルド/E2E問題なし確認済み
+
 ## 次セッションのミッション【重要】
 
 - 明確な最優先タスクは無し。以下から選択:
+  - 上記「保留・未解決」の55種類の対象表記統一（生産施設カテゴリ等）
   - DLC02残タスク: C-4（競馬場の効果値実照合・輝きバフ10段階・建設フェーズ材料）
   - C-1（スキルツリー結合3件の effectEn が2文のまま・意図的なので優先度低）
-  - 下記「（旧）STEP 1: v1.0 実機確認」が未消化なら実施
-- スキルツリーアイコン整備（旧D）は不採用決定済み
-
-### （旧）STEP 1: v1.0 実機確認 ※2026-06-30時点の項目・未消化なら再確認
-- GitHub Pages でデプロイされたサイトを実機（ブラウザ）で目視確認
-- 確認項目:
-  - 生産チェーン図の描画・全ノード正常表示
-  - パン/ズーム・ピンチ操作
-  - アイコンクリックでポップアップ開閉・Esc/外クリック閉鎖
-  - グッド切り替え時の viewBox 復元
-  - 言語切替（日本語/英語）
-  - スマホ表示（縦向き・横向き）
