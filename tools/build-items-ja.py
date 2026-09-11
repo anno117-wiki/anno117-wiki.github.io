@@ -69,6 +69,27 @@ def resolve_guid_ja(guid):
         return JP[oid]
     return f"#{guid}"
 
+def resolve_target_group(group):
+    """Targets列の1グループを解決。'AssetPoolGUID:member1;member2' 形式は
+    プール名（例:「すべての住居」）のみ採用し、展開済みメンバーは使わない。"""
+    group = group.strip()
+    guid = group.split(":", 1)[0] if ":" in group else group
+    name = resolve_guid_ja(guid)
+    return None if name.startswith("#") else name
+
+def format_targets(target_raw):
+    """効果の適用対象（建物・住民層など）を日本語で組み立てる。
+    Villa配置（全体の9割弱）は常に「範囲内」効果なので接尾辞は付けない。"""
+    target_raw = (target_raw or "").strip()
+    if not target_raw or target_raw == "None":
+        return ""
+    names = []
+    for group in target_raw.split("|"):
+        name = resolve_target_group(group)
+        if name and name not in names:
+            names.append(name)
+    return "、".join(names)
+
 # 公式ローカライズID対照表（GitHub Taludas/Anno-117-Item-Inspector の BUFF_EFFECT_MAPPING より、
 # 単一LineIdを持つキーのみ抽出。複数LineId/条件分岐が必要なキーは対象外＝下記フォールバック辞書を使う）
 BUFF_EFFECT_LOCA = {
@@ -200,8 +221,14 @@ ETYPE = {
     "GenerateLimitedLode": "限定鉱脈生成",
 }
 
+# 災害・疫病名（公式ローカライズ, Item Inspector INCIDENT_MAPPING より）
+INCIDENT_JA = {
+    "Disease": "病気", "Plague": "疫病", "Fire": "火災",
+    "Inferno": "猛火", "Unrest": "騒乱", "Rebellion": "反乱",
+}
+
 # GUID解決を試みる際に除外する語（Disease/Plague等の状態異常名はGUIDではない）
-_NON_GUID_TOKENS = {"Disease", "Plague", "Fire", "Inferno", "Unrest", "Rebellion"}
+_NON_GUID_TOKENS = set(INCIDENT_JA)
 
 def try_resolve_guid(token):
     """3桁以上の数字トークンだけGUID解決を試みる。解決できなければ元の値を返す。"""
@@ -244,6 +271,11 @@ def tr_effect_segment(seg):
     m = re.match(r"^ReplaceInputs:\s*(-?\d+)\s*->\s*(-?\d+)$", seg)
     if m:
         return format_effect("ReplaceInputs", f"{resolve_guid_ja(m.group(1))} → {resolve_guid_ja(m.group(2))}")
+    # IncidentImmunity: Disease;Plague のような災害名の列挙
+    m = re.match(r"^IncidentImmunity:\s*(.+)$", seg)
+    if m:
+        names = [INCIDENT_JA.get(x.strip(), x.strip()) for x in m.group(1).split(";")]
+        return format_effect("IncidentImmunity", "・".join(names))
     # <type-or-attr>: <val>（値は数値/割合/比率など何でも。値中の3桁以上の数字はGUIDならその都度解決）
     m = re.match(r"^([\w_]+):\s*(.+)$", seg)
     if m:
@@ -283,6 +315,7 @@ with CSV.open(encoding="utf-8") as f:
             "effects": effects,
             "boostHint": clean(JP.get(r.get("Boost Hint", ""), "")),
             "boostEffects": tr_effects(r.get("BoostBuff Effects", "")),
+            "targets": format_targets(r.get("Targets", "")),
         })
 
 OUT.write_text(json.dumps(items, ensure_ascii=False, indent=2), encoding="utf-8")

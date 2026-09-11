@@ -2,6 +2,20 @@
 import { ref, computed } from 'vue'
 import { withBase } from 'vitepress'
 import { data } from '../../wiki/buildings.data.ts'
+import itemsFullJson from '../../../../../packages/shared/public/data/items-full.json'
+
+// 建物名(nameJa) -> この建物を対象とするアイテム件数
+const ITEM_COUNT_BY_TARGET: Record<string, number> = {}
+for (const it of (itemsFullJson as any[])) {
+  if (!it.targets) continue
+  for (const name of it.targets.split('、')) {
+    ITEM_COUNT_BY_TARGET[name] = (ITEM_COUNT_BY_TARGET[name] ?? 0) + 1
+  }
+}
+
+function itemCountFor(nameJa?: string | null): number {
+  return nameJa ? (ITEM_COUNT_BY_TARGET[nameJa] ?? 0) : 0
+}
 
 const tableWrap = ref<HTMLElement | null>(null)
 const isPanning = ref(false)
@@ -162,10 +176,11 @@ const sortedFiltered = computed(() => {
           <th @click="toggleSort('health')" style="cursor:pointer;white-space:nowrap;padding:8px 4px;">健康度 {{ sortArrow('health') }}</th>
           <th @click="toggleSort('happiness')" style="cursor:pointer;white-space:nowrap;padding:8px 4px;">幸福 {{ sortArrow('happiness') }}</th>
           <th @click="toggleSort('fireSafety')" style="cursor:pointer;white-space:nowrap;padding:8px 4px;">防火 {{ sortArrow('fireSafety') }}</th>
+          <th style="white-space:nowrap;padding:8px 4px;">関連アイテム</th>
         </tr>
       </thead>
       <tbody>
-        <tr v-for="b in sortedFiltered" :key="b.id">
+        <tr v-for="b in sortedFiltered" :key="b.id" :id="b.id">
           <td style="white-space:normal;">
             <div style="max-width:140px;word-break:break-all;">
               <img v-if="b.icon" :src="withBase('/icons/buildings/icon_3d_' + b.icon + '.png')" :alt="b.nameJa ?? b.nameEn" style="width:28px;height:28px;vertical-align:middle;margin-right:4px;object-fit:contain;" />
@@ -182,6 +197,10 @@ const sortedFiltered = computed(() => {
           <td style="padding:8px 4px;"><StatBar :n="b.health" :maxAbs="3" /></td>
           <td style="padding:8px 4px;"><StatBar :n="b.happiness" :maxAbs="3" /></td>
           <td style="padding:8px 4px;"><StatBar :n="b.fireSafety" :maxAbs="3" /></td>
+          <td style="padding:8px 4px;text-align:center;">
+            <a v-if="itemCountFor(b.nameJa)" :href="withBase(`/wiki/items.html?target=${encodeURIComponent(b.nameJa ?? '')}`)" class="calc-link-btn">{{ itemCountFor(b.nameJa) }}件</a>
+            <span v-else>—</span>
+          </td>
         </tr>
       </tbody>
     </table>

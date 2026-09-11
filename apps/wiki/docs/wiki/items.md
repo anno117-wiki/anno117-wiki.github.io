@@ -4,15 +4,23 @@ description: Anno 117の全アイテムをニッチ・レアリティ別に一�
 ---
 
 <script setup lang="ts">
-import { ref, computed } from 'vue'
+import { ref, computed, onMounted } from 'vue'
+import { withBase } from 'vitepress'
 import { data } from './items.data.ts'
 
-const selNiche = ref('')
 const selRarity = ref('')
+const selNiche = ref('')
+const selTarget = ref('')
 const filtered = computed(() => data.items.filter(i =>
+  (!selRarity.value || i.rarityJa === selRarity.value) &&
   (!selNiche.value || i.nicheJa === selNiche.value) &&
-  (!selRarity.value || i.rarityJa === selRarity.value)
+  (!selTarget.value || i.targets.split('、').includes(selTarget.value))
 ))
+
+onMounted(() => {
+  const target = new URLSearchParams(window.location.search).get('target')
+  if (target) selTarget.value = target
+})
 
 function fmtPrice(p: string): string {
   if (!p) return '—'
@@ -29,16 +37,22 @@ function fmtPrice(p: string): string {
 Anno 117 の専門家が装着できる全アイテムの一覧です。分類・レアリティ・効果・価格を掲載しています。
 
 <div class="item-filters">
+  <label><strong>レアリティ:</strong>
+    <select v-model="selRarity">
+      <option value="">すべて</option>
+      <option v-for="r in data.rarities" :key="r" :value="r">{{ r }}</option>
+    </select>
+  </label>
   <label><strong>分類:</strong>
     <select v-model="selNiche">
       <option value="">すべて</option>
       <option v-for="n in data.niches" :key="n" :value="n">{{ n }}</option>
     </select>
   </label>
-  <label><strong>レアリティ:</strong>
-    <select v-model="selRarity">
+  <label><strong>対象:</strong>
+    <select v-model="selTarget">
       <option value="">すべて</option>
-      <option v-for="r in data.rarities" :key="r" :value="r">{{ r }}</option>
+      <option v-for="t in data.targets" :key="t" :value="t">{{ t }}</option>
     </select>
   </label>
   <span class="item-count">{{ filtered.length }} 件</span>
@@ -79,13 +93,23 @@ Anno 117 の専門家が装着できる全アイテムの一覧です。分類�
 
 <table>
 <thead>
-<tr><th>名称</th><th>レアリティ</th><th>分類</th><th>効果</th><th>価格</th></tr>
+<tr><th>名称</th><th>レアリティ</th><th>分類</th><th>対象</th><th>効果</th><th>価格</th></tr>
 </thead>
 <tbody>
 <tr v-for="item in filtered" :key="item.guid">
 <td style="white-space:normal;"><div style="min-width:350px;word-break:break-all;">{{ item.nameJa }}</div></td>
 <td>{{ item.rarityJa }}</td>
 <td>{{ item.nicheJa }}</td>
+<td style="white-space:normal;">
+  <template v-if="item.targetLinks.length">
+    <template v-for="(t, i) in item.targetLinks" :key="i">
+      <a v-if="t.href" :href="withBase(t.href)">{{ t.name }}</a>
+      <span v-else>{{ t.name }}</span>
+      <span v-if="i < item.targetLinks.length - 1">、</span>
+    </template>
+  </template>
+  <template v-else>—</template>
+</td>
 <td style="white-space:normal;">{{ item.effects.length ? item.effects.join('、') : '—' }}</td>
 <td>{{ fmtPrice(item.price) }}</td>
 </tr>

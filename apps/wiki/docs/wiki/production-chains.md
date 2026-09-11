@@ -46,7 +46,7 @@ function timeText(seconds: number): string {
 <tr><th>商品名</th><th>対応地域</th><th>生産時間</th><th>直接素材</th><th>計算機</th></tr>
 </thead>
 <tbody>
-<tr v-for="entry in data.byCategory[cat]" :key="entry.id">
+<tr v-for="entry in data.byCategory[cat]" :key="entry.id" :id="entry.id">
 <td style="white-space:nowrap;">
   <img v-if="entry.icon" :src="withBase('/icons/goods/' + entry.icon + '.png')" :alt="entry.nameJa" style="width:28px;height:28px;vertical-align:middle;margin-right:6px;object-fit:contain;" />
   {{ entry.nameJa }}

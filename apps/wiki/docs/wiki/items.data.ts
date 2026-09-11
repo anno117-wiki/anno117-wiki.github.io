@@ -1,4 +1,47 @@
 import itemsFull from '../../../../packages/shared/public/data/items-full.json'
+import productionListJson from '../../../../packages/shared/public/productions/list.json'
+import jaJson from '../../../../packages/shared/public/i18n/locales/ja.json'
+import buildingsEffectsJson from './buildings-effects.json'
+
+// 対象名 -> リンク先の解決に使う対応表
+const GOOD_ID_BY_NAME_JA: Record<string, string> = {}
+{
+  const jaGoods = (jaJson as { goods: Record<string, string> }).goods
+  for (const good of (productionListJson as { goods: any[] }).goods) {
+    const nameJa = jaGoods[good.id]
+    if (nameJa) GOOD_ID_BY_NAME_JA[nameJa] = good.id
+  }
+}
+
+const BUILDING_ID_BY_NAME_JA: Record<string, string> = {}
+for (const b of (buildingsEffectsJson as { buildings: any[] }).buildings) {
+  if (b.nameJa && !(b.nameJa in BUILDING_ID_BY_NAME_JA)) {
+    BUILDING_ID_BY_NAME_JA[b.nameJa] = b.id
+  }
+}
+
+const RESIDENCE_TIERS = new Set([
+  'リベルトゥス', 'プレブス', 'エクィテス', 'パトリキ',
+  'ウェーダー', 'スミス', 'アルダー', 'メルカトル', 'ノビレス',
+])
+
+interface TargetLink {
+  name: string
+  href: string | null
+}
+
+function resolveTargetLink(name: string): TargetLink {
+  if (name.endsWith('の生産チェーン')) {
+    const goodId = GOOD_ID_BY_NAME_JA[name.slice(0, -'の生産チェーン'.length)]
+    if (goodId) return { name, href: `/wiki/production-chains.html#${goodId}` }
+  } else if (name.endsWith('の住居')) {
+    const tier = name.slice(0, -'の住居'.length)
+    if (RESIDENCE_TIERS.has(tier)) return { name, href: `/wiki/population.html#${encodeURIComponent(tier)}` }
+  } else if (BUILDING_ID_BY_NAME_JA[name]) {
+    return { name, href: `/wiki/buildings.html#${BUILDING_ID_BY_NAME_JA[name]}` }
+  }
+  return { name, href: null }
+}
 
 const RARITY_JA: Record<string, string> = {
   Common: 'コモン',
@@ -48,10 +91,12 @@ interface ItemEntry {
   price: string
   effects: string[]
   description: string
+  targets: string
+  targetLinks: TargetLink[]
 }
 
 export default {
-  load(): { items: ItemEntry[]; niches: string[]; rarities: string[] } {
+  load(): { items: ItemEntry[]; niches: string[]; rarities: string[]; targets: string[] } {
     const nicheIndex = Object.fromEntries(NICHE_ORDER.map((n, i) => [n, i]))
 
     const items: ItemEntry[] = (itemsFull as any[])
@@ -63,6 +108,8 @@ export default {
         price: row.price ?? '',
         effects: Array.isArray(row.effects) ? row.effects : [],
         description: row.description ?? '',
+        targets: row.targets ?? '',
+        targetLinks: (row.targets ? row.targets.split('、') : []).map(resolveTargetLink),
         _nicheRank: nicheIndex[row.niche] ?? 99,
         _rarityRank: RARITY_RANK[row.rarity] ?? 99,
       }))
@@ -87,6 +134,15 @@ export default {
       }
     }
 
-    return { items, niches, rarities }
+    const targetSet = new Set<string>()
+    for (const item of items) {
+      if (!item.targets) continue
+      for (const name of item.targets.split('、')) {
+        targetSet.add(name)
+      }
+    }
+    const targets = Array.from(targetSet).sort((a, b) => a.localeCompare(b, 'ja'))
+
+    return { items, niches, rarities, targets }
   },
 }

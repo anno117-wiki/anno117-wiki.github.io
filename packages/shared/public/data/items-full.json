@@ -19,7 +19,8 @@
       "浴場: 火災安全度 +2",
       "健康: +35%",
       "リベルトゥスの労働力も同量提供する"
-    ]
+    ],
+    "targets": "エクィテスの住居"
   },
   {
     "guid": "41352",
@@ -41,7 +42,8 @@
       "聖域: 知識 +2",
       "幸福度: +40%",
       "リベルトゥスの労働力も同量提供する"
-    ]
+    ],
+    "targets": "プレブスの住居"
   },
   {
     "guid": "41351",
@@ -63,7 +65,8 @@
       "劇場: 名声 +3",
       "名声: +35%",
       "プレブスの労働力も同量提供する"
-    ]
+    ],
+    "targets": "エクィテスの住居"
   },
   {
     "guid": "41355",
@@ -85,7 +88,8 @@
       "運動場: 火災安全度 +3",
       "火災安全度: +35%",
       "ウェーダーの労働力も同量提供する"
-    ]
+    ],
+    "targets": "スミスの住居、アルダーの住居"
   },
   {
     "guid": "41353",
@@ -107,7 +111,8 @@
       "図書館: 名声 +2",
       "知識: +20%",
       "プレブスの労働力も同量提供する"
-    ]
+    ],
+    "targets": "パトリキの住居"
   },
   {
     "guid": "41354",
@@ -129,7 +134,8 @@
       "神殿: 信仰 +3",
       "信仰: +20%",
       "リベルトゥスの労働力も同量提供する"
-    ]
+    ],
+    "targets": "パトリキの住居"
   },
   {
     "guid": "41360",
@@ -151,7 +157,8 @@
       "聖所: 信仰 +2",
       "収入: +35%",
       "ウェーダーの労働力も同量提供する"
-    ]
+    ],
+    "targets": "メルカトルの住居、ノビレスの住居"
   },
   {
     "guid": "42625",
@@ -173,7 +180,8 @@
       "移動速度: +20%",
       "追い風の風向: +60",
       "発見範囲: +200%"
-    ]
+    ],
+    "targets": "船"
   },
   {
     "guid": "42049",
@@ -191,7 +199,8 @@
     "boostEffects": [
       "維持費: -100%",
       "範囲効果: 収入 +2"
-    ]
+    ],
+    "targets": "市場"
   },
   {
     "guid": "42050",
@@ -211,7 +220,8 @@
       "維持費: -75%",
       "範囲効果: 信仰 +2",
       "範囲効果: 知識 +1"
-    ]
+    ],
+    "targets": "聖域、聖所"
   },
   {
     "guid": "91415",
@@ -234,7 +244,8 @@
       "ヒットポイント: +75%",
       "攻撃範囲: +25%",
       "攻撃速度: +10%"
-    ]
+    ],
+    "targets": "塔"
   },
   {
     "guid": "91417",
@@ -256,7 +267,8 @@
       "サンダル: 名声 +3",
       "葦の靴: 幸福度 +2",
       "葦の靴: 名声 +3"
-    ]
+    ],
+    "targets": "住居"
   },
   {
     "guid": "91419",
@@ -274,7 +286,8 @@
     "boostEffects": [
       "信仰: +35%",
       "知識: +35%"
-    ]
+    ],
+    "targets": "住居"
   },
   {
     "guid": "91421",
@@ -292,7 +305,8 @@
     "boostEffects": [
       "幸福度: -2",
       "住民による労働力: +40%"
-    ]
+    ],
+    "targets": "リベルトゥスとウェーダーの住居"
   },
   {
     "guid": "71438",
@@ -306,7 +320,8 @@
       "範囲効果: 収入 +1.5"
     ],
     "boostHint": "",
-    "boostEffects": []
+    "boostEffects": [],
+    "targets": "市場"
   },
   {
     "guid": "71441",
@@ -320,7 +335,8 @@
       "住民による労働力: +20%"
     ],
     "boostHint": "",
-    "boostEffects": []
+    "boostEffects": [],
+    "targets": "住居"
   },
   {
     "guid": "44431",
@@ -335,7 +351,8 @@
       "名声: +1"
     ],
     "boostHint": "",
-    "boostEffects": []
+    "boostEffects": [],
+    "targets": "耕作可能な農場"
   },
   {
     "guid": "94567",
@@ -350,7 +367,8 @@
       "吟遊詩人の暖炉: 名声 +2"
     ],
     "boostHint": "",
-    "boostEffects": []
+    "boostEffects": [],
+    "targets": "住居"
   },
   {
     "guid": "125560",
@@ -364,7 +382,8 @@
       "範囲効果: 収入 +0.5"
     ],
     "boostHint": "",
-    "boostEffects": []
+    "boostEffects": [],
+    "targets": "監視塔"
   },
   {
     "guid": "95403",
@@ -379,7 +398,8 @@
       "範囲効果: 収入 +1"
     ],
     "boostHint": "",
-    "boostEffects": []
+    "boostEffects": [],
+    "targets": "沿岸工場"
   },
   {
     "guid": "96815",
@@ -395,7 +415,8 @@
       "移動速度: -20%"
     ],
     "boostHint": "",
-    "boostEffects": []
+    "boostEffects": [],
+    "targets": "船"
   },
   {
     "guid": "96821",
@@ -411,7 +432,8 @@
       "範囲効果: 収入 +1"
     ],
     "boostHint": "",
-    "boostEffects": []
+    "boostEffects": [],
+    "targets": "都市警備"
   },
   {
     "guid": "96819",
@@ -427,7 +449,8 @@
       "労働力維持費: -25%"
     ],
     "boostHint": "",
-    "boostEffects": []
+    "boostEffects": [],
+    "targets": "精製所"
   },
   {
     "guid": "50890",
@@ -447,7 +470,8 @@
       "生産性: +45%",
       "燃料の効率: +50%",
       "範囲効果: 火災安全度 +1.5"
-    ]
+    ],
+    "targets": "製錬所、武器庫"
   },
   {
     "guid": "96817",
@@ -462,7 +486,8 @@
       "範囲効果: 幸福度 +1"
     ],
     "boostHint": "",
-    "boostEffects": []
+    "boostEffects": [],
+    "targets": "調理場"
   },
   {
     "guid": "88062",
@@ -477,7 +502,8 @@
       "労働力維持費: -20%"
     ],
     "boostHint": "",
-    "boostEffects": []
+    "boostEffects": [],
+    "targets": "大麦農場"
   },
   {
     "guid": "93989",
@@ -492,7 +518,8 @@
       "神聖な森: 知識 +1"
     ],
     "boostHint": "",
-    "boostEffects": []
+    "boostEffects": [],
+    "targets": "住居"
   },
   {
     "guid": "94541",
@@ -516,7 +543,8 @@
       "船の修復速度: +65%",
       "建物の修復速度: +65%",
       "同時修復: +1"
-    ]
+    ],
+    "targets": "修理クレーン"
   },
   {
     "guid": "94555",
@@ -538,7 +566,8 @@
       "船上弓兵の遠距離攻撃力: +4",
       "船上弓兵の攻撃速度: +40%",
       "松明の攻撃速度: +40%"
-    ]
+    ],
+    "targets": "船"
   },
   {
     "guid": "90573",
@@ -553,7 +582,8 @@
       "浴場: 知識 +2"
     ],
     "boostHint": "",
-    "boostEffects": []
+    "boostEffects": [],
+    "targets": "住居"
   },
   {
     "guid": "109532",
@@ -568,7 +598,8 @@
       "劇場: 健康 +1"
     ],
     "boostHint": "",
-    "boostEffects": []
+    "boostEffects": [],
+    "targets": "住居"
   },
   {
     "guid": "82419",
@@ -582,7 +613,8 @@
       "範囲効果: 名声 +0.5"
     ],
     "boostHint": "",
-    "boostEffects": []
+    "boostEffects": [],
+    "targets": "トイレ"
   },
   {
     "guid": "82777",
@@ -598,7 +630,8 @@
       "酒場: 知識 +1"
     ],
     "boostHint": "",
-    "boostEffects": []
+    "boostEffects": [],
+    "targets": "住居"
   },
   {
     "guid": "83553",
@@ -613,7 +646,8 @@
       "積荷の重量による減速: -30%"
     ],
     "boostHint": "",
-    "boostEffects": []
+    "boostEffects": [],
+    "targets": "船"
   },
   {
     "guid": "121725",
@@ -629,7 +663,8 @@
       "属州の移動速度: +30%"
     ],
     "boostHint": "",
-    "boostEffects": []
+    "boostEffects": [],
+    "targets": "船"
   },
   {
     "guid": "121727",
@@ -645,7 +680,8 @@
       "ダメージによる減速: -25%"
     ],
     "boostHint": "",
-    "boostEffects": []
+    "boostEffects": [],
+    "targets": "船"
   },
   {
     "guid": "64944",
@@ -659,7 +695,8 @@
       "収入: +0.6"
     ],
     "boostHint": "",
-    "boostEffects": []
+    "boostEffects": [],
+    "targets": "住居"
   },
   {
     "guid": "64949",
@@ -673,7 +710,8 @@
       "信仰: +0.6"
     ],
     "boostHint": "",
-    "boostEffects": []
+    "boostEffects": [],
+    "targets": "住居"
   },
   {
     "guid": "64950",
@@ -687,7 +725,8 @@
       "知識: +0.6"
     ],
     "boostHint": "",
-    "boostEffects": []
+    "boostEffects": [],
+    "targets": "住居"
   },
   {
     "guid": "64951",
@@ -701,7 +740,8 @@
       "名声: +0.6"
     ],
     "boostHint": "",
-    "boostEffects": []
+    "boostEffects": [],
+    "targets": "住居"
   },
   {
     "guid": "64952",
@@ -715,7 +755,8 @@
       "火災安全度: +0.6"
     ],
     "boostHint": "",
-    "boostEffects": []
+    "boostEffects": [],
+    "targets": "住居"
   },
   {
     "guid": "64953",
@@ -729,7 +770,8 @@
       "健康: +0.6"
     ],
     "boostHint": "",
-    "boostEffects": []
+    "boostEffects": [],
+    "targets": "住居"
   },
   {
     "guid": "64954",
@@ -743,7 +785,8 @@
       "幸福度: +0.6"
     ],
     "boostHint": "",
-    "boostEffects": []
+    "boostEffects": [],
+    "targets": "住居"
   },
   {
     "guid": "140338",
@@ -757,7 +800,8 @@
       "収入: +1.2"
     ],
     "boostHint": "",
-    "boostEffects": []
+    "boostEffects": [],
+    "targets": "住居"
   },
   {
     "guid": "140344",
@@ -771,7 +815,8 @@
       "信仰: +1.2"
     ],
     "boostHint": "",
-    "boostEffects": []
+    "boostEffects": [],
+    "targets": "住居"
   },
   {
     "guid": "140355",
@@ -785,7 +830,8 @@
       "知識: +1.2"
     ],
     "boostHint": "",
-    "boostEffects": []
+    "boostEffects": [],
+    "targets": "住居"
   },
   {
     "guid": "140388",
@@ -799,7 +845,8 @@
       "名声: +1.2"
     ],
     "boostHint": "",
-    "boostEffects": []
+    "boostEffects": [],
+    "targets": "住居"
   },
   {
     "guid": "140403",
@@ -813,7 +860,8 @@
       "火災安全度: +1.2"
     ],
     "boostHint": "",
-    "boostEffects": []
+    "boostEffects": [],
+    "targets": "住居"
   },
   {
     "guid": "140405",
@@ -827,7 +875,8 @@
       "健康: +1.2"
     ],
     "boostHint": "",
-    "boostEffects": []
+    "boostEffects": [],
+    "targets": "住居"
   },
   {
     "guid": "140407",
@@ -841,7 +890,8 @@
       "幸福度: +1.2"
     ],
     "boostHint": "",
-    "boostEffects": []
+    "boostEffects": [],
+    "targets": "住居"
   },
   {
     "guid": "64945",
@@ -855,7 +905,8 @@
       "収入: +1.8"
     ],
     "boostHint": "",
-    "boostEffects": []
+    "boostEffects": [],
+    "targets": "住居"
   },
   {
     "guid": "64961",
@@ -869,7 +920,8 @@
       "信仰: +1.8"
     ],
     "boostHint": "",
-    "boostEffects": []
+    "boostEffects": [],
+    "targets": "住居"
   },
   {
     "guid": "64962",
@@ -883,7 +935,8 @@
       "知識: +1.8"
     ],
     "boostHint": "",
-    "boostEffects": []
+    "boostEffects": [],
+    "targets": "住居"
   },
   {
     "guid": "64963",
@@ -897,7 +950,8 @@
       "名声: +1.8"
     ],
     "boostHint": "",
-    "boostEffects": []
+    "boostEffects": [],
+    "targets": "住居"
   },
   {
     "guid": "64964",
@@ -911,7 +965,8 @@
       "火災安全度: +1.8"
     ],
     "boostHint": "",
-    "boostEffects": []
+    "boostEffects": [],
+    "targets": "住居"
   },
   {
     "guid": "64965",
@@ -925,7 +980,8 @@
       "健康: +1.8"
     ],
     "boostHint": "",
-    "boostEffects": []
+    "boostEffects": [],
+    "targets": "住居"
   },
   {
     "guid": "64966",
@@ -939,7 +995,8 @@
       "幸福度: +1.8"
     ],
     "boostHint": "",
-    "boostEffects": []
+    "boostEffects": [],
+    "targets": "住居"
   },
   {
     "guid": "106956",
@@ -957,7 +1014,8 @@
     "boostEffects": [
       "収入: +3",
       "名声: +0.5"
-    ]
+    ],
+    "targets": "住居"
   },
   {
     "guid": "80677",
@@ -975,7 +1033,8 @@
     "boostEffects": [
       "信仰: +3",
       "知識: +0.5"
-    ]
+    ],
+    "targets": "住居"
   },
   {
     "guid": "79927",
@@ -993,7 +1052,8 @@
     "boostEffects": [
       "火災安全度: +0.5",
       "知識: +3"
-    ]
+    ],
+    "targets": "住居"
   },
   {
     "guid": "51280",
@@ -1011,7 +1071,8 @@
     "boostEffects": [
       "幸福度: +0.5",
       "名声: +3"
-    ]
+    ],
+    "targets": "住居"
   },
   {
     "guid": "107596",
@@ -1029,7 +1090,8 @@
     "boostEffects": [
       "健康: +0.5",
       "火災安全度: +3"
-    ]
+    ],
+    "targets": "住居"
   },
   {
     "guid": "42046",
@@ -1047,7 +1109,8 @@
     "boostEffects": [
       "収入: +0.5",
       "健康: +3"
-    ]
+    ],
+    "targets": "住居"
   },
   {
     "guid": "80192",
@@ -1065,7 +1128,8 @@
     "boostEffects": [
       "幸福度: +3",
       "信仰: +0.5"
-    ]
+    ],
+    "targets": "住居"
   },
   {
     "guid": "51316",
@@ -1080,7 +1144,8 @@
       "労働力維持費: -25%"
     ],
     "boostHint": "",
-    "boostEffects": []
+    "boostEffects": [],
+    "targets": "採集者"
   },
   {
     "guid": "51328",
@@ -1095,7 +1160,8 @@
       "労働力維持費: -25%"
     ],
     "boostHint": "",
-    "boostEffects": []
+    "boostEffects": [],
+    "targets": "食料雑貨商"
   },
   {
     "guid": "51330",
@@ -1110,7 +1176,8 @@
       "労働力維持費: -25%"
     ],
     "boostHint": "",
-    "boostEffects": []
+    "boostEffects": [],
+    "targets": "抽出機"
   },
   {
     "guid": "51334",
@@ -1125,7 +1192,8 @@
       "労働力維持費: -25%"
     ],
     "boostHint": "",
-    "boostEffects": []
+    "boostEffects": [],
+    "targets": "製錬所"
   },
   {
     "guid": "51338",
@@ -1140,7 +1208,8 @@
       "労働力維持費: -25%"
     ],
     "boostHint": "",
-    "boostEffects": []
+    "boostEffects": [],
+    "targets": "服屋"
   },
   {
     "guid": "51344",
@@ -1155,7 +1224,8 @@
       "労働力維持費: -25%"
     ],
     "boostHint": "",
-    "boostEffects": []
+    "boostEffects": [],
+    "targets": "精製所"
   },
   {
     "guid": "51292",
@@ -1170,7 +1240,8 @@
       "労働力維持費: -33%"
     ],
     "boostHint": "",
-    "boostEffects": []
+    "boostEffects": [],
+    "targets": "狩猟小屋、漁場"
   },
   {
     "guid": "51324",
@@ -1185,7 +1256,8 @@
       "労働力維持費: -33%"
     ],
     "boostHint": "",
-    "boostEffects": []
+    "boostEffects": [],
+    "targets": "牧場"
   },
   {
     "guid": "51336",
@@ -1200,7 +1272,8 @@
       "労働力維持費: -33%"
     ],
     "boostHint": "",
-    "boostEffects": []
+    "boostEffects": [],
+    "targets": "調理場"
   },
   {
     "guid": "51346",
@@ -1215,7 +1288,8 @@
       "労働力維持費: -33%"
     ],
     "boostHint": "",
-    "boostEffects": []
+    "boostEffects": [],
+    "targets": "武器庫"
   },
   {
     "guid": "51321",
@@ -1230,7 +1304,8 @@
       "労働力維持費: -40%"
     ],
     "boostHint": "",
-    "boostEffects": []
+    "boostEffects": [],
+    "targets": "耕作可能な農場"
   },
   {
     "guid": "51326",
@@ -1245,7 +1320,8 @@
       "労働力維持費: -40%"
     ],
     "boostHint": "",
-    "boostEffects": []
+    "boostEffects": [],
+    "targets": "鉱山、穴"
   },
   {
     "guid": "51332",
@@ -1260,7 +1336,8 @@
       "労働力維持費: -40%"
     ],
     "boostHint": "",
-    "boostEffects": []
+    "boostEffects": [],
+    "targets": "工房"
   },
   {
     "guid": "51340",
@@ -1275,7 +1352,8 @@
       "労働力維持費: -40%"
     ],
     "boostHint": "",
-    "boostEffects": []
+    "boostEffects": [],
+    "targets": "農園"
   },
   {
     "guid": "51342",
@@ -1290,7 +1368,8 @@
       "労働力維持費: -40%"
     ],
     "boostHint": "",
-    "boostEffects": []
+    "boostEffects": [],
+    "targets": "職人アトリエ"
   },
   {
     "guid": "51551",
@@ -1304,7 +1383,8 @@
       "範囲効果: 収入 +1"
     ],
     "boostHint": "",
-    "boostEffects": []
+    "boostEffects": [],
+    "targets": "養豚場"
   },
   {
     "guid": "51555",
@@ -1318,7 +1398,8 @@
       "範囲効果: 収入 +1"
     ],
     "boostHint": "",
-    "boostEffects": []
+    "boostEffects": [],
+    "targets": "なめし革工房"
   },
   {
     "guid": "51559",
@@ -1332,7 +1413,8 @@
       "範囲効果: 収入 +1.5"
     ],
     "boostHint": "",
-    "boostEffects": []
+    "boostEffects": [],
+    "targets": "金細工工房"
   },
   {
     "guid": "51563",
@@ -1346,7 +1428,8 @@
       "範囲効果: 収入 +1"
     ],
     "boostHint": "",
-    "boostEffects": []
+    "boostEffects": [],
+    "targets": "陶工"
   },
   {
     "guid": "51567",
@@ -1360,7 +1443,8 @@
       "範囲効果: 収入 +1"
     ],
     "boostHint": "",
-    "boostEffects": []
+    "boostEffects": [],
+    "targets": "石灰岩の採石場"
   },
   {
     "guid": "51571",
@@ -1374,7 +1458,8 @@
       "範囲効果: 収入 +1"
     ],
     "boostHint": "",
-    "boostEffects": []
+    "boostEffects": [],
+    "targets": "銀工房"
   },
   {
     "guid": "51575",
@@ -1388,7 +1473,8 @@
       "範囲効果: 収入 +1.5"
     ],
     "boostHint": "",
-    "boostEffects": []
+    "boostEffects": [],
+    "targets": "羊牧場"
   },
   {
     "guid": "51579",
@@ -1402,7 +1488,8 @@
       "範囲効果: 収入 +0.5"
     ],
     "boostHint": "",
-    "boostEffects": []
+    "boostEffects": [],
+    "targets": "靴職人"
   },
   {
     "guid": "51378",
@@ -1416,7 +1503,8 @@
       "範囲効果: 信仰 +1"
     ],
     "boostHint": "",
-    "boostEffects": []
+    "boostEffects": [],
+    "targets": "ラベンダー農家"
   },
   {
     "guid": "51382",
@@ -1430,7 +1518,8 @@
       "範囲効果: 信仰 +0.5"
     ],
     "boostHint": "",
-    "boostEffects": []
+    "boostEffects": [],
+    "targets": "お粥の屋台"
   },
   {
     "guid": "51390",
@@ -1444,7 +1533,8 @@
       "範囲効果: 信仰 +1.5"
     ],
     "boostHint": "",
-    "boostEffects": []
+    "boostEffects": [],
+    "targets": "織機工"
   },
   {
     "guid": "51394",
@@ -1458,7 +1548,8 @@
       "範囲効果: 信仰 +1.5"
     ],
     "boostHint": "",
-    "boostEffects": []
+    "boostEffects": [],
+    "targets": "大理石工房"
   },
   {
     "guid": "51398",
@@ -1472,7 +1563,8 @@
       "範囲効果: 信仰 +0.5"
     ],
     "boostHint": "",
-    "boostEffects": []
+    "boostEffects": [],
+    "targets": "ウナギ漁師"
   },
   {
     "guid": "51402",
@@ -1486,7 +1578,8 @@
       "範囲効果: 信仰 +1"
     ],
     "boostHint": "",
-    "boostEffects": []
+    "boostEffects": [],
+    "targets": "銀鉱山"
   },
   {
     "guid": "51406",
@@ -1500,7 +1593,8 @@
       "範囲効果: 信仰 +1"
     ],
     "boostHint": "",
-    "boostEffects": []
+    "boostEffects": [],
+    "targets": "ソーセージ職人"
   },
   {
     "guid": "51410",
@@ -1514,7 +1608,8 @@
       "範囲効果: 信仰 +1.5"
     ],
     "boostHint": "",
-    "boostEffects": []
+    "boostEffects": [],
+    "targets": "かつら職人"
   },
   {
     "guid": "51414",
@@ -1528,7 +1623,8 @@
       "範囲効果: 信仰 +1"
     ],
     "boostHint": "",
-    "boostEffects": []
+    "boostEffects": [],
+    "targets": "オーロックス牧場"
   },
   {
     "guid": "51418",
@@ -1542,7 +1638,8 @@
       "範囲効果: 信仰 +1.5"
     ],
     "boostHint": "",
-    "boostEffects": []
+    "boostEffects": [],
+    "targets": "花崗岩の採石場"
   },
   {
     "guid": "51422",
@@ -1556,7 +1653,8 @@
       "範囲効果: 信仰 +1"
     ],
     "boostHint": "",
-    "boostEffects": []
+    "boostEffects": [],
+    "targets": "青銅の製錬工"
   },
   {
     "guid": "51426",
@@ -1570,7 +1668,8 @@
       "範囲効果: 信仰 +1.5"
     ],
     "boostHint": "",
-    "boostEffects": []
+    "boostEffects": [],
+    "targets": "地窯"
   },
   {
     "guid": "51430",
@@ -1584,7 +1683,8 @@
       "範囲効果: 信仰 +1.5"
     ],
     "boostHint": "",
-    "boostEffects": []
+    "boostEffects": [],
+    "targets": "ビーバー帽子職人"
   },
   {
     "guid": "51434",
@@ -1598,7 +1698,8 @@
       "範囲効果: 信仰 +1.5"
     ],
     "boostHint": "",
-    "boostEffects": []
+    "boostEffects": [],
+    "targets": "花崗岩の切断工"
   },
   {
     "guid": "51519",
@@ -1612,7 +1713,8 @@
       "範囲効果: 知識 +1"
     ],
     "boostHint": "",
-    "boostEffects": []
+    "boostEffects": [],
+    "targets": "鉄鉱山"
   },
   {
     "guid": "51523",
@@ -1626,7 +1728,8 @@
       "範囲効果: 知識 +1"
     ],
     "boostHint": "",
-    "boostEffects": []
+    "boostEffects": [],
+    "targets": "弦張り師"
   },
   {
     "guid": "51527",
@@ -1640,7 +1743,8 @@
       "範囲効果: 知識 +1.5"
     ],
     "boostHint": "",
-    "boostEffects": []
+    "boostEffects": [],
+    "targets": "水の美食家"
   },
   {
     "guid": "51531",
@@ -1654,7 +1758,8 @@
       "範囲効果: 知識 +1"
     ],
     "boostHint": "",
-    "boostEffects": []
+    "boostEffects": [],
+    "targets": "蝋版職人"
   },
   {
     "guid": "51535",
@@ -1668,7 +1773,8 @@
       "範囲効果: 知識 +1.5"
     ],
     "boostHint": "",
-    "boostEffects": []
+    "boostEffects": [],
+    "targets": "ガラス吹き工"
   },
   {
     "guid": "51539",
@@ -1682,7 +1788,8 @@
       "範囲効果: 知識 +1"
     ],
     "boostHint": "",
-    "boostEffects": []
+    "boostEffects": [],
+    "targets": "錫鉱"
   },
   {
     "guid": "51543",
@@ -1696,7 +1803,8 @@
       "範囲効果: 知識 +1"
     ],
     "boostHint": "",
-    "boostEffects": []
+    "boostEffects": [],
+    "targets": "銅鉱"
   },
   {
     "guid": "51547",
@@ -1710,7 +1818,8 @@
       "範囲効果: 知識 +1.5"
     ],
     "boostHint": "",
-    "boostEffects": []
+    "boostEffects": [],
+    "targets": "アッケシソウ焼き"
   },
   {
     "guid": "51587",
@@ -1724,7 +1833,8 @@
       "範囲効果: 名声 +1.5"
     ],
     "boostHint": "",
-    "boostEffects": []
+    "boostEffects": [],
+    "targets": "大理石の採石場"
   },
   {
     "guid": "51591",
@@ -1738,7 +1848,8 @@
       "範囲効果: 名声 +1.5"
     ],
     "boostHint": "",
-    "boostEffects": []
+    "boostEffects": [],
+    "targets": "鉱物の採石場"
   },
   {
     "guid": "51595",
@@ -1752,7 +1863,8 @@
       "範囲効果: 名声 +1.5"
     ],
     "boostHint": "",
-    "boostEffects": []
+    "boostEffects": [],
+    "targets": "染色工房"
   },
   {
     "guid": "51599",
@@ -1766,7 +1878,8 @@
       "範囲効果: 名声 +1"
     ],
     "boostHint": "",
-    "boostEffects": []
+    "boostEffects": [],
+    "targets": "ガラス工房"
   },
   {
     "guid": "51603",
@@ -1780,7 +1893,8 @@
       "範囲効果: 名声 +1"
     ],
     "boostHint": "",
-    "boostEffects": []
+    "boostEffects": [],
+    "targets": "鉱物粉砕所"
   },
   {
     "guid": "51607",
@@ -1794,7 +1908,8 @@
       "範囲効果: 名声 +1.5"
     ],
     "boostHint": "",
-    "boostEffects": []
+    "boostEffects": [],
+    "targets": "宝石商"
   },
   {
     "guid": "51611",
@@ -1808,7 +1923,8 @@
       "範囲効果: 名声 +1.5"
     ],
     "boostHint": "",
-    "boostEffects": []
+    "boostEffects": [],
+    "targets": "鎖職人"
   },
   {
     "guid": "51615",
@@ -1822,7 +1938,8 @@
       "範囲効果: 名声 +1.5"
     ],
     "boostHint": "",
-    "boostEffects": []
+    "boostEffects": [],
+    "targets": "防具工房"
   },
   {
     "guid": "51619",
@@ -1836,7 +1953,8 @@
       "範囲効果: 名声 +1"
     ],
     "boostHint": "",
-    "boostEffects": []
+    "boostEffects": [],
+    "targets": "ブローチ職人"
   },
   {
     "guid": "51623",
@@ -1850,7 +1968,8 @@
       "範囲効果: 名声 +1.5"
     ],
     "boostHint": "",
-    "boostEffects": []
+    "boostEffects": [],
+    "targets": "鏡職人"
   },
   {
     "guid": "51627",
@@ -1864,7 +1983,8 @@
       "範囲効果: 名声 +1"
     ],
     "boostHint": "",
-    "boostEffects": []
+    "boostEffects": [],
+    "targets": "針金細工師"
   },
   {
     "guid": "51631",
@@ -1878,7 +1998,8 @@
       "範囲効果: 名声 +1.5"
     ],
     "boostHint": "",
-    "boostEffects": []
+    "boostEffects": [],
+    "targets": "盾職人"
   },
   {
     "guid": "51386",
@@ -1892,7 +2013,8 @@
       "範囲効果: 名声 +0.5"
     ],
     "boostHint": "",
-    "boostEffects": []
+    "boostEffects": [],
+    "targets": "ピレウス帽職人"
   },
   {
     "guid": "51442",
@@ -1906,7 +2028,8 @@
       "範囲効果: 幸福度 +1"
     ],
     "boostHint": "",
-    "boostEffects": []
+    "boostEffects": [],
+    "targets": "監視人"
   },
   {
     "guid": "51446",
@@ -1920,7 +2043,8 @@
       "範囲効果: 幸福度 +0.5"
     ],
     "boostHint": "",
-    "boostEffects": []
+    "boostEffects": [],
+    "targets": "糸紡ぎ師"
   },
   {
     "guid": "51450",
@@ -1934,7 +2058,8 @@
       "範囲効果: 幸福度 +1"
     ],
     "boostHint": "",
-    "boostEffects": []
+    "boostEffects": [],
+    "targets": "武器鍛冶師"
   },
   {
     "guid": "51454",
@@ -1948,7 +2073,8 @@
       "範囲効果: 幸福度 +1"
     ],
     "boostHint": "",
-    "boostEffects": []
+    "boostEffects": [],
+    "targets": "ガルム工房"
   },
   {
     "guid": "51458",
@@ -1962,7 +2088,8 @@
       "範囲効果: 幸福度 +1.5"
     ],
     "boostHint": "",
-    "boostEffects": []
+    "boostEffects": [],
+    "targets": "リラ職人"
   },
   {
     "guid": "51462",
@@ -1976,7 +2103,8 @@
       "範囲効果: 幸福度 +1.5"
     ],
     "boostHint": "",
-    "boostEffects": []
+    "boostEffects": [],
+    "targets": "モザイク工房"
   },
   {
     "guid": "51470",
@@ -1990,7 +2118,8 @@
       "範囲効果: 幸福度 +1.5"
     ],
     "boostHint": "",
-    "boostEffects": []
+    "boostEffects": [],
+    "targets": "空気の美食家"
   },
   {
     "guid": "51474",
@@ -2004,7 +2133,8 @@
       "範囲効果: 幸福度 +1.5"
     ],
     "boostHint": "",
-    "boostEffects": []
+    "boostEffects": [],
+    "targets": "戦車工房"
   },
   {
     "guid": "51466",
@@ -2018,7 +2148,8 @@
       "範囲効果: 健康 +1"
     ],
     "boostHint": "",
-    "boostEffects": []
+    "boostEffects": [],
+    "targets": "医院"
   },
   {
     "guid": "51478",
@@ -2032,7 +2163,8 @@
       "範囲効果: 健康 +1.5"
     ],
     "boostHint": "",
-    "boostEffects": []
+    "boostEffects": [],
+    "targets": "馬ブリーダー"
   },
   {
     "guid": "51482",
@@ -2046,7 +2178,8 @@
       "範囲効果: 健康 +1.5"
     ],
     "boostHint": "",
-    "boostEffects": []
+    "boostEffects": [],
+    "targets": "ワイン醸造業者"
   },
   {
     "guid": "51486",
@@ -2060,7 +2193,8 @@
       "範囲効果: 健康 +1"
     ],
     "boostHint": "",
-    "boostEffects": []
+    "boostEffects": [],
+    "targets": "アスピック職人"
   },
   {
     "guid": "51490",
@@ -2074,7 +2208,8 @@
       "範囲効果: 健康 +1"
     ],
     "boostHint": "",
-    "boostEffects": []
+    "boostEffects": [],
+    "targets": "石鹸工房"
   },
   {
     "guid": "51494",
@@ -2088,7 +2223,8 @@
       "範囲効果: 健康 +1"
     ],
     "boostHint": "",
-    "boostEffects": []
+    "boostEffects": [],
+    "targets": "サンダル職人"
   },
   {
     "guid": "51498",
@@ -2102,7 +2238,8 @@
       "範囲効果: 健康 +1"
     ],
     "boostHint": "",
-    "boostEffects": []
+    "boostEffects": [],
+    "targets": "オリーブ圧搾所"
   },
   {
     "guid": "51502",
@@ -2116,7 +2253,8 @@
       "範囲効果: 健康 +1"
     ],
     "boostHint": "",
-    "boostEffects": []
+    "boostEffects": [],
+    "targets": "ハーブ園"
   },
   {
     "guid": "51506",
@@ -2130,7 +2268,8 @@
       "範囲効果: 健康 +0.5"
     ],
     "boostHint": "",
-    "boostEffects": []
+    "boostEffects": [],
+    "targets": "ザル貝採り"
   },
   {
     "guid": "51510",
@@ -2144,7 +2283,8 @@
       "範囲効果: 健康 +1"
     ],
     "boostHint": "",
-    "boostEffects": []
+    "boostEffects": [],
+    "targets": "乳工房"
   },
   {
     "guid": "51514",
@@ -2158,7 +2298,8 @@
       "範囲効果: 健康 +1"
     ],
     "boostHint": "",
-    "boostEffects": []
+    "boostEffects": [],
+    "targets": "靴下職人"
   },
   {
     "guid": "51362",
@@ -2172,7 +2313,8 @@
       "範囲効果: 火災安全度 +1"
     ],
     "boostHint": "",
-    "boostEffects": []
+    "boostEffects": [],
+    "targets": "見張り"
   },
   {
     "guid": "51366",
@@ -2186,7 +2328,8 @@
       "範囲効果: 火災安全度 +1"
     ],
     "boostHint": "",
-    "boostEffects": []
+    "boostEffects": [],
+    "targets": "瓦工房"
   },
   {
     "guid": "51635",
@@ -2200,7 +2343,8 @@
       "範囲効果: 火災安全度 +1"
     ],
     "boostHint": "",
-    "boostEffects": []
+    "boostEffects": [],
+    "targets": "パン屋"
   },
   {
     "guid": "51639",
@@ -2214,7 +2358,8 @@
       "範囲効果: 火災安全度 +1"
     ],
     "boostHint": "",
-    "boostEffects": []
+    "boostEffects": [],
+    "targets": "炭焼き師"
   },
   {
     "guid": "51370",
@@ -2228,7 +2373,8 @@
       "範囲効果: 火災安全度 +1"
     ],
     "boostHint": "",
-    "boostEffects": []
+    "boostEffects": [],
+    "targets": "醸造所"
   },
   {
     "guid": "51374",
@@ -2242,7 +2388,8 @@
       "範囲効果: 火災安全度 +1.5"
     ],
     "boostHint": "",
-    "boostEffects": []
+    "boostEffects": [],
+    "targets": "裁縫師"
   },
   {
     "guid": "43677",
@@ -2256,7 +2403,8 @@
       "範囲効果: 収入 +1.5"
     ],
     "boostHint": "",
-    "boostEffects": []
+    "boostEffects": [],
+    "targets": "漁場"
   },
   {
     "guid": "44084",
@@ -2270,7 +2418,8 @@
       "範囲効果: 火災安全度 +1.5"
     ],
     "boostHint": "",
-    "boostEffects": []
+    "boostEffects": [],
+    "targets": "製錬所"
   },
   {
     "guid": "42047",
@@ -2284,7 +2433,8 @@
       "範囲効果: 名声 +1.5"
     ],
     "boostHint": "",
-    "boostEffects": []
+    "boostEffects": [],
+    "targets": "服屋"
   },
   {
     "guid": "42043",
@@ -2298,7 +2448,8 @@
       "範囲効果: 知識 +1.5"
     ],
     "boostHint": "",
-    "boostEffects": []
+    "boostEffects": [],
+    "targets": "調理場"
   },
   {
     "guid": "79958",
@@ -2322,7 +2473,8 @@
       "範囲効果: 収入 +10",
       "範囲効果: 幸福度 -3",
       "範囲効果: 健康 -3"
-    ]
+    ],
+    "targets": "鉱山"
   },
   {
     "guid": "107339",
@@ -2345,7 +2497,8 @@
       "燃料の効率: +50%",
       "維持費: -50%",
       "範囲効果: 信仰 +3"
-    ]
+    ],
+    "targets": "武器庫"
   },
   {
     "guid": "80513",
@@ -2365,7 +2518,8 @@
       "範囲効果: 火災安全度 +1",
       "範囲効果: 知識 -2",
       "範囲効果: 名声 +5"
-    ]
+    ],
+    "targets": "野営地"
   },
   {
     "guid": "79636",
@@ -2385,7 +2539,8 @@
       "船の建造費: -50%",
       "船の建造速度: +100%",
       "範囲効果: 知識 +2"
-    ]
+    ],
+    "targets": "造船所"
   },
   {
     "guid": "80179",
@@ -2407,7 +2562,8 @@
       "範囲効果: 幸福度 +1",
       "範囲効果: 健康 +1",
       "範囲効果: 火災安全度 +1"
-    ]
+    ],
+    "targets": "祭壇"
   },
   {
     "guid": "51286",
@@ -2427,7 +2583,8 @@
       "維持費: -50%",
       "範囲効果: 収入 +4",
       "範囲効果: 名声 -1"
-    ]
+    ],
+    "targets": "都市警備"
   },
   {
     "guid": "107554",
@@ -2447,7 +2604,8 @@
       "維持費: -40%",
       "範囲効果: 信仰 +4",
       "範囲効果: 知識 -1"
-    ]
+    ],
+    "targets": "アメニティ施設"
   },
   {
     "guid": "80686",
@@ -2458,16 +2616,17 @@
     "price": "600000",
     "description": "彼は一度、神殿をデッドリフトしたことがある… 少なくとも、女の子たちにはそう言っている。",
     "effects": [
-      "Disease;Plagueの影響を受けない",
+      "病気・疫病の影響を受けない",
       "範囲効果: 火災安全度 -1",
       "範囲効果: 名声 +3"
     ],
     "boostHint": "いつの日か円形闘技場を見たいと思っている",
     "boostEffects": [
-      "Disease;Plagueの影響を受けない",
+      "病気・疫病の影響を受けない",
       "範囲効果: 火災安全度 -2",
       "範囲効果: 名声 +4"
-    ]
+    ],
+    "targets": "驚異"
   },
   {
     "guid": "80490",
@@ -2489,7 +2648,8 @@
       "信仰: +150",
       "知識: +150",
       "名声: +300"
-    ]
+    ],
+    "targets": "すべてのモニュメント"
   },
   {
     "guid": "51826",
@@ -2503,7 +2663,8 @@
       "イワシ: 健康 +1"
     ],
     "boostHint": "",
-    "boostEffects": []
+    "boostEffects": [],
+    "targets": "住居"
   },
   {
     "guid": "51829",
@@ -2517,7 +2678,8 @@
       "ウナギ: 人々 +1"
     ],
     "boostHint": "",
-    "boostEffects": []
+    "boostEffects": [],
+    "targets": "住居"
   },
   {
     "guid": "51831",
@@ -2531,7 +2693,8 @@
       "ザル貝: 健康 +1"
     ],
     "boostHint": "",
-    "boostEffects": []
+    "boostEffects": [],
+    "targets": "住居"
   },
   {
     "guid": "51851",
@@ -2545,7 +2708,8 @@
       "ピレウス帽: 知識 +1"
     ],
     "boostHint": "",
-    "boostEffects": []
+    "boostEffects": [],
+    "targets": "住居"
   },
   {
     "guid": "51853",
@@ -2559,7 +2723,8 @@
       "チュニック: 名声 +1"
     ],
     "boostHint": "",
-    "boostEffects": []
+    "boostEffects": [],
+    "targets": "住居"
   },
   {
     "guid": "51855",
@@ -2573,7 +2738,8 @@
       "葦の靴: 収入 +2"
     ],
     "boostHint": "",
-    "boostEffects": []
+    "boostEffects": [],
+    "targets": "住居"
   },
   {
     "guid": "51833",
@@ -2587,7 +2753,8 @@
       "ガルム: 健康 +2"
     ],
     "boostHint": "",
-    "boostEffects": []
+    "boostEffects": [],
+    "targets": "住居"
   },
   {
     "guid": "51835",
@@ -2601,7 +2768,8 @@
       "パン: 人々 +2"
     ],
     "boostHint": "",
-    "boostEffects": []
+    "boostEffects": [],
+    "targets": "住居"
   },
   {
     "guid": "51837",
@@ -2615,7 +2783,8 @@
       "ソーセージ: 収入 +2"
     ],
     "boostHint": "",
-    "boostEffects": []
+    "boostEffects": [],
+    "targets": "住居"
   },
   {
     "guid": "51839",
@@ -2629,7 +2798,8 @@
       "ビール: 火災安全度 +2"
     ],
     "boostHint": "",
-    "boostEffects": []
+    "boostEffects": [],
+    "targets": "住居"
   },
   {
     "guid": "51857",
@@ -2643,7 +2813,8 @@
       "サンダル: 健康 +2"
     ],
     "boostHint": "",
-    "boostEffects": []
+    "boostEffects": [],
+    "targets": "住居"
   },
   {
     "guid": "51859",
@@ -2657,7 +2828,8 @@
       "石鹸: 名声 +2"
     ],
     "boostHint": "",
-    "boostEffects": []
+    "boostEffects": [],
+    "targets": "住居"
   },
   {
     "guid": "51861",
@@ -2671,7 +2843,8 @@
       "ズボン: 火災安全度 +2"
     ],
     "boostHint": "",
-    "boostEffects": []
+    "boostEffects": [],
+    "targets": "住居"
   },
   {
     "guid": "51863",
@@ -2685,7 +2858,8 @@
       "首輪: 名声 +2"
     ],
     "boostHint": "",
-    "boostEffects": []
+    "boostEffects": [],
+    "targets": "住居"
   },
   {
     "guid": "51865",
@@ -2699,7 +2873,8 @@
       "ブローチ: 幸福度 +2"
     ],
     "boostHint": "",
-    "boostEffects": []
+    "boostEffects": [],
+    "targets": "住居"
   },
   {
     "guid": "51877",
@@ -2713,7 +2888,8 @@
       "アンフォラ: 火災安全度 +2"
     ],
     "boostHint": "",
-    "boostEffects": []
+    "boostEffects": [],
+    "targets": "住居"
   },
   {
     "guid": "51879",
@@ -2727,7 +2903,8 @@
       "オリーブオイル: 信仰 +2"
     ],
     "boostHint": "",
-    "boostEffects": []
+    "boostEffects": [],
+    "targets": "住居"
   },
   {
     "guid": "51841",
@@ -2741,7 +2918,8 @@
       "チーズ: 名声 +3"
     ],
     "boostHint": "",
-    "boostEffects": []
+    "boostEffects": [],
+    "targets": "住居"
   },
   {
     "guid": "51843",
@@ -2755,7 +2933,8 @@
       "ワイン: 名声 +3"
     ],
     "boostHint": "",
-    "boostEffects": []
+    "boostEffects": [],
+    "targets": "住居"
   },
   {
     "guid": "51845",
@@ -2769,7 +2948,8 @@
       "ローストビーフ: 幸福度 +3"
     ],
     "boostHint": "",
-    "boostEffects": []
+    "boostEffects": [],
+    "targets": "住居"
   },
   {
     "guid": "51847",
@@ -2783,7 +2963,8 @@
       "鳥舌肉アスピック: 知識 +3"
     ],
     "boostHint": "",
-    "boostEffects": []
+    "boostEffects": [],
+    "targets": "住居"
   },
   {
     "guid": "51849",
@@ -2797,7 +2978,8 @@
       "牡蠣のキャビア添え: 信仰 +3"
     ],
     "boostHint": "",
-    "boostEffects": []
+    "boostEffects": [],
+    "targets": "住居"
   },
   {
     "guid": "51867",
@@ -2811,7 +2993,8 @@
       "トガ: 信仰 +3"
     ],
     "boostHint": "",
-    "boostEffects": []
+    "boostEffects": [],
+    "targets": "住居"
   },
   {
     "guid": "51869",
@@ -2825,7 +3008,8 @@
       "かつら: 幸福度 +3"
     ],
     "boostHint": "",
-    "boostEffects": []
+    "boostEffects": [],
+    "targets": "住居"
   },
   {
     "guid": "51871",
@@ -2839,7 +3023,8 @@
       "毛皮の帽子: 健康 +3"
     ],
     "boostHint": "",
-    "boostEffects": []
+    "boostEffects": [],
+    "targets": "住居"
   },
   {
     "guid": "51873",
@@ -2853,7 +3038,8 @@
       "外套: 名声 +3"
     ],
     "boostHint": "",
-    "boostEffects": []
+    "boostEffects": [],
+    "targets": "住居"
   },
   {
     "guid": "51875",
@@ -2867,7 +3053,8 @@
       "ネックレス: 収入 +3"
     ],
     "boostHint": "",
-    "boostEffects": []
+    "boostEffects": [],
+    "targets": "住居"
   },
   {
     "guid": "51881",
@@ -2881,7 +3068,8 @@
       "筆記板: 知識 +3"
     ],
     "boostHint": "",
-    "boostEffects": []
+    "boostEffects": [],
+    "targets": "住居"
   },
   {
     "guid": "51883",
@@ -2895,7 +3083,8 @@
       "高級ガラス: 知識 +3"
     ],
     "boostHint": "",
-    "boostEffects": []
+    "boostEffects": [],
+    "targets": "住居"
   },
   {
     "guid": "51885",
@@ -2909,7 +3098,8 @@
       "手鏡: 名声 +3"
     ],
     "boostHint": "",
-    "boostEffects": []
+    "boostEffects": [],
+    "targets": "住居"
   },
   {
     "guid": "51887",
@@ -2923,7 +3113,8 @@
       "肘掛け椅子: 収入 +3"
     ],
     "boostHint": "",
-    "boostEffects": []
+    "boostEffects": [],
+    "targets": "住居"
   },
   {
     "guid": "51889",
@@ -2937,7 +3128,8 @@
       "竪琴: 信仰 +3"
     ],
     "boostHint": "",
-    "boostEffects": []
+    "boostEffects": [],
+    "targets": "住居"
   },
   {
     "guid": "51891",
@@ -2951,7 +3143,8 @@
       "戦車: 火災安全度 +3"
     ],
     "boostHint": "",
-    "boostEffects": []
+    "boostEffects": [],
+    "targets": "住居"
   },
   {
     "guid": "51893",
@@ -2965,7 +3158,8 @@
       "部族の盾: 火災安全度 +3"
     ],
     "boostHint": "",
-    "boostEffects": []
+    "boostEffects": [],
+    "targets": "住居"
   },
   {
     "guid": "42056",
@@ -2979,7 +3173,8 @@
       "お粥: 知識 +3"
     ],
     "boostHint": "",
-    "boostEffects": []
+    "boostEffects": [],
+    "targets": "住居"
   },
   {
     "guid": "42055",
@@ -2993,7 +3188,8 @@
       "酒場: 知識 +2"
     ],
     "boostHint": "",
-    "boostEffects": []
+    "boostEffects": [],
+    "targets": "住居"
   },
   {
     "guid": "42045",
@@ -3007,7 +3203,8 @@
       "市議会: 知識 +2"
     ],
     "boostHint": "",
-    "boostEffects": []
+    "boostEffects": [],
+    "targets": "住居"
   },
   {
     "guid": "42044",
@@ -3021,7 +3218,8 @@
       "運動場: 信仰 +2"
     ],
     "boostHint": "",
-    "boostEffects": []
+    "boostEffects": [],
+    "targets": "住居"
   },
   {
     "guid": "51357",
@@ -3035,7 +3233,8 @@
       "貯水池: 火災安全度 +2"
     ],
     "boostHint": "",
-    "boostEffects": []
+    "boostEffects": [],
+    "targets": "住居"
   },
   {
     "guid": "44075",
@@ -3049,7 +3248,8 @@
       "生産性: +10%"
     ],
     "boostHint": "",
-    "boostEffects": []
+    "boostEffects": [],
+    "targets": "イワシの生産チェーン"
   },
   {
     "guid": "44076",
@@ -3063,7 +3263,8 @@
       "生産性: +10%"
     ],
     "boostHint": "",
-    "boostEffects": []
+    "boostEffects": [],
+    "targets": "お粥の生産チェーン"
   },
   {
     "guid": "44077",
@@ -3077,7 +3278,8 @@
       "生産性: +10%"
     ],
     "boostHint": "",
-    "boostEffects": []
+    "boostEffects": [],
+    "targets": "ウナギの生産チェーン"
   },
   {
     "guid": "44078",
@@ -3091,7 +3293,8 @@
       "生産性: +10%"
     ],
     "boostHint": "",
-    "boostEffects": []
+    "boostEffects": [],
+    "targets": "帆布工場、帆の生産チェーン"
   },
   {
     "guid": "44079",
@@ -3105,7 +3308,8 @@
       "生産性: +10%"
     ],
     "boostHint": "",
-    "boostEffects": []
+    "boostEffects": [],
+    "targets": "ロープ職人、縄の生産チェーン"
   },
   {
     "guid": "44080",
@@ -3119,7 +3323,8 @@
       "生産性: +10%"
     ],
     "boostHint": "",
-    "boostEffects": []
+    "boostEffects": [],
+    "targets": "パンの生産チェーン"
   },
   {
     "guid": "44083",
@@ -3133,7 +3338,8 @@
       "生産性: +10%"
     ],
     "boostHint": "",
-    "boostEffects": []
+    "boostEffects": [],
+    "targets": "チュニックの生産チェーン"
   },
   {
     "guid": "44085",
@@ -3147,7 +3353,8 @@
       "生産性: +10%"
     ],
     "boostHint": "",
-    "boostEffects": []
+    "boostEffects": [],
+    "targets": "ガルムの生産チェーン"
   },
   {
     "guid": "44086",
@@ -3161,7 +3368,8 @@
       "生産性: +10%"
     ],
     "boostHint": "",
-    "boostEffects": []
+    "boostEffects": [],
+    "targets": "サンダルの生産チェーン"
   },
   {
     "guid": "44115",
@@ -3175,7 +3383,8 @@
       "生産性: +10%"
     ],
     "boostHint": "",
-    "boostEffects": []
+    "boostEffects": [],
+    "targets": "筆記板の生産チェーン"
   },
   {
     "guid": "44117",
@@ -3189,7 +3398,8 @@
       "生産性: +10%"
     ],
     "boostHint": "",
-    "boostEffects": []
+    "boostEffects": [],
+    "targets": "トルクの生産チェーン"
   },
   {
     "guid": "44139",
@@ -3203,7 +3413,8 @@
       "生産性: +10%"
     ],
     "boostHint": "",
-    "boostEffects": []
+    "boostEffects": [],
+    "targets": "アンフォラの生産チェーン"
   },
   {
     "guid": "44140",
@@ -3217,7 +3428,8 @@
       "生産性: +10%"
     ],
     "boostHint": "",
-    "boostEffects": []
+    "boostEffects": [],
+    "targets": "葦の靴の生産チェーン"
   },
   {
     "guid": "44141",
@@ -3231,7 +3443,8 @@
       "生産性: +10%"
     ],
     "boostHint": "",
-    "boostEffects": []
+    "boostEffects": [],
+    "targets": "オリーブオイルの生産チェーン"
   },
   {
     "guid": "44142",
@@ -3245,7 +3458,8 @@
       "生産性: +10%"
     ],
     "boostHint": "",
-    "boostEffects": []
+    "boostEffects": [],
+    "targets": "石鹸の生産チェーン"
   },
   {
     "guid": "44144",
@@ -3259,7 +3473,8 @@
       "生産性: +10%"
     ],
     "boostHint": "",
-    "boostEffects": []
+    "boostEffects": [],
+    "targets": "ピレウスの生産チェーン"
   },
   {
     "guid": "44145",
@@ -3273,7 +3488,8 @@
       "生産性: +10%"
     ],
     "boostHint": "",
-    "boostEffects": []
+    "boostEffects": [],
+    "targets": "ザル貝の生産チェーン"
   },
   {
     "guid": "44146",
@@ -3287,7 +3503,8 @@
       "生産性: +10%"
     ],
     "boostHint": "",
-    "boostEffects": []
+    "boostEffects": [],
+    "targets": "ビールの生産チェーン"
   },
   {
     "guid": "44081",
@@ -3301,7 +3518,8 @@
       "生産性: +20%"
     ],
     "boostHint": "",
-    "boostEffects": []
+    "boostEffects": [],
+    "targets": "ローストビーフの生産チェーン"
   },
   {
     "guid": "44082",
@@ -3315,7 +3533,8 @@
       "生産性: +20%"
     ],
     "boostHint": "",
-    "boostEffects": []
+    "boostEffects": [],
+    "targets": "チーズの生産チェーン"
   },
   {
     "guid": "44087",
@@ -3329,7 +3548,8 @@
       "生産性: +20%"
     ],
     "boostHint": "",
-    "boostEffects": []
+    "boostEffects": [],
+    "targets": "ズボンの生産チェーン"
   },
   {
     "guid": "44088",
@@ -3343,7 +3563,8 @@
       "生産性: +20%"
     ],
     "boostHint": "",
-    "boostEffects": []
+    "boostEffects": [],
+    "targets": "戦車の生産チェーン"
   },
   {
     "guid": "44112",
@@ -3357,7 +3578,8 @@
       "生産性: +20%"
     ],
     "boostHint": "",
-    "boostEffects": []
+    "boostEffects": [],
+    "targets": "ワイン醸造業者、ワインの生産チェーン"
   },
   {
     "guid": "44113",
@@ -3371,7 +3593,8 @@
       "生産性: +20%"
     ],
     "boostHint": "",
-    "boostEffects": []
+    "boostEffects": [],
+    "targets": "ブローチの生産チェーン"
   },
   {
     "guid": "44118",
@@ -3385,7 +3608,8 @@
       "生産性: +20%"
     ],
     "boostHint": "",
-    "boostEffects": []
+    "boostEffects": [],
+    "targets": "トガの生産チェーン"
   },
   {
     "guid": "44119",
@@ -3399,7 +3623,8 @@
       "生産性: +20%"
     ],
     "boostHint": "",
-    "boostEffects": []
+    "boostEffects": [],
+    "targets": "かつらの生産チェーン"
   },
   {
     "guid": "44120",
@@ -3413,7 +3638,8 @@
       "生産性: +20%"
     ],
     "boostHint": "",
-    "boostEffects": []
+    "boostEffects": [],
+    "targets": "高級ガラスの生産チェーン"
   },
   {
     "guid": "44121",
@@ -3427,7 +3653,8 @@
       "生産性: +20%"
     ],
     "boostHint": "",
-    "boostEffects": []
+    "boostEffects": [],
+    "targets": "部族の盾の生産チェーン"
   },
   {
     "guid": "44143",
@@ -3441,7 +3668,8 @@
       "生産性: +20%"
     ],
     "boostHint": "",
-    "boostEffects": []
+    "boostEffects": [],
+    "targets": "牡蠣のキャビア添えの生産チェーン"
   },
   {
     "guid": "44148",
@@ -3455,7 +3683,8 @@
       "生産性: +20%"
     ],
     "boostHint": "",
-    "boostEffects": []
+    "boostEffects": [],
+    "targets": "毛皮の帽子の生産チェーン"
   },
   {
     "guid": "50665",
@@ -3469,7 +3698,8 @@
       "生産性: +20%"
     ],
     "boostHint": "",
-    "boostEffects": []
+    "boostEffects": [],
+    "targets": "外套の生産チェーン"
   },
   {
     "guid": "50289",
@@ -3483,7 +3713,8 @@
       "生産性: +20%"
     ],
     "boostHint": "",
-    "boostEffects": []
+    "boostEffects": [],
+    "targets": "武器の生産チェーン"
   },
   {
     "guid": "50291",
@@ -3497,7 +3728,8 @@
       "生産性: +20%"
     ],
     "boostHint": "",
-    "boostEffects": []
+    "boostEffects": [],
+    "targets": "防具の生産チェーン"
   },
   {
     "guid": "44089",
@@ -3511,7 +3743,8 @@
       "生産性: +35%"
     ],
     "boostHint": "",
-    "boostEffects": []
+    "boostEffects": [],
+    "targets": "ネックレスの生産チェーン"
   },
   {
     "guid": "44114",
@@ -3525,7 +3758,8 @@
       "生産性: +35%"
     ],
     "boostHint": "",
-    "boostEffects": []
+    "boostEffects": [],
+    "targets": "竪琴の生産チェーン"
   },
   {
     "guid": "44147",
@@ -3539,7 +3773,8 @@
       "生産性: +35%"
     ],
     "boostHint": "",
-    "boostEffects": []
+    "boostEffects": [],
+    "targets": "ソーセージの生産チェーン"
   },
   {
     "guid": "44116",
@@ -3553,7 +3788,8 @@
       "生産性: +35%"
     ],
     "boostHint": "",
-    "boostEffects": []
+    "boostEffects": [],
+    "targets": "鏡の生産チェーン"
   },
   {
     "guid": "44122",
@@ -3567,7 +3803,8 @@
       "生産性: +35%"
     ],
     "boostHint": "",
-    "boostEffects": []
+    "boostEffects": [],
+    "targets": "鳥舌肉の生産チェーン"
   },
   {
     "guid": "44149",
@@ -3581,7 +3818,8 @@
       "生産性: +35%"
     ],
     "boostHint": "",
-    "boostEffects": []
+    "boostEffects": [],
+    "targets": "肘掛け椅子の生産チェーン"
   },
   {
     "guid": "50287",
@@ -3595,7 +3833,8 @@
       "生産性: +35%"
     ],
     "boostHint": "",
-    "boostEffects": []
+    "boostEffects": [],
+    "targets": "馬の生産チェーン"
   },
   {
     "guid": "80221",
@@ -3621,7 +3860,8 @@
       "幸福度: +1",
       "健康: +1",
       "火災安全度: +1"
-    ]
+    ],
+    "targets": "生産施設"
   },
   {
     "guid": "106974",
@@ -3641,7 +3881,8 @@
       "生産性: +40%",
       "追加の品物: 1/8",
       "必要エリア: -60%"
-    ]
+    ],
+    "targets": "森の野営地"
   },
   {
     "guid": "79947",
@@ -3661,7 +3902,8 @@
       "生産性: +35%",
       "追加の品物: 金鉱石 1/8",
       "収入: +150"
-    ]
+    ],
+    "targets": "鉱山"
   },
   {
     "guid": "80189",
@@ -3681,7 +3923,8 @@
       "生産性: +35%",
       "追加の品物: 石炭 1/8",
       "燃料の効率: +35%"
-    ]
+    ],
+    "targets": "製錬所"
   },
   {
     "guid": "80510",
@@ -3701,7 +3944,8 @@
       "生産性: +40%",
       "追加の品物: 1/8",
       "燃料の効率: +35%"
-    ]
+    ],
+    "targets": "武器庫"
   },
   {
     "guid": "51282",
@@ -3721,7 +3965,8 @@
       "生産性: +35%",
       "追加の品物: 亜麻 1/8",
       "範囲効果: 信仰 +2"
-    ]
+    ],
+    "targets": "耕作可能な農場"
   },
   {
     "guid": "80502",
@@ -3741,7 +3986,8 @@
       "生産性: +35%",
       "追加の品物: ハーブ 1/8",
       "範囲効果: 健康 +2"
-    ]
+    ],
+    "targets": "農園"
   },
   {
     "guid": "80225",
@@ -3761,7 +4007,8 @@
       "生産性: +35%",
       "追加の品物: 馬 1/8",
       "範囲効果: 名声 +2"
-    ]
+    ],
+    "targets": "牧場"
   },
   {
     "guid": "54009",
@@ -3775,7 +4022,8 @@
       "利用可能な巡回部隊: +1"
     ],
     "boostHint": "",
-    "boostEffects": []
+    "boostEffects": [],
+    "targets": "見張り"
   },
   {
     "guid": "54015",
@@ -3789,7 +4037,8 @@
       "利用可能な巡回部隊: +1"
     ],
     "boostHint": "",
-    "boostEffects": []
+    "boostEffects": [],
+    "targets": "医院"
   },
   {
     "guid": "54021",
@@ -3803,7 +4052,8 @@
       "利用可能な巡回部隊: +1"
     ],
     "boostHint": "",
-    "boostEffects": []
+    "boostEffects": [],
+    "targets": "監視人"
   },
   {
     "guid": "54011",
@@ -3818,7 +4068,8 @@
       "火災安全度: +30"
     ],
     "boostHint": "",
-    "boostEffects": []
+    "boostEffects": [],
+    "targets": "見張り"
   },
   {
     "guid": "54017",
@@ -3833,7 +4084,8 @@
       "健康: +30"
     ],
     "boostHint": "",
-    "boostEffects": []
+    "boostEffects": [],
+    "targets": "医院"
   },
   {
     "guid": "54023",
@@ -3848,7 +4100,8 @@
       "幸福度: +30"
     ],
     "boostHint": "",
-    "boostEffects": []
+    "boostEffects": [],
+    "targets": "監視人"
   },
   {
     "guid": "42052",
@@ -3864,7 +4117,8 @@
       "範囲効果: 信仰 +1"
     ],
     "boostHint": "",
-    "boostEffects": []
+    "boostEffects": [],
+    "targets": "見張り"
   },
   {
     "guid": "80494",
@@ -3880,7 +4134,8 @@
       "範囲効果: 名声 +1"
     ],
     "boostHint": "",
-    "boostEffects": []
+    "boostEffects": [],
+    "targets": "医院"
   },
   {
     "guid": "42051",
@@ -3896,7 +4151,8 @@
       "範囲効果: 知識 +1"
     ],
     "boostHint": "",
-    "boostEffects": []
+    "boostEffects": [],
+    "targets": "監視人"
   },
   {
     "guid": "54025",
@@ -3914,7 +4170,8 @@
     "boostEffects": [
       "利用可能な巡回部隊: +2",
       "範囲効果: 火災安全度 +2"
-    ]
+    ],
+    "targets": "見張り"
   },
   {
     "guid": "54034",
@@ -3932,7 +4189,8 @@
     "boostEffects": [
       "利用可能な巡回部隊: +2",
       "範囲効果: 健康 +2"
-    ]
+    ],
+    "targets": "医院"
   },
   {
     "guid": "54041",
@@ -3950,7 +4208,8 @@
     "boostEffects": [
       "利用可能な巡回部隊: +2",
       "範囲効果: 幸福度 +2"
-    ]
+    ],
+    "targets": "監視人"
   },
   {
     "guid": "42048",
@@ -3967,7 +4226,8 @@
     "boostEffects": [
       "住民による労働力: +10%",
       "スミスの労働力も同量提供する"
-    ]
+    ],
+    "targets": "メルカトルの住居"
   },
   {
     "guid": "42053",
@@ -3984,7 +4244,8 @@
     "boostEffects": [
       "住民による労働力: +10%",
       "メルカトルの労働力も同量提供する"
-    ]
+    ],
+    "targets": "スミスの住居"
   },
   {
     "guid": "51288",
@@ -4001,7 +4262,8 @@
     "boostEffects": [
       "住民による労働力: +10%",
       "プレブスの労働力も同量提供する"
-    ]
+    ],
+    "targets": "リベルトゥスの住居"
   },
   {
     "guid": "92874",
@@ -4015,7 +4277,8 @@
       "住民による労働力: +25%"
     ],
     "boostHint": "",
-    "boostEffects": []
+    "boostEffects": [],
+    "targets": "リベルトゥスの住居"
   },
   {
     "guid": "92876",
@@ -4029,7 +4292,8 @@
       "住民による労働力: +15%"
     ],
     "boostHint": "",
-    "boostEffects": []
+    "boostEffects": [],
+    "targets": "プレブスの住居"
   },
   {
     "guid": "92878",
@@ -4043,7 +4307,8 @@
       "住民による労働力: +15%"
     ],
     "boostHint": "",
-    "boostEffects": []
+    "boostEffects": [],
+    "targets": "エクィテスの住居"
   },
   {
     "guid": "92880",
@@ -4057,7 +4322,8 @@
       "住民による労働力: +25%"
     ],
     "boostHint": "",
-    "boostEffects": []
+    "boostEffects": [],
+    "targets": "パトリキの住居"
   },
   {
     "guid": "92882",
@@ -4071,7 +4337,8 @@
       "住民による労働力: +15%"
     ],
     "boostHint": "",
-    "boostEffects": []
+    "boostEffects": [],
+    "targets": "メルカトルの住居"
   },
   {
     "guid": "92884",
@@ -4085,7 +4352,8 @@
       "住民による労働力: +25%"
     ],
     "boostHint": "",
-    "boostEffects": []
+    "boostEffects": [],
+    "targets": "ノビレスの住居"
   },
   {
     "guid": "92886",
@@ -4099,7 +4367,8 @@
       "住民による労働力: +25%"
     ],
     "boostHint": "",
-    "boostEffects": []
+    "boostEffects": [],
+    "targets": "ウェーダーの住居"
   },
   {
     "guid": "92888",
@@ -4113,7 +4382,8 @@
       "住民による労働力: +15%"
     ],
     "boostHint": "",
-    "boostEffects": []
+    "boostEffects": [],
+    "targets": "スミスの住居"
   },
   {
     "guid": "92890",
@@ -4127,7 +4397,8 @@
       "住民による労働力: +25%"
     ],
     "boostHint": "",
-    "boostEffects": []
+    "boostEffects": [],
+    "targets": "アルダーの住居"
   },
   {
     "guid": "106731",
@@ -4141,7 +4412,8 @@
       "兵士の募集速度: +50%"
     ],
     "boostHint": "",
-    "boostEffects": []
+    "boostEffects": [],
+    "targets": "募集施設"
   },
   {
     "guid": "106736",
@@ -4156,7 +4428,8 @@
       "兵士の募集速度: +100%"
     ],
     "boostHint": "",
-    "boostEffects": []
+    "boostEffects": [],
+    "targets": "兵舎"
   },
   {
     "guid": "106738",
@@ -4171,7 +4444,8 @@
       "兵士の募集速度: +100%"
     ],
     "boostHint": "",
-    "boostEffects": []
+    "boostEffects": [],
+    "targets": "攻城兵器工房"
   },
   {
     "guid": "106740",
@@ -4186,7 +4460,8 @@
       "兵士の募集速度: +100%"
     ],
     "boostHint": "",
-    "boostEffects": []
+    "boostEffects": [],
+    "targets": "騎兵養成所"
   },
   {
     "guid": "106742",
@@ -4202,7 +4477,8 @@
       "ヒットポイント: +25%"
     ],
     "boostHint": "",
-    "boostEffects": []
+    "boostEffects": [],
+    "targets": "募集施設"
   },
   {
     "guid": "106631",
@@ -4217,7 +4493,8 @@
       "労働力維持費: -25%"
     ],
     "boostHint": "",
-    "boostEffects": []
+    "boostEffects": [],
+    "targets": "オーツ麦農場、オリーブ農家"
   },
   {
     "guid": "106634",
@@ -4232,7 +4509,8 @@
       "労働力維持費: -25%"
     ],
     "boostHint": "",
-    "boostEffects": []
+    "boostEffects": [],
+    "targets": "ハーブ園、大麦農場"
   },
   {
     "guid": "106636",
@@ -4247,7 +4525,8 @@
       "労働力維持費: -25%"
     ],
     "boostHint": "",
-    "boostEffects": []
+    "boostEffects": [],
+    "targets": "漁師小屋、サバ小屋"
   },
   {
     "guid": "106638",
@@ -4262,7 +4541,8 @@
       "労働力維持費: -25%"
     ],
     "boostHint": "",
-    "boostEffects": []
+    "boostEffects": [],
+    "targets": "ザル貝採り、アッケシソウ摘み"
   },
   {
     "guid": "106644",
@@ -4278,7 +4558,8 @@
       "労働力維持費: -25%"
     ],
     "boostHint": "",
-    "boostEffects": []
+    "boostEffects": [],
+    "targets": "ラティウムの都市警備"
   },
   {
     "guid": "106646",
@@ -4294,7 +4575,8 @@
       "労働力維持費: -25%"
     ],
     "boostHint": "",
-    "boostEffects": []
+    "boostEffects": [],
+    "targets": "アルビオンの都市警備"
   },
   {
     "guid": "106648",
@@ -4310,7 +4592,8 @@
       "労働力維持費: -25%"
     ],
     "boostHint": "",
-    "boostEffects": []
+    "boostEffects": [],
+    "targets": "ラティウムの倉庫"
   },
   {
     "guid": "106650",
@@ -4326,7 +4609,8 @@
       "労働力維持費: -25%"
     ],
     "boostHint": "",
-    "boostEffects": []
+    "boostEffects": [],
+    "targets": "アルビオンの倉庫"
   },
   {
     "guid": "106640",
@@ -4342,7 +4626,8 @@
       "労働力維持費: -35%"
     ],
     "boostHint": "",
-    "boostEffects": []
+    "boostEffects": [],
+    "targets": "カタツムリ飼育場、ラティウムの羊牧場、養豚場"
   },
   {
     "guid": "106642",
@@ -4358,7 +4643,8 @@
       "労働力維持費: -35%"
     ],
     "boostHint": "",
-    "boostEffects": []
+    "boostEffects": [],
+    "targets": "オーロックス牧場、アルビオンの羊牧場、養豚場"
   },
   {
     "guid": "106652",
@@ -4374,7 +4660,8 @@
       "労働力維持費: -35%"
     ],
     "boostHint": "",
-    "boostEffects": []
+    "boostEffects": [],
+    "targets": "ラティウムの塔"
   },
   {
     "guid": "106654",
@@ -4390,7 +4677,8 @@
       "労働力維持費: -35%"
     ],
     "boostHint": "",
-    "boostEffects": []
+    "boostEffects": [],
+    "targets": "アルビオンの塔"
   },
   {
     "guid": "106539",
@@ -4404,7 +4692,8 @@
       "ヒットポイント: +15%"
     ],
     "boostHint": "",
-    "boostEffects": []
+    "boostEffects": [],
+    "targets": "塔"
   },
   {
     "guid": "106549",
@@ -4419,7 +4708,8 @@
       "自己修復速度: +100%"
     ],
     "boostHint": "",
-    "boostEffects": []
+    "boostEffects": [],
+    "targets": "交易所、倉庫、貯蔵所"
   },
   {
     "guid": "106537",
@@ -4434,7 +4724,8 @@
       "遠距離攻撃力: +2"
     ],
     "boostHint": "",
-    "boostEffects": []
+    "boostEffects": [],
+    "targets": "塔"
   },
   {
     "guid": "106541",
@@ -4450,7 +4741,8 @@
       "攻撃速度: +15%"
     ],
     "boostHint": "",
-    "boostEffects": []
+    "boostEffects": [],
+    "targets": "塔"
   },
   {
     "guid": "106547",
@@ -4466,7 +4758,8 @@
       "攻撃速度: +20%"
     ],
     "boostHint": "",
-    "boostEffects": []
+    "boostEffects": [],
+    "targets": "門"
   },
   {
     "guid": "106545",
@@ -4481,7 +4774,8 @@
       "遠距離攻撃力: +2"
     ],
     "boostHint": "",
-    "boostEffects": []
+    "boostEffects": [],
+    "targets": "門"
   },
   {
     "guid": "106551",
@@ -4498,7 +4792,8 @@
       "同時修復: +1"
     ],
     "boostHint": "",
-    "boostEffects": []
+    "boostEffects": [],
+    "targets": "修理クレーン"
   },
   {
     "guid": "42592",
@@ -4514,7 +4809,8 @@
       "遠距離攻撃力: +2"
     ],
     "boostHint": "",
-    "boostEffects": []
+    "boostEffects": [],
+    "targets": "塔"
   },
   {
     "guid": "51278",
@@ -4530,7 +4826,8 @@
       "攻撃速度: +25%"
     ],
     "boostHint": "",
-    "boostEffects": []
+    "boostEffects": [],
+    "targets": "門"
   },
   {
     "guid": "42598",
@@ -4546,7 +4843,8 @@
       "範囲効果: 幸福度 +1"
     ],
     "boostHint": "",
-    "boostEffects": []
+    "boostEffects": [],
+    "targets": "塔"
   },
   {
     "guid": "106543",
@@ -4570,7 +4868,8 @@
       "攻撃範囲: +35%",
       "遠距離攻撃力: +3",
       "攻撃速度: +25%"
-    ]
+    ],
+    "targets": "塔"
   },
   {
     "guid": "107337",
@@ -4590,7 +4889,8 @@
       "ヒットポイント: +50%",
       "自己修復速度: +100%",
       "遠距離攻撃力: +4"
-    ]
+    ],
+    "targets": "門"
   },
   {
     "guid": "80176",
@@ -4610,7 +4910,8 @@
       "労働力維持費: -50%",
       "ヒットポイント: +50%",
       "自己修復速度: +150%"
-    ]
+    ],
+    "targets": "壁、門"
   },
   {
     "guid": "106841",
@@ -4632,7 +4933,8 @@
       "攻撃範囲: +15%",
       "遠距離攻撃力: +2",
       "攻撃速度: +40%"
-    ]
+    ],
+    "targets": "塔、石の門"
   },
   {
     "guid": "106397",
@@ -4646,7 +4948,8 @@
       "水の供給: +50%"
     ],
     "boostHint": "",
-    "boostEffects": []
+    "boostEffects": [],
+    "targets": "貯水池"
   },
   {
     "guid": "42054",
@@ -4666,7 +4969,8 @@
       "維持費: -50%",
       "水の供給: +250%",
       "火災安全度: +150"
-    ]
+    ],
+    "targets": "貯水池"
   },
   {
     "guid": "106410",
@@ -4680,7 +4984,8 @@
       "水の消費: -50%"
     ],
     "boostHint": "",
-    "boostEffects": []
+    "boostEffects": [],
+    "targets": "耕作可能な農場"
   },
   {
     "guid": "106412",
@@ -4694,7 +4999,8 @@
       "水の消費: -50%"
     ],
     "boostHint": "",
-    "boostEffects": []
+    "boostEffects": [],
+    "targets": "農園"
   },
   {
     "guid": "106414",
@@ -4709,7 +5015,8 @@
       "水の消費: -50%"
     ],
     "boostHint": "",
-    "boostEffects": []
+    "boostEffects": [],
+    "targets": "鉱山"
   },
   {
     "guid": "106416",
@@ -4729,7 +5036,8 @@
       "維持費: -50%",
       "水の消費: -60%",
       "知識: +150"
-    ]
+    ],
+    "targets": "驚異"
   },
   {
     "guid": "71552",
@@ -4743,7 +5051,8 @@
       "移動速度: +10%"
     ],
     "boostHint": "",
-    "boostEffects": []
+    "boostEffects": [],
+    "targets": "船"
   },
   {
     "guid": "106708",
@@ -4757,7 +5066,8 @@
       "品物の移送速度: +25%"
     ],
     "boostHint": "",
-    "boostEffects": []
+    "boostEffects": [],
+    "targets": "船"
   },
   {
     "guid": "71540",
@@ -4772,7 +5082,8 @@
       "追い風の風向: +25"
     ],
     "boostHint": "",
-    "boostEffects": []
+    "boostEffects": [],
+    "targets": "船"
   },
   {
     "guid": "71554",
@@ -4787,7 +5098,8 @@
       "追い風の風向: +10"
     ],
     "boostHint": "",
-    "boostEffects": []
+    "boostEffects": [],
+    "targets": "船"
   },
   {
     "guid": "71556",
@@ -4801,7 +5113,8 @@
       "移動速度: +15%"
     ],
     "boostHint": "",
-    "boostEffects": []
+    "boostEffects": [],
+    "targets": "船"
   },
   {
     "guid": "42618",
@@ -4816,7 +5129,8 @@
       "発見範囲: +50%"
     ],
     "boostHint": "",
-    "boostEffects": []
+    "boostEffects": [],
+    "targets": "船"
   },
   {
     "guid": "71542",
@@ -4831,7 +5145,8 @@
       "移動速度: +10%"
     ],
     "boostHint": "",
-    "boostEffects": []
+    "boostEffects": [],
+    "targets": "船"
   },
   {
     "guid": "71558",
@@ -4846,7 +5161,8 @@
       "積荷の重量による減速: -50%"
     ],
     "boostHint": "",
-    "boostEffects": []
+    "boostEffects": [],
+    "targets": "船"
   },
   {
     "guid": "71560",
@@ -4861,7 +5177,8 @@
       "向かい風による影響: -75%"
     ],
     "boostHint": "",
-    "boostEffects": []
+    "boostEffects": [],
+    "targets": "船"
   },
   {
     "guid": "71562",
@@ -4877,7 +5194,8 @@
       "ダメージによる減速: -50%"
     ],
     "boostHint": "",
-    "boostEffects": []
+    "boostEffects": [],
+    "targets": "船"
   },
   {
     "guid": "42617",
@@ -4897,7 +5215,8 @@
       "労働力維持費: -90%",
       "移動速度: +15%",
       "積荷の重量による減速: -90%"
-    ]
+    ],
+    "targets": "船"
   },
   {
     "guid": "71564",
@@ -4917,7 +5236,8 @@
       "移動速度: +25%",
       "向かい風による影響: -100%",
       "追い風の風向: +90"
-    ]
+    ],
+    "targets": "船"
   },
   {
     "guid": "71523",
@@ -4931,7 +5251,8 @@
       "ヒットポイント: +20%"
     ],
     "boostHint": "",
-    "boostEffects": []
+    "boostEffects": [],
+    "targets": "船"
   },
   {
     "guid": "44191",
@@ -4946,7 +5267,8 @@
       "移動速度: +5%"
     ],
     "boostHint": "",
-    "boostEffects": []
+    "boostEffects": [],
+    "targets": "船"
   },
   {
     "guid": "71529",
@@ -4961,7 +5283,8 @@
       "ダメージによる減速: -25%"
     ],
     "boostHint": "",
-    "boostEffects": []
+    "boostEffects": [],
+    "targets": "船"
   },
   {
     "guid": "71531",
@@ -4976,7 +5299,8 @@
       "自己修復速度: +50%"
     ],
     "boostHint": "",
-    "boostEffects": []
+    "boostEffects": [],
+    "targets": "船"
   },
   {
     "guid": "44179",
@@ -4991,7 +5315,8 @@
       "積荷の重量による減速: -40%"
     ],
     "boostHint": "",
-    "boostEffects": []
+    "boostEffects": [],
+    "targets": "船"
   },
   {
     "guid": "71517",
@@ -5006,7 +5331,8 @@
       "自己修復速度: +100%"
     ],
     "boostHint": "",
-    "boostEffects": []
+    "boostEffects": [],
+    "targets": "船"
   },
   {
     "guid": "71525",
@@ -5021,7 +5347,8 @@
       "ダメージによる減速: -40%"
     ],
     "boostHint": "",
-    "boostEffects": []
+    "boostEffects": [],
+    "targets": "船"
   },
   {
     "guid": "71533",
@@ -5037,7 +5364,8 @@
       "積荷の重量による減速: -70%"
     ],
     "boostHint": "",
-    "boostEffects": []
+    "boostEffects": [],
+    "targets": "船"
   },
   {
     "guid": "71519",
@@ -5053,7 +5381,8 @@
       "移動速度: +15%"
     ],
     "boostHint": "",
-    "boostEffects": []
+    "boostEffects": [],
+    "targets": "船"
   },
   {
     "guid": "71527",
@@ -5075,7 +5404,8 @@
       "ヒットポイント: +100%",
       "自己修復速度: +200%",
       "ダメージによる減速: -90%"
-    ]
+    ],
+    "targets": "船"
   },
   {
     "guid": "71521",
@@ -5097,7 +5427,8 @@
       "積荷の重量による減速: -75%",
       "向かい風による影響: -75%",
       "追い風の風向: +45"
-    ]
+    ],
+    "targets": "船"
   },
   {
     "guid": "71535",
@@ -5119,7 +5450,8 @@
       "自己修復速度: +200%",
       "品物の移送速度: +80%",
       "属州の移動速度: +60%"
-    ]
+    ],
+    "targets": "船"
   },
   {
     "guid": "79629",
@@ -5139,7 +5471,8 @@
       "積荷の重量による減速: -100%",
       "ダメージによる減速: -100%",
       "向かい風による影響: -100%"
-    ]
+    ],
+    "targets": "船"
   },
   {
     "guid": "71583",
@@ -5154,7 +5487,8 @@
       "船上弓兵の遠距離攻撃力: +1"
     ],
     "boostHint": "",
-    "boostEffects": []
+    "boostEffects": [],
+    "targets": "船"
   },
   {
     "guid": "71575",
@@ -5169,7 +5503,8 @@
       "松明の攻撃速度: +10%"
     ],
     "boostHint": "",
-    "boostEffects": []
+    "boostEffects": [],
+    "targets": "船"
   },
   {
     "guid": "71599",
@@ -5184,7 +5519,8 @@
       "船上バリスタの精度: +10%"
     ],
     "boostHint": "",
-    "boostEffects": []
+    "boostEffects": [],
+    "targets": "船"
   },
   {
     "guid": "71591",
@@ -5199,7 +5535,8 @@
       "船上バリスタの攻撃範囲: +10%"
     ],
     "boostHint": "",
-    "boostEffects": []
+    "boostEffects": [],
+    "targets": "船"
   },
   {
     "guid": "71597",
@@ -5214,7 +5551,8 @@
       "船上弓兵の攻撃範囲: +20%"
     ],
     "boostHint": "",
-    "boostEffects": []
+    "boostEffects": [],
+    "targets": "船"
   },
   {
     "guid": "71573",
@@ -5229,7 +5567,8 @@
       "船上バリスタの攻撃速度: +20%"
     ],
     "boostHint": "",
-    "boostEffects": []
+    "boostEffects": [],
+    "targets": "船"
   },
   {
     "guid": "71581",
@@ -5244,7 +5583,8 @@
       "船上カタパルトの攻撃速度: +25%"
     ],
     "boostHint": "",
-    "boostEffects": []
+    "boostEffects": [],
+    "targets": "船"
   },
   {
     "guid": "71589",
@@ -5260,7 +5600,8 @@
       "松明の攻撃速度: +15%"
     ],
     "boostHint": "",
-    "boostEffects": []
+    "boostEffects": [],
+    "targets": "船"
   },
   {
     "guid": "106706",
@@ -5277,7 +5618,8 @@
       "船上弓兵の遠距離攻撃力: +2"
     ],
     "boostHint": "",
-    "boostEffects": []
+    "boostEffects": [],
+    "targets": "船"
   },
   {
     "guid": "71571",
@@ -5292,7 +5634,8 @@
       "船上バリスタの攻撃速度: +35%"
     ],
     "boostHint": "",
-    "boostEffects": []
+    "boostEffects": [],
+    "targets": "船"
   },
   {
     "guid": "71595",
@@ -5307,7 +5650,8 @@
       "船上カタパルトの攻撃速度: +35%"
     ],
     "boostHint": "",
-    "boostEffects": []
+    "boostEffects": [],
+    "targets": "船"
   },
   {
     "guid": "71587",
@@ -5323,7 +5667,8 @@
       "松明の攻撃速度: +30%"
     ],
     "boostHint": "",
-    "boostEffects": []
+    "boostEffects": [],
+    "targets": "船"
   },
   {
     "guid": "71579",
@@ -5340,7 +5685,8 @@
       "船上バリスタの遠距離攻撃力: +5"
     ],
     "boostHint": "",
-    "boostEffects": []
+    "boostEffects": [],
+    "targets": "船"
   },
   {
     "guid": "71585",
@@ -5362,7 +5708,8 @@
       "船上弓兵の攻撃範囲: +50%",
       "船上弓兵の攻撃速度: +45%",
       "松明の攻撃速度: +45%"
-    ]
+    ],
+    "targets": "船"
   },
   {
     "guid": "42619",
@@ -5384,7 +5731,8 @@
       "船上バリスタの攻撃範囲: +35%",
       "船上バリスタの遠距離攻撃力: +6",
       "船上バリスタの攻撃速度: +50%"
-    ]
+    ],
+    "targets": "船"
   },
   {
     "guid": "71577",
@@ -5406,7 +5754,8 @@
       "船上カタパルトの攻撃範囲: +20%",
       "船上カタパルトの遠距離攻撃力: +40",
       "船上カタパルトの攻撃速度: +50%"
-    ]
+    ],
+    "targets": "船"
   },
   {
     "guid": "71593",
@@ -5430,7 +5779,8 @@
       "船上バリスタの精度: +20%",
       "船上弓兵の攻撃範囲: +50%",
       "船上バリスタの攻撃範囲: +35%"
-    ]
+    ],
+    "targets": "船"
   },
   {
     "guid": "79631",
@@ -5452,7 +5802,8 @@
       "ダメージによる減速: -75%",
       "船を沈めた際にデナリウスを獲得する: +2000",
       "船上弓兵の攻撃範囲: +40%"
-    ]
+    ],
+    "targets": "船"
   },
   {
     "guid": "106979",
@@ -5474,7 +5825,8 @@
       "自己修復速度: +150%",
       "船上バリスタの攻撃範囲: +30%",
       "船上バリスタの攻撃速度: +50%"
-    ]
+    ],
+    "targets": "船"
   },
   {
     "guid": "107338",
@@ -5496,7 +5848,8 @@
       "船上カタパルトの攻撃範囲: +20%",
       "船上カタパルトの遠距離攻撃力: +40",
       "船上カタパルトの攻撃速度: +40%"
-    ]
+    ],
+    "targets": "船"
   },
   {
     "guid": "106702",
@@ -5511,7 +5864,8 @@
       "積荷の重量による減速: -25%"
     ],
     "boostHint": "",
-    "boostEffects": []
+    "boostEffects": [],
+    "targets": "船"
   },
   {
     "guid": "71544",
@@ -5526,7 +5880,8 @@
       "ダメージによる減速: -30%"
     ],
     "boostHint": "",
-    "boostEffects": []
+    "boostEffects": [],
+    "targets": "船"
   },
   {
     "guid": "71569",
@@ -5542,7 +5897,8 @@
       "船上バリスタの攻撃速度: +15%"
     ],
     "boostHint": "",
-    "boostEffects": []
+    "boostEffects": [],
+    "targets": "船"
   },
   {
     "guid": "44178",
@@ -5557,7 +5913,8 @@
       "品物の移送速度: +100%"
     ],
     "boostHint": "",
-    "boostEffects": []
+    "boostEffects": [],
+    "targets": "船"
   },
   {
     "guid": "71548",
@@ -5577,7 +5934,8 @@
       "維持費: -60%",
       "貿易価格: -25%",
       "積荷の重量による減速: -60%"
-    ]
+    ],
+    "targets": "船"
   },
   {
     "guid": "42623",
@@ -5597,7 +5955,8 @@
       "船を沈めた際にデナリウスを獲得する: +2000",
       "船上弓兵の攻撃速度: +50%",
       "松明の攻撃速度: +50%"
-    ]
+    ],
+    "targets": "船"
   },
   {
     "guid": "71538",
@@ -5612,7 +5971,8 @@
       "属州の移動速度: +20%"
     ],
     "boostHint": "",
-    "boostEffects": []
+    "boostEffects": [],
+    "targets": "船"
   },
   {
     "guid": "106714",
@@ -5628,7 +5988,8 @@
       "属州の移動速度: +20%"
     ],
     "boostHint": "",
-    "boostEffects": []
+    "boostEffects": [],
+    "targets": "船"
   },
   {
     "guid": "106704",
@@ -5643,7 +6004,8 @@
       "属州の移動速度: +20%"
     ],
     "boostHint": "",
-    "boostEffects": []
+    "boostEffects": [],
+    "targets": "船"
   },
   {
     "guid": "106710",
@@ -5659,7 +6021,8 @@
       "属州の移動速度: +15%"
     ],
     "boostHint": "",
-    "boostEffects": []
+    "boostEffects": [],
+    "targets": "船"
   },
   {
     "guid": "71546",
@@ -5675,7 +6038,8 @@
       "属州の移動速度: +25%"
     ],
     "boostHint": "",
-    "boostEffects": []
+    "boostEffects": [],
+    "targets": "船"
   },
   {
     "guid": "106712",
@@ -5691,7 +6055,8 @@
       "発見範囲: +100%"
     ],
     "boostHint": "",
-    "boostEffects": []
+    "boostEffects": [],
+    "targets": "船"
   },
   {
     "guid": "71550",
@@ -5713,7 +6078,8 @@
       "品物の移送速度: +100%",
       "移動速度: +20%",
       "属州の移動速度: +30%"
-    ]
+    ],
+    "targets": "船"
   },
   {
     "guid": "106716",
@@ -5735,7 +6101,8 @@
       "移動速度: +20%",
       "ダメージによる減速: -50%",
       "属州の移動速度: +50%"
-    ]
+    ],
+    "targets": "船"
   },
   {
     "guid": "51284",
@@ -5757,7 +6124,8 @@
       "向かい風による影響: -80%",
       "属州の移動速度: +50%",
       "発見範囲: +200%"
-    ]
+    ],
+    "targets": "船"
   },
   {
     "guid": "160048",
@@ -5779,7 +6147,8 @@
     "boostEffects": [
       "追加の品物: 布 1/8",
       "範囲効果: 名声 +3"
-    ]
+    ],
+    "targets": "糸紡ぎ師"
   },
   {
     "guid": "160051",
@@ -5801,7 +6170,8 @@
       "生産性: +50%",
       "必要エリア: -30%",
       "労働力維持費: +20%"
-    ]
+    ],
+    "targets": "鳥使い"
   },
   {
     "guid": "160054",
@@ -5824,7 +6194,8 @@
       "生産性: +60%",
       "維持費: -75%",
       "労働力維持費: -75%"
-    ]
+    ],
+    "targets": "漁場"
   },
   {
     "guid": "160057",
@@ -5844,7 +6215,8 @@
     "boostEffects": [
       "生産性: +45%",
       "品物の置換: 銀 → 鉄"
-    ]
+    ],
+    "targets": "鏡職人"
   },
   {
     "guid": "160060",
@@ -5865,7 +6237,8 @@
     "boostEffects": [
       "追加の品物: ワイン 1/8",
       "追加の品物: 蜂の巣 1/5"
-    ]
+    ],
+    "targets": "耕作可能な農場"
   },
   {
     "guid": "160063",
@@ -5889,7 +6262,8 @@
       "維持費: -35%",
       "範囲効果: 幸福度 +2",
       "範囲効果: 名声 +1"
-    ]
+    ],
+    "targets": "公共サービス"
   },
   {
     "guid": "160066",
@@ -5912,7 +6286,8 @@
       "品物の置換: サンダラックの木材 → 木材",
       "範囲効果: 知識 +3",
       "範囲効果: 名声 +3"
-    ]
+    ],
+    "targets": "蝋版職人"
   },
   {
     "guid": "160072",
@@ -5933,7 +6308,8 @@
     "boostEffects": [
       "追加の品物: チーズ 1/9",
       "労働力維持費: +50%"
-    ]
+    ],
+    "targets": "羊牧場"
   },
   {
     "guid": "160075",
@@ -5959,7 +6335,8 @@
       "労働力維持費: +20%",
       "範囲効果: 収入 +2",
       "範囲効果: 名声 +2"
-    ]
+    ],
+    "targets": "武器庫"
   },
   {
     "guid": "160078",
@@ -5981,7 +6358,8 @@
       "品物の置換: 金 → 青銅",
       "範囲効果: 信仰 +2",
       "範囲効果: 名声 +1"
-    ]
+    ],
+    "targets": "宝石商"
   },
   {
     "guid": "160081",
@@ -6003,7 +6381,8 @@
     "boostEffects": [
       "範囲効果: 人々 +2",
       "範囲効果: 名声 +1"
-    ]
+    ],
+    "targets": "ウルカヌスの祭壇"
   },
   {
     "guid": "160084",
@@ -6022,7 +6401,8 @@
     "boostHint": "穀物生産者の弟子",
     "boostEffects": [
       "品物の消費: パン -30%"
-    ]
+    ],
+    "targets": "住居"
   },
   {
     "guid": "160087",
@@ -6043,7 +6423,8 @@
     "boostEffects": [
       "維持費: +25%",
       "範囲効果: 筆記板の供給が必要"
-    ]
+    ],
+    "targets": "ラテン語学校"
   },
   {
     "guid": "160090",
@@ -6064,7 +6445,8 @@
     "boostEffects": [
       "範囲効果: 人々 +2",
       "範囲効果: 信仰 +2"
-    ]
+    ],
+    "targets": "浴場"
   },
   {
     "guid": "160093",
@@ -6085,7 +6467,8 @@
     "boostEffects": [
       "追加の品物: 金 1/4",
       "範囲効果: 名声 +4"
-    ]
+    ],
+    "targets": "金箔工房"
   },
   {
     "guid": "160488",
@@ -6106,7 +6489,8 @@
     "boostEffects": [
       "精度: +25%",
       "攻撃速度: +35%"
-    ]
+    ],
+    "targets": "塔、門"
   },
   {
     "guid": "160491",
@@ -6130,7 +6514,8 @@
       "利用可能な巡回部隊: +2",
       "応答時間: -50%",
       "範囲効果: 信仰 +3"
-    ]
+    ],
+    "targets": "都市警備"
   },
   {
     "guid": "160494",
@@ -6150,7 +6535,8 @@
     "boostEffects": [
       "維持費: -80%",
       "島の貯蔵所: +125"
-    ]
+    ],
+    "targets": "貯蔵所"
   },
   {
     "guid": "160497",
@@ -6172,7 +6558,8 @@
       "維持費: +80%",
       "範囲効果: 部族の盾の供給が必要",
       "範囲効果: 名声 +2.5"
-    ]
+    ],
+    "targets": "神聖な森"
   },
   {
     "guid": "160500",
@@ -6195,7 +6582,8 @@
       "顔料を自家供給する",
       "維持費: +50%",
       "範囲効果: 火災安全度 +2"
-    ]
+    ],
+    "targets": "ガラス吹き工"
   },
   {
     "guid": "160507",
@@ -6219,7 +6607,8 @@
       "範囲効果: ブローチの供給が必要",
       "範囲効果: 人々 +1",
       "範囲効果: 信仰 +2"
-    ]
+    ],
+    "targets": "聖所"
   },
   {
     "guid": "160510",
@@ -6242,7 +6631,8 @@
       "維持費: +30%",
       "範囲効果: お粥の供給が必要",
       "範囲効果: 人々 +2"
-    ]
+    ],
+    "targets": "市場"
   },
   {
     "guid": "160513",
@@ -6265,7 +6655,8 @@
       "生産性: +50%",
       "追加の品物: ティリアンパープル 1/2",
       "維持費: -35%"
-    ]
+    ],
+    "targets": "織機工"
   },
   {
     "guid": "160516",
@@ -6287,7 +6678,8 @@
       "範囲効果: かつらの供給が必要",
       "範囲効果: 人々 +1",
       "範囲効果: 名声 +4"
-    ]
+    ],
+    "targets": "劇場"
   },
   {
     "guid": "160519",
@@ -6309,7 +6701,8 @@
       "範囲効果: ワインの供給が必要",
       "範囲効果: 人々 +1",
       "範囲効果: 幸福度 +2"
-    ]
+    ],
+    "targets": "酒場"
   },
   {
     "guid": "160522",
@@ -6334,7 +6727,8 @@
       "労働力維持費: +75%",
       "範囲効果: 人々 +1",
       "範囲効果: 火災安全度 +2"
-    ]
+    ],
+    "targets": "パン屋"
   },
   {
     "guid": "160525",
@@ -6357,7 +6751,8 @@
       "維持費: +50%",
       "範囲効果: 牡蠣のキャビア添えの供給が必要",
       "範囲効果: 収入 +2"
-    ]
+    ],
+    "targets": "賭博場"
   },
   {
     "guid": "160528",
@@ -6381,7 +6776,8 @@
       "追加の品物: 金鉱石 1/3",
       "追加の品物: 鉱物 1/2",
       "労働力維持費: +100%"
-    ]
+    ],
+    "targets": "穴、採石場"
   },
   {
     "guid": "160531",
@@ -6401,7 +6797,8 @@
     "boostEffects": [
       "生産性: +50%",
       "追加の品物: 黒曜石 1/3"
-    ]
+    ],
+    "targets": "小像工房、ラトルンクリ工房"
   },
   {
     "guid": "160534",
@@ -6421,7 +6818,8 @@
     "boostEffects": [
       "範囲効果: 人々 +2",
       "範囲効果: 名声 +2"
-    ]
+    ],
+    "targets": "酒場"
   },
   {
     "guid": "144850",
@@ -6436,7 +6834,8 @@
       "肥沃度: +50%"
     ],
     "boostHint": "",
-    "boostEffects": []
+    "boostEffects": [],
+    "targets": "ブドウ園"
   },
   {
     "guid": "144854",
@@ -6451,7 +6850,8 @@
       "肥沃度: +50%"
     ],
     "boostHint": "",
-    "boostEffects": []
+    "boostEffects": [],
+    "targets": "亜麻農場"
   },
   {
     "guid": "144858",
@@ -6466,7 +6866,8 @@
       "肥沃度: +50%"
     ],
     "boostHint": "",
-    "boostEffects": []
+    "boostEffects": [],
+    "targets": "アッケシソウ摘み"
   },
   {
     "guid": "144862",
@@ -6481,7 +6882,8 @@
       "肥沃度: +50%"
     ],
     "boostHint": "",
-    "boostEffects": []
+    "boostEffects": [],
+    "targets": "松脂採り"
   },
   {
     "guid": "144866",
@@ -6496,7 +6898,8 @@
       "肥沃度: +50%"
     ],
     "boostHint": "",
-    "boostEffects": []
+    "boostEffects": [],
+    "targets": "オリーブ農家"
   },
   {
     "guid": "54056",
@@ -6511,7 +6914,8 @@
       "肥沃度: +50%"
     ],
     "boostHint": "",
-    "boostEffects": []
+    "boostEffects": [],
+    "targets": "ラベンダー農家"
   },
   {
     "guid": "54048",
@@ -6526,7 +6930,8 @@
       "肥沃度: +75%"
     ],
     "boostHint": "",
-    "boostEffects": []
+    "boostEffects": [],
+    "targets": "ハーブ園"
   },
   {
     "guid": "54050",
@@ -6541,7 +6946,8 @@
       "肥沃度: +75%"
     ],
     "boostHint": "",
-    "boostEffects": []
+    "boostEffects": [],
+    "targets": "銀鉱山"
   },
   {
     "guid": "54052",
@@ -6556,7 +6962,8 @@
       "肥沃度: +75%"
     ],
     "boostHint": "",
-    "boostEffects": []
+    "boostEffects": [],
+    "targets": "サンダラック苗木場"
   },
   {
     "guid": "54054",
@@ -6571,7 +6978,8 @@
       "肥沃度: +75%"
     ],
     "boostHint": "",
-    "boostEffects": []
+    "boostEffects": [],
+    "targets": "鉱物の採石場"
   },
   {
     "guid": "54058",
@@ -6586,7 +6994,8 @@
       "肥沃度: +75%"
     ],
     "boostHint": "",
-    "boostEffects": []
+    "boostEffects": [],
+    "targets": "ウォールド畑"
   },
   {
     "guid": "54060",
@@ -6601,7 +7010,8 @@
       "肥沃度: +75%"
     ],
     "boostHint": "",
-    "boostEffects": []
+    "boostEffects": [],
+    "targets": "大麦農場"
   },
   {
     "guid": "144868",
@@ -6616,7 +7026,8 @@
       "肥沃度: +75%"
     ],
     "boostHint": "",
-    "boostEffects": []
+    "boostEffects": [],
+    "targets": "鉄鉱山"
   },
   {
     "guid": "144870",
@@ -6631,7 +7042,8 @@
       "肥沃度: +75%"
     ],
     "boostHint": "",
-    "boostEffects": []
+    "boostEffects": [],
+    "targets": "錫鉱"
   },
   {
     "guid": "144872",
@@ -6646,7 +7058,8 @@
       "肥沃度: +75%"
     ],
     "boostHint": "",
-    "boostEffects": []
+    "boostEffects": [],
+    "targets": "銅鉱"
   },
   {
     "guid": "144876",
@@ -6661,7 +7074,8 @@
       "肥沃度: +75%"
     ],
     "boostHint": "",
-    "boostEffects": []
+    "boostEffects": [],
+    "targets": "金鉱"
   },
   {
     "guid": "144840",
@@ -6676,7 +7090,8 @@
       "肥沃度: +100%"
     ],
     "boostHint": "",
-    "boostEffects": []
+    "boostEffects": [],
+    "targets": "ラベンダー農家"
   },
   {
     "guid": "144852",
@@ -6691,7 +7106,8 @@
       "肥沃度: +100%"
     ],
     "boostHint": "",
-    "boostEffects": []
+    "boostEffects": [],
+    "targets": "ブドウ園"
   },
   {
     "guid": "144856",
@@ -6706,7 +7122,8 @@
       "肥沃度: +100%"
     ],
     "boostHint": "",
-    "boostEffects": []
+    "boostEffects": [],
+    "targets": "亜麻農場"
   },
   {
     "guid": "144860",
@@ -6721,7 +7138,8 @@
       "肥沃度: +100%"
     ],
     "boostHint": "",
-    "boostEffects": []
+    "boostEffects": [],
+    "targets": "アッケシソウ摘み"
   },
   {
     "guid": "144864",
@@ -6736,7 +7154,8 @@
       "肥沃度: +100%"
     ],
     "boostHint": "",
-    "boostEffects": []
+    "boostEffects": [],
+    "targets": "松脂採り"
   },
   {
     "guid": "144900",
@@ -6751,7 +7170,8 @@
       "肥沃度: +100%"
     ],
     "boostHint": "",
-    "boostEffects": []
+    "boostEffects": [],
+    "targets": "オリーブ農家"
   },
   {
     "guid": "144842",
@@ -6771,7 +7191,8 @@
       "生産性: +50%",
       "追加生産力：ハーブの生産力",
       "肥沃度: +100%"
-    ]
+    ],
+    "targets": "ハーブ園"
   },
   {
     "guid": "144844",
@@ -6791,7 +7212,8 @@
       "生産性: +50%",
       "追加生産力：染料植物の生産力",
       "肥沃度: +100%"
-    ]
+    ],
+    "targets": "ウォールド畑"
   },
   {
     "guid": "144846",
@@ -6811,7 +7233,8 @@
       "生産性: +50%",
       "追加生産力：大麦の生産力",
       "肥沃度: +100%"
-    ]
+    ],
+    "targets": "大麦農場"
   },
   {
     "guid": "144848",
@@ -6831,7 +7254,8 @@
       "生産性: +50%",
       "追加生産力：サンダラックの生産力",
       "肥沃度: +100%"
-    ]
+    ],
+    "targets": "サンダラック苗木場"
   },
   {
     "guid": "144874",
@@ -6851,7 +7275,8 @@
       "生産性: +50%",
       "追加生産力：銀鉱床",
       "肥沃度: +100%"
-    ]
+    ],
+    "targets": "銀鉱山"
   },
   {
     "guid": "144878",
@@ -6871,7 +7296,8 @@
       "生産性: +50%",
       "追加生産力：金鉱床",
       "肥沃度: +100%"
-    ]
+    ],
+    "targets": "金鉱"
   },
   {
     "guid": "145236",
@@ -6886,7 +7312,8 @@
       "肥沃度: +50%"
     ],
     "boostHint": "",
-    "boostEffects": []
+    "boostEffects": [],
+    "targets": "サバ小屋"
   },
   {
     "guid": "145238",
@@ -6901,7 +7328,8 @@
       "肥沃度: +50%"
     ],
     "boostHint": "",
-    "boostEffects": []
+    "boostEffects": [],
+    "targets": "カタツムリ飼育場"
   },
   {
     "guid": "145240",
@@ -6916,7 +7344,8 @@
       "肥沃度: +50%"
     ],
     "boostHint": "",
-    "boostEffects": []
+    "boostEffects": [],
+    "targets": "貝拾い"
   },
   {
     "guid": "145242",
@@ -6931,7 +7360,8 @@
       "肥沃度: +75%"
     ],
     "boostHint": "",
-    "boostEffects": []
+    "boostEffects": [],
+    "targets": "チョウザメの孵化場"
   },
   {
     "guid": "145244",
@@ -6946,7 +7376,8 @@
       "肥沃度: +75%"
     ],
     "boostHint": "",
-    "boostEffects": []
+    "boostEffects": [],
+    "targets": "馬追い"
   },
   {
     "guid": "145246",
@@ -6961,7 +7392,8 @@
       "肥沃度: +75%"
     ],
     "boostHint": "",
-    "boostEffects": []
+    "boostEffects": [],
+    "targets": "カキ養殖場"
   },
   {
     "guid": "145248",
@@ -6976,7 +7408,8 @@
       "肥沃度: +75%"
     ],
     "boostHint": "",
-    "boostEffects": []
+    "boostEffects": [],
+    "targets": "鳥使い"
   },
   {
     "guid": "145250",
@@ -6991,7 +7424,8 @@
       "肥沃度: +75%"
     ],
     "boostHint": "",
-    "boostEffects": []
+    "boostEffects": [],
+    "targets": "ビーバー罠師"
   },
   {
     "guid": "145252",
@@ -7006,7 +7440,8 @@
       "肥沃度: +75%"
     ],
     "boostHint": "",
-    "boostEffects": []
+    "boostEffects": [],
+    "targets": "花崗岩の採石場"
   },
   {
     "guid": "145254",
@@ -7021,7 +7456,8 @@
       "肥沃度: +75%"
     ],
     "boostHint": "",
-    "boostEffects": []
+    "boostEffects": [],
+    "targets": "大理石の採石場"
   },
   {
     "guid": "145256",
@@ -7036,7 +7472,8 @@
       "肥沃度: +100%"
     ],
     "boostHint": "",
-    "boostEffects": []
+    "boostEffects": [],
+    "targets": "サバ小屋"
   },
   {
     "guid": "145258",
@@ -7051,7 +7488,8 @@
       "肥沃度: +100%"
     ],
     "boostHint": "",
-    "boostEffects": []
+    "boostEffects": [],
+    "targets": "カタツムリ飼育場"
   },
   {
     "guid": "145260",
@@ -7066,7 +7504,8 @@
       "肥沃度: +100%"
     ],
     "boostHint": "",
-    "boostEffects": []
+    "boostEffects": [],
+    "targets": "貝拾い"
   },
   {
     "guid": "145262",
@@ -7086,7 +7525,8 @@
       "生産性: +50%",
       "追加生産力：チョウザメの生産力",
       "肥沃度: +100%"
-    ]
+    ],
+    "targets": "チョウザメの孵化場"
   },
   {
     "guid": "145265",
@@ -7106,7 +7546,8 @@
       "生産性: +50%",
       "追加生産力：ポニーの生産力",
       "肥沃度: +100%"
-    ]
+    ],
+    "targets": "馬追い"
   },
   {
     "guid": "145271",
@@ -7120,7 +7561,8 @@
       "生産性: +20%"
     ],
     "boostHint": "",
-    "boostEffects": []
+    "boostEffects": [],
+    "targets": "小像"
   },
   {
     "guid": "147974",
@@ -7134,7 +7576,8 @@
       "生産性: +20%"
     ],
     "boostHint": "",
-    "boostEffects": []
+    "boostEffects": [],
+    "targets": "ラトルンクリ一式"
   },
   {
     "guid": "147976",
@@ -7148,7 +7591,8 @@
       "小像: 名声 +3"
     ],
     "boostHint": "",
-    "boostEffects": []
+    "boostEffects": [],
+    "targets": "住居"
   },
   {
     "guid": "147978",
@@ -7162,7 +7606,8 @@
       "ラトルンクリ一式: 幸福度 +3"
     ],
     "boostHint": "",
-    "boostEffects": []
+    "boostEffects": [],
+    "targets": "住居"
   },
   {
     "guid": "145268",
@@ -7182,7 +7627,8 @@
       "生産性: +70%",
       "維持費: -70%",
       "労働力維持費: -70%"
-    ]
+    ],
+    "targets": "採石場、穴、鉱山"
   },
   {
     "guid": "149281",
@@ -7204,7 +7650,8 @@
       "船上バリスタの攻撃速度: +35%",
       "バリスタ攻撃範囲角: +80",
       "カタパルト攻撃範囲角: +180"
-    ]
+    ],
+    "targets": "船"
   },
   {
     "guid": "149292",
@@ -7224,7 +7671,8 @@
       "消費: -10%",
       "人々: +3",
       "幸福度: +1"
-    ]
+    ],
+    "targets": "住居"
   },
   {
     "guid": "156675",
@@ -7238,7 +7686,8 @@
       "攻撃速度: +15%"
     ],
     "boostHint": "",
-    "boostEffects": []
+    "boostEffects": [],
+    "targets": "塔"
   },
   {
     "guid": "156677",
@@ -7252,7 +7701,8 @@
       "追加の品物: 瓦 1/20"
     ],
     "boostHint": "",
-    "boostEffects": []
+    "boostEffects": [],
+    "targets": "製材所"
   },
   {
     "guid": "156679",
@@ -7266,7 +7716,8 @@
       "生産性: +15%"
     ],
     "boostHint": "",
-    "boostEffects": []
+    "boostEffects": [],
+    "targets": "馬ブリーダー、馬追い"
   },
   {
     "guid": "156683",
@@ -7281,7 +7732,8 @@
       "信仰: +1.2"
     ],
     "boostHint": "",
-    "boostEffects": []
+    "boostEffects": [],
+    "targets": "住居"
   },
   {
     "guid": "156685",
@@ -7296,7 +7748,8 @@
       "範囲効果: 収入 +0.5"
     ],
     "boostHint": "",
-    "boostEffects": []
+    "boostEffects": [],
+    "targets": "筆記板の生産チェーン"
   },
   {
     "guid": "159042",
@@ -7310,7 +7763,8 @@
       "範囲効果: 収入 +0.5"
     ],
     "boostHint": "",
-    "boostEffects": []
+    "boostEffects": [],
+    "targets": "賭博場"
   },
   {
     "guid": "156688",
@@ -7325,7 +7779,8 @@
       "追加の品物: 黒曜石 1/20"
     ],
     "boostHint": "",
-    "boostEffects": []
+    "boostEffects": [],
+    "targets": "小像の生産チェーン、ラトルンクリ一式の生産チェーン"
   },
   {
     "guid": "156690",
@@ -7340,7 +7795,8 @@
       "追加の品物: コンクリート 1/15"
     ],
     "boostHint": "",
-    "boostEffects": []
+    "boostEffects": [],
+    "targets": "瓦工房"
   },
   {
     "guid": "156692",
@@ -7355,7 +7811,8 @@
       "名声: +100"
     ],
     "boostHint": "",
-    "boostEffects": []
+    "boostEffects": [],
+    "targets": "競馬場"
   },
   {
     "guid": "156696",
@@ -7370,7 +7827,8 @@
       "幸福度: +2"
     ],
     "boostHint": "",
-    "boostEffects": []
+    "boostEffects": [],
+    "targets": "農園"
   },
   {
     "guid": "156698",
@@ -7385,7 +7843,8 @@
       "競馬場: 健康 +1"
     ],
     "boostHint": "",
-    "boostEffects": []
+    "boostEffects": [],
+    "targets": "住居"
   },
   {
     "guid": "159046",
@@ -7400,7 +7859,8 @@
       "兵士の募集速度: +25%"
     ],
     "boostHint": "",
-    "boostEffects": []
+    "boostEffects": [],
+    "targets": "騎兵養成所"
   },
   {
     "guid": "156701",
@@ -7416,7 +7876,8 @@
       "幸福度: +8"
     ],
     "boostHint": "",
-    "boostEffects": []
+    "boostEffects": [],
+    "targets": "家具職人"
   },
   {
     "guid": "156704",
@@ -7431,7 +7892,8 @@
       "追加の品物: 大理石 1/12"
     ],
     "boostHint": "",
-    "boostEffects": []
+    "boostEffects": [],
+    "targets": "花崗岩の切断工"
   },
   {
     "guid": "156706",
@@ -7446,7 +7908,8 @@
       "追加の品物: 石炭 1/2"
     ],
     "boostHint": "",
-    "boostEffects": []
+    "boostEffects": [],
+    "targets": "戦車工房"
   },
   {
     "guid": "156710",
@@ -7461,7 +7924,8 @@
       "収入: +10"
     ],
     "boostHint": "",
-    "boostEffects": []
+    "boostEffects": [],
+    "targets": "漁場"
   },
   {
     "guid": "156712",
@@ -7476,7 +7940,8 @@
       "ワイン: 健康 -1"
     ],
     "boostHint": "",
-    "boostEffects": []
+    "boostEffects": [],
+    "targets": "住居"
   },
   {
     "guid": "159050",
@@ -7491,7 +7956,8 @@
       "範囲効果: 名声 +0.5"
     ],
     "boostHint": "",
-    "boostEffects": []
+    "boostEffects": [],
+    "targets": "ケルヌンノスの祭壇"
   },
   {
     "guid": "156714",
@@ -7511,7 +7977,8 @@
       "生産性: +15%",
       "追加の品物: ビール 1/8",
       "品物の置換: 車体 → 木材"
-    ]
+    ],
+    "targets": "戦車工房"
   },
   {
     "guid": "156717",
@@ -7531,7 +7998,8 @@
       "生産性: +50%",
       "追加の品物: 大理石 1/3",
       "追加の品物: モザイク 1/3"
-    ]
+    ],
+    "targets": "金鉱、炭鉱"
   },
   {
     "guid": "156720",
@@ -7553,7 +8021,8 @@
       "信仰: +4",
       "知識: -1",
       "名声: +1.5"
-    ]
+    ],
+    "targets": "住居"
   },
   {
     "guid": "156726",
@@ -7573,7 +8042,8 @@
       "収入: -600",
       "幸福度: +500",
       "名声: +1500"
-    ]
+    ],
+    "targets": "競馬場"
   },
   {
     "guid": "156729",
@@ -7596,7 +8066,8 @@
       "人々: +0.5",
       "幸福度: -1",
       "信仰: +10"
-    ]
+    ],
+    "targets": "募集施設"
   },
   {
     "guid": "159054",
@@ -7616,7 +8087,8 @@
       "戦車: 人々 +1",
       "戦車: 収入 +3.5",
       "戦車: 名声 +0.5"
-    ]
+    ],
+    "targets": "住居"
   },
   {
     "guid": "157289",
@@ -7630,7 +8102,8 @@
       "名声: +100"
     ],
     "boostHint": "",
-    "boostEffects": []
+    "boostEffects": [],
+    "targets": "競馬場"
   },
   {
     "guid": "157290",
@@ -7645,7 +8118,8 @@
       "名声: +200"
     ],
     "boostHint": "",
-    "boostEffects": []
+    "boostEffects": [],
+    "targets": "競馬場"
   },
   {
     "guid": "157291",
@@ -7661,7 +8135,8 @@
       "名声: +350"
     ],
     "boostHint": "",
-    "boostEffects": []
+    "boostEffects": [],
+    "targets": "競馬場"
   },
   {
     "guid": "157292",
@@ -7683,7 +8158,8 @@
       "健康: +100",
       "信仰: +100",
       "名声: +700"
-    ]
+    ],
+    "targets": "競馬場"
   },
   {
     "guid": "157293",
@@ -7697,7 +8173,8 @@
       "名声: +100"
     ],
     "boostHint": "",
-    "boostEffects": []
+    "boostEffects": [],
+    "targets": "競馬場"
   },
   {
     "guid": "157294",
@@ -7712,7 +8189,8 @@
       "名声: +200"
     ],
     "boostHint": "",
-    "boostEffects": []
+    "boostEffects": [],
+    "targets": "競馬場"
   },
   {
     "guid": "157295",
@@ -7728,7 +8206,8 @@
       "名声: +350"
     ],
     "boostHint": "",
-    "boostEffects": []
+    "boostEffects": [],
+    "targets": "競馬場"
   },
   {
     "guid": "159270",
@@ -7744,6 +8223,7 @@
       "名声: +350"
     ],
     "boostHint": "",
-    "boostEffects": []
+    "boostEffects": [],
+    "targets": "競馬場"
   }
 ]
