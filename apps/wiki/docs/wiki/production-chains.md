@@ -4,7 +4,8 @@ description: Anno 117の商品ごとの生産チェーンをMermaid図で可視�
 ---
 
 <script setup lang="ts">
-import { withBase } from 'vitepress'
+import { onMounted, watch } from 'vue'
+import { withBase, useData } from 'vitepress'
 import { data } from './production-chains.data.ts'
 import ProductionChainSvg from '../.vitepress/components/ProductionChainSvg.vue'
 
@@ -30,6 +31,23 @@ function timeText(seconds: number): string {
   const s = seconds % 60
   return s === 0 ? `${m}分` : `${m}分${s}秒`
 }
+
+// SPA遷移直後はテーブルがまだ描画されておらずアンカーへスクロールできないため、
+// 描画完了後に改めて該当行までスクロールする。
+const { hash } = useData()
+
+function scrollToHash() {
+  const target = decodeURIComponent(hash.value || '').replace(/^#/, '')
+  if (!target) return
+  // VitePress自身のページ遷移スクロール処理(nextTick内)と競合するため、
+  // それより後に実行されるよう遅延させて上書きする。
+  setTimeout(() => {
+    document.getElementById(target)?.scrollIntoView({ block: 'center' })
+  }, 100)
+}
+
+onMounted(scrollToHash)
+watch(hash, scrollToHash)
 </script>
 
 # 生産チェーン一覧

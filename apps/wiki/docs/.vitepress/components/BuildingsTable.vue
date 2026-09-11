@@ -1,6 +1,6 @@
 <script setup lang="ts">
-import { ref, computed } from 'vue'
-import { withBase } from 'vitepress'
+import { ref, computed, onMounted, watch } from 'vue'
+import { withBase, useData } from 'vitepress'
 import { data } from '../../wiki/buildings.data.ts'
 import itemsFullJson from '../../../../../packages/shared/public/data/items-full.json'
 
@@ -125,6 +125,23 @@ const sortedFiltered = computed(() => {
     return (av - bv) * dir
   })
 })
+
+// SPA遷移直後はテーブルがまだ描画されておらずアンカーへスクロールできないため、
+// 描画完了後に改めて該当行までスクロールする。
+const { hash } = useData()
+
+function scrollToHash() {
+  const target = decodeURIComponent(hash.value || '').replace(/^#/, '')
+  if (!target) return
+  // VitePress自身のページ遷移スクロール処理(nextTick内)と競合するため、
+  // それより後に実行されるよう遅延させて上書きする。
+  setTimeout(() => {
+    document.getElementById(target)?.scrollIntoView({ block: 'center' })
+  }, 100)
+}
+
+onMounted(scrollToHash)
+watch(hash, scrollToHash)
 </script>
 
 <template>
