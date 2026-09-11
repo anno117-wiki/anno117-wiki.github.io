@@ -49,7 +49,7 @@ const RARITY_JA: Record<string, string> = {
   Rare: 'レア',
   Epic: 'エピック',
   Legendary: 'レジェンダリー',
-  Mythic: 'ミシック',
+  Mythic: 'ヒロイック',
   Unique: 'ユニーク',
   'Quest Item': 'クエストアイテム',
 }
