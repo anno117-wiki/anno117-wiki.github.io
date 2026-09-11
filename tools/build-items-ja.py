@@ -70,12 +70,31 @@ def resolve_guid_ja(guid):
     return f"#{guid}"
 
 def resolve_target_group(group):
-    """Targets列の1グループを解決。'AssetPoolGUID:member1;member2' 形式は
-    プール名（例:「すべての住居」）のみ採用し、展開済みメンバーは使わない。"""
+    """Targets列の1グループを解決し、対象建物名のリストを返す。
+    'AssetPoolGUID:member1;member2' 形式のうち「〇〇の生産チェーン」プールは
+    実際にはチェーンを構成する複数建物（例: パン屋・粉ひき所・小麦農場）を指すため
+    メンバーを展開する。それ以外の総称プール（「生産施設」「公共サービス」等、
+    数十件規模）はプール名のまま返す（展開すると選択肢が爆発するため）。"""
     group = group.strip()
-    guid = group.split(":", 1)[0] if ":" in group else group
-    name = resolve_guid_ja(guid)
-    return None if name.startswith("#") else name
+    if ":" not in group:
+        name = resolve_guid_ja(group)
+        return [] if name.startswith("#") else [name]
+    pool_guid, members_str = group.split(":", 1)
+    pool_name = resolve_guid_ja(pool_guid)
+    if pool_name.startswith("#"):
+        return []
+    if pool_name.endswith("の生産チェーン"):
+        names = []
+        for m in members_str.split(";"):
+            m = m.strip()
+            if not m:
+                continue
+            name = resolve_guid_ja(m)
+            if not name.startswith("#") and name not in names:
+                names.append(name)
+        if names:
+            return names
+    return [pool_name]
 
 def format_targets(target_raw):
     """効果の適用対象（建物・住民層など）を日本語で組み立てる。
@@ -85,9 +104,9 @@ def format_targets(target_raw):
         return ""
     names = []
     for group in target_raw.split("|"):
-        name = resolve_target_group(group)
-        if name and name not in names:
-            names.append(name)
+        for name in resolve_target_group(group):
+            if name not in names:
+                names.append(name)
     return "、".join(names)
 
 # 公式ローカライズID対照表（GitHub Taludas/Anno-117-Item-Inspector の BUFF_EFFECT_MAPPING より、

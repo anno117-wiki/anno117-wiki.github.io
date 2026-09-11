@@ -3249,7 +3249,7 @@
     ],
     "boostHint": "",
     "boostEffects": [],
-    "targets": "イワシの生産チェーン"
+    "targets": "漁師小屋"
   },
   {
     "guid": "44076",
@@ -3264,7 +3264,7 @@
     ],
     "boostHint": "",
     "boostEffects": [],
-    "targets": "お粥の生産チェーン"
+    "targets": "お粥の屋台、オーツ麦農場"
   },
   {
     "guid": "44077",
@@ -3279,7 +3279,7 @@
     ],
     "boostHint": "",
     "boostEffects": [],
-    "targets": "ウナギの生産チェーン"
+    "targets": "ウナギ漁師"
   },
   {
     "guid": "44078",
@@ -3294,7 +3294,7 @@
     ],
     "boostHint": "",
     "boostEffects": [],
-    "targets": "帆布工場、帆の生産チェーン"
+    "targets": "帆布工場、羊牧場"
   },
   {
     "guid": "44079",
@@ -3309,7 +3309,7 @@
     ],
     "boostHint": "",
     "boostEffects": [],
-    "targets": "ロープ職人、縄の生産チェーン"
+    "targets": "ロープ職人、大麻農場"
   },
   {
     "guid": "44080",
@@ -3324,7 +3324,7 @@
     ],
     "boostHint": "",
     "boostEffects": [],
-    "targets": "パンの生産チェーン"
+    "targets": "パン屋、粉ひき所、小麦農場、ロバの製粉所"
   },
   {
     "guid": "44083",
@@ -3339,7 +3339,7 @@
     ],
     "boostHint": "",
     "boostEffects": [],
-    "targets": "チュニックの生産チェーン"
+    "targets": "糸紡ぎ師、大麻農場"
   },
   {
     "guid": "44085",
@@ -3354,7 +3354,7 @@
     ],
     "boostHint": "",
     "boostEffects": [],
-    "targets": "ガルムの生産チェーン"
+    "targets": "ガルム工房、サバ小屋、塩田"
   },
   {
     "guid": "44086",
@@ -3369,7 +3369,7 @@
     ],
     "boostHint": "",
     "boostEffects": [],
-    "targets": "サンダルの生産チェーン"
+    "targets": "サンダル職人、なめし革工房、養豚場"
   },
   {
     "guid": "44115",
@@ -3384,7 +3384,7 @@
     ],
     "boostHint": "",
     "boostEffects": [],
-    "targets": "筆記板の生産チェーン"
+    "targets": "蝋版職人、サンダラック苗木場、養蜂場"
   },
   {
     "guid": "44117",
@@ -3399,7 +3399,7 @@
     ],
     "boostHint": "",
     "boostEffects": [],
-    "targets": "トルクの生産チェーン"
+    "targets": "針金細工師、青銅の製錬工、錫鉱"
   },
   {
     "guid": "44139",
@@ -3414,7 +3414,7 @@
     ],
     "boostHint": "",
     "boostEffects": [],
-    "targets": "アンフォラの生産チェーン"
+    "targets": "陶工、粘土穴、松脂採り、泥干し工房"
   },
   {
     "guid": "44140",
@@ -3429,7 +3429,7 @@
     ],
     "boostHint": "",
     "boostEffects": [],
-    "targets": "葦の靴の生産チェーン"
+    "targets": "靴職人、葦採集者"
   },
   {
     "guid": "44141",
@@ -3444,7 +3444,7 @@
     ],
     "boostHint": "",
     "boostEffects": [],
-    "targets": "オリーブオイルの生産チェーン"
+    "targets": "オリーブ圧搾所、オリーブ農家"
   },
   {
     "guid": "44142",
@@ -3459,7 +3459,7 @@
     ],
     "boostHint": "",
     "boostEffects": [],
-    "targets": "石鹸の生産チェーン"
+    "targets": "石鹸工房、ラベンダー農家、アスピック職人、養豚場"
   },
   {
     "guid": "44144",
@@ -3474,7 +3474,7 @@
     ],
     "boostHint": "",
     "boostEffects": [],
-    "targets": "ピレウスの生産チェーン"
+    "targets": "ピレウス帽職人、羊牧場"
   },
   {
     "guid": "44145",
@@ -3489,7 +3489,7 @@
     ],
     "boostHint": "",
     "boostEffects": [],
-    "targets": "ザル貝の生産チェーン"
+    "targets": "ザル貝採り"
   },
   {
     "guid": "44146",
@@ -3504,7 +3504,7 @@
     ],
     "boostHint": "",
     "boostEffects": [],
-    "targets": "ビールの生産チェーン"
+    "targets": "醸造所、麦芽製造所、大麦農場"
   },
   {
     "guid": "44081",
@@ -3519,7 +3519,7 @@
     ],
     "boostHint": "",
     "boostEffects": [],
-    "targets": "ローストビーフの生産チェーン"
+    "targets": "地窯、オーロックス牧場、アッケシソウ摘み"
   },
   {
     "guid": "44082",
@@ -3534,7 +3534,7 @@
     ],
     "boostHint": "",
     "boostEffects": [],
-    "targets": "チーズの生産チェーン"
+    "targets": "乳工房、オーロックス牧場"
   },
   {
     "guid": "44087",
@@ -3549,7 +3549,7 @@
     ],
     "boostHint": "",
     "boostEffects": [],
-    "targets": "ズボンの生産チェーン"
+    "targets": "靴下職人、羊牧場、ウォールド畑"
   },
   {
     "guid": "44088",
@@ -3564,7 +3564,7 @@
     ],
     "boostHint": "",
     "boostEffects": [],
-    "targets": "戦車の生産チェーン"
+    "targets": "戦車工房、馬追い、シャーシの組立工、木こり"
   },
   {
     "guid": "44112",
@@ -3579,7 +3579,7 @@
     ],
     "boostHint": "",
     "boostEffects": [],
-    "targets": "ワイン醸造業者、ワインの生産チェーン"
+    "targets": "ワイン醸造業者、ブドウ園、養蜂場"
   },
   {
     "guid": "44113",
@@ -3594,7 +3594,7 @@
     ],
     "boostHint": "",
     "boostEffects": [],
-    "targets": "ブローチの生産チェーン"
+    "targets": "ブローチ職人、銀工房、銀鉱山"
   },
   {
     "guid": "44118",
@@ -3609,7 +3609,7 @@
     ],
     "boostHint": "",
     "boostEffects": [],
-    "targets": "トガの生産チェーン"
+    "targets": "織機工、織物工房、染色工房、亜麻農場、カタツムリ飼育場"
   },
   {
     "guid": "44119",
@@ -3624,7 +3624,7 @@
     ],
     "boostHint": "",
     "boostEffects": [],
-    "targets": "かつらの生産チェーン"
+    "targets": "かつら職人、馬ブリーダー、兜職人、亜麻農場"
   },
   {
     "guid": "44120",
@@ -3639,7 +3639,7 @@
     ],
     "boostHint": "",
     "boostEffects": [],
-    "targets": "高級ガラスの生産チェーン"
+    "targets": "ガラス吹き工、鉱物粉砕所、ガラス工房、鉱物の採石場、砂精製所"
   },
   {
     "guid": "44121",
@@ -3654,7 +3654,7 @@
     ],
     "boostHint": "",
     "boostEffects": [],
-    "targets": "部族の盾の生産チェーン"
+    "targets": "盾職人、ウォールド畑、青銅の製錬工、錫鉱"
   },
   {
     "guid": "44143",
@@ -3669,7 +3669,7 @@
     ],
     "boostHint": "",
     "boostEffects": [],
-    "targets": "牡蠣のキャビア添えの生産チェーン"
+    "targets": "水の美食家、カキ養殖場、魚加工所、チョウザメの孵化場"
   },
   {
     "guid": "44148",
@@ -3684,7 +3684,7 @@
     ],
     "boostHint": "",
     "boostEffects": [],
-    "targets": "毛皮の帽子の生産チェーン"
+    "targets": "ビーバー帽子職人、ビーバー罠師、アッケシソウ焼き、アッケシソウ摘み"
   },
   {
     "guid": "50665",
@@ -3699,7 +3699,7 @@
     ],
     "boostHint": "",
     "boostEffects": [],
-    "targets": "外套の生産チェーン"
+    "targets": "裁縫師、羊牧場、薬草師、ウォールド畑、銅鉱"
   },
   {
     "guid": "50289",
@@ -3714,7 +3714,7 @@
     ],
     "boostHint": "",
     "boostEffects": [],
-    "targets": "武器の生産チェーン"
+    "targets": "武器工房、溶鉱炉、鉄鉱山"
   },
   {
     "guid": "50291",
@@ -3729,7 +3729,7 @@
     ],
     "boostHint": "",
     "boostEffects": [],
-    "targets": "防具の生産チェーン"
+    "targets": "防具、鉄鉱山、溶鉱炉、防具工房、養豚場、なめし革工房、塩田"
   },
   {
     "guid": "44089",
@@ -3744,7 +3744,7 @@
     ],
     "boostHint": "",
     "boostEffects": [],
-    "targets": "ネックレスの生産チェーン"
+    "targets": "宝石商、鉱物の採石場、金細工工房、金選鉱、金鉱"
   },
   {
     "guid": "44114",
@@ -3759,7 +3759,7 @@
     ],
     "boostHint": "",
     "boostEffects": [],
-    "targets": "竪琴の生産チェーン"
+    "targets": "リラ職人、弦張り師、金箔工房、羊牧場、サンダラック苗木場、金鉱、金選鉱、金細工工房"
   },
   {
     "guid": "44147",
@@ -3774,7 +3774,7 @@
     ],
     "boostHint": "",
     "boostEffects": [],
-    "targets": "ソーセージの生産チェーン"
+    "targets": "ソーセージ職人、養豚場、ハーブ園"
   },
   {
     "guid": "44116",
@@ -3789,7 +3789,7 @@
     ],
     "boostHint": "",
     "boostEffects": [],
-    "targets": "鏡の生産チェーン"
+    "targets": "鏡職人、貝拾い、銀工房、銀鉱山"
   },
   {
     "guid": "44122",
@@ -3804,7 +3804,7 @@
     ],
     "boostHint": "",
     "boostEffects": [],
-    "targets": "鳥舌肉の生産チェーン"
+    "targets": "空気の美食家、舌切り職人、アスピック職人、鳥使い、養豚場"
   },
   {
     "guid": "44149",
@@ -3819,7 +3819,7 @@
     ],
     "boostHint": "",
     "boostEffects": [],
-    "targets": "肘掛け椅子の生産チェーン"
+    "targets": "鎖職人、サンダラック苗木場、詰め物工房、亜麻農場、染色工房、カタツムリ飼育場"
   },
   {
     "guid": "50287",
@@ -3834,7 +3834,7 @@
     ],
     "boostHint": "",
     "boostEffects": [],
-    "targets": "馬の生産チェーン"
+    "targets": "馬ブリーダー"
   },
   {
     "guid": "80221",
@@ -7749,7 +7749,7 @@
     ],
     "boostHint": "",
     "boostEffects": [],
-    "targets": "筆記板の生産チェーン"
+    "targets": "蝋版職人、サンダラック苗木場、養蜂場"
   },
   {
     "guid": "159042",
@@ -7780,7 +7780,7 @@
     ],
     "boostHint": "",
     "boostEffects": [],
-    "targets": "小像の生産チェーン、ラトルンクリ一式の生産チェーン"
+    "targets": "小像工房、大理石工房、ラトルンクリ工房、金箔工房、サンダラック苗木場、金細工工房、金鉱、金選鉱"
   },
   {
     "guid": "156690",
