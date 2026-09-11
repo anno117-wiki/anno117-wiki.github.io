@@ -1,7 +1,7 @@
 {
   "README": "This file contains all productions from Anno 117: Pax Romana.",
-  "generated": "2026-06-11T22:25:16.870Z",
-  "count": 114,
+  "generated": "2026-09-11T06:03:24.783Z",
+  "count": 113,
   "goods": [
     {
       "displayName": "Amphorae",
@@ -34,6 +34,28 @@
       "startOfChain": false
     },
     {
+      "displayName": "Barley",
+      "id": "barley",
+      "icon": "barley",
+      "regions": [
+        "Celtic"
+      ],
+      "files": {},
+      "category": "resource",
+      "startOfChain": true
+    },
+    {
+      "displayName": "Beavers",
+      "id": "beavers",
+      "icon": "beavers",
+      "regions": [
+        "Celtic"
+      ],
+      "files": {},
+      "category": "resource",
+      "startOfChain": true
+    },
+    {
       "displayName": "Beer",
       "id": "beer",
       "icon": "beer",
@@ -44,6 +66,17 @@
         "celtic": "beer_albion"
       },
       "category": "food",
+      "startOfChain": false
+    },
+    {
+      "displayName": "Bird Tongues",
+      "id": "bird_tongues",
+      "icon": "bird_tongues",
+      "regions": [
+        "Roman"
+      ],
+      "files": {},
+      "category": "intermediate",
       "startOfChain": false
     },
     {
@@ -75,6 +108,17 @@
       "startOfChain": false
     },
     {
+      "displayName": "Bronze",
+      "id": "bronze",
+      "icon": "bronze",
+      "regions": [
+        "Celtic"
+      ],
+      "files": {},
+      "category": "intermediate",
+      "startOfChain": false
+    },
+    {
       "displayName": "Brooches",
       "id": "brooches",
       "icon": "brooches",
@@ -88,29 +132,25 @@
       "startOfChain": false
     },
     {
-      "displayName": "Chariots",
-      "id": "chariots",
-      "icon": "chariots",
+      "displayName": "Caviar",
+      "id": "caviar",
+      "icon": "caviar",
       "regions": [
         "Roman"
       ],
-      "files": {
-        "roman": "chariots"
-      },
-      "category": "culture",
+      "files": {},
+      "category": "intermediate",
       "startOfChain": false
     },
     {
-      "displayName": "Cheese",
-      "id": "cheese",
-      "icon": "cheese",
+      "displayName": "Celtic Green",
+      "id": "celtic_green",
+      "icon": "celtic_green",
       "regions": [
         "Roman"
       ],
-      "files": {
-        "roman": "cheese"
-      },
-      "category": "food",
+      "files": {},
+      "category": "intermediate",
       "startOfChain": false
     },
     {
@@ -127,6 +167,65 @@
       "startOfChain": false
     },
     {
+      "displayName": "Charcoal",
+      "id": "charcoal",
+      "icon": "charcoal",
+      "regions": [
+        "Roman"
+      ],
+      "files": {},
+      "category": "intermediate",
+      "startOfChain": true
+    },
+    {
+      "displayName": "Chariots",
+      "id": "chariots",
+      "icon": "chariots",
+      "regions": [
+        "Roman"
+      ],
+      "files": {
+        "roman": "chariots"
+      },
+      "category": "culture",
+      "startOfChain": false
+    },
+    {
+      "displayName": "Chassis",
+      "id": "chassis",
+      "icon": "chassis",
+      "regions": [
+        "Roman"
+      ],
+      "files": {},
+      "category": "intermediate",
+      "startOfChain": false
+    },
+    {
+      "displayName": "Cheese",
+      "id": "cheese",
+      "icon": "cheese",
+      "regions": [
+        "Roman"
+      ],
+      "files": {
+        "roman": "cheese"
+      },
+      "category": "food",
+      "startOfChain": false
+    },
+    {
+      "displayName": "Clay",
+      "id": "clay",
+      "icon": "clay",
+      "regions": [
+        "Roman"
+      ],
+      "files": {},
+      "category": "resource",
+      "startOfChain": true
+    },
+    {
       "displayName": "Cloaks",
       "id": "cloaks",
       "icon": "cloaks",
@@ -137,6 +236,17 @@
         "roman": "cloaks"
       },
       "category": "fashion",
+      "startOfChain": false
+    },
+    {
+      "displayName": "Cloth",
+      "id": "cloth",
+      "icon": "cloth",
+      "regions": [
+        "Roman"
+      ],
+      "files": {},
+      "category": "intermediate",
       "startOfChain": false
     },
     {
@@ -168,6 +278,29 @@
       "startOfChain": false
     },
     {
+      "displayName": "Copper Ore",
+      "id": "copper_ore",
+      "icon": "copper_ore",
+      "regions": [
+        "Celtic",
+        "Roman"
+      ],
+      "files": {},
+      "category": "resource",
+      "startOfChain": true
+    },
+    {
+      "displayName": "Cushions",
+      "id": "cushions",
+      "icon": "cushions",
+      "regions": [
+        "Roman"
+      ],
+      "files": {},
+      "category": "intermediate",
+      "startOfChain": false
+    },
+    {
       "displayName": "Drinking Horns",
       "id": "drinking_horns",
       "icon": "drinking_horns",
@@ -179,6 +312,18 @@
       },
       "category": "fashion",
       "startOfChain": false
+    },
+    {
+      "displayName": "Dye Plants",
+      "id": "dye_plants",
+      "icon": "dye_plants",
+      "regions": [
+        "Celtic",
+        "Roman"
+      ],
+      "files": {},
+      "category": "resource",
+      "startOfChain": true
     },
     {
       "displayName": "Eels",
@@ -204,6 +349,30 @@
         "roman": "fine_glass"
       },
       "category": "culture",
+      "startOfChain": false
+    },
+    {
+      "displayName": "Flax",
+      "id": "flax",
+      "icon": "flax",
+      "regions": [
+        "Roman",
+        "Celtic"
+      ],
+      "files": {},
+      "category": "resource",
+      "startOfChain": true
+    },
+    {
+      "displayName": "Flour",
+      "id": "flour",
+      "icon": "flour",
+      "regions": [
+        "Roman",
+        "Celtic"
+      ],
+      "files": {},
+      "category": "intermediate",
       "startOfChain": false
     },
     {
@@ -233,6 +402,39 @@
       "startOfChain": false
     },
     {
+      "displayName": "Glass",
+      "id": "glass",
+      "icon": "glass",
+      "regions": [
+        "Roman"
+      ],
+      "files": {},
+      "category": "intermediate",
+      "startOfChain": false
+    },
+    {
+      "displayName": "Gold",
+      "id": "gold",
+      "icon": "gold",
+      "regions": [
+        "Roman"
+      ],
+      "files": {},
+      "category": "intermediate",
+      "startOfChain": false
+    },
+    {
+      "displayName": "Gold Ore",
+      "id": "gold_ore",
+      "icon": "gold_ore",
+      "regions": [
+        "Roman"
+      ],
+      "files": {},
+      "category": "resource",
+      "startOfChain": true
+    },
+    {
       "displayName": "Granite",
       "id": "granite",
       "icon": "granite",
@@ -246,6 +448,29 @@
       "startOfChain": false
     },
     {
+      "displayName": "Granite Block",
+      "id": "granite_block",
+      "icon": "granite_block",
+      "regions": [
+        "Celtic"
+      ],
+      "files": {},
+      "category": "resource",
+      "startOfChain": true
+    },
+    {
+      "displayName": "Grapes",
+      "id": "grapes",
+      "icon": "grapes",
+      "regions": [
+        "Roman",
+        "Celtic"
+      ],
+      "files": {},
+      "category": "resource",
+      "startOfChain": true
+    },
+    {
       "displayName": "Handmirrors",
       "id": "handmirrors",
       "icon": "handmirrors",
@@ -257,6 +482,52 @@
       },
       "category": "fashion",
       "startOfChain": false
+    },
+    {
+      "displayName": "Head Piece",
+      "id": "head_piece",
+      "icon": "head_piece",
+      "regions": [
+        "Celtic"
+      ],
+      "files": {},
+      "category": "intermediate",
+      "startOfChain": false
+    },
+    {
+      "displayName": "Hemp",
+      "id": "hemp",
+      "icon": "hemp",
+      "regions": [
+        "Roman",
+        "Celtic"
+      ],
+      "files": {},
+      "category": "resource",
+      "startOfChain": true
+    },
+    {
+      "displayName": "Herbs",
+      "id": "herbs",
+      "icon": "herbs",
+      "regions": [
+        "Celtic"
+      ],
+      "files": {},
+      "category": "resource",
+      "startOfChain": true
+    },
+    {
+      "displayName": "Honeycombs",
+      "id": "honeycombs",
+      "icon": "honeycombs",
+      "regions": [
+        "Roman",
+        "Celtic"
+      ],
+      "files": {},
+      "category": "resource",
+      "startOfChain": true
     },
     {
       "displayName": "Horses",
@@ -274,6 +545,89 @@
       "startOfChain": true
     },
     {
+      "displayName": "Iron",
+      "id": "iron",
+      "icon": "iron",
+      "regions": [
+        "Roman",
+        "Celtic"
+      ],
+      "files": {},
+      "category": "intermediate",
+      "startOfChain": false
+    },
+    {
+      "displayName": "Iron Ore",
+      "id": "iron_ore",
+      "icon": "iron_ore",
+      "regions": [
+        "Roman",
+        "Celtic"
+      ],
+      "files": {},
+      "category": "resource",
+      "startOfChain": true
+    },
+    {
+      "displayName": "Lard",
+      "id": "lard",
+      "icon": "lard",
+      "regions": [
+        "Roman"
+      ],
+      "files": {},
+      "category": "intermediate",
+      "startOfChain": false
+    },
+    {
+      "displayName": "Latrunculi Sets",
+      "id": "latrunculi_sets",
+      "icon": "boardgame_goods",
+      "regions": [
+        "Roman"
+      ],
+      "files": {
+        "roman": "latrunculi_sets"
+      },
+      "category": "culture",
+      "startOfChain": false
+    },
+    {
+      "displayName": "Lavender",
+      "id": "lavender",
+      "icon": "lavender",
+      "regions": [
+        "Roman"
+      ],
+      "files": {},
+      "category": "resource",
+      "startOfChain": true
+    },
+    {
+      "displayName": "Leather",
+      "id": "leather",
+      "icon": "leather",
+      "regions": [
+        "Roman",
+        "Celtic"
+      ],
+      "files": {},
+      "category": "intermediate",
+      "startOfChain": false
+    },
+    {
+      "displayName": "Limestone",
+      "id": "limestone",
+      "icon": "limestone",
+      "regions": [
+        "Roman",
+        "Celtic"
+      ],
+      "files": {},
+      "category": "resource",
+      "startOfChain": true
+    },
+    {
       "displayName": "Loungers",
       "id": "loungers",
       "icon": "loungers",
@@ -284,6 +638,41 @@
         "roman": "loungers"
       },
       "category": "culture",
+      "startOfChain": false
+    },
+    {
+      "displayName": "Lyres",
+      "id": "lyres",
+      "icon": "lyre",
+      "regions": [
+        "Roman"
+      ],
+      "files": {
+        "roman": "lyres"
+      },
+      "category": "fashion",
+      "startOfChain": false
+    },
+    {
+      "displayName": "Mackerel",
+      "id": "mackerel",
+      "icon": "mackerel",
+      "regions": [
+        "Roman"
+      ],
+      "files": {},
+      "category": "resource",
+      "startOfChain": true
+    },
+    {
+      "displayName": "Malt",
+      "id": "malt",
+      "icon": "malt",
+      "regions": [
+        "Celtic"
+      ],
+      "files": {},
+      "category": "intermediate",
       "startOfChain": false
     },
     {
@@ -300,6 +689,17 @@
       "startOfChain": false
     },
     {
+      "displayName": "Minerals",
+      "id": "minerals",
+      "icon": "minerals",
+      "regions": [
+        "Roman"
+      ],
+      "files": {},
+      "category": "resource",
+      "startOfChain": true
+    },
+    {
       "displayName": "Mosaics",
       "id": "mosaics",
       "icon": "mosaics",
@@ -311,6 +711,28 @@
       },
       "category": "construction",
       "startOfChain": false
+    },
+    {
+      "displayName": "Mud",
+      "id": "mud",
+      "icon": "mud",
+      "regions": [
+        "Celtic"
+      ],
+      "files": {},
+      "category": "resource",
+      "startOfChain": true
+    },
+    {
+      "displayName": "Murex Snails",
+      "id": "murex_snails",
+      "icon": "murex_snails",
+      "regions": [
+        "Roman"
+      ],
+      "files": {},
+      "category": "resource",
+      "startOfChain": true
     },
     {
       "displayName": "Necklaces",
@@ -326,6 +748,40 @@
       "startOfChain": false
     },
     {
+      "displayName": "Oats",
+      "id": "oats",
+      "icon": "oats",
+      "regions": [
+        "Roman"
+      ],
+      "files": {},
+      "category": "resource",
+      "startOfChain": true
+    },
+    {
+      "displayName": "Obsidian",
+      "id": "obsidian",
+      "icon": "obsidian",
+      "regions": [
+        "Roman"
+      ],
+      "files": {},
+      "category": "resource",
+      "startOfChain": true
+    },
+    {
+      "displayName": "Ochs",
+      "id": "ochs",
+      "icon": "ochs",
+      "regions": [
+        "Roman",
+        "Celtic"
+      ],
+      "files": {},
+      "category": "resource",
+      "startOfChain": true
+    },
+    {
       "displayName": "Olive Oil",
       "id": "olive_oil",
       "icon": "olive_oil",
@@ -337,6 +793,39 @@
       },
       "category": "food",
       "startOfChain": false
+    },
+    {
+      "displayName": "Olives",
+      "id": "olives",
+      "icon": "olives",
+      "regions": [
+        "Roman"
+      ],
+      "files": {},
+      "category": "resource",
+      "startOfChain": true
+    },
+    {
+      "displayName": "Ornate Wood",
+      "id": "ornate_wood",
+      "icon": "ornate_wood",
+      "regions": [
+        "Roman"
+      ],
+      "files": {},
+      "category": "intermediate",
+      "startOfChain": false
+    },
+    {
+      "displayName": "Oysters",
+      "id": "oysters",
+      "icon": "oysters",
+      "regions": [
+        "Roman"
+      ],
+      "files": {},
+      "category": "resource",
+      "startOfChain": true
     },
     {
       "displayName": "Oysters with Caviar",
@@ -352,6 +841,29 @@
       "startOfChain": false
     },
     {
+      "displayName": "Pigments",
+      "id": "pigments",
+      "icon": "pigments",
+      "regions": [
+        "Roman"
+      ],
+      "files": {},
+      "category": "intermediate",
+      "startOfChain": false
+    },
+    {
+      "displayName": "Pigs",
+      "id": "pigs",
+      "icon": "pigs",
+      "regions": [
+        "Roman",
+        "Celtic"
+      ],
+      "files": {},
+      "category": "resource",
+      "startOfChain": true
+    },
+    {
       "displayName": "Pileus",
       "id": "pileus",
       "icon": "pileus",
@@ -363,6 +875,17 @@
       },
       "category": "fashion",
       "startOfChain": false
+    },
+    {
+      "displayName": "Ponies",
+      "id": "ponies",
+      "icon": "ponies",
+      "regions": [
+        "Roman"
+      ],
+      "files": {},
+      "category": "resource",
+      "startOfChain": true
     },
     {
       "displayName": "Porridge",
@@ -389,6 +912,30 @@
       },
       "category": "fashion",
       "startOfChain": false
+    },
+    {
+      "displayName": "Reeds",
+      "id": "reeds",
+      "icon": "reeds",
+      "regions": [
+        "Roman",
+        "Celtic"
+      ],
+      "files": {},
+      "category": "resource",
+      "startOfChain": true
+    },
+    {
+      "displayName": "Resin",
+      "id": "resin",
+      "icon": "resin",
+      "regions": [
+        "Roman",
+        "Celtic"
+      ],
+      "files": {},
+      "category": "resource",
+      "startOfChain": true
     },
     {
       "displayName": "Roast Beef",
@@ -434,6 +981,39 @@
       "startOfChain": false
     },
     {
+      "displayName": "Salt",
+      "id": "salt",
+      "icon": "salt",
+      "regions": [
+        "Roman"
+      ],
+      "files": {},
+      "category": "resource",
+      "startOfChain": true
+    },
+    {
+      "displayName": "Saltwash",
+      "id": "saltwash",
+      "icon": "saltwash",
+      "regions": [
+        "Celtic"
+      ],
+      "files": {},
+      "category": "intermediate",
+      "startOfChain": false
+    },
+    {
+      "displayName": "Saltwort",
+      "id": "saltwort",
+      "icon": "saltwort",
+      "regions": [
+        "Celtic"
+      ],
+      "files": {},
+      "category": "resource",
+      "startOfChain": true
+    },
+    {
       "displayName": "Sandals",
       "id": "sandals",
       "icon": "sandals",
@@ -445,6 +1025,17 @@
       },
       "category": "fashion",
       "startOfChain": false
+    },
+    {
+      "displayName": "Sandarac Wood",
+      "id": "sandarac_wood",
+      "icon": "sandarac_wood",
+      "regions": [
+        "Roman"
+      ],
+      "files": {},
+      "category": "resource",
+      "startOfChain": true
     },
     {
       "displayName": "Sardines",
@@ -473,6 +1064,74 @@
       "startOfChain": false
     },
     {
+      "displayName": "Seashells",
+      "id": "seashells",
+      "icon": "seashells",
+      "regions": [
+        "Roman"
+      ],
+      "files": {},
+      "category": "resource",
+      "startOfChain": true
+    },
+    {
+      "displayName": "Sheep",
+      "id": "sheep",
+      "icon": "sheep",
+      "regions": [
+        "Roman",
+        "Celtic"
+      ],
+      "files": {},
+      "category": "resource",
+      "startOfChain": true
+    },
+    {
+      "displayName": "Silica",
+      "id": "silica",
+      "icon": "silica",
+      "regions": [
+        "Roman",
+        "Celtic"
+      ],
+      "files": {},
+      "category": "resource",
+      "startOfChain": true
+    },
+    {
+      "displayName": "Silver",
+      "id": "silver",
+      "icon": "silver",
+      "regions": [
+        "Roman"
+      ],
+      "files": {},
+      "category": "intermediate",
+      "startOfChain": false
+    },
+    {
+      "displayName": "Silver Ore",
+      "id": "silver_ore",
+      "icon": "silver_ore",
+      "regions": [
+        "Roman"
+      ],
+      "files": {},
+      "category": "resource",
+      "startOfChain": true
+    },
+    {
+      "displayName": "Small Birds",
+      "id": "small_birds",
+      "icon": "small_birds",
+      "regions": [
+        "Roman"
+      ],
+      "files": {},
+      "category": "resource",
+      "startOfChain": true
+    },
+    {
       "displayName": "Soap",
       "id": "soap",
       "icon": "soap",
@@ -486,17 +1145,39 @@
       "startOfChain": false
     },
     {
-      "displayName": "Lyres",
-      "id": "lyres",
-      "icon": "lyre",
+      "displayName": "Statuettes",
+      "id": "statuettes",
+      "icon": "idol_goods",
       "regions": [
         "Roman"
       ],
       "files": {
-        "roman": "lyres"
+        "roman": "statuettes"
       },
-      "category": "fashion",
+      "category": "culture",
       "startOfChain": false
+    },
+    {
+      "displayName": "String",
+      "id": "string",
+      "icon": "string",
+      "regions": [
+        "Roman"
+      ],
+      "files": {},
+      "category": "intermediate",
+      "startOfChain": false
+    },
+    {
+      "displayName": "Sturgeon",
+      "id": "sturgeon",
+      "icon": "sturgeon",
+      "regions": [
+        "Roman"
+      ],
+      "files": {},
+      "category": "resource",
+      "startOfChain": true
     },
     {
       "displayName": "Tiles",
@@ -527,6 +1208,17 @@
       },
       "category": "construction",
       "startOfChain": false
+    },
+    {
+      "displayName": "Tin Ore",
+      "id": "tin_ore",
+      "icon": "tin_ore",
+      "regions": [
+        "Celtic"
+      ],
+      "files": {},
+      "category": "resource",
+      "startOfChain": true
     },
     {
       "displayName": "Togas",
@@ -583,6 +1275,28 @@
       "startOfChain": false
     },
     {
+      "displayName": "Tyrian Purple",
+      "id": "tyrian_purple",
+      "icon": "tyrian_purple",
+      "regions": [
+        "Roman"
+      ],
+      "files": {},
+      "category": "intermediate",
+      "startOfChain": false
+    },
+    {
+      "displayName": "Uncut Marble",
+      "id": "uncut_marble",
+      "icon": "uncut_marble",
+      "regions": [
+        "Roman"
+      ],
+      "files": {},
+      "category": "resource",
+      "startOfChain": true
+    },
+    {
       "displayName": "Wattle & Daub",
       "id": "wattle_&_daub",
       "icon": "wattle_&_daub",
@@ -609,6 +1323,18 @@
       },
       "category": "construction",
       "startOfChain": false
+    },
+    {
+      "displayName": "Wheat",
+      "id": "wheat",
+      "icon": "wheat",
+      "regions": [
+        "Roman",
+        "Celtic"
+      ],
+      "files": {},
+      "category": "resource",
+      "startOfChain": true
     },
     {
       "displayName": "Wigs",
@@ -639,30 +1365,16 @@
       "startOfChain": false
     },
     {
-      "displayName": "Statuettes",
-      "id": "statuettes",
-      "icon": "idol_goods",
+      "displayName": "Wood",
+      "id": "wood",
+      "icon": "wood",
       "regions": [
+        "Celtic",
         "Roman"
       ],
-      "files": {
-        "roman": "statuettes"
-      },
-      "category": "culture",
-      "startOfChain": false
-    },
-    {
-      "displayName": "Latrunculi Sets",
-      "id": "latrunculi_sets",
-      "icon": "boardgame_goods",
-      "regions": [
-        "Roman"
-      ],
-      "files": {
-        "roman": "latrunculi_sets"
-      },
-      "category": "culture",
-      "startOfChain": false
+      "files": {},
+      "category": "resource",
+      "startOfChain": true
     },
     {
       "displayName": "Writing Tablets",
@@ -675,659 +1387,6 @@
         "roman": "writing_tablets"
       },
       "category": "culture",
-      "startOfChain": false
-    },
-    {
-      "displayName": "Barley",
-      "id": "barley",
-      "icon": "barley",
-      "regions": [
-        "Celtic"
-      ],
-      "category": "resource",
-      "startOfChain": false
-    },
-    {
-      "displayName": "Beavers",
-      "id": "beavers",
-      "icon": "beavers",
-      "regions": [
-        "Celtic"
-      ],
-      "category": "resource",
-      "startOfChain": false
-    },
-    {
-      "displayName": "Bird Tongues",
-      "id": "bird_tongues",
-      "icon": "bird_tongues",
-      "regions": [
-        "Roman"
-      ],
-      "category": "intermediate",
-      "startOfChain": false
-    },
-    {
-      "displayName": "Bronze",
-      "id": "bronze",
-      "icon": "bronze",
-      "regions": [
-        "Celtic"
-      ],
-      "category": "intermediate",
-      "startOfChain": false
-    },
-    {
-      "displayName": "Caviar",
-      "id": "caviar",
-      "icon": "caviar",
-      "regions": [
-        "Roman"
-      ],
-      "category": "intermediate",
-      "startOfChain": false
-    },
-    {
-      "displayName": "Celtic Green",
-      "id": "celtic_green",
-      "icon": "celtic_green",
-      "regions": [
-        "Roman"
-      ],
-      "category": "intermediate",
-      "startOfChain": false
-    },
-    {
-      "displayName": "Charcoal",
-      "id": "charcoal",
-      "icon": "charcoal",
-      "regions": [
-        "Celtic",
-        "Roman"
-      ],
-      "category": "intermediate",
-      "startOfChain": false
-    },
-    {
-      "displayName": "Chassis",
-      "id": "chassis",
-      "icon": "chassis",
-      "regions": [
-        "Roman"
-      ],
-      "category": "intermediate",
-      "startOfChain": false
-    },
-    {
-      "displayName": "Clay",
-      "id": "clay",
-      "icon": "clay",
-      "regions": [
-        "Roman"
-      ],
-      "category": "resource",
-      "startOfChain": false
-    },
-    {
-      "displayName": "Cloth",
-      "id": "cloth",
-      "icon": "cloth",
-      "regions": [
-        "Roman"
-      ],
-      "category": "intermediate",
-      "startOfChain": false
-    },
-    {
-      "displayName": "Copper Ore",
-      "id": "copper_ore",
-      "icon": "copper_ore",
-      "regions": [
-        "Celtic",
-        "Roman"
-      ],
-      "category": "resource",
-      "startOfChain": false
-    },
-    {
-      "displayName": "Cushions",
-      "id": "cushions",
-      "icon": "cushions",
-      "regions": [
-        "Roman"
-      ],
-      "category": "intermediate",
-      "startOfChain": false
-    },
-    {
-      "displayName": "Dye Plants",
-      "id": "dye_plants",
-      "icon": "dye_plants",
-      "regions": [
-        "Celtic",
-        "Roman"
-      ],
-      "category": "resource",
-      "startOfChain": false
-    },
-    {
-      "displayName": "Flax",
-      "id": "flax",
-      "icon": "flax",
-      "regions": [
-        "Celtic",
-        "Roman"
-      ],
-      "category": "resource",
-      "startOfChain": false
-    },
-    {
-      "displayName": "Flour",
-      "id": "flour",
-      "icon": "flour",
-      "regions": [
-        "Celtic",
-        "Roman"
-      ],
-      "category": "intermediate",
-      "startOfChain": false
-    },
-    {
-      "displayName": "Glass",
-      "id": "glass",
-      "icon": "glass",
-      "regions": [
-        "Roman"
-      ],
-      "category": "intermediate",
-      "startOfChain": false
-    },
-    {
-      "displayName": "Gold",
-      "id": "gold",
-      "icon": "gold",
-      "regions": [
-        "Roman"
-      ],
-      "category": "intermediate",
-      "startOfChain": false
-    },
-    {
-      "displayName": "Gold Ore",
-      "id": "gold_ore",
-      "icon": "gold_ore",
-      "regions": [
-        "Roman"
-      ],
-      "category": "resource",
-      "startOfChain": false
-    },
-    {
-      "displayName": "Granite Block",
-      "id": "granite_block",
-      "icon": "granite_block",
-      "regions": [
-        "Celtic"
-      ],
-      "category": "resource",
-      "startOfChain": false
-    },
-    {
-      "displayName": "Grapes",
-      "id": "grapes",
-      "icon": "grapes",
-      "regions": [
-        "Celtic",
-        "Roman"
-      ],
-      "category": "resource",
-      "startOfChain": false
-    },
-    {
-      "displayName": "Head Piece",
-      "id": "head_piece",
-      "icon": "head_piece",
-      "regions": [
-        "Celtic",
-        "Roman"
-      ],
-      "category": "intermediate",
-      "startOfChain": false
-    },
-    {
-      "displayName": "Hemp",
-      "id": "hemp",
-      "icon": "hemp",
-      "regions": [
-        "Celtic",
-        "Roman"
-      ],
-      "category": "resource",
-      "startOfChain": false
-    },
-    {
-      "displayName": "Herbs",
-      "id": "herbs",
-      "icon": "herbs",
-      "regions": [
-        "Celtic",
-        "Roman"
-      ],
-      "category": "resource",
-      "startOfChain": false
-    },
-    {
-      "displayName": "Honeycombs",
-      "id": "honeycombs",
-      "icon": "honeycombs",
-      "regions": [
-        "Celtic",
-        "Roman"
-      ],
-      "category": "resource",
-      "startOfChain": false
-    },
-    {
-      "displayName": "Iron",
-      "id": "iron",
-      "icon": "iron",
-      "regions": [
-        "Celtic",
-        "Roman"
-      ],
-      "category": "intermediate",
-      "startOfChain": false
-    },
-    {
-      "displayName": "Iron Ore",
-      "id": "iron_ore",
-      "icon": "iron_ore",
-      "regions": [
-        "Celtic",
-        "Roman"
-      ],
-      "category": "resource",
-      "startOfChain": false
-    },
-    {
-      "displayName": "Lard",
-      "id": "lard",
-      "icon": "lard",
-      "regions": [
-        "Roman"
-      ],
-      "category": "intermediate",
-      "startOfChain": false
-    },
-    {
-      "displayName": "Lavender",
-      "id": "lavender",
-      "icon": "lavender",
-      "regions": [
-        "Roman"
-      ],
-      "category": "resource",
-      "startOfChain": false
-    },
-    {
-      "displayName": "Leather",
-      "id": "leather",
-      "icon": "leather",
-      "regions": [
-        "Celtic",
-        "Roman"
-      ],
-      "category": "intermediate",
-      "startOfChain": false
-    },
-    {
-      "displayName": "Limestone",
-      "id": "limestone",
-      "icon": "limestone",
-      "regions": [
-        "Celtic",
-        "Roman"
-      ],
-      "category": "resource",
-      "startOfChain": false
-    },
-    {
-      "displayName": "Mackerel",
-      "id": "mackerel",
-      "icon": "mackerel",
-      "regions": [
-        "Roman"
-      ],
-      "category": "resource",
-      "startOfChain": false
-    },
-    {
-      "displayName": "Malt",
-      "id": "malt",
-      "icon": "malt",
-      "regions": [
-        "Celtic"
-      ],
-      "category": "intermediate",
-      "startOfChain": false
-    },
-    {
-      "displayName": "Minerals",
-      "id": "minerals",
-      "icon": "minerals",
-      "regions": [
-        "Roman"
-      ],
-      "category": "resource",
-      "startOfChain": false
-    },
-    {
-      "displayName": "Mud",
-      "id": "mud",
-      "icon": "mud",
-      "regions": [
-        "Celtic",
-        "Roman"
-      ],
-      "category": "resource",
-      "startOfChain": false
-    },
-    {
-      "displayName": "Murex Snails",
-      "id": "murex_snails",
-      "icon": "murex_snails",
-      "regions": [
-        "Roman"
-      ],
-      "category": "resource",
-      "startOfChain": false
-    },
-    {
-      "displayName": "Oats",
-      "id": "oats",
-      "icon": "oats",
-      "regions": [
-        "Roman"
-      ],
-      "category": "resource",
-      "startOfChain": false
-    },
-    {
-      "displayName": "Obsidian",
-      "id": "obsidian",
-      "icon": "obsidian",
-      "regions": [
-        "Roman"
-      ],
-      "category": "resource",
-      "startOfChain": false
-    },
-    {
-      "displayName": "Ochs",
-      "id": "ochs",
-      "icon": "ochs",
-      "regions": [
-        "Celtic",
-        "Roman"
-      ],
-      "category": "resource",
-      "startOfChain": false
-    },
-    {
-      "displayName": "Olives",
-      "id": "olives",
-      "icon": "olives",
-      "regions": [
-        "Roman"
-      ],
-      "category": "resource",
-      "startOfChain": false
-    },
-    {
-      "displayName": "Ornate Wood",
-      "id": "ornate_wood",
-      "icon": "ornate_wood",
-      "regions": [
-        "Roman"
-      ],
-      "category": "intermediate",
-      "startOfChain": false
-    },
-    {
-      "displayName": "Oysters",
-      "id": "oysters",
-      "icon": "oysters",
-      "regions": [
-        "Roman"
-      ],
-      "category": "resource",
-      "startOfChain": false
-    },
-    {
-      "displayName": "Pigments",
-      "id": "pigments",
-      "icon": "pigments",
-      "regions": [
-        "Roman"
-      ],
-      "category": "intermediate",
-      "startOfChain": false
-    },
-    {
-      "displayName": "Pigs",
-      "id": "pigs",
-      "icon": "pigs",
-      "regions": [
-        "Celtic",
-        "Roman"
-      ],
-      "category": "resource",
-      "startOfChain": false
-    },
-    {
-      "displayName": "Ponies",
-      "id": "ponies",
-      "icon": "ponies",
-      "regions": [
-        "Roman"
-      ],
-      "category": "resource",
-      "startOfChain": false
-    },
-    {
-      "displayName": "Reeds",
-      "id": "reeds",
-      "icon": "reeds",
-      "regions": [
-        "Celtic",
-        "Roman"
-      ],
-      "category": "resource",
-      "startOfChain": false
-    },
-    {
-      "displayName": "Resin",
-      "id": "resin",
-      "icon": "resin",
-      "regions": [
-        "Celtic",
-        "Roman"
-      ],
-      "category": "resource",
-      "startOfChain": false
-    },
-    {
-      "displayName": "Salt",
-      "id": "salt",
-      "icon": "salt",
-      "regions": [
-        "Roman"
-      ],
-      "category": "resource",
-      "startOfChain": false
-    },
-    {
-      "displayName": "Saltwash",
-      "id": "saltwash",
-      "icon": "saltwash",
-      "regions": [
-        "Celtic"
-      ],
-      "category": "intermediate",
-      "startOfChain": false
-    },
-    {
-      "displayName": "Saltwort",
-      "id": "saltwort",
-      "icon": "saltwort",
-      "regions": [
-        "Celtic"
-      ],
-      "category": "resource",
-      "startOfChain": false
-    },
-    {
-      "displayName": "Sandarac Wood",
-      "id": "sandarac_wood",
-      "icon": "sandarac_wood",
-      "regions": [
-        "Roman"
-      ],
-      "category": "resource",
-      "startOfChain": false
-    },
-    {
-      "displayName": "Seashells",
-      "id": "seashells",
-      "icon": "seashells",
-      "regions": [
-        "Roman"
-      ],
-      "category": "resource",
-      "startOfChain": false
-    },
-    {
-      "displayName": "Sheep",
-      "id": "sheep",
-      "icon": "sheep",
-      "regions": [
-        "Celtic",
-        "Roman"
-      ],
-      "category": "resource",
-      "startOfChain": false
-    },
-    {
-      "displayName": "Silica",
-      "id": "silica",
-      "icon": "silica",
-      "regions": [
-        "Celtic",
-        "Roman"
-      ],
-      "category": "resource",
-      "startOfChain": false
-    },
-    {
-      "displayName": "Silver",
-      "id": "silver",
-      "icon": "silver",
-      "regions": [
-        "Roman"
-      ],
-      "category": "intermediate",
-      "startOfChain": false
-    },
-    {
-      "displayName": "Silver Ore",
-      "id": "silver_ore",
-      "icon": "silver_ore",
-      "regions": [
-        "Roman"
-      ],
-      "category": "resource",
-      "startOfChain": false
-    },
-    {
-      "displayName": "Small Birds",
-      "id": "small_birds",
-      "icon": "small_birds",
-      "regions": [
-        "Roman"
-      ],
-      "category": "resource",
-      "startOfChain": false
-    },
-    {
-      "displayName": "String",
-      "id": "string",
-      "icon": "string",
-      "regions": [
-        "Roman"
-      ],
-      "category": "intermediate",
-      "startOfChain": false
-    },
-    {
-      "displayName": "Sturgeon",
-      "id": "sturgeon",
-      "icon": "sturgeon",
-      "regions": [
-        "Roman"
-      ],
-      "category": "resource",
-      "startOfChain": false
-    },
-    {
-      "displayName": "Tin Ore",
-      "id": "tin_ore",
-      "icon": "tin_ore",
-      "regions": [
-        "Celtic"
-      ],
-      "category": "resource",
-      "startOfChain": false
-    },
-    {
-      "displayName": "Tyrian Purple",
-      "id": "tyrian_purple",
-      "icon": "tyrian_purple",
-      "regions": [
-        "Roman"
-      ],
-      "category": "intermediate",
-      "startOfChain": false
-    },
-    {
-      "displayName": "Uncut Marble",
-      "id": "uncut_marble",
-      "icon": "uncut_marble",
-      "regions": [
-        "Roman"
-      ],
-      "category": "resource",
-      "startOfChain": false
-    },
-    {
-      "displayName": "Wheat",
-      "id": "wheat",
-      "icon": "wheat",
-      "regions": [
-        "Celtic",
-        "Roman"
-      ],
-      "category": "resource",
-      "startOfChain": false
-    },
-    {
-      "displayName": "Wood",
-      "id": "wood",
-      "icon": "wood",
-      "regions": [
-        "Celtic",
-        "Roman"
-      ],
-      "category": "resource",
       "startOfChain": false
     }
   ]

@@ -20,10 +20,20 @@ for (const b of (buildingsEffectsJson as { buildings: any[] }).buildings) {
   }
 }
 
-const RESIDENCE_TIERS = new Set([
-  'リベルトゥス', 'プレブス', 'エクィテス', 'パトリキ',
-  'ウェーダー', 'スミス', 'アルダー', 'メルカトル', 'ノビレス',
-])
+// 表示名(NFC) -> population.md実際の見出しテキスト（括弧付き見出しは括弧まで含める。
+// VitePressの見出しslug化がハイフン変換するため、hrefでは`.normalize('NFD')`もかけて
+// ビルド後html内のid属性（濁点等がNFD分解された形）と一致させる）
+const RESIDENCE_TIER_ANCHOR: Record<string, string> = {
+  'リベルトゥス': 'リベルトゥス',
+  'プレブス': 'プレブス',
+  'エクィテス': 'エクィテス',
+  'パトリキ': 'パトリキ',
+  'ウェーダー': 'ウェーダー',
+  'スミス': 'スミス-ケルト文化路線',
+  'アルダー': 'アルダー-ケルト文化路線',
+  'メルカトル': 'メルカトル-ローマ文化路線',
+  'ノビレス': 'ノビレス-ローマ文化路線',
+}
 
 interface TargetLink {
   name: string
@@ -36,7 +46,8 @@ function resolveTargetLink(name: string): TargetLink {
     if (goodId) return { name, href: `/wiki/production-chains.html#${goodId}` }
   } else if (name.endsWith('の住居')) {
     const tier = name.slice(0, -'の住居'.length)
-    if (RESIDENCE_TIERS.has(tier)) return { name, href: `/wiki/population.html#${encodeURIComponent(tier)}` }
+    const anchor = RESIDENCE_TIER_ANCHOR[tier]
+    if (anchor) return { name, href: `/wiki/population.html#${encodeURIComponent(anchor.normalize('NFD'))}` }
   } else if (BUILDING_ID_BY_NAME_JA[name]) {
     return { name, href: `/wiki/buildings.html#${BUILDING_ID_BY_NAME_JA[name]}` }
   }

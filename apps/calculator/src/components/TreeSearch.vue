@@ -15,7 +15,7 @@
         v-if="searchQuery"
         class="clear-button"
         @click="clearSearch"
-        aria-label="検索をクリア"
+        :aria-label="clearLabel"
       >
         ✕
       </button>
@@ -47,6 +47,10 @@ const searchQuery = ref(props.modelValue);
 
 const placeholder = computed(() => {
   return i18n.t('ui.searchGoods') || 'Search products...';
+});
+
+const clearLabel = computed(() => {
+  return i18n.t('ui.clearSearch') || 'Clear search';
 });
 
 function handleInput() {

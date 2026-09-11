@@ -188,7 +188,10 @@
     "help.panTouchDesc": "Drag with one finger",
     "help.zoomTouchDesc": "Pinch with two fingers",
     "usage.note": "Auto-ratio shows the optimal number of buildings; Output/min shows production per minute.",
-    "buildingUnit": "x"
+    "buildingUnit": "x",
+    "clearSearch": "Clear search",
+    "categorySuffix": "Category",
+    "autoRatioTooltip": "Automatically sets the optimal rate for whole building counts"
   },
   "regions": {
     "latium": "Latium",

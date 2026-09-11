@@ -1,4 +1,5 @@
 import type { Goods } from '@anno/shared';
+import { I18nManager } from '@anno/shared';
 import { ModifierRegistry } from "../ModifierRegistry";
 import { AbstractProductionModifier, type ModifierDefinition, type ProductionModifierType, type SettingsSnapshot } from "../ProductionModifier";
 import { URLTools } from "../Utils";
@@ -18,6 +19,7 @@ class Aqueduct extends AbstractProductionModifier {
     } as const;
 
     private config: AqueductConfig;
+    private readonly i18n: I18nManager;
 
     constructor() {
         super("aqueduct");
@@ -26,6 +28,7 @@ class Aqueduct extends AbstractProductionModifier {
             aqua_arborica: false,
             hushing: false
         };
+        this.i18n = I18nManager.getInstance();
     }
 
     override loadConfig(): void {
@@ -54,33 +57,33 @@ class Aqueduct extends AbstractProductionModifier {
     override getDefinition(): ModifierDefinition {
         return {
             id: 'aqueduct',
-            label: 'Aqueducts',
+            label: this.i18n.t('modifiers.aqueduct'),
             description: 'Water infrastructure boosts for farms, plantations, and mines.',
             icon: 'aquaduct.png',
             toggles: [
                 {
                     key: Aqueduct.KEYS.enabled,
-                    label: 'Aqueduct Network',
+                    label: this.i18n.t('modifiers.aqueduct.enabled'),
                     description: 'Master switch for all aqueduct boosts.',
                     icon: 'aquaduct.png',
                 },
                 {
                     key: Aqueduct.KEYS.fieldIrrigation,
-                    label: 'Field Irrigation',
+                    label: this.i18n.t('modifiers.aqueduct.fieldIrrigation'),
                     description: 'Arable Farms get +50% productivity.',
                     icon: 'skill-feldbewaesserung.png',
                     requires: Aqueduct.KEYS.enabled,
                 },
                 {
                     key: Aqueduct.KEYS.aquaArborica,
-                    label: 'Aqua Arborica',
+                    label: this.i18n.t('modifiers.aqueduct.aquaArborica'),
                     description: 'Plantations get +50% productivity.',
                     icon: 'skill-aqua-arborica.png',
                     requires: Aqueduct.KEYS.enabled,
                 },
                 {
                     key: Aqueduct.KEYS.hushing,
-                    label: 'Hushing',
+                    label: this.i18n.t('modifiers.aqueduct.hushing'),
                     description: 'Mines get +50% productivity.',
                     icon: 'skill-hydraulischer-bergbau.png',
                     requires: Aqueduct.KEYS.enabled,

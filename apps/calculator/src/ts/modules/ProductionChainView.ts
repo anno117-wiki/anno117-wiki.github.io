@@ -231,7 +231,7 @@ class ProductionChainView {
                 <span class="topbar-separator">|</span>
                 <label for="target-rate">${this.i18n.t('ui.outputPerMinute')}</label>
                 <input id="target-rate" type="number" min="0" step="1" value="${this.currentRate ?? 1}" />
-                <button id="recommend-ratio-btn" type="button" class="recommend-button" title="整数建物数になる最適レートを自動設定します">${this.i18n.t('ui.autoRatio')}</button>
+                <button id="recommend-ratio-btn" type="button" class="recommend-button" title="${this.i18n.t('ui.autoRatioTooltip')}">${this.i18n.t('ui.autoRatio')}</button>
             </div>
         `;
     }

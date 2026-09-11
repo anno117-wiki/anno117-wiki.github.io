@@ -1930,7 +1930,7 @@ var ProductionChainView = class {
                 <span class="topbar-separator">|</span>
                 <label for="target-rate">${this.i18n.t("ui.outputPerMinute")}</label>
                 <input id="target-rate" type="number" min="0" step="1" value="${this.currentRate ?? 1}" />
-                <button id="recommend-ratio-btn" type="button" class="recommend-button" title="整数建物数になる最適レートを自動設定します">${this.i18n.t("ui.autoRatio")}</button>
+                <button id="recommend-ratio-btn" type="button" class="recommend-button" title="${this.i18n.t("ui.autoRatioTooltip")}">${this.i18n.t("ui.autoRatio")}</button>
             </div>
         `;
 	}
@@ -6490,6 +6490,7 @@ function normalizeContainer(container) {
 var _hoisted_1$4 = { class: "tree-search" };
 var _hoisted_2$4 = { class: "search-input-container" };
 var _hoisted_3$4 = ["placeholder", "aria-label"];
+var _hoisted_4$4 = ["aria-label"];
 var TreeSearch_vue_vue_type_script_setup_true_lang_default = /*@__PURE__*/ defineComponent({
 	__name: "TreeSearch",
 	props: { modelValue: { default: "" } },
@@ -6501,6 +6502,9 @@ var TreeSearch_vue_vue_type_script_setup_true_lang_default = /*@__PURE__*/ defin
 		const searchQuery = /* @__PURE__ */ ref(props.modelValue);
 		const placeholder = computed(() => {
 			return i18n.t("ui.searchGoods") || "Search products...";
+		});
+		const clearLabel = computed(() => {
+			return i18n.t("ui.clearSearch") || "Clear search";
 		});
 		function handleInput() {
 			emit("update:modelValue", searchQuery.value);
@@ -6525,8 +6529,8 @@ var TreeSearch_vue_vue_type_script_setup_true_lang_default = /*@__PURE__*/ defin
 					key: 0,
 					class: "clear-button",
 					onClick: clearSearch,
-					"aria-label": "検索をクリア"
-				}, " ✕ ")) : createCommentVNode("v-if", true)
+					"aria-label": clearLabel.value
+				}, " ✕ ", 8, _hoisted_4$4)) : createCommentVNode("v-if", true)
 			])]);
 		};
 	}
@@ -6540,7 +6544,7 @@ var _plugin_vue_export_helper_default = (sfc, props) => {
 };
 //#endregion
 //#region apps/calculator/src/components/TreeSearch.vue
-var TreeSearch_default = /*#__PURE__*/ _plugin_vue_export_helper_default(TreeSearch_vue_vue_type_script_setup_true_lang_default, [["__scopeId", "data-v-635aa8d7"]]);
+var TreeSearch_default = /*#__PURE__*/ _plugin_vue_export_helper_default(TreeSearch_vue_vue_type_script_setup_true_lang_default, [["__scopeId", "data-v-ff035133"]]);
 //#endregion
 //#region apps/calculator/src/components/TreeItem.vue?vue&type=script&setup=true&lang.ts
 var _hoisted_1$3 = [
@@ -6656,6 +6660,11 @@ var TreeCategory_default = /*#__PURE__*/ _plugin_vue_export_helper_default(/* @_
 			const locale = i18n.getLocale();
 			return props.category.name[locale] || props.category.name.en;
 		});
+		const categoryAriaLabel = computed(() => {
+			currentLocale.value;
+			const suffix = i18n.t("ui.categorySuffix") || "Category";
+			return `${categoryName.value} ${suffix}`;
+		});
 		onMounted(() => {
 			i18n.onChange(() => {
 				currentLocale.value = i18n.getLocale();
@@ -6676,7 +6685,7 @@ var TreeCategory_default = /*#__PURE__*/ _plugin_vue_export_helper_default(/* @_
 				onClick: toggleExpand,
 				role: "button",
 				"aria-expanded": __props.expanded,
-				"aria-label": `${categoryName.value} カテゴリ`,
+				"aria-label": categoryAriaLabel.value,
 				tabindex: "0",
 				onKeydown: [withKeys(toggleExpand, ["enter"]), withKeys(withModifiers(toggleExpand, ["prevent"]), ["space"])]
 			}, [
@@ -6695,7 +6704,7 @@ var TreeCategory_default = /*#__PURE__*/ _plugin_vue_export_helper_default(/* @_
 			}), 128))])) : createCommentVNode("v-if", true)], 10, _hoisted_1$2);
 		};
 	}
-}), [["__scopeId", "data-v-9a26c6e3"]]);
+}), [["__scopeId", "data-v-9e5a0117"]]);
 //#endregion
 //#region apps/calculator/src/components/GoodsTreeView.vue?vue&type=script&setup=true&lang.ts
 var _hoisted_1$1 = { class: "goods-tree-view" };
@@ -7354,6 +7363,7 @@ var Aqueduct = class Aqueduct extends AbstractProductionModifier {
 		hushing: "aqueduct.hushing"
 	};
 	config;
+	i18n;
 	constructor() {
 		super("aqueduct");
 		this.config = {
@@ -7361,6 +7371,7 @@ var Aqueduct = class Aqueduct extends AbstractProductionModifier {
 			aqua_arborica: false,
 			hushing: false
 		};
+		this.i18n = I18nManager.getInstance();
 	}
 	loadConfig() {
 		this.config = URLTools.fromGetParam(this.configKey, window.location.search, {
@@ -7382,33 +7393,33 @@ var Aqueduct = class Aqueduct extends AbstractProductionModifier {
 	getDefinition() {
 		return {
 			id: "aqueduct",
-			label: "Aqueducts",
+			label: this.i18n.t("modifiers.aqueduct"),
 			description: "Water infrastructure boosts for farms, plantations, and mines.",
 			icon: "aquaduct.png",
 			toggles: [
 				{
 					key: Aqueduct.KEYS.enabled,
-					label: "Aqueduct Network",
+					label: this.i18n.t("modifiers.aqueduct.enabled"),
 					description: "Master switch for all aqueduct boosts.",
 					icon: "aquaduct.png"
 				},
 				{
 					key: Aqueduct.KEYS.fieldIrrigation,
-					label: "Field Irrigation",
+					label: this.i18n.t("modifiers.aqueduct.fieldIrrigation"),
 					description: "Arable Farms get +50% productivity.",
 					icon: "skill-feldbewaesserung.png",
 					requires: Aqueduct.KEYS.enabled
 				},
 				{
 					key: Aqueduct.KEYS.aquaArborica,
-					label: "Aqua Arborica",
+					label: this.i18n.t("modifiers.aqueduct.aquaArborica"),
 					description: "Plantations get +50% productivity.",
 					icon: "skill-aqua-arborica.png",
 					requires: Aqueduct.KEYS.enabled
 				},
 				{
 					key: Aqueduct.KEYS.hushing,
-					label: "Hushing",
+					label: this.i18n.t("modifiers.aqueduct.hushing"),
 					description: "Mines get +50% productivity.",
 					icon: "skill-hydraulischer-bergbau.png",
 					requires: Aqueduct.KEYS.enabled
@@ -7584,4 +7595,4 @@ document.addEventListener("DOMContentLoaded", async () => {
 });
 //#endregion
 
-//# sourceMappingURL=index-DnTnL4oy.js.map
+//# sourceMappingURL=index-LiFtufwf.js.map

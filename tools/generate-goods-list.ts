@@ -40,55 +40,39 @@ function toDisplayName(id: string): string {
 }
 
 /**
- * Determine category based on good ID
- * Categories decided by user: food, fashion, culture, construction
+ * Determine category based on good ID.
+ * カテゴリ分類は現行list.json（食料/建設/ファッション/文化/中間品/原材料の6分類、手動メンテ）を
+ * 一次情報源として引き継ぐ。新規商品IDのみ警告を出し、暫定で'culture'にフォールバックする
+ * （このハードコード4分類だけを見ると6分類のresource/intermediateが欠落し誤判定するため）。
  */
-function determineCategory(id: string): string {
-  // Food (14 items)
-  const foodItems = [
-    'beer', 'bird_tongues_in_aspic', 'bread', 'cheese', 'cockles', 'eels',
-    'garum', 'olive_oil', 'oysters_with_caviar', 'porridge', 'roast_beef',
-    'sardines', 'sausages', 'wine'
-  ];
+function loadExistingGoods(existingListPath: string): Array<{ id: string; category: string; icon: string }> {
+  try {
+    const content = require("fs").readFileSync(existingListPath, "utf-8");
+    const parsed = JSON.parse(content) as { goods?: Array<{ id: string; category: string; icon: string }> };
+    return parsed.goods || [];
+  } catch {
+    return [];
+  }
+}
 
-  // Fashion (16 items)
-  const fashionItems = [
-    'brooches', 'clan_shields', 'cloaks', 'drinking_horns', 'fur_hats',
-    'handmirrors', 'necklaces', 'pileus', 'reed_shoes', 'sandals',
-    'standing_lyres', 'togas', 'torcs', 'trousers', 'tunics', 'wigs'
-  ];
+function determineCategory(id: string, categoryMap: Map<string, string>): string {
+  const known = categoryMap.get(id);
+  if (known) return known;
 
-  // Culture (6 items)
-  const cultureItems = [
-    'amphorae', 'chariots', 'fine_glass', 'loungers', 'soap', 'writing_tablets'
-  ];
-
-  // Construction (12 items)
-  const constructionItems = [
-    'armour', 'concrete', 'granite', 'horses', 'marble', 'mosaics',
-    'rope', 'sails', 'tiles', 'timber', 'wattle_&_daub', 'weapons'
-  ];
-
-  if (foodItems.includes(id)) return 'food';
-  if (fashionItems.includes(id)) return 'fashion';
-  if (cultureItems.includes(id)) return 'culture';
-  if (constructionItems.includes(id)) return 'construction';
-
-  // Default fallback
   console.warn(`[Generate] Unknown category for item: ${id}, defaulting to 'culture'`);
   return 'culture';
 }
 
-function processFile(node: ProductionNode, filename: string, goodsMap: Map<string, Good>) {
+function processFile(node: ProductionNode, filename: string, goodsMap: Map<string, Good>, categoryMap: Map<string, string>, iconMap: Map<string, string>, isRoot = true, inheritedRegions: string[] = []) {
     if (!node.id) return;
 
-    // Process the root item (the product of this file)
+    // Process this node's good (root = the file's main product, nested = intermediate/resource
+    // ingredients that have no standalone production file of their own, e.g. wheat inside bread.json)
     const id = node.id;
-    let regions = node.region || [];
-    // If filename contains '_albion', force regions to ['Celtic']
-    if (filename.includes('_albion')) {
-      regions = ['Celtic'];
-    }
+    // If filename contains '_albion', force regions to ['Celtic']. Otherwise use this node's own
+    // region if present (root nodes), or fall back to the region inherited from the file's root
+    // (nested ingredients have no `region` field of their own).
+    let regions = filename.includes('_albion') ? ['Celtic'] : (node.region || inheritedRegions);
     const displayName = node.name || toDisplayName(id);
 
     let good = goodsMap.get(id);
@@ -96,10 +80,10 @@ function processFile(node: ProductionNode, filename: string, goodsMap: Map<strin
         good = {
             displayName,
             id,
-            icon: node.icon || id,
+            icon: node.icon || iconMap.get(id) || id,
             regions: [],
             files: {},
-            category: determineCategory(id),
+            category: determineCategory(id, categoryMap),
             startOfChain: node.start_of_chain || false
         };
         goodsMap.set(id, good);
@@ -110,13 +94,23 @@ function processFile(node: ProductionNode, filename: string, goodsMap: Map<strin
         }
     }
 
-    // Update regions and files for this good (since this file defines a recipe for it)
-    // Merge regions
+    // Merge regions (nested ingredients inherit the region of the chain they appear in)
     for (const region of regions) {
         if (!good.regions.includes(region)) {
             good.regions.push(region);
         }
     }
+
+    // Recurse into ingredients first so their `files` mapping (if any, set below) isn't
+    // clobbered by this node's own file mapping. Ingredients inherit this node's region.
+    for (const input of node.input || []) {
+        processFile(input, filename, goodsMap, categoryMap, iconMap, false, regions);
+    }
+
+    // Only the file's root product maps to a standalone production file. Nested ingredients
+    // (wheat, flour, etc.) have no file of their own and must keep `files` empty.
+    if (!isRoot) return;
+
     // Add file mapping: region keys with file names
     const simpleFilename = filename.replace('.json', '');
     for (const region of regions) {
@@ -137,15 +131,20 @@ function formatConsoleLog(text: string, error = false): void {
  */
 export default async function generateGoodsList({showList = true, devmode = true}) {
   try {
-    const productionsDir = resolve(__dirname, "../src/assets/productions");
+    const productionsDir = resolve(__dirname, "../packages/shared/public/productions");
     const outputPath = join(productionsDir, "list.json");
 
     formatConsoleLog(`Scanning directory: ${productionsDir}`);
 
+    // 既存list.json（手動メンテのcategory/icon）を引き継ぐ
+    const existingGoods = loadExistingGoods(outputPath);
+    const categoryMap = new Map(existingGoods.map((g) => [g.id, g.category]));
+    const iconMap = new Map(existingGoods.map((g) => [g.id, g.icon]));
+
     // Read all JSON files from productions directory
     const files = await readdir(productionsDir);
     const jsonFiles = files.filter(
-      (file) => file.endsWith(".json") && file !== "list.json"
+      (file) => file.endsWith(".json") && file !== "list.json" && file !== "item-compatibility.json"
     );
 
     formatConsoleLog(`Found ${jsonFiles.length} production files`);
@@ -159,7 +158,7 @@ export default async function generateGoodsList({showList = true, devmode = true
       try {
         const content = await readFile(filePath, "utf-8");
         const production: ProductionNode = JSON.parse(content);
-        processFile(production, file, allGoods);
+        processFile(production, file, allGoods, categoryMap, iconMap);
       } catch (error) {
         formatConsoleLog(`Could not process ${file}`, true);
       }
@@ -196,7 +195,7 @@ export default async function generateGoodsList({showList = true, devmode = true
       console.log(`   - ${good.displayName} (${good.id})`);
     });
   } catch (error) {
-    formatConsoleLog(`Error generating goods list:`, true);
+    formatConsoleLog(`Error generating goods list: ${error}`, true);
     process.exit(1);
   }
 }

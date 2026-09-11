@@ -4,12 +4,8 @@ description: Anno 117のスキルツリーを5ブランチ・204件のスキル�
 ---
 
 <script setup lang="ts">
-import { ref, computed, onMounted, onUnmounted } from 'vue'
-import { useData } from 'vitepress'
+import { ref, onMounted, onUnmounted } from 'vue'
 import { data } from './techs.data.ts'
-
-const { site } = useData()
-const BASE = computed(() => site.value.base || '/')
 
 const hoveredTech = ref<any>(null)
 const tooltipStyle = ref('')
@@ -194,13 +190,6 @@ onUnmounted(() => {
         @mouseleave="onLeave"
         @click="selectTech(tech)"
       >
-        <img
-          v-if="tech.annoNodeId || tech.isGate"
-          :src="tech.annoNodeId ? `${BASE}icons/tech/${tech.annoNodeId}.webp` : `${BASE}icons/tech/gate.webp`"
-          class="tech-icon"
-          :alt="tech.label"
-          @error="($event.target as HTMLImageElement).src = `${BASE}icons/tech/gate.webp`"
-        />
         <span v-if="tech.isGate && tech.knowledgeCost" class="gate-cost">{{ formatKnowledge(tech.knowledgeCost) }}</span>
         <span class="tech-label">{{ tech.label }}</span>
       </div>
@@ -335,21 +324,6 @@ onUnmounted(() => {
 .is-selected { outline: 2px solid #fff; outline-offset: 1px; box-shadow: 0 0 0 3px rgba(0,0,0,0.3); z-index: 3; position: relative; }
 .gate-cost { font-size: 0.6rem; font-weight: 700; margin-bottom: 0; }
 .tech-label { line-height: 1.2; }
-.tech-icon {
-  width: 18px;
-  height: 18px;
-  object-fit: contain;
-  margin-bottom: 1px;
-  flex-shrink: 0;
-}
-.is-gate .tech-icon {
-  position: absolute;
-  top: 2px;
-  left: 2px;
-  width: 14px;
-  height: 14px;
-  margin: 0;
-}
 
 .color-green   { background: #dcfce7; border-color: #86efac; color: #14532d; }
 .color-green   .gate-cost { color: #16a34a; }

@@ -1,7 +1,12 @@
 #!/usr/bin/env python3
 """
 skilltree-full-data.json の connections/annoS/annoR を techs.json に付与する。
-既存フィールドは上書きしない（build-game-data.py の保護機構と対称）。
+
+注意: guidが一致する場合、connections/annoS/annoRは無条件で上書きされる（新規追加guid分は
+guidがnodes_by_guidに無ければスキップされ安全だが、既存guidの接続情報は上書きされる）。
+_local/skilltree-full-data.json がDLC等の一次ソース更新に追従していない状態で再実行すると、
+手編集で反映済みの新しい接続情報が古い値で潰される恐れがあるため、実行前に
+skilltree-full-data.json 自体をDLC対応版に更新済みか確認すること。
 
 実行: python tools/apply-skilltree-connections.py
 """

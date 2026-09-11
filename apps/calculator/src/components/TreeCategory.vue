@@ -5,7 +5,7 @@
       @click="toggleExpand"
       role="button"
       :aria-expanded="expanded"
-      :aria-label="`${categoryName} カテゴリ`"
+      :aria-label="categoryAriaLabel"
       tabindex="0"
       @keydown.enter="toggleExpand"
       @keydown.space.prevent="toggleExpand"
@@ -78,6 +78,12 @@ const categoryName = computed(() => {
   const _ = currentLocale.value;
   const locale = i18n.getLocale();
   return props.category.name[locale] || props.category.name.en;
+});
+
+const categoryAriaLabel = computed(() => {
+  const _ = currentLocale.value;
+  const suffix = i18n.t('ui.categorySuffix') || 'Category';
+  return `${categoryName.value} ${suffix}`;
 });
 
 // 言語変更リスナーを登録
