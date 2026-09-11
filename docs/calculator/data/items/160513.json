@@ -1,0 +1,24 @@
+{
+  "displayName": "ティランナ、生粋の多色主義者",
+  "guid": "160513",
+  "description": "「イベリア産の辰砂に、パルタヴァ産の天藍石に、ビアウ産の孔雀石。実に色とりどりだ。この楽しみをティルス人だけに独占させてよいものだろうか？」――多色宣言",
+  "iconFilename": "",
+  "rarity": "Mythic",
+  "niche": "Diplomacy",
+  "targets": [
+    {
+      "producedGoods": [
+        {
+          "name": "Togas"
+        }
+      ]
+    }
+  ],
+  "buffs": [
+    {
+      "FactoryUpgrade": {
+        "ProductivityUpgrade": 35.0
+      }
+    }
+  ]
+}

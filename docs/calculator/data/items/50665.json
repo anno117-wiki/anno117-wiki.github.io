@@ -1,32 +1,15 @@
 {
-  "displayName": "Prime Mantler",
+  "displayName": "至高のマント職人",
   "guid": "50665",
-  "description": "Knows where the hood's at.",
+  "description": "どこにフードがあるかを知っている。",
   "iconFilename": "50665.png",
   "rarity": "Rare",
   "niche": "Agriculture",
   "targets": [
     {
-      "GUID": "50631",
-      "Type": "AssetPoolNamed",
-      "displayName": "Cloaks Chain",
-      "internalName": "Asset Pool Cloaks Chain",
       "producedGoods": [
         {
-          "guid": "2161",
           "name": "Cloaks"
-        },
-        {
-          "guid": "2073",
-          "name": "Sheep"
-        },
-        {
-          "guid": "2126",
-          "name": "Celtic Green"
-        },
-        {
-          "guid": "2094",
-          "name": "Dye Plants"
         }
       ]
     }
@@ -34,27 +17,7 @@
   "buffs": [
     {
       "FactoryUpgrade": {
-        "ProductivityUpgrade": 20.0,
-        "AddedFertility": 0,
-        "FertilityPercent": 100,
-        "AdditionalOutput": [],
-        "InputAmountUpgrade": [],
-        "ReplaceInputs": [],
-        "NeededAreaUpgrade": 0,
-        "CanUseMarsh": false,
-        "CanUseForest": false,
-        "CanUseMeadow": false,
-        "FuelDurationPercent": 0.0,
-        "InfluenceRadiusUpgrade": 0.0
-      },
-      "MaintenanceUpgrade": {
-        "MaintenanceFactorUpgrade": 0.0,
-        "WorkforceMaintenanceFactorUpgrade": 0.0,
-        "ReplaceWorkforce": {
-          "OldWorkforce": 0,
-          "NewWorkforce": 0
-        },
-        "EncampedUnitScalingFactorUpgrade": 0.0
+        "ProductivityUpgrade": 20.0
       }
     }
   ]

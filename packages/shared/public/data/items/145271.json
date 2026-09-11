@@ -1,0 +1,27 @@
+{
+  "displayName": "従者の彫刻家",
+  "guid": "145271",
+  "description": "黒ガラスは彼に歌う。それがあるべき姿についての歌を。",
+  "iconFilename": "",
+  "rarity": "Rare",
+  "niche": "Economy",
+  "targets": [
+    {
+      "producedGoods": [
+        {
+          "name": "Statuettes"
+        },
+        {
+          "name": "Marble"
+        }
+      ]
+    }
+  ],
+  "buffs": [
+    {
+      "FactoryUpgrade": {
+        "ProductivityUpgrade": 20.0
+      }
+    }
+  ]
+}

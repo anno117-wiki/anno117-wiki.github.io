@@ -1,0 +1,24 @@
+{
+  "displayName": "ブラウダ兄弟、パンの達人",
+  "guid": "160522",
+  "description": "「油をたっぷりかける。バターを乗せる。肉の下に敷く。チーズを添える。シチューに浸す。卵を乗せる… パンの食べ方で唯一間違ったものがあるとすれば、パンを食べないことだ」――『ブラウダの華々しきパンの本』",
+  "iconFilename": "",
+  "rarity": "Mythic",
+  "niche": "Culture",
+  "targets": [
+    {
+      "producedGoods": [
+        {
+          "name": "Bread"
+        }
+      ]
+    }
+  ],
+  "buffs": [
+    {
+      "FactoryUpgrade": {
+        "ProductivityUpgrade": 25.0
+      }
+    }
+  ]
+}

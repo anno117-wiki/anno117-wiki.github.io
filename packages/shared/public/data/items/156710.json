@@ -1,0 +1,27 @@
+{
+  "displayName": "スペアー・ニク・レアルタ、策士の釣り人",
+  "guid": "156710",
+  "description": "彼女の無数の釣り竿には無数の釣り針がついている。あとは食いつくのを待つだけだ。",
+  "iconFilename": "",
+  "rarity": "Epic",
+  "niche": "Agriculture",
+  "targets": [
+    {
+      "producedGoods": [
+        {
+          "name": "Sardines"
+        },
+        {
+          "name": "Eels"
+        }
+      ]
+    }
+  ],
+  "buffs": [
+    {
+      "FactoryUpgrade": {
+        "ProductivityUpgrade": 30.0
+      }
+    }
+  ]
+}

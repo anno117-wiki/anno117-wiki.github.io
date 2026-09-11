@@ -1,0 +1,24 @@
+{
+  "displayName": "ワロネリ・ハルトバイン、加速と酒の魔術師",
+  "guid": "156714",
+  "description": "彼の「実験」には、車輪や車軸、ときには戦車そのものが足りないことさえある。それでも、彼の熱意（とビールを飲む量）には限りがない。",
+  "iconFilename": "",
+  "rarity": "Legendary",
+  "niche": "Economy",
+  "targets": [
+    {
+      "producedGoods": [
+        {
+          "name": "Chariots"
+        }
+      ]
+    }
+  ],
+  "buffs": [
+    {
+      "FactoryUpgrade": {
+        "ProductivityUpgrade": -10.0
+      }
+    }
+  ]
+}

@@ -1,0 +1,24 @@
+{
+  "displayName": "台帳係",
+  "guid": "156685",
+  "description": "賭けていくかい？",
+  "iconFilename": "",
+  "rarity": "Common",
+  "niche": "Research",
+  "targets": [
+    {
+      "producedGoods": [
+        {
+          "name": "Writing Tablets"
+        }
+      ]
+    }
+  ],
+  "buffs": [
+    {
+      "FactoryUpgrade": {
+        "ProductivityUpgrade": 10.0
+      }
+    }
+  ]
+}

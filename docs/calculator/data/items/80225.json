@@ -1,0 +1,24 @@
+{
+  "displayName": "リアンノンのかつての御者-ピル・ファブ・マナウィダン",
+  "guid": "80225",
+  "description": "「馬の神には、その戦車を管理する者が必要だ」とピルは言う。",
+  "iconFilename": "",
+  "rarity": "Legendary",
+  "niche": "Diplomacy",
+  "targets": [
+    {
+      "producedGoods": [
+        {
+          "name": "Horses"
+        }
+      ]
+    }
+  ],
+  "buffs": [
+    {
+      "FactoryUpgrade": {
+        "ProductivityUpgrade": 30.0
+      }
+    }
+  ]
+}

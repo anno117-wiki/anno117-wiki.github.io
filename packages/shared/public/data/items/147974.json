@@ -1,0 +1,24 @@
+{
+  "displayName": "独学のゲーム学者",
+  "guid": "147974",
+  "description": "彼女は独自の娯楽理論に従って、ゲームの遊び方をまとめ上げる。",
+  "iconFilename": "",
+  "rarity": "Rare",
+  "niche": "Economy",
+  "targets": [
+    {
+      "producedGoods": [
+        {
+          "name": "Latrunculi Sets"
+        }
+      ]
+    }
+  ],
+  "buffs": [
+    {
+      "FactoryUpgrade": {
+        "ProductivityUpgrade": 20.0
+      }
+    }
+  ]
+}

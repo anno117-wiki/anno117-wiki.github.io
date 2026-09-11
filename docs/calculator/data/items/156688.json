@@ -1,0 +1,30 @@
+{
+  "displayName": "近視の石工",
+  "guid": "156688",
+  "description": "レースなんて簡単、彼なら目をつぶっていてもできる！ …ただし、勝てるかどうかは別の話だが。",
+  "iconFilename": "",
+  "rarity": "Rare",
+  "niche": "Religion",
+  "targets": [
+    {
+      "producedGoods": [
+        {
+          "name": "Statuettes"
+        },
+        {
+          "name": "Marble"
+        },
+        {
+          "name": "Latrunculi Sets"
+        }
+      ]
+    }
+  ],
+  "buffs": [
+    {
+      "FactoryUpgrade": {
+        "ProductivityUpgrade": 20.0
+      }
+    }
+  ]
+}

@@ -1,24 +1,15 @@
 {
-  "displayName": "Student of Whey",
+  "displayName": "ホエイの学徒",
   "guid": "44082",
-  "description": "She hopes to be remembered in lactic legend.",
+  "description": "乳業界の伝説に名を残したいと願っている。",
   "iconFilename": "44082.png",
   "rarity": "Rare",
   "niche": "Economy",
   "targets": [
     {
-      "GUID": "50571",
-      "Type": "AssetPoolNamed",
-      "displayName": "Cheese Chain",
-      "internalName": "Asset Pool Cheese Chain",
       "producedGoods": [
         {
-          "guid": "2153",
           "name": "Cheese"
-        },
-        {
-          "guid": "2105",
-          "name": "Ochs"
         }
       ]
     }
@@ -26,27 +17,7 @@
   "buffs": [
     {
       "FactoryUpgrade": {
-        "ProductivityUpgrade": 20.0,
-        "AddedFertility": 0,
-        "FertilityPercent": 100,
-        "AdditionalOutput": [],
-        "InputAmountUpgrade": [],
-        "ReplaceInputs": [],
-        "NeededAreaUpgrade": 0,
-        "CanUseMarsh": false,
-        "CanUseForest": false,
-        "CanUseMeadow": false,
-        "FuelDurationPercent": 0.0,
-        "InfluenceRadiusUpgrade": 0.0
-      },
-      "MaintenanceUpgrade": {
-        "MaintenanceFactorUpgrade": 0.0,
-        "WorkforceMaintenanceFactorUpgrade": 0.0,
-        "ReplaceWorkforce": {
-          "OldWorkforce": 0,
-          "NewWorkforce": 0
-        },
-        "EncampedUnitScalingFactorUpgrade": 0.0
+        "ProductivityUpgrade": 20.0
       }
     }
   ]

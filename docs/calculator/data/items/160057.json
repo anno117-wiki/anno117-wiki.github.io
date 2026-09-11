@@ -1,0 +1,24 @@
+{
+  "displayName": "セリフォスのプトリポルトス、磨き上げられた鏡占術師",
+  "guid": "160057",
+  "description": "「アテナは、その知恵をもって、銀の盾は作らなかっただろう。だからペルセウスがあの形のない島を訪れたとき、彼が携えていたのは鉄に他ならなかっただろう」――『鏡占術師の写本』第2巻",
+  "iconFilename": "",
+  "rarity": "Mythic",
+  "niche": "Finance",
+  "targets": [
+    {
+      "producedGoods": [
+        {
+          "name": "Handmirrors"
+        }
+      ]
+    }
+  ],
+  "buffs": [
+    {
+      "FactoryUpgrade": {
+        "ProductivityUpgrade": 30.0
+      }
+    }
+  ]
+}

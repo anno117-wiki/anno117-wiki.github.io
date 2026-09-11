@@ -1,28 +1,15 @@
 {
-  "displayName": "Handler",
+  "displayName": "ハンドラー",
   "guid": "44139",
-  "description": "Great at handling jars.",
+  "description": "瓶の扱いがうまい。",
   "iconFilename": "44139.png",
   "rarity": "Common",
   "niche": "Military",
   "targets": [
     {
-      "GUID": "50589",
-      "Type": "AssetPoolNamed",
-      "displayName": "Amphorae Chain",
-      "internalName": "Asset Pool Amphorae Chain",
       "producedGoods": [
         {
-          "guid": "31700",
           "name": "Amphorae"
-        },
-        {
-          "guid": "2086",
-          "name": "Clay"
-        },
-        {
-          "guid": "31695",
-          "name": "Resin"
         }
       ]
     }
@@ -30,27 +17,7 @@
   "buffs": [
     {
       "FactoryUpgrade": {
-        "ProductivityUpgrade": 10.0,
-        "AddedFertility": 0,
-        "FertilityPercent": 100,
-        "AdditionalOutput": [],
-        "InputAmountUpgrade": [],
-        "ReplaceInputs": [],
-        "NeededAreaUpgrade": 0,
-        "CanUseMarsh": false,
-        "CanUseForest": false,
-        "CanUseMeadow": false,
-        "FuelDurationPercent": 0.0,
-        "InfluenceRadiusUpgrade": 0.0
-      },
-      "MaintenanceUpgrade": {
-        "MaintenanceFactorUpgrade": 0.0,
-        "WorkforceMaintenanceFactorUpgrade": 0.0,
-        "ReplaceWorkforce": {
-          "OldWorkforce": 0,
-          "NewWorkforce": 0
-        },
-        "EncampedUnitScalingFactorUpgrade": 0.0
+        "ProductivityUpgrade": 10.0
       }
     }
   ]

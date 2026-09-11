@@ -1,0 +1,24 @@
+{
+  "displayName": "コムナル・ティン、炎の戦車乗り",
+  "guid": "156706",
+  "description": "彼はレースを終えるたびに自分の戦車に火を点ける。代わりの戦車の調達はお手の物だ。",
+  "iconFilename": "",
+  "rarity": "Epic",
+  "niche": "Economy",
+  "targets": [
+    {
+      "producedGoods": [
+        {
+          "name": "Chariots"
+        }
+      ]
+    }
+  ],
+  "buffs": [
+    {
+      "FactoryUpgrade": {
+        "ProductivityUpgrade": 35.0
+      }
+    }
+  ]
+}

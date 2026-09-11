@@ -1,0 +1,171 @@
+{
+  "displayName": "小宇宙学者-マクロビウス・ミヌキアヌス",
+  "guid": "80221",
+  "description": "小さな世界の物知り。",
+  "iconFilename": "",
+  "rarity": "Legendary",
+  "niche": "Economy",
+  "targets": [
+    {
+      "producedGoods": [
+        {
+          "name": "Sardines"
+        },
+        {
+          "name": "Horses"
+        },
+        {
+          "name": "Porridge"
+        },
+        {
+          "name": "Bread"
+        },
+        {
+          "name": "Garum"
+        },
+        {
+          "name": "Wine"
+        },
+        {
+          "name": "Oysters with Caviar"
+        },
+        {
+          "name": "Tunics"
+        },
+        {
+          "name": "Pileus"
+        },
+        {
+          "name": "Soap"
+        },
+        {
+          "name": "Sandals"
+        },
+        {
+          "name": "Togas"
+        },
+        {
+          "name": "Necklaces"
+        },
+        {
+          "name": "Amphorae"
+        },
+        {
+          "name": "Olive Oil"
+        },
+        {
+          "name": "Writing Tablets"
+        },
+        {
+          "name": "Fine Glass"
+        },
+        {
+          "name": "Loungers"
+        },
+        {
+          "name": "Lyres"
+        },
+        {
+          "name": "Timber"
+        },
+        {
+          "name": "Tiles"
+        },
+        {
+          "name": "Concrete"
+        },
+        {
+          "name": "Marble"
+        },
+        {
+          "name": "Mosaics"
+        },
+        {
+          "name": "Rope"
+        },
+        {
+          "name": "Sails"
+        },
+        {
+          "name": "Weapons"
+        },
+        {
+          "name": "Armour"
+        },
+        {
+          "name": "Eels"
+        },
+        {
+          "name": "Sausages"
+        },
+        {
+          "name": "Bird Tongues in Aspic"
+        },
+        {
+          "name": "Brooches"
+        },
+        {
+          "name": "Wigs"
+        },
+        {
+          "name": "Handmirrors"
+        },
+        {
+          "name": "Cockles"
+        },
+        {
+          "name": "Cheese"
+        },
+        {
+          "name": "Beer"
+        },
+        {
+          "name": "Roast Beef"
+        },
+        {
+          "name": "Reed Shoes"
+        },
+        {
+          "name": "Trousers"
+        },
+        {
+          "name": "Torcs"
+        },
+        {
+          "name": "Cloaks"
+        },
+        {
+          "name": "Fur Hats"
+        },
+        {
+          "name": "Drinking Horns"
+        },
+        {
+          "name": "Ceremonial Shields"
+        },
+        {
+          "name": "Chariots"
+        },
+        {
+          "name": "Wattle & Daub"
+        },
+        {
+          "name": "Granite"
+        },
+        {
+          "name": "Statuettes"
+        },
+        {
+          "name": "Latrunculi Sets"
+        }
+      ]
+    }
+  ],
+  "buffs": [
+    {
+      "FactoryUpgrade": {
+        "ProductivityUpgrade": 20.0
+      }
+    }
+  ]
+}

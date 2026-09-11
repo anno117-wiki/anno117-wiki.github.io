@@ -1,0 +1,24 @@
+{
+  "displayName": "具象的な粘土職人",
+  "guid": "156690",
+  "description": "瓦の粉と粘土から、具体的なものが形作られる。由緒ある職人の家系の出身。",
+  "iconFilename": "",
+  "rarity": "Rare",
+  "niche": "Economy",
+  "targets": [
+    {
+      "producedGoods": [
+        {
+          "name": "Tiles"
+        }
+      ]
+    }
+  ],
+  "buffs": [
+    {
+      "FactoryUpgrade": {
+        "ProductivityUpgrade": 5.0
+      }
+    }
+  ]
+}

@@ -1,0 +1,27 @@
+{
+  "displayName": "プロクレス、異質なクソアノン彫刻家",
+  "guid": "160531",
+  "description": "「ほとんどの学生は、石を自分の姿に似せて形作ろうとする。しかしプロクレスは… 別の形を見出した」――ある彫刻教師の懸念の言葉",
+  "iconFilename": "",
+  "rarity": "Mythic",
+  "niche": "Religion",
+  "targets": [
+    {
+      "producedGoods": [
+        {
+          "name": "Statuettes"
+        },
+        {
+          "name": "Latrunculi Sets"
+        }
+      ]
+    }
+  ],
+  "buffs": [
+    {
+      "FactoryUpgrade": {
+        "ProductivityUpgrade": 35.0
+      }
+    }
+  ]
+}

@@ -168,8 +168,8 @@ async function collectChainNames(productionsDir: string, filesByRegion: Record<s
 
 export default async function generateItemsList({ showList = true, devmode = true }) {
 	try {
-		const productionsDir = resolve(__dirname, "../src/assets/productions");
-		const itemsDir = resolve(__dirname, "../src/assets/data/items");
+		const productionsDir = resolve(__dirname, "../packages/shared/public/productions");
+		const itemsDir = resolve(__dirname, "../packages/shared/public/data/items");
 		const productionListPath = join(productionsDir, "list.json");
 		const outputPath = join(productionsDir, "item-compatibility.json");
 
@@ -235,8 +235,13 @@ export default async function generateItemsList({ showList = true, devmode = tru
 		for (const chain of compatibility) {
 			console.log(`   - ${chain.displayName}: ${chain.items.length} items`);
 		}
-	} catch {
-		formatConsoleLog("Error generating item compatibility list", true);
+	} catch (error) {
+		formatConsoleLog(`Error generating item compatibility list: ${error}`, true);
 		process.exit(1);
 	}
+}
+
+// Execute the function when run directly
+if (import.meta.main) {
+	await generateItemsList({ showList: true, devmode: true });
 }

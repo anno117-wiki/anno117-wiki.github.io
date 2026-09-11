@@ -1,0 +1,27 @@
+{
+  "displayName": "サルマティアの剣匠-ゾルシネス",
+  "guid": "80510",
+  "description": "彼の剣の形に隠された秘密は、最も鋭い騎士さえも驚かせ、呆然とさせる。",
+  "iconFilename": "",
+  "rarity": "Legendary",
+  "niche": "Economy",
+  "targets": [
+    {
+      "producedGoods": [
+        {
+          "name": "Weapons"
+        },
+        {
+          "name": "Armour"
+        }
+      ]
+    }
+  ],
+  "buffs": [
+    {
+      "FactoryUpgrade": {
+        "ProductivityUpgrade": 30.0
+      }
+    }
+  ]
+}

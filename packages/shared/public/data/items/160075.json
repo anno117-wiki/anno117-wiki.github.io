@@ -1,0 +1,27 @@
+{
+  "displayName": "ボリオラヌス、包囲戦で鍛えられた勇者",
+  "guid": "160075",
+  "description": "「ボリオラヌス：皆の者よ、勇気を出せ。いかなる剣も、勇敢なる男の胸は貫けないのだ」――舞台版『ボリオリ包囲戦』",
+  "iconFilename": "",
+  "rarity": "Mythic",
+  "niche": "Military",
+  "targets": [
+    {
+      "producedGoods": [
+        {
+          "name": "Weapons"
+        },
+        {
+          "name": "Armour"
+        }
+      ]
+    }
+  ],
+  "buffs": [
+    {
+      "FactoryUpgrade": {
+        "ProductivityUpgrade": 45.0
+      }
+    }
+  ]
+}

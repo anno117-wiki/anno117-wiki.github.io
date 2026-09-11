@@ -1,0 +1,27 @@
+{
+  "displayName": "エルクマルの子フィネケス、全知の鮭漁師",
+  "guid": "160054",
+  "description": "「ハシバミの木は世界の知恵を蓄えて賢くなる。鮭は落ちた木の実を食べて賢くなる。もし人がかようにして世界の知恵を蓄えた魚を食べたならば、同じく賢くなるだろう。しかし、そのような魚を捕まえられる者はいるだろうか？」――フィネケスの知恵",
+  "iconFilename": "",
+  "rarity": "Mythic",
+  "niche": "Economy",
+  "targets": [
+    {
+      "producedGoods": [
+        {
+          "name": "Sardines"
+        },
+        {
+          "name": "Eels"
+        }
+      ]
+    }
+  ],
+  "buffs": [
+    {
+      "FactoryUpgrade": {
+        "ProductivityUpgrade": 50.0
+      }
+    }
+  ]
+}

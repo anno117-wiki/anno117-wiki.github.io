@@ -1,0 +1,24 @@
+{
+  "displayName": "馬丁",
+  "guid": "156679",
+  "description": "地に足のついた若者。",
+  "iconFilename": "",
+  "rarity": "Common",
+  "niche": "Diplomacy",
+  "targets": [
+    {
+      "producedGoods": [
+        {
+          "name": "Horses"
+        }
+      ]
+    }
+  ],
+  "buffs": [
+    {
+      "FactoryUpgrade": {
+        "ProductivityUpgrade": 15.0
+      }
+    }
+  ]
+}

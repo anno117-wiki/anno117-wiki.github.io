@@ -1,0 +1,27 @@
+{
+  "displayName": "砂とサンダルの生存者-ファビルス",
+  "guid": "50890",
+  "description": "かつての闘技場の謎の戦士は、産業の原動力となった。彼の立つところでは、労働者たちが生き生きと働き、槌が絶え間なく振るわれる。",
+  "iconFilename": "",
+  "rarity": "Legendary",
+  "niche": "Economy",
+  "targets": [
+    {
+      "producedGoods": [
+        {
+          "name": "Weapons"
+        },
+        {
+          "name": "Armour"
+        }
+      ]
+    }
+  ],
+  "buffs": [
+    {
+      "FactoryUpgrade": {
+        "ProductivityUpgrade": 35.0
+      }
+    }
+  ]
+}

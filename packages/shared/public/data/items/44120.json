@@ -1,36 +1,15 @@
 {
-  "displayName": "Artisan Allsmelter",
+  "displayName": "溶解炉の職人",
   "guid": "44120",
-  "description": "Nothing is constant, all is reducible; this is the lesson of the allsmelter's crucible.",
+  "description": "何も不変ではなく、すべては還元できる。これこそ溶解炉のるつぼが教える教訓だ。",
   "iconFilename": "44120.png",
   "rarity": "Rare",
   "niche": "Diplomacy",
   "targets": [
     {
-      "GUID": "50586",
-      "Type": "AssetPoolNamed",
-      "displayName": "Fine Glass Chain",
-      "internalName": "Asset Pool FineGlass Chain",
       "producedGoods": [
         {
-          "guid": "2151",
           "name": "Fine Glass"
-        },
-        {
-          "guid": "2124",
-          "name": "Pigments"
-        },
-        {
-          "guid": "2117",
-          "name": "Glass"
-        },
-        {
-          "guid": "8563",
-          "name": "Minerals"
-        },
-        {
-          "guid": "2091",
-          "name": "Silica"
         }
       ]
     }
@@ -38,27 +17,7 @@
   "buffs": [
     {
       "FactoryUpgrade": {
-        "ProductivityUpgrade": 20.0,
-        "AddedFertility": 0,
-        "FertilityPercent": 100,
-        "AdditionalOutput": [],
-        "InputAmountUpgrade": [],
-        "ReplaceInputs": [],
-        "NeededAreaUpgrade": 0,
-        "CanUseMarsh": false,
-        "CanUseForest": false,
-        "CanUseMeadow": false,
-        "FuelDurationPercent": 0.0,
-        "InfluenceRadiusUpgrade": 0.0
-      },
-      "MaintenanceUpgrade": {
-        "MaintenanceFactorUpgrade": 0.0,
-        "WorkforceMaintenanceFactorUpgrade": 0.0,
-        "ReplaceWorkforce": {
-          "OldWorkforce": 0,
-          "NewWorkforce": 0
-        },
-        "EncampedUnitScalingFactorUpgrade": 0.0
+        "ProductivityUpgrade": 20.0
       }
     }
   ]

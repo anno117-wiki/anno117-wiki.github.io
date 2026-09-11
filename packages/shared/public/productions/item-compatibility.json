@@ -1,1 +1,2034 @@
-{"README":"This file maps each production chain to compatible items from Anno 117: Pax Romana.","generated":"2026-06-11T22:25:16.910Z","count":48,"chains":[{"id":"amphorae","displayName":"Amphorae","icon":"amphorae","regions":["Roman","Celtic"],"files":{"roman":"amphorae","celtic":"amphorae_albion"},"items":[{"guid":"44139","displayName":"Handler","iconFilename":"44139.png"}]},{"id":"armour","displayName":"Armour","icon":"armour","regions":["Roman","Celtic"],"files":{"roman":"armour","celtic":"armour_albion"},"items":[{"guid":"44088","displayName":"Axle Wheeler","iconFilename":"44088.png"},{"guid":"44147","displayName":"Boar Whisperer","iconFilename":"44147.png"},{"guid":"44142","displayName":"Caustic Renderer","iconFilename":"44142.png"},{"guid":"106414","displayName":"Gygaea of Megaria, Eupalinian Reservist","iconFilename":"106414.png"},{"guid":"44122","displayName":"Hosta Vulpius, Silencer of Song","iconFilename":"44122.png"},{"guid":"50289","displayName":"Laconic Swordsmith","iconFilename":"50289.png"},{"guid":"50291","displayName":"Lamellary Armourer","iconFilename":"50291.png"},{"guid":"44085","displayName":"Piscine Docent","iconFilename":"44085.png"},{"guid":"95403","displayName":"Servia Bellia, Lily of the Coast","iconFilename":"95403.png"},{"guid":"44086","displayName":"Tawer","iconFilename":"44086.png"}]},{"id":"beer","displayName":"Beer","icon":"beer","regions":["Celtic"],"files":{"celtic":"beer_albion"},"items":[{"guid":"88062","displayName":"Barley-Shaker","iconFilename":"88062.png"},{"guid":"44146","displayName":"Busy Sprout","iconFilename":"44146.png"},{"guid":"44431","displayName":"Elephant Handler","iconFilename":"44431.png"}]},{"id":"bird_tongues_in_aspic","displayName":"Bird Tongues in Aspic","icon":"bird_tongues_in_aspic","regions":["Roman"],"files":{"roman":"bird_tongues_in_aspic"},"items":[{"guid":"96817","displayName":"Apion Mochthos Apicius, of Apeiron Appetite","iconFilename":"96817.png"},{"guid":"44147","displayName":"Boar Whisperer","iconFilename":"44147.png"},{"guid":"44142","displayName":"Caustic Renderer","iconFilename":"44142.png"},{"guid":"44122","displayName":"Hosta Vulpius, Silencer of Song","iconFilename":"44122.png"},{"guid":"50291","displayName":"Lamellary Armourer","iconFilename":"50291.png"},{"guid":"44086","displayName":"Tawer","iconFilename":"44086.png"}]},{"id":"bread","displayName":"Bread","icon":"bread","regions":["Roman","Celtic"],"files":{"roman":"bread","celtic":"bread_albion"},"items":[{"guid":"96817","displayName":"Apion Mochthos Apicius, of Apeiron Appetite","iconFilename":"96817.png"},{"guid":"44080","displayName":"Diviner of Dough","iconFilename":"44080.png"},{"guid":"44431","displayName":"Elephant Handler","iconFilename":"44431.png"},{"guid":"51012","displayName":"Maria Bacca","iconFilename":""}]},{"id":"brooches","displayName":"Brooches","icon":"brooches","regions":["Roman"],"files":{"roman":"brooches"},"items":[{"guid":"106414","displayName":"Gygaea of Megaria, Eupalinian Reservist","iconFilename":"106414.png"},{"guid":"44116","displayName":"Marix, Who Knows The Merrows ","iconFilename":"44116.png"},{"guid":"44113","displayName":"Saturnine Smelter","iconFilename":"44113.png"}]},{"id":"chariots","displayName":"Chariots","icon":"chariots","regions":["Roman"],"files":{"roman":"chariots"},"items":[{"guid":"44088","displayName":"Axle Wheeler","iconFilename":"44088.png"},{"guid":"44140","displayName":"Plaiter","iconFilename":"44140.png"}]},{"id":"cheese","displayName":"Cheese","icon":"cheese","regions":["Roman"],"files":{"roman":"cheese"},"items":[{"guid":"96817","displayName":"Apion Mochthos Apicius, of Apeiron Appetite","iconFilename":"96817.png"},{"guid":"50900","displayName":"Caera","iconFilename":""},{"guid":"44081","displayName":"Prefect of Ochsen","iconFilename":"44081.png"},{"guid":"44082","displayName":"Student of Whey","iconFilename":"44082.png"}]},{"id":"ceremonial_shields","displayName":"Ceremonial Shields","icon":"ceremonial_shields","regions":["Celtic"],"files":{"celtic":"ceremonial_shields_albion"},"items":[{"guid":"106414","displayName":"Gygaea of Megaria, Eupalinian Reservist","iconFilename":"106414.png"},{"guid":"44117","displayName":"Obtorquist","iconFilename":"44117.png"},{"guid":"44121","displayName":"Pragmatic Aegis","iconFilename":"44121.png"},{"guid":"50665","displayName":"Prime Mantler","iconFilename":"50665.png"},{"guid":"44087","displayName":"The Bifurcator","iconFilename":"44087.png"}]},{"id":"cloaks","displayName":"Cloaks","icon":"cloaks","regions":["Roman"],"files":{"roman":"cloaks"},"items":[{"guid":"106846","displayName":"Fideus, Loyal Hound","iconFilename":"106846.png"},{"guid":"106414","displayName":"Gygaea of Megaria, Eupalinian Reservist","iconFilename":"106414.png"},{"guid":"44149","displayName":"Maxima Cottius, Upholsterer of Atlas","iconFilename":"44149.png"},{"guid":"44144","displayName":"Milliner","iconFilename":"44144.png"},{"guid":"44121","displayName":"Pragmatic Aegis","iconFilename":"44121.png"},{"guid":"50665","displayName":"Prime Mantler","iconFilename":"50665.png"},{"guid":"44078","displayName":"Sailer","iconFilename":"44078.png"},{"guid":"44114","displayName":"The Aeolian Modist","iconFilename":"44114.png"},{"guid":"44087","displayName":"The Bifurcator","iconFilename":"44087.png"}]},{"id":"cockles","displayName":"Cockles","icon":"cockles","regions":["Celtic"],"files":{"celtic":"cockles_albion"},"items":[{"guid":"95403","displayName":"Servia Bellia, Lily of the Coast","iconFilename":"95403.png"},{"guid":"44145","displayName":"Shellpicker","iconFilename":"44145.png"}]},{"id":"concrete","displayName":"Concrete","icon":"concrete","regions":["Roman","Celtic"],"files":{"roman":"concrete","celtic":"concrete_albion"},"items":[{"guid":"44120","displayName":"Artisan Allsmelter","iconFilename":"44120.png"},{"guid":"95403","displayName":"Servia Bellia, Lily of the Coast","iconFilename":"95403.png"},{"guid":"96819","displayName":"Virtuous Volunteer","iconFilename":"96819.png"}]},{"id":"drinking_horns","displayName":"Drinking Horns","icon":"drinking_horns","regions":["Celtic"],"files":{"celtic":"drinking_horns_albion"},"items":[{"guid":"50900","displayName":"Caera","iconFilename":""},{"guid":"106414","displayName":"Gygaea of Megaria, Eupalinian Reservist","iconFilename":"106414.png"},{"guid":"44117","displayName":"Obtorquist","iconFilename":"44117.png"},{"guid":"44121","displayName":"Pragmatic Aegis","iconFilename":"44121.png"},{"guid":"44081","displayName":"Prefect of Ochsen","iconFilename":"44081.png"},{"guid":"44082","displayName":"Student of Whey","iconFilename":"44082.png"}]},{"id":"eels","displayName":"Eels","icon":"eels","regions":["Celtic"],"files":{"celtic":"eels_albion"},"items":[{"guid":"44077","displayName":"Mudlark","iconFilename":"44077.png"}]},{"id":"fine_glass","displayName":"Fine Glass","icon":"fine_glass","regions":["Roman"],"files":{"roman":"fine_glass"},"items":[{"guid":"44120","displayName":"Artisan Allsmelter","iconFilename":"44120.png"},{"guid":"95403","displayName":"Servia Bellia, Lily of the Coast","iconFilename":"95403.png"},{"guid":"44089","displayName":"The Lapidarius Aureate","iconFilename":"44089.png"}]},{"id":"fur_hats","displayName":"Fur Hats","icon":"fur_hats","regions":["Celtic"],"files":{"celtic":"fur_hats_albion"},"items":[{"guid":"44081","displayName":"Prefect of Ochsen","iconFilename":"44081.png"},{"guid":"95403","displayName":"Servia Bellia, Lily of the Coast","iconFilename":"95403.png"},{"guid":"44148","displayName":"Snappy Snaremaker","iconFilename":"44148.png"}]},{"id":"garum","displayName":"Garum","icon":"garum","regions":["Roman"],"files":{"roman":"garum"},"items":[{"guid":"50291","displayName":"Lamellary Armourer","iconFilename":"50291.png"},{"guid":"44085","displayName":"Piscine Docent","iconFilename":"44085.png"},{"guid":"95403","displayName":"Servia Bellia, Lily of the Coast","iconFilename":"95403.png"}]},{"id":"granite","displayName":"Granite","icon":"granite","regions":["Celtic"],"files":{"celtic":"granite_albion"},"items":[{"guid":"96819","displayName":"Virtuous Volunteer","iconFilename":"96819.png"}]},{"id":"handmirrors","displayName":"Handmirrors","icon":"handmirrors","regions":["Roman"],"files":{"roman":"handmirrors"},"items":[{"guid":"106414","displayName":"Gygaea of Megaria, Eupalinian Reservist","iconFilename":"106414.png"},{"guid":"44116","displayName":"Marix, Who Knows The Merrows ","iconFilename":"44116.png"},{"guid":"44113","displayName":"Saturnine Smelter","iconFilename":"44113.png"},{"guid":"95403","displayName":"Servia Bellia, Lily of the Coast","iconFilename":"95403.png"}]},{"id":"horses","displayName":"Horses","icon":"horses","regions":["Roman","Celtic"],"files":{"roman":"horses","celtic":"horses_albion"},"items":[{"guid":"44119","displayName":"Capillary Coiffurist","iconFilename":"44119.png"},{"guid":"50287","displayName":"Xeno of Phillipopolis, Hipparchon","iconFilename":"50287.png"}]},{"id":"loungers","displayName":"Loungers","icon":"loungers","regions":["Roman"],"files":{"roman":"loungers"},"items":[{"guid":"44149","displayName":"Maxima Cottius, Upholsterer of Atlas","iconFilename":"44149.png"},{"guid":"44115","displayName":"Mellarius","iconFilename":"44115.png"},{"guid":"44118","displayName":"Princeps of Porphyry","iconFilename":"44118.png"},{"guid":"95403","displayName":"Servia Bellia, Lily of the Coast","iconFilename":"95403.png"},{"guid":"44114","displayName":"The Aeolian Modist","iconFilename":"44114.png"}]},{"id":"marble","displayName":"Marble","icon":"marble","regions":["Roman"],"files":{"roman":"marble"},"items":[{"guid":"96819","displayName":"Virtuous Volunteer","iconFilename":"96819.png"}]},{"id":"mosaics","displayName":"Mosaics","icon":"mosaics","regions":["Roman"],"files":{"roman":"mosaics"},"items":[{"guid":"44120","displayName":"Artisan Allsmelter","iconFilename":"44120.png"},{"guid":"44139","displayName":"Handler","iconFilename":"44139.png"},{"guid":"44089","displayName":"The Lapidarius Aureate","iconFilename":"44089.png"},{"guid":"96819","displayName":"Virtuous Volunteer","iconFilename":"96819.png"}]},{"id":"necklaces","displayName":"Necklaces","icon":"necklaces","regions":["Roman"],"files":{"roman":"necklaces"},"items":[{"guid":"44120","displayName":"Artisan Allsmelter","iconFilename":"44120.png"},{"guid":"106414","displayName":"Gygaea of Megaria, Eupalinian Reservist","iconFilename":"106414.png"},{"guid":"44089","displayName":"The Lapidarius Aureate","iconFilename":"44089.png"}]},{"id":"olive_oil","displayName":"Olive Oil","icon":"olive_oil","regions":["Roman"],"files":{"roman":"olive_oil"},"items":[{"guid":"44141","displayName":"Cold Presser","iconFilename":"44141.png"}]},{"id":"oysters_with_caviar","displayName":"Oysters with Caviar","icon":"oysters_with_caviar","regions":["Roman"],"files":{"roman":"oysters_with_caviar"},"items":[{"guid":"96817","displayName":"Apion Mochthos Apicius, of Apeiron Appetite","iconFilename":"96817.png"},{"guid":"95403","displayName":"Servia Bellia, Lily of the Coast","iconFilename":"95403.png"},{"guid":"44143","displayName":"Student of the Shore","iconFilename":"44143.png"}]},{"id":"pileus","displayName":"Pileus","icon":"pileus","regions":["Roman"],"files":{"roman":"pileus"},"items":[{"guid":"106846","displayName":"Fideus, Loyal Hound","iconFilename":"106846.png"},{"guid":"44149","displayName":"Maxima Cottius, Upholsterer of Atlas","iconFilename":"44149.png"},{"guid":"44144","displayName":"Milliner","iconFilename":"44144.png"},{"guid":"50665","displayName":"Prime Mantler","iconFilename":"50665.png"},{"guid":"44078","displayName":"Sailer","iconFilename":"44078.png"},{"guid":"44114","displayName":"The Aeolian Modist","iconFilename":"44114.png"},{"guid":"44087","displayName":"The Bifurcator","iconFilename":"44087.png"}]},{"id":"porridge","displayName":"Porridge","icon":"porridge","regions":["Roman"],"files":{"roman":"porridge"},"items":[{"guid":"96817","displayName":"Apion Mochthos Apicius, of Apeiron Appetite","iconFilename":"96817.png"},{"guid":"44431","displayName":"Elephant Handler","iconFilename":"44431.png"},{"guid":"44076","displayName":"Oat Roller","iconFilename":"44076.png"}]},{"id":"reed_shoes","displayName":"Reed Shoes","icon":"reed_shoes","regions":["Celtic"],"files":{"celtic":"reed_shoes_albion"},"items":[{"guid":"44140","displayName":"Plaiter","iconFilename":"44140.png"}]},{"id":"roast_beef","displayName":"Roast Beef","icon":"roast_beef","regions":["Celtic"],"files":{"celtic":"roast_beef_albion"},"items":[{"guid":"96817","displayName":"Apion Mochthos Apicius, of Apeiron Appetite","iconFilename":"96817.png"},{"guid":"50900","displayName":"Caera","iconFilename":""},{"guid":"44081","displayName":"Prefect of Ochsen","iconFilename":"44081.png"},{"guid":"95403","displayName":"Servia Bellia, Lily of the Coast","iconFilename":"95403.png"},{"guid":"44148","displayName":"Snappy Snaremaker","iconFilename":"44148.png"},{"guid":"44082","displayName":"Student of Whey","iconFilename":"44082.png"}]},{"id":"rope","displayName":"Rope","icon":"rope","regions":["Roman","Celtic"],"files":{"roman":"rope","celtic":"rope_albion"},"items":[{"guid":"44431","displayName":"Elephant Handler","iconFilename":"44431.png"},{"guid":"44083","displayName":"Seamster","iconFilename":"44083.png"},{"guid":"44079","displayName":"Twiner","iconFilename":"44079.png"}]},{"id":"sails","displayName":"Sails","icon":"sails","regions":["Roman","Celtic"],"files":{"roman":"sails","celtic":"sails_albion"},"items":[{"guid":"106846","displayName":"Fideus, Loyal Hound","iconFilename":"106846.png"},{"guid":"44149","displayName":"Maxima Cottius, Upholsterer of Atlas","iconFilename":"44149.png"},{"guid":"44144","displayName":"Milliner","iconFilename":"44144.png"},{"guid":"50665","displayName":"Prime Mantler","iconFilename":"50665.png"},{"guid":"44078","displayName":"Sailer","iconFilename":"44078.png"},{"guid":"44114","displayName":"The Aeolian Modist","iconFilename":"44114.png"},{"guid":"44087","displayName":"The Bifurcator","iconFilename":"44087.png"}]},{"id":"sandals","displayName":"Sandals","icon":"sandals","regions":["Roman"],"files":{"roman":"sandals"},"items":[{"guid":"44147","displayName":"Boar Whisperer","iconFilename":"44147.png"},{"guid":"44142","displayName":"Caustic Renderer","iconFilename":"44142.png"},{"guid":"44122","displayName":"Hosta Vulpius, Silencer of Song","iconFilename":"44122.png"},{"guid":"50291","displayName":"Lamellary Armourer","iconFilename":"50291.png"},{"guid":"44085","displayName":"Piscine Docent","iconFilename":"44085.png"},{"guid":"95403","displayName":"Servia Bellia, Lily of the Coast","iconFilename":"95403.png"},{"guid":"44086","displayName":"Tawer","iconFilename":"44086.png"}]},{"id":"sardines","displayName":"Sardines","icon":"sardines","regions":["Roman"],"files":{"roman":"sardines"},"items":[{"guid":"44075","displayName":"Netter","iconFilename":"44075.png"},{"guid":"95403","displayName":"Servia Bellia, Lily of the Coast","iconFilename":"95403.png"}]},{"id":"sausages","displayName":"Sausages","icon":"sausages","regions":["Celtic"],"files":{"celtic":"sausages_albion"},"items":[{"guid":"96817","displayName":"Apion Mochthos Apicius, of Apeiron Appetite","iconFilename":"96817.png"},{"guid":"44147","displayName":"Boar Whisperer","iconFilename":"44147.png"},{"guid":"44142","displayName":"Caustic Renderer","iconFilename":"44142.png"},{"guid":"44122","displayName":"Hosta Vulpius, Silencer of Song","iconFilename":"44122.png"},{"guid":"50291","displayName":"Lamellary Armourer","iconFilename":"50291.png"},{"guid":"44086","displayName":"Tawer","iconFilename":"44086.png"}]},{"id":"soap","displayName":"Soap","icon":"soap","regions":["Roman"],"files":{"roman":"soap"},"items":[{"guid":"44147","displayName":"Boar Whisperer","iconFilename":"44147.png"},{"guid":"44142","displayName":"Caustic Renderer","iconFilename":"44142.png"},{"guid":"44122","displayName":"Hosta Vulpius, Silencer of Song","iconFilename":"44122.png"},{"guid":"50291","displayName":"Lamellary Armourer","iconFilename":"50291.png"},{"guid":"44086","displayName":"Tawer","iconFilename":"44086.png"}]},{"id":"lyres","displayName":"Lyres","icon":"lyre","regions":["Roman"],"files":{"roman":"lyres"},"items":[{"guid":"106846","displayName":"Fideus, Loyal Hound","iconFilename":"106846.png"},{"guid":"106414","displayName":"Gygaea of Megaria, Eupalinian Reservist","iconFilename":"106414.png"},{"guid":"44149","displayName":"Maxima Cottius, Upholsterer of Atlas","iconFilename":"44149.png"},{"guid":"44115","displayName":"Mellarius","iconFilename":"44115.png"},{"guid":"44144","displayName":"Milliner","iconFilename":"44144.png"},{"guid":"50665","displayName":"Prime Mantler","iconFilename":"50665.png"},{"guid":"44078","displayName":"Sailer","iconFilename":"44078.png"},{"guid":"44114","displayName":"The Aeolian Modist","iconFilename":"44114.png"},{"guid":"44087","displayName":"The Bifurcator","iconFilename":"44087.png"},{"guid":"44089","displayName":"The Lapidarius Aureate","iconFilename":"44089.png"}]},{"id":"tiles","displayName":"Tiles","icon":"tiles","regions":["Roman","Celtic"],"files":{"roman":"tiles","celtic":"tiles_albion"},"items":[{"guid":"44139","displayName":"Handler","iconFilename":"44139.png"},{"guid":"96819","displayName":"Virtuous Volunteer","iconFilename":"96819.png"}]},{"id":"timber","displayName":"Timber","icon":"timber","regions":["Roman","Celtic"],"files":{"roman":"timber","celtic":"timber_albion"},"items":[{"guid":"44088","displayName":"Axle Wheeler","iconFilename":"44088.png"},{"guid":"96819","displayName":"Virtuous Volunteer","iconFilename":"96819.png"}]},{"id":"togas","displayName":"Togas","icon":"togas","regions":["Roman"],"files":{"roman":"togas"},"items":[{"guid":"44119","displayName":"Capillary Coiffurist","iconFilename":"44119.png"},{"guid":"44431","displayName":"Elephant Handler","iconFilename":"44431.png"},{"guid":"44118","displayName":"Princeps of Porphyry","iconFilename":"44118.png"},{"guid":"95403","displayName":"Servia Bellia, Lily of the Coast","iconFilename":"95403.png"}]},{"id":"torcs","displayName":"Torcs","icon":"torcs","regions":["Celtic"],"files":{"celtic":"torcs_albion"},"items":[{"guid":"106414","displayName":"Gygaea of Megaria, Eupalinian Reservist","iconFilename":"106414.png"},{"guid":"44117","displayName":"Obtorquist","iconFilename":"44117.png"}]},{"id":"trousers","displayName":"Trousers","icon":"trousers","regions":["Celtic"],"files":{"celtic":"trousers_albion"},"items":[{"guid":"106846","displayName":"Fideus, Loyal Hound","iconFilename":"106846.png"},{"guid":"44149","displayName":"Maxima Cottius, Upholsterer of Atlas","iconFilename":"44149.png"},{"guid":"44144","displayName":"Milliner","iconFilename":"44144.png"},{"guid":"44121","displayName":"Pragmatic Aegis","iconFilename":"44121.png"},{"guid":"50665","displayName":"Prime Mantler","iconFilename":"50665.png"},{"guid":"44078","displayName":"Sailer","iconFilename":"44078.png"},{"guid":"44114","displayName":"The Aeolian Modist","iconFilename":"44114.png"},{"guid":"44087","displayName":"The Bifurcator","iconFilename":"44087.png"}]},{"id":"tunics","displayName":"Tunics","icon":"tunics","regions":["Roman","Celtic"],"files":{"roman":"tunics","celtic":"tunics_albion"},"items":[{"guid":"44431","displayName":"Elephant Handler","iconFilename":"44431.png"},{"guid":"44083","displayName":"Seamster","iconFilename":"44083.png"},{"guid":"44079","displayName":"Twiner","iconFilename":"44079.png"}]},{"id":"wattle_&_daub","displayName":"Wattle & Daub","icon":"wattle_&_daub","regions":["Celtic"],"files":{"celtic":"wattle_&_daub_albion"},"items":[{"guid":"44140","displayName":"Plaiter","iconFilename":"44140.png"},{"guid":"96819","displayName":"Virtuous Volunteer","iconFilename":"96819.png"}]},{"id":"weapons","displayName":"Weapons","icon":"weapons","regions":["Roman","Celtic"],"files":{"roman":"weapons","celtic":"weapons_albion"},"items":[{"guid":"106414","displayName":"Gygaea of Megaria, Eupalinian Reservist","iconFilename":"106414.png"},{"guid":"50289","displayName":"Laconic Swordsmith","iconFilename":"50289.png"},{"guid":"50291","displayName":"Lamellary Armourer","iconFilename":"50291.png"}]},{"id":"wigs","displayName":"Wigs","icon":"wigs","regions":["Celtic"],"files":{"celtic":"wigs_albion"},"items":[{"guid":"44119","displayName":"Capillary Coiffurist","iconFilename":"44119.png"},{"guid":"44431","displayName":"Elephant Handler","iconFilename":"44431.png"},{"guid":"44139","displayName":"Handler","iconFilename":"44139.png"},{"guid":"44118","displayName":"Princeps of Porphyry","iconFilename":"44118.png"},{"guid":"50287","displayName":"Xeno of Phillipopolis, Hipparchon","iconFilename":"50287.png"}]},{"id":"wine","displayName":"Wine","icon":"wine","regions":["Roman","Celtic"],"files":{"roman":"wine","celtic":"wine_albion"},"items":[{"guid":"44115","displayName":"Mellarius","iconFilename":"44115.png"},{"guid":"44112","displayName":"Vinecrusher","iconFilename":"44112.png"}]},{"id":"writing_tablets","displayName":"Writing Tablets","icon":"writing_tablets","regions":["Roman"],"files":{"roman":"writing_tablets"},"items":[{"guid":"44149","displayName":"Maxima Cottius, Upholsterer of Atlas","iconFilename":"44149.png"},{"guid":"44115","displayName":"Mellarius","iconFilename":"44115.png"},{"guid":"44114","displayName":"The Aeolian Modist","iconFilename":"44114.png"},{"guid":"44112","displayName":"Vinecrusher","iconFilename":"44112.png"}]}]}
+{
+  "README": "This file maps each production chain to compatible items from Anno 117: Pax Romana.",
+  "generated": "2026-09-11T05:19:26.724Z",
+  "count": 113,
+  "chains": [
+    {
+      "id": "amphorae",
+      "displayName": "Amphorae",
+      "icon": "amphorae",
+      "regions": [
+        "Roman",
+        "Celtic"
+      ],
+      "files": {
+        "roman": "amphorae",
+        "celtic": "amphorae_albion"
+      },
+      "items": [
+        {
+          "guid": "44139",
+          "displayName": "ハンドラー",
+          "iconFilename": "44139.png"
+        },
+        {
+          "guid": "80221",
+          "displayName": "小宇宙学者-マクロビウス・ミヌキアヌス",
+          "iconFilename": ""
+        }
+      ]
+    },
+    {
+      "id": "armour",
+      "displayName": "Armour",
+      "icon": "armour",
+      "regions": [
+        "Roman",
+        "Celtic"
+      ],
+      "files": {
+        "roman": "armour",
+        "celtic": "armour_albion"
+      },
+      "items": [
+        {
+          "guid": "80510",
+          "displayName": "サルマティアの剣匠-ゾルシネス",
+          "iconFilename": ""
+        },
+        {
+          "guid": "160075",
+          "displayName": "ボリオラヌス、包囲戦で鍛えられた勇者",
+          "iconFilename": ""
+        },
+        {
+          "guid": "107339",
+          "displayName": "マルス・ルーケティウスへの改宗者-アウン",
+          "iconFilename": ""
+        },
+        {
+          "guid": "50890",
+          "displayName": "砂とサンダルの生存者-ファビルス",
+          "iconFilename": ""
+        },
+        {
+          "guid": "80221",
+          "displayName": "小宇宙学者-マクロビウス・ミヌキアヌス",
+          "iconFilename": ""
+        },
+        {
+          "guid": "50291",
+          "displayName": "層重ねの鎧職人",
+          "iconFilename": "50291.png"
+        }
+      ]
+    },
+    {
+      "id": "barley",
+      "displayName": "Barley",
+      "icon": "barley",
+      "regions": [
+        "Celtic"
+      ],
+      "files": {},
+      "items": []
+    },
+    {
+      "id": "beavers",
+      "displayName": "Beavers",
+      "icon": "beavers",
+      "regions": [
+        "Celtic"
+      ],
+      "files": {},
+      "items": []
+    },
+    {
+      "id": "beer",
+      "displayName": "Beer",
+      "icon": "beer",
+      "regions": [
+        "Celtic"
+      ],
+      "files": {
+        "celtic": "beer_albion"
+      },
+      "items": [
+        {
+          "guid": "80221",
+          "displayName": "小宇宙学者-マクロビウス・ミヌキアヌス",
+          "iconFilename": ""
+        },
+        {
+          "guid": "44146",
+          "displayName": "賑わいの芽",
+          "iconFilename": "44146.png"
+        }
+      ]
+    },
+    {
+      "id": "bird_tongues",
+      "displayName": "Bird Tongues",
+      "icon": "bird_tongues",
+      "regions": [
+        "Roman"
+      ],
+      "files": {},
+      "items": []
+    },
+    {
+      "id": "bird_tongues_in_aspic",
+      "displayName": "Bird Tongues in Aspic",
+      "icon": "bird_tongues_in_aspic",
+      "regions": [
+        "Roman"
+      ],
+      "files": {
+        "roman": "bird_tongues_in_aspic"
+      },
+      "items": [
+        {
+          "guid": "44122",
+          "displayName": "歌を消す者-ホスタ・ヴルピウス",
+          "iconFilename": "44122.png"
+        },
+        {
+          "guid": "96817",
+          "displayName": "限りなき食欲の主-アピオン・モクトス・アピキウス",
+          "iconFilename": "96817.png"
+        },
+        {
+          "guid": "80221",
+          "displayName": "小宇宙学者-マクロビウス・ミヌキアヌス",
+          "iconFilename": ""
+        }
+      ]
+    },
+    {
+      "id": "bread",
+      "displayName": "Bread",
+      "icon": "bread",
+      "regions": [
+        "Roman",
+        "Celtic"
+      ],
+      "files": {
+        "roman": "bread",
+        "celtic": "bread_albion"
+      },
+      "items": [
+        {
+          "guid": "160522",
+          "displayName": "ブラウダ兄弟、パンの達人",
+          "iconFilename": ""
+        },
+        {
+          "guid": "96817",
+          "displayName": "限りなき食欲の主-アピオン・モクトス・アピキウス",
+          "iconFilename": "96817.png"
+        },
+        {
+          "guid": "80221",
+          "displayName": "小宇宙学者-マクロビウス・ミヌキアヌス",
+          "iconFilename": ""
+        },
+        {
+          "guid": "44080",
+          "displayName": "生地の占い手",
+          "iconFilename": "44080.png"
+        }
+      ]
+    },
+    {
+      "id": "bronze",
+      "displayName": "Bronze",
+      "icon": "bronze",
+      "regions": [
+        "Celtic"
+      ],
+      "files": {},
+      "items": []
+    },
+    {
+      "id": "brooches",
+      "displayName": "Brooches",
+      "icon": "brooches",
+      "regions": [
+        "Roman"
+      ],
+      "files": {
+        "roman": "brooches"
+      },
+      "items": [
+        {
+          "guid": "44113",
+          "displayName": "サトゥルヌスの製錬工",
+          "iconFilename": "44113.png"
+        },
+        {
+          "guid": "80221",
+          "displayName": "小宇宙学者-マクロビウス・ミヌキアヌス",
+          "iconFilename": ""
+        }
+      ]
+    },
+    {
+      "id": "caviar",
+      "displayName": "Caviar",
+      "icon": "caviar",
+      "regions": [
+        "Roman"
+      ],
+      "files": {},
+      "items": []
+    },
+    {
+      "id": "celtic_green",
+      "displayName": "Celtic Green",
+      "icon": "celtic_green",
+      "regions": [
+        "Roman"
+      ],
+      "files": {},
+      "items": []
+    },
+    {
+      "id": "ceremonial_shields",
+      "displayName": "Ceremonial Shields",
+      "icon": "ceremonial_shields",
+      "regions": [
+        "Celtic"
+      ],
+      "files": {
+        "celtic": "ceremonial_shields_albion"
+      },
+      "items": [
+        {
+          "guid": "44121",
+          "displayName": "護りの実用主義者",
+          "iconFilename": "44121.png"
+        },
+        {
+          "guid": "80221",
+          "displayName": "小宇宙学者-マクロビウス・ミヌキアヌス",
+          "iconFilename": ""
+        }
+      ]
+    },
+    {
+      "id": "charcoal",
+      "displayName": "Charcoal",
+      "icon": "charcoal",
+      "regions": [
+        "Celtic",
+        "Roman"
+      ],
+      "files": {},
+      "items": []
+    },
+    {
+      "id": "chariots",
+      "displayName": "Chariots",
+      "icon": "chariots",
+      "regions": [
+        "Roman"
+      ],
+      "files": {
+        "roman": "chariots"
+      },
+      "items": [
+        {
+          "guid": "156706",
+          "displayName": "コムナル・ティン、炎の戦車乗り",
+          "iconFilename": ""
+        },
+        {
+          "guid": "156714",
+          "displayName": "ワロネリ・ハルトバイン、加速と酒の魔術師",
+          "iconFilename": ""
+        },
+        {
+          "guid": "44088",
+          "displayName": "車輪技師",
+          "iconFilename": "44088.png"
+        },
+        {
+          "guid": "80221",
+          "displayName": "小宇宙学者-マクロビウス・ミヌキアヌス",
+          "iconFilename": ""
+        }
+      ]
+    },
+    {
+      "id": "chassis",
+      "displayName": "Chassis",
+      "icon": "chassis",
+      "regions": [
+        "Roman"
+      ],
+      "files": {},
+      "items": []
+    },
+    {
+      "id": "cheese",
+      "displayName": "Cheese",
+      "icon": "cheese",
+      "regions": [
+        "Roman"
+      ],
+      "files": {
+        "roman": "cheese"
+      },
+      "items": [
+        {
+          "guid": "44082",
+          "displayName": "ホエイの学徒",
+          "iconFilename": "44082.png"
+        },
+        {
+          "guid": "96817",
+          "displayName": "限りなき食欲の主-アピオン・モクトス・アピキウス",
+          "iconFilename": "96817.png"
+        },
+        {
+          "guid": "80221",
+          "displayName": "小宇宙学者-マクロビウス・ミヌキアヌス",
+          "iconFilename": ""
+        }
+      ]
+    },
+    {
+      "id": "clay",
+      "displayName": "Clay",
+      "icon": "clay",
+      "regions": [
+        "Roman"
+      ],
+      "files": {},
+      "items": []
+    },
+    {
+      "id": "cloaks",
+      "displayName": "Cloaks",
+      "icon": "cloaks",
+      "regions": [
+        "Roman"
+      ],
+      "files": {
+        "roman": "cloaks"
+      },
+      "items": [
+        {
+          "guid": "50665",
+          "displayName": "至高のマント職人",
+          "iconFilename": "50665.png"
+        },
+        {
+          "guid": "80221",
+          "displayName": "小宇宙学者-マクロビウス・ミヌキアヌス",
+          "iconFilename": ""
+        }
+      ]
+    },
+    {
+      "id": "cloth",
+      "displayName": "Cloth",
+      "icon": "cloth",
+      "regions": [
+        "Roman"
+      ],
+      "files": {},
+      "items": []
+    },
+    {
+      "id": "cockles",
+      "displayName": "Cockles",
+      "icon": "cockles",
+      "regions": [
+        "Celtic"
+      ],
+      "files": {
+        "celtic": "cockles_albion"
+      },
+      "items": [
+        {
+          "guid": "95403",
+          "displayName": "海岸の百合-セルヴィア・ベリア",
+          "iconFilename": "95403.png"
+        },
+        {
+          "guid": "44145",
+          "displayName": "貝拾い",
+          "iconFilename": "44145.png"
+        },
+        {
+          "guid": "80221",
+          "displayName": "小宇宙学者-マクロビウス・ミヌキアヌス",
+          "iconFilename": ""
+        }
+      ]
+    },
+    {
+      "id": "concrete",
+      "displayName": "Concrete",
+      "icon": "concrete",
+      "regions": [
+        "Roman",
+        "Celtic"
+      ],
+      "files": {
+        "roman": "concrete",
+        "celtic": "concrete_albion"
+      },
+      "items": [
+        {
+          "guid": "96819",
+          "displayName": "高潔な志願兵",
+          "iconFilename": "96819.png"
+        },
+        {
+          "guid": "80221",
+          "displayName": "小宇宙学者-マクロビウス・ミヌキアヌス",
+          "iconFilename": ""
+        }
+      ]
+    },
+    {
+      "id": "copper_ore",
+      "displayName": "Copper Ore",
+      "icon": "copper_ore",
+      "regions": [
+        "Celtic",
+        "Roman"
+      ],
+      "files": {},
+      "items": []
+    },
+    {
+      "id": "cushions",
+      "displayName": "Cushions",
+      "icon": "cushions",
+      "regions": [
+        "Roman"
+      ],
+      "files": {},
+      "items": []
+    },
+    {
+      "id": "drinking_horns",
+      "displayName": "Drinking Horns",
+      "icon": "drinking_horns",
+      "regions": [
+        "Celtic"
+      ],
+      "files": {
+        "celtic": "drinking_horns_albion"
+      },
+      "items": [
+        {
+          "guid": "80221",
+          "displayName": "小宇宙学者-マクロビウス・ミヌキアヌス",
+          "iconFilename": ""
+        }
+      ]
+    },
+    {
+      "id": "dye_plants",
+      "displayName": "Dye Plants",
+      "icon": "dye_plants",
+      "regions": [
+        "Celtic",
+        "Roman"
+      ],
+      "files": {},
+      "items": []
+    },
+    {
+      "id": "eels",
+      "displayName": "Eels",
+      "icon": "eels",
+      "regions": [
+        "Celtic"
+      ],
+      "files": {
+        "celtic": "eels_albion"
+      },
+      "items": [
+        {
+          "guid": "160054",
+          "displayName": "エルクマルの子フィネケス、全知の鮭漁師",
+          "iconFilename": ""
+        },
+        {
+          "guid": "156710",
+          "displayName": "スペアー・ニク・レアルタ、策士の釣り人",
+          "iconFilename": ""
+        },
+        {
+          "guid": "44077",
+          "displayName": "マッドラーク",
+          "iconFilename": "44077.png"
+        },
+        {
+          "guid": "80221",
+          "displayName": "小宇宙学者-マクロビウス・ミヌキアヌス",
+          "iconFilename": ""
+        }
+      ]
+    },
+    {
+      "id": "fine_glass",
+      "displayName": "Fine Glass",
+      "icon": "fine_glass",
+      "regions": [
+        "Roman"
+      ],
+      "files": {
+        "roman": "fine_glass"
+      },
+      "items": [
+        {
+          "guid": "80221",
+          "displayName": "小宇宙学者-マクロビウス・ミヌキアヌス",
+          "iconFilename": ""
+        },
+        {
+          "guid": "44120",
+          "displayName": "溶解炉の職人",
+          "iconFilename": "44120.png"
+        }
+      ]
+    },
+    {
+      "id": "flax",
+      "displayName": "Flax",
+      "icon": "flax",
+      "regions": [
+        "Celtic",
+        "Roman"
+      ],
+      "files": {},
+      "items": []
+    },
+    {
+      "id": "flour",
+      "displayName": "Flour",
+      "icon": "flour",
+      "regions": [
+        "Celtic",
+        "Roman"
+      ],
+      "files": {},
+      "items": []
+    },
+    {
+      "id": "fur_hats",
+      "displayName": "Fur Hats",
+      "icon": "fur_hats",
+      "regions": [
+        "Celtic"
+      ],
+      "files": {
+        "celtic": "fur_hats_albion"
+      },
+      "items": [
+        {
+          "guid": "44148",
+          "displayName": "巧妙な罠師",
+          "iconFilename": "44148.png"
+        },
+        {
+          "guid": "80221",
+          "displayName": "小宇宙学者-マクロビウス・ミヌキアヌス",
+          "iconFilename": ""
+        }
+      ]
+    },
+    {
+      "id": "garum",
+      "displayName": "Garum",
+      "icon": "garum",
+      "regions": [
+        "Roman"
+      ],
+      "files": {
+        "roman": "garum"
+      },
+      "items": [
+        {
+          "guid": "44085",
+          "displayName": "魚の導き手",
+          "iconFilename": "44085.png"
+        },
+        {
+          "guid": "80221",
+          "displayName": "小宇宙学者-マクロビウス・ミヌキアヌス",
+          "iconFilename": ""
+        }
+      ]
+    },
+    {
+      "id": "glass",
+      "displayName": "Glass",
+      "icon": "glass",
+      "regions": [
+        "Roman"
+      ],
+      "files": {},
+      "items": []
+    },
+    {
+      "id": "gold",
+      "displayName": "Gold",
+      "icon": "gold",
+      "regions": [
+        "Roman"
+      ],
+      "files": {},
+      "items": []
+    },
+    {
+      "id": "gold_ore",
+      "displayName": "Gold Ore",
+      "icon": "gold_ore",
+      "regions": [
+        "Roman"
+      ],
+      "files": {},
+      "items": []
+    },
+    {
+      "id": "granite",
+      "displayName": "Granite",
+      "icon": "granite",
+      "regions": [
+        "Celtic"
+      ],
+      "files": {
+        "celtic": "granite_albion"
+      },
+      "items": [
+        {
+          "guid": "156704",
+          "displayName": "ディアラ・トゲイル、彫刻家の才ある石工",
+          "iconFilename": ""
+        },
+        {
+          "guid": "96819",
+          "displayName": "高潔な志願兵",
+          "iconFilename": "96819.png"
+        },
+        {
+          "guid": "80221",
+          "displayName": "小宇宙学者-マクロビウス・ミヌキアヌス",
+          "iconFilename": ""
+        }
+      ]
+    },
+    {
+      "id": "granite_block",
+      "displayName": "Granite Block",
+      "icon": "granite_block",
+      "regions": [
+        "Celtic"
+      ],
+      "files": {},
+      "items": []
+    },
+    {
+      "id": "grapes",
+      "displayName": "Grapes",
+      "icon": "grapes",
+      "regions": [
+        "Celtic",
+        "Roman"
+      ],
+      "files": {},
+      "items": []
+    },
+    {
+      "id": "handmirrors",
+      "displayName": "Handmirrors",
+      "icon": "handmirrors",
+      "regions": [
+        "Roman"
+      ],
+      "files": {
+        "roman": "handmirrors"
+      },
+      "items": [
+        {
+          "guid": "160057",
+          "displayName": "セリフォスのプトリポルトス、磨き上げられた鏡占術師",
+          "iconFilename": ""
+        },
+        {
+          "guid": "44116",
+          "displayName": "マリックス、人魚を知る者",
+          "iconFilename": "44116.png"
+        },
+        {
+          "guid": "80221",
+          "displayName": "小宇宙学者-マクロビウス・ミヌキアヌス",
+          "iconFilename": ""
+        }
+      ]
+    },
+    {
+      "id": "head_piece",
+      "displayName": "Head Piece",
+      "icon": "head_piece",
+      "regions": [
+        "Celtic",
+        "Roman"
+      ],
+      "files": {},
+      "items": []
+    },
+    {
+      "id": "hemp",
+      "displayName": "Hemp",
+      "icon": "hemp",
+      "regions": [
+        "Celtic",
+        "Roman"
+      ],
+      "files": {},
+      "items": []
+    },
+    {
+      "id": "herbs",
+      "displayName": "Herbs",
+      "icon": "herbs",
+      "regions": [
+        "Celtic",
+        "Roman"
+      ],
+      "files": {},
+      "items": []
+    },
+    {
+      "id": "honeycombs",
+      "displayName": "Honeycombs",
+      "icon": "honeycombs",
+      "regions": [
+        "Celtic",
+        "Roman"
+      ],
+      "files": {},
+      "items": []
+    },
+    {
+      "id": "horses",
+      "displayName": "Horses",
+      "icon": "horses",
+      "regions": [
+        "Roman",
+        "Celtic"
+      ],
+      "files": {
+        "roman": "horses",
+        "celtic": "horses_albion"
+      },
+      "items": [
+        {
+          "guid": "80225",
+          "displayName": "リアンノンのかつての御者-ピル・ファブ・マナウィダン",
+          "iconFilename": ""
+        },
+        {
+          "guid": "80221",
+          "displayName": "小宇宙学者-マクロビウス・ミヌキアヌス",
+          "iconFilename": ""
+        },
+        {
+          "guid": "44119",
+          "displayName": "頭髪の芸術家",
+          "iconFilename": "44119.png"
+        },
+        {
+          "guid": "50287",
+          "displayName": "馬の統治者-フィリポポリスのゼノ",
+          "iconFilename": "50287.png"
+        },
+        {
+          "guid": "156679",
+          "displayName": "馬丁",
+          "iconFilename": ""
+        }
+      ]
+    },
+    {
+      "id": "iron",
+      "displayName": "Iron",
+      "icon": "iron",
+      "regions": [
+        "Celtic",
+        "Roman"
+      ],
+      "files": {},
+      "items": []
+    },
+    {
+      "id": "iron_ore",
+      "displayName": "Iron Ore",
+      "icon": "iron_ore",
+      "regions": [
+        "Celtic",
+        "Roman"
+      ],
+      "files": {},
+      "items": []
+    },
+    {
+      "id": "lard",
+      "displayName": "Lard",
+      "icon": "lard",
+      "regions": [
+        "Roman"
+      ],
+      "files": {},
+      "items": []
+    },
+    {
+      "id": "latrunculi_sets",
+      "displayName": "Latrunculi Sets",
+      "icon": "boardgame_goods",
+      "regions": [
+        "Roman"
+      ],
+      "files": {
+        "roman": "latrunculi_sets"
+      },
+      "items": [
+        {
+          "guid": "160531",
+          "displayName": "プロクレス、異質なクソアノン彫刻家",
+          "iconFilename": ""
+        },
+        {
+          "guid": "156688",
+          "displayName": "近視の石工",
+          "iconFilename": ""
+        },
+        {
+          "guid": "80221",
+          "displayName": "小宇宙学者-マクロビウス・ミヌキアヌス",
+          "iconFilename": ""
+        },
+        {
+          "guid": "147974",
+          "displayName": "独学のゲーム学者",
+          "iconFilename": ""
+        }
+      ]
+    },
+    {
+      "id": "lavender",
+      "displayName": "Lavender",
+      "icon": "lavender",
+      "regions": [
+        "Roman"
+      ],
+      "files": {},
+      "items": []
+    },
+    {
+      "id": "leather",
+      "displayName": "Leather",
+      "icon": "leather",
+      "regions": [
+        "Celtic",
+        "Roman"
+      ],
+      "files": {},
+      "items": []
+    },
+    {
+      "id": "limestone",
+      "displayName": "Limestone",
+      "icon": "limestone",
+      "regions": [
+        "Celtic",
+        "Roman"
+      ],
+      "files": {},
+      "items": []
+    },
+    {
+      "id": "loungers",
+      "displayName": "Loungers",
+      "icon": "loungers",
+      "regions": [
+        "Roman"
+      ],
+      "files": {
+        "roman": "loungers"
+      },
+      "items": [
+        {
+          "guid": "44149",
+          "displayName": "アトラスの家具職人-マキシマ・コティウス",
+          "iconFilename": "44149.png"
+        },
+        {
+          "guid": "80221",
+          "displayName": "小宇宙学者-マクロビウス・ミヌキアヌス",
+          "iconFilename": ""
+        }
+      ]
+    },
+    {
+      "id": "lyres",
+      "displayName": "Lyres",
+      "icon": "lyre",
+      "regions": [
+        "Roman"
+      ],
+      "files": {
+        "roman": "lyres"
+      },
+      "items": [
+        {
+          "guid": "44114",
+          "displayName": "仕立て屋のイオリア人",
+          "iconFilename": "44114.png"
+        },
+        {
+          "guid": "80221",
+          "displayName": "小宇宙学者-マクロビウス・ミヌキアヌス",
+          "iconFilename": ""
+        }
+      ]
+    },
+    {
+      "id": "mackerel",
+      "displayName": "Mackerel",
+      "icon": "mackerel",
+      "regions": [
+        "Roman"
+      ],
+      "files": {},
+      "items": []
+    },
+    {
+      "id": "malt",
+      "displayName": "Malt",
+      "icon": "malt",
+      "regions": [
+        "Celtic"
+      ],
+      "files": {},
+      "items": []
+    },
+    {
+      "id": "marble",
+      "displayName": "Marble",
+      "icon": "marble",
+      "regions": [
+        "Roman"
+      ],
+      "files": {
+        "roman": "marble"
+      },
+      "items": [
+        {
+          "guid": "156688",
+          "displayName": "近視の石工",
+          "iconFilename": ""
+        },
+        {
+          "guid": "96819",
+          "displayName": "高潔な志願兵",
+          "iconFilename": "96819.png"
+        },
+        {
+          "guid": "145271",
+          "displayName": "従者の彫刻家",
+          "iconFilename": ""
+        },
+        {
+          "guid": "80221",
+          "displayName": "小宇宙学者-マクロビウス・ミヌキアヌス",
+          "iconFilename": ""
+        }
+      ]
+    },
+    {
+      "id": "minerals",
+      "displayName": "Minerals",
+      "icon": "minerals",
+      "regions": [
+        "Roman"
+      ],
+      "files": {},
+      "items": []
+    },
+    {
+      "id": "mosaics",
+      "displayName": "Mosaics",
+      "icon": "mosaics",
+      "regions": [
+        "Roman"
+      ],
+      "files": {
+        "roman": "mosaics"
+      },
+      "items": [
+        {
+          "guid": "96819",
+          "displayName": "高潔な志願兵",
+          "iconFilename": "96819.png"
+        },
+        {
+          "guid": "80221",
+          "displayName": "小宇宙学者-マクロビウス・ミヌキアヌス",
+          "iconFilename": ""
+        }
+      ]
+    },
+    {
+      "id": "mud",
+      "displayName": "Mud",
+      "icon": "mud",
+      "regions": [
+        "Celtic",
+        "Roman"
+      ],
+      "files": {},
+      "items": []
+    },
+    {
+      "id": "murex_snails",
+      "displayName": "Murex Snails",
+      "icon": "murex_snails",
+      "regions": [
+        "Roman"
+      ],
+      "files": {},
+      "items": []
+    },
+    {
+      "id": "necklaces",
+      "displayName": "Necklaces",
+      "icon": "necklaces",
+      "regions": [
+        "Roman"
+      ],
+      "files": {
+        "roman": "necklaces"
+      },
+      "items": [
+        {
+          "guid": "44089",
+          "displayName": "金の石工",
+          "iconFilename": "44089.png"
+        },
+        {
+          "guid": "80221",
+          "displayName": "小宇宙学者-マクロビウス・ミヌキアヌス",
+          "iconFilename": ""
+        }
+      ]
+    },
+    {
+      "id": "oats",
+      "displayName": "Oats",
+      "icon": "oats",
+      "regions": [
+        "Roman"
+      ],
+      "files": {},
+      "items": []
+    },
+    {
+      "id": "obsidian",
+      "displayName": "Obsidian",
+      "icon": "obsidian",
+      "regions": [
+        "Roman"
+      ],
+      "files": {},
+      "items": []
+    },
+    {
+      "id": "ochs",
+      "displayName": "Ochs",
+      "icon": "ochs",
+      "regions": [
+        "Celtic",
+        "Roman"
+      ],
+      "files": {},
+      "items": []
+    },
+    {
+      "id": "olive_oil",
+      "displayName": "Olive Oil",
+      "icon": "olive_oil",
+      "regions": [
+        "Roman"
+      ],
+      "files": {
+        "roman": "olive_oil"
+      },
+      "items": [
+        {
+          "guid": "44141",
+          "displayName": "コールドプレッサー",
+          "iconFilename": "44141.png"
+        },
+        {
+          "guid": "80221",
+          "displayName": "小宇宙学者-マクロビウス・ミヌキアヌス",
+          "iconFilename": ""
+        }
+      ]
+    },
+    {
+      "id": "olives",
+      "displayName": "Olives",
+      "icon": "olives",
+      "regions": [
+        "Roman"
+      ],
+      "files": {},
+      "items": []
+    },
+    {
+      "id": "ornate_wood",
+      "displayName": "Ornate Wood",
+      "icon": "ornate_wood",
+      "regions": [
+        "Roman"
+      ],
+      "files": {},
+      "items": []
+    },
+    {
+      "id": "oysters",
+      "displayName": "Oysters",
+      "icon": "oysters",
+      "regions": [
+        "Roman"
+      ],
+      "files": {},
+      "items": []
+    },
+    {
+      "id": "oysters_with_caviar",
+      "displayName": "Oysters with Caviar",
+      "icon": "oysters_with_caviar",
+      "regions": [
+        "Roman"
+      ],
+      "files": {
+        "roman": "oysters_with_caviar"
+      },
+      "items": [
+        {
+          "guid": "96817",
+          "displayName": "限りなき食欲の主-アピオン・モクトス・アピキウス",
+          "iconFilename": "96817.png"
+        },
+        {
+          "guid": "80221",
+          "displayName": "小宇宙学者-マクロビウス・ミヌキアヌス",
+          "iconFilename": ""
+        },
+        {
+          "guid": "44143",
+          "displayName": "水際の学徒",
+          "iconFilename": "44143.png"
+        }
+      ]
+    },
+    {
+      "id": "pigments",
+      "displayName": "Pigments",
+      "icon": "pigments",
+      "regions": [
+        "Roman"
+      ],
+      "files": {},
+      "items": []
+    },
+    {
+      "id": "pigs",
+      "displayName": "Pigs",
+      "icon": "pigs",
+      "regions": [
+        "Celtic",
+        "Roman"
+      ],
+      "files": {},
+      "items": []
+    },
+    {
+      "id": "pileus",
+      "displayName": "Pileus",
+      "icon": "pileus",
+      "regions": [
+        "Roman"
+      ],
+      "files": {
+        "roman": "pileus"
+      },
+      "items": [
+        {
+          "guid": "80221",
+          "displayName": "小宇宙学者-マクロビウス・ミヌキアヌス",
+          "iconFilename": ""
+        },
+        {
+          "guid": "44144",
+          "displayName": "婦人帽子職人",
+          "iconFilename": "44144.png"
+        }
+      ]
+    },
+    {
+      "id": "ponies",
+      "displayName": "Ponies",
+      "icon": "ponies",
+      "regions": [
+        "Roman"
+      ],
+      "files": {},
+      "items": []
+    },
+    {
+      "id": "porridge",
+      "displayName": "Porridge",
+      "icon": "porridge",
+      "regions": [
+        "Roman"
+      ],
+      "files": {
+        "roman": "porridge"
+      },
+      "items": [
+        {
+          "guid": "96817",
+          "displayName": "限りなき食欲の主-アピオン・モクトス・アピキウス",
+          "iconFilename": "96817.png"
+        },
+        {
+          "guid": "80221",
+          "displayName": "小宇宙学者-マクロビウス・ミヌキアヌス",
+          "iconFilename": ""
+        },
+        {
+          "guid": "44076",
+          "displayName": "麦転がし",
+          "iconFilename": "44076.png"
+        }
+      ]
+    },
+    {
+      "id": "reed_shoes",
+      "displayName": "Reed Shoes",
+      "icon": "reed_shoes",
+      "regions": [
+        "Celtic"
+      ],
+      "files": {
+        "celtic": "reed_shoes_albion"
+      },
+      "items": [
+        {
+          "guid": "80221",
+          "displayName": "小宇宙学者-マクロビウス・ミヌキアヌス",
+          "iconFilename": ""
+        },
+        {
+          "guid": "44140",
+          "displayName": "編み師",
+          "iconFilename": "44140.png"
+        }
+      ]
+    },
+    {
+      "id": "reeds",
+      "displayName": "Reeds",
+      "icon": "reeds",
+      "regions": [
+        "Celtic",
+        "Roman"
+      ],
+      "files": {},
+      "items": []
+    },
+    {
+      "id": "resin",
+      "displayName": "Resin",
+      "icon": "resin",
+      "regions": [
+        "Celtic",
+        "Roman"
+      ],
+      "files": {},
+      "items": []
+    },
+    {
+      "id": "roast_beef",
+      "displayName": "Roast Beef",
+      "icon": "roast_beef",
+      "regions": [
+        "Celtic"
+      ],
+      "files": {
+        "celtic": "roast_beef_albion"
+      },
+      "items": [
+        {
+          "guid": "44081",
+          "displayName": "オーロックス長官",
+          "iconFilename": "44081.png"
+        },
+        {
+          "guid": "96817",
+          "displayName": "限りなき食欲の主-アピオン・モクトス・アピキウス",
+          "iconFilename": "96817.png"
+        },
+        {
+          "guid": "80221",
+          "displayName": "小宇宙学者-マクロビウス・ミヌキアヌス",
+          "iconFilename": ""
+        }
+      ]
+    },
+    {
+      "id": "rope",
+      "displayName": "Rope",
+      "icon": "rope",
+      "regions": [
+        "Roman",
+        "Celtic"
+      ],
+      "files": {
+        "roman": "rope",
+        "celtic": "rope_albion"
+      },
+      "items": [
+        {
+          "guid": "44079",
+          "displayName": "ロープ職人",
+          "iconFilename": "44079.png"
+        },
+        {
+          "guid": "80221",
+          "displayName": "小宇宙学者-マクロビウス・ミヌキアヌス",
+          "iconFilename": ""
+        }
+      ]
+    },
+    {
+      "id": "sails",
+      "displayName": "Sails",
+      "icon": "sails",
+      "regions": [
+        "Roman",
+        "Celtic"
+      ],
+      "files": {
+        "roman": "sails",
+        "celtic": "sails_albion"
+      },
+      "items": [
+        {
+          "guid": "80221",
+          "displayName": "小宇宙学者-マクロビウス・ミヌキアヌス",
+          "iconFilename": ""
+        },
+        {
+          "guid": "44078",
+          "displayName": "帆職人",
+          "iconFilename": "44078.png"
+        }
+      ]
+    },
+    {
+      "id": "salt",
+      "displayName": "Salt",
+      "icon": "salt",
+      "regions": [
+        "Roman"
+      ],
+      "files": {},
+      "items": []
+    },
+    {
+      "id": "saltwash",
+      "displayName": "Saltwash",
+      "icon": "saltwash",
+      "regions": [
+        "Celtic"
+      ],
+      "files": {},
+      "items": []
+    },
+    {
+      "id": "saltwort",
+      "displayName": "Saltwort",
+      "icon": "saltwort",
+      "regions": [
+        "Celtic"
+      ],
+      "files": {},
+      "items": []
+    },
+    {
+      "id": "sandals",
+      "displayName": "Sandals",
+      "icon": "sandals",
+      "regions": [
+        "Roman"
+      ],
+      "files": {
+        "roman": "sandals"
+      },
+      "items": [
+        {
+          "guid": "44086",
+          "displayName": "革ひも職人",
+          "iconFilename": "44086.png"
+        },
+        {
+          "guid": "80221",
+          "displayName": "小宇宙学者-マクロビウス・ミヌキアヌス",
+          "iconFilename": ""
+        }
+      ]
+    },
+    {
+      "id": "sandarac_wood",
+      "displayName": "Sandarac Wood",
+      "icon": "sandarac_wood",
+      "regions": [
+        "Roman"
+      ],
+      "files": {},
+      "items": []
+    },
+    {
+      "id": "sardines",
+      "displayName": "Sardines",
+      "icon": "sardines",
+      "regions": [
+        "Roman"
+      ],
+      "files": {
+        "roman": "sardines"
+      },
+      "items": [
+        {
+          "guid": "160054",
+          "displayName": "エルクマルの子フィネケス、全知の鮭漁師",
+          "iconFilename": ""
+        },
+        {
+          "guid": "156710",
+          "displayName": "スペアー・ニク・レアルタ、策士の釣り人",
+          "iconFilename": ""
+        },
+        {
+          "guid": "95403",
+          "displayName": "海岸の百合-セルヴィア・ベリア",
+          "iconFilename": "95403.png"
+        },
+        {
+          "guid": "80221",
+          "displayName": "小宇宙学者-マクロビウス・ミヌキアヌス",
+          "iconFilename": ""
+        },
+        {
+          "guid": "44075",
+          "displayName": "網師",
+          "iconFilename": "44075.png"
+        }
+      ]
+    },
+    {
+      "id": "sausages",
+      "displayName": "Sausages",
+      "icon": "sausages",
+      "regions": [
+        "Celtic"
+      ],
+      "files": {
+        "celtic": "sausages_albion"
+      },
+      "items": [
+        {
+          "guid": "96817",
+          "displayName": "限りなき食欲の主-アピオン・モクトス・アピキウス",
+          "iconFilename": "96817.png"
+        },
+        {
+          "guid": "80221",
+          "displayName": "小宇宙学者-マクロビウス・ミヌキアヌス",
+          "iconFilename": ""
+        },
+        {
+          "guid": "44147",
+          "displayName": "猪に囁く者",
+          "iconFilename": "44147.png"
+        }
+      ]
+    },
+    {
+      "id": "seashells",
+      "displayName": "Seashells",
+      "icon": "seashells",
+      "regions": [
+        "Roman"
+      ],
+      "files": {},
+      "items": []
+    },
+    {
+      "id": "sheep",
+      "displayName": "Sheep",
+      "icon": "sheep",
+      "regions": [
+        "Celtic",
+        "Roman"
+      ],
+      "files": {},
+      "items": []
+    },
+    {
+      "id": "silica",
+      "displayName": "Silica",
+      "icon": "silica",
+      "regions": [
+        "Celtic",
+        "Roman"
+      ],
+      "files": {},
+      "items": []
+    },
+    {
+      "id": "silver",
+      "displayName": "Silver",
+      "icon": "silver",
+      "regions": [
+        "Roman"
+      ],
+      "files": {},
+      "items": []
+    },
+    {
+      "id": "silver_ore",
+      "displayName": "Silver Ore",
+      "icon": "silver_ore",
+      "regions": [
+        "Roman"
+      ],
+      "files": {},
+      "items": []
+    },
+    {
+      "id": "small_birds",
+      "displayName": "Small Birds",
+      "icon": "small_birds",
+      "regions": [
+        "Roman"
+      ],
+      "files": {},
+      "items": []
+    },
+    {
+      "id": "soap",
+      "displayName": "Soap",
+      "icon": "soap",
+      "regions": [
+        "Roman"
+      ],
+      "files": {
+        "roman": "soap"
+      },
+      "items": [
+        {
+          "guid": "80221",
+          "displayName": "小宇宙学者-マクロビウス・ミヌキアヌス",
+          "iconFilename": ""
+        },
+        {
+          "guid": "44142",
+          "displayName": "辛辣な石鹸職人",
+          "iconFilename": "44142.png"
+        }
+      ]
+    },
+    {
+      "id": "statuettes",
+      "displayName": "Statuettes",
+      "icon": "idol_goods",
+      "regions": [
+        "Roman"
+      ],
+      "files": {
+        "roman": "statuettes"
+      },
+      "items": [
+        {
+          "guid": "160531",
+          "displayName": "プロクレス、異質なクソアノン彫刻家",
+          "iconFilename": ""
+        },
+        {
+          "guid": "156688",
+          "displayName": "近視の石工",
+          "iconFilename": ""
+        },
+        {
+          "guid": "145271",
+          "displayName": "従者の彫刻家",
+          "iconFilename": ""
+        },
+        {
+          "guid": "80221",
+          "displayName": "小宇宙学者-マクロビウス・ミヌキアヌス",
+          "iconFilename": ""
+        }
+      ]
+    },
+    {
+      "id": "string",
+      "displayName": "String",
+      "icon": "string",
+      "regions": [
+        "Roman"
+      ],
+      "files": {},
+      "items": []
+    },
+    {
+      "id": "sturgeon",
+      "displayName": "Sturgeon",
+      "icon": "sturgeon",
+      "regions": [
+        "Roman"
+      ],
+      "files": {},
+      "items": []
+    },
+    {
+      "id": "tiles",
+      "displayName": "Tiles",
+      "icon": "tiles",
+      "regions": [
+        "Roman",
+        "Celtic"
+      ],
+      "files": {
+        "roman": "tiles",
+        "celtic": "tiles_albion"
+      },
+      "items": [
+        {
+          "guid": "156690",
+          "displayName": "具象的な粘土職人",
+          "iconFilename": ""
+        },
+        {
+          "guid": "96819",
+          "displayName": "高潔な志願兵",
+          "iconFilename": "96819.png"
+        },
+        {
+          "guid": "80221",
+          "displayName": "小宇宙学者-マクロビウス・ミヌキアヌス",
+          "iconFilename": ""
+        }
+      ]
+    },
+    {
+      "id": "timber",
+      "displayName": "Timber",
+      "icon": "timber",
+      "regions": [
+        "Roman",
+        "Celtic"
+      ],
+      "files": {
+        "roman": "timber",
+        "celtic": "timber_albion"
+      },
+      "items": [
+        {
+          "guid": "96819",
+          "displayName": "高潔な志願兵",
+          "iconFilename": "96819.png"
+        },
+        {
+          "guid": "80221",
+          "displayName": "小宇宙学者-マクロビウス・ミヌキアヌス",
+          "iconFilename": ""
+        }
+      ]
+    },
+    {
+      "id": "tin_ore",
+      "displayName": "Tin Ore",
+      "icon": "tin_ore",
+      "regions": [
+        "Celtic"
+      ],
+      "files": {},
+      "items": []
+    },
+    {
+      "id": "togas",
+      "displayName": "Togas",
+      "icon": "togas",
+      "regions": [
+        "Roman"
+      ],
+      "files": {
+        "roman": "togas"
+      },
+      "items": [
+        {
+          "guid": "160513",
+          "displayName": "ティランナ、生粋の多色主義者",
+          "iconFilename": ""
+        },
+        {
+          "guid": "80221",
+          "displayName": "小宇宙学者-マクロビウス・ミヌキアヌス",
+          "iconFilename": ""
+        },
+        {
+          "guid": "44118",
+          "displayName": "斑岩の第一人者",
+          "iconFilename": "44118.png"
+        }
+      ]
+    },
+    {
+      "id": "torcs",
+      "displayName": "Torcs",
+      "icon": "torcs",
+      "regions": [
+        "Celtic"
+      ],
+      "files": {
+        "celtic": "torcs_albion"
+      },
+      "items": [
+        {
+          "guid": "44117",
+          "displayName": "オブトルキスト",
+          "iconFilename": "44117.png"
+        },
+        {
+          "guid": "80221",
+          "displayName": "小宇宙学者-マクロビウス・ミヌキアヌス",
+          "iconFilename": ""
+        }
+      ]
+    },
+    {
+      "id": "trousers",
+      "displayName": "Trousers",
+      "icon": "trousers",
+      "regions": [
+        "Celtic"
+      ],
+      "files": {
+        "celtic": "trousers_albion"
+      },
+      "items": [
+        {
+          "guid": "44087",
+          "displayName": "ズボン専門家",
+          "iconFilename": "44087.png"
+        },
+        {
+          "guid": "80221",
+          "displayName": "小宇宙学者-マクロビウス・ミヌキアヌス",
+          "iconFilename": ""
+        }
+      ]
+    },
+    {
+      "id": "tunics",
+      "displayName": "Tunics",
+      "icon": "tunics",
+      "regions": [
+        "Roman",
+        "Celtic"
+      ],
+      "files": {
+        "roman": "tunics",
+        "celtic": "tunics_albion"
+      },
+      "items": [
+        {
+          "guid": "44083",
+          "displayName": "仕立屋",
+          "iconFilename": "44083.png"
+        },
+        {
+          "guid": "80221",
+          "displayName": "小宇宙学者-マクロビウス・ミヌキアヌス",
+          "iconFilename": ""
+        }
+      ]
+    },
+    {
+      "id": "tyrian_purple",
+      "displayName": "Tyrian Purple",
+      "icon": "tyrian_purple",
+      "regions": [
+        "Roman"
+      ],
+      "files": {},
+      "items": []
+    },
+    {
+      "id": "uncut_marble",
+      "displayName": "Uncut Marble",
+      "icon": "uncut_marble",
+      "regions": [
+        "Roman"
+      ],
+      "files": {},
+      "items": []
+    },
+    {
+      "id": "wattle_&_daub",
+      "displayName": "Wattle & Daub",
+      "icon": "wattle_&_daub",
+      "regions": [
+        "Celtic"
+      ],
+      "files": {
+        "celtic": "wattle_&_daub_albion"
+      },
+      "items": [
+        {
+          "guid": "96819",
+          "displayName": "高潔な志願兵",
+          "iconFilename": "96819.png"
+        },
+        {
+          "guid": "80221",
+          "displayName": "小宇宙学者-マクロビウス・ミヌキアヌス",
+          "iconFilename": ""
+        }
+      ]
+    },
+    {
+      "id": "weapons",
+      "displayName": "Weapons",
+      "icon": "weapons",
+      "regions": [
+        "Roman",
+        "Celtic"
+      ],
+      "files": {
+        "roman": "weapons",
+        "celtic": "weapons_albion"
+      },
+      "items": [
+        {
+          "guid": "80510",
+          "displayName": "サルマティアの剣匠-ゾルシネス",
+          "iconFilename": ""
+        },
+        {
+          "guid": "160075",
+          "displayName": "ボリオラヌス、包囲戦で鍛えられた勇者",
+          "iconFilename": ""
+        },
+        {
+          "guid": "107339",
+          "displayName": "マルス・ルーケティウスへの改宗者-アウン",
+          "iconFilename": ""
+        },
+        {
+          "guid": "50289",
+          "displayName": "言葉少ない刀工",
+          "iconFilename": "50289.png"
+        },
+        {
+          "guid": "50890",
+          "displayName": "砂とサンダルの生存者-ファビルス",
+          "iconFilename": ""
+        },
+        {
+          "guid": "80221",
+          "displayName": "小宇宙学者-マクロビウス・ミヌキアヌス",
+          "iconFilename": ""
+        }
+      ]
+    },
+    {
+      "id": "wheat",
+      "displayName": "Wheat",
+      "icon": "wheat",
+      "regions": [
+        "Celtic",
+        "Roman"
+      ],
+      "files": {},
+      "items": []
+    },
+    {
+      "id": "wigs",
+      "displayName": "Wigs",
+      "icon": "wigs",
+      "regions": [
+        "Celtic"
+      ],
+      "files": {
+        "celtic": "wigs_albion"
+      },
+      "items": [
+        {
+          "guid": "80225",
+          "displayName": "リアンノンのかつての御者-ピル・ファブ・マナウィダン",
+          "iconFilename": ""
+        },
+        {
+          "guid": "80221",
+          "displayName": "小宇宙学者-マクロビウス・ミヌキアヌス",
+          "iconFilename": ""
+        },
+        {
+          "guid": "44119",
+          "displayName": "頭髪の芸術家",
+          "iconFilename": "44119.png"
+        },
+        {
+          "guid": "50287",
+          "displayName": "馬の統治者-フィリポポリスのゼノ",
+          "iconFilename": "50287.png"
+        },
+        {
+          "guid": "156679",
+          "displayName": "馬丁",
+          "iconFilename": ""
+        }
+      ]
+    },
+    {
+      "id": "wine",
+      "displayName": "Wine",
+      "icon": "wine",
+      "regions": [
+        "Roman",
+        "Celtic"
+      ],
+      "files": {
+        "roman": "wine",
+        "celtic": "wine_albion"
+      },
+      "items": [
+        {
+          "guid": "44112",
+          "displayName": "ブドウ潰し",
+          "iconFilename": "44112.png"
+        },
+        {
+          "guid": "80221",
+          "displayName": "小宇宙学者-マクロビウス・ミヌキアヌス",
+          "iconFilename": ""
+        }
+      ]
+    },
+    {
+      "id": "wood",
+      "displayName": "Wood",
+      "icon": "wood",
+      "regions": [
+        "Celtic",
+        "Roman"
+      ],
+      "files": {},
+      "items": []
+    },
+    {
+      "id": "writing_tablets",
+      "displayName": "Writing Tablets",
+      "icon": "writing_tablets",
+      "regions": [
+        "Roman"
+      ],
+      "files": {
+        "roman": "writing_tablets"
+      },
+      "items": [
+        {
+          "guid": "44115",
+          "displayName": "メラリウス",
+          "iconFilename": "44115.png"
+        },
+        {
+          "guid": "80221",
+          "displayName": "小宇宙学者-マクロビウス・ミヌキアヌス",
+          "iconFilename": ""
+        },
+        {
+          "guid": "156685",
+          "displayName": "台帳係",
+          "iconFilename": ""
+        }
+      ]
+    }
+  ]
+}
