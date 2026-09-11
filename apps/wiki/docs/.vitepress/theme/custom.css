@@ -232,6 +232,25 @@
   }
 }
 
+/* 計算機誘導ボタン（goods・production-chains 一覧テーブル用） */
+.calc-link-btn {
+  display: inline-block;
+  padding: 4px 12px;
+  font-size: 12px;
+  font-weight: 600;
+  color: var(--vp-c-brand-1);
+  border: 1px solid var(--vp-c-brand-1);
+  border-radius: 12px;
+  text-decoration: none;
+  white-space: nowrap;
+  transition: background-color 0.2s, color 0.2s;
+}
+
+.calc-link-btn:hover {
+  background-color: var(--vp-c-brand-1);
+  color: #fff;
+}
+
 /* ========================================
    モバイル対応（≤959px）
    VitePressがサイドバーを隠す幅に統一。

@@ -43,7 +43,7 @@ function timeText(seconds: number): string {
 
 <table>
 <thead>
-<tr><th>商品名</th><th>対応地域</th><th>生産時間</th><th>直接素材</th><th></th></tr>
+<tr><th>商品名</th><th>対応地域</th><th>生産時間</th><th>直接素材</th><th>計算機</th></tr>
 </thead>
 <tbody>
 <tr v-for="entry in data.byCategory[cat]" :key="entry.id">
@@ -57,7 +57,7 @@ function timeText(seconds: number): string {
   {{ entry.inputs.join('、') || '—' }}
   <ProductionChainSvg v-if="entry.graph" :graph="entry.graph" />
 </td>
-<td><a :href="withBase(`/calculator/?good=${entry.id}`)" target="_blank" rel="noopener noreferrer">計算</a></td>
+<td><a class="calc-link-btn" :href="withBase(`/calculator/?good=${entry.id}`)" target="_blank" rel="noopener noreferrer">開く</a></td>
 </tr>
 </tbody>
 </table>
