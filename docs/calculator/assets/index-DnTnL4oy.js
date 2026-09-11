@@ -7034,9 +7034,6 @@ var ModifierPanel_default = /*#__PURE__*/ _plugin_vue_export_helper_default(/* @
 		const handleToggle = (key) => {
 			const currentValue = settingsManager.getSetting(key);
 			settingsManager.setSetting(key, !currentValue);
-			if (activeToggles.value.has(key)) activeToggles.value.delete(key);
-			else activeToggles.value.add(key);
-			activeToggles.value = new Set(activeToggles.value);
 		};
 		let unsubscribeRegistry = null;
 		onMounted(() => {
@@ -7071,7 +7068,7 @@ var ModifierPanel_default = /*#__PURE__*/ _plugin_vue_export_helper_default(/* @
 			}), 128))])]);
 		};
 	}
-}), [["__scopeId", "data-v-e3a26933"]]);
+}), [["__scopeId", "data-v-11abb131"]]);
 //#endregion
 //#region apps/calculator/src/ts/vue-app.ts
 /**
@@ -7587,4 +7584,4 @@ document.addEventListener("DOMContentLoaded", async () => {
 });
 //#endregion
 
-//# sourceMappingURL=index-dirRj2WT.js.map
+//# sourceMappingURL=index-DnTnL4oy.js.map

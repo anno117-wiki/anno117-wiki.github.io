@@ -91,17 +91,9 @@ const isActive = (key: string): boolean => {
 const handleToggle = (key: string) => {
   const currentValue = settingsManager.getSetting(key);
   settingsManager.setSetting(key, !currentValue);
-
-  // 状態を更新
-  if (activeToggles.value.has(key)) {
-    activeToggles.value.delete(key);
-  } else {
-    activeToggles.value.add(key);
-  }
-
-  // 強制的に再レンダリング
-  activeToggles.value = new Set(activeToggles.value);
-
+  // setSetting() は内部で notify() を同期的に呼び、
+  // settingsManager.onChange 経由の loadModifiers() が activeToggles を
+  // 再構築するため、ここで重ねて操作すると二重トグルになり表示が反転する。
 };
 
 let unsubscribeRegistry: (() => void) | null = null;
