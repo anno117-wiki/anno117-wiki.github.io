@@ -82,6 +82,7 @@ export default defineConfig({
       { text: '商品', link: '/wiki/goods' },
       { text: '生産品', link: '/wiki/production-chains' },
       { text: '建物効果', link: '/wiki/buildings' },
+      { text: 'スキルツリー', link: '/wiki/techs' },
       { text: '住民', link: '/wiki/population' },
       { text: 'アイテム', link: '/wiki/items' },
       { text: '更新履歴', link: '/updates' },
