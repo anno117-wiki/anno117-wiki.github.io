@@ -2,17 +2,18 @@
 """
 Anno 117 Item Inspector の抽出データ（CSV + 公式日本語XML + assets.xml）から
 wiki用の日本語アイテムデータ items-full.json を生成する。
-出典: Anno 117 公式ゲームデータ（Item Inspector 同梱）
+出典: Anno 117 公式ゲームデータ（GitHub Taludas/Anno-117-Item-Inspector 同梱データ）
 """
 import csv, json, re, sys, io
 from pathlib import Path
 
-EXT = Path(r"C:\Users\kojif\Desktop\claude_TEMP\item_extract\Anno.117.Item.Inspector.exe_extracted")
+ROOT = Path(__file__).resolve().parent.parent
+EXT = ROOT / "_local/anno-official-data/v2.0.0.1"
 CSV = EXT / "items_export_with_effects.csv"
-JA_XML = EXT / "data/base/config/gui/texts_japanese.xml"
-EN_XML = EXT / "data/base/config/gui/texts_english.xml"
-ASSETS = EXT / "data/base/config/export/assets.xml"
-OUT = Path(r"C:\Users\kojif\Desktop\claude_TEMP\items-full-ja.json")
+JA_XML = EXT / "texts_japanese.xml"
+EN_XML = EXT / "texts_english.xml"
+ASSETS = EXT / "assets.xml"
+OUT = ROOT / "packages/shared/public/data/items-full.json"
 
 ZW = "​"
 def clean(s):
@@ -68,6 +69,86 @@ def resolve_guid_ja(guid):
         return JP[oid]
     return f"#{guid}"
 
+# 公式ローカライズID対照表（GitHub Taludas/Anno-117-Item-Inspector の BUFF_EFFECT_MAPPING より、
+# 単一LineIdを持つキーのみ抽出。複数LineId/条件分岐が必要なキーは対象外＝下記フォールバック辞書を使う）
+BUFF_EFFECT_LOCA = {
+    "AccuracyArcherModuleUpgrade": "-6911855274850644762", "AccuracyBallistaModuleUpgrage": "-6907865508483901738",
+    "AccuracyCatapultModuleUpgrage": "-6903547229044160126", "AccuracyUpgrade": "-6914510932562426253",
+    "ActiveTradePriceInPercent": "-6904910338903030922", "AddedFertility": "-6911374437279007671",
+    "AdditionalLoadingSpeedInPercent": "-6913245221430448853", "AdditionalMoneyIncome": "-6907832455942731395",
+    "AdditionalOutput": "-6899820196143793484", "AdditionalPercentage": "-6907497495990126878",
+    "AdditionalWorkforces": "-6902792103058113405", "AqueductConsumedWaterUpgrade": "-6900173698993465429",
+    "AqueductWaterSupplyUpgrade": "-6901410119100201615", "DistributorConsumedWaterUpgrade": "-6900173698993465429",
+    "GoodConsumptionUpgrade": "-6916926126237868583", "GenerateLimitedLode": "-6910834639284735326",
+    "ArmorUpgrade": "-6916173326961563427",
+    "AttackSpeedArcherModulePercentualUpgrade": "-6907471390180921660",
+    "AttackSpeedBallistaModulePercentualUpgrade": "-6900615996648907081",
+    "AttackSpeedCatapultModulePercentualUpgrade": "-6914364061449956903",
+    "AttackSpeedRangedPercentualUpgrade": "-6916798165698611871",
+    "AttackSpeedTorchPercentualUpgrade": "-6904582095030413595",
+    "AttributeModifierInPercent": "-6905501351022478370", "BaseHealthUpgrade": "-6908494598081338492",
+    "Belief": "-6917117282888968611", "BuffBaseSpeedUpgrade": "-6899782450596141269",
+    "BuffFavorableWindAngle": "-6917509324150509842", "BuffReduceCargoImpactUpgrade": "-6917314961146315631",
+    "BuffReduceDamageImpactUpgrade": "-6915299435512831228", "BuffReduceNegativeWindImpactUpgrade": "-6904284175891437012",
+    "BuffTransferSpeedUpgrade": "-6914547372679383539", "CanUseForest": "-6906268553696161885",
+    "CanUseMarsh": "-6914826481896353728", "CanUseMeadow": "-6908731335818162955",
+    "ConstructionCostInPercent": "-6905220259948887554", "ConstructionSpeedInPercent": "-6916588842784089099",
+    "ConsumptionModifierInPercent": "-6902845924876156586", "DefenseUpgrade": "-6916234667073216072",
+    "DiscoveryRadiusUpgrade": "-6912851074397281398",
+    "DistanceAttackRangeArcherModulePercentualUpgrade": "-6913771487903800801",
+    "DistanceAttackRangeBallistaModulePercentualUpgrade": "-6900440828800548713",
+    "DistanceAttackRangeCatapultModulePercentualUpgrade": "-6908752606907018381",
+    "DistanceAttackRangePercentualUpgrade": "-6900632430001524951",
+    "EncampedUnitScalingFactorUpgrade": "-6916806603637230261", "EncampedUnitSelfHealMultiplierUpgrade": "-6905174277262380495",
+    "FactoryRangePercentageUpgrade": "-6905430209589419363", "FireSafety": "-6913876283495722297",
+    "FuelDurationPercent": "-6901428646395682482", "Happiness": "-6915056271707822368",
+    "HealBuildingsPerMinuteUpgrade": "-6904744989082029193", "HealPerMinuteUpgrade": "-6909031806713637632",
+    "HealRadiusUpgrade": "-6902642577827438950", "Health": "-6912510107473053226",
+    "IncidentImmunity": "-6905739525374090419", "InputAmountUpgrade": "-6900576451581047741",
+    "Knowledge": "-6908049578864304337", "LandTax": "-6905885150396558664",
+    "LoadingSpeedUpgrade": "-6911162818502702769", "MaintenanceFactorUpgrade": "-6903385320568856769",
+    "MaximumMoraleUpgrade": "-6917319967366727198", "MaximumRepairTargetsUpgrade": "-6904878606025953416",
+    "MeshGraphUpkeep": "-6903385320568856769", "MinDistanceBetweenTowersBuff": "-6917486192068866197",
+    "ModuleLimitPercent": "-6913343185575431361", "Money": "-6910799479763478465",
+    "NeededAreaUpgrade": "-6915963651705874185", "OffenseArcherModuleRangedUpgrade": "-6902617017467231785",
+    "OffenseBallistaModuleRangedUpgrade": "-6909984235779738348", "OffenseCatapultModuleRangedUpgrade": "-6906754297935564907",
+    "OffenseChargeUpgrade": "-6907642198169893607", "OffenseMeleeUpgrade": "-6914624354330523363",
+    "OffenseRangedUpgrade": "-6901124448895689147", "PassiveRuinRepairSpeedUpgrade": "-6902214522674861072",
+    "PassiveTradeReward": "-6909300745746637117", "PipeCapacityUpgrade": "-6908505536770437697",
+    "Population": "-6916310552575698080", "Prestige": "-6911554866663245776",
+    "ProductivityUpgrade": "-6901457306120429160", "ProvidedNeedUpgrade": "-6906821818431502107",
+    "RadiusEffectRangeUpgrade": "-6906345630532600075", "RadiusEffectRangeTarget": "-6906345630532600075",
+    "FestivalEffectDurationPercentageUpgrade": "-6917495746025386252", "AdditionalNeedsDemand": "-6913499004383754082",
+    "RecruitmentCostInPercent": "-6900175465122901010", "RecruitmentSpeedInPercent": "-6912203919785395737",
+    "ReplaceInputs": "-6909767605057018144", "SelfSupplyInput": "-6902431379744152273",
+    "ReplaceWorkforce": "-6900271494650358300", "ResolverRangeUpgrade": "-6899682999703418604",
+    "ResolverRepairDurationUpgrade": "-6908683155652934058", "ResolverResolveDurationUpgrade": "-6901804608838418377",
+    "ResolverUnitCountUpgrade": "-6911863755390981443", "RewardMoneyPerDestroyedBuildingUpgrade": "-6914993701769861740",
+    "RewardMoneyPerDestroyedShipUpgrade": "-6905414924283098115", "SelfHealUpgrade": "-6906905232291239015",
+    "SellPriceFactorUpgrade": "-6912306538068974009", "ShieldUpgrade": "-6915348409801369648",
+    "SlotCountUpgrade": "-6901072862113090986", "SocketCountUpgrade": "-6908073095614905585",
+    "StorageCapacityModifier": "-6910269557488986844", "WorkforceModifierInPercent": "-6902123928322850502",
+}
+
+def label_for(key):
+    """効果タイプキーの日本語ラベルを返す。公式ローカライズ優先、フォールバックで独自訳。"""
+    lid = BUFF_EFFECT_LOCA.get(key)
+    if lid:
+        v = JP.get(lid) or EN.get(lid)
+        if v:
+            return clean(v)
+    return ATTR.get(key) or ETYPE.get(key) or key
+
+def format_effect(key, value, sep=": "):
+    """キーと値から効果テキストの断片を組み立てる。
+    公式ラベルが{}テンプレートを持てばそこへ値を埋め込み、
+    そうでなければ「ラベル<sep>値」の形にする（範囲効果などの接頭辞に続く場合は sep=" " を渡す）。"""
+    label = label_for(key)
+    if "{}" in label:
+        return label.replace("{}", value)
+    return f"{label}{sep}{value}"
+
+# ATTR/ETYPE: BUFF_EFFECT_LOCA に無いキー、または解決失敗時のフォールバック訳
 ATTR = {
     "Health": "健康度", "FireSafety": "防火", "Happiness": "幸福",
     "Knowledge": "知識", "Prestige": "名声", "Belief": "信仰",
@@ -111,7 +192,24 @@ ETYPE = {
     "AttackCone_BallistaModule": "バリスタ攻撃範囲角", "AttackCone_CatapultModule": "カタパルト攻撃範囲角",
     "AttackCone": "攻撃範囲角", "HealBuildingsPerMinuteUpgrade": "建物毎分修復",
     "ResolverRepairDurationUpgrade": "修理時間",
+    "ProvidedNeedUpgrade": "提供ニーズ", "AdditionalNeedsDemand": "追加需要",
+    "GoodConsumptionUpgrade": "消費量", "SelfSupplyInput": "自給",
+    "PassiveTradeReward": "受動交易報酬", "ReplaceInputs": "素材置換",
+    "StorageCapacityModifier": "保管容量", "DistributorConsumedWaterUpgrade": "分配水道消費量",
+    "RadiusEffectRangeUpgrade": "範囲効果射程", "FestivalEffectDurationPercentageUpgrade": "祭り効果時間",
+    "GenerateLimitedLode": "限定鉱脈生成",
 }
+
+# GUID解決を試みる際に除外する語（Disease/Plague等の状態異常名はGUIDではない）
+_NON_GUID_TOKENS = {"Disease", "Plague", "Fire", "Inferno", "Unrest", "Rebellion"}
+
+def try_resolve_guid(token):
+    """3桁以上の数字トークンだけGUID解決を試みる。解決できなければ元の値を返す。"""
+    token = token.strip()
+    if token in _NON_GUID_TOKENS or not re.fullmatch(r"-?\d{3,}", token):
+        return token
+    resolved = resolve_guid_ja(token)
+    return token if resolved.startswith("#") else resolved
 
 def tr_effect_segment(seg):
     seg = seg.strip()
@@ -120,24 +218,38 @@ def tr_effect_segment(seg):
     # ChangeNeedAttributesOf <guid>: <Attr> <val>
     m = re.match(r"^ChangeNeedAttributesOf (-?\d+):\s*(\w+)\s*([+-][\d.]+%?)$", seg)
     if m:
-        name = resolve_guid_ja(m.group(1)); attr = ATTR.get(m.group(2), m.group(2))
-        return f"{name}: {attr} {m.group(3)}"
-    # <big-guid> <Attr>: <val>   (範囲効果など)
+        name = resolve_guid_ja(m.group(1))
+        return f"{name}: {format_effect(m.group(2), m.group(3), sep=' ')}"
+    # <big-guid> <Attr>: <val>   (範囲効果など。値が符号付き数値の場合)
     m = re.match(r"^(-?\d{6,})\s+(\w+):\s*([+-][\d.]+%?)$", seg)
     if m:
-        name = resolve_guid_ja(m.group(1)); attr = ATTR.get(m.group(2), m.group(2))
-        return f"{name}: {attr} {m.group(3)}"
+        name = resolve_guid_ja(m.group(1))
+        return f"{name}: {format_effect(m.group(2), m.group(3), sep=' ')}"
+    # <big-guid> <Attr>: <guid>   (範囲効果など。値がGUID参照の場合。例: 範囲効果 ProvidedNeedUpgrade: <need-guid>)
+    m = re.match(r"^(-?\d{6,})\s+(\w+):\s*(-?\d{3,})$", seg)
+    if m:
+        name = resolve_guid_ja(m.group(1))
+        return f"{name}: {format_effect(m.group(2), try_resolve_guid(m.group(3)), sep=' ')}"
+    # AdditionalOutput/AddedFertility/AdditionalWorkforces/ReplaceWorkforce: [<guid>] <分数>
+    m = re.match(r"^(AdditionalOutput|AddedFertility|AdditionalWorkforces|ReplaceWorkforce):\s*(?:(-?\d{3,})\s+)?(\d+/\d+)$", seg)
+    if m:
+        if m.group(2):
+            return format_effect(m.group(1), f"{resolve_guid_ja(m.group(2))} {m.group(3)}")
+        return format_effect(m.group(1), m.group(3))
     # <type>: <guid>   (GUID参照型)
     m = re.match(r"^(\w+):\s*(-?\d{3,})$", seg)
-    if m and m.group(1) in ("AddedFertility", "AdditionalWorkforces", "AdditionalOutput", "ReplaceWorkforce"):
-        t = ETYPE.get(m.group(1), m.group(1)); name = resolve_guid_ja(m.group(2))
-        return f"{t}: {name}"
-    # <type-or-attr>: <val>（値は数値/割合/比率など何でも）
+    if m and m.group(1) in ("AddedFertility", "AdditionalWorkforces", "AdditionalOutput", "ReplaceWorkforce", "AdditionalNeedsDemand", "SelfSupplyInput"):
+        return format_effect(m.group(1), resolve_guid_ja(m.group(2)))
+    # ReplaceInputs: <guid1> -> <guid2>
+    m = re.match(r"^ReplaceInputs:\s*(-?\d+)\s*->\s*(-?\d+)$", seg)
+    if m:
+        return format_effect("ReplaceInputs", f"{resolve_guid_ja(m.group(1))} → {resolve_guid_ja(m.group(2))}")
+    # <type-or-attr>: <val>（値は数値/割合/比率など何でも。値中の3桁以上の数字はGUIDならその都度解決）
     m = re.match(r"^([\w_]+):\s*(.+)$", seg)
     if m:
         key = m.group(1)
-        label = ATTR.get(key) or ETYPE.get(key) or key
-        return f"{label}: {m.group(2)}"
+        val = re.sub(r"(?<![+\-\d.])\d{3,}(?!\.\d|%)", lambda mm: try_resolve_guid(mm.group(0)), m.group(2))
+        return format_effect(key, val)
     # fallback: ベストエフォート（原文のまま）
     return seg
 
@@ -155,6 +267,11 @@ items = []
 with CSV.open(encoding="utf-8") as f:
     for r in csv.DictReader(f):
         guid = r["GUID"]
+        effects = tr_effects(r.get("Buff Effects", ""))
+        needed_prestige = (r.get("NeededPrestige") or "").strip()
+        if needed_prestige:
+            effects.append(f"必要名声: {needed_prestige}")
+        effects.extend(tr_effects(r.get("MythicEffect Effects", "")))
         items.append({
             "guid": guid,
             "nameJa": clean(JP.get(r["Name"], "")) or clean(EN.get(r["Name"], "")) or "",
@@ -163,7 +280,7 @@ with CSV.open(encoding="utf-8") as f:
             "niche": r.get("Niche", "") or "",
             "price": (r.get("Price") or "").strip(),
             "description": clean(JP.get(r["InfoDescription"], "")),
-            "effects": tr_effects(r.get("Buff Effects", "")),
+            "effects": effects,
             "boostHint": clean(JP.get(r.get("Boost Hint", ""), "")),
             "boostEffects": tr_effects(r.get("BoostBuff Effects", "")),
         })

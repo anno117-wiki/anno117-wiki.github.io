@@ -6,6 +6,7 @@ const RARITY_JA: Record<string, string> = {
   Rare: 'レア',
   Epic: 'エピック',
   Legendary: 'レジェンダリー',
+  Mythic: 'ミシック',
   Unique: 'ユニーク',
   'Quest Item': 'クエストアイテム',
 }
@@ -25,13 +26,14 @@ const NICHE_JA: Record<string, string> = {
 const NICHE_ORDER = ['Economy', 'Agriculture', 'Finance', 'Diplomacy', 'Culture', 'Religion', 'Research', 'Military', 'Nautics']
 
 const RARITY_RANK: Record<string, number> = {
-  Legendary: 0,
-  Unique: 1,
-  Epic: 2,
-  Rare: 3,
-  Uncommon: 4,
-  Common: 5,
-  'Quest Item': 6,
+  Mythic: 0,
+  Legendary: 1,
+  Unique: 2,
+  Epic: 3,
+  Rare: 4,
+  Uncommon: 5,
+  Common: 6,
+  'Quest Item': 7,
 }
 
 const RARITY_EN_FROM_JA: Record<string, string> = Object.fromEntries(
