@@ -11,6 +11,7 @@ function parseBranch(internalName: string, annoNodeId?: string): string {
   if (internalName.includes('Military')) return 'military'
   if (internalName.includes('DLC01')) return 'dlc01'
   if (internalName.includes('DLC02')) return 'dlc02'
+  if (internalName.includes('DLC03')) return 'dlc03'
   return 'other'
 }
 
@@ -27,6 +28,7 @@ const BRANCH_LABELS: Record<string, string> = {
   military: '軍事',
   dlc01: '灰の予言',
   dlc02: '競馬場',
+  dlc03: 'デルタの夜明け',
   other: 'その他',
 }
 
@@ -60,7 +62,7 @@ export interface TechEntry {
   connections: string[]
 }
 
-const BRANCH_ORDER = ['economy', 'civic', 'military', 'dlc01', 'dlc02', 'other']
+const BRANCH_ORDER = ['economy', 'civic', 'military', 'dlc01', 'dlc02', 'dlc03', 'other']
 
 export default {
   load(): {

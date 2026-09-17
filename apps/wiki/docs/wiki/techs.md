@@ -64,7 +64,7 @@ function formatKnowledge(n: number): string {
 
 const branchLabelMap: Record<string, string> = {
   economy: '経済', civic: '市民', military: '軍事',
-  dlc01: '灰の予言', dlc02: '競馬場',
+  dlc01: '灰の予言', dlc02: '競馬場', dlc03: 'デルタの夜明け',
 }
 function getBranchDisplayLabel(b: string): string {
   if (branchLabelMap[b]) return branchLabelMap[b]
@@ -73,7 +73,7 @@ function getBranchDisplayLabel(b: string): string {
   return b
 }
 const branchColorMap: Record<string, string> = {
-  economy: '#16a34a', civic: '#7c3aed', military: '#dc2626', dlc01: '#d97706', dlc02: '#0891b2',
+  economy: '#16a34a', civic: '#7c3aed', military: '#dc2626', dlc01: '#d97706', dlc02: '#0891b2', dlc03: '#059669',
 }
 
 // パン操作

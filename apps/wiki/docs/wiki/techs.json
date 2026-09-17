@@ -5026,6 +5026,28 @@
       "branchOverride": "dlc02",
       "_source": "assets.xml v2.0.0.1 (GitHub:Taludas/Anno-117-Item-Inspector)+texts_japanese.xml / 効果文・配置はスクショ Desktop/DLC2 2026-09-07",
       "annoNodeId": "157971"
+    },
+    {
+      "guid": "dlc03-placeholder-1",
+      "internalName": "Gate DLC03 Placeholder",
+      "nameEn": "",
+      "nameJa": "（下書き）デルタの夜明け",
+      "descEn": "",
+      "descJa": "",
+      "effectJa": "",
+      "effectEn": "",
+      "iconKey": null,
+      "techIconPath": "",
+      "isGate": false,
+      "color": "Green",
+      "knowledgeCost": null,
+      "gridX": 0,
+      "gridY": 0,
+      "connections": [],
+      "annoR": 0,
+      "branchOverride": "dlc03",
+      "hidden": true,
+      "_source": "プレースホルダー（未公開）。Anno Union公式ブログ(2026-09-03 Gamescom recap)時点でスキルツリーの詳細は未発表。DLC01/DLC02同様に新スキルツリーが追加される想定に基づく仮エントリ。実データ判明後に置き換えること。"
     }
   ]
 }
