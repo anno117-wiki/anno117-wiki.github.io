@@ -6,6 +6,7 @@
         <span class="gh-badge" :class="entry.type">{{ entry.type === 'post' ? '投稿' : '修正' }}</span>
         <span class="gh-date">{{ entry.date }}</span>
         <a v-if="entry.link" class="gh-text" :href="withBase(entry.link)">{{ entry.title }}</a>
+        <a v-else-if="entry.type === 'fix'" class="gh-text" :href="withBase('/updates')">{{ entry.title }}</a>
         <span v-else class="gh-text">{{ entry.title }}</span>
       </li>
     </ul>
@@ -55,9 +56,7 @@ ul {
 }
 
 li {
-  display: flex;
-  flex-direction: column;
-  gap: 2px;
+  line-height: 1.5;
 }
 
 .gh-badge {
@@ -66,7 +65,8 @@ li {
   font-weight: 700;
   padding: 1px 5px;
   border-radius: 4px;
-  width: fit-content;
+  margin-right: 4px;
+  vertical-align: middle;
 }
 .gh-badge.post {
   background: #e8f0fe;
@@ -78,13 +78,15 @@ li {
 }
 
 .gh-date {
+  display: inline;
   color: var(--vp-c-text-2);
   font-size: 10px;
+  margin-right: 4px;
 }
 
 .gh-text {
+  display: inline;
   color: var(--vp-c-text-1);
-  line-height: 1.4;
   word-break: keep-all;
   text-decoration: none;
 }
