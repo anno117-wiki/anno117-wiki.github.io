@@ -41,8 +41,11 @@ function renderSectionNav() {
 
   if (!links.length) return
 
-  const container = document.querySelector('.VPLocalNav .container')
-  if (!container) return
+  // .container(flex, space-between)の3つ目のアイテムとして追加すると、
+  // 目次ドロップダウンのボタン幅が圧迫されテキスト折り返しでCLSが発生するため、
+  // .container(既存2要素)とは別行として.VPLocalNav直下に追加する。
+  const localNav = document.querySelector('.VPLocalNav')
+  if (!localNav) return
 
   const nav = document.createElement('div')
   nav.className = 'section-nav-links'
@@ -54,7 +57,7 @@ function renderSectionNav() {
     if (target) a.target = target
     nav.appendChild(a)
   })
-  container.appendChild(nav)
+  localNav.appendChild(nav)
 
   // 追加したリンクにも計算機フルリロードを適用
   fixCalculatorLinks()
@@ -73,6 +76,8 @@ function fixCalculatorLinks() {
   })
 }
 
-onMounted(() => nextTick(() => { renderSectionNav(); fixCalculatorLinks() }))
+// 初回マウント時はnextTickを挟まず即挿入し、レイアウト確定前に済ませてCLSを防ぐ。
+// SPA遷移時はVPLocalNavの再描画完了を待つ必要があるためnextTickを残す。
+onMounted(() => { renderSectionNav(); fixCalculatorLinks() })
 onContentUpdated(() => nextTick(() => { renderSectionNav(); fixCalculatorLinks() }))
 </script>

@@ -142,7 +142,17 @@ export default defineConfig({
         { text: '地域別商品', link: '/wiki/regions' },
         { text: '生産チェーン一覧', link: '/wiki/production-chains' },
         { text: '建物効果', link: '/wiki/buildings' },
-        { text: 'スキルツリー', link: '/wiki/techs' },
+        {
+          text: 'スキルツリー',
+          link: '/wiki/techs',
+          items: [
+            { text: '経済', link: '/wiki/techs-economy' },
+            { text: '市民', link: '/wiki/techs-civic' },
+            { text: '軍事', link: '/wiki/techs-military' },
+            { text: '灰の予言', link: '/wiki/techs-dlc01' },
+            { text: '競馬場', link: '/wiki/techs-dlc02' },
+          ],
+        },
         { text: '住民層', link: '/wiki/population' },
         { text: '生産品需要逆引き', link: '/wiki/needs-index' },
         { text: 'アイテム一覧', link: '/wiki/items' },
