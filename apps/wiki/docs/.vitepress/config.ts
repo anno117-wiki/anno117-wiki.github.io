@@ -1,4 +1,5 @@
 import { defineConfig } from 'vitepress'
+import { fileURLToPath } from 'url'
 
 // Anno 117 統合Wiki — VitePress 設定
 // 配信規約: wiki = '/'（ルート）、calculator = '/calculator/'
@@ -66,6 +67,13 @@ export default defineConfig({
 
   // 配信規約: wiki はルート配信
   base: '/',
+
+  vite: {
+    // VitePressのsrcDir(apps/wiki/docs)とpackage.jsonのあるワークスペースルート(apps/wiki)がズレているため、
+    // .env.production(apps/wiki直下に置く慣習)をViteが見つけられるよう明示する。
+    // 未指定だとVITE_WORKER_URL等が常にundefinedになり、UserComments.vueのfetch先が壊れる。
+    envDir: fileURLToPath(new URL('../../', import.meta.url)),
+  },
 
   // '/calculator/' は別SPA（VitePress 管理外）。
   // 内部リンク判定で dead-link 扱いされるのを避けるため除外する。
