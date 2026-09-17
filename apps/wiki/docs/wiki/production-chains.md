@@ -54,6 +54,7 @@ watch(hash, scrollToHash)
 
 各商品の生産に必要な建物・素材・時間をまとめています。
 詳細な生産チェーンの計算は[計算機](/calculator/)をご利用ください。
+ラティウム・アルビオン地域別の商品分布は[地域別商品](/wiki/regions)をご覧ください。
 
 <div v-for="cat in data.categories" :key="cat">
 
