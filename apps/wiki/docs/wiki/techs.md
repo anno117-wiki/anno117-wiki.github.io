@@ -31,6 +31,18 @@ function gridVars(b: string) {
   return `width:${w}px;height:${h}px;`
 }
 
+// 画面外ブランチのレイアウト計算を後回しにし、初期表示のレイアウトコストを下げる。
+// 204件のノードを一括レンダリングすると初期表示時に大きなレイアウト計算が発生するため、
+// content-visibility: auto で未表示分をスキップし、contain-intrinsic-size で
+// おおよその高さを与えてスクロール位置のガタつきを防ぐ。
+function viewportStyle(b: string) {
+  const m = data.branchMeta[b]
+  if (!m) return ''
+  const w = (m.maxX - m.minX) * CELL_W + 96
+  const h = (m.maxR - m.minR) * CELL_R + 40
+  return `content-visibility:auto;contain-intrinsic-size:${w}px ${h}px;`
+}
+
 function onEnter(tech: any, e: MouseEvent) {
   hoveredTech.value = tech
   positionTooltip(e)
@@ -171,7 +183,7 @@ onUnmounted(() => {
   </div>
   <div
     class="tree-viewport"
-    :style="`zoom: ${zoom};`"
+    :style="`zoom: ${zoom};${viewportStyle(b)}`"
     :class="{ 'is-panning': panState?.viewportEl === viewportRefs[b] }"
     :ref="(el: any) => setViewportRef(b, el)"
     @mousedown="onViewportMousedown(b, $event)"
