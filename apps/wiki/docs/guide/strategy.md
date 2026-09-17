@@ -5,7 +5,7 @@ description: Anno 117の攻略ガイド一覧。序盤攻略・経済・研究�
 
 # 攻略ガイド
 
-Anno 117 のプレイヤー向け攻略情報をまとめています。
+Anno 117 のプレイヤー向け攻略情報を、ここにまとめています。
 
 ## 基本
 
@@ -25,4 +25,4 @@ Anno 117 のプレイヤー向け攻略情報をまとめています。
 
 ## 関連データ
 
-攻略ガイドと合わせて[商品一覧](/wiki/goods)・[生産チェーン一覧](/wiki/production-chains)・[建物効果](/wiki/buildings)・[住民層](/wiki/population)などのデータベースも参照してください。
+攻略ガイドと合わせて[商品一覧](/wiki/goods)・[生産チェーン一覧](/wiki/production-chains)・[建物効果](/wiki/buildings)・[住民層](/wiki/population)などのデータベースもチェックしてみてください。

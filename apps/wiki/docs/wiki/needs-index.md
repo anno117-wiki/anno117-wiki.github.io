@@ -29,7 +29,7 @@ const TIER_CSS: Record<string, string> = {
 
 # 生産品需要逆引き
 
-住民が必要とする生産品を需要カテゴリ別に分類した一覧です。公式ゲームデータから抽出（{{ data.items.length }}件）。
+住民が必要とする生産品を需要カテゴリ別に分類した一覧です。公式ゲームデータから抽出しています（{{ data.items.length }}件）。
 
 <div class="cat-tabs">
   <button

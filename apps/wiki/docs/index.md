@@ -6,7 +6,7 @@ description: Anno 117（PS5/Steam）の日本語Wiki。商品・生産チェー�
 hero:
   name: Anno 117 統合Wiki
   text: 日本語情報Wiki + 生産チェーン計算機
-  tagline: Anno 117（PS5 / Steam）の生産チェーンを調べ、計算する
+  tagline: Anno 117（PS5 / Steam）の生産チェーンを調べて、計算できます
   actions:
     - theme: brand
       text: 計算機を開く
@@ -21,13 +21,13 @@ hero:
 
 features:
   - title: 攻略ガイド
-    details: 序盤攻略・交易・軍事・経済など、プレイヤー向け攻略情報をまとめています。
+    details: 序盤攻略・交易・軍事・経済まで、プレイヤー向けの攻略情報をひとまとめにしています。
     link: /guide/strategy
   - title: データベース
-    details: 商品・建物効果・住民層・アイテムなどのゲームデータを日本語で整理。公式データ準拠。
+    details: 商品・建物効果・住民層・アイテムなどのゲームデータを日本語でまとめました（公式データ準拠）。
     link: /wiki/goods
   - title: 生産チェーン計算機
-    details: 商品ごとの生産チェーンを展開し、必要な建物数・原料を計算する。
+    details: 商品ごとの生産チェーンを展開して、必要な建物数・原料を計算できます。
     link: /calculator/
     target: _self
 ---

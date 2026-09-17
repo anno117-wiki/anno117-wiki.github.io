@@ -91,6 +91,19 @@ Anno 117 の専門家が装着できる全アイテムの一覧です。分類�
   color: var(--vp-c-text-2);
   margin-left: auto;
 }
+.item-caution-badge {
+  display: inline-block;
+  margin-left: 6px;
+  padding: 1px 6px;
+  font-size: 11px;
+  font-weight: 700;
+  color: #92400e;
+  background: #fef3c7;
+  border: 1px solid #fcd34d;
+  border-radius: 4px;
+  cursor: help;
+  white-space: nowrap;
+}
 </style>
 
 <table>
@@ -99,7 +112,12 @@ Anno 117 の専門家が装着できる全アイテムの一覧です。分類�
 </thead>
 <tbody>
 <tr v-for="item in filtered" :key="item.guid">
-<td style="white-space:normal;"><div style="min-width:350px;word-break:break-all;">{{ item.nameJa }}</div></td>
+<td style="white-space:normal;">
+  <div style="min-width:350px;word-break:break-all;">
+    {{ item.nameJa }}
+    <span v-if="item.caution" class="item-caution-badge" :title="item.caution">要検証</span>
+  </div>
+</td>
 <td>{{ item.rarityJa }}</td>
 <td>{{ item.nicheJa }}</td>
 <td style="white-space:normal;">
