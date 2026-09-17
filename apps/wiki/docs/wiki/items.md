@@ -22,6 +22,12 @@ onMounted(() => {
   if (target) selTarget.value = target
 })
 
+function resetFilters(): void {
+  selRarity.value = ''
+  selNiche.value = ''
+  selTarget.value = ''
+}
+
 function fmtPrice(p: string): string {
   if (!p) return '—'
   const n = Number(p)
@@ -57,7 +63,10 @@ Anno 117 の専門家が装着できる全アイテムの一覧です。分類�
       <option v-for="t in data.targets" :key="t" :value="t" />
     </datalist>
   </label>
-  <span class="item-count">{{ filtered.length }} 件</span>
+  <div class="item-filters-footer">
+    <button type="button" class="item-filter-reset" @click="resetFilters">リセット</button>
+    <span class="item-count">{{ filtered.length }} 件</span>
+  </div>
 </div>
 
 <style scoped>
@@ -90,9 +99,26 @@ Anno 117 の専門家が装着できる全アイテムの一覧です。分類�
 .item-filters select {
   cursor: pointer;
 }
+.item-filters-footer {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  margin-left: auto;
+}
+.item-filter-reset {
+  padding: 6px 12px;
+  border: 1px solid var(--vp-c-divider);
+  border-radius: 6px;
+  background: var(--vp-c-bg);
+  color: var(--vp-c-text-1);
+  font-size: 0.85rem;
+  cursor: pointer;
+}
+.item-filter-reset:hover {
+  background: var(--vp-c-bg-mute);
+}
 .item-count {
   color: var(--vp-c-text-2);
-  margin-left: auto;
 }
 .item-caution-badge {
   display: inline-block;
@@ -126,7 +152,7 @@ Anno 117 の専門家が装着できる全アイテムの一覧です。分類�
   }
   .item-filters {
     position: sticky;
-    top: var(--vp-nav-height);
+    top: var(--local-nav-height, var(--vp-nav-height));
     z-index: 10;
     margin-bottom: 0 !important;
     display: grid;
@@ -147,11 +173,17 @@ Anno 117 の専門家が装着できる全アイテムの一覧です。分類�
     padding: 4px 6px;
     font-size: 0.8rem;
   }
-  .item-count {
+  .item-filters-footer {
     grid-column: 1 / -1;
     margin-left: 0;
-    text-align: right;
+    justify-content: space-between;
+  }
+  .item-count {
     font-size: 0.8rem;
+  }
+  .item-filter-reset {
+    padding: 4px 10px;
+    font-size: 0.75rem;
   }
 }
 

@@ -76,8 +76,25 @@ function fixCalculatorLinks() {
   })
 }
 
+// VPLocalNav(Menu行+セクション間ナビボタン)は内容によって高さが可変のため、
+// sticky要素(item-filters・buildings-filter-bar等)がtop固定値だと重なって隠れる。
+// 実測高さをCSS変数化し、各ページのCSSからvar(--local-nav-height)で参照させる。
+function updateLocalNavHeight() {
+  const localNav = document.querySelector<HTMLElement>('.VPLocalNav')
+  document.documentElement.style.setProperty('--local-nav-height', localNav ? `${localNav.offsetHeight}px` : '0px')
+}
+
 // 初回マウント時はnextTickを挟まず即挿入し、レイアウト確定前に済ませてCLSを防ぐ。
 // SPA遷移時はVPLocalNavの再描画完了を待つ必要があるためnextTickを残す。
-onMounted(() => { renderSectionNav(); fixCalculatorLinks() })
-onContentUpdated(() => nextTick(() => { renderSectionNav(); fixCalculatorLinks() }))
+onMounted(() => {
+  renderSectionNav()
+  fixCalculatorLinks()
+  updateLocalNavHeight()
+  window.addEventListener('resize', updateLocalNavHeight)
+})
+onContentUpdated(() => nextTick(() => {
+  renderSectionNav()
+  fixCalculatorLinks()
+  updateLocalNavHeight()
+}))
 </script>

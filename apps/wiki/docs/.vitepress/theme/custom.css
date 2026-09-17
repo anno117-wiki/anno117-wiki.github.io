@@ -297,7 +297,7 @@
 /* buildings フィルタバー sticky 固定 */
 .buildings-filter-bar {
   position: sticky;
-  top: var(--vp-nav-height);
+  top: var(--local-nav-height, var(--vp-nav-height));
   z-index: 10;
   background: var(--vp-c-bg);
   padding: 4px 0;
