@@ -14,7 +14,7 @@ const selTarget = ref('')
 const filtered = computed(() => data.items.filter(i =>
   (!selRarity.value || i.rarityJa === selRarity.value) &&
   (!selNiche.value || i.nicheJa === selNiche.value) &&
-  (!selTarget.value || i.targets.split('、').includes(selTarget.value))
+  (!selTarget.value || i.targets.includes(selTarget.value))
 ))
 
 onMounted(() => {
@@ -52,10 +52,10 @@ Anno 117 の専門家が装着できる全アイテムの一覧です。分類�
     </select>
   </label>
   <label><strong>対象:</strong>
-    <select v-model="selTarget">
-      <option value="">すべて</option>
-      <option v-for="t in data.targets" :key="t" :value="t">{{ t }}</option>
-    </select>
+    <input type="text" v-model="selTarget" list="item-target-list" placeholder="名称で検索" />
+    <datalist id="item-target-list">
+      <option v-for="t in data.targets" :key="t" :value="t" />
+    </datalist>
   </label>
   <span class="item-count">{{ filtered.length }} 件</span>
 </div>
@@ -77,15 +77,18 @@ Anno 117 の専門家が装着できる全アイテムの一覧です。分類�
   align-items: center;
   gap: 6px;
 }
-.item-filters select {
+.item-filters select,
+.item-filters input[type="text"] {
   padding: 6px 10px;
   border: 1px solid var(--vp-c-divider);
   border-radius: 6px;
   background: var(--vp-c-bg);
   color: var(--vp-c-text-1);
   font-size: 0.9rem;
-  cursor: pointer;
   min-width: 140px;
+}
+.item-filters select {
+  cursor: pointer;
 }
 .item-count {
   color: var(--vp-c-text-2);
@@ -104,8 +107,92 @@ Anno 117 の専門家が装着できる全アイテムの一覧です。分類�
   cursor: help;
   white-space: nowrap;
 }
+
+/* PC(>=960px): 既存テーブル表示、モバイルカードは非表示 */
+.items-card-list {
+  display: none;
+}
+
+/* モバイル(<=959px): テーブルの代わりにカード表示 */
+@media (max-width: 959px) {
+  .items-table-wrap {
+    display: none;
+  }
+  .items-card-list {
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+    margin: 16px 0;
+  }
+  .item-filters {
+    position: sticky;
+    top: var(--vp-nav-height);
+    z-index: 10;
+    margin-bottom: 0 !important;
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 4px 8px;
+    padding: 8px 10px;
+  }
+  .item-filters label {
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 2px;
+    font-size: 0.75rem;
+  }
+  .item-filters select,
+  .item-filters input[type="text"] {
+    width: 100%;
+    min-width: 0;
+    padding: 4px 6px;
+    font-size: 0.8rem;
+  }
+  .item-count {
+    grid-column: 1 / -1;
+    margin-left: 0;
+    text-align: right;
+    font-size: 0.8rem;
+  }
+}
+
+.item-card {
+  border: 1px solid var(--vp-c-divider);
+  border-radius: 8px;
+  overflow: hidden;
+  background: var(--vp-c-bg);
+}
+.item-card-header {
+  display: flex;
+  align-items: center;
+  flex-wrap: wrap;
+  gap: 6px;
+  padding: 10px 12px;
+  background: var(--vp-c-bg-soft);
+  font-weight: 700;
+  word-break: break-word;
+}
+.item-card-body {
+  padding: 10px 12px;
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+  font-size: 0.9rem;
+}
+.item-card-meta {
+  display: flex;
+  gap: 16px;
+  flex-wrap: wrap;
+}
+.item-card-row {
+  display: block;
+}
+.item-card-label {
+  color: var(--vp-c-text-2);
+  margin-right: 4px;
+}
 </style>
 
+<div class="items-table-wrap">
 <table>
 <thead>
 <tr><th>名称</th><th>レアリティ</th><th>分類</th><th>対象</th><th>効果</th><th>価格</th></tr>
@@ -135,6 +222,43 @@ Anno 117 の専門家が装着できる全アイテムの一覧です。分類�
 </tr>
 </tbody>
 </table>
+</div>
+
+<div class="items-card-list">
+<div class="item-card" v-for="item in filtered" :key="item.guid">
+  <div class="item-card-header">
+    <span>{{ item.nameJa }}</span>
+    <span v-if="item.caution" class="item-caution-badge" :title="item.caution">要検証</span>
+  </div>
+  <div class="item-card-body">
+    <div class="item-card-meta">
+      <span><span class="item-card-label">レアリティ:</span> {{ item.rarityJa }}</span>
+      <span><span class="item-card-label">分類:</span> {{ item.nicheJa }}</span>
+    </div>
+    <div class="item-card-row">
+      <span class="item-card-label">対象:</span>
+      <span>
+        <template v-if="item.targetLinks.length">
+          <template v-for="(t, i) in item.targetLinks" :key="i">
+            <a v-if="t.href" :href="withBase(t.href)">{{ t.name }}</a>
+            <span v-else>{{ t.name }}</span>
+            <span v-if="i < item.targetLinks.length - 1">、</span>
+          </template>
+        </template>
+        <template v-else>—</template>
+      </span>
+    </div>
+    <div class="item-card-row">
+      <span class="item-card-label">効果:</span>
+      <span>{{ item.effects.length ? item.effects.join('、') : '—' }}</span>
+    </div>
+    <div class="item-card-row">
+      <span class="item-card-label">価格:</span>
+      <span>{{ fmtPrice(item.price) }}</span>
+    </div>
+  </div>
+</div>
+</div>
 
 ## 関連ガイド
 
