@@ -2650,7 +2650,7 @@
       "維持費: -50%",
       "範囲効果: 信仰 +3"
     ],
-    "boostCondition": "戦争中: Dominating;Struggling;CloseToWin",
+    "boostCondition": "戦争中: 優勢;苦戦;勝利間近",
     "targets": "武器庫"
   },
   {
@@ -5189,7 +5189,7 @@
       "自己修復速度: +100%",
       "遠距離攻撃力: +4"
     ],
-    "boostCondition": "現在の評判 皇帝: 反乱;反乱Pending",
+    "boostCondition": "現在の評判 皇帝: 反乱;反乱寸前",
     "targets": "門"
   },
   {
@@ -8637,7 +8637,7 @@
       "信仰: +100",
       "名声: +700"
     ],
-    "boostCondition": "Popularity Max ○",
+    "boostCondition": "人気度の上限 ○",
     "targets": "競馬場"
   },
   {

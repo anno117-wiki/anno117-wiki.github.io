@@ -370,9 +370,19 @@ CONDITION_LOCATIONS = {
 EMPEROR_RELATION_VALUES = {
     "HostileZone": "-6917403091401205128", "UnrulyZone": "-6915583492848202370",
     "CasualZone": "-6914671557303069450", "EffortZone": "-6917351903766265206",
-    "ChallengeZone": "-6901978489714054004", "Rebellion": "-6912555987231726209",
+    "ChallengeZone": "-6901978489714054004",
+    # "Rebellion"より前に置く必要がある（下の置換ループは単純な文字列replaceなので、
+    # 先に短い"Rebellion"がマッチすると"RebellionPending"の"Pending"部分だけが残ってしまう）
+    "RebellionPending": "-6912437379731661339",  # 「反乱寸前」（texts_japanese.xmlより）
+    "Rebellion": "-6912555987231726209",
     "ProConsul": "-6904131997685258147", "Consul": "-6916032052665441306",
 }
+# ConditionWarStateの戦況値。公式ローカライズの直接対応が確認できないため、
+# BUFF_EFFECT_LOCAのATTR/ETYPE辞書と同様にフォールバックの独自訳とする。
+WAR_STATE_VALUES_JA = {"Dominating": "優勢", "Struggling": "苦戦", "CloseToWin": "勝利間近"}
+# ConditionCompareVariableで使われる変数名。用例が少なく汎用マッピングを作れないため、
+# 既知のものだけ個別に訳語を用意する。
+COMPARE_VARIABLE_JA = {"PopularityMax": "人気度の上限"}
 DIPLOMACY_STATE_VALUES = {
     "Undiscovered": "-6910984867916216313", "Alliance": "-6909792988828917153",
     "DefensivePact": "-6913251946263130178", "Peace": "-6913646454384213306",
@@ -492,6 +502,10 @@ def tr_condition(raw):
                 for k, v in DIPLOMACY_STATE_VALUES.items():
                     if k in right:
                         right = right.replace(k, resolve_loca(v))
+            elif "ConditionWarState" in left:
+                for k, v in WAR_STATE_VALUES_JA.items():
+                    if k in right:
+                        right = right.replace(k, v)
 
             if left == "ConditionReligion" and right.strip() == "0":
                 right = resolve_loca(RELIGION_ZERO_ID)
@@ -499,7 +513,10 @@ def tr_condition(raw):
                 right = resolve_loca(FESTIVAL_ANY_ID)
             if left == "ConditionCompareVariable":
                 var_name, _, bool_val = right.strip().partition(" ")
-                var_name = re.sub(r"(?<!^)(?=[A-Z])", " ", var_name.strip()).strip()
+                var_name = COMPARE_VARIABLE_JA.get(
+                    var_name.strip(),
+                    re.sub(r"(?<!^)(?=[A-Z])", " ", var_name.strip()).strip(),
+                )
                 check = "○" if bool_val.strip() == "1" else "×"
                 right = f"{var_name} {check}"
             if left == "ConditionRaceOutcome":
