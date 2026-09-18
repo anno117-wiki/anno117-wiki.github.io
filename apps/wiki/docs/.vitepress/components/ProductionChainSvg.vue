@@ -75,8 +75,31 @@ const layout = computed(() => {
   }
   for (const n of nodes) calcRank(n.id)
 
-  // Y軸：葉ノード（rank 0）に連番、内部ノードは入力ノードの平均行
-  const leaves = nodes.filter(n => (inputsOf.get(n.id)?.length ?? 0) === 0)
+  // 各ノードからの出力ノードID一覧（from → to[]）。葉ノードの並び替えに使う。
+  const outputsOf = new Map<string, string[]>()
+  for (const n of nodes) outputsOf.set(n.id, [])
+  for (const e of edges) {
+    const arr = outputsOf.get(e.from)
+    if (arr) arr.push(e.to)
+  }
+
+  // 各ノードを起点とした下流への最長パス長（ホップ数）。DFS・メモ化。
+  const longestPathFrom = new Map<string, number>()
+  function calcLongestPath(id: string): number {
+    if (longestPathFrom.has(id)) return longestPathFrom.get(id)!
+    const outs = outputsOf.get(id) ?? []
+    const result = outs.length === 0 ? 0 : 1 + Math.max(...outs.map(calcLongestPath))
+    longestPathFrom.set(id, result)
+    return result
+  }
+  for (const n of nodes) calcLongestPath(n.id)
+
+  // Y軸：葉ノード（rank 0）に連番、内部ノードは入力ノードの平均行。
+  // 葉ノードは「起点とする最長パス長」の降順で並べ、より多段階なチェーンほど
+  // 上段(row 0側)に来るようにする。
+  const leaves = [...nodes]
+    .filter(n => (inputsOf.get(n.id)?.length ?? 0) === 0)
+    .sort((a, b) => (longestPathFrom.get(b.id) ?? 0) - (longestPathFrom.get(a.id) ?? 0))
   const rowMap = new Map<string, number>()
   leaves.forEach((n, i) => rowMap.set(n.id, i))
 
