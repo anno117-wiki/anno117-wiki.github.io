@@ -133,6 +133,21 @@ Anno 117 の専門家が装着できる全アイテムの一覧です。分類�
   cursor: help;
   white-space: nowrap;
 }
+.item-boost-block {
+  margin-top: 6px;
+  padding: 5px 8px;
+  background: #fef3c7;
+  border: 1px solid #fcd34d;
+  border-radius: 6px;
+  color: #92400e;
+  font-size: 0.92em;
+  line-height: 1.5;
+}
+.item-boost-label {
+  font-weight: 700;
+  font-size: 0.9em;
+  margin-bottom: 2px;
+}
 
 /* PC(>=960px): 既存テーブル表示、モバイルカードは非表示 */
 .items-card-list {
@@ -249,7 +264,13 @@ Anno 117 の専門家が装着できる全アイテムの一覧です。分類�
   </template>
   <template v-else>—</template>
 </td>
-<td style="white-space:normal;">{{ item.effects.length ? item.effects.join('、') : '—' }}</td>
+<td style="white-space:normal;">
+  {{ item.effects.length ? item.effects.join('、') : '—' }}
+  <div v-if="item.boostEffects.length" class="item-boost-block">
+    <div class="item-boost-label">覚醒<template v-if="item.boostHint">: {{ item.boostHint }}</template><template v-if="item.boostCondition">（条件: {{ item.boostCondition }}）</template></div>
+    <div>{{ item.boostEffects.join('、') }}</div>
+  </div>
+</td>
 <td>{{ fmtPrice(item.price) }}</td>
 </tr>
 </tbody>
@@ -283,6 +304,10 @@ Anno 117 の専門家が装着できる全アイテムの一覧です。分類�
     <div class="item-card-row">
       <span class="item-card-label">効果:</span>
       <span>{{ item.effects.length ? item.effects.join('、') : '—' }}</span>
+    </div>
+    <div v-if="item.boostEffects.length" class="item-card-row item-boost-block">
+      <div class="item-boost-label">覚醒<template v-if="item.boostHint">: {{ item.boostHint }}</template><template v-if="item.boostCondition">（条件: {{ item.boostCondition }}）</template></div>
+      <div>{{ item.boostEffects.join('、') }}</div>
     </div>
     <div class="item-card-row">
       <span class="item-card-label">価格:</span>

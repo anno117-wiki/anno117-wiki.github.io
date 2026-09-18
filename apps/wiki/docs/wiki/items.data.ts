@@ -105,6 +105,9 @@ interface ItemEntry {
   targets: string
   targetLinks: TargetLink[]
   caution: string
+  boostHint: string
+  boostEffects: string[]
+  boostCondition: string
 }
 
 export default {
@@ -123,6 +126,9 @@ export default {
         targets: row.targets ?? '',
         targetLinks: (row.targets ? row.targets.split('、') : []).map(resolveTargetLink),
         caution: row.caution ?? '',
+        boostHint: row.boostHint ?? '',
+        boostEffects: Array.isArray(row.boostEffects) ? row.boostEffects : [],
+        boostCondition: row.boostCondition ?? '',
         _nicheRank: nicheIndex[row.niche] ?? 99,
         _rarityRank: RARITY_RANK[row.rarity] ?? 99,
       }))
