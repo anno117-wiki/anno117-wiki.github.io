@@ -400,6 +400,11 @@ def resolve_loca(oid_or_list):
         parts.append(t.strip())
     return " ".join(p for p in parts if p)
 
+# CONDITION_LOCATIONSの解決済みテキスト（「現在の島」「現在 属州」等）。
+# これらは対象の"スコープ"を示す修飾語であって"対象物"ではないため、
+# 数値断片との並べ替え結合（下記tr_condition内）の対象から除外する。
+LOCATION_TEXTS = {resolve_loca(v) for v in CONDITION_LOCATIONS.values()}
+
 # AssetPool GUID -> メンバーGUIDリスト。OasisId(=固有名)を持たないAssetPool
 # （例: 特定の専門家アイテム群をまとめたプール）を、直引きで解決できないGUIDの
 # フォールバックとしてメンバー名列挙に展開するために使う。
@@ -448,17 +453,26 @@ def tr_condition(raw):
 
     parts = [p.strip() for p in raw.split("|") if p.strip()]
     resolved_parts = []
-    is_complex = any(
-        m in raw for m in list(MODULE_MAPPING.keys())
-        + ["ConditionEmperorRelation", "ConditionDiplomacyState"]
-        + list(CONDITION_LOCATIONS.keys())
-    )
 
     for part in parts:
         if ":" in part:
             left, right = (x.strip() for x in part.split(":", 1))
 
-            if left in ("ConditionPlayerCounter", "ConditionCompareVariable"):
+            # ConditionPlayerCounterは属性名(NavalStrength等)がrightの先頭に埋め込まれる形式。
+            # 埋め込まれたままだと「属性名 N以上」のようにコロンのない断片になり他の条件と
+            # 表記が揃わないため、属性名を先に抜き出してloc_label（コロン付きラベル）にする。
+            if left == "ConditionPlayerCounter":
+                loc_label = ""
+                for attr_key, attr_oid in CONDITION_ATTRIBUTES.items():
+                    if re.search(r"\b" + re.escape(attr_key) + r"\b", right):
+                        loc_label = resolve_loca(attr_oid)
+                        right = re.sub(r"\b" + re.escape(attr_key) + r"\b", "", right).strip()
+                        break
+                else:
+                    if "GoodsInStock" in right:
+                        loc_label = resolve_loca(STORAGE_LOCA_ID)
+                        right = right.replace("GoodsInStock", "").strip()
+            elif left == "ConditionCompareVariable":
                 loc_label = ""
             elif left in CONDITION_TYPES:
                 loc_label = resolve_loca(CONDITION_TYPES[left])
@@ -490,13 +504,10 @@ def tr_condition(raw):
                 right = f"{var_name} {check}"
             if left == "ConditionRaceOutcome":
                 position, _, event_guid = right.strip().partition(" ")
-                right = f"{position}位 | {resolve_all_condition_guids(event_guid)}".strip()
+                right = f"{resolve_all_condition_guids(event_guid)} {position}位".strip()
 
             if "PopulationByGroup" in right:
                 right = right.replace("PopulationByGroup", "").strip()
-            if "GoodsInStock" in right:
-                loc_storage = resolve_loca(STORAGE_LOCA_ID)
-                right = right.replace("GoodsInStock", loc_storage).strip()
 
             for attr_key, attr_oid in CONDITION_ATTRIBUTES.items():
                 if attr_key in right:
@@ -517,8 +528,24 @@ def tr_condition(raw):
                     res_sub.append(resolve_all_condition_guids(sp))
             resolved_parts.append(" ".join(res_sub))
 
-    joiner = " | " if is_complex else " "
-    return joiner.join(p for p in resolved_parts if p)
+    # 「(ラベル: )N以上」のような数値断片の直後に対象名（GUID解決結果）だけの断片が
+    # 続く場合、「(ラベル: )対象名 N以上」の順に並べ替えて自然な日本語にする
+    # （例: "10以上"+"交易所" → "交易所 10以上"、"建設: 600以上"+"住居" → "建設: 住居 600以上"）。
+    merged_parts = []
+    i = 0
+    while i < len(resolved_parts):
+        p = resolved_parts[i]
+        m = re.fullmatch(r"(?P<prefix>.*: )?(?P<num>-?[\d.]+(?:以上|以下|未満|超))", p)
+        nxt = resolved_parts[i + 1] if i + 1 < len(resolved_parts) else None
+        if m and nxt is not None and ":" not in nxt and nxt not in LOCATION_TEXTS:
+            prefix = m.group("prefix") or ""
+            merged_parts.append(f"{prefix}{nxt} {m.group('num')}")
+            i += 2
+            continue
+        merged_parts.append(p)
+        i += 1
+
+    return "、".join(p for p in merged_parts if p)
 
 items = []
 with CSV.open(encoding="utf-8") as f:
