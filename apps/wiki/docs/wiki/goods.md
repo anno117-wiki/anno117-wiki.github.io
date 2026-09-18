@@ -4,7 +4,8 @@ description: Anno 117の全商品を食料・建設・ファッション・文�
 ---
 
 <script setup lang="ts">
-import { withBase } from 'vitepress'
+import { onMounted, watch } from 'vue'
+import { withBase, useData } from 'vitepress'
 import { data } from './goods.data.ts'
 
 const categoryLabels: Record<string, string> = {
@@ -25,6 +26,33 @@ function regionText(regions: string[]): string {
   if (!regions || regions.length === 0) return '—'
   return regions.map((r) => regionLabels[r] ?? r).join(' / ')
 }
+
+function hasCalc(cat: string): boolean {
+  return cat !== 'intermediate' && cat !== 'resource'
+}
+
+// SPA遷移直後はまだ描画されておらずアンカーへスクロールできないため、
+// 描画完了後に改めて該当行までスクロールする(production-chains.mdと同じパターン)。
+// テーブル版・コンパクトリスト版のうち画面幅に応じて表示されている方の要素へ
+// スクロールする必要があるため、id直指定ではなくdata-anchorを両方に持たせて選別する。
+const { hash } = useData()
+
+function scrollToHash(): void {
+  const target = decodeURIComponent(hash.value || '').replace(/^#/, '')
+  if (!target) return
+  setTimeout(() => {
+    const candidates = document.querySelectorAll(`[data-anchor="${CSS.escape(target)}"]`)
+    for (const el of candidates) {
+      if ((el as HTMLElement).offsetParent !== null) {
+        el.scrollIntoView({ block: 'center' })
+        return
+      }
+    }
+  }, 100)
+}
+
+onMounted(scrollToHash)
+watch(hash, scrollToHash)
 </script>
 
 # 商品一覧
@@ -37,26 +65,105 @@ Anno 117 で生産・消費される全 {{ data.categories.reduce((n, c) => n + 
 
 <h2>{{ categoryLabels[cat] ?? cat }}</h2>
 
+<div class="goods-table-wrap">
 <table>
 <thead>
 <tr><th>商品名</th><th>対応地域</th><th>計算機</th></tr>
 </thead>
 <tbody>
-<tr :id="good.id" v-for="good in data.byCategory[cat]" :key="good.id">
+<tr v-for="good in data.byCategory[cat]" :key="good.id" :data-anchor="good.id">
 <td style="white-space:nowrap;">
   <img v-if="good.icon" :src="withBase('/icons/goods/' + good.icon + '.png')" :alt="good.nameJa" style="width:28px;height:28px;vertical-align:middle;margin-right:6px;object-fit:contain;" />
   {{ good.nameJa }}
 </td>
 <td>{{ regionText(good.regions) }}</td>
 <td>
-  <a v-if="cat !== 'intermediate' && cat !== 'resource'" class="calc-link-btn" :href="withBase(`/calculator/?good=${good.id}`)" target="_blank" rel="noopener noreferrer">開く</a>
+  <a v-if="hasCalc(cat)" class="calc-link-btn" :href="withBase(`/calculator/?good=${good.id}`)" target="_blank" rel="noopener noreferrer">開く</a>
   <span v-else>—</span>
 </td>
 </tr>
 </tbody>
 </table>
+</div>
+
+<div class="goods-compact-list">
+<component
+  :is="hasCalc(cat) ? 'a' : 'div'"
+  v-for="good in data.byCategory[cat]"
+  :key="good.id"
+  :data-anchor="good.id"
+  class="goods-compact-row"
+  v-bind="hasCalc(cat) ? { href: withBase(`/calculator/?good=${good.id}`), target: '_blank', rel: 'noopener noreferrer' } : {}"
+>
+  <img v-if="good.icon" :src="withBase('/icons/goods/' + good.icon + '.png')" :alt="good.nameJa" class="goods-compact-icon" />
+  <span class="goods-compact-name">{{ good.nameJa }}</span>
+  <span class="goods-compact-region">{{ regionText(good.regions) }}</span>
+  <span v-if="hasCalc(cat)" class="goods-compact-arrow">›</span>
+</component>
+</div>
 
 </div>
+
+<style scoped>
+.goods-compact-list {
+  display: none;
+}
+
+@media (max-width: 959px) {
+  .goods-table-wrap {
+    display: none;
+  }
+  .goods-compact-list {
+    display: flex;
+    flex-direction: column;
+    border: 1px solid var(--vp-c-divider);
+    border-radius: 8px;
+    overflow: hidden;
+    margin: 12px 0;
+  }
+}
+
+.goods-compact-row {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  padding: 8px 12px;
+  border-bottom: 1px solid var(--vp-c-divider);
+  text-decoration: none;
+  color: var(--vp-c-text-1);
+}
+.goods-compact-row:last-child {
+  border-bottom: none;
+}
+.goods-compact-icon {
+  width: 24px;
+  height: 24px;
+  object-fit: contain;
+  flex-shrink: 0;
+}
+.goods-compact-name {
+  font-size: 14px;
+  font-weight: 600;
+  flex: 1;
+  min-width: 0;
+  word-break: break-word;
+}
+.goods-compact-region {
+  font-size: 11px;
+  color: var(--vp-c-text-2);
+  background: var(--vp-c-bg-soft);
+  padding: 2px 8px;
+  border-radius: 999px;
+  white-space: nowrap;
+  flex-shrink: 0;
+}
+.goods-compact-arrow {
+  color: var(--vp-c-brand-1);
+  font-size: 16px;
+  font-weight: 700;
+  flex-shrink: 0;
+}
+</style>
 
 ## 関連ガイド
 
