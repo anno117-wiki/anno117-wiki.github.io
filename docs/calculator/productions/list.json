@@ -1,6 +1,6 @@
 {
   "README": "This file contains all productions from Anno 117: Pax Romana.",
-  "generated": "2026-09-18T10:10:14.320Z",
+  "generated": "2026-09-18T10:16:01.516Z",
   "count": 113,
   "goods": [
     {
@@ -73,7 +73,7 @@
       "id": "bird_tongues",
       "icon": "bird_tongues",
       "regions": [
-        "Roman"
+        "Celtic"
       ],
       "files": {},
       "category": "intermediate",
@@ -84,10 +84,10 @@
       "id": "bird_tongues_in_aspic",
       "icon": "bird_tongues_in_aspic",
       "regions": [
-        "Roman"
+        "Celtic"
       ],
       "files": {
-        "roman": "bird_tongues_in_aspic"
+        "celtic": "bird_tongues_in_aspic"
       },
       "category": "food",
       "startOfChain": false
@@ -571,6 +571,7 @@
       "id": "lard",
       "icon": "lard",
       "regions": [
+        "Celtic",
         "Roman"
       ],
       "files": {},
@@ -1123,7 +1124,7 @@
       "id": "small_birds",
       "icon": "small_birds",
       "regions": [
-        "Roman"
+        "Celtic"
       ],
       "files": {},
       "category": "resource",
