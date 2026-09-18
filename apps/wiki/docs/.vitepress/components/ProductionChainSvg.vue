@@ -94,9 +94,10 @@ const layout = computed(() => {
   }
   for (const n of nodes) calcLongestPath(n.id)
 
-  // Y軸：葉ノード（rank 0）に連番、内部ノードは入力ノードの平均行。
+  // Y軸：葉ノード（rank 0）に連番、内部ノードは入力ノードのうち最も上の行に揃える。
   // 葉ノードは「起点とする最長パス長」の降順で並べ、より多段階なチェーンほど
-  // 上段(row 0側)に来るようにする。
+  // 上段(row 0側)に来るようにする。内部/最終ノードも平均ではなく最小行(最も長い
+  // メインのチェーン側)に揃えることで、主要チェーンが上段で一直線に繋がって見える。
   const leaves = [...nodes]
     .filter(n => (inputsOf.get(n.id)?.length ?? 0) === 0)
     .sort((a, b) => (longestPathFrom.get(b.id) ?? 0) - (longestPathFrom.get(a.id) ?? 0))
@@ -110,8 +111,7 @@ const layout = computed(() => {
   for (const n of nonLeaves) {
     const inputIds = inputsOf.get(n.id) ?? []
     const rows = inputIds.map(id => rowMap.get(id) ?? 0)
-    const avg = rows.length > 0 ? rows.reduce((s, v) => s + v, 0) / rows.length : 0
-    rowMap.set(n.id, avg)
+    rowMap.set(n.id, rows.length > 0 ? Math.min(...rows) : 0)
   }
 
   // 座標計算
