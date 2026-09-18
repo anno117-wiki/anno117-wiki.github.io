@@ -100,7 +100,8 @@ const layout = computed(() => {
 
   const posMap = new Map(posNodes.map(n => [n.id, n]))
 
-  // エッジパス（三次ベジェ）
+  // エッジパス（折れ線: 水平→垂直→水平。角は少し丸める）
+  const CORNER_R = 6
   const edgePaths: string[] = []
   for (const e of edges) {
     const src = posMap.get(e.from)
@@ -110,9 +111,17 @@ const layout = computed(() => {
     const sy = src.y + NODE_H / 2
     const dx = dst.x
     const dy = dst.y + NODE_H / 2
-    const cx1 = sx + 35
-    const cx2 = dx - 35
-    edgePaths.push(`M${sx},${sy} C${cx1},${sy} ${cx2},${dy} ${dx},${dy}`)
+    const midX = (sx + dx) / 2
+
+    if (Math.abs(dy - sy) < 0.5) {
+      edgePaths.push(`M${sx},${sy} L${dx},${dy}`)
+      continue
+    }
+    const dir = dy > sy ? 1 : -1
+    edgePaths.push(
+      `M${sx},${sy} L${midX - CORNER_R},${sy} Q${midX},${sy} ${midX},${sy + CORNER_R * dir} ` +
+      `L${midX},${dy - CORNER_R * dir} Q${midX},${dy} ${midX + CORNER_R},${dy} L${dx},${dy}`
+    )
   }
 
   // viewBox計算
