@@ -1,6 +1,6 @@
 {
   "README": "This file contains all productions from Anno 117: Pax Romana.",
-  "generated": "2026-09-11T06:03:24.783Z",
+  "generated": "2026-09-18T10:10:14.320Z",
   "count": 113,
   "goods": [
     {
@@ -147,7 +147,7 @@
       "id": "celtic_green",
       "icon": "celtic_green",
       "regions": [
-        "Roman"
+        "Celtic"
       ],
       "files": {},
       "category": "intermediate",
@@ -230,10 +230,10 @@
       "id": "cloaks",
       "icon": "cloaks",
       "regions": [
-        "Roman"
+        "Celtic"
       ],
       "files": {
-        "roman": "cloaks"
+        "celtic": "cloaks"
       },
       "category": "fashion",
       "startOfChain": false
@@ -282,8 +282,7 @@
       "id": "copper_ore",
       "icon": "copper_ore",
       "regions": [
-        "Celtic",
-        "Roman"
+        "Celtic"
       ],
       "files": {},
       "category": "resource",
@@ -318,8 +317,7 @@
       "id": "dye_plants",
       "icon": "dye_plants",
       "regions": [
-        "Celtic",
-        "Roman"
+        "Celtic"
       ],
       "files": {},
       "category": "resource",
@@ -1079,8 +1077,8 @@
       "id": "sheep",
       "icon": "sheep",
       "regions": [
-        "Roman",
-        "Celtic"
+        "Celtic",
+        "Roman"
       ],
       "files": {},
       "category": "resource",
