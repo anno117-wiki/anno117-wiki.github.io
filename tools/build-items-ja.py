@@ -8,7 +8,7 @@ import csv, json, re, sys, io
 from pathlib import Path
 
 ROOT = Path(__file__).resolve().parent.parent
-EXT = ROOT / "_local/anno-official-data/v2.0.0.1"
+EXT = ROOT / "_local/anno-official-data/v2.1"
 CSV = EXT / "items_export_with_effects.csv"
 JA_XML = EXT / "texts_japanese.xml"
 EN_XML = EXT / "texts_english.xml"
@@ -182,10 +182,13 @@ def label_for(key):
 def format_effect(key, value, sep=": "):
     """キーと値から効果テキストの断片を組み立てる。
     公式ラベルが{}テンプレートを持てばそこへ値を埋め込み、
-    そうでなければ「ラベル<sep>値」の形にする（範囲効果などの接頭辞に続く場合は sep=" " を渡す）。"""
+    そうでなければ「ラベル<sep>値」の形にする（範囲効果などの接頭辞に続く場合は sep=" " を渡す）。
+    公式ラベル自体が既に「：」等で終わる場合はsepを重ねず直接連結する。"""
     label = label_for(key)
     if "{}" in label:
         return label.replace("{}", value)
+    if label.endswith(("：", ":")):
+        return f"{label}{value}"
     return f"{label}{sep}{value}"
 
 # ATTR/ETYPE: BUFF_EFFECT_LOCA に無いキー、または解決失敗時のフォールバック訳
@@ -314,6 +317,201 @@ def tr_effects(text):
             out.append(r)
     return out
 
+# --- 覚醒条件（Boost Condition）ローカライズ ---
+# 出典: Anno-117-Item-Inspector本体 anno117_item_inspector.py の
+# CONDITION_TYPES/CONDITION_ATTRIBUTES等の定数と resolve_boost_condition() のロジックを移植。
+# 独自の意訳ではなく、公式ツールが実際に組み立てる表示ロジックをそのまま再現する。
+COMPARE_OPS = {"AtLeast": "≥", "AtMost": "≤", "Equals": "=", "LessThan": "<", "MoreThan": ">"}
+
+CONDITION_TYPES = {
+    "ConditionNeedAttributeCounter": ["-6907409456541782824", "-6914796270700478523"],
+    "ConditionObjectCount": "-6909050664680798634",
+    "ConditionItemUsed": "-6914628682709519748",
+    "ConditionActiveEmperor": ["-6909286393160361264", "-6910778800790301118"],
+    "ConditionReligion": "-6914126446077893143",
+    "ConditionMonumentEventActive": "-6912188219464097135",
+    "ConditionEmperorRelation": ["-6900988673237471031", "-6909286393160361264"],
+    "ConditionDiplomacyState": "-6901372654787949026",
+    "ConditionWarState": "-6916305455916138439",
+    "ConditionDominantPatron": "-6917281781830473807",
+    "ConditionInStorage": ["-6904656400857447148", "-6916792298682888435"],
+    "ConditionTradeRouteCount": "-6915569607474692589",
+    "ConditionFestivalActive": ["-6911236995181305030", "-6908773579491322283"],
+    "ConditionRaceOutcome": "-6899894517186160753",
+}
+FESTIVAL_ANY_ID = "-6915762395677959303"
+RELIGION_ZERO_ID = "-6899884938127726030"
+STORAGE_LOCA_ID = ["-6904656400857447148", "-6916792298682888435"]
+CONDITION_ATTRIBUTES = {
+    "Belief": "-6917117282888968611", "FireSafety": "-6913876283495722297",
+    "Happiness": "-6915056271707822368", "Health": "-6912510107473053226",
+    "Knowledge": "-6908049578864304337", "Money": "-6910799479763478465",
+    "Prestige": "-6911554866663245776", "Population": "-6916310552575698080",
+    "NavalStrength": "-6903178156203890847", "ArmyStrength": "-6916030253858215742",
+    "MoneyBalance": "-6910768626546451500",
+    "ActiveEmperorReputation": ["-6900988673237471031", "-6909286393160361264"],
+    "ContractsCompleted": "-6915965511056834686", "ShipsSoldToParticipant": "-6915345810045190210",
+    "IslandsDiscovered": "-6917195644310704229",
+    "ItemsInStock": ["-6914097598100160370", "-6916792298682888435"],
+}
+CONDITION_LOCATIONS = {
+    "Area": "-6902656537549924720",
+    "Session": ["-6914487889124229090", "-6907135442311038421"],
+}
+EMPEROR_RELATION_VALUES = {
+    "HostileZone": "-6917403091401205128", "UnrulyZone": "-6915583492848202370",
+    "CasualZone": "-6914671557303069450", "EffortZone": "-6917351903766265206",
+    "ChallengeZone": "-6901978489714054004", "Rebellion": "-6912555987231726209",
+    "ProConsul": "-6904131997685258147", "Consul": "-6916032052665441306",
+}
+DIPLOMACY_STATE_VALUES = {
+    "Undiscovered": "-6910984867916216313", "Alliance": "-6909792988828917153",
+    "DefensivePact": "-6913251946263130178", "Peace": "-6913646454384213306",
+    "War": "-6903421091051165993",
+}
+MODULE_MAPPING = {
+    "RequiredModuleCount": "-6903948808470486709",
+    "RequiredMilitaryModuleCount": ["-6903948808470486709", "-6905451000995360298"],
+    "ShipConfiguration": "-6910601933138024387",
+}
+# 継承チェーンでは解決できないGUID（Inspector本体のMANUAL_GUID_MAPをそのまま踏襲）
+MANUAL_GUID_MAP = {
+    "52097": ["-6914984016984180941", "-6912105848696448949"],
+    "113059": "-6907933155664049947",
+}
+
+def resolve_loca(oid_or_list):
+    """LineId（単一 or 複数）から日本語テキストを取得し、{}や{Conditions:...}等の
+    未解決テンプレート変数を除去してスペース結合する。"""
+    ids = oid_or_list if isinstance(oid_or_list, list) else [oid_or_list]
+    parts = []
+    for o in ids:
+        t = re.sub(r"\{[^}]*\}", "", clean(JP.get(o) or EN.get(o) or o))
+        t = re.sub(r"[（(]\s*/?\s*[）)]", "", t)  # テンプレート除去後に残る空カッコを除去
+        parts.append(t.strip())
+    return " ".join(p for p in parts if p)
+
+# AssetPool GUID -> メンバーGUIDリスト。OasisId(=固有名)を持たないAssetPool
+# （例: 特定の専門家アイテム群をまとめたプール）を、直引きで解決できないGUIDの
+# フォールバックとしてメンバー名列挙に展開するために使う。
+print("building asset pool map...", file=sys.stderr)
+_asset_pool_re = re.compile(
+    r"<Template>AssetPool</Template>\s*<Values>\s*<Standard>\s*<GUID>(-?\d+)</GUID>.*?</Standard>\s*<AssetPool>\s*<AssetList>(.*?)</AssetList>",
+    re.S,
+)
+asset_pool_members = {}
+for pool_guid, list_body in _asset_pool_re.findall(ASSETS.read_text(encoding="utf-8")):
+    members = re.findall(r"<Asset>(-?\d+)</Asset>", list_body)
+    if members:
+        asset_pool_members[pool_guid] = members
+print(f"  asset pools: {len(asset_pool_members)}", file=sys.stderr)
+
+def resolve_condition_guid(token):
+    """Condition内の数値トークンをGUID解決。ManualMap優先、次いでresolve_guid_ja、
+    それでも解決できなければAssetPoolのメンバー名列挙にフォールバックする
+    （公式ツールresolve_all_guids()と同じ優先順位）。最後まで解決できなければ元の値を返す。"""
+    token = token.strip()
+    if len(token.replace("-", "")) < 4:
+        return token
+    if token in MANUAL_GUID_MAP:
+        return resolve_loca(MANUAL_GUID_MAP[token])
+    resolved = resolve_guid_ja(token)
+    if not resolved.startswith("#"):
+        return resolved
+    members = asset_pool_members.get(token)
+    if members:
+        names = [resolve_guid_ja(m) for m in members]
+        names = [n for n in names if not n.startswith("#")]
+        if names:
+            return "、".join(names)
+    return token
+
+def resolve_all_condition_guids(text):
+    """文字列内の4桁以上の数値トークンをすべてGUID解決する。"""
+    return re.sub(r"(?<![+\d\-.])-?\d{4,20}\b(?!%)", lambda m: resolve_condition_guid(m.group(0)), str(text))
+
+def tr_condition(raw):
+    """Boost Condition列の生データを日本語テキストに変換する。
+    Anno-117-Item-Inspector本体 resolve_boost_condition() のロジックを移植。"""
+    raw = (raw or "").strip()
+    if not raw or raw == "None":
+        return ""
+
+    parts = [p.strip() for p in raw.split("|") if p.strip()]
+    resolved_parts = []
+    is_complex = any(
+        m in raw for m in list(MODULE_MAPPING.keys())
+        + ["ConditionEmperorRelation", "ConditionDiplomacyState"]
+        + list(CONDITION_LOCATIONS.keys())
+    )
+
+    for part in parts:
+        if ":" in part:
+            left, right = (x.strip() for x in part.split(":", 1))
+
+            if left in ("ConditionPlayerCounter", "ConditionCompareVariable"):
+                loc_label = ""
+            elif left in CONDITION_TYPES:
+                loc_label = resolve_loca(CONDITION_TYPES[left])
+            elif left in MODULE_MAPPING:
+                loc_label = resolve_loca(MODULE_MAPPING[left])
+            else:
+                loc_label = resolve_all_condition_guids(left)
+            loc_label = loc_label.replace("{}", "").rstrip(":").strip() if loc_label else ""
+
+            for comp, symbol in COMPARE_OPS.items():
+                right = right.replace(comp, symbol)
+
+            if "ConditionEmperorRelation" in left:
+                for k, v in EMPEROR_RELATION_VALUES.items():
+                    if k in right:
+                        right = right.replace(k, resolve_loca(v))
+            elif "ConditionDiplomacyState" in left:
+                for k, v in DIPLOMACY_STATE_VALUES.items():
+                    if k in right:
+                        right = right.replace(k, resolve_loca(v))
+
+            if left == "ConditionReligion" and right.strip() == "0":
+                right = resolve_loca(RELIGION_ZERO_ID)
+            if left == "ConditionFestivalActive" and not right.strip():
+                right = resolve_loca(FESTIVAL_ANY_ID)
+            if left == "ConditionCompareVariable":
+                var_name, _, bool_val = right.strip().partition(" ")
+                var_name = re.sub(r"(?<!^)(?=[A-Z])", " ", var_name.strip()).strip()
+                check = "○" if bool_val.strip() == "1" else "×"
+                right = f"{var_name} {check}"
+            if left == "ConditionRaceOutcome":
+                position, _, event_guid = right.strip().partition(" ")
+                right = f"{position}位 | {resolve_all_condition_guids(event_guid)}".strip()
+
+            if "PopulationByGroup" in right:
+                right = right.replace("PopulationByGroup", "").strip()
+            if "GoodsInStock" in right:
+                loc_storage = resolve_loca(STORAGE_LOCA_ID)
+                right = right.replace("GoodsInStock", loc_storage).strip()
+
+            for attr_key, attr_oid in CONDITION_ATTRIBUTES.items():
+                if attr_key in right:
+                    loc_attr = resolve_loca(attr_oid)
+                    right = re.sub(r"\b" + re.escape(attr_key) + r"\b", loc_attr, right)
+
+            right = resolve_all_condition_guids(right)
+            resolved_parts.append(f"{loc_label}: {right}" if loc_label else right)
+        else:
+            sub_parts = [sp.strip() for sp in part.split(",")]
+            res_sub = []
+            for sp in sub_parts:
+                if sp in CONDITION_LOCATIONS:
+                    res_sub.append(resolve_loca(CONDITION_LOCATIONS[sp]))
+                elif sp in MODULE_MAPPING:
+                    res_sub.append(resolve_loca(MODULE_MAPPING[sp]))
+                else:
+                    res_sub.append(resolve_all_condition_guids(sp))
+            resolved_parts.append(" ".join(res_sub))
+
+    joiner = " | " if is_complex else " "
+    return joiner.join(p for p in resolved_parts if p)
+
 items = []
 with CSV.open(encoding="utf-8") as f:
     for r in csv.DictReader(f):
@@ -334,6 +532,7 @@ with CSV.open(encoding="utf-8") as f:
             "effects": effects,
             "boostHint": clean(JP.get(r.get("Boost Hint", ""), "")),
             "boostEffects": tr_effects(r.get("BoostBuff Effects", "")),
+            "boostCondition": tr_condition(r.get("Boost Condition", "")),
             "targets": format_targets(r.get("Targets", "")),
         })
 
