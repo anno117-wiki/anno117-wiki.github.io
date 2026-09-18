@@ -321,7 +321,16 @@ def tr_effects(text):
 # 出典: Anno-117-Item-Inspector本体 anno117_item_inspector.py の
 # CONDITION_TYPES/CONDITION_ATTRIBUTES等の定数と resolve_boost_condition() のロジックを移植。
 # 独自の意訳ではなく、公式ツールが実際に組み立てる表示ロジックをそのまま再現する。
-COMPARE_OPS = {"AtLeast": "≥", "AtMost": "≤", "Equals": "=", "LessThan": "<", "MoreThan": ">"}
+COMPARE_OPS_JA = {"AtLeast": "以上", "AtMost": "以下", "LessThan": "未満", "MoreThan": "超"}
+
+def apply_compare_ops(text):
+    """'AtLeast 25'のような比較演算子+数値を、日本語として自然な'25以上'の語順に変換する。"""
+    def repl(m):
+        comp, num = m.group(1), m.group(2)
+        if comp == "Equals":
+            return f"ちょうど{num}"
+        return f"{num}{COMPARE_OPS_JA[comp]}"
+    return re.sub(r"\b(AtLeast|AtMost|Equals|LessThan|MoreThan)\s+(-?[\d.]+)", repl, text)
 
 CONDITION_TYPES = {
     "ConditionNeedAttributeCounter": ["-6907409456541782824", "-6914796270700478523"],
@@ -459,8 +468,7 @@ def tr_condition(raw):
                 loc_label = resolve_all_condition_guids(left)
             loc_label = loc_label.replace("{}", "").rstrip(":").strip() if loc_label else ""
 
-            for comp, symbol in COMPARE_OPS.items():
-                right = right.replace(comp, symbol)
+            right = apply_compare_ops(right)
 
             if "ConditionEmperorRelation" in left:
                 for k, v in EMPEROR_RELATION_VALUES.items():
