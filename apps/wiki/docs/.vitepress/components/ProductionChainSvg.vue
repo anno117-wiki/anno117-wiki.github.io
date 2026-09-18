@@ -6,7 +6,7 @@
       :viewBox="layout.viewBox"
       :width="layout.totalW"
       :height="layout.totalH"
-      style="display:block"
+      style="display:block; max-width:100%; height:auto;"
     >
       <defs>
         <marker id="arrow" markerWidth="8" markerHeight="8" refX="6" refY="3" orient="auto">
