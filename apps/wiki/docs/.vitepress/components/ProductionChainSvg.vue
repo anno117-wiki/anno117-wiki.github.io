@@ -134,7 +134,11 @@ const layout = computed(() => {
     const sy = src.y + NODE_H / 2
     const dx = dst.x
     const dy = dst.y + NODE_H / 2
-    const midX = (sx + dx) / 2
+    // 到達ノードのすぐ左の隙間でコーナーを曲げる。単純な中間点(sx+dx)/2や、
+    // 出発ノード側の隙間で曲げる方式だと、ランクを1つ以上飛び越える接続
+    // (スキップ接続)の水平区間が間に挟まる列のノードと同じ行を長く這い、
+    // そこで合流しているように誤読されるため。
+    const midX = dx - GAP_X / 2
 
     if (Math.abs(dy - sy) < 0.5) {
       edgePaths.push(`M${sx},${sy} L${dx},${dy}`)
