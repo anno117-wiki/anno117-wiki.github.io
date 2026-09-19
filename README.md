@@ -112,6 +112,8 @@ See [test-reports/e2e-test-results.md](test-reports/e2e-test-results.md) for det
 
 This project is built with maximum respect for the original [Anno Calculator](https://anno-calculator.org/) by [@agentquackyt](https://github.com/agentquackyt/Anno117Calculator). Production data and icons are sourced from the official calculator.
 
+The author has confirmed that everything except the icons is free to use (the icons are property of Ubisoft): https://github.com/agentquackyt/Anno117Calculator/issues/6
+
 ### License
 
 This project is private and not yet licensed for public use.
@@ -225,6 +227,8 @@ anno_db2/
 ### 謝辞
 
 本プロジェクトは、[@agentquackyt](https://github.com/agentquackyt/Anno117Calculator)氏による公式[Anno Calculator](https://anno-calculator.org/)に最大限のリスペクトを込めて作成されています。生産データとアイコンは公式計算機から提供されています。
+
+作者による利用許諾（アイコン以外は自由に使用可。アイコンはUbisoftの所有物）: https://github.com/agentquackyt/Anno117Calculator/issues/6
 
 ### ライセンス
 

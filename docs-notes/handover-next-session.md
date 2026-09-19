@@ -90,7 +90,7 @@
 - 型チェック: `config.ts` に**既存の型エラー1件**（トップレベルの `search` が `UserConfig` に無い）。動作に影響なし・今回の変更とは無関係・未修正
 
 ### K. 上流計算機のライセンス確認と、計算機を残す方針（2026-09-20）
-- 上流 agentquackyt/Anno117Calculator にはLICENSEファイルが無いため、2026-09-19 にユーザーが英語でIssueを立てて問い合わせた。**作者が2026-09-20に回答**: 「The icons are property of Ubisoft, everything else is free to use (without attribution, if you like)」
+- 上流 agentquackyt/Anno117Calculator にはLICENSEファイルが無いため、2026-09-19 にユーザーが英語でIssueを立てて問い合わせた（https://github.com/agentquackyt/Anno117Calculator/issues/6 。READMEの謝辞にも許諾の根拠として同URLを記載済み）。**作者が2026-09-20に回答**: 「The icons are property of Ubisoft, everything else is free to use (without attribution, if you like)」
   - アイコン以外（生産データ・コード等）は自由に使用可、表記は任意。アイコンはUbisoftの所有物
   - ユーザーは、この回答を受けて**計算機を残す方針に決定**（当初は「ライセンスの懸念で消したい」だった）。`/calculator/` の転送ページ等の削除作業は**不要**
   - 返信は投稿済みの想定（お礼＋「注記をwikiに追加する」旨＋サイトの案内＋LICENSE追加の軽い依頼）。LICENSEファイル追加の依頼への返答は未確認
