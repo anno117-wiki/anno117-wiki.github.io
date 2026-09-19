@@ -11,6 +11,7 @@
   よって子の必要数 kC = kP * (入力量 / 親サイクル) / (産出量 / 子サイクル)。
   根(最終商品の建物)を1として計算し、全ての建物数が整数になる最小の倍率で掛ける。
   燃料: 燃料が要る建物1軒あたり、炭焼き師 = (炭焼き師のサイクル秒 / 燃料の燃焼秒) 軒。
+  建物ごとの炭焼き師の数を "fuel" として出力する(燃料が要る建物のみ)。
 """
 import json
 import re
@@ -71,12 +72,11 @@ def node_id(raw):
 
 
 def compute(tree, assets, warnings):
-    """木を辿り {nodeId: Fraction 軒数, ...} と燃料が要る建物の合計軒数を返す(根=1)。"""
+    """木を辿り {nodeId: Fraction 軒数, ...} と、燃料が要る建物の {nodeId: Fraction 軒数, ...} を返す(根=1)。"""
     counts = {}
-    fuel_buildings = Fraction(0)
+    fuel_nodes = {}
 
     def visit(node, k, parent_asset, parent_node):
-        nonlocal fuel_buildings
         nid = node_id(node["id"])
         asset = assets.get(str(node.get("guid")))
         if asset is None:
@@ -91,7 +91,7 @@ def compute(tree, assets, warnings):
             warnings.append(f"{node['id']}: サイクル不一致 JSON={node.get('time')} assets={cycle}")
         counts[nid] = counts.get(nid, Fraction(0)) + k
         if asset["needs_fuel"]:
-            fuel_buildings += k
+            fuel_nodes[nid] = fuel_nodes.get(nid, Fraction(0)) + k
         if asset["needs_fuel"] != bool(node.get("needs_fuel")):
             warnings.append(f"{node['id']}: 燃料要否が不一致 JSON={node.get('needs_fuel')} assets={asset['needs_fuel']}")
 
@@ -113,7 +113,7 @@ def compute(tree, assets, warnings):
             visit(child, need_per_sec / supply_per_sec, asset, node)
 
     visit(tree, Fraction(1), None, None)
-    return counts, fuel_buildings
+    return counts, fuel_nodes
 
 
 def scale_to_integers(counts):
@@ -138,7 +138,7 @@ def main():
         if not isinstance(tree, dict) or "id" not in tree:
             continue
         warnings = []
-        counts, fuel_buildings = compute(tree, assets, warnings)
+        counts, fuel_nodes = compute(tree, assets, warnings)
         m = scale_to_integers(counts)
         entry = {"warnings": warnings}
         if m is None:
@@ -149,8 +149,8 @@ def main():
             entry["ok"] = True
         entry["scale"] = m
         entry["counts"] = {k: fmt(v * m) for k, v in counts.items()}
-        burners = fuel_buildings * m * Fraction(CHARCOAL_BURNER_CYCLE) / Fraction(int(fuel_seconds))
-        entry["fuelBurners"] = fmt(burners) if fuel_buildings else 0
+        burners_per_building = Fraction(CHARCOAL_BURNER_CYCLE) / Fraction(int(fuel_seconds))
+        entry["fuel"] = {k: fmt(v * m * burners_per_building) for k, v in fuel_nodes.items()}
         result[path.stem] = entry
 
     OUT.write_text(json.dumps(result, ensure_ascii=False, indent=1) + "\n", encoding="utf-8")

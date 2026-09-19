@@ -16,6 +16,8 @@ export interface GraphNode {
   time: string
   /** 100%効率での建物数の比率。無い場合は表示しない */
   count?: number
+  /** 燃料(石炭)用に必要な炭焼き師の数。燃料が要る建物のみ */
+  fuel?: number
 }
 
 export interface GraphEdge {
@@ -26,13 +28,11 @@ export interface GraphEdge {
 export interface ProductionGraph {
   nodes: GraphNode[]
   edges: GraphEdge[]
-  /** 燃料用の炭焼き師の比率。燃料が不要なチェーンは 0 */
-  fuelBurners: number
 }
 
 interface ChainRatio {
   counts: Record<string, number>
-  fuelBurners: number
+  fuel: Record<string, number>
 }
 
 const RATIOS = ratiosJson as Record<string, ChainRatio>
@@ -77,7 +77,8 @@ function buildProductionGraph(
     if (!seen.has(id)) {
       seen.add(id)
       const count = ratio?.counts[id]
-      nodes.push({ id, label, time, ...(count ? { count } : {}) })
+      const fuel = ratio?.fuel[id]
+      nodes.push({ id, label, time, ...(count ? { count } : {}), ...(fuel ? { fuel } : {}) })
     }
     if (childId) edges.push({ from: id, to: childId })
     for (const inp of (node.input ?? [])) {
@@ -87,7 +88,7 @@ function buildProductionGraph(
 
   traverse(prod)
   if (nodes.length <= 1) return null
-  return { nodes, edges, fuelBurners: ratio?.fuelBurners ?? 0 }
+  return { nodes, edges }
 }
 
 function readProduction(filename: string): any | null {

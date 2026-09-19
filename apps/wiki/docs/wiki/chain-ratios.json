@@ -10,7 +10,9 @@
    "clay": 1,
    "resin": 2
   },
-  "fuelBurners": 0.5
+  "fuel": {
+   "amphorae": 0.5
+  }
  },
  "amphorae_albion": {
   "warnings": [],
@@ -21,7 +23,9 @@
    "mud": 3,
    "resin": 2
   },
-  "fuelBurners": 0.5
+  "fuel": {
+   "amphorae": 0.5
+  }
  },
  "armour": {
   "warnings": [
@@ -39,7 +43,10 @@
    "pigs": 1,
    "salt": 1
   },
-  "fuelBurners": 1.25
+  "fuel": {
+   "armour": 0.75,
+   "iron": 0.5
+  }
  },
  "armour_albion": {
   "warnings": [
@@ -57,7 +64,10 @@
    "pigs": 1,
    "wood": 1
   },
-  "fuelBurners": 1.25
+  "fuel": {
+   "armour": 0.75,
+   "iron": 0.5
+  }
  },
  "beer_albion": {
   "warnings": [
@@ -70,7 +80,9 @@
    "malt": 1,
    "barley": 2
   },
-  "fuelBurners": 0.5
+  "fuel": {
+   "beer": 0.5
+  }
  },
  "bird_tongues_in_aspic": {
   "warnings": [
@@ -85,7 +97,9 @@
    "lard": 2,
    "pigs": 1
   },
-  "fuelBurners": 0.5
+  "fuel": {
+   "lard": 0.5
+  }
  },
  "bread": {
   "warnings": [],
@@ -96,7 +110,9 @@
    "flour": 1,
    "wheat": 3
   },
-  "fuelBurners": 0.75
+  "fuel": {
+   "bread": 0.75
+  }
  },
  "bread_albion": {
   "warnings": [],
@@ -107,7 +123,9 @@
    "flour": 1,
    "wheat": 1
   },
-  "fuelBurners": 0.25
+  "fuel": {
+   "bread": 0.25
+  }
  },
  "brooches": {
   "warnings": [
@@ -120,7 +138,10 @@
    "silver": 2,
    "silver_ore": 1
   },
-  "fuelBurners": 1.5
+  "fuel": {
+   "brooches": 1,
+   "silver": 0.5
+  }
  },
  "ceremonial_shields_albion": {
   "warnings": [
@@ -136,7 +157,9 @@
    "tin_ore": 1,
    "copper_ore": 1
   },
-  "fuelBurners": 0.5
+  "fuel": {
+   "bronze": 0.5
+  }
  },
  "chariots": {
   "warnings": [
@@ -151,7 +174,7 @@
    "wood": 1,
    "reeds": 2
   },
-  "fuelBurners": 0
+  "fuel": {}
  },
  "cheese": {
   "warnings": [],
@@ -161,7 +184,7 @@
    "cheese": 2,
    "ochs": 1
   },
-  "fuelBurners": 0
+  "fuel": {}
  },
  "cloaks": {
   "warnings": [
@@ -177,7 +200,7 @@
    "dye_plants": 2,
    "copper_ore": 1
   },
-  "fuelBurners": 0
+  "fuel": {}
  },
  "cockles_albion": {
   "warnings": [],
@@ -186,7 +209,7 @@
   "counts": {
    "cockles": 1
   },
-  "fuelBurners": 0
+  "fuel": {}
  },
  "concrete": {
   "warnings": [
@@ -199,7 +222,7 @@
    "limestone": 2,
    "silica": 3
   },
-  "fuelBurners": 0
+  "fuel": {}
  },
  "concrete_albion": {
   "warnings": [
@@ -212,7 +235,7 @@
    "limestone": 2,
    "silica": 3
   },
-  "fuelBurners": 0
+  "fuel": {}
  },
  "drinking_horns_albion": {
   "warnings": [
@@ -225,7 +248,7 @@
    "ochs": 2,
    "tin_ore": 1
   },
-  "fuelBurners": 0
+  "fuel": {}
  },
  "eels_albion": {
   "warnings": [],
@@ -234,7 +257,7 @@
   "counts": {
    "eels": 1
   },
-  "fuelBurners": 0
+  "fuel": {}
  },
  "fine_glass": {
   "warnings": [],
@@ -247,7 +270,10 @@
    "pigments": 4,
    "minerals": 3
   },
-  "fuelBurners": 3.5
+  "fuel": {
+   "fine_glass": 2,
+   "glass": 1.5
+  }
  },
  "fur_hats_albion": {
   "warnings": [],
@@ -259,7 +285,9 @@
    "saltwash": 2,
    "saltwort": 3
   },
-  "fuelBurners": 0.5
+  "fuel": {
+   "saltwash": 0.5
+  }
  },
  "garum": {
   "warnings": [
@@ -272,7 +300,7 @@
    "mackerel": 2,
    "salt": 1
   },
-  "fuelBurners": 0
+  "fuel": {}
  },
  "granite_albion": {
   "warnings": [],
@@ -282,7 +310,7 @@
    "granite": 8,
    "granite_block": 3
   },
-  "fuelBurners": 0
+  "fuel": {}
  },
  "handmirrors": {
   "warnings": [
@@ -296,7 +324,10 @@
    "silver": 4,
    "silver_ore": 2
   },
-  "fuelBurners": 3
+  "fuel": {
+   "handmirrors": 2,
+   "silver": 1
+  }
  },
  "horses": {
   "warnings": [],
@@ -305,7 +336,7 @@
   "counts": {
    "horses": 1
   },
-  "fuelBurners": 0
+  "fuel": {}
  },
  "horses_albion": {
   "warnings": [],
@@ -314,7 +345,7 @@
   "counts": {
    "horses": 1
   },
-  "fuelBurners": 0
+  "fuel": {}
  },
  "latrunculi_sets": {
   "warnings": [
@@ -330,7 +361,9 @@
    "gold": 2,
    "gold_ore": 8
   },
-  "fuelBurners": 0.5
+  "fuel": {
+   "gold": 0.5
+  }
  },
  "loungers": {
   "warnings": [],
@@ -343,7 +376,7 @@
    "tyrian_purple": 4,
    "murex_snails": 3
   },
-  "fuelBurners": 0
+  "fuel": {}
  },
  "lyres": {
   "warnings": [
@@ -360,7 +393,9 @@
    "string": 3,
    "sheep": 1
   },
-  "fuelBurners": 0.5
+  "fuel": {
+   "gold": 0.5
+  }
  },
  "marble": {
   "warnings": [],
@@ -370,7 +405,7 @@
    "marble": 3,
    "uncut_marble": 2
   },
-  "fuelBurners": 0
+  "fuel": {}
  },
  "mosaics": {
   "warnings": [
@@ -387,7 +422,9 @@
    "charcoal": 0,
    "clay": 2
   },
-  "fuelBurners": 2
+  "fuel": {
+   "mosaics": 2
+  }
  },
  "necklaces": {
   "warnings": [],
@@ -399,7 +436,10 @@
    "gold": 4,
    "gold_ore": 16
   },
-  "fuelBurners": 2.5
+  "fuel": {
+   "necklaces": 1.5,
+   "gold": 1
+  }
  },
  "olive_oil": {
   "warnings": [],
@@ -409,7 +449,7 @@
    "olive_oil": 3,
    "olives": 4
   },
-  "fuelBurners": 0
+  "fuel": {}
  },
  "oysters_with_caviar": {
   "warnings": [],
@@ -421,7 +461,7 @@
    "sturgeon": 6,
    "oysters": 6
   },
-  "fuelBurners": 0
+  "fuel": {}
  },
  "pileus": {
   "warnings": [
@@ -433,7 +473,7 @@
    "pileus": 2,
    "sheep": 1
   },
-  "fuelBurners": 0
+  "fuel": {}
  },
  "porridge": {
   "warnings": [],
@@ -443,7 +483,7 @@
    "porridge": 1,
    "oats": 1
   },
-  "fuelBurners": 0
+  "fuel": {}
  },
  "reed_shoes_albion": {
   "warnings": [],
@@ -453,7 +493,7 @@
    "reed_shoes": 2,
    "reeds": 1
   },
-  "fuelBurners": 0
+  "fuel": {}
  },
  "roast_beef_albion": {
   "warnings": [],
@@ -464,7 +504,9 @@
    "saltwort": 3,
    "ochs": 2
   },
-  "fuelBurners": 1
+  "fuel": {
+   "roast_beef": 1
+  }
  },
  "rope": {
   "warnings": [],
@@ -474,7 +516,7 @@
    "rope": 2,
    "hemp": 1
   },
-  "fuelBurners": 0
+  "fuel": {}
  },
  "rope_albion": {
   "warnings": [],
@@ -484,7 +526,7 @@
    "rope": 2,
    "hemp": 1
   },
-  "fuelBurners": 0
+  "fuel": {}
  },
  "sails": {
   "warnings": [
@@ -496,7 +538,7 @@
    "sails": 3,
    "sheep": 1
   },
-  "fuelBurners": 0
+  "fuel": {}
  },
  "sails_albion": {
   "warnings": [
@@ -508,7 +550,7 @@
    "sails": 3,
    "sheep": 1
   },
-  "fuelBurners": 0
+  "fuel": {}
  },
  "sandals": {
   "warnings": [
@@ -523,7 +565,7 @@
    "pigs": 1,
    "salt": 1
   },
-  "fuelBurners": 0
+  "fuel": {}
  },
  "sardines": {
   "warnings": [],
@@ -532,7 +574,7 @@
   "counts": {
    "sardines": 1
   },
-  "fuelBurners": 0
+  "fuel": {}
  },
  "sausages_albion": {
   "warnings": [
@@ -545,7 +587,9 @@
    "pigs": 1,
    "herbs": 3
   },
-  "fuelBurners": 0.5
+  "fuel": {
+   "sausages": 0.5
+  }
  },
  "soap": {
   "warnings": [
@@ -559,7 +603,9 @@
    "pigs": 1,
    "lavender": 4
   },
-  "fuelBurners": 0.5
+  "fuel": {
+   "lard": 0.5
+  }
  },
  "statuettes": {
   "warnings": [
@@ -572,7 +618,7 @@
    "obsidian": 0,
    "uncut_marble": 1
   },
-  "fuelBurners": 0
+  "fuel": {}
  },
  "tiles": {
   "warnings": [
@@ -584,7 +630,9 @@
    "tiles": 2,
    "clay": 1
   },
-  "fuelBurners": 0.5
+  "fuel": {
+   "tiles": 0.5
+  }
  },
  "tiles_albion": {
   "warnings": [],
@@ -594,7 +642,9 @@
    "tiles": 2,
    "mud": 3
   },
-  "fuelBurners": 0.5
+  "fuel": {
+   "tiles": 0.5
+  }
  },
  "timber": {
   "warnings": [
@@ -607,7 +657,7 @@
    "timber": 1,
    "wood": 1
   },
-  "fuelBurners": 0
+  "fuel": {}
  },
  "timber_albion": {
   "warnings": [
@@ -620,7 +670,7 @@
    "timber": 1,
    "wood": 1
   },
-  "fuelBurners": 0
+  "fuel": {}
  },
  "togas": {
   "warnings": [],
@@ -633,7 +683,7 @@
    "tyrian_purple": 4,
    "murex_snails": 3
   },
-  "fuelBurners": 0
+  "fuel": {}
  },
  "torcs_albion": {
   "warnings": [
@@ -645,7 +695,9 @@
    "torcs": 3,
    "copper_ore": 1
   },
-  "fuelBurners": 0.75
+  "fuel": {
+   "torcs": 0.75
+  }
  },
  "trousers_albion": {
   "warnings": [
@@ -658,7 +710,7 @@
    "sheep": 1,
    "dye_plants": 2
   },
-  "fuelBurners": 0
+  "fuel": {}
  },
  "tunics": {
   "warnings": [],
@@ -668,7 +720,7 @@
    "tunics": 1,
    "hemp": 1
   },
-  "fuelBurners": 0
+  "fuel": {}
  },
  "tunics_albion": {
   "warnings": [],
@@ -678,7 +730,7 @@
    "tunics": 1,
    "hemp": 1
   },
-  "fuelBurners": 0
+  "fuel": {}
  },
  "wattle_&_daub_albion": {
   "warnings": [],
@@ -689,7 +741,7 @@
    "reeds": 2,
    "mud": 3
   },
-  "fuelBurners": 0
+  "fuel": {}
  },
  "weapons": {
   "warnings": [
@@ -702,7 +754,10 @@
    "iron": 2,
    "iron_ore": 1
   },
-  "fuelBurners": 1.25
+  "fuel": {
+   "weapons": 0.75,
+   "iron": 0.5
+  }
  },
  "weapons_albion": {
   "warnings": [
@@ -715,7 +770,10 @@
    "iron": 2,
    "iron_ore": 1
   },
-  "fuelBurners": 1.25
+  "fuel": {
+   "weapons": 0.75,
+   "iron": 0.5
+  }
  },
  "wigs_albion": {
   "warnings": [],
@@ -728,7 +786,7 @@
    "resin": 2,
    "horses": 4
   },
-  "fuelBurners": 0
+  "fuel": {}
  },
  "wine": {
   "warnings": [],
@@ -739,7 +797,7 @@
    "grapes": 2,
    "honeycombs": 1
   },
-  "fuelBurners": 0
+  "fuel": {}
  },
  "wine_albion": {
   "warnings": [],
@@ -750,7 +808,7 @@
    "grapes": 2,
    "honeycombs": 1
   },
-  "fuelBurners": 0
+  "fuel": {}
  },
  "writing_tablets": {
   "warnings": [],
@@ -761,6 +819,6 @@
    "sandarac_wood": 6,
    "honeycombs": 3
   },
-  "fuelBurners": 0
+  "fuel": {}
  }
 }

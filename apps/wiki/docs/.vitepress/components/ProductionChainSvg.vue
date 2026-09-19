@@ -23,19 +23,16 @@
         marker-end="url(#arrow)"
       />
       <g v-for="n in layout.posNodes" :key="n.id">
-        <rect :x="n.x" :y="n.y" width="120" height="44" rx="6" fill="#fff" stroke="#aaa" stroke-width="1.5" />
+        <rect :x="n.x" :y="n.y" width="120" :height="layout.nodeH" rx="6" fill="#fff" stroke="#aaa" stroke-width="1.5" />
         <text :x="n.x + 60" :y="n.y + 16" text-anchor="middle" font-size="12" font-weight="bold" fill="#222">{{ n.label }}</text>
         <text :x="n.x + 60" :y="n.y + 32" text-anchor="middle" font-size="11" fill="#666">{{ n.time }}</text>
+        <text v-if="n.fuel" :x="n.x + 60" :y="n.y + 49" text-anchor="middle" font-size="11" font-weight="bold" fill="#8a5a1a">石炭×{{ n.fuel }}</text>
         <g v-if="n.count">
           <rect :x="n.x + NODE_W - 40" :y="n.y - 10" width="40" height="18" rx="9" fill="#1e3a5f" />
           <text :x="n.x + NODE_W - 20" :y="n.y + 3" text-anchor="middle" font-size="11" font-weight="bold" fill="#fff">×{{ n.count }}</text>
         </g>
       </g>
     </svg>
-    <p v-if="hasRatio" class="chain-note">
-      ×の数字は、100%効率(ブーストなし)で回すときの建物数の比率です。
-      <template v-if="graph.fuelBurners">燃料の木炭用に、炭焼き師が ×{{ graph.fuelBurners }} 別に必要です。</template>
-    </p>
     </div>
   </details>
 </template>
@@ -46,13 +43,14 @@ import type { ProductionGraph } from '../../wiki/production-chains.data'
 
 const NODE_W = 120
 const NODE_H = 44
+// 燃料が要る建物が1つでもある図は、下段に「石炭×N」を出すため全ノードの高さを広げる
+const NODE_H_WITH_FUEL = 60
 const GAP_X = 70
 const GAP_Y = 20
 const PADDING = 10
 
 const props = defineProps<{ graph: ProductionGraph }>()
 const isOpen = ref(false)
-const hasRatio = computed(() => props.graph.nodes.some(n => n.count))
 
 function onToggle(e: Event) {
   isOpen.value = (e.target as HTMLDetailsElement).open
@@ -64,6 +62,7 @@ watch(() => props.graph, () => {
 
 const layout = computed(() => {
   const { nodes, edges } = props.graph
+  const nodeH = nodes.some(n => n.fuel) ? NODE_H_WITH_FUEL : NODE_H
 
   // 各ノードへの入力ノードID一覧（to → from[]）
   const inputsOf = new Map<string, string[]>()
@@ -127,7 +126,7 @@ const layout = computed(() => {
   const posNodes = nodes.map(n => ({
     ...n,
     x: (rankMap.get(n.id) ?? 0) * (NODE_W + GAP_X) + PADDING,
-    y: (rowMap.get(n.id) ?? 0) * (NODE_H + GAP_Y) + PADDING,
+    y: (rowMap.get(n.id) ?? 0) * (nodeH + GAP_Y) + PADDING,
   }))
 
   const posMap = new Map(posNodes.map(n => [n.id, n]))
@@ -140,9 +139,9 @@ const layout = computed(() => {
     const dst = posMap.get(e.to)
     if (!src || !dst) continue
     const sx = src.x + NODE_W
-    const sy = src.y + NODE_H / 2
+    const sy = src.y + nodeH / 2
     const dx = dst.x
-    const dy = dst.y + NODE_H / 2
+    const dy = dst.y + nodeH / 2
     // 到達ノードのすぐ左の隙間でコーナーを曲げる。単純な中間点(sx+dx)/2や、
     // 出発ノード側の隙間で曲げる方式だと、ランクを1つ以上飛び越える接続
     // (スキップ接続)の水平区間が間に挟まる列のノードと同じ行を長く這い、
@@ -163,10 +162,13 @@ const layout = computed(() => {
   // viewBox計算
   const maxRank = Math.max(...[...rankMap.values()])
   const maxRow = Math.max(...[...rowMap.values()])
-  const totalW = (maxRank + 1) * (NODE_W + GAP_X) - GAP_X + PADDING * 2
-  const totalH = (maxRow + 1) * (NODE_H + GAP_Y) - GAP_Y + PADDING * 2
+  // 右端・下端はノードの枠線(1.5px)が半分切れないよう、+2px の余白を足す
+  const EDGE_SLACK = 2
+  const totalW = (maxRank + 1) * (NODE_W + GAP_X) - GAP_X + PADDING * 2 + EDGE_SLACK
+  const totalH = (maxRow + 1) * (nodeH + GAP_Y) - GAP_Y + PADDING * 2 + EDGE_SLACK
 
   return {
+    nodeH,
     posNodes,
     edgePaths,
     viewBox: `${-PADDING} ${-PADDING} ${totalW} ${totalH}`,
@@ -184,12 +186,6 @@ const layout = computed(() => {
   cursor: pointer;
   color: var(--vp-c-brand);
   user-select: none;
-}
-.chain-note {
-  margin: 6px 0 0;
-  font-size: 12px;
-  line-height: 1.6;
-  color: var(--vp-c-text-2);
 }
 .chain-scroll {
   overflow-x: auto;
