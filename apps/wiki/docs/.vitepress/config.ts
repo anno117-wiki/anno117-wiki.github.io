@@ -153,6 +153,7 @@ export default defineConfig({
             { text: '競馬場', link: '/wiki/techs-dlc02' },
           ],
         },
+        { text: '信仰神', link: '/wiki/patrons' },
         { text: '住民層', link: '/wiki/population' },
         { text: '生産品需要逆引き', link: '/wiki/needs-index' },
         { text: 'アイテム一覧', link: '/wiki/items' },
