@@ -1,6 +1,6 @@
 {
   "README": "This file contains all productions from Anno 117: Pax Romana.",
-  "generated": "2026-09-18T10:16:01.516Z",
+  "generated": "2026-09-19T07:41:54.434Z",
   "count": 113,
   "goods": [
     {
@@ -123,10 +123,10 @@
       "id": "brooches",
       "icon": "brooches",
       "regions": [
-        "Roman"
+        "Celtic"
       ],
       "files": {
-        "roman": "brooches"
+        "celtic": "brooches"
       },
       "category": "fashion",
       "startOfChain": false
@@ -182,10 +182,10 @@
       "id": "chariots",
       "icon": "chariots",
       "regions": [
-        "Roman"
+        "Celtic"
       ],
       "files": {
-        "roman": "chariots"
+        "celtic": "chariots"
       },
       "category": "culture",
       "startOfChain": false
@@ -195,7 +195,7 @@
       "id": "chassis",
       "icon": "chassis",
       "regions": [
-        "Roman"
+        "Celtic"
       ],
       "files": {},
       "category": "intermediate",
@@ -206,10 +206,10 @@
       "id": "cheese",
       "icon": "cheese",
       "regions": [
-        "Roman"
+        "Celtic"
       ],
       "files": {
-        "roman": "cheese"
+        "celtic": "cheese"
       },
       "category": "food",
       "startOfChain": false
@@ -473,10 +473,10 @@
       "id": "handmirrors",
       "icon": "handmirrors",
       "regions": [
-        "Roman"
+        "Celtic"
       ],
       "files": {
-        "roman": "handmirrors"
+        "celtic": "handmirrors"
       },
       "category": "fashion",
       "startOfChain": false
@@ -773,7 +773,6 @@
       "id": "ochs",
       "icon": "ochs",
       "regions": [
-        "Roman",
         "Celtic"
       ],
       "files": {},
@@ -880,7 +879,7 @@
       "id": "ponies",
       "icon": "ponies",
       "regions": [
-        "Roman"
+        "Celtic"
       ],
       "files": {},
       "category": "resource",
@@ -917,7 +916,6 @@
       "id": "reeds",
       "icon": "reeds",
       "regions": [
-        "Roman",
         "Celtic"
       ],
       "files": {},
@@ -1067,7 +1065,7 @@
       "id": "seashells",
       "icon": "seashells",
       "regions": [
-        "Roman"
+        "Celtic"
       ],
       "files": {},
       "category": "resource",
@@ -1102,7 +1100,7 @@
       "id": "silver",
       "icon": "silver",
       "regions": [
-        "Roman"
+        "Celtic"
       ],
       "files": {},
       "category": "intermediate",
@@ -1113,7 +1111,7 @@
       "id": "silver_ore",
       "icon": "silver_ore",
       "regions": [
-        "Roman"
+        "Celtic"
       ],
       "files": {},
       "category": "resource",
