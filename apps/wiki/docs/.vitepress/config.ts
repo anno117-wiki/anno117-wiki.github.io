@@ -142,6 +142,7 @@ export default defineConfig({
         { text: '地域別商品', link: '/wiki/regions' },
         { text: '生産チェーン一覧', link: '/wiki/production-chains' },
         { text: '建物効果', link: '/wiki/buildings' },
+        { text: 'モニュメントの輝き', link: '/wiki/splendor' },
         {
           text: 'スキルツリー',
           link: '/wiki/techs',
