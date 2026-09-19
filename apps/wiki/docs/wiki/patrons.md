@@ -92,7 +92,6 @@ const sharedMilestones: [number, number][] = data.patrons[0].local[0].milestones
 - <strong>設置場所</strong>：対象の牧場の横に置きます。範囲内に倉庫も必要です。
 - <strong>必要な品物</strong>：小麦を5分（300秒）ごとに1個。貯蔵は5個までで、小麦が足りなくなると「サイロの小麦が不足している」と表示されます。
 - <strong>効果</strong>：牧場の生産性が +100% になり、さらに3サイクルごとに同じ商品が +1個 増えます。この2つの効果は重複します。
-- <strong>建設費</strong>：木板20・瓦10のほか、コンクリート・大理石・モザイクが必要です（数量は要検証）。
 
 ## ケルヌンノス {#cernunnos}
 
