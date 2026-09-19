@@ -5,6 +5,12 @@
     </template>
     <template #doc-after>
       <ContributionPanel v-if="page.layout !== 'home'" />
+      <SiteDisclaimer />
+    </template>
+    <template #layout-bottom>
+      <div v-if="frontmatter.layout === 'home'" class="home-disclaimer">
+        <SiteDisclaimer />
+      </div>
     </template>
   </DefaultTheme.Layout>
 </template>
@@ -15,8 +21,9 @@ import { nextTick, onMounted } from 'vue'
 import { useData, onContentUpdated } from 'vitepress'
 import ContributionPanel from '../components/ContributionPanel.vue'
 import GitHistory from '../components/GitHistory.vue'
+import SiteDisclaimer from '../components/SiteDisclaimer.vue'
 
-const { page } = useData()
+const { page, frontmatter } = useData()
 
 // VPLocalNav .container にセクション間ナビボタンをDOM直接挿入。
 // Teleportはターゲット消滅→再生成時に追いつけないため、onContentUpdatedで毎回再描画。

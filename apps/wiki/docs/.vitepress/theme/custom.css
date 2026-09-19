@@ -415,3 +415,20 @@
 .VPSidebarItem.level-0:not(.is-link) > .item:hover .text {
   color: var(--vp-c-text-1);
 }
+
+/* トップページ最下部の権利注記。VPHome のコンテンツ幅(1152px)と左右余白に揃える */
+.home-disclaimer {
+  max-width: 1152px;
+  margin: 0 auto;
+  padding: 0 24px 32px;
+}
+@media (min-width: 640px) {
+  .home-disclaimer {
+    padding: 0 48px 32px;
+  }
+}
+@media (min-width: 960px) {
+  .home-disclaimer {
+    padding: 0 64px 32px;
+  }
+}
