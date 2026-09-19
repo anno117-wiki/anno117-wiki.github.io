@@ -12,7 +12,7 @@
       <div class="block-body">
         <span v-if="effect1.targets.length">生産が増加。対象：{{ effect1.targets.join('、') }}</span>
         <span v-else>{{ effect1.descJa }}</span>
-        <span class="muted">{{ effect1.targets.length ? '（信仰値ごとの増加率は上の共通表と同じ）' : '（信仰値ごとの効果段階値は上の共通表の数値と同じ。効果量への換算は要検証）' }}</span>
+        <span class="muted">{{ effect1.note ?? '（信仰値ごとの増加率は上の共通表と同じ）' }}</span>
       </div>
     </div>
 
@@ -46,6 +46,7 @@ interface LocalEffect {
   titleJa: string
   descJa: string
   targets: string[]
+  note?: string
   milestones: [number, number][]
   display?: { rows: { label: string; multiplier: number; sign: string; unit: string }[] }
 }

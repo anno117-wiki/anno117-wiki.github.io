@@ -60,6 +60,12 @@ LOCAL2_DISPLAY = {
     'vulcan': [('住民による労働力', 5, '+', '%')],
 }
 
+# 局所効果1のうち、生産アップ系ではないものの表示名(段階値=%。実機確認済み 2026-09-19)。
+#   メルクリウス「交易術」: 必要な信仰300,000で 交易収益+150%
+LOCAL1_DISPLAY = {
+    'mercury': '交易収益',
+}
+
 JA_CHAR = re.compile('[ぁ-んァ-ヶ一-龠]')  # ひらがな・カタカナ・漢字を含む名称のみ採用(英語の内部名を除外)
 
 
@@ -235,6 +241,10 @@ def main() -> int:
             'rows': [{'label': label, 'multiplier': mult, 'sign': sign, 'unit': unit}
                      for label, mult, sign, unit in rows],
         }
+
+    for pid, label in LOCAL1_DISPLAY.items():
+        scales = [scale for _, scale in patrons[pid]['local'][0]['milestones']]
+        patrons[pid]['local'][0]['note'] = '%s +%d%%〜+%d%%（信仰値ごとの段階は上の共通表と同じ）' % (label, scales[0], scales[-1])
 
     ordered = [dict(id=i, **patrons[i]) for i in PATRON_IDS.values()]
     OUT.write_text(json.dumps({'source': 'assets.xml v2.1', 'thresholds': thresholds, 'patrons': ordered},
