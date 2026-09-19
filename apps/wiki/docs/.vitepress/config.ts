@@ -1,4 +1,5 @@
 import { defineConfig } from 'vitepress'
+import type { HeadConfig, PageData } from 'vitepress'
 import { fileURLToPath } from 'url'
 
 // Anno 117 統合Wiki — VitePress 設定
@@ -6,6 +7,35 @@ import { fileURLToPath } from 'url'
 // 計算機本体は別SPA。本wikiからは誘導リンクで案内する（フルUI埋め込みはしない）。
 
 const SITE_HOSTNAME = 'https://anno117-wiki.github.io/'
+const SITE_NAME = 'Anno 117攻略Wiki'
+const SITE_DESCRIPTION = 'Anno 117（PS5/Steam）の日本語情報Wiki + 生産チェーン計算機'
+// SNS共有カード用の画像（1200x630）。og:image は絶対URL必須
+const OGP_IMAGE = SITE_HOSTNAME + 'images/ogp.png'
+
+// X / Discord / LINE 等でURLを共有したときのカード表示用メタタグ
+function buildOgpTags(pageData: PageData): HeadConfig[] {
+  const path = pageData.relativePath
+  const title = pageData.frontmatter.title || pageData.title
+  const fullTitle = title ? `${title} | ${SITE_NAME}` : SITE_NAME
+  const description = pageData.description || SITE_DESCRIPTION
+  const url = path === 'index.md' ? SITE_HOSTNAME : SITE_HOSTNAME + path.replace(/\.md$/, '.html')
+
+  return [
+    ['meta', { property: 'og:type', content: 'website' }],
+    ['meta', { property: 'og:site_name', content: SITE_NAME }],
+    ['meta', { property: 'og:locale', content: 'ja_JP' }],
+    ['meta', { property: 'og:title', content: fullTitle }],
+    ['meta', { property: 'og:description', content: description }],
+    ['meta', { property: 'og:url', content: url }],
+    ['meta', { property: 'og:image', content: OGP_IMAGE }],
+    ['meta', { property: 'og:image:width', content: '1200' }],
+    ['meta', { property: 'og:image:height', content: '630' }],
+    ['meta', { name: 'twitter:card', content: 'summary_large_image' }],
+    ['meta', { name: 'twitter:title', content: fullTitle }],
+    ['meta', { name: 'twitter:description', content: description }],
+    ['meta', { name: 'twitter:image', content: OGP_IMAGE }],
+  ]
+}
 
 // パンくずJSON-LD用: サイドバー階層のうち「親ページ」を持つページだけ登録する。
 // 未登録ページは「ホーム > 自ページ」の2階層になる。
@@ -25,7 +55,7 @@ export default defineConfig({
   lang: 'ja-JP',
   title: 'Anno117DB',
   titleTemplate: ':title | Anno 117攻略Wiki',
-  description: 'Anno 117（PS5/Steam）の日本語情報Wiki + 生産チェーン計算機',
+  description: SITE_DESCRIPTION,
 
   // Google検索向け sitemap.xml をビルド時に自動生成
   sitemap: {
@@ -37,11 +67,12 @@ export default defineConfig({
     ['link', { rel: 'apple-touch-icon', href: '/images/anno_icon.png' }],
   ],
 
-  // 検索結果にパンくずを表示させるための BreadcrumbList 構造化データ
+  // 全ページにOGPを付与。加えて検索結果にパンくずを表示させるための BreadcrumbList 構造化データ
   transformHead: ({ pageData }) => {
+    const ogp = buildOgpTags(pageData)
     const path = pageData.relativePath
     const title = pageData.frontmatter.title || pageData.title
-    if (path === 'index.md' || !title) return []
+    if (path === 'index.md' || !title) return ogp
 
     const items: { name: string; url: string }[] = [{ name: 'ホーム', url: SITE_HOSTNAME }]
 
@@ -62,7 +93,7 @@ export default defineConfig({
       })),
     }
 
-    return [['script', { type: 'application/ld+json' }, JSON.stringify(jsonLd)]]
+    return [...ogp, ['script', { type: 'application/ld+json' }, JSON.stringify(jsonLd)]]
   },
 
   // 配信規約: wiki はルート配信
