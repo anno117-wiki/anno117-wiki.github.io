@@ -27,7 +27,7 @@
           <tr><th>島の信仰値</th><th v-for="[devotion] in effect2.milestones" :key="devotion">{{ devotion.toLocaleString() }}</th></tr>
         </thead>
         <tbody>
-          <tr><th>効果段階値</th><td v-for="[devotion, scale] in effect2.milestones" :key="devotion">{{ scale }}</td></tr>
+          <tr><th>{{ effect2.display?.label ?? '効果段階値' }}</th><td v-for="[devotion, scale] in effect2.milestones" :key="devotion">{{ (effect2.display?.prefix ?? '') + scale }}</td></tr>
         </tbody>
       </table>
     </div>
@@ -47,6 +47,7 @@ interface LocalEffect {
   descJa: string
   targets: string[]
   milestones: [number, number][]
+  display?: { label: string; prefix?: string }
 }
 
 interface Patron {
@@ -106,5 +107,7 @@ const isGeneric = (targets: string[]) => targets.length === 1 && targets[0].star
 }
 .milestone-table tbody th {
   text-align: left;
+  white-space: normal;
+  min-width: 9em;
 }
 </style>

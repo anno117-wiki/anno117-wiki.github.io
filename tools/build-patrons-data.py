@@ -41,6 +41,17 @@ GENERIC_POOLS = {
     'Asset Pool Production All Smelters': '全製錬所',
 }
 
+# 局所効果2(副効果)の表示ラベル。公式データは「基準値 x 段階値」までしか分からず、
+# 何がいくつ増えるかは実機確認済みのものだけをここに記す(2026-09-19確認)。
+# 未確認の神(マルス・ネプトゥーヌス・ウルカヌス)は載せない = ページ側は素の「効果段階値」表示になる。
+LOCAL2_DISPLAY = {
+    'ceres': '追加の人口（住居ごと）',
+    'epona': '追加の人口（生産施設ごと）',
+    'cernunnos': '追加の健康度・知識（住居ごと、それぞれ）',
+    'minerva': '追加の知識（住居ごと）',
+    'mercury': '追加の名声（交易所・貯蔵所・埠頭ごと）',
+}
+
 JA_CHAR = re.compile('[ぁ-んァ-ヶ一-龠]')  # ひらがな・カタカナ・漢字を含む名称のみ採用(英語の内部名を除外)
 
 
@@ -210,6 +221,9 @@ def main() -> int:
     if missing:
         print('神の定義が見つかりません: %s' % sorted(missing), file=sys.stderr)
         return 1
+
+    for pid, label in LOCAL2_DISPLAY.items():
+        patrons[pid]['local'][1]['display'] = {'label': label, 'prefix': '+'}
 
     ordered = [dict(id=i, **patrons[i]) for i in PATRON_IDS.values()]
     OUT.write_text(json.dumps({'source': 'assets.xml v2.1', 'thresholds': thresholds, 'patrons': ordered},
