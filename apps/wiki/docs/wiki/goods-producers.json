@@ -5,8 +5,8 @@
         "name": "炭焼き師",
         "place": "森林エリア",
         "unlock": null,
-        "cycle": 60,
-        "cycleUnverified": true,
+        "cycle": 30,
+        "cycleUnverified": false,
         "effects": [
           {
             "label": "維持費",

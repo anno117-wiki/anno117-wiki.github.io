@@ -253,6 +253,10 @@ ID_TO_GUID: dict[str, str] = {
     "albion_herb_garden":      "31764",  # Herb Garden
     "albion_tile_factory":     "5947",   # Tiler (Celtic)
     "albion_charcoal_factory": "5977",   # Charcoal Burner (Celtic)
+    # DLC01の炭鉱と、ラティウム専用の炭焼き師(2026-09-19追加)。5977は共通用の炭焼き師
+    "charcoal_burner":         "2880",   # Charcoal Burner (Roman)
+    "coal_mine":               "144810", # Coal Mine (Roman)
+    "albion_coal_mine":        "144811", # Coal Mine (Roman Celtic)
     "albion_sail_factory":     "5955",   # Sailmaker (Celtic)
     "albion_rope_mill":        "5956",   # Ropemaker (Celtic)
     # nameEn と officialEN が一致しないため手動マッピング

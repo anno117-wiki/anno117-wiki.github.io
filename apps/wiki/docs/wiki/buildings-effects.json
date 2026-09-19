@@ -1367,6 +1367,36 @@
       "fireSafety": 0
     },
     {
+      "id": "charcoal_burner",
+      "nameEn": "Charcoal Burner",
+      "nameJa": "炭焼き師",
+      "tier": "plebeian",
+      "maintenance": -8,
+      "population": 0,
+      "income": 0,
+      "faith": 0,
+      "knowledge": 0,
+      "prestige": 0,
+      "health": -3,
+      "happiness": 0,
+      "fireSafety": -3
+    },
+    {
+      "id": "coal_mine",
+      "nameEn": "Coal Mine",
+      "nameJa": "炭鉱",
+      "tier": "plebeian",
+      "maintenance": -10,
+      "population": 0,
+      "income": 0,
+      "faith": 0,
+      "knowledge": 0,
+      "prestige": 0,
+      "health": -2,
+      "happiness": 0,
+      "fireSafety": 0
+    },
+    {
       "id": "gold_smelter",
       "nameEn": "Goldsmiths",
       "nameJa": "金細工工房",
@@ -1968,6 +1998,21 @@
       "health": -3,
       "happiness": 0,
       "fireSafety": -3
+    },
+    {
+      "id": "albion_coal_mine",
+      "nameEn": "Coal Mine (Albion)",
+      "nameJa": "炭鉱",
+      "tier": "wader",
+      "maintenance": -10,
+      "population": 0,
+      "income": 0,
+      "faith": 0,
+      "knowledge": 0,
+      "prestige": 0,
+      "health": -2,
+      "happiness": 0,
+      "fireSafety": 0
     },
     {
       "id": "albion_sail_factory",

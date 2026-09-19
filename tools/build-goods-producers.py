@@ -7,8 +7,8 @@
 - 建物効果(維持費・健康度など)は公式データから取る。同じ生産元の地域違い(GUID違い)で
   値が食い違う場合は止める。
 - 設置場所・解放条件・サイクルタイムは PRODUCERS に手書きする。
-    サイクルタイム: 金鉱150秒・炭鉱30秒は実機確認済み(2026-09-19)。金選鉱240秒は公式データの
-                    CycleTimeと一致。炭焼き師60秒は公式データでは検証できないため cycleUnverified。
+    サイクルタイム: 金鉱150秒・炭鉱30秒・炭焼き師30秒は実機確認済み(2026-09-19)。金選鉱240秒は
+                    公式データのCycleTimeと一致。未確認の値は cycleUnverified を True にする。
     解放条件      : 炭鉱=ウルカヌス、金鉱=メルクリウス・ルグスの奇跡(世界の信仰4,000)
 """
 import json
@@ -35,7 +35,7 @@ EFFECT_LABELS = [
 PRODUCERS = {
     'charcoal': [
         {'name': '炭焼き師', 'guids': ['2880', '5977'], 'place': '森林エリア',
-         'unlock': None, 'cycle': 60, 'cycleUnverified': True},
+         'unlock': None, 'cycle': 30, 'cycleUnverified': False},
         {'name': '炭鉱', 'guids': ['144810', '144811'], 'place': '山スロット',
          'unlock': 'ウルカヌスの奇跡（世界の信仰4,000）', 'cycle': 30, 'cycleUnverified': False},
     ],
