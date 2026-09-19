@@ -53,16 +53,16 @@ const sharedMilestones: [number, number][] = data.patrons[0].local[0].milestones
 各神の局所効果1（生産アップ系）は、島の信仰値が下のしきい値を超えるたびに段階が上がります（全15段階）。
 
 <table>
-<thead><tr><th>島の信仰値</th><th>効果段階値</th></tr></thead>
+<thead><tr><th>島の信仰値</th><th>生産性の増加</th></tr></thead>
 <tbody>
 <tr v-for="[devotion, scale] in sharedMilestones" :key="devotion">
 <td>{{ devotion.toLocaleString() }}</td>
-<td>{{ scale }}</td>
+<td>+{{ scale }}%</td>
 </tr>
 </tbody>
 </table>
 
-効果段階値は10刻みで10から150まで上がります。生産性の増加率（+10%〜+150%）に相当すると推定していますが、<strong>要検証</strong>です。
+生産性は10%刻みで上がり、+10%から最大+150%になります。
 
 ## マルス {#mars}
 
