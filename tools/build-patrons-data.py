@@ -43,13 +43,14 @@ GENERIC_POOLS = {
 
 # 局所効果2(副効果)の表示ラベル。公式データは「基準値 x 段階値」までしか分からず、
 # 何がいくつ増えるかは実機確認済みのものだけをここに記す(2026-09-19確認)。
+# エポナは実機で 人口+1×段階・名声+2×段階 と確認(2026-09-19、必要な信仰1,500で 人口+2・名声+4)。
 # 未確認の神(マルス・ネプトゥーヌス・ウルカヌス)は載せない = ページ側は素の「効果段階値」表示になる。
-LOCAL2_DISPLAY = {
-    'ceres': '追加の人口（住居ごと）',
-    'epona': '追加の人口（生産施設ごと）',
-    'cernunnos': '追加の健康度・知識（住居ごと、それぞれ）',
-    'minerva': '追加の知識（住居ごと）',
-    'mercury': '追加の名声（交易所・貯蔵所・埠頭ごと）',
+LOCAL2_DISPLAY = {  # 神ごとの [(行の見出し, 段階値に掛ける倍率), ...]
+    'ceres': [('追加の人口（住居ごと）', 1)],
+    'epona': [('追加の人口（生産施設ごと）', 1), ('追加の名声（生産施設ごと）', 2)],
+    'cernunnos': [('追加の健康度・知識（住居ごと、それぞれ）', 1)],
+    'minerva': [('追加の知識（住居ごと）', 1)],
+    'mercury': [('追加の名声（交易所・貯蔵所・埠頭ごと）', 1)],
 }
 
 JA_CHAR = re.compile('[ぁ-んァ-ヶ一-龠]')  # ひらがな・カタカナ・漢字を含む名称のみ採用(英語の内部名を除外)
@@ -222,8 +223,11 @@ def main() -> int:
         print('神の定義が見つかりません: %s' % sorted(missing), file=sys.stderr)
         return 1
 
-    for pid, label in LOCAL2_DISPLAY.items():
-        patrons[pid]['local'][1]['display'] = {'label': label, 'prefix': '+'}
+    for pid, rows in LOCAL2_DISPLAY.items():
+        patrons[pid]['local'][1]['display'] = {
+            'prefix': '+',
+            'rows': [{'label': label, 'multiplier': mult} for label, mult in rows],
+        }
 
     ordered = [dict(id=i, **patrons[i]) for i in PATRON_IDS.values()]
     OUT.write_text(json.dumps({'source': 'assets.xml v2.1', 'thresholds': thresholds, 'patrons': ordered},
