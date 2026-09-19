@@ -2065,6 +2065,11 @@ footer {
 
 /* スマホ横向き対応: 低高(≤500px)かつ≤1024px限定。iPad横向きはmax-heightで除外、デスクトップは除外 */
 @media (orientation: landscape) and (max-height: 500px) and (max-width: 1024px) {
+  /* 権利注記は下部ツールバーの裏に隠れるため、ヘルプ内の同文に任せる */
+  footer.site-disclaimer {
+    display: none;
+  }
+
   /* app-headerを1行コンパクト化（119px→約50px）して生産チェーンに高さを確保 */
   .app-header {
     padding: 4px 12px;
@@ -2168,4 +2173,19 @@ footer {
   #mobile-toolbar {
     display: flex;
   }
+}
+/* 権利注記（デスクトップは footer、モバイルはヘルプ内の同文） */
+footer.site-disclaimer {
+  text-align: center;
+  padding: 0.4rem 1rem;
+  font-size: 12px;
+  line-height: 1.6;
+  color: var(--text-secondary);
+}
+
+.help-disclaimer {
+  margin-top: 1rem;
+  font-size: 12px;
+  line-height: 1.6;
+  color: var(--text-secondary);
 }
