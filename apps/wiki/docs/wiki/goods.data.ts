@@ -1,5 +1,6 @@
 import listJson from '../../../../packages/shared/public/productions/list.json'
 import jaJson from '../../../../packages/shared/public/i18n/locales/ja.json'
+import producersJson from './goods-producers.json'
 
 interface GoodEntry {
   id: string
@@ -8,6 +9,8 @@ interface GoodEntry {
   icon: string
   category: string
   regions: string[]
+  // 生産元ごとに建物効果などが異なる商品（石炭・金鉱石）だけ持つ
+  producers?: unknown[]
 }
 
 const CATEGORY_ORDER = ['food', 'construction', 'fashion', 'culture', 'intermediate', 'resource']
@@ -23,6 +26,7 @@ export default {
       icon: g.icon ?? '',
       category: g.category,
       regions: g.regions as string[],
+      producers: (producersJson as { goods: Record<string, unknown[]> }).goods[g.id],
     }))
 
     const byCategory: Record<string, GoodEntry[]> = {}

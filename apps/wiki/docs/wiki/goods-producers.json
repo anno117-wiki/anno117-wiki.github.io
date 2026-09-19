@@ -1,0 +1,76 @@
+{
+  "goods": {
+    "charcoal": [
+      {
+        "name": "炭焼き師",
+        "place": "森林エリア",
+        "unlock": null,
+        "cycle": 60,
+        "cycleUnverified": true,
+        "effects": [
+          {
+            "label": "維持費",
+            "value": -8
+          },
+          {
+            "label": "健康度",
+            "value": -3
+          },
+          {
+            "label": "防火",
+            "value": -3
+          }
+        ]
+      },
+      {
+        "name": "炭鉱",
+        "place": "山スロット",
+        "unlock": "ウルカヌスの奇跡（世界の信仰4,000）",
+        "cycle": 30,
+        "cycleUnverified": false,
+        "effects": [
+          {
+            "label": "維持費",
+            "value": -10
+          },
+          {
+            "label": "健康度",
+            "value": -2
+          }
+        ]
+      }
+    ],
+    "gold_ore": [
+      {
+        "name": "金選鉱",
+        "place": "川スロット",
+        "unlock": null,
+        "cycle": 240,
+        "cycleUnverified": false,
+        "effects": [
+          {
+            "label": "維持費",
+            "value": -20
+          }
+        ]
+      },
+      {
+        "name": "金鉱",
+        "place": "山スロット",
+        "unlock": "メルクリウス・ルグスの奇跡（世界の信仰4,000）",
+        "cycle": 150,
+        "cycleUnverified": false,
+        "effects": [
+          {
+            "label": "維持費",
+            "value": -20
+          },
+          {
+            "label": "健康度",
+            "value": -2
+          }
+        ]
+      }
+    ]
+  }
+}

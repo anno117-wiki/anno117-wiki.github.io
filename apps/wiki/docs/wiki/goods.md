@@ -71,7 +71,8 @@ Anno 117 で生産・消費される全 {{ data.categories.reduce((n, c) => n + 
 <tr><th>商品名</th><th>対応地域</th><th>計算機</th></tr>
 </thead>
 <tbody>
-<tr v-for="good in data.byCategory[cat]" :key="good.id" :data-anchor="good.id">
+<template v-for="good in data.byCategory[cat]" :key="good.id">
+<tr :data-anchor="good.id">
 <td style="white-space:nowrap;">
   <img v-if="good.icon" :src="withBase('/icons/goods/' + good.icon + '.png')" :alt="good.nameJa" style="width:28px;height:28px;vertical-align:middle;margin-right:6px;object-fit:contain;" />
   {{ good.nameJa }}
@@ -82,15 +83,18 @@ Anno 117 で生産・消費される全 {{ data.categories.reduce((n, c) => n + 
   <span v-else>—</span>
 </td>
 </tr>
+<tr v-if="good.producers">
+<td colspan="3"><GoodsProducers :producers="good.producers" /></td>
+</tr>
+</template>
 </tbody>
 </table>
 </div>
 
 <div class="goods-compact-list">
+<template v-for="good in data.byCategory[cat]" :key="good.id">
 <component
   :is="hasCalc(cat) ? 'a' : 'div'"
-  v-for="good in data.byCategory[cat]"
-  :key="good.id"
   :data-anchor="good.id"
   class="goods-compact-row"
   v-bind="hasCalc(cat) ? { href: withBase(`/calculator/?good=${good.id}`), target: '_blank', rel: 'noopener noreferrer' } : {}"
@@ -100,6 +104,8 @@ Anno 117 で生産・消費される全 {{ data.categories.reduce((n, c) => n + 
   <span class="goods-compact-region">{{ regionText(good.regions) }}</span>
   <span v-if="hasCalc(cat)" class="goods-compact-arrow">›</span>
 </component>
+<div v-if="good.producers" class="goods-compact-producers"><GoodsProducers :producers="good.producers" /></div>
+</template>
 </div>
 
 </div>
@@ -156,6 +162,10 @@ Anno 117 で生産・消費される全 {{ data.categories.reduce((n, c) => n + 
   border-radius: 999px;
   white-space: nowrap;
   flex-shrink: 0;
+}
+.goods-compact-producers {
+  padding: 8px 12px;
+  border-bottom: 1px solid var(--vp-c-divider);
 }
 .goods-compact-arrow {
   color: var(--vp-c-brand-1);
