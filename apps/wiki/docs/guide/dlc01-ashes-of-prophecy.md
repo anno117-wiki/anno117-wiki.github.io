@@ -16,7 +16,7 @@ description: Anno 117 DLC01「灰の予言」の攻略ガイド。火山島・�
 ## 解放要素
 
 <!-- TODO: 生産品へのリンクを追加 -->
-- 生産品追加：[ラトルンクリ一式](/wiki/goods#latrunculi_sets)・[小像](/wiki/goods#statuettes)。
+- 商品追加：[ラトルンクリ一式](/wiki/goods#latrunculi_sets)・[小像](/wiki/goods#statuettes)。
 - 新素材 **黒曜石**：鉱山（スキル解放要）や採石場などからの副産物として生成されます。
 - 黒曜石は島ごとに埋蔵量が設定されており、掘り続けると枯渇します。
 - 新スキルツリー「灰の予言」が解放されます。

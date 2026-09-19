@@ -1,5 +1,5 @@
 ---
-title: 生産品需要逆引き
+title: 商品需要逆引き
 description: Anno 117の商品がどの住民層・カテゴリで必要とされるかを逆引き検索。tier別の需要を一覧表示。
 ---
 
@@ -27,9 +27,9 @@ const TIER_CSS: Record<string, string> = {
 }
 </script>
 
-# 生産品需要逆引き
+# 商品需要逆引き
 
-住民が必要とする生産品を需要カテゴリ別に分類した一覧です。公式ゲームデータから抽出しています（{{ data.items.length }}件）。
+住民が必要とする商品を需要カテゴリ別に分類した一覧です。公式ゲームデータから抽出しています（{{ data.items.length }}件）。
 
 <div class="cat-tabs">
   <button

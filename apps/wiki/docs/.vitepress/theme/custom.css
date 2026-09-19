@@ -55,6 +55,19 @@
   color: #c9a84c !important;
 }
 
+/* データベースのドロップダウンボタン（リンクと同じ配色） */
+.VPNavBarMenuGroup .button,
+.VPNavBarMenuGroup .button .text {
+  color: rgba(255, 255, 255, 0.85) !important;
+}
+
+.VPNavBarMenuGroup .button:hover,
+.VPNavBarMenuGroup .button:hover .text,
+.VPNavBarMenuGroup.active .button,
+.VPNavBarMenuGroup.active .button .text {
+  color: #c9a84c !important;
+}
+
 /* ハンバーガーメニューアイコン */
 .VPNavBarHamburger .top,
 .VPNavBarHamburger .middle,

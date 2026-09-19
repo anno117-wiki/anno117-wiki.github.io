@@ -87,12 +87,40 @@ export default defineConfig({
     nav: [
       { text: 'ホーム', link: '/' },
       { text: '攻略ガイド', link: '/guide/strategy' },
-      { text: '商品', link: '/wiki/goods' },
-      { text: '生産品', link: '/wiki/production-chains' },
-      { text: '建物効果', link: '/wiki/buildings' },
-      { text: 'スキルツリー', link: '/wiki/techs' },
-      { text: '住民', link: '/wiki/population' },
-      { text: 'アイテム', link: '/wiki/items' },
+      {
+        text: 'データベース',
+        activeMatch: '^/wiki/',
+        items: [
+          {
+            text: '生産',
+            items: [
+              { text: '商品一覧', link: '/wiki/goods' },
+              { text: '生産チェーン一覧', link: '/wiki/production-chains' },
+              { text: '地域別商品', link: '/wiki/regions' },
+              { text: '商品需要逆引き', link: '/wiki/needs-index' },
+            ],
+          },
+          {
+            text: '建物・住民',
+            items: [
+              { text: '建物効果', link: '/wiki/buildings' },
+              { text: '住民層', link: '/wiki/population' },
+            ],
+          },
+          {
+            text: '成長・信仰',
+            items: [
+              { text: 'スキルツリー', link: '/wiki/techs' },
+              { text: '信仰神', link: '/wiki/patrons' },
+              { text: 'モニュメントの輝き', link: '/wiki/splendor' },
+            ],
+          },
+          {
+            text: 'アイテム',
+            items: [{ text: 'アイテム一覧', link: '/wiki/items' }],
+          },
+        ],
+      },
       { text: '更新履歴', link: '/updates' },
       // 計算機は別SPA。同タブ遷移で /calculator/ へ誘導。
       { text: '計算機', link: '/calculator/', target: '_self' },
@@ -138,26 +166,44 @@ export default defineConfig({
         },
       ],
       '/wiki/': [
-        { text: '生産品一覧', link: '/wiki/goods' },
-        { text: '地域別商品', link: '/wiki/regions' },
-        { text: '生産チェーン一覧', link: '/wiki/production-chains' },
-        { text: '建物効果', link: '/wiki/buildings' },
-        { text: 'モニュメントの輝き', link: '/wiki/splendor' },
         {
-          text: 'スキルツリー',
-          link: '/wiki/techs',
+          text: '生産',
           items: [
-            { text: '経済', link: '/wiki/techs-economy' },
-            { text: '市民', link: '/wiki/techs-civic' },
-            { text: '軍事', link: '/wiki/techs-military' },
-            { text: '灰の予言', link: '/wiki/techs-dlc01' },
-            { text: '競馬場', link: '/wiki/techs-dlc02' },
+            { text: '商品一覧', link: '/wiki/goods' },
+            { text: '生産チェーン一覧', link: '/wiki/production-chains' },
+            { text: '地域別商品', link: '/wiki/regions' },
+            { text: '商品需要逆引き', link: '/wiki/needs-index' },
           ],
         },
-        { text: '信仰神', link: '/wiki/patrons' },
-        { text: '住民層', link: '/wiki/population' },
-        { text: '生産品需要逆引き', link: '/wiki/needs-index' },
-        { text: 'アイテム一覧', link: '/wiki/items' },
+        {
+          text: '建物・住民',
+          items: [
+            { text: '建物効果', link: '/wiki/buildings' },
+            { text: '住民層', link: '/wiki/population' },
+          ],
+        },
+        {
+          text: '成長・信仰',
+          items: [
+            {
+              text: 'スキルツリー',
+              link: '/wiki/techs',
+              items: [
+                { text: '経済', link: '/wiki/techs-economy' },
+                { text: '市民', link: '/wiki/techs-civic' },
+                { text: '軍事', link: '/wiki/techs-military' },
+                { text: '灰の予言', link: '/wiki/techs-dlc01' },
+                { text: '競馬場', link: '/wiki/techs-dlc02' },
+              ],
+            },
+            { text: '信仰神', link: '/wiki/patrons' },
+            { text: 'モニュメントの輝き', link: '/wiki/splendor' },
+          ],
+        },
+        {
+          text: 'アイテム',
+          items: [{ text: 'アイテム一覧', link: '/wiki/items' }],
+        },
       ],
     },
 
