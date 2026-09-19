@@ -1,7 +1,7 @@
-# 引き継ぎ: 次回セッション向け（2026-09-19 更新・第7版）
+# 引き継ぎ: 次回セッション向け（2026-09-19 更新・第8版）
 
 ## git状態
-- ブランチ: master。作業ツリーはクリーン。コードの最新は `c9ae207`（ガイド2件へのリンク追加）。引き継ぎ書の更新コミットまで含めて push 済み（`git status -sb` で `origin/master` との差を確認可）
+- ブランチ: master。コードの最新は `6337e3e`（OGP追加）で push 済み・デプロイ成功。この引き継ぎ書（第8版）のコミット・push 状況は `git status -sb` で確認すること
 - GitHub Pagesデプロイの確認は `gh run list --repo anno117-wiki/anno117-wiki.github.io --limit 5`。`562498f`（データベースメニュー）の見た目はユーザーが本番で確認済み
 - **`docs-notes/` は `.gitignore` 対象**（`handover-next-session.md` / `building-icon-mapping.md` / `how-to-edit-site.md` / `wiki/` のみ例外で追跡）。今回作った調査メモ2本は**ローカルのみでGit未管理**
   - `docs-notes/research-alt-producers-coal-gold.md`（石炭・金の生産元、信仰神、サイロ、実機確認の記録）
@@ -80,8 +80,17 @@
   - 種別バッジに色が付かない: Worker が種別を日本語（コメント等）で返し、CSSは英語クラス（`.comment` 等）を待つため（`UserComments.vue` 17行目・229〜240行目）。ユーザー判断で「問題ない」ため**未修正**
   - 確認コマンド: `gh issue list --repo anno117-wiki/anno117-wiki.github.io --label user-comment --state open`
 
+### J. OGP（SNS共有カード）の追加（`9c86182` / `6337e3e`）
+- 全ページに `og:*` と `twitter:card`（`summary_large_image`）を出力。`config.ts` の `buildOgpTags`（`transformHead` から呼ぶ）。タイトルは「ページ名 | Anno 117攻略Wiki」、説明は各ページの `description`（無ければ `SITE_DESCRIPTION`）。パンくずのJSON-LDは従来どおり併存
+- 共有画像 `images/ogp.png`（1200x630・紺グラデーション＋既存 `anno_icon.png` の「A」マーク＋「Anno 117 攻略Wiki／生産チェーン計算機つき」）。ユーザーが3案から選択
+  - 不採用: スプラッシュ画像の切り出し（「Calculator」表記・Ubisoftロゴ入りで、権利は**未確認**）／スプラッシュをぼかして文字を重ねる案（焼き込み文字が透ける）
+- **`public/images` は `packages/shared/public/images` へのシンボリックリンク**だが、`core.symlinks=false` のため git は**両方のパスを別ファイルとして追跡**する。画像を足すときは両パスをコミットすること（既存画像も同じ形）
+- **未対応（ユーザー判断で保留）**: 計算機 `/calculator/`（別SPA）には OGP 未設定。URLを共有してもカードが出ない。付けるなら `apps/calculator` の `index.html` にタグを足す
+- 未確認: 公開後の実際のカード表示（Discord等。サービス側のキャッシュに注意）
+- 型チェック: `config.ts` に**既存の型エラー1件**（トップレベルの `search` が `UserConfig` に無い）。動作に影響なし・今回の変更とは無関係・未修正
+
 ## 未コミット作業
-なし（作業ツリークリーン）。ただし上記のとおり `docs-notes/research-*.md` 2本はGit管理外
+なし（この引き継ぎ書の更新分を除く。`git status -sb` で確認）。ただし上記のとおり `docs-notes/research-*.md` 2本はGit管理外
 
 ## 次セッションのミッション
 **最優先ミッションはなし**。以下は候補（着手前にユーザーへ確認）。
@@ -91,6 +100,8 @@
 - 獣脂(`lard`)の別の生産元アスピック職人(GUID5475, アルビオン)は、商品一覧に未対応（現行チェーンは31756を使用）。建物効果ページに載っているかも未確認
 - GSC: 上記Iを参照（サイトマップ状態の再確認、個別リクエスト分の登録確認、未リクエストページの追加）
 - 炭焼き師の燃焼時間120秒は計算機の定数の流用で、公式データでの確認はしていない（Fの注記参照）
+- 計算機(`/calculator/`)のOGP: 保留中（J参照）
+- 宣伝: 案は提示済み（実施はユーザー判断）。日本語圏（X・Steam・Discord）→英語圏（Reddit r/anno 等）の順。**英語圏で紹介する前に、計算機データの出典（Anno117Calculator）のライセンス・表記条件を確認すること**（未確認）
 
 ## 保留・未解決（従来の持ち越し）
 
