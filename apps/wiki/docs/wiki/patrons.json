@@ -1236,7 +1236,17 @@
               250000,
               7
             ]
-          ]
+          ],
+          "display": {
+            "rows": [
+              {
+                "label": "住民による労働力",
+                "multiplier": 5,
+                "sign": "+",
+                "unit": "%"
+              }
+            ]
+          }
         }
       ],
       "dominant": {
