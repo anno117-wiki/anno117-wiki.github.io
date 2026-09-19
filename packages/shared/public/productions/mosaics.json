@@ -67,7 +67,7 @@
             "name": "Charcoal",
             "type": "charcoal_burner",
             "guid": "5977",
-            "time": 60,
+            "time": 30,
             "needs_fuel": false,
             "building_cost": {
                 "money": 0,
