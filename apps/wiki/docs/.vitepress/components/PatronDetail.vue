@@ -27,7 +27,7 @@
           <tr><th>島の信仰値</th><th v-for="[devotion] in effect2.milestones" :key="devotion">{{ devotion.toLocaleString() }}</th></tr>
         </thead>
         <tbody>
-          <tr v-for="row in effect2Rows" :key="row.label"><th>{{ row.label }}</th><td v-for="[devotion, scale] in effect2.milestones" :key="devotion">{{ row.prefix + scale * row.multiplier }}</td></tr>
+          <tr v-for="row in effect2Rows" :key="row.label"><th>{{ row.label }}</th><td v-for="[devotion, scale] in effect2.milestones" :key="devotion">{{ row.sign + scale * row.multiplier + row.unit }}</td></tr>
         </tbody>
       </table>
     </div>
@@ -47,7 +47,7 @@ interface LocalEffect {
   descJa: string
   targets: string[]
   milestones: [number, number][]
-  display?: { prefix: string; rows: { label: string; multiplier: number }[] }
+  display?: { rows: { label: string; multiplier: number; sign: string; unit: string }[] }
 }
 
 interface Patron {
@@ -69,8 +69,8 @@ const effect2 = computed(() => props.patron.local[1])
 // 単位が確認できていない効果は、素の「効果段階値」を1行だけ表示する
 const effect2Rows = computed(() => {
   const d = effect2.value.display
-  if (!d) return [{ label: '効果段階値', prefix: '', multiplier: 1 }]
-  return d.rows.map(r => ({ ...r, prefix: d.prefix }))
+  if (!d) return [{ label: '効果段階値', multiplier: 1, sign: '', unit: '' }]
+  return d.rows
 })
 
 // 「全住居」等の総称のみの対象は本文の説明と重複するため表示しない

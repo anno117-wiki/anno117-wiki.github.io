@@ -144,7 +144,29 @@
               300000,
               70
             ]
-          ]
+          ],
+          "display": {
+            "rows": [
+              {
+                "label": "士気",
+                "multiplier": 1,
+                "sign": "+",
+                "unit": "%"
+              },
+              {
+                "label": "必要な労働力",
+                "multiplier": 1,
+                "sign": "-",
+                "unit": "%"
+              },
+              {
+                "label": "維持費",
+                "multiplier": 1,
+                "sign": "-",
+                "unit": "%"
+              }
+            ]
+          }
         }
       ],
       "dominant": {
@@ -293,11 +315,12 @@
             ]
           ],
           "display": {
-            "prefix": "+",
             "rows": [
               {
                 "label": "追加の人口（住居ごと）",
-                "multiplier": 1
+                "multiplier": 1,
+                "sign": "+",
+                "unit": ""
               }
             ]
           }
@@ -444,7 +467,23 @@
               300000,
               70
             ]
-          ]
+          ],
+          "display": {
+            "rows": [
+              {
+                "label": "維持費",
+                "multiplier": 1,
+                "sign": "-",
+                "unit": "%"
+              },
+              {
+                "label": "ヒットポイント",
+                "multiplier": 1,
+                "sign": "+",
+                "unit": "%"
+              }
+            ]
+          }
         }
       ],
       "dominant": {
@@ -582,11 +621,12 @@
             ]
           ],
           "display": {
-            "prefix": "+",
             "rows": [
               {
                 "label": "追加の名声（交易所・貯蔵所・埠頭ごと）",
-                "multiplier": 1
+                "multiplier": 1,
+                "sign": "+",
+                "unit": ""
               }
             ]
           }
@@ -729,15 +769,18 @@
             ]
           ],
           "display": {
-            "prefix": "+",
             "rows": [
               {
                 "label": "追加の人口（生産施設ごと）",
-                "multiplier": 1
+                "multiplier": 1,
+                "sign": "+",
+                "unit": ""
               },
               {
                 "label": "追加の名声（生産施設ごと）",
-                "multiplier": 2
+                "multiplier": 2,
+                "sign": "+",
+                "unit": ""
               }
             ]
           }
@@ -884,11 +927,12 @@
             ]
           ],
           "display": {
-            "prefix": "+",
             "rows": [
               {
                 "label": "追加の健康度・知識（住居ごと、それぞれ）",
-                "multiplier": 1
+                "multiplier": 1,
+                "sign": "+",
+                "unit": ""
               }
             ]
           }
@@ -1039,11 +1083,12 @@
             ]
           ],
           "display": {
-            "prefix": "+",
             "rows": [
               {
                 "label": "追加の知識（住居ごと）",
-                "multiplier": 1
+                "multiplier": 1,
+                "sign": "+",
+                "unit": ""
               }
             ]
           }
