@@ -26,8 +26,16 @@
         <rect :x="n.x" :y="n.y" width="120" height="44" rx="6" fill="#fff" stroke="#aaa" stroke-width="1.5" />
         <text :x="n.x + 60" :y="n.y + 16" text-anchor="middle" font-size="12" font-weight="bold" fill="#222">{{ n.label }}</text>
         <text :x="n.x + 60" :y="n.y + 32" text-anchor="middle" font-size="11" fill="#666">{{ n.time }}</text>
+        <g v-if="n.count">
+          <rect :x="n.x + NODE_W - 40" :y="n.y - 10" width="40" height="18" rx="9" fill="#1e3a5f" />
+          <text :x="n.x + NODE_W - 20" :y="n.y + 3" text-anchor="middle" font-size="11" font-weight="bold" fill="#fff">×{{ n.count }}</text>
+        </g>
       </g>
     </svg>
+    <p v-if="hasRatio" class="chain-note">
+      ×の数字は、100%効率(ブーストなし)で回すときの建物数の比率です。
+      <template v-if="graph.fuelBurners">燃料の木炭用に、炭焼き師が ×{{ graph.fuelBurners }} 別に必要です。</template>
+    </p>
     </div>
   </details>
 </template>
@@ -44,6 +52,7 @@ const PADDING = 10
 
 const props = defineProps<{ graph: ProductionGraph }>()
 const isOpen = ref(false)
+const hasRatio = computed(() => props.graph.nodes.some(n => n.count))
 
 function onToggle(e: Event) {
   isOpen.value = (e.target as HTMLDetailsElement).open
@@ -175,6 +184,12 @@ const layout = computed(() => {
   cursor: pointer;
   color: var(--vp-c-brand);
   user-select: none;
+}
+.chain-note {
+  margin: 6px 0 0;
+  font-size: 12px;
+  line-height: 1.6;
+  color: var(--vp-c-text-2);
 }
 .chain-scroll {
   overflow-x: auto;

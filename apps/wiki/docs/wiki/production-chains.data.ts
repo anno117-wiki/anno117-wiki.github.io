@@ -3,6 +3,8 @@ import { resolve, dirname } from 'node:path'
 import { fileURLToPath } from 'node:url'
 import listJson from '../../../../packages/shared/public/productions/list.json'
 import jaJson from '../../../../packages/shared/public/i18n/locales/ja.json'
+// 100%効率の建物数の比率。tools/build-chain-ratios.py で生成
+import ratiosJson from './chain-ratios.json'
 
 const __filename = fileURLToPath(import.meta.url)
 const __dirname = dirname(__filename)
@@ -12,6 +14,8 @@ export interface GraphNode {
   id: string
   label: string
   time: string
+  /** 100%効率での建物数の比率。無い場合は表示しない */
+  count?: number
 }
 
 export interface GraphEdge {
@@ -22,7 +26,16 @@ export interface GraphEdge {
 export interface ProductionGraph {
   nodes: GraphNode[]
   edges: GraphEdge[]
+  /** 燃料用の炭焼き師の比率。燃料が不要なチェーンは 0 */
+  fuelBurners: number
 }
+
+interface ChainRatio {
+  counts: Record<string, number>
+  fuelBurners: number
+}
+
+const RATIOS = ratiosJson as Record<string, ChainRatio>
 
 interface ProductionEntry {
   id: string
@@ -48,7 +61,11 @@ function fmtTime(seconds: number): string {
   return s === 0 ? `${m}分` : `${m}分${s}秒`
 }
 
-function buildProductionGraph(prod: any, jaGoods: Record<string, string>): ProductionGraph | null {
+function buildProductionGraph(
+  prod: any,
+  jaGoods: Record<string, string>,
+  ratio: ChainRatio | undefined,
+): ProductionGraph | null {
   const nodes: GraphNode[] = []
   const edges: GraphEdge[] = []
   const seen = new Set<string>()
@@ -59,7 +76,8 @@ function buildProductionGraph(prod: any, jaGoods: Record<string, string>): Produ
     const time = fmtTime(node.time ?? 0)
     if (!seen.has(id)) {
       seen.add(id)
-      nodes.push({ id, label, time })
+      const count = ratio?.counts[id]
+      nodes.push({ id, label, time, ...(count ? { count } : {}) })
     }
     if (childId) edges.push({ from: id, to: childId })
     for (const inp of (node.input ?? [])) {
@@ -69,7 +87,7 @@ function buildProductionGraph(prod: any, jaGoods: Record<string, string>): Produ
 
   traverse(prod)
   if (nodes.length <= 1) return null
-  return { nodes, edges }
+  return { nodes, edges, fuelBurners: ratio?.fuelBurners ?? 0 }
 }
 
 function readProduction(filename: string): any | null {
@@ -111,7 +129,7 @@ export default {
         timeSeconds: prod.time ?? 0,
         needsFuel: prod.needs_fuel ?? false,
         inputs,
-        graph: buildProductionGraph(prod, jaGoods),
+        graph: buildProductionGraph(prod, jaGoods, RATIOS[firstFile as string]),
       })
     }
 

@@ -1,0 +1,766 @@
+{
+ "amphorae": {
+  "warnings": [
+   "clay: assets.xml にサイクル記載なし、JSONの30秒を使用"
+  ],
+  "ok": true,
+  "scale": 2,
+  "counts": {
+   "amphorae": 2,
+   "clay": 1,
+   "resin": 2
+  },
+  "fuelBurners": 0.5
+ },
+ "amphorae_albion": {
+  "warnings": [],
+  "ok": true,
+  "scale": 2,
+  "counts": {
+   "amphorae": 2,
+   "mud": 3,
+   "resin": 2
+  },
+  "fuelBurners": 0.5
+ },
+ "armour": {
+  "warnings": [
+   "iron_ore: assets.xml にサイクル記載なし、JSONの30秒を使用",
+   "pigs: assets.xml にサイクル記載なし、JSONの30秒を使用",
+   "salt: assets.xml にサイクル記載なし、JSONの30秒を使用"
+  ],
+  "ok": true,
+  "scale": 3,
+  "counts": {
+   "armour": 3,
+   "iron": 2,
+   "iron_ore": 1,
+   "leather": 2,
+   "pigs": 1,
+   "salt": 1
+  },
+  "fuelBurners": 1.25
+ },
+ "armour_albion": {
+  "warnings": [
+   "iron_ore: assets.xml にサイクル記載なし、JSONの30秒を使用",
+   "pigs: assets.xml にサイクル記載なし、JSONの30秒を使用",
+   "wood: assets.xml にサイクル記載なし、JSONの30秒を使用"
+  ],
+  "ok": true,
+  "scale": 3,
+  "counts": {
+   "armour": 3,
+   "iron": 2,
+   "iron_ore": 1,
+   "leather": 2,
+   "pigs": 1,
+   "wood": 1
+  },
+  "fuelBurners": 1.25
+ },
+ "beer_albion": {
+  "warnings": [
+   "malt: assets.xml にサイクル記載なし、JSONの30秒を使用"
+  ],
+  "ok": true,
+  "scale": 2,
+  "counts": {
+   "beer": 2,
+   "malt": 1,
+   "barley": 2
+  },
+  "fuelBurners": 0.5
+ },
+ "bird_tongues_in_aspic": {
+  "warnings": [
+   "pigs: assets.xml にサイクル記載なし、JSONの30秒を使用"
+  ],
+  "ok": true,
+  "scale": 3,
+  "counts": {
+   "bird_tongues_in_aspic": 3,
+   "bird_tongues": 4,
+   "small_birds": 3,
+   "lard": 2,
+   "pigs": 1
+  },
+  "fuelBurners": 0.5
+ },
+ "bread": {
+  "warnings": [],
+  "ok": true,
+  "scale": 3,
+  "counts": {
+   "bread": 3,
+   "flour": 1,
+   "wheat": 3
+  },
+  "fuelBurners": 0.75
+ },
+ "bread_albion": {
+  "warnings": [],
+  "ok": true,
+  "scale": 1,
+  "counts": {
+   "bread": 1,
+   "flour": 1,
+   "wheat": 1
+  },
+  "fuelBurners": 0.25
+ },
+ "brooches": {
+  "warnings": [
+   "silver_ore: assets.xml にサイクル記載なし、JSONの30秒を使用"
+  ],
+  "ok": true,
+  "scale": 4,
+  "counts": {
+   "brooches": 4,
+   "silver": 2,
+   "silver_ore": 1
+  },
+  "fuelBurners": 1.5
+ },
+ "ceremonial_shields_albion": {
+  "warnings": [
+   "tin_ore: assets.xml にサイクル記載なし、JSONの30秒を使用",
+   "copper_ore: assets.xml にサイクル記載なし、JSONの30秒を使用"
+  ],
+  "ok": true,
+  "scale": 3,
+  "counts": {
+   "ceremonial_shields": 3,
+   "dye_plants": 2,
+   "bronze": 2,
+   "tin_ore": 1,
+   "copper_ore": 1
+  },
+  "fuelBurners": 0.5
+ },
+ "chariots": {
+  "warnings": [
+   "wood: assets.xml にサイクル記載なし、JSONの30秒を使用"
+  ],
+  "ok": true,
+  "scale": 4,
+  "counts": {
+   "chariots": 4,
+   "ponies": 3,
+   "chassis": 3,
+   "wood": 1,
+   "reeds": 2
+  },
+  "fuelBurners": 0
+ },
+ "cheese": {
+  "warnings": [],
+  "ok": true,
+  "scale": 2,
+  "counts": {
+   "cheese": 2,
+   "ochs": 1
+  },
+  "fuelBurners": 0
+ },
+ "cloaks": {
+  "warnings": [
+   "sheep: assets.xml にサイクル記載なし、JSONの30秒を使用",
+   "copper_ore: assets.xml にサイクル記載なし、JSONの30秒を使用"
+  ],
+  "ok": true,
+  "scale": 2,
+  "counts": {
+   "cloaks": 2,
+   "sheep": 1,
+   "celtic_green": 3,
+   "dye_plants": 2,
+   "copper_ore": 1
+  },
+  "fuelBurners": 0
+ },
+ "cockles_albion": {
+  "warnings": [],
+  "ok": true,
+  "scale": 1,
+  "counts": {
+   "cockles": 1
+  },
+  "fuelBurners": 0
+ },
+ "concrete": {
+  "warnings": [
+   "limestone: assets.xml にサイクル記載なし、JSONの30秒を使用"
+  ],
+  "ok": true,
+  "scale": 6,
+  "counts": {
+   "concrete": 6,
+   "limestone": 2,
+   "silica": 3
+  },
+  "fuelBurners": 0
+ },
+ "concrete_albion": {
+  "warnings": [
+   "limestone: assets.xml にサイクル記載なし、JSONの30秒を使用"
+  ],
+  "ok": true,
+  "scale": 6,
+  "counts": {
+   "concrete": 6,
+   "limestone": 2,
+   "silica": 3
+  },
+  "fuelBurners": 0
+ },
+ "drinking_horns_albion": {
+  "warnings": [
+   "tin_ore: assets.xml にサイクル記載なし、JSONの30秒を使用"
+  ],
+  "ok": true,
+  "scale": 4,
+  "counts": {
+   "drinking_horns": 4,
+   "ochs": 2,
+   "tin_ore": 1
+  },
+  "fuelBurners": 0
+ },
+ "eels_albion": {
+  "warnings": [],
+  "ok": true,
+  "scale": 1,
+  "counts": {
+   "eels": 1
+  },
+  "fuelBurners": 0
+ },
+ "fine_glass": {
+  "warnings": [],
+  "ok": true,
+  "scale": 8,
+  "counts": {
+   "fine_glass": 8,
+   "glass": 6,
+   "silica": 3,
+   "pigments": 4,
+   "minerals": 3
+  },
+  "fuelBurners": 3.5
+ },
+ "fur_hats_albion": {
+  "warnings": [],
+  "ok": true,
+  "scale": 4,
+  "counts": {
+   "fur_hats": 4,
+   "beavers": 3,
+   "saltwash": 2,
+   "saltwort": 3
+  },
+  "fuelBurners": 0.5
+ },
+ "garum": {
+  "warnings": [
+   "salt: assets.xml にサイクル記載なし、JSONの30秒を使用"
+  ],
+  "ok": true,
+  "scale": 3,
+  "counts": {
+   "garum": 3,
+   "mackerel": 2,
+   "salt": 1
+  },
+  "fuelBurners": 0
+ },
+ "granite_albion": {
+  "warnings": [],
+  "ok": true,
+  "scale": 8,
+  "counts": {
+   "granite": 8,
+   "granite_block": 3
+  },
+  "fuelBurners": 0
+ },
+ "handmirrors": {
+  "warnings": [
+   "silver_ore: assets.xml にサイクル記載なし、JSONの30秒を使用"
+  ],
+  "ok": true,
+  "scale": 8,
+  "counts": {
+   "handmirrors": 8,
+   "seashells": 3,
+   "silver": 4,
+   "silver_ore": 2
+  },
+  "fuelBurners": 3
+ },
+ "horses": {
+  "warnings": [],
+  "ok": true,
+  "scale": 1,
+  "counts": {
+   "horses": 1
+  },
+  "fuelBurners": 0
+ },
+ "horses_albion": {
+  "warnings": [],
+  "ok": true,
+  "scale": 1,
+  "counts": {
+   "horses": 1
+  },
+  "fuelBurners": 0
+ },
+ "latrunculi_sets": {
+  "warnings": [
+   "obsidian: guid 145102 が assets.xml に無い(FactoryBaseなし)"
+  ],
+  "ok": true,
+  "scale": 3,
+  "counts": {
+   "latrunculi_sets": 3,
+   "obsidian": 0,
+   "ornate_wood": 2,
+   "sandarac_wood": 3,
+   "gold": 2,
+   "gold_ore": 8
+  },
+  "fuelBurners": 0.5
+ },
+ "loungers": {
+  "warnings": [],
+  "ok": true,
+  "scale": 4,
+  "counts": {
+   "loungers": 4,
+   "sandarac_wood": 3,
+   "cushions": 3,
+   "tyrian_purple": 4,
+   "murex_snails": 3
+  },
+  "fuelBurners": 0
+ },
+ "lyres": {
+  "warnings": [
+   "sheep: assets.xml にサイクル記載なし、JSONの30秒を使用"
+  ],
+  "ok": true,
+  "scale": 2,
+  "counts": {
+   "lyres": 2,
+   "ornate_wood": 2,
+   "sandarac_wood": 3,
+   "gold": 2,
+   "gold_ore": 8,
+   "string": 3,
+   "sheep": 1
+  },
+  "fuelBurners": 0.5
+ },
+ "marble": {
+  "warnings": [],
+  "ok": true,
+  "scale": 3,
+  "counts": {
+   "marble": 3,
+   "uncut_marble": 2
+  },
+  "fuelBurners": 0
+ },
+ "mosaics": {
+  "warnings": [
+   "mosaics <- charcoal: 親の入力と子の産出が一致する原料が無い",
+   "charcoal: assets.xml にサイクル記載なし、JSONの30秒を使用",
+   "clay: assets.xml にサイクル記載なし、JSONの30秒を使用"
+  ],
+  "ok": true,
+  "scale": 8,
+  "counts": {
+   "mosaics": 8,
+   "pigments": 4,
+   "minerals": 3,
+   "charcoal": 0,
+   "clay": 2
+  },
+  "fuelBurners": 2
+ },
+ "necklaces": {
+  "warnings": [],
+  "ok": true,
+  "scale": 6,
+  "counts": {
+   "necklaces": 6,
+   "minerals": 3,
+   "gold": 4,
+   "gold_ore": 16
+  },
+  "fuelBurners": 2.5
+ },
+ "olive_oil": {
+  "warnings": [],
+  "ok": true,
+  "scale": 3,
+  "counts": {
+   "olive_oil": 3,
+   "olives": 4
+  },
+  "fuelBurners": 0
+ },
+ "oysters_with_caviar": {
+  "warnings": [],
+  "ok": true,
+  "scale": 4,
+  "counts": {
+   "oysters_with_caviar": 4,
+   "caviar": 3,
+   "sturgeon": 6,
+   "oysters": 6
+  },
+  "fuelBurners": 0
+ },
+ "pileus": {
+  "warnings": [
+   "sheep: assets.xml にサイクル記載なし、JSONの30秒を使用"
+  ],
+  "ok": true,
+  "scale": 2,
+  "counts": {
+   "pileus": 2,
+   "sheep": 1
+  },
+  "fuelBurners": 0
+ },
+ "porridge": {
+  "warnings": [],
+  "ok": true,
+  "scale": 1,
+  "counts": {
+   "porridge": 1,
+   "oats": 1
+  },
+  "fuelBurners": 0
+ },
+ "reed_shoes_albion": {
+  "warnings": [],
+  "ok": true,
+  "scale": 2,
+  "counts": {
+   "reed_shoes": 2,
+   "reeds": 1
+  },
+  "fuelBurners": 0
+ },
+ "roast_beef_albion": {
+  "warnings": [],
+  "ok": true,
+  "scale": 4,
+  "counts": {
+   "roast_beef": 4,
+   "saltwort": 3,
+   "ochs": 2
+  },
+  "fuelBurners": 1
+ },
+ "rope": {
+  "warnings": [],
+  "ok": true,
+  "scale": 2,
+  "counts": {
+   "rope": 2,
+   "hemp": 1
+  },
+  "fuelBurners": 0
+ },
+ "rope_albion": {
+  "warnings": [],
+  "ok": true,
+  "scale": 2,
+  "counts": {
+   "rope": 2,
+   "hemp": 1
+  },
+  "fuelBurners": 0
+ },
+ "sails": {
+  "warnings": [
+   "sheep: assets.xml にサイクル記載なし、JSONの30秒を使用"
+  ],
+  "ok": true,
+  "scale": 3,
+  "counts": {
+   "sails": 3,
+   "sheep": 1
+  },
+  "fuelBurners": 0
+ },
+ "sails_albion": {
+  "warnings": [
+   "sheep: assets.xml にサイクル記載なし、JSONの30秒を使用"
+  ],
+  "ok": true,
+  "scale": 3,
+  "counts": {
+   "sails": 3,
+   "sheep": 1
+  },
+  "fuelBurners": 0
+ },
+ "sandals": {
+  "warnings": [
+   "pigs: assets.xml にサイクル記載なし、JSONの30秒を使用",
+   "salt: assets.xml にサイクル記載なし、JSONの30秒を使用"
+  ],
+  "ok": true,
+  "scale": 4,
+  "counts": {
+   "sandals": 4,
+   "leather": 2,
+   "pigs": 1,
+   "salt": 1
+  },
+  "fuelBurners": 0
+ },
+ "sardines": {
+  "warnings": [],
+  "ok": true,
+  "scale": 1,
+  "counts": {
+   "sardines": 1
+  },
+  "fuelBurners": 0
+ },
+ "sausages_albion": {
+  "warnings": [
+   "pigs: assets.xml にサイクル記載なし、JSONの30秒を使用"
+  ],
+  "ok": true,
+  "scale": 2,
+  "counts": {
+   "sausages": 2,
+   "pigs": 1,
+   "herbs": 3
+  },
+  "fuelBurners": 0.5
+ },
+ "soap": {
+  "warnings": [
+   "pigs: assets.xml にサイクル記載なし、JSONの30秒を使用"
+  ],
+  "ok": true,
+  "scale": 2,
+  "counts": {
+   "soap": 2,
+   "lard": 2,
+   "pigs": 1,
+   "lavender": 4
+  },
+  "fuelBurners": 0.5
+ },
+ "statuettes": {
+  "warnings": [
+   "obsidian: guid 145102 が assets.xml に無い(FactoryBaseなし)"
+  ],
+  "ok": true,
+  "scale": 3,
+  "counts": {
+   "statuettes": 3,
+   "obsidian": 0,
+   "uncut_marble": 1
+  },
+  "fuelBurners": 0
+ },
+ "tiles": {
+  "warnings": [
+   "clay: assets.xml にサイクル記載なし、JSONの30秒を使用"
+  ],
+  "ok": true,
+  "scale": 2,
+  "counts": {
+   "tiles": 2,
+   "clay": 1
+  },
+  "fuelBurners": 0.5
+ },
+ "tiles_albion": {
+  "warnings": [],
+  "ok": true,
+  "scale": 2,
+  "counts": {
+   "tiles": 2,
+   "mud": 3
+  },
+  "fuelBurners": 0.5
+ },
+ "timber": {
+  "warnings": [
+   "timber: assets.xml にサイクル記載なし、JSONの30秒を使用",
+   "wood: assets.xml にサイクル記載なし、JSONの30秒を使用"
+  ],
+  "ok": true,
+  "scale": 1,
+  "counts": {
+   "timber": 1,
+   "wood": 1
+  },
+  "fuelBurners": 0
+ },
+ "timber_albion": {
+  "warnings": [
+   "timber: assets.xml にサイクル記載なし、JSONの30秒を使用",
+   "wood: assets.xml にサイクル記載なし、JSONの30秒を使用"
+  ],
+  "ok": true,
+  "scale": 1,
+  "counts": {
+   "timber": 1,
+   "wood": 1
+  },
+  "fuelBurners": 0
+ },
+ "togas": {
+  "warnings": [],
+  "ok": true,
+  "scale": 2,
+  "counts": {
+   "togas": 2,
+   "cloth": 4,
+   "flax": 3,
+   "tyrian_purple": 4,
+   "murex_snails": 3
+  },
+  "fuelBurners": 0
+ },
+ "torcs_albion": {
+  "warnings": [
+   "copper_ore: assets.xml にサイクル記載なし、JSONの30秒を使用"
+  ],
+  "ok": true,
+  "scale": 3,
+  "counts": {
+   "torcs": 3,
+   "copper_ore": 1
+  },
+  "fuelBurners": 0.75
+ },
+ "trousers_albion": {
+  "warnings": [
+   "sheep: assets.xml にサイクル記載なし、JSONの30秒を使用"
+  ],
+  "ok": true,
+  "scale": 3,
+  "counts": {
+   "trousers": 3,
+   "sheep": 1,
+   "dye_plants": 2
+  },
+  "fuelBurners": 0
+ },
+ "tunics": {
+  "warnings": [],
+  "ok": true,
+  "scale": 1,
+  "counts": {
+   "tunics": 1,
+   "hemp": 1
+  },
+  "fuelBurners": 0
+ },
+ "tunics_albion": {
+  "warnings": [],
+  "ok": true,
+  "scale": 1,
+  "counts": {
+   "tunics": 1,
+   "hemp": 1
+  },
+  "fuelBurners": 0
+ },
+ "wattle_&_daub_albion": {
+  "warnings": [],
+  "ok": true,
+  "scale": 2,
+  "counts": {
+   "wattle___daub": 2,
+   "reeds": 2,
+   "mud": 3
+  },
+  "fuelBurners": 0
+ },
+ "weapons": {
+  "warnings": [
+   "iron_ore: assets.xml にサイクル記載なし、JSONの30秒を使用"
+  ],
+  "ok": true,
+  "scale": 3,
+  "counts": {
+   "weapons": 3,
+   "iron": 2,
+   "iron_ore": 1
+  },
+  "fuelBurners": 1.25
+ },
+ "weapons_albion": {
+  "warnings": [
+   "iron_ore: assets.xml にサイクル記載なし、JSONの30秒を使用"
+  ],
+  "ok": true,
+  "scale": 3,
+  "counts": {
+   "weapons": 3,
+   "iron": 2,
+   "iron_ore": 1
+  },
+  "fuelBurners": 1.25
+ },
+ "wigs_albion": {
+  "warnings": [],
+  "ok": true,
+  "scale": 3,
+  "counts": {
+   "wigs": 3,
+   "head_piece": 4,
+   "flax": 3,
+   "resin": 2,
+   "horses": 4
+  },
+  "fuelBurners": 0
+ },
+ "wine": {
+  "warnings": [],
+  "ok": true,
+  "scale": 1,
+  "counts": {
+   "wine": 1,
+   "grapes": 2,
+   "honeycombs": 1
+  },
+  "fuelBurners": 0
+ },
+ "wine_albion": {
+  "warnings": [],
+  "ok": true,
+  "scale": 1,
+  "counts": {
+   "wine": 1,
+   "grapes": 2,
+   "honeycombs": 1
+  },
+  "fuelBurners": 0
+ },
+ "writing_tablets": {
+  "warnings": [],
+  "ok": true,
+  "scale": 8,
+  "counts": {
+   "writing_tablets": 8,
+   "sandarac_wood": 6,
+   "honeycombs": 3
+  },
+  "fuelBurners": 0
+ }
+}
