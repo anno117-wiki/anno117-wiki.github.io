@@ -17,10 +17,6 @@ const sharedMilestones: [number, number][] = data.patrons[0].local[0].milestones
 島の祭神を決めると信仰が貯まり、信仰値に応じて生産アップや新しい建物の解放といった効果がもらえます。
 炭鉱・金鉱・サイロが使えるようになるのも、信仰神の効果です。
 
-::: info 数値の出典について
-数値は公式データ（assets.xml v2.1）から取った値です。「効果段階値」はゲーム内部の値で、実際の増加量（%など）への換算は確認できていないため、<strong>要検証</strong>としています。
-:::
-
 ## 信仰のしくみ
 
 - 島の祭神を選ぶと、その島の信心（Belief）から時間をかけて信仰が貯まります。祭神を選ぶには信心が1以上必要です。
@@ -87,6 +83,16 @@ const sharedMilestones: [number, number][] = data.patrons[0].local[0].milestones
 ## エポナ {#epona}
 
 <PatronDetail :patron="byId.epona" :wonder-threshold="wonderThreshold" :dominant-threshold="dominantThreshold" />
+
+### サイロ（奇跡で解放）
+
+サイロは、牧場に取り付けて生産を増やすモジュールです。小麦を与えると、その牧場の生産量がアップします。
+
+- <strong>効果のある施設</strong>：羊牧場・養豚場・馬ブリーダー（ラティウム・アルビオン共通）。牛牧場・馬追い（ポニー）・養蜂場には使えません。
+- <strong>設置場所</strong>：対象の牧場の横に置きます。範囲内に倉庫も必要です。
+- <strong>必要な品物</strong>：小麦を5分（300秒）ごとに1個。貯蔵は5個までで、小麦が足りなくなると「サイロの小麦が不足している」と表示されます。
+- <strong>効果</strong>：牧場の生産性が +100% になり、さらに3サイクルごとに同じ商品が +1個 増えます。この2つの効果は重複します。
+- <strong>建設費</strong>：木板20・瓦10のほか、コンクリート・大理石・モザイクが必要です（数量は要検証）。
 
 ## ケルヌンノス {#cernunnos}
 
