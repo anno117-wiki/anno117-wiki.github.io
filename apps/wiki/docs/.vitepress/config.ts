@@ -60,6 +60,8 @@ export default defineConfig({
   // Google検索向け sitemap.xml をビルド時に自動生成
   sitemap: {
     hostname: 'https://anno117-wiki.github.io/',
+    // /calculator/ はVitePress外の別SPAビルドのため、自動収集対象に含まれない。手動で追加する
+    transformItems: (items) => [...items, { url: '/calculator/' }],
   },
 
   head: [
