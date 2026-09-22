@@ -117,8 +117,9 @@
 ### N. GSCインデックス登録リクエストの進捗（2026-09-22）
 - sitemap.xml掲載27件のうちGSC「インデックス登録済み」は6件のみ（`/` / `wiki/goods.html` / `wiki/buildings.html` / `wiki/items.html` / `wiki/production-chains.html` / `guide/strategy.html`）と判明。残り21件を優先度別にリクエスト対象として洗い出した
 - **wiki系11件は2026-09-22にリクエスト済み**: `wiki/techs.html` / `wiki/population.html` / `wiki/regions.html` / `wiki/splendor.html` / `wiki/patrons.html` / `wiki/needs-index.html` / `wiki/techs-civic.html` / `wiki/techs-economy.html` / `wiki/techs-military.html` / `wiki/techs-dlc01.html` / `wiki/techs-dlc02.html`
-- **guide系10件 + `updates.html` は未リクエスト**。1日の上限が非公式に10〜12件程度のため、翌日以降（2026-09-23以降）にリクエストする予定
-  - `guide/getting-started.html` / `guide/early-game-strategy.html` / `guide/economy-guide.html` / `guide/military-guide.html` / `guide/research-guide.html` / `guide/trade-guide.html` / `guide/calculator-guide.html` / `guide/dlc01-ashes-of-prophecy.html` / `guide/dlc02-hippodrome.html` / `guide/dlc03-dawn-of-delta.html` / `updates.html`
+- **guide系: `guide/getting-started.html` はリクエスト済み**（この日も1日の上限（非公式に10〜12件程度）に到達したため、以降は翌日以降に持ち越し）
+- **guide系の残り9件 + `updates.html` は未リクエスト**。翌日以降、上限（非公式に10〜12件程度）に注意しながら継続すること
+  - `guide/early-game-strategy.html` / `guide/economy-guide.html` / `guide/military-guide.html` / `guide/research-guide.html` / `guide/trade-guide.html` / `guide/calculator-guide.html` / `guide/dlc01-ashes-of-prophecy.html` / `guide/dlc02-hippodrome.html` / `guide/dlc03-dawn-of-delta.html` / `updates.html`
 - **`/calculator/` がsitemap.xmlに含まれていない不備を発見・修正済み**（`/calculator/`はVitePress外の別Viteビルドのため、sitemap自動収集の対象外だった）
   - 修正: `apps/wiki/docs/.vitepress/config.ts` の `sitemap.transformItems` で `{ url: '/calculator/' }` を手動追加
   - `bun run build:site` → `docs/sitemap.xml` の件数27→29（`/calculator/` ＋ 既存の `updates.html` 分）を確認
