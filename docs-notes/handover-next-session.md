@@ -6,6 +6,7 @@
 - **`docs-notes/` は `.gitignore` 対象**（`handover-next-session.md` / `building-icon-mapping.md` / `how-to-edit-site.md` / `wiki/` のみ例外で追跡）。今回作った調査メモ2本は**ローカルのみでGit未管理**
   - `docs-notes/research-alt-producers-coal-gold.md`（石炭・金の生産元、信仰神、サイロ、実機確認の記録）
   - `docs-notes/research-splendor-hippodrome-colosseum.md`（競馬場・円形闘技場の輝きバフ）
+  - `docs-notes/research-hippodrome-racer-stats.md`（2026-09-22新規。競馬場レーサー適性`ItemRacerPreset`の全数値、Item Inspectorリポジトリの配布方式変更リスク）
   - 消したくない場合は `.gitignore` に例外を足すか、必要な内容を別ファイルへ移すこと
 
 ## 本セッション（2026-09-19）完了分
@@ -126,8 +127,18 @@
   - コミット `8711e16` でpush済み。GitHub Pagesデプロイ完了（`gh run list` で `conclusion: success` 確認済み、2026-09-22）
   - ユーザーが `/calculator/` のインデックス登録を再リクエスト済み（2026-09-22）。結果反映は次回以降のGSC確認時にチェックすること
 
+### O. 競馬場レーサー適性(ItemRacerPreset)の判明とItem Inspectorリポジトリの配布方式変更（2026-09-22調査）
+詳細は `docs-notes/research-hippodrome-racer-stats.md`（新規・Git管理外）参照。
+
+- **上流`Taludas/Anno-117-Item-Inspector`がV2.1.0.1に更新**されていたが、これは**アプリ自体のバージョン**でゲームデータ（Update 2.1）は変更なし。`items_export_with_effects.csv`はバイト単位で一致確認済み
+- **【重要・要注意】上流リポジトリが配布方式を変更**: 従来の全アセット`assets.xml`・全会話`texts_*.xml`の同梱をやめ、アイテム関連に絞った軽量JSON（`export_assets.json`は全アセットの一部1,078件のみ、`loca/*.json`は1,885件のみ）に移行済み。**次回パッチ以降、この上流から建物・生産チェーン・信仰神等の全体データを取得できなくなる可能性が高い**。ローカルの`_local/anno-official-data/v2.1/`が最後のフル版データになるかもしれない点に注意
+- **「騎手適性」システムの正体を特定**: `ItemRacerPreset`テンプレート（`assets.xml`に14件）が、レアリティ別のレース適性ステータス（Speed/Stamina/Boost/Consistency。海外ガイドの「Sprint/Reliability」に相当）の初期値・追加ポテンシャル・追加トレーニング回数のレンジを定義。480アイテム中400件（Common除く）が紐付け済み。数値表は調査メモ参照
+- wikiへの掲載候補（`/wiki/patrons`か`/guide/dlc02-hippodrome.html`）。着手前にユーザー確認要
+- **要検証のまま**: ストーリープリセットとヒエロ関連アイテムGUIDの直接対応（推測どまり）、Commonレアリティがレース参加不可か（実機確認要）
+- ユーザー指示: セーブごとの乱数生成値そのものはこれ以上調査しない方針（本調査は生成ルール＝レンジの記録のみ）
+
 ## 未コミット作業
-なし（この引き継ぎ書の更新分を除く。`git status -sb` で確認）。ただし上記のとおり `docs-notes/research-*.md` 2本はGit管理外
+なし（この引き継ぎ書の更新分を除く。`git status -sb` で確認）。ただし上記のとおり `docs-notes/research-*.md` 3本はGit管理外
 
 ## 次セッションのミッション
 **最優先ミッションはなし**。以下は候補（着手前にユーザーへ確認）。
@@ -136,6 +147,8 @@
 - 競馬場ガイド: 馬需要(ランクVII)・戦車産出(ランクX)が本文では「レベルが上がると」とまとめ書きのまま（`/wiki/splendor` へのリンクは追加済み）
 - 獣脂(`lard`)の別の生産元アスピック職人(GUID5475, アルビオン)は、商品一覧に未対応（現行チェーンは31756を使用）。建物効果ページに載っているかも未確認
 - GSC: 上記I・Nを参照（guide系10件+`updates.html`のリクエスト、`/calculator/`含むリクエスト済み分の登録確認）
+- 競馬場レーサー適性ページの新設検討: 上記O・`docs-notes/research-hippodrome-racer-stats.md`参照
+- Item Inspectorリポジトリの配布方式変更（上記O）: 次回パッチ対応時の全体データ入手手段を早めに検討しておく
 - 計算機(`/calculator/`)のOGP: 保留中（J参照）。計算機を残す方針になったため、付ける価値は上がった
 - 図に出す比率は各商品の最初の地域版のみ。アルビオン版の表示・アルビオンの燃料の実際（L参照）
 - 宣伝: 案は提示済み（実施はユーザー判断）。日本語圏（X・Steam・Discord）→英語圏（Reddit r/anno 等）の順。上流のライセンス確認は済み（K参照。アイコン以外は自由に使用可）
