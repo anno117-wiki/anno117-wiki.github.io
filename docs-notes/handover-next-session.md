@@ -119,7 +119,11 @@
 - **wiki系11件は2026-09-22にリクエスト済み**: `wiki/techs.html` / `wiki/population.html` / `wiki/regions.html` / `wiki/splendor.html` / `wiki/patrons.html` / `wiki/needs-index.html` / `wiki/techs-civic.html` / `wiki/techs-economy.html` / `wiki/techs-military.html` / `wiki/techs-dlc01.html` / `wiki/techs-dlc02.html`
 - **guide系10件 + `updates.html` は未リクエスト**。1日の上限が非公式に10〜12件程度のため、翌日以降（2026-09-23以降）にリクエストする予定
   - `guide/getting-started.html` / `guide/early-game-strategy.html` / `guide/economy-guide.html` / `guide/military-guide.html` / `guide/research-guide.html` / `guide/trade-guide.html` / `guide/calculator-guide.html` / `guide/dlc01-ashes-of-prophecy.html` / `guide/dlc02-hippodrome.html` / `guide/dlc03-dawn-of-delta.html` / `updates.html`
-- `/calculator/` はSPA(Vue)でクロール直後は本文が薄く見えるためインデックスされにくい可能性あり。リクエストは出しつつ様子見
+- **`/calculator/` がsitemap.xmlに含まれていない不備を発見・修正済み**（`/calculator/`はVitePress外の別Viteビルドのため、sitemap自動収集の対象外だった）
+  - 修正: `apps/wiki/docs/.vitepress/config.ts` の `sitemap.transformItems` で `{ url: '/calculator/' }` を手動追加
+  - `bun run build:site` → `docs/sitemap.xml` の件数27→29（`/calculator/` ＋ 既存の `updates.html` 分）を確認
+  - コミット `8711e16` でpush済み。GitHub Pagesデプロイ完了（`gh run list` で `conclusion: success` 確認済み、2026-09-22）
+  - ユーザーが `/calculator/` のインデックス登録を再リクエスト済み（2026-09-22）。結果反映は次回以降のGSC確認時にチェックすること
 
 ## 未コミット作業
 なし（この引き継ぎ書の更新分を除く。`git status -sb` で確認）。ただし上記のとおり `docs-notes/research-*.md` 2本はGit管理外
@@ -130,7 +134,7 @@
 - 要検証の実機確認（上記B・Cの「要検証のまま」）
 - 競馬場ガイド: 馬需要(ランクVII)・戦車産出(ランクX)が本文では「レベルが上がると」とまとめ書きのまま（`/wiki/splendor` へのリンクは追加済み）
 - 獣脂(`lard`)の別の生産元アスピック職人(GUID5475, アルビオン)は、商品一覧に未対応（現行チェーンは31756を使用）。建物効果ページに載っているかも未確認
-- GSC: 上記I・Nを参照（サイトマップ状態の再確認、guide系10件+`updates.html`のリクエスト、リクエスト済み分の登録確認）
+- GSC: 上記I・Nを参照（guide系10件+`updates.html`のリクエスト、`/calculator/`含むリクエスト済み分の登録確認）
 - 計算機(`/calculator/`)のOGP: 保留中（J参照）。計算機を残す方針になったため、付ける価値は上がった
 - 図に出す比率は各商品の最初の地域版のみ。アルビオン版の表示・アルビオンの燃料の実際（L参照）
 - 宣伝: 案は提示済み（実施はユーザー判断）。日本語圏（X・Steam・Discord）→英語圏（Reddit r/anno 等）の順。上流のライセンス確認は済み（K参照。アイコン以外は自由に使用可）
