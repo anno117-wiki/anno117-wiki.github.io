@@ -583,11 +583,15 @@ NPC_NAME_UNVERIFIED = {"Zarai", "Nefeneru"}
 # 取得先表示そのものから除外する（他の入手経路が併記されていれば要検証も解消される）。
 NPC_NAME_EXCLUDED = {"Julia"}
 
-FESTIVAL_ATTR_JA = {
-    "Happiness": "幸福度", "Health": "健康", "Fire Safety": "防火", "Belief": "信仰",
-    "Knowledge": "知識", "Prestige": "名声", "War Victory": "戦勝", "Monument Event": "モニュメント",
-    "Mars": "マルス", "Ceres": "ケレス", "Neptune": "ネプトゥヌス", "Mercury Lugus": "メルクリウス・ルグス",
-    "Epona": "エポナ", "Cernunnos": "ケルヌンノス", "Minerva": "ミネルウァ", "Vulcan": "ウルカヌス",
+# RewardPool FestivalのGUID自体がゲーム内の具体的な祭りイベント名に対応している
+# （resolve_guid_ja()で直接解決できる）ため、属性名の日本語訳ではなく実際の祭り名を使う。
+FESTIVAL_NAME_BY_GUID = {
+    "122533": "ヒラリア祭", "122534": "サルス・ポプリ祭", "122535": "スタタ・マーテル祭",
+    "122536": "エプルム・ヨウィス祭", "122537": "スキエンティア・パブリカエ祭", "122538": "エプルム・ヨウィ祭",
+    "122539": "ヴィクトリアリア祭", "122540": "スペクタキュラ祭", "122541": "アルミルストリウム祭",
+    "122542": "ケレアリア祭", "122543": "ネプトゥーナリア祭", "122544": "ルグナサード祭",
+    "122545": "エポナリア祭", "122546": "ケルヌンナリア祭", "122547": "クインクアトリア祭",
+    "145050": "ウルカナリア祭",
 }
 REWARD_KIND_JA = {
     "Trades": "取引", "Contracts Base": "契約（並）", "Contracts Good": "契約（良）",
@@ -649,17 +653,16 @@ def resolve_quest_name(guid):
             return name2
     return None
 
-def translate_reward_pool_name(name):
+def translate_reward_pool_name(name, guid):
     """RewardPool/RewardList内部名（英語・未ローカライズ）を日本語化する。
     戻り値: (日本語文字列 or None, 要検証フラグ)。Noneは取得先表示から除外することを意味する。"""
     m = re.match(r"^Reward(?:Pool|List) (\w+) ", name)
     if m and m.group(1) in NPC_NAME_EXCLUDED:
         return None, False
-    m = re.match(r"^RewardPool Festival (.+)$", name)
-    if m:
-        attr = FESTIVAL_ATTR_JA.get(m.group(1))
-        if attr:
-            return f"{attr}祭りの報酬", False
+    if name.startswith("RewardPool Festival "):
+        festival_name = FESTIVAL_NAME_BY_GUID.get(guid)
+        if festival_name:
+            return f"{festival_name}の報酬", False
         return name, True
     m = re.match(r"^RewardList Endgame (\w+)$", name)
     if m:
@@ -728,7 +731,7 @@ def resolve_source(raw):
             g, pct = m2.groups()
             pool_name = reward_pools.get(g)
             if pool_name:
-                ja, cau = translate_reward_pool_name(pool_name)
+                ja, cau = translate_reward_pool_name(pool_name, g)
                 if ja is not None:
                     pool.append((f"{ja}（{pct}%）", cau))
             else:
