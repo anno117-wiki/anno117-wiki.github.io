@@ -593,7 +593,11 @@ REWARD_KIND_JA = {
     "Trades": "取引", "Contracts Base": "契約（並）", "Contracts Good": "契約（良）",
     "Contracts Best": "契約（最高）", "Drops": "撃破ドロップ",
 }
-ENDGAME_TECH_JA = {"EconomyTech": "経済", "CivicTech": "市民", "MilitaryTech": "軍事", "RacerTech": "レース"}
+# 各ブランチの無限リピート技術（エンドゲーム技術）の実際のスキル名。
+# assets.xmlのVisibleTechNameを解決して確認したゲーム内表示名。
+ENDGAME_TECH_JA = {
+    "EconomyTech": "健全な競争", "CivicTech": "採用活動", "MilitaryTech": "剣と塩", "RacerTech": "指導",
+}
 VISITOR_RARITY_JA = {
     "Common": "コモン", "Rare": "レア", "Epic": "エピック", "Legendary": "レジェンダリー", "Mythic": "ヒロイック",
 }
@@ -661,7 +665,7 @@ def translate_reward_pool_name(name):
     if m:
         tech = ENDGAME_TECH_JA.get(m.group(1))
         if tech:
-            return f"スキル{tech}の報酬", False
+            return f"スキル「{tech}」の報酬", False
         return name, True
     m = re.match(r"^RewardPool All Visitor Items (\w+)$", name)
     if m:
