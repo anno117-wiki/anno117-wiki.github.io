@@ -1,7 +1,7 @@
-# 引き継ぎ: 次回セッション向け（2026-09-23 更新・第12版）
+# 引き継ぎ: 次回セッション向け（2026-09-24 更新・第13版）
 
 ## git状態
-- ブランチ: master。`ec4f138`（第11版の引き継ぎ更新）がリモートと同期済みの最新コミット。**この引き継ぎ書（第12版）自体は未コミット**（GSCリクエスト状況の追記のみ、コード変更なし）。push 済みかは `git status -sb`、直近の作業は `git log -8` で確認すること。デプロイは `gh run list` で確認
+- ブランチ: master。`eebb323`（Zarai・Nefeneru確定扱い）がリモートと同期済みの最新コミット。working tree clean（この引き継ぎ書の更新分を除く）。直近の作業は `git log -10` で確認すること。デプロイは `gh run list` で確認
 - GitHub Pagesデプロイの確認は `gh run list --repo anno117-wiki/anno117-wiki.github.io --limit 5`。`562498f`（データベースメニュー）の見た目はユーザーが本番で確認済み
 - **`docs-notes/` は `.gitignore` 対象**（`handover-next-session.md` / `building-icon-mapping.md` / `how-to-edit-site.md` / `wiki/` のみ例外で追跡）。今回作った調査メモ2本は**ローカルのみでGit未管理**
   - `docs-notes/research-alt-producers-coal-gold.md`（石炭・金の生産元、信仰神、サイロ、実機確認の記録）
@@ -159,6 +159,29 @@
   ヒットした箇所は`docs/`のビルド済みHTMLで実際に`<strong>`が正しく対になっているか目視確認すること（ヒット＝即バグではない。今回もヒット十数件中3件のみが実際に壊れていた）
 - ついでに`guide/economy-guide.md`の専門家レアリティ表記（`Legendary`/`Epic`/`Unique`/`Rare`/`Common`）を`items.data.ts`の`RARITY_JA`に合わせカタカナ化
 
+### Q. GSC調査 ＆ アイテム「取得先」情報の追加（2026-09-24、単独セッション）
+
+#### GSC関連
+- ユーザーがGSCで「クロール済み - インデックス未登録」に`techs-economy.html`等2件を発見、調査を依頼された
+- 調査の結果、**GSCの「URL検査」ツールでは既に「インデックス登録済み」と判明**（カバレッジレポート側の反映ラグだった。数日で自動的に「登録済み」表示に揃うはず）
+- 前回引き継ぎN節の「guide系残り9件+`updates.html`」のうち、`updates.html`は既にリクエスト済みだった。**guide系9件をユーザーが今回リクエスト済み**（結果は未確認、フルパスは旧N節参照）
+- サイト全体の参照整合性チェック（内部リンク切れ・絶対fetchパス違反・sitemap⇔実ファイル整合性・画像参照）をinvestigatorサブエージェントで実施 → **全項目問題なし**
+
+#### アイテム「取得先(source)」情報の追加（大規模機能追加、`5a7bd98`〜`eebb323`の7コミット）
+- 発端: 公式データ `tools/data/items_export_with_effects.csv` に `Source`（取得元）・`Allocation`（住居/船）列が存在するのに、`tools/build-items-ja.py` が読み捨てていたことに気づき実装
+- **NPC商人・ライバル専門家16名の実名マップ**（`NPC_NAME_JA`）: 撃破報酬(`ItemGainedWhenDefeated`)GUID直接解決とportrait画像ファイル名（`portrait_{rival,trader,pirate,emperor}_<name>.png`）から確認。**Procurator→コルヴィヌス／Zarai→ザラ・ニトゥ／Nefeneru→ネフェルネル はユーザー確認済みで確定扱い**。Julia(ユリア)のみ用途不明・低確率の副次ソースにしか出ないため**取得先表示から除外**（`NPC_NAME_EXCLUDED`）
+- **祭り16種の実名化**: `RewardPool Festival <属性>`のGUID自体を直接解決すると実際の祭りイベント名が取れると判明（例: 幸福度祭り→ヒラリア祭、信仰祭り→エプルム・ヨウィス祭）。`FESTIVAL_NAME_BY_GUID`で全16件対応
+- **エンドゲーム技術（無限リピート技術）4種の実名化**: `RewardList Endgame <分野>Tech`もブランチ名ではなく`VisibleTechName`解決で実際のスキル名に変更。経済=健全な競争／市民=採用活動／軍事=剣と塩／レース=指導（DLC02）。表示は「スキル「○○」の報酬」
+- **来訪者イベント報酬（5種、レアリティ別）**: GUID自体には紐づくテキストが無く、固有の祭りのようなイベント名は存在しないと判明（参照元は`VisitorsFeature`、通知名`Mystic Visitor Interaction Window`＝システム名）。現状「来訪者イベントの報酬」表記のまま（レアリティ表記のみ省略）
+- **バグ修正**: QuestEntry・RewardPoolのXML解析で、正規表現`.*?`がAsset境界を越えて誤マッチするケースを発見（`<Standard>`〜`</Standard>`の逐次パース方式に修正。既存の`asset_oasis`構築と同じパターン）
+- **候補が11件以上（実質「共通ドロッププール」）の場合は「多数の交易商・祭りからランダム入手（低確率）」に1行集約**（ユーザー判断。421件中286件が該当し、個別列挙すると最大74行になり情報過多になるため）
+- `source`は「、」区切りの1文字列ではなく**配列**で持たせ、UIでは`<ul><li>`の1件1行表示に変更（ユーザー要望）
+- 結果、**要検証(`sourceCaution`)フラグは380件→0件**まで削減（GUID解決ロジックの拡充とJulia除外・NPC確定により）
+- UI実装: `items.md`の名称横に「取得先」バッジ、**PCはホバー・モバイルはタップでポップオーバー表示**、外側クリック/タップで閉じる。`items.data.ts`の`ItemEntry`に`source: string[]`・`sourceCaution: boolean`・`allocation: string`を追加
+- ブラウザ実機確認済み（chrome-devtools MCP、PC・モバイル390x844エミュレーション両方でホバー/タップ双方の表示を確認）。`bun run build:site`成功も都度確認済み
+- 7回に分けてコミット・プッシュ済み: `5a7bd98`（初回実装）→`05c44a4`（表記調整）→`e649221`（配列化・1行表示）→`73cdf46`（来訪者レアリティ省略）→`7ae31f7`（エンドゲーム技術を実名に）→`09ffe3b`（祭りを実名に）→`eebb323`（Zarai/Nefeneru確定）
+- **花形の潜り手-ナタンハエル・シタール（GUID90573）はSource列が公式データ自体で空文字**。海外サイト（ANNOLAND、Anno Companion Item Inspector）でも入手方法の記載なし。アイコンパスが`icon_3d_unique_campaign_003_shipwreck_diver`のため、キャンペーン固有のストーリーイベントで確定入手する特殊アイテムと推測（未確定）
+
 ## 未コミット作業
 なし（この引き継ぎ書の更新分を除く。`git status -sb` で確認）。ただし上記のとおり `docs-notes/research-*.md` 3本はGit管理外
 
@@ -168,7 +191,8 @@
 - 要検証の実機確認（上記B・Cの「要検証のまま」）
 - 競馬場ガイド: 馬需要(ランクVII)・戦車産出(ランクX)が本文では「レベルが上がると」とまとめ書きのまま（`/wiki/splendor` へのリンクは追加済み）
 - 獣脂(`lard`)の別の生産元アスピック職人(GUID5475, アルビオン)は、商品一覧に未対応（現行チェーンは31756を使用）。建物効果ページに載っているかも未確認
-- GSC: 上記I・Nを参照。`updates.html`はリクエスト済み、**guide系残り9件が未リクエスト**（2026-09-23時点。1日の上限に注意しながら継続）。リクエスト済み分の登録確認も
+- GSC: 上記I・N・Qを参照。**guide系9件は2026-09-24にリクエスト済み**（結果未確認）。`techs-economy.html`等「クロール済み-インデックス未登録」表示は解消見込み（数日後に再確認）
+- アイテム取得先(Q参照): Julia(ユリア)は実在・用途不明のため表示除外中。実機で「ユリア」という商人/NPCを確認できれば`tools/build-items-ja.py`の`NPC_NAME_EXCLUDED`から外して復活可能。GUID90573「花形の潜り手」の入手方法も未解明のまま
 - Item Inspectorリポジトリの配布方式変更・全体データ入手先リスク（上記O）: 次パッチ時に改めて状況確認
 - 隣接太字崩れバグ（上記P）の横展開チェック未実施。Pに載せた検索コマンドで他ページも確認するとよい
 - 計算機(`/calculator/`)のOGP: 保留中（J参照）。計算機を残す方針になったため、付ける価値は上がった
@@ -216,6 +240,7 @@
 ### 生成スクリプト運用
 - `tools/generate-goods-list.ts` / `generate-items-list.ts` は既存`list.json`等の手動メンテ値を継承する設計。再実行前にバックアップ・差分確認
 - `tools/build-items-ja.py`は一次ソース参照先を`v2.1`。`caution`フィールドは手動追記のため再実行のたびに消える（Tiranna/Laevinus/Kirjokansiは再実行後に手動で戻す）
+- 同スクリプトの`source`（取得先）解決ロジック（2026-09-24追加、Q節参照）は`NPC_NAME_JA`/`FESTIVAL_NAME_BY_GUID`/`ENDGAME_TECH_JA`等の辞書はコード内に確定値として書いてあるため、再実行しても消えない（`caution`とは違い手動で戻す必要はない）。新しいDLCでNPC・祭り・エンドゲーム技術が追加されたら辞書に追記すること
 - `apply-skilltree-connections.py`はguid一致時にconnections等を無条件上書き。`_local/skilltree-full-data.json`をDLC対応版に更新しないまま実行しない
 - **`tools/build-buildings-data.py`は既存の建物の効果値を更新するだけで、新しい建物は追加しない**。新規は`buildings-effects.json`に手で追加し、同スクリプトの`ID_TO_GUID`にも登録する（今回の炭鉱・炭焼き師がその例）
 - **今回追加した生成スクリプト**（いずれも`_local/anno-official-data/`が必要）: `build-patrons-data.py`（信仰神）/ `build-splendor-data.py`（輝き）/ `build-goods-producers.py`（石炭・金の生産元）。手書きの表示定義（`LOCAL2_DISPLAY`・`SPECIALS`・`PRODUCERS`）は実機確認済みの値のみ載せ、未確認は載せない方針
