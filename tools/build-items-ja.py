@@ -568,8 +568,9 @@ def tr_condition(raw):
 # ライバル専門家・商人・皇帝・海賊のRewardPool内部名（英語・未ローカライズ）を日本語化する。
 # 対応表はゲーム内テキスト（撃破報酬 ItemGainedWhenDefeated のGUID解決結果、および
 # portrait画像ファイル名 portrait_{rival,trader,pirate,emperor}_<name>.png）から確認したもの。
-# Zarai(ゲーム内表記はZara Nitu)・Nefeneru(ゲーム内表記はNeferneru)・Procurator(実名はCorvinus)・
-# Julia(単発イベント名経由でしか確認できず用途不明)は内部名とゲーム内表記が完全一致しないため要検証扱いとする。
+# Zarai(ゲーム内表記はZara Nitu)・Nefeneru(ゲーム内表記はNeferneru)は内部名とゲーム内表記が
+# 完全一致しないため要検証扱い。Julia(単発イベント名経由でしか確認できず用途不明)も要検証扱い。
+# Procurator(実名はCorvinus、コルヴィヌス)はユーザー確認済みのため確定扱いとする。
 NPC_NAME_JA = {
     "Dorian": "ドリアン", "Tarragon": "タラゴン", "Licia": "リシア・マー", "Athr": "アサール",
     "Zarai": "ザラ・ニトゥ", "Concordia": "コンコルディア", "Nefeneru": "ネフェルネル",
@@ -577,7 +578,10 @@ NPC_NAME_JA = {
     "Manx": "マンクス", "Caeso": "カエソ", "Voada": "ウォアダ", "Caecilia": "カエシリア",
     "Calidus": "カリドゥス", "Julia": "ユリア",
 }
-NPC_NAME_UNVERIFIED = {"Zarai", "Nefeneru", "Procurator", "Julia"}
+NPC_NAME_UNVERIFIED = {"Zarai", "Nefeneru"}
+# Juliaは用途未確認のうえ情報価値も低い（低確率の副次ソースにしか出現しない）ため、
+# 取得先表示そのものから除外する（他の入手経路が併記されていれば要検証も解消される）。
+NPC_NAME_EXCLUDED = {"Julia"}
 
 FESTIVAL_ATTR_JA = {
     "Happiness": "幸福度", "Health": "健康", "Fire Safety": "防火", "Belief": "信仰",
@@ -643,7 +647,10 @@ def resolve_quest_name(guid):
 
 def translate_reward_pool_name(name):
     """RewardPool/RewardList内部名（英語・未ローカライズ）を日本語化する。
-    戻り値: (日本語文字列, 要検証フラグ)"""
+    戻り値: (日本語文字列 or None, 要検証フラグ)。Noneは取得先表示から除外することを意味する。"""
+    m = re.match(r"^Reward(?:Pool|List) (\w+) ", name)
+    if m and m.group(1) in NPC_NAME_EXCLUDED:
+        return None, False
     m = re.match(r"^RewardPool Festival (.+)$", name)
     if m:
         attr = FESTIVAL_ATTR_JA.get(m.group(1))
@@ -654,7 +661,7 @@ def translate_reward_pool_name(name):
     if m:
         tech = ENDGAME_TECH_JA.get(m.group(1))
         if tech:
-            return f"エンドゲーム技術報酬（{tech}）", False
+            return f"スキル{tech}の報酬", False
         return name, True
     m = re.match(r"^RewardPool All Visitor Items (\w+)$", name)
     if m:
@@ -718,7 +725,8 @@ def resolve_source(raw):
             pool_name = reward_pools.get(g)
             if pool_name:
                 ja, cau = translate_reward_pool_name(pool_name)
-                pool.append((f"{ja}（{pct}%）", cau))
+                if ja is not None:
+                    pool.append((f"{ja}（{pct}%）", cau))
             else:
                 pool.append(("不明な報酬プール", True))
             continue
