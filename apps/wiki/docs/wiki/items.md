@@ -4,7 +4,7 @@ description: Anno 117の全アイテムをニッチ・レアリティ別に一�
 ---
 
 <script setup lang="ts">
-import { ref, computed, onMounted } from 'vue'
+import { ref, computed, onMounted, onUnmounted } from 'vue'
 import { withBase } from 'vitepress'
 import { data } from './items.data.ts'
 
@@ -20,7 +20,33 @@ const filtered = computed(() => data.items.filter(i =>
 onMounted(() => {
   const target = new URLSearchParams(window.location.search).get('target')
   if (target) selTarget.value = target
+  document.addEventListener('click', hideSourcePopover)
 })
+onUnmounted(() => {
+  document.removeEventListener('click', hideSourcePopover)
+})
+
+// 取得先ポップオーバー: PCはホバー(mouseenter/leave)、モバイルはタップ(click)で開閉する。
+// トリガーのclickはstopPropagationしているので、それ以外の場所をクリックするとdocument側の
+// リスナーでhideSourcePopoverが呼ばれて閉じる。
+type ItemRow = (typeof data.items)[number]
+const sourcePopover = ref<{ guid: string; item: ItemRow; x: number; y: number } | null>(null)
+
+function showSourcePopover(item: ItemRow, event: MouseEvent) {
+  const rect = (event.currentTarget as HTMLElement).getBoundingClientRect()
+  const x = Math.min(rect.left, window.innerWidth - 280)
+  sourcePopover.value = { guid: item.guid, item, x: Math.max(8, x), y: rect.bottom + 6 }
+}
+function hideSourcePopover() {
+  sourcePopover.value = null
+}
+function toggleSourcePopover(item: ItemRow, event: MouseEvent) {
+  if (sourcePopover.value?.guid === item.guid) {
+    hideSourcePopover()
+  } else {
+    showSourcePopover(item, event)
+  }
+}
 
 function resetFilters(): void {
   selRarity.value = ''
@@ -132,6 +158,43 @@ Anno 117 の専門家が装着できる全アイテムの一覧です。分類�
   border-radius: 4px;
   cursor: help;
   white-space: nowrap;
+}
+.item-source-badge {
+  display: inline-block;
+  margin-left: 6px;
+  padding: 1px 6px;
+  font-size: 11px;
+  font-weight: 700;
+  color: var(--vp-c-brand-1);
+  background: var(--vp-c-brand-soft);
+  border: 1px solid var(--vp-c-brand-1);
+  border-radius: 4px;
+  cursor: pointer;
+  white-space: nowrap;
+}
+.item-source-popover {
+  position: fixed;
+  z-index: 100;
+  max-width: 320px;
+  padding: 10px 12px;
+  background: var(--vp-c-bg-elv, var(--vp-c-bg-soft));
+  border: 1px solid var(--vp-c-divider);
+  border-radius: 8px;
+  box-shadow: 0 4px 16px rgba(0, 0, 0, 0.15);
+  font-size: 0.85rem;
+  line-height: 1.6;
+  color: var(--vp-c-text-1);
+}
+.item-source-popover-label {
+  font-weight: 700;
+  font-size: 0.8rem;
+  color: var(--vp-c-text-2);
+  margin-bottom: 4px;
+}
+.item-source-popover-caution {
+  margin-top: 6px;
+  color: #92400e;
+  font-size: 0.8rem;
 }
 .item-boost-block {
   margin-top: 6px;
@@ -250,6 +313,13 @@ Anno 117 の専門家が装着できる全アイテムの一覧です。分類�
   <div style="min-width:350px;word-break:break-all;">
     {{ item.nameJa }}
     <span v-if="item.caution" class="item-caution-badge" :title="item.caution">要検証</span>
+    <span
+      v-if="item.source"
+      class="item-source-badge"
+      @mouseenter="showSourcePopover(item, $event)"
+      @mouseleave="hideSourcePopover"
+      @click.stop="toggleSourcePopover(item, $event)"
+    >取得先</span>
   </div>
 </td>
 <td>{{ item.rarityJa }}</td>
@@ -282,6 +352,11 @@ Anno 117 の専門家が装着できる全アイテムの一覧です。分類�
   <div class="item-card-header">
     <span>{{ item.nameJa }}</span>
     <span v-if="item.caution" class="item-caution-badge" :title="item.caution">要検証</span>
+    <span
+      v-if="item.source"
+      class="item-source-badge"
+      @click.stop="toggleSourcePopover(item, $event)"
+    >取得先</span>
   </div>
   <div class="item-card-body">
     <div class="item-card-meta">
@@ -316,6 +391,20 @@ Anno 117 の専門家が装着できる全アイテムの一覧です。分類�
   </div>
 </div>
 </div>
+
+<Teleport to="body">
+  <div
+    v-if="sourcePopover"
+    class="item-source-popover"
+    :style="{ left: sourcePopover.x + 'px', top: sourcePopover.y + 'px' }"
+    @mouseleave="hideSourcePopover"
+    @click.stop
+  >
+    <div class="item-source-popover-label">取得先</div>
+    <div>{{ sourcePopover.item.source }}</div>
+    <div v-if="sourcePopover.item.sourceCaution" class="item-source-popover-caution">※内部名から独自に意訳した箇所を含むため要検証</div>
+  </div>
+</Teleport>
 
 ## 関連ガイド
 

@@ -564,6 +564,184 @@ def tr_condition(raw):
 
     return "、".join(p for p in merged_parts if p)
 
+# --- Source（取得先）ローカライズ ---
+# ライバル専門家・商人・皇帝・海賊のRewardPool内部名（英語・未ローカライズ）を日本語化する。
+# 対応表はゲーム内テキスト（撃破報酬 ItemGainedWhenDefeated のGUID解決結果、および
+# portrait画像ファイル名 portrait_{rival,trader,pirate,emperor}_<name>.png）から確認したもの。
+# Zarai(ゲーム内表記はZara Nitu)・Nefeneru(ゲーム内表記はNeferneru)・Procurator(実名はCorvinus)・
+# Julia(単発イベント名経由でしか確認できず用途不明)は内部名とゲーム内表記が完全一致しないため要検証扱いとする。
+NPC_NAME_JA = {
+    "Dorian": "ドリアン", "Tarragon": "タラゴン", "Licia": "リシア・マー", "Athr": "アサール",
+    "Zarai": "ザラ・ニトゥ", "Concordia": "コンコルディア", "Nefeneru": "ネフェルネル",
+    "Diana": "ディアナ", "Valeria": "ウァレリア", "Procurator": "コルヴィヌス",
+    "Manx": "マンクス", "Caeso": "カエソ", "Voada": "ウォアダ", "Caecilia": "カエシリア",
+    "Calidus": "カリドゥス", "Julia": "ユリア",
+}
+NPC_NAME_UNVERIFIED = {"Zarai", "Nefeneru", "Procurator", "Julia"}
+
+FESTIVAL_ATTR_JA = {
+    "Happiness": "幸福度", "Health": "健康", "Fire Safety": "防火", "Belief": "信仰",
+    "Knowledge": "知識", "Prestige": "名声", "War Victory": "戦勝", "Monument Event": "モニュメント",
+    "Mars": "マルス", "Ceres": "ケレス", "Neptune": "ネプトゥヌス", "Mercury Lugus": "メルクリウス・ルグス",
+    "Epona": "エポナ", "Cernunnos": "ケルヌンノス", "Minerva": "ミネルウァ", "Vulcan": "ウルカヌス",
+}
+REWARD_KIND_JA = {
+    "Trades": "取引", "Contracts Base": "契約（並）", "Contracts Good": "契約（良）",
+    "Contracts Best": "契約（最高）", "Drops": "撃破ドロップ",
+}
+ENDGAME_TECH_JA = {"EconomyTech": "経済", "CivicTech": "市民", "MilitaryTech": "軍事", "RacerTech": "レース"}
+VISITOR_RARITY_JA = {
+    "Common": "コモン", "Rare": "レア", "Epic": "エピック", "Legendary": "レジェンダリー", "Mythic": "ヒロイック",
+}
+
+print("building RewardPool map...", file=sys.stderr)
+_reward_pool_re = re.compile(
+    r"<Template>Reward(?:Pool|List)</Template>\s*<Values>\s*<Standard>\s*<GUID>(-?\d+)</GUID>\s*<Name>(.*?)</Name>",
+    re.S,
+)
+reward_pools = dict(_reward_pool_re.findall(ASSETS.read_text(encoding="utf-8")))
+
+print("building QuestEntry map...", file=sys.stderr)
+# 正規表現の非貪欲マッチ(.*?)はAsset境界を越えて誤マッチすることがあるため、
+# asset_oasis構築と同じ逐次パース方式（<Standard>でGUID確定→直後の最初の
+# 対象タグに紐付け）で確実に対応付ける。
+quest_entry_name_guid = {}
+_qe_cur_guid = None
+_qe_in_standard = False
+_qe_got_for = set()
+for _line in ASSETS.read_text(encoding="utf-8").splitlines():
+    _s = _line.strip()
+    if _s == "<Standard>":
+        _qe_in_standard = True
+        _qe_cur_guid = None
+        continue
+    if _qe_in_standard:
+        _mg = re.match(r"<GUID>(-?\d+)</GUID>", _s)
+        if _mg and _qe_cur_guid is None:
+            _qe_cur_guid = _mg.group(1)
+        if _s == "</Standard>":
+            _qe_in_standard = False
+        continue
+    if _qe_cur_guid is not None and _qe_cur_guid not in _qe_got_for:
+        _mq = re.match(r"<QuestName>(-?\d+)</QuestName>", _s)
+        if _mq:
+            quest_entry_name_guid[_qe_cur_guid] = _mq.group(1)
+            _qe_got_for.add(_qe_cur_guid)
+            _qe_cur_guid = None
+
+def resolve_quest_name(guid):
+    """クエストGUID→クエスト名。直引き失敗時はQuestEntryテンプレート経由で二次解決する。"""
+    name = resolve_guid_ja(guid)
+    if not name.startswith("#"):
+        return name
+    qn_guid = quest_entry_name_guid.get(guid)
+    if qn_guid:
+        name2 = resolve_guid_ja(qn_guid)
+        if not name2.startswith("#"):
+            return name2
+    return None
+
+def translate_reward_pool_name(name):
+    """RewardPool/RewardList内部名（英語・未ローカライズ）を日本語化する。
+    戻り値: (日本語文字列, 要検証フラグ)"""
+    m = re.match(r"^RewardPool Festival (.+)$", name)
+    if m:
+        attr = FESTIVAL_ATTR_JA.get(m.group(1))
+        if attr:
+            return f"{attr}祭りの報酬", False
+        return name, True
+    m = re.match(r"^RewardList Endgame (\w+)$", name)
+    if m:
+        tech = ENDGAME_TECH_JA.get(m.group(1))
+        if tech:
+            return f"エンドゲーム技術報酬（{tech}）", False
+        return name, True
+    m = re.match(r"^RewardPool All Visitor Items (\w+)$", name)
+    if m:
+        rarity_ja = VISITOR_RARITY_JA.get(m.group(1))
+        if rarity_ja:
+            return f"来訪者イベントの報酬（{rarity_ja}）", False
+        return name, True
+    m = re.match(r"^Reward(?:Pool|List) (\w+) (.+)$", name)
+    if m:
+        npc, kind = m.groups()
+        npc_ja = NPC_NAME_JA.get(npc)
+        kind_ja = REWARD_KIND_JA.get(kind)
+        if npc_ja and kind_ja:
+            return f"{npc_ja}との{kind_ja}", npc in NPC_NAME_UNVERIFIED
+    return name, True
+
+def resolve_source(raw):
+    """Source列の生データを日本語テキストに変換する。
+    戻り値: (日本語文字列, 要検証フラグ)"""
+    raw = (raw or "").strip()
+    if not raw:
+        return "", False
+    caution = False
+    # fixed: Quest/HallofFame/撃破報酬など、確実な入手経路（そのまま列挙する）。
+    # pool: NPC交易/契約/撃破ドロップ・祭り報酬など、確率つきのランダム抽選プール。
+    # 候補数が閾値を超える場合は実質「共通ドロッププール」なので1行に集約する
+    # （例: 421件中286件が11件以上の候補を持ち、個別列挙するとポップオーバーが
+    # 最大74行になり情報過多になるため）。
+    fixed = []
+    pool = []
+    for part in raw.split("|"):
+        part = part.strip()
+        if not part:
+            continue
+        m = re.match(r"^(\w+):\s*(-?\d+)$", part)
+        if m:
+            kind, g = m.groups()
+            if kind == "Quest":
+                name = resolve_quest_name(g)
+                if name:
+                    fixed.append(f"クエスト「{name}」")
+                else:
+                    fixed.append("クエスト報酬")
+                    caution = True
+            elif kind == "HallofFame":
+                fixed.append("栄誉の殿堂")
+            elif kind == "ItemGainedWhenDefeated":
+                name = resolve_guid_ja(g)
+                if not name.startswith("#"):
+                    fixed.append(f"{name}を撃破")
+                else:
+                    fixed.append("ライバル撃破報酬")
+                    caution = True
+            else:
+                fixed.append(part)
+                caution = True
+            continue
+        m2 = re.match(r"^(-?\d+)\s*\[([\d.]+)%\]$", part)
+        if m2:
+            g, pct = m2.groups()
+            pool_name = reward_pools.get(g)
+            if pool_name:
+                ja, cau = translate_reward_pool_name(pool_name)
+                pool.append((f"{ja}（{pct}%）", cau))
+            else:
+                pool.append(("不明な報酬プール", True))
+            continue
+        fixed.append(part)
+        caution = True
+
+    POOL_THRESHOLD = 11
+    if len(pool) >= POOL_THRESHOLD:
+        results = fixed + ["多数の交易商・祭りからランダム入手（低確率）"]
+    else:
+        results = fixed + [p for p, _ in pool]
+        caution = caution or any(cau for _, cau in pool)
+
+    seen = set()
+    uniq = []
+    for r in results:
+        if r not in seen:
+            seen.add(r)
+            uniq.append(r)
+    return "、".join(uniq), caution
+
+ALLOCATION_JA = {"Villa": "住居", "Ship": "船"}
+
 items = []
 with CSV.open(encoding="utf-8") as f:
     for r in csv.DictReader(f):
@@ -573,6 +751,7 @@ with CSV.open(encoding="utf-8") as f:
         if needed_prestige:
             effects.append(f"必要名声: {needed_prestige}")
         effects.extend(tr_effects(r.get("MythicEffect Effects", "")))
+        source_ja, source_caution = resolve_source(r.get("Source", ""))
         items.append({
             "guid": guid,
             "nameJa": clean(JP.get(r["Name"], "")) or clean(EN.get(r["Name"], "")) or "",
@@ -586,6 +765,9 @@ with CSV.open(encoding="utf-8") as f:
             "boostEffects": tr_effects(r.get("BoostBuff Effects", "")),
             "boostCondition": tr_condition(r.get("Boost Condition", "")),
             "targets": format_targets(r.get("Targets", "")),
+            "source": source_ja,
+            "sourceCaution": source_caution,
+            "allocation": ALLOCATION_JA.get((r.get("Allocation") or "").strip(), ""),
         })
 
 OUT.write_text(json.dumps(items, ensure_ascii=False, indent=2), encoding="utf-8")
@@ -598,3 +780,6 @@ miss = sum(1 for i in items if not i["nameJa"])
 print(f"nameJa空: {miss}", file=sys.stderr)
 unresolved = sum(1 for i in items for e in i["effects"] if "#" in e)
 print(f"効果内 未解決GUID(#)を含む行数: {unresolved}", file=sys.stderr)
+source_empty = sum(1 for i in items if not i["source"])
+source_caution = sum(1 for i in items if i["sourceCaution"])
+print(f"取得先(source) 空: {source_empty} / 要検証: {source_caution}", file=sys.stderr)

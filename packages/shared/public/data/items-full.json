@@ -21,7 +21,10 @@
       "リベルトゥスの労働力も同量提供する"
     ],
     "boostCondition": "特性 島の上: 健康 1000以上",
-    "targets": "エクィテスの住居"
+    "targets": "エクィテスの住居",
+    "source": "ドリアンを撃破",
+    "sourceCaution": false,
+    "allocation": "住居"
   },
   {
     "guid": "41352",
@@ -45,7 +48,10 @@
       "リベルトゥスの労働力も同量提供する"
     ],
     "boostCondition": "特性 島の上: 幸福度 1000以上",
-    "targets": "プレブスの住居"
+    "targets": "プレブスの住居",
+    "source": "タラゴンを撃破",
+    "sourceCaution": false,
+    "allocation": "住居"
   },
   {
     "guid": "41351",
@@ -69,7 +75,10 @@
       "プレブスの労働力も同量提供する"
     ],
     "boostCondition": "特性 島の上: 名声 10000以上",
-    "targets": "エクィテスの住居"
+    "targets": "エクィテスの住居",
+    "source": "リシア・マーを撃破",
+    "sourceCaution": false,
+    "allocation": "住居"
   },
   {
     "guid": "41355",
@@ -93,7 +102,10 @@
       "ウェーダーの労働力も同量提供する"
     ],
     "boostCondition": "特性 島の上: 火災安全度 1000以上",
-    "targets": "スミスの住居、アルダーの住居"
+    "targets": "スミスの住居、アルダーの住居",
+    "source": "アサール・イオルグウィンを撃破",
+    "sourceCaution": false,
+    "allocation": "住居"
   },
   {
     "guid": "41353",
@@ -117,7 +129,10 @@
       "プレブスの労働力も同量提供する"
     ],
     "boostCondition": "特性 島の上: 知識 10000以上",
-    "targets": "パトリキの住居"
+    "targets": "パトリキの住居",
+    "source": "ザラ・ニトゥを撃破",
+    "sourceCaution": false,
+    "allocation": "住居"
   },
   {
     "guid": "41354",
@@ -141,7 +156,10 @@
       "リベルトゥスの労働力も同量提供する"
     ],
     "boostCondition": "特性 島の上: 信仰 10000以上",
-    "targets": "パトリキの住居"
+    "targets": "パトリキの住居",
+    "source": "コンコルディアを撃破",
+    "sourceCaution": false,
+    "allocation": "住居"
   },
   {
     "guid": "41360",
@@ -165,7 +183,10 @@
       "ウェーダーの労働力も同量提供する"
     ],
     "boostCondition": "特性 島の上: 収入 10000以上",
-    "targets": "メルカトルの住居、ノビレスの住居"
+    "targets": "メルカトルの住居、ノビレスの住居",
+    "source": "ネフェルネルを撃破",
+    "sourceCaution": false,
+    "allocation": "住居"
   },
   {
     "guid": "42625",
@@ -189,7 +210,10 @@
       "発見範囲: +200%"
     ],
     "boostCondition": "海軍力: 5000以下、現在 属州",
-    "targets": "船"
+    "targets": "船",
+    "source": "栄誉の殿堂",
+    "sourceCaution": false,
+    "allocation": "船"
   },
   {
     "guid": "42049",
@@ -209,7 +233,10 @@
       "範囲効果: 収入 +2"
     ],
     "boostCondition": "建設: 住居 600以上",
-    "targets": "市場"
+    "targets": "市場",
+    "source": "栄誉の殿堂",
+    "sourceCaution": false,
+    "allocation": "住居"
   },
   {
     "guid": "42050",
@@ -231,7 +258,10 @@
       "範囲効果: 知識 +1"
     ],
     "boostCondition": "建設: 狩猟小屋 10以上",
-    "targets": "聖域、聖所"
+    "targets": "聖域、聖所",
+    "source": "栄誉の殿堂",
+    "sourceCaution": false,
+    "allocation": "住居"
   },
   {
     "guid": "91415",
@@ -256,7 +286,10 @@
       "攻撃速度: +10%"
     ],
     "boostCondition": "建設: 都市警備 50以上",
-    "targets": "塔"
+    "targets": "塔",
+    "source": "栄誉の殿堂",
+    "sourceCaution": false,
+    "allocation": "住居"
   },
   {
     "guid": "91417",
@@ -280,7 +313,10 @@
       "葦の靴: 名声 +3"
     ],
     "boostCondition": "以下のアイテムを使う: すべてのアイテム 4以上",
-    "targets": "住居"
+    "targets": "住居",
+    "source": "栄誉の殿堂",
+    "sourceCaution": false,
+    "allocation": "住居"
   },
   {
     "guid": "91419",
@@ -300,7 +336,10 @@
       "知識: +35%"
     ],
     "boostCondition": "品物 島の貯蔵所: 筆記板 150以上、現在の島",
-    "targets": "住居"
+    "targets": "住居",
+    "source": "栄誉の殿堂",
+    "sourceCaution": false,
+    "allocation": "住居"
   },
   {
     "guid": "91421",
@@ -320,7 +359,10 @@
       "住民による労働力: +40%"
     ],
     "boostCondition": "皇帝 アクティブ: グナエウス・フィルミウス・カリドゥス",
-    "targets": "リベルトゥスとウェーダーの住居"
+    "targets": "リベルトゥスとウェーダーの住居",
+    "source": "栄誉の殿堂",
+    "sourceCaution": false,
+    "allocation": "住居"
   },
   {
     "guid": "71438",
@@ -336,7 +378,10 @@
     "boostHint": "",
     "boostEffects": [],
     "boostCondition": "",
-    "targets": "市場"
+    "targets": "市場",
+    "source": "クエスト「双子の原石」",
+    "sourceCaution": false,
+    "allocation": "住居"
   },
   {
     "guid": "71441",
@@ -352,7 +397,10 @@
     "boostHint": "",
     "boostEffects": [],
     "boostCondition": "",
-    "targets": "住居"
+    "targets": "住居",
+    "source": "クエスト「双子の原石」",
+    "sourceCaution": false,
+    "allocation": "住居"
   },
   {
     "guid": "44431",
@@ -369,7 +417,10 @@
     "boostHint": "",
     "boostEffects": [],
     "boostCondition": "",
-    "targets": "耕作可能な農場"
+    "targets": "耕作可能な農場",
+    "source": "クエスト「おとぎ話の怪物」",
+    "sourceCaution": false,
+    "allocation": "住居"
   },
   {
     "guid": "94567",
@@ -386,7 +437,10 @@
     "boostHint": "",
     "boostEffects": [],
     "boostCondition": "",
-    "targets": "住居"
+    "targets": "住居",
+    "source": "クエスト「外交: ケルトの捕虜」",
+    "sourceCaution": false,
+    "allocation": "住居"
   },
   {
     "guid": "125560",
@@ -402,7 +456,10 @@
     "boostHint": "",
     "boostEffects": [],
     "boostCondition": "",
-    "targets": "監視塔"
+    "targets": "監視塔",
+    "source": "クエスト「横領者の裁判」",
+    "sourceCaution": false,
+    "allocation": "住居"
   },
   {
     "guid": "95403",
@@ -419,7 +476,10 @@
     "boostHint": "",
     "boostEffects": [],
     "boostCondition": "",
-    "targets": "沿岸工場"
+    "targets": "沿岸工場",
+    "source": "クエスト「百合の購入」",
+    "sourceCaution": false,
+    "allocation": "住居"
   },
   {
     "guid": "96815",
@@ -437,7 +497,10 @@
     "boostHint": "",
     "boostEffects": [],
     "boostCondition": "",
-    "targets": "船"
+    "targets": "船",
+    "source": "クエスト「謎のムルミロ戦士 第２部、第１幕」",
+    "sourceCaution": false,
+    "allocation": "船"
   },
   {
     "guid": "96821",
@@ -455,7 +518,10 @@
     "boostHint": "",
     "boostEffects": [],
     "boostCondition": "",
-    "targets": "都市警備"
+    "targets": "都市警備",
+    "source": "クエスト「謎のムルミロ戦士 第２部、第２幕」",
+    "sourceCaution": false,
+    "allocation": "住居"
   },
   {
     "guid": "96819",
@@ -473,7 +539,10 @@
     "boostHint": "",
     "boostEffects": [],
     "boostCondition": "",
-    "targets": "精製所"
+    "targets": "精製所",
+    "source": "クエスト「謎のムルミロ戦士 第6部」",
+    "sourceCaution": false,
+    "allocation": "住居"
   },
   {
     "guid": "50890",
@@ -495,7 +564,10 @@
       "範囲効果: 火災安全度 +1.5"
     ],
     "boostCondition": "有効な島の祭神: マルス",
-    "targets": "製錬所、武器庫"
+    "targets": "製錬所、武器庫",
+    "source": "クエスト「謎のムルミロ戦士 第6部」",
+    "sourceCaution": false,
+    "allocation": "住居"
   },
   {
     "guid": "96817",
@@ -512,7 +584,10 @@
     "boostHint": "",
     "boostEffects": [],
     "boostCondition": "",
-    "targets": "調理場"
+    "targets": "調理場",
+    "source": "クエスト「謎のムルミロ戦士 第6部」",
+    "sourceCaution": false,
+    "allocation": "住居"
   },
   {
     "guid": "88062",
@@ -529,7 +604,10 @@
     "boostHint": "",
     "boostEffects": [],
     "boostCondition": "",
-    "targets": "大麦農場"
+    "targets": "大麦農場",
+    "source": "クエスト「税務仕事」",
+    "sourceCaution": false,
+    "allocation": "住居"
   },
   {
     "guid": "93989",
@@ -546,7 +624,10 @@
     "boostHint": "",
     "boostEffects": [],
     "boostCondition": "",
-    "targets": "住居"
+    "targets": "住居",
+    "source": "クエスト「鷲の影」",
+    "sourceCaution": false,
+    "allocation": "住居"
   },
   {
     "guid": "94541",
@@ -572,7 +653,10 @@
       "同時修復: +1"
     ],
     "boostCondition": "壁 25以上、現在の島",
-    "targets": "修理クレーン"
+    "targets": "修理クレーン",
+    "source": "クエスト「帰郷」",
+    "sourceCaution": false,
+    "allocation": "住居"
   },
   {
     "guid": "94555",
@@ -596,7 +680,10 @@
       "松明の攻撃速度: +40%"
     ],
     "boostCondition": "交易所 10以上",
-    "targets": "船"
+    "targets": "船",
+    "source": "クエスト「帰郷」",
+    "sourceCaution": false,
+    "allocation": "船"
   },
   {
     "guid": "90573",
@@ -613,7 +700,10 @@
     "boostHint": "",
     "boostEffects": [],
     "boostCondition": "",
-    "targets": "住居"
+    "targets": "住居",
+    "source": "",
+    "sourceCaution": false,
+    "allocation": "住居"
   },
   {
     "guid": "109532",
@@ -630,7 +720,10 @@
     "boostHint": "",
     "boostEffects": [],
     "boostCondition": "",
-    "targets": "住居"
+    "targets": "住居",
+    "source": "クエスト「分別と適性」",
+    "sourceCaution": false,
+    "allocation": "住居"
   },
   {
     "guid": "82419",
@@ -646,7 +739,10 @@
     "boostHint": "",
     "boostEffects": [],
     "boostCondition": "",
-    "targets": "トイレ"
+    "targets": "トイレ",
+    "source": "クエスト「重く沈む心持ち」",
+    "sourceCaution": false,
+    "allocation": "住居"
   },
   {
     "guid": "82777",
@@ -664,7 +760,10 @@
     "boostHint": "",
     "boostEffects": [],
     "boostCondition": "",
-    "targets": "住居"
+    "targets": "住居",
+    "source": "クエスト「イカレ料理人」",
+    "sourceCaution": false,
+    "allocation": "住居"
   },
   {
     "guid": "83553",
@@ -681,7 +780,10 @@
     "boostHint": "",
     "boostEffects": [],
     "boostCondition": "",
-    "targets": "船"
+    "targets": "船",
+    "source": "クエスト「名誉の宴」",
+    "sourceCaution": false,
+    "allocation": "船"
   },
   {
     "guid": "121725",
@@ -699,7 +801,10 @@
     "boostHint": "",
     "boostEffects": [],
     "boostCondition": "",
-    "targets": "船"
+    "targets": "船",
+    "source": "クエスト「英雄的偉業」",
+    "sourceCaution": false,
+    "allocation": "船"
   },
   {
     "guid": "121727",
@@ -717,7 +822,10 @@
     "boostHint": "",
     "boostEffects": [],
     "boostCondition": "",
-    "targets": "船"
+    "targets": "船",
+    "source": "クエスト「英雄的偉業」",
+    "sourceCaution": false,
+    "allocation": "船"
   },
   {
     "guid": "64944",
@@ -733,7 +841,10 @@
     "boostHint": "",
     "boostEffects": [],
     "boostCondition": "",
-    "targets": "住居"
+    "targets": "住居",
+    "source": "クエスト「サイコロの落ちるままに」、多数の交易商・祭りからランダム入手（低確率）",
+    "sourceCaution": false,
+    "allocation": "住居"
   },
   {
     "guid": "64949",
@@ -749,7 +860,10 @@
     "boostHint": "",
     "boostEffects": [],
     "boostCondition": "",
-    "targets": "住居"
+    "targets": "住居",
+    "source": "クエスト「飲み物を分け与える」、多数の交易商・祭りからランダム入手（低確率）",
+    "sourceCaution": false,
+    "allocation": "住居"
   },
   {
     "guid": "64950",
@@ -765,7 +879,10 @@
     "boostHint": "",
     "boostEffects": [],
     "boostCondition": "",
-    "targets": "住居"
+    "targets": "住居",
+    "source": "多数の交易商・祭りからランダム入手（低確率）",
+    "sourceCaution": false,
+    "allocation": "住居"
   },
   {
     "guid": "64951",
@@ -781,7 +898,10 @@
     "boostHint": "",
     "boostEffects": [],
     "boostCondition": "",
-    "targets": "住居"
+    "targets": "住居",
+    "source": "多数の交易商・祭りからランダム入手（低確率）",
+    "sourceCaution": false,
+    "allocation": "住居"
   },
   {
     "guid": "64952",
@@ -797,7 +917,10 @@
     "boostHint": "",
     "boostEffects": [],
     "boostCondition": "",
-    "targets": "住居"
+    "targets": "住居",
+    "source": "多数の交易商・祭りからランダム入手（低確率）",
+    "sourceCaution": false,
+    "allocation": "住居"
   },
   {
     "guid": "64953",
@@ -813,7 +936,10 @@
     "boostHint": "",
     "boostEffects": [],
     "boostCondition": "",
-    "targets": "住居"
+    "targets": "住居",
+    "source": "多数の交易商・祭りからランダム入手（低確率）",
+    "sourceCaution": false,
+    "allocation": "住居"
   },
   {
     "guid": "64954",
@@ -829,7 +955,10 @@
     "boostHint": "",
     "boostEffects": [],
     "boostCondition": "",
-    "targets": "住居"
+    "targets": "住居",
+    "source": "多数の交易商・祭りからランダム入手（低確率）",
+    "sourceCaution": false,
+    "allocation": "住居"
   },
   {
     "guid": "140338",
@@ -845,7 +974,10 @@
     "boostHint": "",
     "boostEffects": [],
     "boostCondition": "",
-    "targets": "住居"
+    "targets": "住居",
+    "source": "多数の交易商・祭りからランダム入手（低確率）",
+    "sourceCaution": false,
+    "allocation": "住居"
   },
   {
     "guid": "140344",
@@ -861,7 +993,10 @@
     "boostHint": "",
     "boostEffects": [],
     "boostCondition": "",
-    "targets": "住居"
+    "targets": "住居",
+    "source": "多数の交易商・祭りからランダム入手（低確率）",
+    "sourceCaution": false,
+    "allocation": "住居"
   },
   {
     "guid": "140355",
@@ -877,7 +1012,10 @@
     "boostHint": "",
     "boostEffects": [],
     "boostCondition": "",
-    "targets": "住居"
+    "targets": "住居",
+    "source": "多数の交易商・祭りからランダム入手（低確率）",
+    "sourceCaution": false,
+    "allocation": "住居"
   },
   {
     "guid": "140388",
@@ -893,7 +1031,10 @@
     "boostHint": "",
     "boostEffects": [],
     "boostCondition": "",
-    "targets": "住居"
+    "targets": "住居",
+    "source": "多数の交易商・祭りからランダム入手（低確率）",
+    "sourceCaution": false,
+    "allocation": "住居"
   },
   {
     "guid": "140403",
@@ -909,7 +1050,10 @@
     "boostHint": "",
     "boostEffects": [],
     "boostCondition": "",
-    "targets": "住居"
+    "targets": "住居",
+    "source": "多数の交易商・祭りからランダム入手（低確率）",
+    "sourceCaution": false,
+    "allocation": "住居"
   },
   {
     "guid": "140405",
@@ -925,7 +1069,10 @@
     "boostHint": "",
     "boostEffects": [],
     "boostCondition": "",
-    "targets": "住居"
+    "targets": "住居",
+    "source": "多数の交易商・祭りからランダム入手（低確率）",
+    "sourceCaution": false,
+    "allocation": "住居"
   },
   {
     "guid": "140407",
@@ -941,7 +1088,10 @@
     "boostHint": "",
     "boostEffects": [],
     "boostCondition": "",
-    "targets": "住居"
+    "targets": "住居",
+    "source": "多数の交易商・祭りからランダム入手（低確率）",
+    "sourceCaution": false,
+    "allocation": "住居"
   },
   {
     "guid": "64945",
@@ -957,7 +1107,10 @@
     "boostHint": "",
     "boostEffects": [],
     "boostCondition": "",
-    "targets": "住居"
+    "targets": "住居",
+    "source": "多数の交易商・祭りからランダム入手（低確率）",
+    "sourceCaution": false,
+    "allocation": "住居"
   },
   {
     "guid": "64961",
@@ -973,7 +1126,10 @@
     "boostHint": "",
     "boostEffects": [],
     "boostCondition": "",
-    "targets": "住居"
+    "targets": "住居",
+    "source": "多数の交易商・祭りからランダム入手（低確率）",
+    "sourceCaution": false,
+    "allocation": "住居"
   },
   {
     "guid": "64962",
@@ -989,7 +1145,10 @@
     "boostHint": "",
     "boostEffects": [],
     "boostCondition": "",
-    "targets": "住居"
+    "targets": "住居",
+    "source": "多数の交易商・祭りからランダム入手（低確率）",
+    "sourceCaution": false,
+    "allocation": "住居"
   },
   {
     "guid": "64963",
@@ -1005,7 +1164,10 @@
     "boostHint": "",
     "boostEffects": [],
     "boostCondition": "",
-    "targets": "住居"
+    "targets": "住居",
+    "source": "多数の交易商・祭りからランダム入手（低確率）",
+    "sourceCaution": false,
+    "allocation": "住居"
   },
   {
     "guid": "64964",
@@ -1021,7 +1183,10 @@
     "boostHint": "",
     "boostEffects": [],
     "boostCondition": "",
-    "targets": "住居"
+    "targets": "住居",
+    "source": "クエスト「燃えるような熱」、多数の交易商・祭りからランダム入手（低確率）",
+    "sourceCaution": false,
+    "allocation": "住居"
   },
   {
     "guid": "64965",
@@ -1037,7 +1202,10 @@
     "boostHint": "",
     "boostEffects": [],
     "boostCondition": "",
-    "targets": "住居"
+    "targets": "住居",
+    "source": "クエスト「燃えるような熱」、多数の交易商・祭りからランダム入手（低確率）",
+    "sourceCaution": false,
+    "allocation": "住居"
   },
   {
     "guid": "64966",
@@ -1053,7 +1221,10 @@
     "boostHint": "",
     "boostEffects": [],
     "boostCondition": "",
-    "targets": "住居"
+    "targets": "住居",
+    "source": "クエスト「飲み物を分け与える」、多数の交易商・祭りからランダム入手（低確率）",
+    "sourceCaution": false,
+    "allocation": "住居"
   },
   {
     "guid": "106956",
@@ -1073,7 +1244,10 @@
       "名声: +0.5"
     ],
     "boostCondition": "試合中: 壮大な模擬海戦, 壮大な剣闘士の試合, 地元の剣闘士の試合",
-    "targets": "住居"
+    "targets": "住居",
+    "source": "多数の交易商・祭りからランダム入手（低確率）",
+    "sourceCaution": false,
+    "allocation": "住居"
   },
   {
     "guid": "80677",
@@ -1093,7 +1267,10 @@
       "知識: +0.5"
     ],
     "boostCondition": "有効な島の祭神: マルス",
-    "targets": "住居"
+    "targets": "住居",
+    "source": "多数の交易商・祭りからランダム入手（低確率）",
+    "sourceCaution": false,
+    "allocation": "住居"
   },
   {
     "guid": "79927",
@@ -1113,7 +1290,10 @@
       "知識: +3"
     ],
     "boostCondition": "建設: 浴場 3以上",
-    "targets": "住居"
+    "targets": "住居",
+    "source": "クエスト「運動シンポジウム」、多数の交易商・祭りからランダム入手（低確率）",
+    "sourceCaution": false,
+    "allocation": "住居"
   },
   {
     "guid": "51280",
@@ -1133,7 +1313,10 @@
       "名声: +3"
     ],
     "boostCondition": "特性 島の上: 人々 5000以下",
-    "targets": "住居"
+    "targets": "住居",
+    "source": "多数の交易商・祭りからランダム入手（低確率）",
+    "sourceCaution": false,
+    "allocation": "住居"
   },
   {
     "guid": "107596",
@@ -1153,7 +1336,10 @@
       "火災安全度: +3"
     ],
     "boostCondition": "現在の評判 皇帝: 支持者;お気に入り",
-    "targets": "住居"
+    "targets": "住居",
+    "source": "多数の交易商・祭りからランダム入手（低確率）",
+    "sourceCaution": false,
+    "allocation": "住居"
   },
   {
     "guid": "42046",
@@ -1173,7 +1359,10 @@
       "健康: +3"
     ],
     "boostCondition": "外交状態: 同盟、タラゴン",
-    "targets": "住居"
+    "targets": "住居",
+    "source": "多数の交易商・祭りからランダム入手（低確率）",
+    "sourceCaution": false,
+    "allocation": "住居"
   },
   {
     "guid": "80192",
@@ -1193,7 +1382,10 @@
       "信仰: +0.5"
     ],
     "boostCondition": "建設: ラテン語学校 15以上",
-    "targets": "住居"
+    "targets": "住居",
+    "source": "クエスト「仕事に戻る」、多数の交易商・祭りからランダム入手（低確率）",
+    "sourceCaution": false,
+    "allocation": "住居"
   },
   {
     "guid": "51316",
@@ -1210,7 +1402,10 @@
     "boostHint": "",
     "boostEffects": [],
     "boostCondition": "",
-    "targets": "採集者"
+    "targets": "採集者",
+    "source": "多数の交易商・祭りからランダム入手（低確率）",
+    "sourceCaution": false,
+    "allocation": "住居"
   },
   {
     "guid": "51328",
@@ -1227,7 +1422,10 @@
     "boostHint": "",
     "boostEffects": [],
     "boostCondition": "",
-    "targets": "食料雑貨商"
+    "targets": "食料雑貨商",
+    "source": "多数の交易商・祭りからランダム入手（低確率）",
+    "sourceCaution": false,
+    "allocation": "住居"
   },
   {
     "guid": "51330",
@@ -1244,7 +1442,10 @@
     "boostHint": "",
     "boostEffects": [],
     "boostCondition": "",
-    "targets": "抽出機"
+    "targets": "抽出機",
+    "source": "多数の交易商・祭りからランダム入手（低確率）",
+    "sourceCaution": false,
+    "allocation": "住居"
   },
   {
     "guid": "51334",
@@ -1261,7 +1462,10 @@
     "boostHint": "",
     "boostEffects": [],
     "boostCondition": "",
-    "targets": "製錬所"
+    "targets": "製錬所",
+    "source": "多数の交易商・祭りからランダム入手（低確率）",
+    "sourceCaution": false,
+    "allocation": "住居"
   },
   {
     "guid": "51338",
@@ -1278,7 +1482,10 @@
     "boostHint": "",
     "boostEffects": [],
     "boostCondition": "",
-    "targets": "服屋"
+    "targets": "服屋",
+    "source": "多数の交易商・祭りからランダム入手（低確率）",
+    "sourceCaution": false,
+    "allocation": "住居"
   },
   {
     "guid": "51344",
@@ -1295,7 +1502,10 @@
     "boostHint": "",
     "boostEffects": [],
     "boostCondition": "",
-    "targets": "精製所"
+    "targets": "精製所",
+    "source": "多数の交易商・祭りからランダム入手（低確率）",
+    "sourceCaution": false,
+    "allocation": "住居"
   },
   {
     "guid": "51292",
@@ -1312,7 +1522,10 @@
     "boostHint": "",
     "boostEffects": [],
     "boostCondition": "",
-    "targets": "狩猟小屋、漁場"
+    "targets": "狩猟小屋、漁場",
+    "source": "多数の交易商・祭りからランダム入手（低確率）",
+    "sourceCaution": false,
+    "allocation": "住居"
   },
   {
     "guid": "51324",
@@ -1329,7 +1542,10 @@
     "boostHint": "",
     "boostEffects": [],
     "boostCondition": "",
-    "targets": "牧場"
+    "targets": "牧場",
+    "source": "多数の交易商・祭りからランダム入手（低確率）",
+    "sourceCaution": false,
+    "allocation": "住居"
   },
   {
     "guid": "51336",
@@ -1346,7 +1562,10 @@
     "boostHint": "",
     "boostEffects": [],
     "boostCondition": "",
-    "targets": "調理場"
+    "targets": "調理場",
+    "source": "多数の交易商・祭りからランダム入手（低確率）",
+    "sourceCaution": false,
+    "allocation": "住居"
   },
   {
     "guid": "51346",
@@ -1363,7 +1582,10 @@
     "boostHint": "",
     "boostEffects": [],
     "boostCondition": "",
-    "targets": "武器庫"
+    "targets": "武器庫",
+    "source": "多数の交易商・祭りからランダム入手（低確率）",
+    "sourceCaution": false,
+    "allocation": "住居"
   },
   {
     "guid": "51321",
@@ -1380,7 +1602,10 @@
     "boostHint": "",
     "boostEffects": [],
     "boostCondition": "",
-    "targets": "耕作可能な農場"
+    "targets": "耕作可能な農場",
+    "source": "多数の交易商・祭りからランダム入手（低確率）",
+    "sourceCaution": false,
+    "allocation": "住居"
   },
   {
     "guid": "51326",
@@ -1397,7 +1622,10 @@
     "boostHint": "",
     "boostEffects": [],
     "boostCondition": "",
-    "targets": "鉱山、穴"
+    "targets": "鉱山、穴",
+    "source": "多数の交易商・祭りからランダム入手（低確率）",
+    "sourceCaution": false,
+    "allocation": "住居"
   },
   {
     "guid": "51332",
@@ -1414,7 +1642,10 @@
     "boostHint": "",
     "boostEffects": [],
     "boostCondition": "",
-    "targets": "工房"
+    "targets": "工房",
+    "source": "多数の交易商・祭りからランダム入手（低確率）",
+    "sourceCaution": false,
+    "allocation": "住居"
   },
   {
     "guid": "51340",
@@ -1431,7 +1662,10 @@
     "boostHint": "",
     "boostEffects": [],
     "boostCondition": "",
-    "targets": "農園"
+    "targets": "農園",
+    "source": "多数の交易商・祭りからランダム入手（低確率）",
+    "sourceCaution": false,
+    "allocation": "住居"
   },
   {
     "guid": "51342",
@@ -1448,7 +1682,10 @@
     "boostHint": "",
     "boostEffects": [],
     "boostCondition": "",
-    "targets": "職人アトリエ"
+    "targets": "職人アトリエ",
+    "source": "多数の交易商・祭りからランダム入手（低確率）",
+    "sourceCaution": false,
+    "allocation": "住居"
   },
   {
     "guid": "51551",
@@ -1464,7 +1701,10 @@
     "boostHint": "",
     "boostEffects": [],
     "boostCondition": "",
-    "targets": "養豚場"
+    "targets": "養豚場",
+    "source": "多数の交易商・祭りからランダム入手（低確率）",
+    "sourceCaution": false,
+    "allocation": "住居"
   },
   {
     "guid": "51555",
@@ -1480,7 +1720,10 @@
     "boostHint": "",
     "boostEffects": [],
     "boostCondition": "",
-    "targets": "なめし革工房"
+    "targets": "なめし革工房",
+    "source": "多数の交易商・祭りからランダム入手（低確率）",
+    "sourceCaution": false,
+    "allocation": "住居"
   },
   {
     "guid": "51559",
@@ -1496,7 +1739,10 @@
     "boostHint": "",
     "boostEffects": [],
     "boostCondition": "",
-    "targets": "金細工工房"
+    "targets": "金細工工房",
+    "source": "来訪者イベントの報酬（エピック）（0.935%）、カエソとの取引（0.129%）、カエソとの契約（良）（0.021%）、カエソとの契約（最高）（0.064%）、カエソとの撃破ドロップ（0.020%）",
+    "sourceCaution": false,
+    "allocation": "住居"
   },
   {
     "guid": "51563",
@@ -1512,7 +1758,10 @@
     "boostHint": "",
     "boostEffects": [],
     "boostCondition": "",
-    "targets": "陶工"
+    "targets": "陶工",
+    "source": "多数の交易商・祭りからランダム入手（低確率）",
+    "sourceCaution": false,
+    "allocation": "住居"
   },
   {
     "guid": "51567",
@@ -1528,7 +1777,10 @@
     "boostHint": "",
     "boostEffects": [],
     "boostCondition": "",
-    "targets": "石灰岩の採石場"
+    "targets": "石灰岩の採石場",
+    "source": "多数の交易商・祭りからランダム入手（低確率）",
+    "sourceCaution": false,
+    "allocation": "住居"
   },
   {
     "guid": "51571",
@@ -1544,7 +1796,10 @@
     "boostHint": "",
     "boostEffects": [],
     "boostCondition": "",
-    "targets": "銀工房"
+    "targets": "銀工房",
+    "source": "多数の交易商・祭りからランダム入手（低確率）",
+    "sourceCaution": false,
+    "allocation": "住居"
   },
   {
     "guid": "51575",
@@ -1560,7 +1815,10 @@
     "boostHint": "",
     "boostEffects": [],
     "boostCondition": "",
-    "targets": "羊牧場"
+    "targets": "羊牧場",
+    "source": "多数の交易商・祭りからランダム入手（低確率）",
+    "sourceCaution": false,
+    "allocation": "住居"
   },
   {
     "guid": "51579",
@@ -1576,7 +1834,10 @@
     "boostHint": "",
     "boostEffects": [],
     "boostCondition": "",
-    "targets": "靴職人"
+    "targets": "靴職人",
+    "source": "多数の交易商・祭りからランダム入手（低確率）",
+    "sourceCaution": false,
+    "allocation": "住居"
   },
   {
     "guid": "51378",
@@ -1592,7 +1853,10 @@
     "boostHint": "",
     "boostEffects": [],
     "boostCondition": "",
-    "targets": "ラベンダー農家"
+    "targets": "ラベンダー農家",
+    "source": "多数の交易商・祭りからランダム入手（低確率）",
+    "sourceCaution": false,
+    "allocation": "住居"
   },
   {
     "guid": "51382",
@@ -1608,7 +1872,10 @@
     "boostHint": "",
     "boostEffects": [],
     "boostCondition": "",
-    "targets": "お粥の屋台"
+    "targets": "お粥の屋台",
+    "source": "多数の交易商・祭りからランダム入手（低確率）",
+    "sourceCaution": false,
+    "allocation": "住居"
   },
   {
     "guid": "51390",
@@ -1624,7 +1891,10 @@
     "boostHint": "",
     "boostEffects": [],
     "boostCondition": "",
-    "targets": "織機工"
+    "targets": "織機工",
+    "source": "多数の交易商・祭りからランダム入手（低確率）",
+    "sourceCaution": false,
+    "allocation": "住居"
   },
   {
     "guid": "51394",
@@ -1640,7 +1910,10 @@
     "boostHint": "",
     "boostEffects": [],
     "boostCondition": "",
-    "targets": "大理石工房"
+    "targets": "大理石工房",
+    "source": "多数の交易商・祭りからランダム入手（低確率）",
+    "sourceCaution": false,
+    "allocation": "住居"
   },
   {
     "guid": "51398",
@@ -1656,7 +1929,10 @@
     "boostHint": "",
     "boostEffects": [],
     "boostCondition": "",
-    "targets": "ウナギ漁師"
+    "targets": "ウナギ漁師",
+    "source": "多数の交易商・祭りからランダム入手（低確率）",
+    "sourceCaution": false,
+    "allocation": "住居"
   },
   {
     "guid": "51402",
@@ -1672,7 +1948,10 @@
     "boostHint": "",
     "boostEffects": [],
     "boostCondition": "",
-    "targets": "銀鉱山"
+    "targets": "銀鉱山",
+    "source": "多数の交易商・祭りからランダム入手（低確率）",
+    "sourceCaution": false,
+    "allocation": "住居"
   },
   {
     "guid": "51406",
@@ -1688,7 +1967,10 @@
     "boostHint": "",
     "boostEffects": [],
     "boostCondition": "",
-    "targets": "ソーセージ職人"
+    "targets": "ソーセージ職人",
+    "source": "多数の交易商・祭りからランダム入手（低確率）",
+    "sourceCaution": false,
+    "allocation": "住居"
   },
   {
     "guid": "51410",
@@ -1704,7 +1986,10 @@
     "boostHint": "",
     "boostEffects": [],
     "boostCondition": "",
-    "targets": "かつら職人"
+    "targets": "かつら職人",
+    "source": "多数の交易商・祭りからランダム入手（低確率）",
+    "sourceCaution": false,
+    "allocation": "住居"
   },
   {
     "guid": "51414",
@@ -1720,7 +2005,10 @@
     "boostHint": "",
     "boostEffects": [],
     "boostCondition": "",
-    "targets": "オーロックス牧場"
+    "targets": "オーロックス牧場",
+    "source": "多数の交易商・祭りからランダム入手（低確率）",
+    "sourceCaution": false,
+    "allocation": "住居"
   },
   {
     "guid": "51418",
@@ -1736,7 +2024,10 @@
     "boostHint": "",
     "boostEffects": [],
     "boostCondition": "",
-    "targets": "花崗岩の採石場"
+    "targets": "花崗岩の採石場",
+    "source": "多数の交易商・祭りからランダム入手（低確率）",
+    "sourceCaution": false,
+    "allocation": "住居"
   },
   {
     "guid": "51422",
@@ -1752,7 +2043,10 @@
     "boostHint": "",
     "boostEffects": [],
     "boostCondition": "",
-    "targets": "青銅の製錬工"
+    "targets": "青銅の製錬工",
+    "source": "来訪者イベントの報酬（レア）（0.870%）、コルヴィヌスとの取引（0.425%）、コルヴィヌスとの契約（並）（0.025%）、コルヴィヌスとの契約（良）（0.131%）、コルヴィヌスとの契約（最高）（0.563%）、コルヴィヌスとの撃破ドロップ（0.002%）",
+    "sourceCaution": true,
+    "allocation": "住居"
   },
   {
     "guid": "51426",
@@ -1768,7 +2062,10 @@
     "boostHint": "",
     "boostEffects": [],
     "boostCondition": "",
-    "targets": "地窯"
+    "targets": "地窯",
+    "source": "多数の交易商・祭りからランダム入手（低確率）",
+    "sourceCaution": false,
+    "allocation": "住居"
   },
   {
     "guid": "51430",
@@ -1784,7 +2081,10 @@
     "boostHint": "",
     "boostEffects": [],
     "boostCondition": "",
-    "targets": "ビーバー帽子職人"
+    "targets": "ビーバー帽子職人",
+    "source": "多数の交易商・祭りからランダム入手（低確率）",
+    "sourceCaution": false,
+    "allocation": "住居"
   },
   {
     "guid": "51434",
@@ -1800,7 +2100,10 @@
     "boostHint": "",
     "boostEffects": [],
     "boostCondition": "",
-    "targets": "花崗岩の切断工"
+    "targets": "花崗岩の切断工",
+    "source": "多数の交易商・祭りからランダム入手（低確率）",
+    "sourceCaution": false,
+    "allocation": "住居"
   },
   {
     "guid": "51519",
@@ -1816,7 +2119,10 @@
     "boostHint": "",
     "boostEffects": [],
     "boostCondition": "",
-    "targets": "鉄鉱山"
+    "targets": "鉄鉱山",
+    "source": "多数の交易商・祭りからランダム入手（低確率）",
+    "sourceCaution": false,
+    "allocation": "住居"
   },
   {
     "guid": "51523",
@@ -1832,7 +2138,10 @@
     "boostHint": "",
     "boostEffects": [],
     "boostCondition": "",
-    "targets": "弦張り師"
+    "targets": "弦張り師",
+    "source": "多数の交易商・祭りからランダム入手（低確率）",
+    "sourceCaution": false,
+    "allocation": "住居"
   },
   {
     "guid": "51527",
@@ -1848,7 +2157,10 @@
     "boostHint": "",
     "boostEffects": [],
     "boostCondition": "",
-    "targets": "水の美食家"
+    "targets": "水の美食家",
+    "source": "クエスト「最先端」、多数の交易商・祭りからランダム入手（低確率）",
+    "sourceCaution": false,
+    "allocation": "住居"
   },
   {
     "guid": "51531",
@@ -1864,7 +2176,10 @@
     "boostHint": "",
     "boostEffects": [],
     "boostCondition": "",
-    "targets": "蝋版職人"
+    "targets": "蝋版職人",
+    "source": "多数の交易商・祭りからランダム入手（低確率）",
+    "sourceCaution": false,
+    "allocation": "住居"
   },
   {
     "guid": "51535",
@@ -1880,7 +2195,10 @@
     "boostHint": "",
     "boostEffects": [],
     "boostCondition": "",
-    "targets": "ガラス吹き工"
+    "targets": "ガラス吹き工",
+    "source": "多数の交易商・祭りからランダム入手（低確率）",
+    "sourceCaution": false,
+    "allocation": "住居"
   },
   {
     "guid": "51539",
@@ -1896,7 +2214,10 @@
     "boostHint": "",
     "boostEffects": [],
     "boostCondition": "",
-    "targets": "錫鉱"
+    "targets": "錫鉱",
+    "source": "多数の交易商・祭りからランダム入手（低確率）",
+    "sourceCaution": false,
+    "allocation": "住居"
   },
   {
     "guid": "51543",
@@ -1912,7 +2233,10 @@
     "boostHint": "",
     "boostEffects": [],
     "boostCondition": "",
-    "targets": "銅鉱"
+    "targets": "銅鉱",
+    "source": "来訪者イベントの報酬（レア）（0.870%）、マンクスとの取引（0.436%）、ウォアダとの取引（0.513%）、ウォアダとの契約（並）（0.026%）、ウォアダとの契約（良）（0.135%）、ウォアダとの契約（最高）（0.577%）、ウォアダとの撃破ドロップ（0.080%）",
+    "sourceCaution": false,
+    "allocation": "住居"
   },
   {
     "guid": "51547",
@@ -1928,7 +2252,10 @@
     "boostHint": "",
     "boostEffects": [],
     "boostCondition": "",
-    "targets": "アッケシソウ焼き"
+    "targets": "アッケシソウ焼き",
+    "source": "クエスト「金属との戯れ」、多数の交易商・祭りからランダム入手（低確率）",
+    "sourceCaution": false,
+    "allocation": "住居"
   },
   {
     "guid": "51587",
@@ -1944,7 +2271,10 @@
     "boostHint": "",
     "boostEffects": [],
     "boostCondition": "",
-    "targets": "大理石の採石場"
+    "targets": "大理石の採石場",
+    "source": "多数の交易商・祭りからランダム入手（低確率）",
+    "sourceCaution": false,
+    "allocation": "住居"
   },
   {
     "guid": "51591",
@@ -1960,7 +2290,10 @@
     "boostHint": "",
     "boostEffects": [],
     "boostCondition": "",
-    "targets": "鉱物の採石場"
+    "targets": "鉱物の採石場",
+    "source": "多数の交易商・祭りからランダム入手（低確率）",
+    "sourceCaution": false,
+    "allocation": "住居"
   },
   {
     "guid": "51595",
@@ -1976,7 +2309,10 @@
     "boostHint": "",
     "boostEffects": [],
     "boostCondition": "",
-    "targets": "染色工房"
+    "targets": "染色工房",
+    "source": "多数の交易商・祭りからランダム入手（低確率）",
+    "sourceCaution": false,
+    "allocation": "住居"
   },
   {
     "guid": "51599",
@@ -1992,7 +2328,10 @@
     "boostHint": "",
     "boostEffects": [],
     "boostCondition": "",
-    "targets": "ガラス工房"
+    "targets": "ガラス工房",
+    "source": "多数の交易商・祭りからランダム入手（低確率）",
+    "sourceCaution": false,
+    "allocation": "住居"
   },
   {
     "guid": "51603",
@@ -2008,7 +2347,10 @@
     "boostHint": "",
     "boostEffects": [],
     "boostCondition": "",
-    "targets": "鉱物粉砕所"
+    "targets": "鉱物粉砕所",
+    "source": "来訪者イベントの報酬（レア）（0.870%）、カエソとの取引（0.563%）、カエソとの契約（並）（0.028%）、カエソとの契約（良）（0.148%）、カエソとの契約（最高）（0.634%）、カエソとの撃破ドロップ（0.088%）",
+    "sourceCaution": false,
+    "allocation": "住居"
   },
   {
     "guid": "51607",
@@ -2024,7 +2366,10 @@
     "boostHint": "",
     "boostEffects": [],
     "boostCondition": "",
-    "targets": "宝石商"
+    "targets": "宝石商",
+    "source": "多数の交易商・祭りからランダム入手（低確率）",
+    "sourceCaution": false,
+    "allocation": "住居"
   },
   {
     "guid": "51611",
@@ -2040,7 +2385,10 @@
     "boostHint": "",
     "boostEffects": [],
     "boostCondition": "",
-    "targets": "鎖職人"
+    "targets": "鎖職人",
+    "source": "多数の交易商・祭りからランダム入手（低確率）",
+    "sourceCaution": false,
+    "allocation": "住居"
   },
   {
     "guid": "51615",
@@ -2056,7 +2404,10 @@
     "boostHint": "",
     "boostEffects": [],
     "boostCondition": "",
-    "targets": "防具工房"
+    "targets": "防具工房",
+    "source": "多数の交易商・祭りからランダム入手（低確率）",
+    "sourceCaution": false,
+    "allocation": "住居"
   },
   {
     "guid": "51619",
@@ -2072,7 +2423,10 @@
     "boostHint": "",
     "boostEffects": [],
     "boostCondition": "",
-    "targets": "ブローチ職人"
+    "targets": "ブローチ職人",
+    "source": "多数の交易商・祭りからランダム入手（低確率）",
+    "sourceCaution": false,
+    "allocation": "住居"
   },
   {
     "guid": "51623",
@@ -2088,7 +2442,10 @@
     "boostHint": "",
     "boostEffects": [],
     "boostCondition": "",
-    "targets": "鏡職人"
+    "targets": "鏡職人",
+    "source": "多数の交易商・祭りからランダム入手（低確率）",
+    "sourceCaution": false,
+    "allocation": "住居"
   },
   {
     "guid": "51627",
@@ -2104,7 +2461,10 @@
     "boostHint": "",
     "boostEffects": [],
     "boostCondition": "",
-    "targets": "針金細工師"
+    "targets": "針金細工師",
+    "source": "来訪者イベントの報酬（レア）（0.870%）、マンクスとの契約（並）（0.025%）、マンクスとの契約（良）（0.133%）、マンクスとの契約（最高）（0.570%）、マンクスとの撃破ドロップ（0.002%）",
+    "sourceCaution": false,
+    "allocation": "住居"
   },
   {
     "guid": "51631",
@@ -2120,7 +2480,10 @@
     "boostHint": "",
     "boostEffects": [],
     "boostCondition": "",
-    "targets": "盾職人"
+    "targets": "盾職人",
+    "source": "来訪者イベントの報酬（エピック）（0.935%）、マンクスとの取引（0.113%）、ウォアダとの取引（0.145%）、ウォアダとの契約（良）（0.024%）、ウォアダとの契約（最高）（0.073%）、ウォアダとの撃破ドロップ（0.023%）",
+    "sourceCaution": false,
+    "allocation": "住居"
   },
   {
     "guid": "51386",
@@ -2136,7 +2499,10 @@
     "boostHint": "",
     "boostEffects": [],
     "boostCondition": "",
-    "targets": "ピレウス帽職人"
+    "targets": "ピレウス帽職人",
+    "source": "多数の交易商・祭りからランダム入手（低確率）",
+    "sourceCaution": false,
+    "allocation": "住居"
   },
   {
     "guid": "51442",
@@ -2152,7 +2518,10 @@
     "boostHint": "",
     "boostEffects": [],
     "boostCondition": "",
-    "targets": "監視人"
+    "targets": "監視人",
+    "source": "多数の交易商・祭りからランダム入手（低確率）",
+    "sourceCaution": false,
+    "allocation": "住居"
   },
   {
     "guid": "51446",
@@ -2168,7 +2537,10 @@
     "boostHint": "",
     "boostEffects": [],
     "boostCondition": "",
-    "targets": "糸紡ぎ師"
+    "targets": "糸紡ぎ師",
+    "source": "多数の交易商・祭りからランダム入手（低確率）",
+    "sourceCaution": false,
+    "allocation": "住居"
   },
   {
     "guid": "51450",
@@ -2184,7 +2556,10 @@
     "boostHint": "",
     "boostEffects": [],
     "boostCondition": "",
-    "targets": "武器鍛冶師"
+    "targets": "武器鍛冶師",
+    "source": "多数の交易商・祭りからランダム入手（低確率）",
+    "sourceCaution": false,
+    "allocation": "住居"
   },
   {
     "guid": "51454",
@@ -2200,7 +2575,10 @@
     "boostHint": "",
     "boostEffects": [],
     "boostCondition": "",
-    "targets": "ガルム工房"
+    "targets": "ガルム工房",
+    "source": "来訪者イベントの報酬（レア）（0.870%）、ディアナとの取引（0.472%）、ディアナとの契約（並）（0.028%）、ディアナとの契約（良）（0.146%）、ディアナとの契約（最高）（0.625%）、ディアナとの撃破ドロップ（0.003%）、ユリアとの撃破ドロップ（0.003%）",
+    "sourceCaution": true,
+    "allocation": "住居"
   },
   {
     "guid": "51458",
@@ -2216,7 +2594,10 @@
     "boostHint": "",
     "boostEffects": [],
     "boostCondition": "",
-    "targets": "リラ職人"
+    "targets": "リラ職人",
+    "source": "クエスト「野望の獲得」、多数の交易商・祭りからランダム入手（低確率）",
+    "sourceCaution": false,
+    "allocation": "住居"
   },
   {
     "guid": "51462",
@@ -2232,7 +2613,10 @@
     "boostHint": "",
     "boostEffects": [],
     "boostCondition": "",
-    "targets": "モザイク工房"
+    "targets": "モザイク工房",
+    "source": "多数の交易商・祭りからランダム入手（低確率）",
+    "sourceCaution": false,
+    "allocation": "住居"
   },
   {
     "guid": "51470",
@@ -2248,7 +2632,10 @@
     "boostHint": "",
     "boostEffects": [],
     "boostCondition": "",
-    "targets": "空気の美食家"
+    "targets": "空気の美食家",
+    "source": "多数の交易商・祭りからランダム入手（低確率）",
+    "sourceCaution": false,
+    "allocation": "住居"
   },
   {
     "guid": "51474",
@@ -2264,7 +2651,10 @@
     "boostHint": "",
     "boostEffects": [],
     "boostCondition": "",
-    "targets": "戦車工房"
+    "targets": "戦車工房",
+    "source": "多数の交易商・祭りからランダム入手（低確率）",
+    "sourceCaution": false,
+    "allocation": "住居"
   },
   {
     "guid": "51466",
@@ -2280,7 +2670,10 @@
     "boostHint": "",
     "boostEffects": [],
     "boostCondition": "",
-    "targets": "医院"
+    "targets": "医院",
+    "source": "多数の交易商・祭りからランダム入手（低確率）",
+    "sourceCaution": false,
+    "allocation": "住居"
   },
   {
     "guid": "51478",
@@ -2296,7 +2689,10 @@
     "boostHint": "",
     "boostEffects": [],
     "boostCondition": "",
-    "targets": "馬ブリーダー"
+    "targets": "馬ブリーダー",
+    "source": "クエスト「懇願のいななき」、多数の交易商・祭りからランダム入手（低確率）",
+    "sourceCaution": false,
+    "allocation": "住居"
   },
   {
     "guid": "51482",
@@ -2312,7 +2708,10 @@
     "boostHint": "",
     "boostEffects": [],
     "boostCondition": "",
-    "targets": "ワイン醸造業者"
+    "targets": "ワイン醸造業者",
+    "source": "多数の交易商・祭りからランダム入手（低確率）",
+    "sourceCaution": false,
+    "allocation": "住居"
   },
   {
     "guid": "51486",
@@ -2328,7 +2727,10 @@
     "boostHint": "",
     "boostEffects": [],
     "boostCondition": "",
-    "targets": "アスピック職人"
+    "targets": "アスピック職人",
+    "source": "多数の交易商・祭りからランダム入手（低確率）",
+    "sourceCaution": false,
+    "allocation": "住居"
   },
   {
     "guid": "51490",
@@ -2344,7 +2746,10 @@
     "boostHint": "",
     "boostEffects": [],
     "boostCondition": "",
-    "targets": "石鹸工房"
+    "targets": "石鹸工房",
+    "source": "多数の交易商・祭りからランダム入手（低確率）",
+    "sourceCaution": false,
+    "allocation": "住居"
   },
   {
     "guid": "51494",
@@ -2360,7 +2765,10 @@
     "boostHint": "",
     "boostEffects": [],
     "boostCondition": "",
-    "targets": "サンダル職人"
+    "targets": "サンダル職人",
+    "source": "クエスト「自由の賞金」、多数の交易商・祭りからランダム入手（低確率）",
+    "sourceCaution": false,
+    "allocation": "住居"
   },
   {
     "guid": "51498",
@@ -2376,7 +2784,10 @@
     "boostHint": "",
     "boostEffects": [],
     "boostCondition": "",
-    "targets": "オリーブ圧搾所"
+    "targets": "オリーブ圧搾所",
+    "source": "多数の交易商・祭りからランダム入手（低確率）",
+    "sourceCaution": false,
+    "allocation": "住居"
   },
   {
     "guid": "51502",
@@ -2392,7 +2803,10 @@
     "boostHint": "",
     "boostEffects": [],
     "boostCondition": "",
-    "targets": "ハーブ園"
+    "targets": "ハーブ園",
+    "source": "多数の交易商・祭りからランダム入手（低確率）",
+    "sourceCaution": false,
+    "allocation": "住居"
   },
   {
     "guid": "51506",
@@ -2408,7 +2822,10 @@
     "boostHint": "",
     "boostEffects": [],
     "boostCondition": "",
-    "targets": "ザル貝採り"
+    "targets": "ザル貝採り",
+    "source": "多数の交易商・祭りからランダム入手（低確率）",
+    "sourceCaution": false,
+    "allocation": "住居"
   },
   {
     "guid": "51510",
@@ -2424,7 +2841,10 @@
     "boostHint": "",
     "boostEffects": [],
     "boostCondition": "",
-    "targets": "乳工房"
+    "targets": "乳工房",
+    "source": "来訪者イベントの報酬（レア）（0.870%）、マンクスとの契約（並）（0.025%）、マンクスとの契約（良）（0.133%）、マンクスとの契約（最高）（0.570%）、マンクスとの撃破ドロップ（0.002%）",
+    "sourceCaution": false,
+    "allocation": "住居"
   },
   {
     "guid": "51514",
@@ -2440,7 +2860,10 @@
     "boostHint": "",
     "boostEffects": [],
     "boostCondition": "",
-    "targets": "靴下職人"
+    "targets": "靴下職人",
+    "source": "多数の交易商・祭りからランダム入手（低確率）",
+    "sourceCaution": false,
+    "allocation": "住居"
   },
   {
     "guid": "51362",
@@ -2456,7 +2879,10 @@
     "boostHint": "",
     "boostEffects": [],
     "boostCondition": "",
-    "targets": "見張り"
+    "targets": "見張り",
+    "source": "多数の交易商・祭りからランダム入手（低確率）",
+    "sourceCaution": false,
+    "allocation": "住居"
   },
   {
     "guid": "51366",
@@ -2472,7 +2898,10 @@
     "boostHint": "",
     "boostEffects": [],
     "boostCondition": "",
-    "targets": "瓦工房"
+    "targets": "瓦工房",
+    "source": "多数の交易商・祭りからランダム入手（低確率）",
+    "sourceCaution": false,
+    "allocation": "住居"
   },
   {
     "guid": "51635",
@@ -2488,7 +2917,10 @@
     "boostHint": "",
     "boostEffects": [],
     "boostCondition": "",
-    "targets": "パン屋"
+    "targets": "パン屋",
+    "source": "多数の交易商・祭りからランダム入手（低確率）",
+    "sourceCaution": false,
+    "allocation": "住居"
   },
   {
     "guid": "51639",
@@ -2504,7 +2936,10 @@
     "boostHint": "",
     "boostEffects": [],
     "boostCondition": "",
-    "targets": "炭焼き師"
+    "targets": "炭焼き師",
+    "source": "多数の交易商・祭りからランダム入手（低確率）",
+    "sourceCaution": false,
+    "allocation": "住居"
   },
   {
     "guid": "51370",
@@ -2520,7 +2955,10 @@
     "boostHint": "",
     "boostEffects": [],
     "boostCondition": "",
-    "targets": "醸造所"
+    "targets": "醸造所",
+    "source": "多数の交易商・祭りからランダム入手（低確率）",
+    "sourceCaution": false,
+    "allocation": "住居"
   },
   {
     "guid": "51374",
@@ -2536,7 +2974,10 @@
     "boostHint": "",
     "boostEffects": [],
     "boostCondition": "",
-    "targets": "裁縫師"
+    "targets": "裁縫師",
+    "source": "多数の交易商・祭りからランダム入手（低確率）",
+    "sourceCaution": false,
+    "allocation": "住居"
   },
   {
     "guid": "43677",
@@ -2552,7 +2993,10 @@
     "boostHint": "",
     "boostEffects": [],
     "boostCondition": "",
-    "targets": "漁場"
+    "targets": "漁場",
+    "source": "多数の交易商・祭りからランダム入手（低確率）",
+    "sourceCaution": false,
+    "allocation": "住居"
   },
   {
     "guid": "44084",
@@ -2568,7 +3012,10 @@
     "boostHint": "",
     "boostEffects": [],
     "boostCondition": "",
-    "targets": "製錬所"
+    "targets": "製錬所",
+    "source": "多数の交易商・祭りからランダム入手（低確率）",
+    "sourceCaution": false,
+    "allocation": "住居"
   },
   {
     "guid": "42047",
@@ -2584,7 +3031,10 @@
     "boostHint": "",
     "boostEffects": [],
     "boostCondition": "",
-    "targets": "服屋"
+    "targets": "服屋",
+    "source": "多数の交易商・祭りからランダム入手（低確率）",
+    "sourceCaution": false,
+    "allocation": "住居"
   },
   {
     "guid": "42043",
@@ -2600,7 +3050,10 @@
     "boostHint": "",
     "boostEffects": [],
     "boostCondition": "",
-    "targets": "調理場"
+    "targets": "調理場",
+    "source": "多数の交易商・祭りからランダム入手（低確率）",
+    "sourceCaution": false,
+    "allocation": "住居"
   },
   {
     "guid": "79958",
@@ -2626,7 +3079,10 @@
       "範囲効果: 健康 -3"
     ],
     "boostCondition": "建設: 市場 12以上",
-    "targets": "鉱山"
+    "targets": "鉱山",
+    "source": "来訪者イベントの報酬（レジェンダリー）（1.667%）、カエソとの取引（0.033%）、カエソとの契約（最高）（0.017%）、カエソとの撃破ドロップ（0.005%）",
+    "sourceCaution": false,
+    "allocation": "住居"
   },
   {
     "guid": "107339",
@@ -2651,7 +3107,10 @@
       "範囲効果: 信仰 +3"
     ],
     "boostCondition": "戦争中: 優勢;苦戦;勝利間近",
-    "targets": "武器庫"
+    "targets": "武器庫",
+    "source": "多数の交易商・祭りからランダム入手（低確率）",
+    "sourceCaution": false,
+    "allocation": "住居"
   },
   {
     "guid": "80513",
@@ -2673,7 +3132,10 @@
       "範囲効果: 名声 +5"
     ],
     "boostCondition": "騎兵 15以上",
-    "targets": "野営地"
+    "targets": "野営地",
+    "source": "多数の交易商・祭りからランダム入手（低確率）",
+    "sourceCaution": false,
+    "allocation": "住居"
   },
   {
     "guid": "79636",
@@ -2695,7 +3157,10 @@
       "範囲効果: 知識 +2"
     ],
     "boostCondition": "船の納品: 20以上",
-    "targets": "造船所"
+    "targets": "造船所",
+    "source": "防火祭りの報酬（0.343%）、戦勝祭りの報酬（0.049%）、モニュメント祭りの報酬（0.049%）、マルス祭りの報酬（0.049%）、エポナ祭りの報酬（0.343%）、ウルカヌス祭りの報酬（0.098%）、来訪者イベントの報酬（レジェンダリー）（1.667%）、エンドゲーム技術報酬（経済）（16.667%）",
+    "sourceCaution": false,
+    "allocation": "住居"
   },
   {
     "guid": "80179",
@@ -2719,7 +3184,10 @@
       "範囲効果: 火災安全度 +1"
     ],
     "boostCondition": "有効な島の祭神: 祭神なし",
-    "targets": "祭壇"
+    "targets": "祭壇",
+    "source": "幸福度祭りの報酬（0.458%）、健康祭りの報酬（0.065%）、知識祭りの報酬（0.065%）、メルクリウス・ルグス祭りの報酬（0.065%）、ケルヌンノス祭りの報酬（0.458%）、来訪者イベントの報酬（レジェンダリー）（1.667%）、エンドゲーム技術報酬（市民）（16.667%）",
+    "sourceCaution": false,
+    "allocation": "住居"
   },
   {
     "guid": "51286",
@@ -2741,7 +3209,10 @@
       "範囲効果: 名声 -1"
     ],
     "boostCondition": "現在の評判 皇帝: 75以上",
-    "targets": "都市警備"
+    "targets": "都市警備",
+    "source": "幸福度祭りの報酬（0.039%）、名声祭りの報酬（0.039%）、戦勝祭りの報酬（0.078%）、モニュメント祭りの報酬（0.078%）、メルクリウス・ルグス祭りの報酬（0.275%）、来訪者イベントの報酬（レジェンダリー）（1.667%）、エンドゲーム技術報酬（経済）（16.667%）",
+    "sourceCaution": false,
+    "allocation": "住居"
   },
   {
     "guid": "107554",
@@ -2763,7 +3234,10 @@
       "範囲効果: 知識 -1"
     ],
     "boostCondition": "現在の評判 皇帝: 支持者;お気に入り",
-    "targets": "アメニティ施設"
+    "targets": "アメニティ施設",
+    "source": "多数の交易商・祭りからランダム入手（低確率）",
+    "sourceCaution": false,
+    "allocation": "住居"
   },
   {
     "guid": "80686",
@@ -2785,7 +3259,10 @@
       "範囲効果: 名声 +4"
     ],
     "boostCondition": "円形闘技場 1以上",
-    "targets": "驚異"
+    "targets": "驚異",
+    "source": "幸福度祭りの報酬（0.078%）、名声祭りの報酬（0.275%）、モニュメント祭りの報酬（0.275%）、ミネルウァ祭りの報酬（0.039%）、来訪者イベントの報酬（レジェンダリー）（1.667%）、エンドゲーム技術報酬（軍事）（16.667%）",
+    "sourceCaution": false,
+    "allocation": "住居"
   },
   {
     "guid": "80490",
@@ -2809,7 +3286,10 @@
       "名声: +300"
     ],
     "boostCondition": "特性 島の上: 知識 10000以上",
-    "targets": "すべてのモニュメント"
+    "targets": "すべてのモニュメント",
+    "source": "多数の交易商・祭りからランダム入手（低確率）",
+    "sourceCaution": false,
+    "allocation": "住居"
   },
   {
     "guid": "51826",
@@ -2825,7 +3305,10 @@
     "boostHint": "",
     "boostEffects": [],
     "boostCondition": "",
-    "targets": "住居"
+    "targets": "住居",
+    "source": "多数の交易商・祭りからランダム入手（低確率）",
+    "sourceCaution": false,
+    "allocation": "住居"
   },
   {
     "guid": "51829",
@@ -2841,7 +3324,10 @@
     "boostHint": "",
     "boostEffects": [],
     "boostCondition": "",
-    "targets": "住居"
+    "targets": "住居",
+    "source": "多数の交易商・祭りからランダム入手（低確率）",
+    "sourceCaution": false,
+    "allocation": "住居"
   },
   {
     "guid": "51831",
@@ -2857,7 +3343,10 @@
     "boostHint": "",
     "boostEffects": [],
     "boostCondition": "",
-    "targets": "住居"
+    "targets": "住居",
+    "source": "多数の交易商・祭りからランダム入手（低確率）",
+    "sourceCaution": false,
+    "allocation": "住居"
   },
   {
     "guid": "51851",
@@ -2873,7 +3362,10 @@
     "boostHint": "",
     "boostEffects": [],
     "boostCondition": "",
-    "targets": "住居"
+    "targets": "住居",
+    "source": "多数の交易商・祭りからランダム入手（低確率）",
+    "sourceCaution": false,
+    "allocation": "住居"
   },
   {
     "guid": "51853",
@@ -2889,7 +3381,10 @@
     "boostHint": "",
     "boostEffects": [],
     "boostCondition": "",
-    "targets": "住居"
+    "targets": "住居",
+    "source": "多数の交易商・祭りからランダム入手（低確率）",
+    "sourceCaution": false,
+    "allocation": "住居"
   },
   {
     "guid": "51855",
@@ -2905,7 +3400,10 @@
     "boostHint": "",
     "boostEffects": [],
     "boostCondition": "",
-    "targets": "住居"
+    "targets": "住居",
+    "source": "多数の交易商・祭りからランダム入手（低確率）",
+    "sourceCaution": false,
+    "allocation": "住居"
   },
   {
     "guid": "51833",
@@ -2921,7 +3419,10 @@
     "boostHint": "",
     "boostEffects": [],
     "boostCondition": "",
-    "targets": "住居"
+    "targets": "住居",
+    "source": "多数の交易商・祭りからランダム入手（低確率）",
+    "sourceCaution": false,
+    "allocation": "住居"
   },
   {
     "guid": "51835",
@@ -2937,7 +3438,10 @@
     "boostHint": "",
     "boostEffects": [],
     "boostCondition": "",
-    "targets": "住居"
+    "targets": "住居",
+    "source": "多数の交易商・祭りからランダム入手（低確率）",
+    "sourceCaution": false,
+    "allocation": "住居"
   },
   {
     "guid": "51837",
@@ -2953,7 +3457,10 @@
     "boostHint": "",
     "boostEffects": [],
     "boostCondition": "",
-    "targets": "住居"
+    "targets": "住居",
+    "source": "多数の交易商・祭りからランダム入手（低確率）",
+    "sourceCaution": false,
+    "allocation": "住居"
   },
   {
     "guid": "51839",
@@ -2969,7 +3476,10 @@
     "boostHint": "",
     "boostEffects": [],
     "boostCondition": "",
-    "targets": "住居"
+    "targets": "住居",
+    "source": "多数の交易商・祭りからランダム入手（低確率）",
+    "sourceCaution": false,
+    "allocation": "住居"
   },
   {
     "guid": "51857",
@@ -2985,7 +3495,10 @@
     "boostHint": "",
     "boostEffects": [],
     "boostCondition": "",
-    "targets": "住居"
+    "targets": "住居",
+    "source": "多数の交易商・祭りからランダム入手（低確率）",
+    "sourceCaution": false,
+    "allocation": "住居"
   },
   {
     "guid": "51859",
@@ -3001,7 +3514,10 @@
     "boostHint": "",
     "boostEffects": [],
     "boostCondition": "",
-    "targets": "住居"
+    "targets": "住居",
+    "source": "多数の交易商・祭りからランダム入手（低確率）",
+    "sourceCaution": false,
+    "allocation": "住居"
   },
   {
     "guid": "51861",
@@ -3017,7 +3533,10 @@
     "boostHint": "",
     "boostEffects": [],
     "boostCondition": "",
-    "targets": "住居"
+    "targets": "住居",
+    "source": "多数の交易商・祭りからランダム入手（低確率）",
+    "sourceCaution": false,
+    "allocation": "住居"
   },
   {
     "guid": "51863",
@@ -3033,7 +3552,10 @@
     "boostHint": "",
     "boostEffects": [],
     "boostCondition": "",
-    "targets": "住居"
+    "targets": "住居",
+    "source": "多数の交易商・祭りからランダム入手（低確率）",
+    "sourceCaution": false,
+    "allocation": "住居"
   },
   {
     "guid": "51865",
@@ -3049,7 +3571,10 @@
     "boostHint": "",
     "boostEffects": [],
     "boostCondition": "",
-    "targets": "住居"
+    "targets": "住居",
+    "source": "多数の交易商・祭りからランダム入手（低確率）",
+    "sourceCaution": false,
+    "allocation": "住居"
   },
   {
     "guid": "51877",
@@ -3065,7 +3590,10 @@
     "boostHint": "",
     "boostEffects": [],
     "boostCondition": "",
-    "targets": "住居"
+    "targets": "住居",
+    "source": "多数の交易商・祭りからランダム入手（低確率）",
+    "sourceCaution": false,
+    "allocation": "住居"
   },
   {
     "guid": "51879",
@@ -3081,7 +3609,10 @@
     "boostHint": "",
     "boostEffects": [],
     "boostCondition": "",
-    "targets": "住居"
+    "targets": "住居",
+    "source": "多数の交易商・祭りからランダム入手（低確率）",
+    "sourceCaution": false,
+    "allocation": "住居"
   },
   {
     "guid": "51841",
@@ -3097,7 +3628,10 @@
     "boostHint": "",
     "boostEffects": [],
     "boostCondition": "",
-    "targets": "住居"
+    "targets": "住居",
+    "source": "多数の交易商・祭りからランダム入手（低確率）",
+    "sourceCaution": false,
+    "allocation": "住居"
   },
   {
     "guid": "51843",
@@ -3113,7 +3647,10 @@
     "boostHint": "",
     "boostEffects": [],
     "boostCondition": "",
-    "targets": "住居"
+    "targets": "住居",
+    "source": "多数の交易商・祭りからランダム入手（低確率）",
+    "sourceCaution": false,
+    "allocation": "住居"
   },
   {
     "guid": "51845",
@@ -3129,7 +3666,10 @@
     "boostHint": "",
     "boostEffects": [],
     "boostCondition": "",
-    "targets": "住居"
+    "targets": "住居",
+    "source": "クエスト「蓼食う虫も」、来訪者イベントの報酬（エピック）（0.935%）、コルヴィヌスとの取引（0.111%）、コルヴィヌスとの契約（良）（0.024%）、コルヴィヌスとの契約（最高）（0.071%）",
+    "sourceCaution": true,
+    "allocation": "住居"
   },
   {
     "guid": "51847",
@@ -3145,7 +3685,10 @@
     "boostHint": "",
     "boostEffects": [],
     "boostCondition": "",
-    "targets": "住居"
+    "targets": "住居",
+    "source": "多数の交易商・祭りからランダム入手（低確率）",
+    "sourceCaution": false,
+    "allocation": "住居"
   },
   {
     "guid": "51849",
@@ -3161,7 +3704,10 @@
     "boostHint": "",
     "boostEffects": [],
     "boostCondition": "",
-    "targets": "住居"
+    "targets": "住居",
+    "source": "多数の交易商・祭りからランダム入手（低確率）",
+    "sourceCaution": false,
+    "allocation": "住居"
   },
   {
     "guid": "51867",
@@ -3177,7 +3723,10 @@
     "boostHint": "",
     "boostEffects": [],
     "boostCondition": "",
-    "targets": "住居"
+    "targets": "住居",
+    "source": "多数の交易商・祭りからランダム入手（低確率）",
+    "sourceCaution": false,
+    "allocation": "住居"
   },
   {
     "guid": "51869",
@@ -3193,7 +3742,10 @@
     "boostHint": "",
     "boostEffects": [],
     "boostCondition": "",
-    "targets": "住居"
+    "targets": "住居",
+    "source": "多数の交易商・祭りからランダム入手（低確率）",
+    "sourceCaution": false,
+    "allocation": "住居"
   },
   {
     "guid": "51871",
@@ -3209,7 +3761,10 @@
     "boostHint": "",
     "boostEffects": [],
     "boostCondition": "",
-    "targets": "住居"
+    "targets": "住居",
+    "source": "多数の交易商・祭りからランダム入手（低確率）",
+    "sourceCaution": false,
+    "allocation": "住居"
   },
   {
     "guid": "51873",
@@ -3225,7 +3780,10 @@
     "boostHint": "",
     "boostEffects": [],
     "boostCondition": "",
-    "targets": "住居"
+    "targets": "住居",
+    "source": "多数の交易商・祭りからランダム入手（低確率）",
+    "sourceCaution": false,
+    "allocation": "住居"
   },
   {
     "guid": "51875",
@@ -3241,7 +3799,10 @@
     "boostHint": "",
     "boostEffects": [],
     "boostCondition": "",
-    "targets": "住居"
+    "targets": "住居",
+    "source": "多数の交易商・祭りからランダム入手（低確率）",
+    "sourceCaution": false,
+    "allocation": "住居"
   },
   {
     "guid": "51881",
@@ -3257,7 +3818,10 @@
     "boostHint": "",
     "boostEffects": [],
     "boostCondition": "",
-    "targets": "住居"
+    "targets": "住居",
+    "source": "多数の交易商・祭りからランダム入手（低確率）",
+    "sourceCaution": false,
+    "allocation": "住居"
   },
   {
     "guid": "51883",
@@ -3273,7 +3837,10 @@
     "boostHint": "",
     "boostEffects": [],
     "boostCondition": "",
-    "targets": "住居"
+    "targets": "住居",
+    "source": "多数の交易商・祭りからランダム入手（低確率）",
+    "sourceCaution": false,
+    "allocation": "住居"
   },
   {
     "guid": "51885",
@@ -3289,7 +3856,10 @@
     "boostHint": "",
     "boostEffects": [],
     "boostCondition": "",
-    "targets": "住居"
+    "targets": "住居",
+    "source": "多数の交易商・祭りからランダム入手（低確率）",
+    "sourceCaution": false,
+    "allocation": "住居"
   },
   {
     "guid": "51887",
@@ -3305,7 +3875,10 @@
     "boostHint": "",
     "boostEffects": [],
     "boostCondition": "",
-    "targets": "住居"
+    "targets": "住居",
+    "source": "多数の交易商・祭りからランダム入手（低確率）",
+    "sourceCaution": false,
+    "allocation": "住居"
   },
   {
     "guid": "51889",
@@ -3321,7 +3894,10 @@
     "boostHint": "",
     "boostEffects": [],
     "boostCondition": "",
-    "targets": "住居"
+    "targets": "住居",
+    "source": "多数の交易商・祭りからランダム入手（低確率）",
+    "sourceCaution": false,
+    "allocation": "住居"
   },
   {
     "guid": "51891",
@@ -3337,7 +3913,10 @@
     "boostHint": "",
     "boostEffects": [],
     "boostCondition": "",
-    "targets": "住居"
+    "targets": "住居",
+    "source": "多数の交易商・祭りからランダム入手（低確率）",
+    "sourceCaution": false,
+    "allocation": "住居"
   },
   {
     "guid": "51893",
@@ -3353,7 +3932,10 @@
     "boostHint": "",
     "boostEffects": [],
     "boostCondition": "",
-    "targets": "住居"
+    "targets": "住居",
+    "source": "多数の交易商・祭りからランダム入手（低確率）",
+    "sourceCaution": false,
+    "allocation": "住居"
   },
   {
     "guid": "42056",
@@ -3369,7 +3951,10 @@
     "boostHint": "",
     "boostEffects": [],
     "boostCondition": "",
-    "targets": "住居"
+    "targets": "住居",
+    "source": "カエシリアとの契約（良）（0.021%）、カエシリアとの契約（最高）（0.063%）、来訪者イベントの報酬（エピック）（0.935%）、ウァレリアとの取引（0.099%）、ウァレリアとの契約（良）（0.021%）、ウァレリアとの契約（最高）（0.063%）",
+    "sourceCaution": false,
+    "allocation": "住居"
   },
   {
     "guid": "42055",
@@ -3385,7 +3970,10 @@
     "boostHint": "",
     "boostEffects": [],
     "boostCondition": "",
-    "targets": "住居"
+    "targets": "住居",
+    "source": "多数の交易商・祭りからランダム入手（低確率）",
+    "sourceCaution": false,
+    "allocation": "住居"
   },
   {
     "guid": "42045",
@@ -3401,7 +3989,10 @@
     "boostHint": "",
     "boostEffects": [],
     "boostCondition": "",
-    "targets": "住居"
+    "targets": "住居",
+    "source": "クエスト「コンラッハの物語」、多数の交易商・祭りからランダム入手（低確率）",
+    "sourceCaution": false,
+    "allocation": "住居"
   },
   {
     "guid": "42044",
@@ -3417,7 +4008,10 @@
     "boostHint": "",
     "boostEffects": [],
     "boostCondition": "",
-    "targets": "住居"
+    "targets": "住居",
+    "source": "多数の交易商・祭りからランダム入手（低確率）",
+    "sourceCaution": false,
+    "allocation": "住居"
   },
   {
     "guid": "51357",
@@ -3433,7 +4027,10 @@
     "boostHint": "",
     "boostEffects": [],
     "boostCondition": "",
-    "targets": "住居"
+    "targets": "住居",
+    "source": "カエシリアとの契約（良）（0.021%）、カエシリアとの契約（最高）（0.063%）、来訪者イベントの報酬（エピック）（0.935%）、ウァレリアとの取引（0.099%）、ウァレリアとの契約（良）（0.021%）、ウァレリアとの契約（最高）（0.063%）",
+    "sourceCaution": false,
+    "allocation": "住居"
   },
   {
     "guid": "44075",
@@ -3449,7 +4046,10 @@
     "boostHint": "",
     "boostEffects": [],
     "boostCondition": "",
-    "targets": "漁師小屋"
+    "targets": "漁師小屋",
+    "source": "多数の交易商・祭りからランダム入手（低確率）",
+    "sourceCaution": false,
+    "allocation": "住居"
   },
   {
     "guid": "44076",
@@ -3465,7 +4065,10 @@
     "boostHint": "",
     "boostEffects": [],
     "boostCondition": "",
-    "targets": "お粥の屋台、オーツ麦農場"
+    "targets": "お粥の屋台、オーツ麦農場",
+    "source": "多数の交易商・祭りからランダム入手（低確率）",
+    "sourceCaution": false,
+    "allocation": "住居"
   },
   {
     "guid": "44077",
@@ -3481,7 +4084,10 @@
     "boostHint": "",
     "boostEffects": [],
     "boostCondition": "",
-    "targets": "ウナギ漁師"
+    "targets": "ウナギ漁師",
+    "source": "多数の交易商・祭りからランダム入手（低確率）",
+    "sourceCaution": false,
+    "allocation": "住居"
   },
   {
     "guid": "44078",
@@ -3497,7 +4103,10 @@
     "boostHint": "",
     "boostEffects": [],
     "boostCondition": "",
-    "targets": "帆布工場、羊牧場"
+    "targets": "帆布工場、羊牧場",
+    "source": "多数の交易商・祭りからランダム入手（低確率）",
+    "sourceCaution": false,
+    "allocation": "住居"
   },
   {
     "guid": "44079",
@@ -3513,7 +4122,10 @@
     "boostHint": "",
     "boostEffects": [],
     "boostCondition": "",
-    "targets": "ロープ職人、大麻農場"
+    "targets": "ロープ職人、大麻農場",
+    "source": "多数の交易商・祭りからランダム入手（低確率）",
+    "sourceCaution": false,
+    "allocation": "住居"
   },
   {
     "guid": "44080",
@@ -3529,7 +4141,10 @@
     "boostHint": "",
     "boostEffects": [],
     "boostCondition": "",
-    "targets": "パン屋、粉ひき所、小麦農場、ロバの製粉所"
+    "targets": "パン屋、粉ひき所、小麦農場、ロバの製粉所",
+    "source": "多数の交易商・祭りからランダム入手（低確率）",
+    "sourceCaution": false,
+    "allocation": "住居"
   },
   {
     "guid": "44083",
@@ -3545,7 +4160,10 @@
     "boostHint": "",
     "boostEffects": [],
     "boostCondition": "",
-    "targets": "糸紡ぎ師、大麻農場"
+    "targets": "糸紡ぎ師、大麻農場",
+    "source": "多数の交易商・祭りからランダム入手（低確率）",
+    "sourceCaution": false,
+    "allocation": "住居"
   },
   {
     "guid": "44085",
@@ -3561,7 +4179,10 @@
     "boostHint": "",
     "boostEffects": [],
     "boostCondition": "",
-    "targets": "ガルム工房、サバ小屋、塩田"
+    "targets": "ガルム工房、サバ小屋、塩田",
+    "source": "多数の交易商・祭りからランダム入手（低確率）",
+    "sourceCaution": false,
+    "allocation": "住居"
   },
   {
     "guid": "44086",
@@ -3577,7 +4198,10 @@
     "boostHint": "",
     "boostEffects": [],
     "boostCondition": "",
-    "targets": "サンダル職人、なめし革工房、養豚場、塩田"
+    "targets": "サンダル職人、なめし革工房、養豚場、塩田",
+    "source": "多数の交易商・祭りからランダム入手（低確率）",
+    "sourceCaution": false,
+    "allocation": "住居"
   },
   {
     "guid": "44115",
@@ -3593,7 +4217,10 @@
     "boostHint": "",
     "boostEffects": [],
     "boostCondition": "",
-    "targets": "蝋版職人、サンダラック苗木場、養蜂場"
+    "targets": "蝋版職人、サンダラック苗木場、養蜂場",
+    "source": "多数の交易商・祭りからランダム入手（低確率）",
+    "sourceCaution": false,
+    "allocation": "住居"
   },
   {
     "guid": "44117",
@@ -3609,7 +4236,10 @@
     "boostHint": "",
     "boostEffects": [],
     "boostCondition": "",
-    "targets": "針金細工師、銅鉱"
+    "targets": "針金細工師、銅鉱",
+    "source": "多数の交易商・祭りからランダム入手（低確率）",
+    "sourceCaution": false,
+    "allocation": "住居"
   },
   {
     "guid": "44139",
@@ -3625,7 +4255,10 @@
     "boostHint": "",
     "boostEffects": [],
     "boostCondition": "",
-    "targets": "陶工、粘土穴、松脂採り、泥干し工房"
+    "targets": "陶工、粘土穴、松脂採り、泥干し工房",
+    "source": "多数の交易商・祭りからランダム入手（低確率）",
+    "sourceCaution": false,
+    "allocation": "住居"
   },
   {
     "guid": "44140",
@@ -3641,7 +4274,10 @@
     "boostHint": "",
     "boostEffects": [],
     "boostCondition": "",
-    "targets": "靴職人、葦採集者"
+    "targets": "靴職人、葦採集者",
+    "source": "多数の交易商・祭りからランダム入手（低確率）",
+    "sourceCaution": false,
+    "allocation": "住居"
   },
   {
     "guid": "44141",
@@ -3657,7 +4293,10 @@
     "boostHint": "",
     "boostEffects": [],
     "boostCondition": "",
-    "targets": "オリーブ圧搾所、オリーブ農家"
+    "targets": "オリーブ圧搾所、オリーブ農家",
+    "source": "多数の交易商・祭りからランダム入手（低確率）",
+    "sourceCaution": false,
+    "allocation": "住居"
   },
   {
     "guid": "44142",
@@ -3673,7 +4312,10 @@
     "boostHint": "",
     "boostEffects": [],
     "boostCondition": "",
-    "targets": "石鹸工房、ラベンダー農家、アスピック職人、養豚場"
+    "targets": "石鹸工房、ラベンダー農家、アスピック職人、養豚場",
+    "source": "多数の交易商・祭りからランダム入手（低確率）",
+    "sourceCaution": false,
+    "allocation": "住居"
   },
   {
     "guid": "44144",
@@ -3689,7 +4331,10 @@
     "boostHint": "",
     "boostEffects": [],
     "boostCondition": "",
-    "targets": "ピレウス帽職人、羊牧場"
+    "targets": "ピレウス帽職人、羊牧場",
+    "source": "多数の交易商・祭りからランダム入手（低確率）",
+    "sourceCaution": false,
+    "allocation": "住居"
   },
   {
     "guid": "44145",
@@ -3705,7 +4350,10 @@
     "boostHint": "",
     "boostEffects": [],
     "boostCondition": "",
-    "targets": "ザル貝採り"
+    "targets": "ザル貝採り",
+    "source": "多数の交易商・祭りからランダム入手（低確率）",
+    "sourceCaution": false,
+    "allocation": "住居"
   },
   {
     "guid": "44146",
@@ -3721,7 +4369,10 @@
     "boostHint": "",
     "boostEffects": [],
     "boostCondition": "",
-    "targets": "醸造所、麦芽製造所、大麦農場"
+    "targets": "醸造所、麦芽製造所、大麦農場",
+    "source": "多数の交易商・祭りからランダム入手（低確率）",
+    "sourceCaution": false,
+    "allocation": "住居"
   },
   {
     "guid": "44081",
@@ -3737,7 +4388,10 @@
     "boostHint": "",
     "boostEffects": [],
     "boostCondition": "",
-    "targets": "地窯、オーロックス牧場、アッケシソウ摘み"
+    "targets": "地窯、オーロックス牧場、アッケシソウ摘み",
+    "source": "多数の交易商・祭りからランダム入手（低確率）",
+    "sourceCaution": false,
+    "allocation": "住居"
   },
   {
     "guid": "44082",
@@ -3753,7 +4407,10 @@
     "boostHint": "",
     "boostEffects": [],
     "boostCondition": "",
-    "targets": "乳工房、オーロックス牧場"
+    "targets": "乳工房、オーロックス牧場",
+    "source": "来訪者イベントの報酬（レア）（0.870%）、マンクスとの契約（並）（0.025%）、マンクスとの契約（良）（0.133%）、マンクスとの契約（最高）（0.570%）、マンクスとの撃破ドロップ（0.002%）",
+    "sourceCaution": false,
+    "allocation": "住居"
   },
   {
     "guid": "44087",
@@ -3769,7 +4426,10 @@
     "boostHint": "",
     "boostEffects": [],
     "boostCondition": "",
-    "targets": "靴下職人、羊牧場、ウォールド畑"
+    "targets": "靴下職人、羊牧場、ウォールド畑",
+    "source": "来訪者イベントの報酬（レア）（0.870%）、コルヴィヌスとの取引（0.425%）、コルヴィヌスとの契約（並）（0.025%）、コルヴィヌスとの契約（良）（0.131%）、コルヴィヌスとの契約（最高）（0.563%）、コルヴィヌスとの撃破ドロップ（0.002%）",
+    "sourceCaution": true,
+    "allocation": "住居"
   },
   {
     "guid": "44088",
@@ -3785,7 +4445,10 @@
     "boostHint": "",
     "boostEffects": [],
     "boostCondition": "",
-    "targets": "戦車工房、馬追い、シャーシの組立工、木こり、葦採集者"
+    "targets": "戦車工房、馬追い、シャーシの組立工、木こり、葦採集者",
+    "source": "多数の交易商・祭りからランダム入手（低確率）",
+    "sourceCaution": false,
+    "allocation": "住居"
   },
   {
     "guid": "44112",
@@ -3801,7 +4464,10 @@
     "boostHint": "",
     "boostEffects": [],
     "boostCondition": "",
-    "targets": "ワイン醸造業者、ブドウ園、養蜂場"
+    "targets": "ワイン醸造業者、ブドウ園、養蜂場",
+    "source": "多数の交易商・祭りからランダム入手（低確率）",
+    "sourceCaution": false,
+    "allocation": "住居"
   },
   {
     "guid": "44113",
@@ -3817,7 +4483,10 @@
     "boostHint": "",
     "boostEffects": [],
     "boostCondition": "",
-    "targets": "ブローチ職人、銀工房、銀鉱山"
+    "targets": "ブローチ職人、銀工房、銀鉱山",
+    "source": "多数の交易商・祭りからランダム入手（低確率）",
+    "sourceCaution": false,
+    "allocation": "住居"
   },
   {
     "guid": "44118",
@@ -3833,7 +4502,10 @@
     "boostHint": "",
     "boostEffects": [],
     "boostCondition": "",
-    "targets": "織機工、織物工房、染色工房、亜麻農場、カタツムリ飼育場"
+    "targets": "織機工、織物工房、染色工房、亜麻農場、カタツムリ飼育場",
+    "source": "来訪者イベントの報酬（レア）（0.870%）、ディアナとの取引（0.472%）、ディアナとの契約（並）（0.028%）、ディアナとの契約（良）（0.146%）、ディアナとの契約（最高）（0.625%）、ディアナとの撃破ドロップ（0.003%）、ユリアとの撃破ドロップ（0.003%）",
+    "sourceCaution": true,
+    "allocation": "住居"
   },
   {
     "guid": "44119",
@@ -3849,7 +4521,10 @@
     "boostHint": "",
     "boostEffects": [],
     "boostCondition": "",
-    "targets": "かつら職人、馬ブリーダー、兜職人、亜麻農場、松脂採り"
+    "targets": "かつら職人、馬ブリーダー、兜職人、亜麻農場、松脂採り",
+    "source": "多数の交易商・祭りからランダム入手（低確率）",
+    "sourceCaution": false,
+    "allocation": "住居"
   },
   {
     "guid": "44120",
@@ -3865,7 +4540,10 @@
     "boostHint": "",
     "boostEffects": [],
     "boostCondition": "",
-    "targets": "ガラス吹き工、鉱物粉砕所、ガラス工房、鉱物の採石場、砂精製所"
+    "targets": "ガラス吹き工、鉱物粉砕所、ガラス工房、鉱物の採石場、砂精製所",
+    "source": "来訪者イベントの報酬（レア）（0.870%）、コルヴィヌスとの取引（0.425%）、コルヴィヌスとの契約（並）（0.025%）、コルヴィヌスとの契約（良）（0.131%）、コルヴィヌスとの契約（最高）（0.563%）、コルヴィヌスとの撃破ドロップ（0.002%）",
+    "sourceCaution": true,
+    "allocation": "住居"
   },
   {
     "guid": "44121",
@@ -3881,7 +4559,10 @@
     "boostHint": "",
     "boostEffects": [],
     "boostCondition": "",
-    "targets": "盾職人、ウォールド畑、青銅の製錬工、錫鉱、銅鉱"
+    "targets": "盾職人、ウォールド畑、青銅の製錬工、錫鉱、銅鉱",
+    "source": "来訪者イベントの報酬（レア）（0.870%）、マンクスとの取引（0.436%）、ウォアダとの取引（0.513%）、ウォアダとの契約（並）（0.026%）、ウォアダとの契約（良）（0.135%）、ウォアダとの契約（最高）（0.577%）、ウォアダとの撃破ドロップ（0.080%）",
+    "sourceCaution": false,
+    "allocation": "住居"
   },
   {
     "guid": "44143",
@@ -3897,7 +4578,10 @@
     "boostHint": "",
     "boostEffects": [],
     "boostCondition": "",
-    "targets": "水の美食家、カキ養殖場、魚加工所、チョウザメの孵化場"
+    "targets": "水の美食家、カキ養殖場、魚加工所、チョウザメの孵化場",
+    "source": "来訪者イベントの報酬（レア）（0.870%）、カエソとの取引（0.563%）、カエソとの契約（並）（0.028%）、カエソとの契約（良）（0.148%）、カエソとの契約（最高）（0.634%）、カエソとの撃破ドロップ（0.088%）",
+    "sourceCaution": false,
+    "allocation": "住居"
   },
   {
     "guid": "44148",
@@ -3913,7 +4597,10 @@
     "boostHint": "",
     "boostEffects": [],
     "boostCondition": "",
-    "targets": "ビーバー帽子職人、ビーバー罠師、アッケシソウ焼き、アッケシソウ摘み"
+    "targets": "ビーバー帽子職人、ビーバー罠師、アッケシソウ焼き、アッケシソウ摘み",
+    "source": "多数の交易商・祭りからランダム入手（低確率）",
+    "sourceCaution": false,
+    "allocation": "住居"
   },
   {
     "guid": "50665",
@@ -3929,7 +4616,10 @@
     "boostHint": "",
     "boostEffects": [],
     "boostCondition": "",
-    "targets": "裁縫師、羊牧場、薬草師、ウォールド畑、銅鉱"
+    "targets": "裁縫師、羊牧場、薬草師、ウォールド畑、銅鉱",
+    "source": "多数の交易商・祭りからランダム入手（低確率）",
+    "sourceCaution": false,
+    "allocation": "住居"
   },
   {
     "guid": "50289",
@@ -3945,7 +4635,10 @@
     "boostHint": "",
     "boostEffects": [],
     "boostCondition": "",
-    "targets": "武器工房、溶鉱炉、鉄鉱山"
+    "targets": "武器工房、溶鉱炉、鉄鉱山",
+    "source": "多数の交易商・祭りからランダム入手（低確率）",
+    "sourceCaution": false,
+    "allocation": "住居"
   },
   {
     "guid": "50291",
@@ -3961,7 +4654,10 @@
     "boostHint": "",
     "boostEffects": [],
     "boostCondition": "",
-    "targets": "防具、鉄鉱山、溶鉱炉、防具工房、養豚場、なめし革工房、塩田"
+    "targets": "防具、鉄鉱山、溶鉱炉、防具工房、養豚場、なめし革工房、塩田",
+    "source": "多数の交易商・祭りからランダム入手（低確率）",
+    "sourceCaution": false,
+    "allocation": "住居"
   },
   {
     "guid": "44089",
@@ -3977,7 +4673,10 @@
     "boostHint": "",
     "boostEffects": [],
     "boostCondition": "",
-    "targets": "宝石商、鉱物の採石場、金細工工房、金選鉱、金鉱"
+    "targets": "宝石商、鉱物の採石場、金細工工房、金選鉱、金鉱",
+    "source": "多数の交易商・祭りからランダム入手（低確率）",
+    "sourceCaution": false,
+    "allocation": "住居"
   },
   {
     "guid": "44114",
@@ -3993,7 +4692,10 @@
     "boostHint": "",
     "boostEffects": [],
     "boostCondition": "",
-    "targets": "リラ職人、弦張り師、金箔工房、羊牧場、サンダラック苗木場、金鉱、金選鉱、金細工工房"
+    "targets": "リラ職人、弦張り師、金箔工房、羊牧場、サンダラック苗木場、金鉱、金選鉱、金細工工房",
+    "source": "多数の交易商・祭りからランダム入手（低確率）",
+    "sourceCaution": false,
+    "allocation": "住居"
   },
   {
     "guid": "44147",
@@ -4009,7 +4711,10 @@
     "boostHint": "",
     "boostEffects": [],
     "boostCondition": "",
-    "targets": "ソーセージ職人、養豚場、ハーブ園"
+    "targets": "ソーセージ職人、養豚場、ハーブ園",
+    "source": "クエスト「イノシシの群れ」、多数の交易商・祭りからランダム入手（低確率）",
+    "sourceCaution": false,
+    "allocation": "住居"
   },
   {
     "guid": "44116",
@@ -4025,7 +4730,10 @@
     "boostHint": "",
     "boostEffects": [],
     "boostCondition": "",
-    "targets": "鏡職人、貝拾い、銀工房、銀鉱山"
+    "targets": "鏡職人、貝拾い、銀工房、銀鉱山",
+    "source": "来訪者イベントの報酬（エピック）（0.935%）、コルヴィヌスとの取引（0.111%）、コルヴィヌスとの契約（良）（0.024%）、コルヴィヌスとの契約（最高）（0.071%）",
+    "sourceCaution": true,
+    "allocation": "住居"
   },
   {
     "guid": "44122",
@@ -4041,7 +4749,10 @@
     "boostHint": "",
     "boostEffects": [],
     "boostCondition": "",
-    "targets": "空気の美食家、舌切り職人、アスピック職人、鳥使い、養豚場"
+    "targets": "空気の美食家、舌切り職人、アスピック職人、鳥使い、養豚場",
+    "source": "多数の交易商・祭りからランダム入手（低確率）",
+    "sourceCaution": false,
+    "allocation": "住居"
   },
   {
     "guid": "44149",
@@ -4057,7 +4768,10 @@
     "boostHint": "",
     "boostEffects": [],
     "boostCondition": "",
-    "targets": "鎖職人、サンダラック苗木場、詰め物工房、亜麻農場、染色工房、カタツムリ飼育場"
+    "targets": "鎖職人、サンダラック苗木場、詰め物工房、亜麻農場、染色工房、カタツムリ飼育場",
+    "source": "多数の交易商・祭りからランダム入手（低確率）",
+    "sourceCaution": false,
+    "allocation": "住居"
   },
   {
     "guid": "50287",
@@ -4073,7 +4787,10 @@
     "boostHint": "",
     "boostEffects": [],
     "boostCondition": "",
-    "targets": "馬ブリーダー"
+    "targets": "馬ブリーダー",
+    "source": "多数の交易商・祭りからランダム入手（低確率）",
+    "sourceCaution": false,
+    "allocation": "住居"
   },
   {
     "guid": "80221",
@@ -4101,7 +4818,10 @@
       "火災安全度: +1"
     ],
     "boostCondition": "建設: 生産施設 30以下",
-    "targets": "生産施設"
+    "targets": "生産施設",
+    "source": "来訪者イベントの報酬（レジェンダリー）（1.667%）、ディアナとの取引（0.033%）、ディアナとの契約（最高）（0.017%）",
+    "sourceCaution": false,
+    "allocation": "住居"
   },
   {
     "guid": "106974",
@@ -4123,7 +4843,10 @@
       "必要エリア: -60%"
     ],
     "boostCondition": "特性 島の上: 人々 2500以下",
-    "targets": "森の野営地"
+    "targets": "森の野営地",
+    "source": "多数の交易商・祭りからランダム入手（低確率）",
+    "sourceCaution": false,
+    "allocation": "住居"
   },
   {
     "guid": "79947",
@@ -4145,7 +4868,10 @@
       "収入: +150"
     ],
     "boostCondition": "バランス: 1000000以上",
-    "targets": "鉱山"
+    "targets": "鉱山",
+    "source": "幸福度祭りの報酬（0.039%）、名声祭りの報酬（0.039%）、戦勝祭りの報酬（0.078%）、モニュメント祭りの報酬（0.078%）、メルクリウス・ルグス祭りの報酬（0.275%）、来訪者イベントの報酬（レジェンダリー）（1.667%）、エンドゲーム技術報酬（経済）（16.667%）",
+    "sourceCaution": false,
+    "allocation": "住居"
   },
   {
     "guid": "80189",
@@ -4167,7 +4893,10 @@
       "燃料の効率: +35%"
     ],
     "boostCondition": "建設: ウェーダーの住居 800以上",
-    "targets": "製錬所"
+    "targets": "製錬所",
+    "source": "多数の交易商・祭りからランダム入手（低確率）",
+    "sourceCaution": false,
+    "allocation": "住居"
   },
   {
     "guid": "80510",
@@ -4189,7 +4918,10 @@
       "燃料の効率: +35%"
     ],
     "boostCondition": "陸軍力: 近衛騎兵 10以上",
-    "targets": "武器庫"
+    "targets": "武器庫",
+    "source": "カエシリアとの契約（最高）（0.016%）、来訪者イベントの報酬（レジェンダリー）（1.667%）、ウァレリアとの取引（0.032%）、ウァレリアとの契約（最高）（0.016%）",
+    "sourceCaution": false,
+    "allocation": "住居"
   },
   {
     "guid": "51282",
@@ -4211,7 +4943,10 @@
       "範囲効果: 信仰 +2"
     ],
     "boostCondition": "高位祭神: ケレース",
-    "targets": "耕作可能な農場"
+    "targets": "耕作可能な農場",
+    "source": "多数の交易商・祭りからランダム入手（低確率）",
+    "sourceCaution": false,
+    "allocation": "住居"
   },
   {
     "guid": "80502",
@@ -4233,7 +4968,10 @@
       "範囲効果: 健康 +2"
     ],
     "boostCondition": "外交状態: 和平、スカアハ族のウォアダ",
-    "targets": "農園"
+    "targets": "農園",
+    "source": "来訪者イベントの報酬（レジェンダリー）（1.667%）、マンクスとの取引（0.033%）、ウォアダとの取引（0.033%）、ウォアダとの契約（最高）（0.017%）、ウォアダとの撃破ドロップ（0.005%）",
+    "sourceCaution": false,
+    "allocation": "住居"
   },
   {
     "guid": "80225",
@@ -4255,7 +4993,10 @@
       "範囲効果: 名声 +2"
     ],
     "boostCondition": "ケルト人 10000以上、現在の島",
-    "targets": "牧場"
+    "targets": "牧場",
+    "source": "多数の交易商・祭りからランダム入手（低確率）",
+    "sourceCaution": false,
+    "allocation": "住居"
   },
   {
     "guid": "54009",
@@ -4271,7 +5012,10 @@
     "boostHint": "",
     "boostEffects": [],
     "boostCondition": "",
-    "targets": "見張り"
+    "targets": "見張り",
+    "source": "多数の交易商・祭りからランダム入手（低確率）",
+    "sourceCaution": false,
+    "allocation": "住居"
   },
   {
     "guid": "54015",
@@ -4287,7 +5031,10 @@
     "boostHint": "",
     "boostEffects": [],
     "boostCondition": "",
-    "targets": "医院"
+    "targets": "医院",
+    "source": "多数の交易商・祭りからランダム入手（低確率）",
+    "sourceCaution": false,
+    "allocation": "住居"
   },
   {
     "guid": "54021",
@@ -4303,7 +5050,10 @@
     "boostHint": "",
     "boostEffects": [],
     "boostCondition": "",
-    "targets": "監視人"
+    "targets": "監視人",
+    "source": "クエスト「徘徊する泥棒たち」、多数の交易商・祭りからランダム入手（低確率）",
+    "sourceCaution": false,
+    "allocation": "住居"
   },
   {
     "guid": "54011",
@@ -4320,7 +5070,10 @@
     "boostHint": "",
     "boostEffects": [],
     "boostCondition": "",
-    "targets": "見張り"
+    "targets": "見張り",
+    "source": "来訪者イベントの報酬（レア）（0.870%）、コルヴィヌスとの取引（0.425%）、コルヴィヌスとの契約（並）（0.025%）、コルヴィヌスとの契約（良）（0.131%）、コルヴィヌスとの契約（最高）（0.563%）、コルヴィヌスとの撃破ドロップ（0.002%）",
+    "sourceCaution": true,
+    "allocation": "住居"
   },
   {
     "guid": "54017",
@@ -4337,7 +5090,10 @@
     "boostHint": "",
     "boostEffects": [],
     "boostCondition": "",
-    "targets": "医院"
+    "targets": "医院",
+    "source": "多数の交易商・祭りからランダム入手（低確率）",
+    "sourceCaution": false,
+    "allocation": "住居"
   },
   {
     "guid": "54023",
@@ -4354,7 +5110,10 @@
     "boostHint": "",
     "boostEffects": [],
     "boostCondition": "",
-    "targets": "監視人"
+    "targets": "監視人",
+    "source": "来訪者イベントの報酬（レア）（0.870%）、ディアナとの取引（0.472%）、ディアナとの契約（並）（0.028%）、ディアナとの契約（良）（0.146%）、ディアナとの契約（最高）（0.625%）、ディアナとの撃破ドロップ（0.003%）、ユリアとの撃破ドロップ（0.003%）",
+    "sourceCaution": true,
+    "allocation": "住居"
   },
   {
     "guid": "42052",
@@ -4372,7 +5131,10 @@
     "boostHint": "",
     "boostEffects": [],
     "boostCondition": "",
-    "targets": "見張り"
+    "targets": "見張り",
+    "source": "多数の交易商・祭りからランダム入手（低確率）",
+    "sourceCaution": false,
+    "allocation": "住居"
   },
   {
     "guid": "80494",
@@ -4390,7 +5152,10 @@
     "boostHint": "",
     "boostEffects": [],
     "boostCondition": "",
-    "targets": "医院"
+    "targets": "医院",
+    "source": "多数の交易商・祭りからランダム入手（低確率）",
+    "sourceCaution": false,
+    "allocation": "住居"
   },
   {
     "guid": "42051",
@@ -4408,7 +5173,10 @@
     "boostHint": "",
     "boostEffects": [],
     "boostCondition": "",
-    "targets": "監視人"
+    "targets": "監視人",
+    "source": "多数の交易商・祭りからランダム入手（低確率）",
+    "sourceCaution": false,
+    "allocation": "住居"
   },
   {
     "guid": "54025",
@@ -4428,7 +5196,10 @@
       "範囲効果: 火災安全度 +2"
     ],
     "boostCondition": "外交状態: 和平、カエソ・レグルス・シラクス",
-    "targets": "見張り"
+    "targets": "見張り",
+    "source": "防火祭りの報酬（0.030%）、戦勝祭りの報酬（0.106%）、マルス祭りの報酬（0.106%）、ネプトゥヌス祭りの報酬（0.015%）、エポナ祭りの報酬（0.015%）、来訪者イベントの報酬（レジェンダリー）（1.667%）、エンドゲーム技術報酬（軍事）（16.667%）",
+    "sourceCaution": false,
+    "allocation": "住居"
   },
   {
     "guid": "54034",
@@ -4448,7 +5219,10 @@
       "範囲効果: 健康 +2"
     ],
     "boostCondition": "品物 島の貯蔵所: ハーブ 50以上",
-    "targets": "医院"
+    "targets": "医院",
+    "source": "健康祭りの報酬（0.686%）、信仰祭りの報酬（0.196%）、ケレス祭りの報酬（0.686%）、ケルヌンノス祭りの報酬（0.098%）、ウルカヌス祭りの報酬（0.686%）、来訪者イベントの報酬（レジェンダリー）（1.667%）、エンドゲーム技術報酬（経済）（16.667%）",
+    "sourceCaution": false,
+    "allocation": "住居"
   },
   {
     "guid": "54041",
@@ -4468,7 +5242,10 @@
       "範囲効果: 幸福度 +2"
     ],
     "boostCondition": "武器鍛冶師 3以上、現在の島",
-    "targets": "監視人"
+    "targets": "監視人",
+    "source": "幸福度祭りの報酬（0.458%）、健康祭りの報酬（0.065%）、知識祭りの報酬（0.065%）、メルクリウス・ルグス祭りの報酬（0.065%）、ケルヌンノス祭りの報酬（0.458%）、来訪者イベントの報酬（レジェンダリー）（1.667%）、エンドゲーム技術報酬（市民）（16.667%）",
+    "sourceCaution": false,
+    "allocation": "住居"
   },
   {
     "guid": "42048",
@@ -4487,7 +5264,10 @@
       "スミスの労働力も同量提供する"
     ],
     "boostCondition": "外交状態: 同盟、アサール・イオルグウィン",
-    "targets": "メルカトルの住居"
+    "targets": "メルカトルの住居",
+    "source": "来訪者イベントの報酬（レジェンダリー）（1.667%）、マンクスとの契約（最高）（0.017%）",
+    "sourceCaution": false,
+    "allocation": "住居"
   },
   {
     "guid": "42053",
@@ -4506,7 +5286,10 @@
       "メルカトルの労働力も同量提供する"
     ],
     "boostCondition": "特性 島の上: 幸福度 1000以上",
-    "targets": "スミスの住居"
+    "targets": "スミスの住居",
+    "source": "来訪者イベントの報酬（レジェンダリー）（1.667%）、コルヴィヌスとの取引（0.033%）、コルヴィヌスとの契約（最高）（0.017%）",
+    "sourceCaution": true,
+    "allocation": "住居"
   },
   {
     "guid": "51288",
@@ -4525,7 +5308,10 @@
       "プレブスの労働力も同量提供する"
     ],
     "boostCondition": "建設: パトリキの住居 400以上",
-    "targets": "リベルトゥスの住居"
+    "targets": "リベルトゥスの住居",
+    "source": "カエシリアとの契約（最高）（0.016%）、来訪者イベントの報酬（レジェンダリー）（1.667%）、ウァレリアとの取引（0.032%）、ウァレリアとの契約（最高）（0.016%）",
+    "sourceCaution": false,
+    "allocation": "住居"
   },
   {
     "guid": "92874",
@@ -4541,7 +5327,10 @@
     "boostHint": "",
     "boostEffects": [],
     "boostCondition": "",
-    "targets": "リベルトゥスの住居"
+    "targets": "リベルトゥスの住居",
+    "source": "多数の交易商・祭りからランダム入手（低確率）",
+    "sourceCaution": false,
+    "allocation": "住居"
   },
   {
     "guid": "92876",
@@ -4557,7 +5346,10 @@
     "boostHint": "",
     "boostEffects": [],
     "boostCondition": "",
-    "targets": "プレブスの住居"
+    "targets": "プレブスの住居",
+    "source": "多数の交易商・祭りからランダム入手（低確率）",
+    "sourceCaution": false,
+    "allocation": "住居"
   },
   {
     "guid": "92878",
@@ -4573,7 +5365,10 @@
     "boostHint": "",
     "boostEffects": [],
     "boostCondition": "",
-    "targets": "エクィテスの住居"
+    "targets": "エクィテスの住居",
+    "source": "多数の交易商・祭りからランダム入手（低確率）",
+    "sourceCaution": false,
+    "allocation": "住居"
   },
   {
     "guid": "92880",
@@ -4589,7 +5384,10 @@
     "boostHint": "",
     "boostEffects": [],
     "boostCondition": "",
-    "targets": "パトリキの住居"
+    "targets": "パトリキの住居",
+    "source": "来訪者イベントの報酬（エピック）（0.935%）、ディアナとの取引（0.099%）、ディアナとの契約（良）（0.021%）、ディアナとの契約（最高）（0.063%）",
+    "sourceCaution": false,
+    "allocation": "住居"
   },
   {
     "guid": "92882",
@@ -4605,7 +5403,10 @@
     "boostHint": "",
     "boostEffects": [],
     "boostCondition": "",
-    "targets": "メルカトルの住居"
+    "targets": "メルカトルの住居",
+    "source": "多数の交易商・祭りからランダム入手（低確率）",
+    "sourceCaution": false,
+    "allocation": "住居"
   },
   {
     "guid": "92884",
@@ -4621,7 +5422,10 @@
     "boostHint": "",
     "boostEffects": [],
     "boostCondition": "",
-    "targets": "ノビレスの住居"
+    "targets": "ノビレスの住居",
+    "source": "来訪者イベントの報酬（エピック）（0.935%）、コルヴィヌスとの取引（0.111%）、コルヴィヌスとの契約（良）（0.024%）、コルヴィヌスとの契約（最高）（0.071%）",
+    "sourceCaution": true,
+    "allocation": "住居"
   },
   {
     "guid": "92886",
@@ -4637,7 +5441,10 @@
     "boostHint": "",
     "boostEffects": [],
     "boostCondition": "",
-    "targets": "ウェーダーの住居"
+    "targets": "ウェーダーの住居",
+    "source": "クエスト「イノシシの群れ」、多数の交易商・祭りからランダム入手（低確率）",
+    "sourceCaution": false,
+    "allocation": "住居"
   },
   {
     "guid": "92888",
@@ -4653,7 +5460,10 @@
     "boostHint": "",
     "boostEffects": [],
     "boostCondition": "",
-    "targets": "スミスの住居"
+    "targets": "スミスの住居",
+    "source": "多数の交易商・祭りからランダム入手（低確率）",
+    "sourceCaution": false,
+    "allocation": "住居"
   },
   {
     "guid": "92890",
@@ -4669,7 +5479,10 @@
     "boostHint": "",
     "boostEffects": [],
     "boostCondition": "",
-    "targets": "アルダーの住居"
+    "targets": "アルダーの住居",
+    "source": "来訪者イベントの報酬（エピック）（0.935%）、マンクスとの契約（良）（0.024%）、マンクスとの契約（最高）（0.071%）",
+    "sourceCaution": false,
+    "allocation": "住居"
   },
   {
     "guid": "106731",
@@ -4685,7 +5498,10 @@
     "boostHint": "",
     "boostEffects": [],
     "boostCondition": "",
-    "targets": "募集施設"
+    "targets": "募集施設",
+    "source": "多数の交易商・祭りからランダム入手（低確率）",
+    "sourceCaution": false,
+    "allocation": "住居"
   },
   {
     "guid": "106736",
@@ -4702,7 +5518,10 @@
     "boostHint": "",
     "boostEffects": [],
     "boostCondition": "",
-    "targets": "兵舎"
+    "targets": "兵舎",
+    "source": "クエスト「タラゴンの苦境」、多数の交易商・祭りからランダム入手（低確率）",
+    "sourceCaution": false,
+    "allocation": "住居"
   },
   {
     "guid": "106738",
@@ -4719,7 +5538,10 @@
     "boostHint": "",
     "boostEffects": [],
     "boostCondition": "",
-    "targets": "攻城兵器工房"
+    "targets": "攻城兵器工房",
+    "source": "多数の交易商・祭りからランダム入手（低確率）",
+    "sourceCaution": false,
+    "allocation": "住居"
   },
   {
     "guid": "106740",
@@ -4736,7 +5558,10 @@
     "boostHint": "",
     "boostEffects": [],
     "boostCondition": "",
-    "targets": "騎兵養成所"
+    "targets": "騎兵養成所",
+    "source": "多数の交易商・祭りからランダム入手（低確率）",
+    "sourceCaution": false,
+    "allocation": "住居"
   },
   {
     "guid": "106742",
@@ -4754,7 +5579,10 @@
     "boostHint": "",
     "boostEffects": [],
     "boostCondition": "",
-    "targets": "募集施設"
+    "targets": "募集施設",
+    "source": "多数の交易商・祭りからランダム入手（低確率）",
+    "sourceCaution": false,
+    "allocation": "住居"
   },
   {
     "guid": "106631",
@@ -4771,7 +5599,10 @@
     "boostHint": "",
     "boostEffects": [],
     "boostCondition": "",
-    "targets": "オーツ麦農場、オリーブ農家"
+    "targets": "オーツ麦農場、オリーブ農家",
+    "source": "多数の交易商・祭りからランダム入手（低確率）",
+    "sourceCaution": false,
+    "allocation": "住居"
   },
   {
     "guid": "106634",
@@ -4788,7 +5619,10 @@
     "boostHint": "",
     "boostEffects": [],
     "boostCondition": "",
-    "targets": "ハーブ園、大麦農場"
+    "targets": "ハーブ園、大麦農場",
+    "source": "多数の交易商・祭りからランダム入手（低確率）",
+    "sourceCaution": false,
+    "allocation": "住居"
   },
   {
     "guid": "106636",
@@ -4805,7 +5639,10 @@
     "boostHint": "",
     "boostEffects": [],
     "boostCondition": "",
-    "targets": "漁師小屋、サバ小屋"
+    "targets": "漁師小屋、サバ小屋",
+    "source": "多数の交易商・祭りからランダム入手（低確率）",
+    "sourceCaution": false,
+    "allocation": "住居"
   },
   {
     "guid": "106638",
@@ -4822,7 +5659,10 @@
     "boostHint": "",
     "boostEffects": [],
     "boostCondition": "",
-    "targets": "ザル貝採り、アッケシソウ摘み"
+    "targets": "ザル貝採り、アッケシソウ摘み",
+    "source": "多数の交易商・祭りからランダム入手（低確率）",
+    "sourceCaution": false,
+    "allocation": "住居"
   },
   {
     "guid": "106644",
@@ -4840,7 +5680,10 @@
     "boostHint": "",
     "boostEffects": [],
     "boostCondition": "",
-    "targets": "ラティウムの都市警備"
+    "targets": "ラティウムの都市警備",
+    "source": "多数の交易商・祭りからランダム入手（低確率）",
+    "sourceCaution": false,
+    "allocation": "住居"
   },
   {
     "guid": "106646",
@@ -4858,7 +5701,10 @@
     "boostHint": "",
     "boostEffects": [],
     "boostCondition": "",
-    "targets": "アルビオンの都市警備"
+    "targets": "アルビオンの都市警備",
+    "source": "多数の交易商・祭りからランダム入手（低確率）",
+    "sourceCaution": false,
+    "allocation": "住居"
   },
   {
     "guid": "106648",
@@ -4876,7 +5722,10 @@
     "boostHint": "",
     "boostEffects": [],
     "boostCondition": "",
-    "targets": "ラティウムの倉庫"
+    "targets": "ラティウムの倉庫",
+    "source": "多数の交易商・祭りからランダム入手（低確率）",
+    "sourceCaution": false,
+    "allocation": "住居"
   },
   {
     "guid": "106650",
@@ -4894,7 +5743,10 @@
     "boostHint": "",
     "boostEffects": [],
     "boostCondition": "",
-    "targets": "アルビオンの倉庫"
+    "targets": "アルビオンの倉庫",
+    "source": "多数の交易商・祭りからランダム入手（低確率）",
+    "sourceCaution": false,
+    "allocation": "住居"
   },
   {
     "guid": "106640",
@@ -4912,7 +5764,10 @@
     "boostHint": "",
     "boostEffects": [],
     "boostCondition": "",
-    "targets": "カタツムリ飼育場、ラティウムの羊牧場、養豚場"
+    "targets": "カタツムリ飼育場、ラティウムの羊牧場、養豚場",
+    "source": "多数の交易商・祭りからランダム入手（低確率）",
+    "sourceCaution": false,
+    "allocation": "住居"
   },
   {
     "guid": "106642",
@@ -4930,7 +5785,10 @@
     "boostHint": "",
     "boostEffects": [],
     "boostCondition": "",
-    "targets": "オーロックス牧場、アルビオンの羊牧場、養豚場"
+    "targets": "オーロックス牧場、アルビオンの羊牧場、養豚場",
+    "source": "多数の交易商・祭りからランダム入手（低確率）",
+    "sourceCaution": false,
+    "allocation": "住居"
   },
   {
     "guid": "106652",
@@ -4948,7 +5806,10 @@
     "boostHint": "",
     "boostEffects": [],
     "boostCondition": "",
-    "targets": "ラティウムの塔"
+    "targets": "ラティウムの塔",
+    "source": "多数の交易商・祭りからランダム入手（低確率）",
+    "sourceCaution": false,
+    "allocation": "住居"
   },
   {
     "guid": "106654",
@@ -4966,7 +5827,10 @@
     "boostHint": "",
     "boostEffects": [],
     "boostCondition": "",
-    "targets": "アルビオンの塔"
+    "targets": "アルビオンの塔",
+    "source": "多数の交易商・祭りからランダム入手（低確率）",
+    "sourceCaution": false,
+    "allocation": "住居"
   },
   {
     "guid": "106539",
@@ -4982,7 +5846,10 @@
     "boostHint": "",
     "boostEffects": [],
     "boostCondition": "",
-    "targets": "塔"
+    "targets": "塔",
+    "source": "多数の交易商・祭りからランダム入手（低確率）",
+    "sourceCaution": false,
+    "allocation": "住居"
   },
   {
     "guid": "106549",
@@ -4999,7 +5866,10 @@
     "boostHint": "",
     "boostEffects": [],
     "boostCondition": "",
-    "targets": "交易所、倉庫、貯蔵所"
+    "targets": "交易所、倉庫、貯蔵所",
+    "source": "多数の交易商・祭りからランダム入手（低確率）",
+    "sourceCaution": false,
+    "allocation": "住居"
   },
   {
     "guid": "106537",
@@ -5016,7 +5886,10 @@
     "boostHint": "",
     "boostEffects": [],
     "boostCondition": "",
-    "targets": "塔"
+    "targets": "塔",
+    "source": "クエスト「円卓の夜」、多数の交易商・祭りからランダム入手（低確率）",
+    "sourceCaution": false,
+    "allocation": "住居"
   },
   {
     "guid": "106541",
@@ -5034,7 +5907,10 @@
     "boostHint": "",
     "boostEffects": [],
     "boostCondition": "",
-    "targets": "塔"
+    "targets": "塔",
+    "source": "多数の交易商・祭りからランダム入手（低確率）",
+    "sourceCaution": false,
+    "allocation": "住居"
   },
   {
     "guid": "106547",
@@ -5052,7 +5928,10 @@
     "boostHint": "",
     "boostEffects": [],
     "boostCondition": "",
-    "targets": "門"
+    "targets": "門",
+    "source": "多数の交易商・祭りからランダム入手（低確率）",
+    "sourceCaution": false,
+    "allocation": "住居"
   },
   {
     "guid": "106545",
@@ -5069,7 +5948,10 @@
     "boostHint": "",
     "boostEffects": [],
     "boostCondition": "",
-    "targets": "門"
+    "targets": "門",
+    "source": "多数の交易商・祭りからランダム入手（低確率）",
+    "sourceCaution": false,
+    "allocation": "住居"
   },
   {
     "guid": "106551",
@@ -5088,7 +5970,10 @@
     "boostHint": "",
     "boostEffects": [],
     "boostCondition": "",
-    "targets": "修理クレーン"
+    "targets": "修理クレーン",
+    "source": "クエスト「円卓の夜」、多数の交易商・祭りからランダム入手（低確率）",
+    "sourceCaution": false,
+    "allocation": "住居"
   },
   {
     "guid": "42592",
@@ -5106,7 +5991,10 @@
     "boostHint": "",
     "boostEffects": [],
     "boostCondition": "",
-    "targets": "塔"
+    "targets": "塔",
+    "source": "多数の交易商・祭りからランダム入手（低確率）",
+    "sourceCaution": false,
+    "allocation": "住居"
   },
   {
     "guid": "51278",
@@ -5124,7 +6012,10 @@
     "boostHint": "",
     "boostEffects": [],
     "boostCondition": "",
-    "targets": "門"
+    "targets": "門",
+    "source": "多数の交易商・祭りからランダム入手（低確率）",
+    "sourceCaution": false,
+    "allocation": "住居"
   },
   {
     "guid": "42598",
@@ -5142,7 +6033,10 @@
     "boostHint": "",
     "boostEffects": [],
     "boostCondition": "",
-    "targets": "塔"
+    "targets": "塔",
+    "source": "多数の交易商・祭りからランダム入手（低確率）",
+    "sourceCaution": false,
+    "allocation": "住居"
   },
   {
     "guid": "106543",
@@ -5168,7 +6062,10 @@
       "攻撃速度: +25%"
     ],
     "boostCondition": "有効な島の祭神: ミネルヴァ",
-    "targets": "塔"
+    "targets": "塔",
+    "source": "多数の交易商・祭りからランダム入手（低確率）",
+    "sourceCaution": false,
+    "allocation": "住居"
   },
   {
     "guid": "107337",
@@ -5190,7 +6087,10 @@
       "遠距離攻撃力: +4"
     ],
     "boostCondition": "現在の評判 皇帝: 反乱;反乱寸前",
-    "targets": "門"
+    "targets": "門",
+    "source": "多数の交易商・祭りからランダム入手（低確率）",
+    "sourceCaution": false,
+    "allocation": "住居"
   },
   {
     "guid": "80176",
@@ -5212,7 +6112,10 @@
       "自己修復速度: +150%"
     ],
     "boostCondition": "壁 100以上、現在の島",
-    "targets": "壁、門"
+    "targets": "壁、門",
+    "source": "多数の交易商・祭りからランダム入手（低確率）",
+    "sourceCaution": false,
+    "allocation": "住居"
   },
   {
     "guid": "106841",
@@ -5236,7 +6139,10 @@
       "攻撃速度: +40%"
     ],
     "boostCondition": "特性 島の上: 幸福度 800以上",
-    "targets": "塔、石の門"
+    "targets": "塔、石の門",
+    "source": "多数の交易商・祭りからランダム入手（低確率）",
+    "sourceCaution": false,
+    "allocation": "住居"
   },
   {
     "guid": "106397",
@@ -5252,7 +6158,10 @@
     "boostHint": "",
     "boostEffects": [],
     "boostCondition": "",
-    "targets": "貯水池"
+    "targets": "貯水池",
+    "source": "多数の交易商・祭りからランダム入手（低確率）",
+    "sourceCaution": false,
+    "allocation": "住居"
   },
   {
     "guid": "42054",
@@ -5274,7 +6183,10 @@
       "火災安全度: +150"
     ],
     "boostCondition": "特性 島の上: 名声 1000以上",
-    "targets": "貯水池"
+    "targets": "貯水池",
+    "source": "防火祭りの報酬（0.343%）、戦勝祭りの報酬（0.049%）、モニュメント祭りの報酬（0.049%）、マルス祭りの報酬（0.049%）、エポナ祭りの報酬（0.343%）、ウルカヌス祭りの報酬（0.098%）、来訪者イベントの報酬（レジェンダリー）（1.667%）、エンドゲーム技術報酬（経済）（16.667%）",
+    "sourceCaution": false,
+    "allocation": "住居"
   },
   {
     "guid": "106410",
@@ -5290,7 +6202,10 @@
     "boostHint": "",
     "boostEffects": [],
     "boostCondition": "",
-    "targets": "耕作可能な農場"
+    "targets": "耕作可能な農場",
+    "source": "多数の交易商・祭りからランダム入手（低確率）",
+    "sourceCaution": false,
+    "allocation": "住居"
   },
   {
     "guid": "106412",
@@ -5306,7 +6221,10 @@
     "boostHint": "",
     "boostEffects": [],
     "boostCondition": "",
-    "targets": "農園"
+    "targets": "農園",
+    "source": "クエスト「タラゴンの苦境」、多数の交易商・祭りからランダム入手（低確率）",
+    "sourceCaution": false,
+    "allocation": "住居"
   },
   {
     "guid": "106414",
@@ -5323,7 +6241,10 @@
     "boostHint": "",
     "boostEffects": [],
     "boostCondition": "",
-    "targets": "鉱山"
+    "targets": "鉱山",
+    "source": "多数の交易商・祭りからランダム入手（低確率）",
+    "sourceCaution": false,
+    "allocation": "住居"
   },
   {
     "guid": "106416",
@@ -5345,7 +6266,10 @@
       "知識: +150"
     ],
     "boostCondition": "特性 島の上: 火災安全度 800以上",
-    "targets": "驚異"
+    "targets": "驚異",
+    "source": "健康祭りの報酬（0.196%）、知識祭りの報酬（0.686%）、ケレス祭りの報酬（0.098%）、ミネルウァ祭りの報酬（0.686%）、来訪者イベントの報酬（レジェンダリー）（1.667%）、エンドゲーム技術報酬（市民）（16.667%）",
+    "sourceCaution": false,
+    "allocation": "住居"
   },
   {
     "guid": "71552",
@@ -5361,7 +6285,10 @@
     "boostHint": "",
     "boostEffects": [],
     "boostCondition": "",
-    "targets": "船"
+    "targets": "船",
+    "source": "多数の交易商・祭りからランダム入手（低確率）",
+    "sourceCaution": false,
+    "allocation": "船"
   },
   {
     "guid": "106708",
@@ -5377,7 +6304,10 @@
     "boostHint": "",
     "boostEffects": [],
     "boostCondition": "",
-    "targets": "船"
+    "targets": "船",
+    "source": "多数の交易商・祭りからランダム入手（低確率）",
+    "sourceCaution": false,
+    "allocation": "船"
   },
   {
     "guid": "71540",
@@ -5394,7 +6324,10 @@
     "boostHint": "",
     "boostEffects": [],
     "boostCondition": "",
-    "targets": "船"
+    "targets": "船",
+    "source": "多数の交易商・祭りからランダム入手（低確率）",
+    "sourceCaution": false,
+    "allocation": "船"
   },
   {
     "guid": "71554",
@@ -5411,7 +6344,10 @@
     "boostHint": "",
     "boostEffects": [],
     "boostCondition": "",
-    "targets": "船"
+    "targets": "船",
+    "source": "クエスト「失われた自由」、多数の交易商・祭りからランダム入手（低確率）",
+    "sourceCaution": false,
+    "allocation": "船"
   },
   {
     "guid": "71556",
@@ -5427,7 +6363,10 @@
     "boostHint": "",
     "boostEffects": [],
     "boostCondition": "",
-    "targets": "船"
+    "targets": "船",
+    "source": "クエスト「成功への出航」、多数の交易商・祭りからランダム入手（低確率）",
+    "sourceCaution": false,
+    "allocation": "船"
   },
   {
     "guid": "42618",
@@ -5444,7 +6383,10 @@
     "boostHint": "",
     "boostEffects": [],
     "boostCondition": "",
-    "targets": "船"
+    "targets": "船",
+    "source": "多数の交易商・祭りからランダム入手（低確率）",
+    "sourceCaution": false,
+    "allocation": "船"
   },
   {
     "guid": "71542",
@@ -5461,7 +6403,10 @@
     "boostHint": "",
     "boostEffects": [],
     "boostCondition": "",
-    "targets": "船"
+    "targets": "船",
+    "source": "多数の交易商・祭りからランダム入手（低確率）",
+    "sourceCaution": false,
+    "allocation": "船"
   },
   {
     "guid": "71558",
@@ -5478,7 +6423,10 @@
     "boostHint": "",
     "boostEffects": [],
     "boostCondition": "",
-    "targets": "船"
+    "targets": "船",
+    "source": "多数の交易商・祭りからランダム入手（低確率）",
+    "sourceCaution": false,
+    "allocation": "船"
   },
   {
     "guid": "71560",
@@ -5495,7 +6443,10 @@
     "boostHint": "",
     "boostEffects": [],
     "boostCondition": "",
-    "targets": "船"
+    "targets": "船",
+    "source": "来訪者イベントの報酬（エピック）（0.935%）、マンクスとの契約（良）（0.024%）、マンクスとの契約（最高）（0.071%）",
+    "sourceCaution": false,
+    "allocation": "船"
   },
   {
     "guid": "71562",
@@ -5513,7 +6464,10 @@
     "boostHint": "",
     "boostEffects": [],
     "boostCondition": "",
-    "targets": "船"
+    "targets": "船",
+    "source": "多数の交易商・祭りからランダム入手（低確率）",
+    "sourceCaution": false,
+    "allocation": "船"
   },
   {
     "guid": "42617",
@@ -5535,7 +6489,10 @@
       "積荷の重量による減速：-90%"
     ],
     "boostCondition": "建設: 船 1以上、設置済みのモジュール、3",
-    "targets": "船"
+    "targets": "船",
+    "source": "多数の交易商・祭りからランダム入手（低確率）",
+    "sourceCaution": false,
+    "allocation": "船"
   },
   {
     "guid": "71564",
@@ -5557,7 +6514,10 @@
       "追い風の風向: +90"
     ],
     "boostCondition": "高位祭神: メルクリウス・ルグス",
-    "targets": "船"
+    "targets": "船",
+    "source": "防火祭りの報酬（0.022%）、信仰祭りの報酬（0.022%）、知識祭りの報酬（0.044%）、名声祭りの報酬（0.044%）、ネプトゥヌス祭りの報酬（0.153%）、来訪者イベントの報酬（レジェンダリー）（1.667%）、エンドゲーム技術報酬（軍事）（16.667%）",
+    "sourceCaution": false,
+    "allocation": "船"
   },
   {
     "guid": "71523",
@@ -5573,7 +6533,10 @@
     "boostHint": "",
     "boostEffects": [],
     "boostCondition": "",
-    "targets": "船"
+    "targets": "船",
+    "source": "多数の交易商・祭りからランダム入手（低確率）",
+    "sourceCaution": false,
+    "allocation": "船"
   },
   {
     "guid": "44191",
@@ -5590,7 +6553,10 @@
     "boostHint": "",
     "boostEffects": [],
     "boostCondition": "",
-    "targets": "船"
+    "targets": "船",
+    "source": "多数の交易商・祭りからランダム入手（低確率）",
+    "sourceCaution": false,
+    "allocation": "船"
   },
   {
     "guid": "71529",
@@ -5607,7 +6573,10 @@
     "boostHint": "",
     "boostEffects": [],
     "boostCondition": "",
-    "targets": "船"
+    "targets": "船",
+    "source": "多数の交易商・祭りからランダム入手（低確率）",
+    "sourceCaution": false,
+    "allocation": "船"
   },
   {
     "guid": "71531",
@@ -5624,7 +6593,10 @@
     "boostHint": "",
     "boostEffects": [],
     "boostCondition": "",
-    "targets": "船"
+    "targets": "船",
+    "source": "クエスト「失われた自由」、多数の交易商・祭りからランダム入手（低確率）",
+    "sourceCaution": false,
+    "allocation": "船"
   },
   {
     "guid": "44179",
@@ -5641,7 +6613,10 @@
     "boostHint": "",
     "boostEffects": [],
     "boostCondition": "",
-    "targets": "船"
+    "targets": "船",
+    "source": "多数の交易商・祭りからランダム入手（低確率）",
+    "sourceCaution": false,
+    "allocation": "船"
   },
   {
     "guid": "71517",
@@ -5658,7 +6633,10 @@
     "boostHint": "",
     "boostEffects": [],
     "boostCondition": "",
-    "targets": "船"
+    "targets": "船",
+    "source": "多数の交易商・祭りからランダム入手（低確率）",
+    "sourceCaution": false,
+    "allocation": "船"
   },
   {
     "guid": "71525",
@@ -5675,7 +6653,10 @@
     "boostHint": "",
     "boostEffects": [],
     "boostCondition": "",
-    "targets": "船"
+    "targets": "船",
+    "source": "クエスト「価値ある戦利品」、多数の交易商・祭りからランダム入手（低確率）",
+    "sourceCaution": false,
+    "allocation": "船"
   },
   {
     "guid": "71533",
@@ -5693,7 +6674,10 @@
     "boostHint": "",
     "boostEffects": [],
     "boostCondition": "",
-    "targets": "船"
+    "targets": "船",
+    "source": "多数の交易商・祭りからランダム入手（低確率）",
+    "sourceCaution": false,
+    "allocation": "船"
   },
   {
     "guid": "71519",
@@ -5711,7 +6695,10 @@
     "boostHint": "",
     "boostEffects": [],
     "boostCondition": "",
-    "targets": "船"
+    "targets": "船",
+    "source": "来訪者イベントの報酬（エピック）（0.935%）、マンクスとの契約（良）（0.024%）、マンクスとの契約（最高）（0.071%）",
+    "sourceCaution": false,
+    "allocation": "船"
   },
   {
     "guid": "71527",
@@ -5735,7 +6722,10 @@
       "ダメージによる減速: -90%"
     ],
     "boostCondition": "海軍力: 20000以上、現在 属州",
-    "targets": "船"
+    "targets": "船",
+    "source": "多数の交易商・祭りからランダム入手（低確率）",
+    "sourceCaution": false,
+    "allocation": "船"
   },
   {
     "guid": "71521",
@@ -5759,7 +6749,10 @@
       "追い風の風向: +45"
     ],
     "boostCondition": "高位祭神: ケルヌンノス",
-    "targets": "船"
+    "targets": "船",
+    "source": "防火祭りの報酬（0.022%）、信仰祭りの報酬（0.022%）、知識祭りの報酬（0.044%）、名声祭りの報酬（0.044%）、ネプトゥヌス祭りの報酬（0.153%）、来訪者イベントの報酬（レジェンダリー）（1.667%）、エンドゲーム技術報酬（軍事）（16.667%）",
+    "sourceCaution": false,
+    "allocation": "船"
   },
   {
     "guid": "71535",
@@ -5783,7 +6776,10 @@
       "属州の移動速度: +60%"
     ],
     "boostCondition": "現在の評判 皇帝: 75以上",
-    "targets": "船"
+    "targets": "船",
+    "source": "多数の交易商・祭りからランダム入手（低確率）",
+    "sourceCaution": false,
+    "allocation": "船"
   },
   {
     "guid": "79629",
@@ -5805,7 +6801,10 @@
       "向かい風による影響: -100%"
     ],
     "boostCondition": "取引ルート: 15以上",
-    "targets": "船"
+    "targets": "船",
+    "source": "多数の交易商・祭りからランダム入手（低確率）",
+    "sourceCaution": false,
+    "allocation": "船"
   },
   {
     "guid": "71583",
@@ -5822,7 +6821,10 @@
     "boostHint": "",
     "boostEffects": [],
     "boostCondition": "",
-    "targets": "船"
+    "targets": "船",
+    "source": "多数の交易商・祭りからランダム入手（低確率）",
+    "sourceCaution": false,
+    "allocation": "船"
   },
   {
     "guid": "71575",
@@ -5839,7 +6841,10 @@
     "boostHint": "",
     "boostEffects": [],
     "boostCondition": "",
-    "targets": "船"
+    "targets": "船",
+    "source": "多数の交易商・祭りからランダム入手（低確率）",
+    "sourceCaution": false,
+    "allocation": "船"
   },
   {
     "guid": "71599",
@@ -5856,7 +6861,10 @@
     "boostHint": "",
     "boostEffects": [],
     "boostCondition": "",
-    "targets": "船"
+    "targets": "船",
+    "source": "多数の交易商・祭りからランダム入手（低確率）",
+    "sourceCaution": false,
+    "allocation": "船"
   },
   {
     "guid": "71591",
@@ -5873,7 +6881,10 @@
     "boostHint": "",
     "boostEffects": [],
     "boostCondition": "",
-    "targets": "船"
+    "targets": "船",
+    "source": "多数の交易商・祭りからランダム入手（低確率）",
+    "sourceCaution": false,
+    "allocation": "船"
   },
   {
     "guid": "71597",
@@ -5890,7 +6901,10 @@
     "boostHint": "",
     "boostEffects": [],
     "boostCondition": "",
-    "targets": "船"
+    "targets": "船",
+    "source": "多数の交易商・祭りからランダム入手（低確率）",
+    "sourceCaution": false,
+    "allocation": "船"
   },
   {
     "guid": "71573",
@@ -5907,7 +6921,10 @@
     "boostHint": "",
     "boostEffects": [],
     "boostCondition": "",
-    "targets": "船"
+    "targets": "船",
+    "source": "多数の交易商・祭りからランダム入手（低確率）",
+    "sourceCaution": false,
+    "allocation": "船"
   },
   {
     "guid": "71581",
@@ -5924,7 +6941,10 @@
     "boostHint": "",
     "boostEffects": [],
     "boostCondition": "",
-    "targets": "船"
+    "targets": "船",
+    "source": "多数の交易商・祭りからランダム入手（低確率）",
+    "sourceCaution": false,
+    "allocation": "船"
   },
   {
     "guid": "71589",
@@ -5942,7 +6962,10 @@
     "boostHint": "",
     "boostEffects": [],
     "boostCondition": "",
-    "targets": "船"
+    "targets": "船",
+    "source": "多数の交易商・祭りからランダム入手（低確率）",
+    "sourceCaution": false,
+    "allocation": "船"
   },
   {
     "guid": "106706",
@@ -5961,7 +6984,10 @@
     "boostHint": "",
     "boostEffects": [],
     "boostCondition": "",
-    "targets": "船"
+    "targets": "船",
+    "source": "クエスト「円卓の夜」、多数の交易商・祭りからランダム入手（低確率）",
+    "sourceCaution": false,
+    "allocation": "船"
   },
   {
     "guid": "71571",
@@ -5978,7 +7004,10 @@
     "boostHint": "",
     "boostEffects": [],
     "boostCondition": "",
-    "targets": "船"
+    "targets": "船",
+    "source": "クエスト「感動させる背信行為」、カエシリアとの契約（良）（0.021%）、カエシリアとの契約（最高）（0.063%）、来訪者イベントの報酬（エピック）（0.935%）、ウァレリアとの取引（0.099%）、ウァレリアとの契約（良）（0.021%）、ウァレリアとの契約（最高）（0.063%）",
+    "sourceCaution": false,
+    "allocation": "船"
   },
   {
     "guid": "71595",
@@ -5995,7 +7024,10 @@
     "boostHint": "",
     "boostEffects": [],
     "boostCondition": "",
-    "targets": "船"
+    "targets": "船",
+    "source": "多数の交易商・祭りからランダム入手（低確率）",
+    "sourceCaution": false,
+    "allocation": "船"
   },
   {
     "guid": "71587",
@@ -6013,7 +7045,10 @@
     "boostHint": "",
     "boostEffects": [],
     "boostCondition": "",
-    "targets": "船"
+    "targets": "船",
+    "source": "来訪者イベントの報酬（エピック）（0.935%）、マンクスとの取引（0.113%）、ウォアダとの取引（0.145%）、ウォアダとの契約（良）（0.024%）、ウォアダとの契約（最高）（0.073%）、ウォアダとの撃破ドロップ（0.023%）",
+    "sourceCaution": false,
+    "allocation": "船"
   },
   {
     "guid": "71579",
@@ -6032,7 +7067,10 @@
     "boostHint": "",
     "boostEffects": [],
     "boostCondition": "",
-    "targets": "船"
+    "targets": "船",
+    "source": "来訪者イベントの報酬（エピック）（0.935%）、ディアナとの取引（0.099%）、ディアナとの契約（良）（0.021%）、ディアナとの契約（最高）（0.063%）",
+    "sourceCaution": false,
+    "allocation": "船"
   },
   {
     "guid": "71585",
@@ -6056,7 +7094,10 @@
       "松明の攻撃速度: +45%"
     ],
     "boostCondition": "建設: 船 1以上、設置済みのモジュール 軍事、2",
-    "targets": "船"
+    "targets": "船",
+    "source": "多数の交易商・祭りからランダム入手（低確率）",
+    "sourceCaution": false,
+    "allocation": "船"
   },
   {
     "guid": "42619",
@@ -6080,7 +7121,10 @@
       "船上バリスタの攻撃速度: +50%"
     ],
     "boostCondition": "外交状態: 同盟、カエソ・レグルス・シラクス",
-    "targets": "船"
+    "targets": "船",
+    "source": "多数の交易商・祭りからランダム入手（低確率）",
+    "sourceCaution": false,
+    "allocation": "船"
   },
   {
     "guid": "71577",
@@ -6104,7 +7148,10 @@
       "船上カタパルトの攻撃速度: +50%"
     ],
     "boostCondition": "バランス: 5000以上",
-    "targets": "船"
+    "targets": "船",
+    "source": "多数の交易商・祭りからランダム入手（低確率）",
+    "sourceCaution": false,
+    "allocation": "船"
   },
   {
     "guid": "71593",
@@ -6130,7 +7177,10 @@
       "船上バリスタの攻撃範囲: +35%"
     ],
     "boostCondition": "完了した契約: 20以上",
-    "targets": "船"
+    "targets": "船",
+    "source": "防火祭りの報酬（0.030%）、戦勝祭りの報酬（0.106%）、マルス祭りの報酬（0.106%）、ネプトゥヌス祭りの報酬（0.015%）、エポナ祭りの報酬（0.015%）、来訪者イベントの報酬（レジェンダリー）（1.667%）、エンドゲーム技術報酬（軍事）（16.667%）",
+    "sourceCaution": false,
+    "allocation": "船"
   },
   {
     "guid": "79631",
@@ -6154,7 +7204,10 @@
       "船上弓兵の攻撃範囲: +40%"
     ],
     "boostCondition": "外交状態: 戦争、スカアハ族のウォアダ",
-    "targets": "船"
+    "targets": "船",
+    "source": "多数の交易商・祭りからランダム入手（低確率）",
+    "sourceCaution": false,
+    "allocation": "船"
   },
   {
     "guid": "106979",
@@ -6178,7 +7231,10 @@
       "船上バリスタの攻撃速度: +50%"
     ],
     "boostCondition": "建設: 船 1以上、設置済みのモジュール 軍事、2",
-    "targets": "船"
+    "targets": "船",
+    "source": "多数の交易商・祭りからランダム入手（低確率）",
+    "sourceCaution": false,
+    "allocation": "船"
   },
   {
     "guid": "107338",
@@ -6202,7 +7258,10 @@
       "船上カタパルトの攻撃速度: +40%"
     ],
     "boostCondition": "特性 島の上: 知識 10000以上",
-    "targets": "船"
+    "targets": "船",
+    "source": "多数の交易商・祭りからランダム入手（低確率）",
+    "sourceCaution": false,
+    "allocation": "船"
   },
   {
     "guid": "106702",
@@ -6219,7 +7278,10 @@
     "boostHint": "",
     "boostEffects": [],
     "boostCondition": "",
-    "targets": "船"
+    "targets": "船",
+    "source": "クエスト「失われた自由」、多数の交易商・祭りからランダム入手（低確率）",
+    "sourceCaution": false,
+    "allocation": "船"
   },
   {
     "guid": "71544",
@@ -6236,7 +7298,10 @@
     "boostHint": "",
     "boostEffects": [],
     "boostCondition": "",
-    "targets": "船"
+    "targets": "船",
+    "source": "クエスト「横領者の裁判」、多数の交易商・祭りからランダム入手（低確率）",
+    "sourceCaution": false,
+    "allocation": "船"
   },
   {
     "guid": "71569",
@@ -6254,7 +7319,10 @@
     "boostHint": "",
     "boostEffects": [],
     "boostCondition": "",
-    "targets": "船"
+    "targets": "船",
+    "source": "クエスト「タラゴンの苦境」、多数の交易商・祭りからランダム入手（低確率）",
+    "sourceCaution": false,
+    "allocation": "船"
   },
   {
     "guid": "44178",
@@ -6271,7 +7339,10 @@
     "boostHint": "",
     "boostEffects": [],
     "boostCondition": "",
-    "targets": "船"
+    "targets": "船",
+    "source": "来訪者イベントの報酬（エピック）（0.935%）、ディアナとの取引（0.099%）、ディアナとの契約（良）（0.021%）、ディアナとの契約（最高）（0.063%）",
+    "sourceCaution": false,
+    "allocation": "船"
   },
   {
     "guid": "71548",
@@ -6293,7 +7364,10 @@
       "積荷の重量による減速：-60%"
     ],
     "boostCondition": "取引ルート: 25以上",
-    "targets": "船"
+    "targets": "船",
+    "source": "幸福度祭りの報酬（0.039%）、名声祭りの報酬（0.039%）、戦勝祭りの報酬（0.078%）、モニュメント祭りの報酬（0.078%）、メルクリウス・ルグス祭りの報酬（0.275%）、来訪者イベントの報酬（レジェンダリー）（1.667%）、エンドゲーム技術報酬（経済）（16.667%）",
+    "sourceCaution": false,
+    "allocation": "船"
   },
   {
     "guid": "42623",
@@ -6315,7 +7389,10 @@
       "松明の攻撃速度: +50%"
     ],
     "boostCondition": "高位祭神: ネプトゥーヌス",
-    "targets": "船"
+    "targets": "船",
+    "source": "多数の交易商・祭りからランダム入手（低確率）",
+    "sourceCaution": false,
+    "allocation": "船"
   },
   {
     "guid": "71538",
@@ -6332,7 +7409,10 @@
     "boostHint": "",
     "boostEffects": [],
     "boostCondition": "",
-    "targets": "船"
+    "targets": "船",
+    "source": "多数の交易商・祭りからランダム入手（低確率）",
+    "sourceCaution": false,
+    "allocation": "船"
   },
   {
     "guid": "106714",
@@ -6350,7 +7430,10 @@
     "boostHint": "",
     "boostEffects": [],
     "boostCondition": "",
-    "targets": "船"
+    "targets": "船",
+    "source": "多数の交易商・祭りからランダム入手（低確率）",
+    "sourceCaution": false,
+    "allocation": "船"
   },
   {
     "guid": "106704",
@@ -6367,7 +7450,10 @@
     "boostHint": "",
     "boostEffects": [],
     "boostCondition": "",
-    "targets": "船"
+    "targets": "船",
+    "source": "多数の交易商・祭りからランダム入手（低確率）",
+    "sourceCaution": false,
+    "allocation": "船"
   },
   {
     "guid": "106710",
@@ -6385,7 +7471,10 @@
     "boostHint": "",
     "boostEffects": [],
     "boostCondition": "",
-    "targets": "船"
+    "targets": "船",
+    "source": "多数の交易商・祭りからランダム入手（低確率）",
+    "sourceCaution": false,
+    "allocation": "船"
   },
   {
     "guid": "71546",
@@ -6403,7 +7492,10 @@
     "boostHint": "",
     "boostEffects": [],
     "boostCondition": "",
-    "targets": "船"
+    "targets": "船",
+    "source": "来訪者イベントの報酬（エピック）（0.935%）、カエソとの取引（0.129%）、カエソとの契約（良）（0.021%）、カエソとの契約（最高）（0.064%）、カエソとの撃破ドロップ（0.020%）",
+    "sourceCaution": false,
+    "allocation": "船"
   },
   {
     "guid": "106712",
@@ -6421,7 +7513,10 @@
     "boostHint": "",
     "boostEffects": [],
     "boostCondition": "",
-    "targets": "船"
+    "targets": "船",
+    "source": "多数の交易商・祭りからランダム入手（低確率）",
+    "sourceCaution": false,
+    "allocation": "船"
   },
   {
     "guid": "71550",
@@ -6445,7 +7540,10 @@
       "属州の移動速度: +30%"
     ],
     "boostCondition": "建設: 旗艦 1以上、船の構成、標準 旗艦",
-    "targets": "船"
+    "targets": "船",
+    "source": "多数の交易商・祭りからランダム入手（低確率）",
+    "sourceCaution": false,
+    "allocation": "船"
   },
   {
     "guid": "106716",
@@ -6469,7 +7567,10 @@
       "属州の移動速度: +50%"
     ],
     "boostCondition": "建設: 船 1以上、設置済みのモジュール 軍事、2",
-    "targets": "船"
+    "targets": "船",
+    "source": "防火祭りの報酬（0.022%）、信仰祭りの報酬（0.022%）、知識祭りの報酬（0.044%）、名声祭りの報酬（0.044%）、ネプトゥヌス祭りの報酬（0.153%）、来訪者イベントの報酬（レジェンダリー）（1.667%）、エンドゲーム技術報酬（軍事）（16.667%）",
+    "sourceCaution": false,
+    "allocation": "船"
   },
   {
     "guid": "51284",
@@ -6493,7 +7594,10 @@
       "発見範囲: +200%"
     ],
     "boostCondition": "属州で島を発見する: 16以上",
-    "targets": "船"
+    "targets": "船",
+    "source": "多数の交易商・祭りからランダム入手（低確率）",
+    "sourceCaution": false,
+    "allocation": "船"
   },
   {
     "guid": "160048",
@@ -6517,7 +7621,10 @@
       "範囲効果: 名声 +3"
     ],
     "boostCondition": "建設: 服屋 20以上",
-    "targets": "糸紡ぎ師"
+    "targets": "糸紡ぎ師",
+    "source": "来訪者イベントの報酬（ヒロイック）（3.333%）",
+    "sourceCaution": false,
+    "allocation": "住居"
   },
   {
     "guid": "160051",
@@ -6541,7 +7648,10 @@
       "労働力維持費: +20%"
     ],
     "boostCondition": "有効な島の祭神: ケルヌンノス",
-    "targets": "鳥使い"
+    "targets": "鳥使い",
+    "source": "来訪者イベントの報酬（ヒロイック）（3.333%）",
+    "sourceCaution": false,
+    "allocation": "住居"
   },
   {
     "guid": "160054",
@@ -6566,7 +7676,10 @@
       "労働力維持費: -75%"
     ],
     "boostCondition": "有効な島の祭神: ネプトゥーヌス",
-    "targets": "漁場"
+    "targets": "漁場",
+    "source": "来訪者イベントの報酬（ヒロイック）（3.333%）",
+    "sourceCaution": false,
+    "allocation": "住居"
   },
   {
     "guid": "160057",
@@ -6588,7 +7701,10 @@
       "品物の置換: 銀 → 鉄"
     ],
     "boostCondition": "現在の評判 皇帝: 75以上",
-    "targets": "鏡職人"
+    "targets": "鏡職人",
+    "source": "来訪者イベントの報酬（ヒロイック）（3.333%）",
+    "sourceCaution": false,
+    "allocation": "住居"
   },
   {
     "guid": "160060",
@@ -6611,7 +7727,10 @@
       "追加の品物: 蜂の巣 1/5"
     ],
     "boostCondition": "アクティブ 祭り: すべて",
-    "targets": "耕作可能な農場"
+    "targets": "耕作可能な農場",
+    "source": "来訪者イベントの報酬（ヒロイック）（3.333%）",
+    "sourceCaution": false,
+    "allocation": "住居"
   },
   {
     "guid": "160063",
@@ -6637,7 +7756,10 @@
       "範囲効果: 名声 +1"
     ],
     "boostCondition": "外交状態: 同盟、アサール・イオルグウィン",
-    "targets": "公共サービス"
+    "targets": "公共サービス",
+    "source": "来訪者イベントの報酬（ヒロイック）（3.333%）",
+    "sourceCaution": false,
+    "allocation": "住居"
   },
   {
     "guid": "160066",
@@ -6662,7 +7784,10 @@
       "範囲効果: 名声 +3"
     ],
     "boostCondition": "外交状態: 同盟、ネフェルネル",
-    "targets": "蝋版職人"
+    "targets": "蝋版職人",
+    "source": "来訪者イベントの報酬（ヒロイック）（3.333%）",
+    "sourceCaution": false,
+    "allocation": "住居"
   },
   {
     "guid": "160072",
@@ -6685,7 +7810,10 @@
       "労働力維持費: +50%"
     ],
     "boostCondition": "建設: 牧場 25以上",
-    "targets": "羊牧場"
+    "targets": "羊牧場",
+    "source": "来訪者イベントの報酬（ヒロイック）（3.333%）",
+    "sourceCaution": false,
+    "allocation": "住居"
   },
   {
     "guid": "160075",
@@ -6713,7 +7841,10 @@
       "範囲効果: 名声 +2"
     ],
     "boostCondition": "有効な島の祭神: マルス",
-    "targets": "武器庫"
+    "targets": "武器庫",
+    "source": "来訪者イベントの報酬（ヒロイック）（3.333%）",
+    "sourceCaution": false,
+    "allocation": "住居"
   },
   {
     "guid": "160078",
@@ -6737,7 +7868,10 @@
       "範囲効果: 名声 +1"
     ],
     "boostCondition": "外交状態: 同盟、コンコルディア",
-    "targets": "宝石商"
+    "targets": "宝石商",
+    "source": "来訪者イベントの報酬（ヒロイック）（3.333%）",
+    "sourceCaution": false,
+    "allocation": "住居"
   },
   {
     "guid": "160081",
@@ -6761,7 +7895,10 @@
       "範囲効果: 名声 +1"
     ],
     "boostCondition": "建設: 住居 1000以下",
-    "targets": "ウルカヌスの祭壇"
+    "targets": "ウルカヌスの祭壇",
+    "source": "来訪者イベントの報酬（ヒロイック）（3.333%）",
+    "sourceCaution": false,
+    "allocation": "住居"
   },
   {
     "guid": "160084",
@@ -6782,7 +7919,10 @@
       "品物の消費: パン -30%"
     ],
     "boostCondition": "有効な島の祭神: ケレース",
-    "targets": "住居"
+    "targets": "住居",
+    "source": "来訪者イベントの報酬（ヒロイック）（3.333%）",
+    "sourceCaution": false,
+    "allocation": "住居"
   },
   {
     "guid": "160087",
@@ -6805,7 +7945,10 @@
       "範囲効果: 筆記板の供給が必要"
     ],
     "boostCondition": "品物 島の貯蔵所: 筆記板 50以上、現在の島",
-    "targets": "ラテン語学校"
+    "targets": "ラテン語学校",
+    "source": "来訪者イベントの報酬（ヒロイック）（3.333%）",
+    "sourceCaution": false,
+    "allocation": "住居"
   },
   {
     "guid": "160090",
@@ -6828,7 +7971,10 @@
       "範囲効果: 信仰 +2"
     ],
     "boostCondition": "建設: 浴場 3以上",
-    "targets": "浴場"
+    "targets": "浴場",
+    "source": "来訪者イベントの報酬（ヒロイック）（3.333%）",
+    "sourceCaution": false,
+    "allocation": "住居"
   },
   {
     "guid": "160093",
@@ -6851,7 +7997,10 @@
       "範囲効果: 名声 +4"
     ],
     "boostCondition": "外交状態: 同盟、リシア・マー",
-    "targets": "金箔工房"
+    "targets": "金箔工房",
+    "source": "来訪者イベントの報酬（ヒロイック）（3.333%）",
+    "sourceCaution": false,
+    "allocation": "住居"
   },
   {
     "guid": "160488",
@@ -6874,7 +8023,10 @@
       "攻撃速度: +35%"
     ],
     "boostCondition": "現在の評判 皇帝: 50未満",
-    "targets": "塔、門"
+    "targets": "塔、門",
+    "source": "来訪者イベントの報酬（ヒロイック）（3.333%）",
+    "sourceCaution": false,
+    "allocation": "住居"
   },
   {
     "guid": "160491",
@@ -6900,7 +8052,10 @@
       "範囲効果: 信仰 +3"
     ],
     "boostCondition": "以下のアイテムを使う: すべてのアイテム 9以上",
-    "targets": "都市警備"
+    "targets": "都市警備",
+    "source": "来訪者イベントの報酬（ヒロイック）（3.333%）",
+    "sourceCaution": false,
+    "allocation": "住居"
   },
   {
     "guid": "160494",
@@ -6923,7 +8078,9 @@
     ],
     "boostCondition": "有効な島の祭神: メルクリウス・ルグス",
     "targets": "貯蔵所",
-    "caution": "パッチ2.1（2026-09-17）で効果対象が「プレイヤー間取引」から「ライバルNPCとの受動的な交易のみ」に変更（Anno Union公式アナウンス）。新しい効果数値は一次ソース（assets.xml）に未反映のため、以下は変更前のデータです。"
+    "source": "来訪者イベントの報酬（ヒロイック）（3.333%）",
+    "sourceCaution": false,
+    "allocation": "住居"
   },
   {
     "guid": "160497",
@@ -6947,7 +8104,10 @@
       "範囲効果: 名声 +2.5"
     ],
     "boostCondition": "有効な島の祭神: エポナ",
-    "targets": "神聖な森"
+    "targets": "神聖な森",
+    "source": "来訪者イベントの報酬（ヒロイック）（3.333%）",
+    "sourceCaution": false,
+    "allocation": "住居"
   },
   {
     "guid": "160500",
@@ -6972,7 +8132,10 @@
       "範囲効果: 火災安全度 +2"
     ],
     "boostCondition": "特性 島の上: 知識 10000以上",
-    "targets": "ガラス吹き工"
+    "targets": "ガラス吹き工",
+    "source": "来訪者イベントの報酬（ヒロイック）（3.333%）",
+    "sourceCaution": false,
+    "allocation": "住居"
   },
   {
     "guid": "160507",
@@ -6998,7 +8161,10 @@
       "範囲効果: 信仰 +2"
     ],
     "boostCondition": "現在の評判 皇帝: 75以上",
-    "targets": "聖所"
+    "targets": "聖所",
+    "source": "来訪者イベントの報酬（ヒロイック）（3.333%）",
+    "sourceCaution": false,
+    "allocation": "住居"
   },
   {
     "guid": "160510",
@@ -7023,7 +8189,10 @@
       "範囲効果: 人々 +2"
     ],
     "boostCondition": "特性 島の上: 健康 5000以上",
-    "targets": "市場"
+    "targets": "市場",
+    "source": "来訪者イベントの報酬（ヒロイック）（3.333%）",
+    "sourceCaution": false,
+    "allocation": "住居"
   },
   {
     "guid": "160513",
@@ -7050,7 +8219,9 @@
     ],
     "boostCondition": "取引ルート: 25以上",
     "targets": "織機工",
-    "caution": "パッチ2.1（2026-09-17）で通常効果の追加品物・投入材料が「ティリアンパープル」から「顔料」に変更（公式assets.xml確認済み）。覚醒（boost）効果側は変更されておらず、引き続きティリアンパープルのまま（データ上の仕様、公式アナウンスなし）。"
+    "source": "来訪者イベントの報酬（ヒロイック）（3.333%）",
+    "sourceCaution": false,
+    "allocation": "住居"
   },
   {
     "guid": "160516",
@@ -7074,7 +8245,10 @@
       "範囲効果: 名声 +4"
     ],
     "boostCondition": "有効な島の祭神: ミネルヴァ",
-    "targets": "劇場"
+    "targets": "劇場",
+    "source": "来訪者イベントの報酬（ヒロイック）（3.333%）",
+    "sourceCaution": false,
+    "allocation": "住居"
   },
   {
     "guid": "160519",
@@ -7098,7 +8272,10 @@
       "範囲効果: 幸福度 +2"
     ],
     "boostCondition": "品物 島の貯蔵所: ワイン 100以上、現在の島",
-    "targets": "酒場"
+    "targets": "酒場",
+    "source": "来訪者イベントの報酬（ヒロイック）（3.333%）",
+    "sourceCaution": false,
+    "allocation": "住居"
   },
   {
     "guid": "160522",
@@ -7125,7 +8302,10 @@
       "範囲効果: 火災安全度 +2"
     ],
     "boostCondition": "特性 島の上: 人々 50000以上",
-    "targets": "パン屋"
+    "targets": "パン屋",
+    "source": "来訪者イベントの報酬（ヒロイック）（3.333%）",
+    "sourceCaution": false,
+    "allocation": "住居"
   },
   {
     "guid": "160525",
@@ -7150,7 +8330,10 @@
       "範囲効果: 収入 +2"
     ],
     "boostCondition": "特性 島の上: 信仰 10000以上",
-    "targets": "賭博場"
+    "targets": "賭博場",
+    "source": "来訪者イベントの報酬（ヒロイック）（3.333%）",
+    "sourceCaution": false,
+    "allocation": "住居"
   },
   {
     "guid": "160528",
@@ -7176,7 +8359,10 @@
       "労働力維持費: +100%"
     ],
     "boostCondition": "有効な島の祭神: ウルカヌス",
-    "targets": "採石場、粘土穴、金選鉱"
+    "targets": "採石場、粘土穴、金選鉱",
+    "source": "来訪者イベントの報酬（ヒロイック）（3.333%）",
+    "sourceCaution": false,
+    "allocation": "住居"
   },
   {
     "guid": "160531",
@@ -7198,7 +8384,10 @@
       "追加の品物: 黒曜石 1/3"
     ],
     "boostCondition": "品物 島の貯蔵所: 黒曜石 50以下、現在の島",
-    "targets": "小像工房、ラトルンクリ工房"
+    "targets": "小像工房、ラトルンクリ工房",
+    "source": "来訪者イベントの報酬（ヒロイック）（3.333%）",
+    "sourceCaution": false,
+    "allocation": "住居"
   },
   {
     "guid": "160534",
@@ -7220,7 +8409,10 @@
       "範囲効果: 名声 +2"
     ],
     "boostCondition": "建設: 調理場 40以上",
-    "targets": "酒場"
+    "targets": "酒場",
+    "source": "来訪者イベントの報酬（ヒロイック）（3.333%）",
+    "sourceCaution": false,
+    "allocation": "住居"
   },
   {
     "guid": "144850",
@@ -7237,7 +8429,10 @@
     "boostHint": "",
     "boostEffects": [],
     "boostCondition": "",
-    "targets": "ブドウ園"
+    "targets": "ブドウ園",
+    "source": "カエシリアとの取引（6.444%）",
+    "sourceCaution": false,
+    "allocation": "住居"
   },
   {
     "guid": "144854",
@@ -7254,7 +8449,10 @@
     "boostHint": "",
     "boostEffects": [],
     "boostCondition": "",
-    "targets": "亜麻農場"
+    "targets": "亜麻農場",
+    "source": "カエシリアとの取引（6.444%）",
+    "sourceCaution": false,
+    "allocation": "住居"
   },
   {
     "guid": "144858",
@@ -7271,7 +8469,10 @@
     "boostHint": "",
     "boostEffects": [],
     "boostCondition": "",
-    "targets": "アッケシソウ摘み"
+    "targets": "アッケシソウ摘み",
+    "source": "カエシリアとの取引（6.444%）",
+    "sourceCaution": false,
+    "allocation": "住居"
   },
   {
     "guid": "144862",
@@ -7288,7 +8489,10 @@
     "boostHint": "",
     "boostEffects": [],
     "boostCondition": "",
-    "targets": "松脂採り"
+    "targets": "松脂採り",
+    "source": "カエシリアとの取引（6.444%）",
+    "sourceCaution": false,
+    "allocation": "住居"
   },
   {
     "guid": "144866",
@@ -7305,7 +8509,10 @@
     "boostHint": "",
     "boostEffects": [],
     "boostCondition": "",
-    "targets": "オリーブ農家"
+    "targets": "オリーブ農家",
+    "source": "カエシリアとの取引（6.444%）",
+    "sourceCaution": false,
+    "allocation": "住居"
   },
   {
     "guid": "54056",
@@ -7322,7 +8529,10 @@
     "boostHint": "",
     "boostEffects": [],
     "boostCondition": "",
-    "targets": "ラベンダー農家"
+    "targets": "ラベンダー農家",
+    "source": "カエシリアとの取引（6.444%）",
+    "sourceCaution": false,
+    "allocation": "住居"
   },
   {
     "guid": "54048",
@@ -7339,7 +8549,10 @@
     "boostHint": "",
     "boostEffects": [],
     "boostCondition": "",
-    "targets": "ハーブ園"
+    "targets": "ハーブ園",
+    "source": "カエシリアとの取引（2.000%）",
+    "sourceCaution": false,
+    "allocation": "住居"
   },
   {
     "guid": "54050",
@@ -7356,7 +8569,10 @@
     "boostHint": "",
     "boostEffects": [],
     "boostCondition": "",
-    "targets": "銀鉱山"
+    "targets": "銀鉱山",
+    "source": "カエシリアとの取引（2.000%）",
+    "sourceCaution": false,
+    "allocation": "住居"
   },
   {
     "guid": "54052",
@@ -7373,7 +8589,10 @@
     "boostHint": "",
     "boostEffects": [],
     "boostCondition": "",
-    "targets": "サンダラック苗木場"
+    "targets": "サンダラック苗木場",
+    "source": "カエシリアとの取引（2.000%）",
+    "sourceCaution": false,
+    "allocation": "住居"
   },
   {
     "guid": "54054",
@@ -7390,7 +8609,10 @@
     "boostHint": "",
     "boostEffects": [],
     "boostCondition": "",
-    "targets": "鉱物の採石場"
+    "targets": "鉱物の採石場",
+    "source": "カエシリアとの取引（2.000%）",
+    "sourceCaution": false,
+    "allocation": "住居"
   },
   {
     "guid": "54058",
@@ -7407,7 +8629,10 @@
     "boostHint": "",
     "boostEffects": [],
     "boostCondition": "",
-    "targets": "ウォールド畑"
+    "targets": "ウォールド畑",
+    "source": "カエシリアとの取引（2.000%）",
+    "sourceCaution": false,
+    "allocation": "住居"
   },
   {
     "guid": "54060",
@@ -7424,7 +8649,10 @@
     "boostHint": "",
     "boostEffects": [],
     "boostCondition": "",
-    "targets": "大麦農場"
+    "targets": "大麦農場",
+    "source": "カエシリアとの取引（2.000%）",
+    "sourceCaution": false,
+    "allocation": "住居"
   },
   {
     "guid": "144868",
@@ -7441,7 +8669,10 @@
     "boostHint": "",
     "boostEffects": [],
     "boostCondition": "",
-    "targets": "鉄鉱山"
+    "targets": "鉄鉱山",
+    "source": "カエシリアとの取引（2.000%）",
+    "sourceCaution": false,
+    "allocation": "住居"
   },
   {
     "guid": "144870",
@@ -7458,7 +8689,10 @@
     "boostHint": "",
     "boostEffects": [],
     "boostCondition": "",
-    "targets": "錫鉱"
+    "targets": "錫鉱",
+    "source": "カエシリアとの取引（2.000%）",
+    "sourceCaution": false,
+    "allocation": "住居"
   },
   {
     "guid": "144872",
@@ -7475,7 +8709,10 @@
     "boostHint": "",
     "boostEffects": [],
     "boostCondition": "",
-    "targets": "銅鉱"
+    "targets": "銅鉱",
+    "source": "カエシリアとの取引（2.000%）",
+    "sourceCaution": false,
+    "allocation": "住居"
   },
   {
     "guid": "144876",
@@ -7492,7 +8729,10 @@
     "boostHint": "",
     "boostEffects": [],
     "boostCondition": "",
-    "targets": "金鉱"
+    "targets": "金鉱",
+    "source": "カエシリアとの取引（2.000%）",
+    "sourceCaution": false,
+    "allocation": "住居"
   },
   {
     "guid": "144840",
@@ -7509,7 +8749,10 @@
     "boostHint": "",
     "boostEffects": [],
     "boostCondition": "",
-    "targets": "ラベンダー農家"
+    "targets": "ラベンダー農家",
+    "source": "カエシリアとの取引（0.778%）",
+    "sourceCaution": false,
+    "allocation": "住居"
   },
   {
     "guid": "144852",
@@ -7526,7 +8769,10 @@
     "boostHint": "",
     "boostEffects": [],
     "boostCondition": "",
-    "targets": "ブドウ園"
+    "targets": "ブドウ園",
+    "source": "カエシリアとの取引（0.778%）",
+    "sourceCaution": false,
+    "allocation": "住居"
   },
   {
     "guid": "144856",
@@ -7543,7 +8789,10 @@
     "boostHint": "",
     "boostEffects": [],
     "boostCondition": "",
-    "targets": "亜麻農場"
+    "targets": "亜麻農場",
+    "source": "カエシリアとの取引（0.778%）",
+    "sourceCaution": false,
+    "allocation": "住居"
   },
   {
     "guid": "144860",
@@ -7560,7 +8809,10 @@
     "boostHint": "",
     "boostEffects": [],
     "boostCondition": "",
-    "targets": "アッケシソウ摘み"
+    "targets": "アッケシソウ摘み",
+    "source": "カエシリアとの取引（0.778%）",
+    "sourceCaution": false,
+    "allocation": "住居"
   },
   {
     "guid": "144864",
@@ -7577,7 +8829,10 @@
     "boostHint": "",
     "boostEffects": [],
     "boostCondition": "",
-    "targets": "松脂採り"
+    "targets": "松脂採り",
+    "source": "カエシリアとの取引（0.778%）",
+    "sourceCaution": false,
+    "allocation": "住居"
   },
   {
     "guid": "144900",
@@ -7594,7 +8849,10 @@
     "boostHint": "",
     "boostEffects": [],
     "boostCondition": "",
-    "targets": "オリーブ農家"
+    "targets": "オリーブ農家",
+    "source": "カエシリアとの取引（0.778%）",
+    "sourceCaution": false,
+    "allocation": "住居"
   },
   {
     "guid": "144842",
@@ -7616,7 +8874,10 @@
       "肥沃度: +100%"
     ],
     "boostCondition": "外交状態: 同盟、コンコルディア",
-    "targets": "ハーブ園"
+    "targets": "ハーブ園",
+    "source": "カエシリアとの取引（0.125%）",
+    "sourceCaution": false,
+    "allocation": "住居"
   },
   {
     "guid": "144844",
@@ -7638,7 +8899,10 @@
       "肥沃度: +100%"
     ],
     "boostCondition": "特性 島の上: 幸福度 1000以上",
-    "targets": "ウォールド畑"
+    "targets": "ウォールド畑",
+    "source": "カエシリアとの取引（0.125%）",
+    "sourceCaution": false,
+    "allocation": "住居"
   },
   {
     "guid": "144846",
@@ -7660,7 +8924,10 @@
       "肥沃度: +100%"
     ],
     "boostCondition": "品物 島の貯蔵所: ビール 100以上、現在の島",
-    "targets": "大麦農場"
+    "targets": "大麦農場",
+    "source": "カエシリアとの取引（0.125%）",
+    "sourceCaution": false,
+    "allocation": "住居"
   },
   {
     "guid": "144848",
@@ -7682,7 +8949,10 @@
       "肥沃度: +100%"
     ],
     "boostCondition": "特性 島の上: 火災安全度 1000以上",
-    "targets": "サンダラック苗木場"
+    "targets": "サンダラック苗木場",
+    "source": "カエシリアとの取引（0.125%）",
+    "sourceCaution": false,
+    "allocation": "住居"
   },
   {
     "guid": "144874",
@@ -7704,7 +8974,10 @@
       "肥沃度: +100%"
     ],
     "boostCondition": "建設: ウェーダーの住居 150以上",
-    "targets": "銀鉱山"
+    "targets": "銀鉱山",
+    "source": "カエシリアとの取引（0.125%）",
+    "sourceCaution": false,
+    "allocation": "住居"
   },
   {
     "guid": "144878",
@@ -7726,7 +8999,10 @@
       "肥沃度: +100%"
     ],
     "boostCondition": "バランス: 1000000以上",
-    "targets": "金鉱"
+    "targets": "金鉱",
+    "source": "カエシリアとの取引（0.125%）",
+    "sourceCaution": false,
+    "allocation": "住居"
   },
   {
     "guid": "145236",
@@ -7743,7 +9019,10 @@
     "boostHint": "",
     "boostEffects": [],
     "boostCondition": "",
-    "targets": "サバ小屋"
+    "targets": "サバ小屋",
+    "source": "カエシリアとの取引（6.444%）",
+    "sourceCaution": false,
+    "allocation": "住居"
   },
   {
     "guid": "145238",
@@ -7760,7 +9039,10 @@
     "boostHint": "",
     "boostEffects": [],
     "boostCondition": "",
-    "targets": "カタツムリ飼育場"
+    "targets": "カタツムリ飼育場",
+    "source": "カエシリアとの取引（6.444%）",
+    "sourceCaution": false,
+    "allocation": "住居"
   },
   {
     "guid": "145240",
@@ -7777,7 +9059,10 @@
     "boostHint": "",
     "boostEffects": [],
     "boostCondition": "",
-    "targets": "貝拾い"
+    "targets": "貝拾い",
+    "source": "カエシリアとの取引（6.444%）",
+    "sourceCaution": false,
+    "allocation": "住居"
   },
   {
     "guid": "145242",
@@ -7794,7 +9079,10 @@
     "boostHint": "",
     "boostEffects": [],
     "boostCondition": "",
-    "targets": "チョウザメの孵化場"
+    "targets": "チョウザメの孵化場",
+    "source": "カエシリアとの取引（2.000%）",
+    "sourceCaution": false,
+    "allocation": "住居"
   },
   {
     "guid": "145244",
@@ -7811,7 +9099,10 @@
     "boostHint": "",
     "boostEffects": [],
     "boostCondition": "",
-    "targets": "馬追い"
+    "targets": "馬追い",
+    "source": "カエシリアとの取引（2.000%）",
+    "sourceCaution": false,
+    "allocation": "住居"
   },
   {
     "guid": "145246",
@@ -7828,7 +9119,10 @@
     "boostHint": "",
     "boostEffects": [],
     "boostCondition": "",
-    "targets": "カキ養殖場"
+    "targets": "カキ養殖場",
+    "source": "カエシリアとの取引（2.000%）",
+    "sourceCaution": false,
+    "allocation": "住居"
   },
   {
     "guid": "145248",
@@ -7845,7 +9139,10 @@
     "boostHint": "",
     "boostEffects": [],
     "boostCondition": "",
-    "targets": "鳥使い"
+    "targets": "鳥使い",
+    "source": "カエシリアとの取引（2.000%）",
+    "sourceCaution": false,
+    "allocation": "住居"
   },
   {
     "guid": "145250",
@@ -7862,7 +9159,10 @@
     "boostHint": "",
     "boostEffects": [],
     "boostCondition": "",
-    "targets": "ビーバー罠師"
+    "targets": "ビーバー罠師",
+    "source": "カエシリアとの取引（2.000%）",
+    "sourceCaution": false,
+    "allocation": "住居"
   },
   {
     "guid": "145252",
@@ -7879,7 +9179,10 @@
     "boostHint": "",
     "boostEffects": [],
     "boostCondition": "",
-    "targets": "花崗岩の採石場"
+    "targets": "花崗岩の採石場",
+    "source": "カエシリアとの取引（2.000%）",
+    "sourceCaution": false,
+    "allocation": "住居"
   },
   {
     "guid": "145254",
@@ -7896,7 +9199,10 @@
     "boostHint": "",
     "boostEffects": [],
     "boostCondition": "",
-    "targets": "大理石の採石場"
+    "targets": "大理石の採石場",
+    "source": "カエシリアとの取引（2.000%）",
+    "sourceCaution": false,
+    "allocation": "住居"
   },
   {
     "guid": "145256",
@@ -7913,7 +9219,10 @@
     "boostHint": "",
     "boostEffects": [],
     "boostCondition": "",
-    "targets": "サバ小屋"
+    "targets": "サバ小屋",
+    "source": "カエシリアとの取引（0.778%）",
+    "sourceCaution": false,
+    "allocation": "住居"
   },
   {
     "guid": "145258",
@@ -7930,7 +9239,10 @@
     "boostHint": "",
     "boostEffects": [],
     "boostCondition": "",
-    "targets": "カタツムリ飼育場"
+    "targets": "カタツムリ飼育場",
+    "source": "カエシリアとの取引（0.778%）",
+    "sourceCaution": false,
+    "allocation": "住居"
   },
   {
     "guid": "145260",
@@ -7947,7 +9259,10 @@
     "boostHint": "",
     "boostEffects": [],
     "boostCondition": "",
-    "targets": "貝拾い"
+    "targets": "貝拾い",
+    "source": "カエシリアとの取引（0.778%）",
+    "sourceCaution": false,
+    "allocation": "住居"
   },
   {
     "guid": "145262",
@@ -7969,7 +9284,10 @@
       "肥沃度: +100%"
     ],
     "boostCondition": "取引ルート: 20以上",
-    "targets": "チョウザメの孵化場"
+    "targets": "チョウザメの孵化場",
+    "source": "カエシリアとの取引（0.125%）",
+    "sourceCaution": false,
+    "allocation": "住居"
   },
   {
     "guid": "145265",
@@ -7991,7 +9309,10 @@
       "肥沃度: +100%"
     ],
     "boostCondition": "以下のアイテムを使う: 馬の執政官-インシデンティウス 1以上",
-    "targets": "馬追い"
+    "targets": "馬追い",
+    "source": "カエシリアとの取引（0.125%）",
+    "sourceCaution": false,
+    "allocation": "住居"
   },
   {
     "guid": "145271",
@@ -8007,7 +9328,10 @@
     "boostHint": "",
     "boostEffects": [],
     "boostCondition": "",
-    "targets": "小像"
+    "targets": "小像",
+    "source": "クエスト「日は沈む」",
+    "sourceCaution": false,
+    "allocation": "住居"
   },
   {
     "guid": "147974",
@@ -8023,7 +9347,10 @@
     "boostHint": "",
     "boostEffects": [],
     "boostCondition": "",
-    "targets": "ラトルンクリ一式"
+    "targets": "ラトルンクリ一式",
+    "source": "クエスト「日は沈む」",
+    "sourceCaution": false,
+    "allocation": "住居"
   },
   {
     "guid": "147976",
@@ -8039,7 +9366,10 @@
     "boostHint": "",
     "boostEffects": [],
     "boostCondition": "",
-    "targets": "住居"
+    "targets": "住居",
+    "source": "クエスト「崩壊の後」",
+    "sourceCaution": false,
+    "allocation": "住居"
   },
   {
     "guid": "147978",
@@ -8055,7 +9385,10 @@
     "boostHint": "",
     "boostEffects": [],
     "boostCondition": "",
-    "targets": "住居"
+    "targets": "住居",
+    "source": "クエスト「崩壊の後」",
+    "sourceCaution": false,
+    "allocation": "住居"
   },
   {
     "guid": "145268",
@@ -8077,7 +9410,10 @@
       "労働力維持費: -70%"
     ],
     "boostCondition": "アイテム 島の貯蔵所: ディンデュメネーの偶像 1以上、現在の島",
-    "targets": "採石場、穴、鉱山"
+    "targets": "採石場、穴、鉱山",
+    "source": "クエスト「崩壊の後」",
+    "sourceCaution": false,
+    "allocation": "住居"
   },
   {
     "guid": "149281",
@@ -8101,7 +9437,10 @@
       "カタパルト攻撃範囲角: +180"
     ],
     "boostCondition": "海軍力: 25000以上、現在 属州",
-    "targets": "船"
+    "targets": "船",
+    "source": "栄誉の殿堂",
+    "sourceCaution": false,
+    "allocation": "船"
   },
   {
     "guid": "149292",
@@ -8123,7 +9462,10 @@
       "幸福度: +1"
     ],
     "boostCondition": "品物 島の貯蔵所: アンフォラ 150以上、現在の島",
-    "targets": "住居"
+    "targets": "住居",
+    "source": "栄誉の殿堂",
+    "sourceCaution": false,
+    "allocation": "住居"
   },
   {
     "guid": "156675",
@@ -8139,7 +9481,10 @@
     "boostHint": "",
     "boostEffects": [],
     "boostCondition": "",
-    "targets": "塔"
+    "targets": "塔",
+    "source": "カエシリアとの契約（並）（0.131%）、カエシリアとの契約（良）（0.295%）、カエシリアとの撃破ドロップ（0.012%）、ウァレリアとの取引（0.951%）、ウァレリアとの契約（並）（0.131%）、ウァレリアとの契約（良）（0.295%）、ウァレリアとの撃破ドロップ（0.012%）、カリドゥスとの撃破ドロップ（0.012%）",
+    "sourceCaution": false,
+    "allocation": "住居"
   },
   {
     "guid": "156677",
@@ -8155,7 +9500,10 @@
     "boostHint": "",
     "boostEffects": [],
     "boostCondition": "",
-    "targets": "製材所"
+    "targets": "製材所",
+    "source": "カエシリアとの契約（並）（0.131%）、カエシリアとの契約（良）（0.295%）、カエシリアとの撃破ドロップ（0.012%）、ウァレリアとの取引（0.951%）、ウァレリアとの契約（並）（0.131%）、ウァレリアとの契約（良）（0.295%）、ウァレリアとの撃破ドロップ（0.012%）、カリドゥスとの撃破ドロップ（0.012%）",
+    "sourceCaution": false,
+    "allocation": "住居"
   },
   {
     "guid": "156679",
@@ -8171,7 +9519,10 @@
     "boostHint": "",
     "boostEffects": [],
     "boostCondition": "",
-    "targets": "馬ブリーダー、馬追い"
+    "targets": "馬ブリーダー、馬追い",
+    "source": "カエシリアとの契約（並）（0.131%）、カエシリアとの契約（良）（0.295%）、カエシリアとの撃破ドロップ（0.012%）、ウァレリアとの取引（0.951%）、ウァレリアとの契約（並）（0.131%）、ウァレリアとの契約（良）（0.295%）、ウァレリアとの撃破ドロップ（0.012%）、カリドゥスとの撃破ドロップ（0.012%）",
+    "sourceCaution": false,
+    "allocation": "住居"
   },
   {
     "guid": "156683",
@@ -8188,7 +9539,10 @@
     "boostHint": "",
     "boostEffects": [],
     "boostCondition": "",
-    "targets": "住居"
+    "targets": "住居",
+    "source": "カエシリアとの契約（並）（0.131%）、カエシリアとの契約（良）（0.295%）、カエシリアとの撃破ドロップ（0.012%）、ウァレリアとの取引（0.951%）、ウァレリアとの契約（並）（0.131%）、ウァレリアとの契約（良）（0.295%）、ウァレリアとの撃破ドロップ（0.012%）、カリドゥスとの撃破ドロップ（0.012%）",
+    "sourceCaution": false,
+    "allocation": "住居"
   },
   {
     "guid": "156685",
@@ -8205,7 +9559,10 @@
     "boostHint": "",
     "boostEffects": [],
     "boostCondition": "",
-    "targets": "蝋版職人、サンダラック苗木場、養蜂場"
+    "targets": "蝋版職人、サンダラック苗木場、養蜂場",
+    "source": "カエシリアとの契約（並）（0.131%）、カエシリアとの契約（良）（0.295%）、カエシリアとの撃破ドロップ（0.012%）、ウァレリアとの取引（0.951%）、ウァレリアとの契約（並）（0.131%）、ウァレリアとの契約（良）（0.295%）、ウァレリアとの撃破ドロップ（0.012%）、カリドゥスとの撃破ドロップ（0.012%）",
+    "sourceCaution": false,
+    "allocation": "住居"
   },
   {
     "guid": "159042",
@@ -8221,7 +9578,10 @@
     "boostHint": "",
     "boostEffects": [],
     "boostCondition": "",
-    "targets": "賭博場"
+    "targets": "賭博場",
+    "source": "カエシリアとの契約（並）（0.131%）、カエシリアとの契約（良）（0.295%）、カエシリアとの撃破ドロップ（0.012%）、ウァレリアとの取引（0.951%）、ウァレリアとの契約（並）（0.131%）、ウァレリアとの契約（良）（0.295%）、ウァレリアとの撃破ドロップ（0.012%）、カリドゥスとの撃破ドロップ（0.012%）",
+    "sourceCaution": false,
+    "allocation": "住居"
   },
   {
     "guid": "156688",
@@ -8238,7 +9598,10 @@
     "boostHint": "",
     "boostEffects": [],
     "boostCondition": "",
-    "targets": "小像工房、大理石工房、ラトルンクリ工房、金箔工房、サンダラック苗木場、金細工工房、金鉱、金選鉱"
+    "targets": "小像工房、大理石工房、ラトルンクリ工房、金箔工房、サンダラック苗木場、金細工工房、金鉱、金選鉱",
+    "source": "多数の交易商・祭りからランダム入手（低確率）",
+    "sourceCaution": false,
+    "allocation": "住居"
   },
   {
     "guid": "156690",
@@ -8255,7 +9618,10 @@
     "boostHint": "",
     "boostEffects": [],
     "boostCondition": "",
-    "targets": "瓦工房"
+    "targets": "瓦工房",
+    "source": "多数の交易商・祭りからランダム入手（低確率）",
+    "sourceCaution": false,
+    "allocation": "住居"
   },
   {
     "guid": "156692",
@@ -8272,7 +9638,10 @@
     "boostHint": "",
     "boostEffects": [],
     "boostCondition": "",
-    "targets": "競馬場"
+    "targets": "競馬場",
+    "source": "多数の交易商・祭りからランダム入手（低確率）",
+    "sourceCaution": false,
+    "allocation": "住居"
   },
   {
     "guid": "156696",
@@ -8289,7 +9658,10 @@
     "boostHint": "",
     "boostEffects": [],
     "boostCondition": "",
-    "targets": "農園"
+    "targets": "農園",
+    "source": "多数の交易商・祭りからランダム入手（低確率）",
+    "sourceCaution": false,
+    "allocation": "住居"
   },
   {
     "guid": "156698",
@@ -8306,7 +9678,10 @@
     "boostHint": "",
     "boostEffects": [],
     "boostCondition": "",
-    "targets": "住居"
+    "targets": "住居",
+    "source": "多数の交易商・祭りからランダム入手（低確率）",
+    "sourceCaution": false,
+    "allocation": "住居"
   },
   {
     "guid": "159046",
@@ -8323,7 +9698,10 @@
     "boostHint": "",
     "boostEffects": [],
     "boostCondition": "",
-    "targets": "騎兵養成所"
+    "targets": "騎兵養成所",
+    "source": "多数の交易商・祭りからランダム入手（低確率）",
+    "sourceCaution": false,
+    "allocation": "住居"
   },
   {
     "guid": "156701",
@@ -8341,7 +9719,10 @@
     "boostHint": "",
     "boostEffects": [],
     "boostCondition": "",
-    "targets": "家具職人"
+    "targets": "家具職人",
+    "source": "エンドゲーム技術報酬（レース）（8.333%）、来訪者イベントの報酬（エピック）（0.935%）",
+    "sourceCaution": false,
+    "allocation": "住居"
   },
   {
     "guid": "156704",
@@ -8358,7 +9739,10 @@
     "boostHint": "",
     "boostEffects": [],
     "boostCondition": "",
-    "targets": "花崗岩の切断工"
+    "targets": "花崗岩の切断工",
+    "source": "エンドゲーム技術報酬（レース）（8.333%）、来訪者イベントの報酬（エピック）（0.935%）",
+    "sourceCaution": false,
+    "allocation": "住居"
   },
   {
     "guid": "156706",
@@ -8375,7 +9759,10 @@
     "boostHint": "",
     "boostEffects": [],
     "boostCondition": "",
-    "targets": "戦車工房"
+    "targets": "戦車工房",
+    "source": "エンドゲーム技術報酬（レース）（8.333%）、来訪者イベントの報酬（エピック）（0.935%）",
+    "sourceCaution": false,
+    "allocation": "住居"
   },
   {
     "guid": "156710",
@@ -8392,7 +9779,10 @@
     "boostHint": "",
     "boostEffects": [],
     "boostCondition": "",
-    "targets": "漁場"
+    "targets": "漁場",
+    "source": "エンドゲーム技術報酬（レース）（8.333%）、来訪者イベントの報酬（エピック）（0.935%）",
+    "sourceCaution": false,
+    "allocation": "住居"
   },
   {
     "guid": "156712",
@@ -8409,7 +9799,10 @@
     "boostHint": "",
     "boostEffects": [],
     "boostCondition": "",
-    "targets": "住居"
+    "targets": "住居",
+    "source": "エンドゲーム技術報酬（レース）（8.333%）、来訪者イベントの報酬（エピック）（0.935%）",
+    "sourceCaution": false,
+    "allocation": "住居"
   },
   {
     "guid": "159050",
@@ -8426,7 +9819,10 @@
     "boostHint": "",
     "boostEffects": [],
     "boostCondition": "",
-    "targets": "ケルヌンノスの祭壇"
+    "targets": "ケルヌンノスの祭壇",
+    "source": "エンドゲーム技術報酬（レース）（8.333%）、来訪者イベントの報酬（エピック）（0.935%）",
+    "sourceCaution": false,
+    "allocation": "住居"
   },
   {
     "guid": "156714",
@@ -8448,7 +9844,10 @@
       "品物の置換: 車体 → 木材"
     ],
     "boostCondition": "建設: 監視人 10以下",
-    "targets": "戦車工房"
+    "targets": "戦車工房",
+    "source": "エンドゲーム技術報酬（レース）（8.333%）、来訪者イベントの報酬（レジェンダリー）（1.667%）",
+    "sourceCaution": false,
+    "allocation": "住居"
   },
   {
     "guid": "156717",
@@ -8470,7 +9869,10 @@
       "追加の品物: モザイク 1/3"
     ],
     "boostCondition": "以下のアイテムを使う: 木工職人、具象的な粘土職人、ディアラ・トゲイル、彫刻家の才ある石工 1以上",
-    "targets": "金鉱、炭鉱"
+    "targets": "金鉱、炭鉱",
+    "source": "エンドゲーム技術報酬（レース）（8.333%）、来訪者イベントの報酬（レジェンダリー）（1.667%）",
+    "sourceCaution": false,
+    "allocation": "住居"
   },
   {
     "guid": "156720",
@@ -8494,7 +9896,10 @@
       "名声: +1.5"
     ],
     "boostCondition": "特性 島の上: 信仰 3000以上",
-    "targets": "住居"
+    "targets": "住居",
+    "source": "エンドゲーム技術報酬（レース）（8.333%）、来訪者イベントの報酬（レジェンダリー）（1.667%）",
+    "sourceCaution": false,
+    "allocation": "住居"
   },
   {
     "guid": "156726",
@@ -8516,7 +9921,10 @@
       "名声: +1500"
     ],
     "boostCondition": "あなたの戦車御者の順位: インペリアル競走 1位",
-    "targets": "競馬場"
+    "targets": "競馬場",
+    "source": "エンドゲーム技術報酬（レース）（8.333%）、来訪者イベントの報酬（レジェンダリー）（1.667%）",
+    "sourceCaution": false,
+    "allocation": "住居"
   },
   {
     "guid": "156729",
@@ -8541,7 +9949,10 @@
       "信仰: +10"
     ],
     "boostCondition": "建設: 歩兵 3以上",
-    "targets": "募集施設"
+    "targets": "募集施設",
+    "source": "エンドゲーム技術報酬（レース）（8.333%）、来訪者イベントの報酬（レジェンダリー）（1.667%）",
+    "sourceCaution": false,
+    "allocation": "住居"
   },
   {
     "guid": "159054",
@@ -8563,7 +9974,10 @@
       "戦車: 名声 +0.5"
     ],
     "boostCondition": "建設: 馬のブリーダーと捕獲人 4以上",
-    "targets": "住居"
+    "targets": "住居",
+    "source": "エンドゲーム技術報酬（レース）（8.333%）、来訪者イベントの報酬（レジェンダリー）（1.667%）",
+    "sourceCaution": false,
+    "allocation": "住居"
   },
   {
     "guid": "157289",
@@ -8579,7 +9993,10 @@
     "boostHint": "",
     "boostEffects": [],
     "boostCondition": "",
-    "targets": "競馬場"
+    "targets": "競馬場",
+    "source": "クエスト「勝利の甘い味」、クエスト「星の創世記」、クエスト「敗北の苦い後味」",
+    "sourceCaution": false,
+    "allocation": "住居"
   },
   {
     "guid": "157290",
@@ -8596,7 +10013,10 @@
     "boostHint": "",
     "boostEffects": [],
     "boostCondition": "",
-    "targets": "競馬場"
+    "targets": "競馬場",
+    "source": "クエスト「勝利の甘い味」、クエスト「敗北の苦い後味」、クエスト「名は体を表す」、クエスト「チャンピオンの素質」、クエスト「星の創世記 II：フランマ～烈火」",
+    "sourceCaution": false,
+    "allocation": "住居"
   },
   {
     "guid": "157291",
@@ -8614,7 +10034,10 @@
     "boostHint": "",
     "boostEffects": [],
     "boostCondition": "",
-    "targets": "競馬場"
+    "targets": "競馬場",
+    "source": "クエスト「名は体を表す」、クエスト「大競技祭」、クエスト「星の創世記 III：ファクス～火種」",
+    "sourceCaution": false,
+    "allocation": "住居"
   },
   {
     "guid": "157292",
@@ -8638,7 +10061,10 @@
       "名声: +700"
     ],
     "boostCondition": "人気度の上限 ○",
-    "targets": "競馬場"
+    "targets": "競馬場",
+    "source": "クエスト「星の創世記 VI：ルクス～薄光」",
+    "sourceCaution": false,
+    "allocation": "住居"
   },
   {
     "guid": "157293",
@@ -8654,7 +10080,10 @@
     "boostHint": "",
     "boostEffects": [],
     "boostCondition": "",
-    "targets": "競馬場"
+    "targets": "競馬場",
+    "source": "クエスト「星の創世記 IV：ピュラ～灰燼」、クエスト「星の創世記 V：ファルス～燈台」",
+    "sourceCaution": false,
+    "allocation": "住居"
   },
   {
     "guid": "157294",
@@ -8671,7 +10100,10 @@
     "boostHint": "",
     "boostEffects": [],
     "boostCondition": "",
-    "targets": "競馬場"
+    "targets": "競馬場",
+    "source": "クエスト「星に向かって」、クエスト「星の創世記 V：ファルス～燈台」",
+    "sourceCaution": false,
+    "allocation": "住居"
   },
   {
     "guid": "157295",
@@ -8689,7 +10121,10 @@
     "boostHint": "",
     "boostEffects": [],
     "boostCondition": "",
-    "targets": "競馬場"
+    "targets": "競馬場",
+    "source": "クエスト「星に向かって」、クエスト「星の創世記 VI：ルクス～薄光」、クエスト「星の創世記 V：ファルス～燈台」",
+    "sourceCaution": false,
+    "allocation": "住居"
   },
   {
     "guid": "159270",
@@ -8707,6 +10142,9 @@
     "boostHint": "",
     "boostEffects": [],
     "boostCondition": "",
-    "targets": "競馬場"
+    "targets": "競馬場",
+    "source": "クエスト「星の創世記 III：ファクス～火種」",
+    "sourceCaution": false,
+    "allocation": "住居"
   }
 ]
