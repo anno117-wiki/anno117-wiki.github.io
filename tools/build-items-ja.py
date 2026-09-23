@@ -667,7 +667,7 @@ def translate_reward_pool_name(name):
     if m:
         rarity_ja = VISITOR_RARITY_JA.get(m.group(1))
         if rarity_ja:
-            return f"来訪者イベントの報酬（{rarity_ja}）", False
+            return "来訪者イベントの報酬", False
         return name, True
     m = re.match(r"^Reward(?:Pool|List) (\w+) (.+)$", name)
     if m:
