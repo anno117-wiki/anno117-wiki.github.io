@@ -568,9 +568,11 @@ def tr_condition(raw):
 # ライバル専門家・商人・皇帝・海賊のRewardPool内部名（英語・未ローカライズ）を日本語化する。
 # 対応表はゲーム内テキスト（撃破報酬 ItemGainedWhenDefeated のGUID解決結果、および
 # portrait画像ファイル名 portrait_{rival,trader,pirate,emperor}_<name>.png）から確認したもの。
-# Zarai(ゲーム内表記はZara Nitu)・Nefeneru(ゲーム内表記はNeferneru)は内部名とゲーム内表記が
-# 完全一致しないため要検証扱い。Julia(単発イベント名経由でしか確認できず用途不明)も要検証扱い。
-# Procurator(実名はCorvinus、コルヴィヌス)はユーザー確認済みのため確定扱いとする。
+# Zarai(ItemGainedWhenDefeated:31103→"ザラ・ニトゥ")・Nefeneru(同31105→"ネフェルネル")は
+# 撃破報酬GUIDの直接解決という一次証拠があり、ユーザー確認済みのため確定扱いとする
+# （RewardPool内部名とゲーム内テキストのスペルはZarai/Zara、Nefeneru/Neferneruで微妙に異なるが
+# 役職名・略記のゆれと判断）。Julia(単発イベント名経由でしか確認できず用途不明)のみ要検証扱い。
+# Procurator(実名はCorvinus、コルヴィヌス)もユーザー確認済みのため確定扱い。
 NPC_NAME_JA = {
     "Dorian": "ドリアン", "Tarragon": "タラゴン", "Licia": "リシア・マー", "Athr": "アサール",
     "Zarai": "ザラ・ニトゥ", "Concordia": "コンコルディア", "Nefeneru": "ネフェルネル",
@@ -578,7 +580,7 @@ NPC_NAME_JA = {
     "Manx": "マンクス", "Caeso": "カエソ", "Voada": "ウォアダ", "Caecilia": "カエシリア",
     "Calidus": "カリドゥス", "Julia": "ユリア",
 }
-NPC_NAME_UNVERIFIED = {"Zarai", "Nefeneru"}
+NPC_NAME_UNVERIFIED = set()
 # Juliaは用途未確認のうえ情報価値も低い（低確率の副次ソースにしか出現しない）ため、
 # 取得先表示そのものから除外する（他の入手経路が併記されていれば要検証も解消される）。
 NPC_NAME_EXCLUDED = {"Julia"}
