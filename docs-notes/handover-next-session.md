@@ -1,7 +1,7 @@
-# 引き継ぎ: 次回セッション向け（2026-09-22 更新・第11版）
+# 引き継ぎ: 次回セッション向け（2026-09-23 更新・第12版）
 
 ## git状態
-- ブランチ: master。この引き継ぎ書（第10版）のコミットが最新。push 済みかは `git status -sb`、直近の作業は `git log -8` で確認すること。デプロイは `gh run list` で確認
+- ブランチ: master。`ec4f138`（第11版の引き継ぎ更新）がリモートと同期済みの最新コミット。**この引き継ぎ書（第12版）自体は未コミット**（GSCリクエスト状況の追記のみ、コード変更なし）。push 済みかは `git status -sb`、直近の作業は `git log -8` で確認すること。デプロイは `gh run list` で確認
 - GitHub Pagesデプロイの確認は `gh run list --repo anno117-wiki/anno117-wiki.github.io --limit 5`。`562498f`（データベースメニュー）の見た目はユーザーが本番で確認済み
 - **`docs-notes/` は `.gitignore` 対象**（`handover-next-session.md` / `building-icon-mapping.md` / `how-to-edit-site.md` / `wiki/` のみ例外で追跡）。今回作った調査メモ2本は**ローカルのみでGit未管理**
   - `docs-notes/research-alt-producers-coal-gold.md`（石炭・金の生産元、信仰神、サイロ、実機確認の記録）
@@ -126,6 +126,10 @@
   - `bun run build:site` → `docs/sitemap.xml` の件数27→29（`/calculator/` ＋ 既存の `updates.html` 分）を確認
   - コミット `8711e16` でpush済み。GitHub Pagesデプロイ完了（`gh run list` で `conclusion: success` 確認済み、2026-09-22）
   - ユーザーが `/calculator/` のインデックス登録を再リクエスト済み（2026-09-22）。結果反映は次回以降のGSC確認時にチェックすること
+- **2026-09-23: guide系9件+`updates.html`のリクエストを再開**。`updates.html`のみリクエスト成功、直後に1日の上限に到達（残り9件は未リクエスト）
+  - 上限の回復条件（24時間ローリングか日付変更基準か）はGoogle非公表のため不明。前回リクエスト時刻も未記録のため経過時間は計算不可。**ユーザー判断で明日以降に改めてリクエストする方針**
+  - **未リクエストのまま残っている9件**（フルパスは `https://anno117-wiki.github.io/` + 以下）:
+    - `guide/early-game-strategy.html` / `guide/economy-guide.html` / `guide/military-guide.html` / `guide/research-guide.html` / `guide/trade-guide.html` / `guide/calculator-guide.html` / `guide/dlc01-ashes-of-prophecy.html` / `guide/dlc02-hippodrome.html` / `guide/dlc03-dawn-of-delta.html`
 
 ### O. 競馬場レーサー適性(ItemRacerPreset)の判明とItem Inspectorリポジトリの配布方式変更（2026-09-22調査）
 詳細は `docs-notes/research-hippodrome-racer-stats.md`（新規・Git管理外）参照。
@@ -164,7 +168,7 @@
 - 要検証の実機確認（上記B・Cの「要検証のまま」）
 - 競馬場ガイド: 馬需要(ランクVII)・戦車産出(ランクX)が本文では「レベルが上がると」とまとめ書きのまま（`/wiki/splendor` へのリンクは追加済み）
 - 獣脂(`lard`)の別の生産元アスピック職人(GUID5475, アルビオン)は、商品一覧に未対応（現行チェーンは31756を使用）。建物効果ページに載っているかも未確認
-- GSC: 上記I・Nを参照（guide系残り9件+`updates.html`のリクエスト、リクエスト済み分の登録確認）
+- GSC: 上記I・Nを参照。`updates.html`はリクエスト済み、**guide系残り9件が未リクエスト**（2026-09-23時点。1日の上限に注意しながら継続）。リクエスト済み分の登録確認も
 - Item Inspectorリポジトリの配布方式変更・全体データ入手先リスク（上記O）: 次パッチ時に改めて状況確認
 - 隣接太字崩れバグ（上記P）の横展開チェック未実施。Pに載せた検索コマンドで他ページも確認するとよい
 - 計算機(`/calculator/`)のOGP: 保留中（J参照）。計算機を残す方針になったため、付ける価値は上がった
