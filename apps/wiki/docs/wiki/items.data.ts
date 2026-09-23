@@ -108,7 +108,7 @@ interface ItemEntry {
   boostHint: string
   boostEffects: string[]
   boostCondition: string
-  source: string
+  source: string[]
   sourceCaution: boolean
   allocation: string
 }
@@ -132,7 +132,7 @@ export default {
         boostHint: row.boostHint ?? '',
         boostEffects: Array.isArray(row.boostEffects) ? row.boostEffects : [],
         boostCondition: row.boostCondition ?? '',
-        source: row.source ?? '',
+        source: Array.isArray(row.source) ? row.source : [],
         sourceCaution: Boolean(row.sourceCaution),
         allocation: row.allocation ?? '',
         _nicheRank: nicheIndex[row.niche] ?? 99,

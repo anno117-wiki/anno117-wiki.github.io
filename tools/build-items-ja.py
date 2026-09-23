@@ -680,10 +680,10 @@ def translate_reward_pool_name(name):
 
 def resolve_source(raw):
     """Source列の生データを日本語テキストに変換する。
-    戻り値: (日本語文字列, 要検証フラグ)"""
+    戻り値: (日本語の入手経路リスト, 要検証フラグ)。UI側で1件1行に表示するため配列で返す。"""
     raw = (raw or "").strip()
     if not raw:
-        return "", False
+        return [], False
     caution = False
     # fixed: Quest/HallofFame/撃破報酬など、確実な入手経路（そのまま列挙する）。
     # pool: NPC交易/契約/撃破ドロップ・祭り報酬など、確率つきのランダム抽選プール。
@@ -746,7 +746,7 @@ def resolve_source(raw):
         if r not in seen:
             seen.add(r)
             uniq.append(r)
-    return "、".join(uniq), caution
+    return uniq, caution
 
 ALLOCATION_JA = {"Villa": "住居", "Ship": "船"}
 

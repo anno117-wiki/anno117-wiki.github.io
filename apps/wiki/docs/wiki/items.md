@@ -191,6 +191,15 @@ Anno 117 の専門家が装着できる全アイテムの一覧です。分類�
   color: var(--vp-c-text-2);
   margin-bottom: 4px;
 }
+.item-source-popover-list {
+  margin: 0;
+  padding-left: 1.2em;
+  max-height: 240px;
+  overflow-y: auto;
+}
+.item-source-popover-list li {
+  margin: 2px 0;
+}
 .item-source-popover-caution {
   margin-top: 6px;
   color: #92400e;
@@ -314,7 +323,7 @@ Anno 117 の専門家が装着できる全アイテムの一覧です。分類�
     {{ item.nameJa }}
     <span v-if="item.caution" class="item-caution-badge" :title="item.caution">要検証</span>
     <span
-      v-if="item.source"
+      v-if="item.source.length"
       class="item-source-badge"
       @mouseenter="showSourcePopover(item, $event)"
       @mouseleave="hideSourcePopover"
@@ -353,7 +362,7 @@ Anno 117 の専門家が装着できる全アイテムの一覧です。分類�
     <span>{{ item.nameJa }}</span>
     <span v-if="item.caution" class="item-caution-badge" :title="item.caution">要検証</span>
     <span
-      v-if="item.source"
+      v-if="item.source.length"
       class="item-source-badge"
       @click.stop="toggleSourcePopover(item, $event)"
     >取得先</span>
@@ -401,7 +410,9 @@ Anno 117 の専門家が装着できる全アイテムの一覧です。分類�
     @click.stop
   >
     <div class="item-source-popover-label">取得先</div>
-    <div>{{ sourcePopover.item.source }}</div>
+    <ul class="item-source-popover-list">
+      <li v-for="(s, i) in sourcePopover.item.source" :key="i">{{ s }}</li>
+    </ul>
     <div v-if="sourcePopover.item.sourceCaution" class="item-source-popover-caution">※内部名から独自に意訳した箇所を含むため要検証</div>
   </div>
 </Teleport>
