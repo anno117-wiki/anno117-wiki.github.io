@@ -204,6 +204,20 @@
 - **アイコンPNG圧縮**: `docs/calculator/icons/` 配下211ファイル・合計21MB（1枚200KB超のものが多数）。**保留**。理由: (a) 圧縮ツール(pngquant/optipng/cwebp/ImageMagick)が環境未導入 (b) 画質劣化の有無は目視確認が要る種類の判断で、211枚一括変換は無人では避けたい
 - **キャッシュTTL10分の指摘**（PageSpeed Insights「効率的なキャッシュ保存期間」推定削減215KiB）: **未対応**。GitHub Pagesは`Cache-Control`をデフォルトで全ファイル一律10分に設定しており、カスタムレスポンスヘッダーの設定手段（Netlifyの`_headers`相当）が無いため、GH Pagesのままでは直接対応不可。対応するならCloudflare等を前段に挟むレベルの変更が必要
 
+### S. GSCインデックス登録の反映確認 ＆ chrome-devtools MCP接続不良（2026-09-28）
+
+#### GSCインデックス登録の反映確認（N・Q節の続き）
+- GSCカバレッジレポートの「有効（インデックス登録済み）」表（`表.csv`、2026-09-28時点）を確認したところ、N節の「guide系9件+`updates.html`」（2026-09-23/24リクエスト済み）が**全件まだ載っていない**。加えて`wiki/techs-economy.html`も1件だけ載っていない
+- `wiki/techs-economy.html`はQ節の通り既にURL検査で「登録済み」と判明済み（レポート反映ラグ）
+- 今回`guide/economy-guide.html`をURL検査したところ**「URLはGoogleに登録されています」＝登録済みと確認**（ユーザーがスクショで確認）。カバレッジレポートへの反映が数日遅れているだけとみられる
+- **2026-09-28追記: 残り8件+`updates.html`も全件確認完了・全件「URLはGoogleに登録されています」**（chrome-devtools MCP復旧により自動化して確認）:
+  - `guide/early-game-strategy.html` / `guide/military-guide.html` / `guide/research-guide.html` / `guide/trade-guide.html` / `guide/calculator-guide.html` / `guide/dlc01-ashes-of-prophecy.html` / `guide/dlc02-hippodrome.html` / `guide/dlc03-dawn-of-delta.html` / `updates.html`
+- **結論確定**: guide系9件+`updates.html`は全件Google登録済み。カバレッジレポート（「有効」表）への反映が数日遅れているだけで、実害・追加対応は不要。次にGSCを見る際はカバレッジレポートの「有効」件数が18件から増えているか確認する程度でよい
+
+#### chrome-devtools MCP接続不良 → 復旧確認済み（2026-09-28）
+- 前回セッションでは`CONNECT_TIMEOUT`で接続失敗していたが、本セッションでは`ToolSearch`→`list_pages`が正常動作し、GSCのURL検査を9件連続で自動操作できた（前回開いていたGSCサマリーページがそのまま残っていた）
+- 再現しなかったため原因は不明（ユーザーのセッション再起動が効いた可能性）。以後接続不良が再発したら`claude mcp list`の表示とセッション内`ToolSearch`結果の両方を確認すること
+
 ## 未コミット作業
 なし（この引き継ぎ書の更新分を除く。`git status -sb` で確認）。ただし上記のとおり `docs-notes/research-*.md` 3本はGit管理外
 
@@ -215,7 +229,7 @@
 - 要検証の実機確認（上記B・Cの「要検証のまま」）
 - 競馬場ガイド: 馬需要(ランクVII)・戦車産出(ランクX)が本文では「レベルが上がると」とまとめ書きのまま（`/wiki/splendor` へのリンクは追加済み）
 - 獣脂(`lard`)の別の生産元アスピック職人(GUID5475, アルビオン)は、商品一覧に未対応（現行チェーンは31756を使用）。建物効果ページに載っているかも未確認
-- GSC: 上記I・N・Qを参照。**guide系9件は2026-09-24にリクエスト済み**（結果未確認）。`techs-economy.html`等「クロール済み-インデックス未登録」表示は解消見込み（数日後に再確認）
+- GSC: 上記I・N・Qを参照。**guide系9件+`updates.html`は2026-09-28のURL検査で全件登録済みと確認済み**（S節）。`techs-economy.html`等「クロール済み-インデックス未登録」表示は解消見込み（数日後に再確認）
 - アイテム取得先(Q参照): Julia(ユリア)は実在・用途不明のため表示除外中。実機で「ユリア」という商人/NPCを確認できれば`tools/build-items-ja.py`の`NPC_NAME_EXCLUDED`から外して復活可能。GUID90573「花形の潜り手」の入手方法も未解明のまま
 - Item Inspectorリポジトリの配布方式変更・全体データ入手先リスク（上記O）: 次パッチ時に改めて状況確認
 - 隣接太字崩れバグ（上記P）の横展開チェック未実施。Pに載せた検索コマンドで他ページも確認するとよい
