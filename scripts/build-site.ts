@@ -10,7 +10,7 @@ const wikiDist = resolve(root, 'apps/wiki/docs/.vitepress/dist');
 // Step 0: 一次データ(_local/anno-official-data)より生成物が古くないか確認する（警告のみ、ビルドは止めない）。
 // build-buildings-data.py / build-items-ja.py 等の生成スクリプトが一次ソース更新後に
 // 再実行されないまま放置される事故（DLC02データが手編集のみで一次ソースに未反映等）を検知する。
-console.log('[0/5] Checking generated data freshness...');
+console.log('[0/6] Checking generated data freshness...');
 checkDataFreshness();
 
 function checkDataFreshness(): void {
@@ -53,12 +53,12 @@ function checkDataFreshness(): void {
 }
 
 // Step 1: docs/ をクリーン
-console.log('[1/5] Cleaning docs/...');
+console.log('[1/6] Cleaning docs/...');
 if (existsSync(docsDir)) rmSync(docsDir, { recursive: true, force: true });
 mkdirSync(docsDir, { recursive: true });
 
 // Step 2: calculator → docs/calculator/
-console.log('[2/5] Building calculator (base=/calculator/)...');
+console.log('[2/6] Building calculator (base=/calculator/)...');
 const configResult = await loadConfigFromFile(
   { command: 'build', mode: 'production' },
   resolve(root, 'vite.config.ts'),
@@ -74,12 +74,26 @@ const calculatorConfig = mergeConfig(configResult!.config, {
 await build(calculatorConfig);
 
 // Step 3: wiki → apps/wiki/docs/.vitepress/dist → docs/
-console.log('[3/5] Building wiki...');
+console.log('[3/6] Building wiki...');
 execSync('bun run build', { cwd: resolve(root, 'apps/wiki'), stdio: 'inherit' });
 cpSync(wikiDist, docsDir, { recursive: true });
 
 // Step 4: .nojekyll
-console.log('[4/5] Placing .nojekyll...');
+console.log('[4/6] Placing .nojekyll...');
 writeFileSync(resolve(docsDir, '.nojekyll'), '');
+
+// Step 5: sitemap-pages.xml（sitemap.xmlの複製）
+// GSCの「サイトマップ」画面でsitemap.xmlが送信日2026-09-19以降ずっと
+// 「型:不明・取得できませんでした」のまま変化しない問題への切り分け用。
+// curl・GSC URL検査のライブテストではContent-Type/取得とも正常なため、原因は
+// GSC内部のサイトマップ再解析パイプライン側とみられる。同じ内容を別名URLとして
+// 新規登録すれば、既存の失敗キャッシュと独立した状態から試せる。
+console.log('[5/6] Duplicating sitemap.xml as sitemap-pages.xml (for GSC re-registration)...');
+const sitemapPath = resolve(docsDir, 'sitemap.xml');
+if (existsSync(sitemapPath)) {
+  cpSync(sitemapPath, resolve(docsDir, 'sitemap-pages.xml'));
+} else {
+  console.warn('  [WARN] docs/sitemap.xml が見つかりません。sitemap-pages.xml の複製をスキップしました。');
+}
 
 console.log('Done. docs/ = wiki(/) + calculator(/calculator/)');
