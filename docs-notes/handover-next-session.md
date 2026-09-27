@@ -1,8 +1,8 @@
-# 引き継ぎ: 次回セッション向け（2026-09-24 更新・第13版）
+# 引き継ぎ: 次回セッション向け（2026-09-27 更新・第14版）
 
 ## git状態
-- ブランチ: master。`eebb323`（Zarai・Nefeneru確定扱い）がリモートと同期済みの最新コミット。working tree clean（この引き継ぎ書の更新分を除く）。直近の作業は `git log -10` で確認すること。デプロイは `gh run list` で確認
-- GitHub Pagesデプロイの確認は `gh run list --repo anno117-wiki/anno117-wiki.github.io --limit 5`。`562498f`（データベースメニュー）の見た目はユーザーが本番で確認済み
+- ブランチ: master。`4fa14f5`（Google Fonts非同期化）がリモートと同期済みの最新コミット。working tree clean（この引き継ぎ書の更新分を除く）。直近の作業は `git log -10` で確認すること。デプロイは `gh run list` で確認
+- GitHub Pagesデプロイの確認は `gh run list --repo anno117-wiki/anno117-wiki.github.io --limit 5`。`562498f`（データベースメニュー）の見た目はユーザーが本番で確認済み。今回の3コミット（`c346a5c`/`3422033`/`4fa14f5`）も`success`でデプロイ済み確認済み（2026-09-27）
 - **`docs-notes/` は `.gitignore` 対象**（`handover-next-session.md` / `building-icon-mapping.md` / `how-to-edit-site.md` / `wiki/` のみ例外で追跡）。今回作った調査メモ2本は**ローカルのみでGit未管理**
   - `docs-notes/research-alt-producers-coal-gold.md`（石炭・金の生産元、信仰神、サイロ、実機確認の記録）
   - `docs-notes/research-splendor-hippodrome-colosseum.md`（競馬場・円形闘技場の輝きバフ）
@@ -182,12 +182,36 @@
 - 7回に分けてコミット・プッシュ済み: `5a7bd98`（初回実装）→`05c44a4`（表記調整）→`e649221`（配列化・1行表示）→`73cdf46`（来訪者レアリティ省略）→`7ae31f7`（エンドゲーム技術を実名に）→`09ffe3b`（祭りを実名に）→`eebb323`（Zarai/Nefeneru確定）
 - **花形の潜り手-ナタンハエル・シタール（GUID90573）はSource列が公式データ自体で空文字**。海外サイト（ANNOLAND、Anno Companion Item Inspector）でも入手方法の記載なし。アイコンパスが`icon_3d_unique_campaign_003_shipwreck_diver`のため、キャンペーン固有のストーリーイベントで確定入手する特殊アイテムと推測（未確定）
 
+### R. GSC「ウェブに関する主な指標」不表示の調査 ＆ ページ表示速度改善（2026-09-27、単独セッション）
+
+#### GSC「ウェブに関する主な指標」が表示されない件
+- ユーザーから「PageSpeed Insightsを試す」ボタンしか出ない、と相談を受け原因を説明
+- 原因はCrUX（Chrome User Experience Report）の**実ユーザー計測データ不足**の可能性が高いと判断（開設2026-06-30から3ヶ月経過済みのため「開設したばかり」は当てはまらない。個人運営・ニッチジャンルのwikiだと、期間が経ってもトラフィック不足でCrUXレポート自体が生成されないのはよくあるパターン）
+- 構造的な解決策はなし（サイトの訪問規模が増えるのを待つしかない）。ユーザーは「GSCのキャッシュ更新を待ってから再計測する」方針
+
+#### PageSpeed Insights ラボ計測を元にした表示速度改善（3コミット、全てpush済み・デプロイ確認済み）
+ユーザーが貼ったPageSpeed Insightsのモバイル計測（低速4Gスロットリング）でFCP/LCPが赤(5〜6秒台)だったのを起点に調査・修正。
+
+1. **`c346a5c`**: calculator本番ビルドの未圧縮問題を解消
+   - `vite.config.ts` の `minify: false` を削除（esbuild既定minifyに戻す）。実測: JS 276KB→134KB（gzip 44KB）、CSS 52KB→38KB（gzip 6.7KB）
+   - 未使用の `@font-face NotoSerif`（`apps/calculator/src/css/theme.css`）を削除。全ソース(`apps`/`packages`)をgrepし、実際にはどの要素にも適用されていない死んだCSSと確認済み。実体ファイル `packages/shared/public/fonts/NotoSerif.ttf`（1.87MB）も削除
+2. **`3422033`**: wiki側 `custom.css` の `@import url(fonts.googleapis.com...)` を廃止し `config.ts` の `head` に `preconnect` + `<link rel=stylesheet>` 直書きへ変更
+   - **この時点では不十分だった**: `rel=stylesheet` は事前接続していてもLighthouse上は引き続き「レンダリングをブロックしているリクエスト」に計上される（実測でも1,830msとほぼ変わらず）。ユーザーが実機再計測して「あんまり変わらない」と報告、原因を説明の上で3へ
+3. **`4fa14f5`**: `preload(as=style)` + `onload` でstylesheetに昇格させる標準パターンに変更、`noscript`フォールバック追加
+   - **実測で効果確認**: レンダリングブロック推定削減時間 **4,210ms → 150ms**。「レンダリングをブロックしているリクエスト」一覧からGoogle Fontsの行が消えたことをユーザーがPageSpeed Insights再計測で確認
+
+#### 保留・未対応にした項目（ユーザー判断）
+- **アイコンPNG圧縮**: `docs/calculator/icons/` 配下211ファイル・合計21MB（1枚200KB超のものが多数）。**保留**。理由: (a) 圧縮ツール(pngquant/optipng/cwebp/ImageMagick)が環境未導入 (b) 画質劣化の有無は目視確認が要る種類の判断で、211枚一括変換は無人では避けたい
+- **キャッシュTTL10分の指摘**（PageSpeed Insights「効率的なキャッシュ保存期間」推定削減215KiB）: **未対応**。GitHub Pagesは`Cache-Control`をデフォルトで全ファイル一律10分に設定しており、カスタムレスポンスヘッダーの設定手段（Netlifyの`_headers`相当）が無いため、GH Pagesのままでは直接対応不可。対応するならCloudflare等を前段に挟むレベルの変更が必要
+
 ## 未コミット作業
 なし（この引き継ぎ書の更新分を除く。`git status -sb` で確認）。ただし上記のとおり `docs-notes/research-*.md` 3本はGit管理外
 
 ## 次セッションのミッション
 **最優先ミッションはなし**。以下は候補（着手前にユーザーへ確認）。
 
+- GSC「ウェブに関する主な指標」（上記R参照）: ユーザーがCrUXキャッシュ更新を待って再計測予定。相談があれば経過を確認
+- アイコンPNG圧縮（上記R参照）: **保留中**。着手するなら圧縮ツール導入の可否とユーザーの目視確認体制を先に確認すること
 - 要検証の実機確認（上記B・Cの「要検証のまま」）
 - 競馬場ガイド: 馬需要(ランクVII)・戦車産出(ランクX)が本文では「レベルが上がると」とまとめ書きのまま（`/wiki/splendor` へのリンクは追加済み）
 - 獣脂(`lard`)の別の生産元アスピック職人(GUID5475, アルビオン)は、商品一覧に未対応（現行チェーンは31756を使用）。建物効果ページに載っているかも未確認
