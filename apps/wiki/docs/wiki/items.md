@@ -95,7 +95,13 @@ Anno 117 の専門家が装着できる全アイテムの一覧です。分類�
   </div>
 </div>
 
+<a href="#対象の総称と内訳" class="item-legend-jumplink">「対象」の総称の内訳を見る ↓</a>
+
 <style scoped>
+.item-legend-jumplink {
+  display: none;
+}
+
 .item-filters {
   display: flex;
   flex-wrap: wrap;
@@ -271,6 +277,11 @@ Anno 117 の専門家が装着できる全アイテムの一覧です。分類�
   .item-filter-reset {
     padding: 4px 10px;
     font-size: 0.75rem;
+  }
+  .item-legend-jumplink {
+    display: inline-block;
+    margin: 10px 0 4px;
+    font-size: 0.8rem;
   }
 }
 
