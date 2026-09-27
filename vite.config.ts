@@ -30,7 +30,6 @@ export default defineConfig({
     rollupOptions: {
       input: resolve(__dirname, 'apps/calculator/src/index.html'),
     },
-    minify: false,
     sourcemap: true,
   },
 

@@ -1,10 +1,3 @@
-/* フォント実体は publicDir(packages/shared/public/fonts/) にある。
-   CSS url() はビルド時にFS相対で解決されるため、src/css/ から実体まで遡る。 */
-@font-face {
-  font-family: "NotoSerif";
-  src: url("../../../../packages/shared/public/fonts/NotoSerif.ttf") format("truetype");
-}
-
 * {
   box-sizing: border-box;
   margin: 0;
