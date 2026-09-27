@@ -1,4 +1,6 @@
-@import url('https://fonts.googleapis.com/css2?family=Noto+Sans+JP:wght@400;500;700&display=swap');
+/* Google Fonts は config.ts の head で preconnect + <link> 読み込みに変更済み。
+   @import は「HTML→CSS→@import発見→フォントCSS取得→フォント本体取得」の直列待ちが
+   発生しレンダリングブロックの主因になるため使わない。 */
 
 :root {
   --vp-sidebar-width: 220px;
