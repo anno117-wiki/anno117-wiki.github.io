@@ -1,6 +1,6 @@
 ---
 layout: home
-title: 統合Wiki
+title: アノ117 攻略・生産チェーン計算機
 description: Anno 117（PS5/Steam）の日本語Wiki。商品・生産チェーン・建物効果・住民層・スキルツリーを網羅し、生産チェーン計算機で必要な建物数と原料を計算できる。
 
 hero:
