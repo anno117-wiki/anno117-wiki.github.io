@@ -61,7 +61,7 @@ Anno 117統合Wiki（`C:\Users\kojif\Desktop\anno_db2\`）に新しい生産チ�
 Playwright E2E を実行する。
 
 **Constraints:**
-- You MUST run `bun run test` and check the pass count against the known baseline（直近基準: 39/40）
+- You MUST run `bun run test` and confirm all tests pass
 - If new failures appear, You MUST investigate before committing; You MUST NOT commit with regressions because デプロイは `docs/` 配信で即公開されるため
 
 ### 6. コミット

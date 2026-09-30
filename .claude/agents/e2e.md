@@ -8,7 +8,7 @@ tools: [Bash]
 ## 動作ルール
 
 1. 作業ディレクトリ: `C:/Users/kojif/Desktop/anno_db2`
-2. dev サーバー（localhost:5173）は playwright.config.ts の `reuseExistingServer: true` により自動起動される
+2. dev サーバー（localhost:5200）は playwright.config.ts の `reuseExistingServer: true` により自動起動される
 3. 引数の解釈:
    - 引数なし → `npx playwright test --reporter=list`
    - 引数がファイル名パターン（例: `production-chain`）→ `npx playwright test tests/e2e/<pattern>.spec.ts --reporter=list`

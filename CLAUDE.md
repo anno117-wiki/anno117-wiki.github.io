@@ -93,7 +93,6 @@ anno_db2/
 8. 環境依存文字を受け答えでは使用しない
 
 ## 重要な教訓
-- ピアへの送信は antml:invoke 形式で書く（`<invoke>` 形式は「malformed」で弾かれる）
 - `@anno/shared` の fetch文字列は変更しない（publicDir契約を壊す）
 - 並列セッションでの同一ファイル競合に注意
 - VitePressデータローダーからnamed exportは不可（`export default { load() }` のみ）
