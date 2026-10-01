@@ -70,6 +70,7 @@ export default defineConfig({
     // Google Fonts: preconnectで事前接続 + preload/onloadで非同期化(レンダリングブロック回避)。
     // rel=stylesheetを直に置くとpreconnectしても読み込み完了までレンダリングを待つため、
     // preloadで先取りしonload時にstylesheetへ昇格させる。noscript環境向けフォールバックも用意。
+    // display=optional: 遅れて届いたフォントへの差し替えを行わず、CLS(レイアウトシフト)を防ぐ。
     ['link', { rel: 'preconnect', href: 'https://fonts.googleapis.com' }],
     ['link', { rel: 'preconnect', href: 'https://fonts.gstatic.com', crossorigin: '' }],
     [
@@ -77,14 +78,14 @@ export default defineConfig({
       {
         rel: 'preload',
         as: 'style',
-        href: 'https://fonts.googleapis.com/css2?family=Noto+Sans+JP:wght@400;500;700&display=swap',
+        href: 'https://fonts.googleapis.com/css2?family=Noto+Sans+JP:wght@400;500;700&display=optional',
         onload: "this.onload=null;this.rel='stylesheet'",
       },
     ],
     [
       'noscript',
       {},
-      '<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Noto+Sans+JP:wght@400;500;700&display=swap">',
+      '<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Noto+Sans+JP:wght@400;500;700&display=optional">',
     ],
   ],
 
