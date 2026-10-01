@@ -16,7 +16,7 @@
 </template>
 
 <script setup lang="ts">
-import DefaultTheme from 'vitepress/theme'
+import DefaultTheme from 'vitepress/theme-without-fonts'
 import { nextTick, onMounted } from 'vue'
 import { useData, onContentUpdated } from 'vitepress'
 import ContributionPanel from '../components/ContributionPanel.vue'

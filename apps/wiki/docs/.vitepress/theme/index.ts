@@ -1,4 +1,4 @@
-import DefaultTheme from 'vitepress/theme'
+import DefaultTheme from 'vitepress/theme-without-fonts'
 import './custom.css'
 import Layout from './Layout.vue'
 import StatBar from '../components/StatBar.vue'
