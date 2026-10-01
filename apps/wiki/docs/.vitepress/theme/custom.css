@@ -1,6 +1,6 @@
-/* Google Fonts は config.ts の head で preconnect + <link> 読み込みに変更済み。
-   @import は「HTML→CSS→@import発見→フォントCSS取得→フォント本体取得」の直列待ちが
-   発生しレンダリングブロックの主因になるため使わない。 */
+/* Web フォント(Google Fonts)は読み込まない。Noto Sans JP 一式(約640KB)が
+   モバイルの FCP/LCP を 5秒台に悪化させていたため(2026-10-02 Lighthouse で確認)。
+   フォントは端末にあるものを --vp-font-family-base の順で使う。 */
 
 :root {
   --vp-sidebar-width: 220px;
