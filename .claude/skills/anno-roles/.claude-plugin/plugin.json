@@ -1,0 +1,6 @@
+{
+  "name": "anno-roles",
+  "version": "0.1.0",
+  "description": "anno_db2: 並列セッションの役名をステータス表示し、家老の直接操作を封じる",
+  "types": "./types/index.d.ts"
+}

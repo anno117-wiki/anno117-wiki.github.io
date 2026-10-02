@@ -1,0 +1,5 @@
+{
+  "name": "anno-build-guard",
+  "version": "0.1.0",
+  "description": "anno_db2: bun run build の誤用を止め、build:site 後に docs/ の wiki 出力を点検する"
+}
