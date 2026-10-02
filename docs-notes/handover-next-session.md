@@ -1,8 +1,9 @@
-# 引き継ぎ: 次回セッション向け（2026-09-27 更新・第14版）
+# 引き継ぎ: 次回セッション向け（2026-10-02 更新・第15版）
 
 ## git状態
-- ブランチ: master。`4fa14f5`（Google Fonts非同期化）がリモートと同期済みの最新コミット。working tree clean（この引き継ぎ書の更新分を除く）。直近の作業は `git log -10` で確認すること。デプロイは `gh run list` で確認
-- GitHub Pagesデプロイの確認は `gh run list --repo anno117-wiki/anno117-wiki.github.io --limit 5`。`562498f`（データベースメニュー）の見た目はユーザーが本番で確認済み。今回の3コミット（`c346a5c`/`3422033`/`4fa14f5`）も`success`でデプロイ済み確認済み（2026-09-27）
+- ブランチ: master。`1b50808`（スキル効果一覧の追加）がリモートと同期済みの最新コミット。working tree clean（この引き継ぎ書の更新分を除く）。直近の作業は `git log -15` で確認すること
+- 2026-10-02の11コミット（`53f0961`〜`1b50808`、下記V節）は全てpush済み・本番反映確認済み（curlで新ページの内容を確認＋本番Lighthouse計測済み）
+- GitHub Pagesデプロイの確認は `gh run list --repo anno117-wiki/anno117-wiki.github.io --limit 5`
 - **`docs-notes/` は `.gitignore` 対象**（`handover-next-session.md` / `building-icon-mapping.md` / `how-to-edit-site.md` / `wiki/` のみ例外で追跡）。今回作った調査メモ2本は**ローカルのみでGit未管理**
   - `docs-notes/research-alt-producers-coal-gold.md`（石炭・金の生産元、信仰神、サイロ、実機確認の記録）
   - `docs-notes/research-splendor-hippodrome-colosseum.md`（競馬場・円形闘技場の輝きバフ）
@@ -235,6 +236,36 @@
   - 両方とも変化なし → GSC側の一般的なサイトマップ処理自体が動いていない/別要因。深掘りが必要（sitemap-pages.xml削除も検討）
   - 実害（個別ページのインデックス登録）は既にS節の通りURL検査経由で進んでいるため、このエラー自体の優先度は高くない
 
+### V. 表示速度・SEO・導線の総合改善（2026-10-02、単独セッション、11コミット・全てpush済み）
+
+#### 表示速度（PageSpeed Insights / Lighthouse モバイル起点）
+- **Google Fontsを廃止**（`53f0961`→`a2c10f1`）: まず`display=optional`でCLS 0.256→0にしたが、Noto Sans JP一式（woff2約26本・約550KB＋CSS 89KB）が低速4G想定で最初の描画を待たせ、FCP/LCP 5.2秒の主因と判明（フォント遮断でLighthouse 67→95を実測）。ユーザーが游ゴシック版との比較画像を見て承認し、読み込み自体を削除。`--vp-font-family-base`は先頭が`'Noto Sans JP'`のまま（端末に入っていれば使われる）
+- **VitePress標準のInterフォントを除去**（`a024a58`）: `theme/index.ts`・`Layout.vue`の読み込みを`vitepress/theme-without-fonts`に変更（67KB削減）
+- **全ページ共通JSからitems-full.jsonを除去**（`df8e94d`）: `BuildingsTable`がアイテム件数の集計だけのために365KBのJSONを読んでいた。集計を`buildings.data.ts`（ビルド時）へ移し、`BuildingsTable`はグローバル登録をやめて`buildings.md`でのみ読み込む。theme chunk 404KB→79KB
+- **アイコンをWebPサムネイル化**（`9725bfb`・`fef37a1`）: `tools/build-icon-thumbs.py`（Pillow使用、導入済み12.2.0）で96pxのWebPを生成
+  - `packages/shared/public/icons/*.png` → `apps/wiki/docs/public/icons/goods-thumb/*.webp`（133件、8.8MB→521KB）。商品一覧・生産チェーンが参照
+  - `apps/wiki/docs/public/icons/buildings/*.png` → `.../icons/buildings-thumb/*.webp`（161件、3.9MB→690KB）。建物効果が参照
+  - img には width/height と `loading="lazy"` を付与。元PNGは再生成用に残している
+  - **アイコンを追加・差し替えたら `python tools/build-icon-thumbs.py` を再実行すること**（しないとwikiに出ない）
+- **本番計測（2026-10-02、モバイル、各1回）**: トップ100／DB入口99／商品一覧99（前92）／生産チェーン99（前88）／建物一覧98（前92、転送量714→174KB）／アイテム一覧93（前87）／スキルツリー経済99／計算機96（前97、誤差）。デスクトップのトップは100
+
+#### SEO
+- **canonical**を全ページに追加（404除く。`df8e94d`）。`pageUrl()`で og:url と共用し、`index.md`はディレクトリURL（`/`、`/wiki/`）になる
+- **サイト名を「Anno 117攻略Wiki」に統一**（`6f57445`、ユーザー決定）: ナビ（`title: SITE_NAME`）・トップh1・計算機・llms.txt・getting-started・updatesのdescription。トップに`WebSite`構造化データ（alternateName: Anno117DB／アノ117 攻略Wiki）。更新履歴の過去エントリ（v1.0リリース名）とCLAUDE.md等の内部文書は旧名のまま
+- **sitemapにlastmod**（`6f57445`）: `transformItems`で各ページのソース.mdの最終コミット日を付与（`gitLastModified()`）。VitePressの`lastUpdated`はページに表示も出るため使っていない。データJSONだけ更新したページはlastmodが変わらない点に注意
+- **計算機ページ**（`6f57445`）: `html lang="ja"`、言語切替で`document.documentElement.lang`も追従（`App.ts`）、canonical・og:url/image/site_name・twitter:imageを追加、twitter系を`name`属性に修正
+- **短いdescription補強**: regions・techs-economy/civic/military/dlc01/dlc02 に具体的な商品名・スキル名を追加
+- **スキル効果一覧**（`1b50808`）: `SkillEffectList.vue`をツリー下に折りたたみ（初期は閉）で表示。効果文が静的HTMLに入る。並びは研究順（ツリー下段→上段、各段左→右）。`stripTags`/`formatKnowledge`は`components/techFormat.ts`へ切り出し
+
+#### 導線
+- **データベース入口ページ `/wiki/`（`wiki/index.md`）を新設**（`f91da13`、ユーザー決定）: トップの「データベース」ボタン・特徴カード、ナビ先頭、サイドバー先頭、セクションナビ（Layout.vue）を`/wiki/`へ。パンくずはデータベース配下全ページが「ホーム > データベース > 各ページ」（`breadcrumbParent()`。スキル各ブランチの親もtechsではなくデータベース）
+- **関連リンク追加**（`1c74cd4`）: ガイド7ページ末尾に「関連データ」（はじめには「関連ページ」）、DB9ページの「関連ガイド」直前に「関連データ」
+
+#### その他
+- **計算機の未稼働Service Worker削除**（`a0c3896`、ユーザー決定）: `/sw.js`が本番404で一度も動いていなかった。登録処理と`packages/shared/public/data/sw.js`を削除。E2E 35件全成功
+- **見送り（ユーザー決定）**: アイテム一覧のDOM削減（16,000要素・TBT 180〜230ms）は「今は手を付けない」
+- **新規ページのGSCインデックス登録**: 2026-10-02に `https://anno117-wiki.github.io/wiki/` **のみ**ユーザーが登録リクエスト済み。スキルツリー5ページ（効果一覧追加）は案内したが**リクエストしていない**（任意）
+
 ## 未コミット作業
 なし（この引き継ぎ書の更新分を除く。`git status -sb` で確認）。ただし上記のとおり `docs-notes/research-*.md` 3本はGit管理外
 
@@ -244,7 +275,9 @@
 - **sitemap-pages.xmlの経過確認**（上記T参照）: 2026-09-28に新規送信済み。数日後にGSC「サイトマップ」画面で`sitemap.xml`と型・ステータスを見比べること
   - **2026-09-30時点**: 両方とも「取得できませんでした」のまま変化なし。サーバー側は正常（Googlebot UAで200・application/xml・robots.txt許可を再確認）。送信2日目で結論には早い。**2026-10-05頃に再確認**し、なお変化なしなら`sitemap-pages.xml`を削除して`sitemap.xml`を再送信、重要ページはURL検査の「インデックス登録をリクエスト」で個別催促
 - GSC「ウェブに関する主な指標」（上記R参照）: ユーザーがCrUXキャッシュ更新を待って再計測予定。相談があれば経過を確認
-- アイコンPNG圧縮（上記R参照）: **保留中**。着手するなら圧縮ツール導入の可否とユーザーの目視確認体制を先に確認すること
+- `/wiki/`（2026-10-02登録リクエスト済み）がインデックスされたかをURL検査で確認（V節）
+- アイコン圧縮: **wiki側は対応済み**（V節。商品・建物をWebPサムネイル化）。**計算機側（`docs/calculator/icons/`、約21MB）は未対応**。計算機の初期ロードはアイコン5件206KBで、skill-*.png（1枚56〜60KB）が主。着手するなら計算機の表示サイズを確認してから
+- 2026-10-02の調査で出た未着手の低優先度項目（ユーザー未依頼）: 計算機の使い方ページの「計算」リンク表記が実際のボタン名「開く」と不一致（`guide/calculator-guide.md:47`）／計算機ページで`/assets/images/anno_icon.png`が404（manifest経由と推測）／llms.txtにpatrons・splendor・スキル各ブランチ・DLC02/03・/wiki/が未掲載／計算機の初期ロードで`data/items/*.json`64件を個別fetch（1ファイル統合の余地）／wiki全ページのCLS 0.034（Layout.vueのセクションナビDOM挿入が原因と推測、合格域）
 - 要検証の実機確認（上記B・Cの「要検証のまま」）
 - 競馬場ガイド: 馬需要(ランクVII)・戦車産出(ランクX)が本文では「レベルが上がると」とまとめ書きのまま（`/wiki/splendor` へのリンクは追加済み）
 - 獣脂(`lard`)の別の生産元アスピック職人(GUID5475, アルビオン)は、商品一覧に未対応（現行チェーンは31756を使用）。建物効果ページに載っているかも未確認
@@ -252,7 +285,6 @@
 - アイテム取得先(Q参照): Julia(ユリア)は実在・用途不明のため表示除外中。実機で「ユリア」という商人/NPCを確認できれば`tools/build-items-ja.py`の`NPC_NAME_EXCLUDED`から外して復活可能。GUID90573「花形の潜り手」の入手方法も未解明のまま
 - Item Inspectorリポジトリの配布方式変更・全体データ入手先リスク（上記O）: 次パッチ時に改めて状況確認
 - 隣接太字崩れバグ（上記P）の横展開チェック未実施。Pに載せた検索コマンドで他ページも確認するとよい
-- 計算機(`/calculator/`)のOGP: 保留中（J参照）。計算機を残す方針になったため、付ける価値は上がった
 - 図に出す比率は各商品の最初の地域版のみ。アルビオン版の表示・アルビオンの燃料の実際（L参照）
 - 宣伝: 案は提示済み（実施はユーザー判断）。日本語圏（X・Steam・Discord）→英語圏（Reddit r/anno 等）の順。上流のライセンス確認は済み（K参照。アイコン以外は自由に使用可）
 
@@ -285,6 +317,9 @@
 - devサーバ(`bun run dev:wiki`)はCSRのためSPA遷移・アンカースクロールの検証には向かない。本番相当の検証は `bun run preview:wiki` を使う
 - `bun run preview`はファイルを再ビルドしても、古いプロセスがポートを掴んだままだと404が出る。**再ビルド後は必ずプレビューを止めて起動し直す**。Windowsでは`PowerShell`ツールで`Get-NetTCPConnection -LocalPort 4173 -State Listen`→`Stop-Process -Id <OwningProcess> -Force`で確実に停止
 - GitHub Pagesの本番デプロイ確認は `gh run list --repo anno117-wiki/anno117-wiki.github.io --limit 5`。push直後は前回の実行が先頭に出るため、`headSha`で今回分を選んで待つこと
+- **`docs/`をローカルサーバー（`python -m http.server`等）で配信中に`build:site`すると`EBUSY: rm docs`で失敗する**。サーバーを止めてからビルドする
+- Lighthouseのローカル実行: `CHROME_PATH="C:/Users/kojif/AppData/Local/ms-playwright/chromium-1223/chrome-win64/chrome.exe" npx -y lighthouse@12 <URL> --only-categories=performance --output=json --output-path=<file> --chrome-flags="--headless=new" --quiet`（既定はモバイル、`--preset=desktop`でデスクトップ）。**`python -m http.server`は非圧縮配信のため、ローカルのスコアは本番より大幅に低く出る**。判断は本番URLで計測すること
+- **見た目比較の罠**: この開発PCには Noto Sans JP がインストール済み（`C:\Windows\Fonts\NotoSansJP-VF.ttf`）。フォントの比較をするときは、フォント指定からNotoを外さないと一般的なWindows（游ゴシック）の見え方にならない
 
 ### VitePress / Vite
 - 日本語文字の直後の `**太字**` 記法は機能しない → `<strong>` タグを使う
@@ -293,6 +328,7 @@
 - PC/モバイルでDOMを両方生成しCSSで出し分けるページ（items.md/goods.md/production-chains.md）で、`#id`アンカーを提供する場合は`id`を重複させず`data-anchor`属性にし、画面幅に応じて表示中(`offsetParent !== null`)の要素へJSで`scrollIntoView`する
 - VitePressのデータローダーからnamed exportは不可（`export default { load() }`のみ）。新ページ(patrons/splendor)もこの形
 - グローバル登録するVueコンポーネントは `apps/wiki/docs/.vitepress/theme/index.ts` の `enhanceApp` に足す（PatronDetail / GoodsProducers など）
+- **ただし大きなデータ（JSON・データローダー）をimportするコンポーネントはグローバル登録しない**。グローバル登録すると全ページ共通のtheme chunkに入り全ページが読み込む（`BuildingsTable`がこれで404KBになっていた、V節）。使うページの`<script setup>`で個別にimportする
 
 ### 生成スクリプト運用
 - `tools/generate-goods-list.ts` / `generate-items-list.ts` は既存`list.json`等の手動メンテ値を継承する設計。再実行前にバックアップ・差分確認
