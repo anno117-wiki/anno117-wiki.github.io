@@ -17,10 +17,11 @@ const OGP_IMAGE = SITE_HOSTNAME + 'images/ogp.png'
 const DOCS_DIR = fileURLToPath(new URL('../', import.meta.url))
 const CALCULATOR_SRC = fileURLToPath(new URL('../../../calculator/src/', import.meta.url))
 
-// sitemap の URL（例: 'wiki/goods.html'、トップは ''）→ 元の .md ファイルの絶対パス
+// sitemap の URL（例: 'wiki/goods.html'、トップは ''、入口ページは 'wiki/'）→ 元の .md ファイルの絶対パス
 function sourcePathForUrl(url: string): string {
   const rel = url.replace(/^\//, '')
-  return DOCS_DIR + (rel === '' ? 'index.md' : rel.replace(/\.html$/, '.md'))
+  if (rel === '' || rel.endsWith('/')) return DOCS_DIR + rel + 'index.md'
+  return DOCS_DIR + rel.replace(/\.html$/, '.md')
 }
 
 // git の最終コミット日時（ISO 8601）。取得できなければ undefined（lastmod を出さない）
@@ -35,8 +36,12 @@ function gitLastModified(path: string): string | undefined {
 }
 
 // ページの正規URL（og:url と canonical で共用）
+// index.md はディレクトリURL（'/'、'/wiki/'）で表す
 function pageUrl(relativePath: string): string {
-  return relativePath === 'index.md' ? SITE_HOSTNAME : SITE_HOSTNAME + relativePath.replace(/\.md$/, '.html')
+  if (relativePath === 'index.md' || relativePath.endsWith('/index.md')) {
+    return SITE_HOSTNAME + relativePath.replace(/index\.md$/, '')
+  }
+  return SITE_HOSTNAME + relativePath.replace(/\.md$/, '.html')
 }
 
 // 検索エンジン向けの正規URL指定。?target= 等のクエリ付きURLを同一ページとして扱わせる
@@ -97,6 +102,14 @@ const BREADCRUMB_PARENT: Record<string, { path: string; name: string }> = {
   'guide/calculator-guide.md': { path: '/guide/getting-started', name: 'はじめに' },
 }
 
+// データベース配下の各ページは入口ページ(/wiki/)を親とする
+function breadcrumbParent(relativePath: string): { path: string; name: string } | undefined {
+  if (relativePath.startsWith('wiki/') && relativePath !== 'wiki/index.md') {
+    return { path: '/wiki/', name: 'データベース' }
+  }
+  return BREADCRUMB_PARENT[relativePath]
+}
+
 export default defineConfig({
   lang: 'ja-JP',
   title: SITE_NAME,
@@ -129,9 +142,10 @@ export default defineConfig({
 
     const items: { name: string; url: string }[] = [{ name: 'ホーム', url: SITE_HOSTNAME }]
 
-    const parent = BREADCRUMB_PARENT[path]
+    const parent = breadcrumbParent(path)
     if (parent) {
-      items.push({ name: parent.name, url: SITE_HOSTNAME + parent.path.slice(1) + '.html' })
+      const parentFile = parent.path.endsWith('/') ? parent.path + 'index.md' : parent.path + '.md'
+      items.push({ name: parent.name, url: pageUrl(parentFile.slice(1)) })
     }
     items.push({ name: title, url: pageUrl(path) })
 
@@ -175,6 +189,7 @@ export default defineConfig({
         text: 'データベース',
         activeMatch: '^/wiki/',
         items: [
+          { text: 'データベース一覧', link: '/wiki/' },
           {
             text: '生産',
             items: [
@@ -250,6 +265,7 @@ export default defineConfig({
         },
       ],
       '/wiki/': [
+        { text: 'データベース一覧', link: '/wiki/' },
         {
           text: '生産',
           items: [

@@ -17,7 +17,7 @@ hero:
       link: /guide/strategy
     - theme: alt
       text: データベース
-      link: /wiki/goods
+      link: /wiki/
 
 features:
   - title: 攻略ガイド
@@ -25,7 +25,7 @@ features:
     link: /guide/strategy
   - title: データベース
     details: 商品・建物効果・住民層・アイテムなどのゲームデータを日本語でまとめました（公式データ準拠）。
-    link: /wiki/goods
+    link: /wiki/
   - title: 生産チェーン計算機
     details: 商品ごとの生産チェーンを展開して、必要な建物数・原料を計算できます。
     link: /calculator/

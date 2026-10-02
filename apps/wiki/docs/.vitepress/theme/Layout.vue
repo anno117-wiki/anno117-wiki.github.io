@@ -37,7 +37,7 @@ function renderSectionNav() {
   if (path.startsWith('guide/')) {
     links = [
       { text: '計算機', href: '/calculator/', target: '_self' },
-      { text: 'データベース', href: '/wiki/goods.html' },
+      { text: 'データベース', href: '/wiki/' },
     ]
   } else if (path.startsWith('wiki/')) {
     links = [
