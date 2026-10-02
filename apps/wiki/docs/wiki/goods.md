@@ -74,7 +74,7 @@ Anno 117 で生産・消費される全 {{ data.categories.reduce((n, c) => n + 
 <template v-for="good in data.byCategory[cat]" :key="good.id">
 <tr :data-anchor="good.id">
 <td style="white-space:nowrap;">
-  <img v-if="good.icon" :src="withBase('/icons/goods/' + good.icon + '.png')" :alt="good.nameJa" style="width:28px;height:28px;vertical-align:middle;margin-right:6px;object-fit:contain;" />
+  <img v-if="good.icon" :src="withBase('/icons/goods-thumb/' + good.icon + '.webp')" :alt="good.nameJa" width="28" height="28" loading="lazy" style="width:28px;height:28px;vertical-align:middle;margin-right:6px;object-fit:contain;" />
   {{ good.nameJa }}
 </td>
 <td>{{ regionText(good.regions) }}</td>
@@ -99,7 +99,7 @@ Anno 117 で生産・消費される全 {{ data.categories.reduce((n, c) => n + 
   class="goods-compact-row"
   v-bind="hasCalc(cat) ? { href: withBase(`/calculator/?good=${good.id}`), target: '_blank', rel: 'noopener noreferrer' } : {}"
 >
-  <img v-if="good.icon" :src="withBase('/icons/goods/' + good.icon + '.png')" :alt="good.nameJa" class="goods-compact-icon" />
+  <img v-if="good.icon" :src="withBase('/icons/goods-thumb/' + good.icon + '.webp')" :alt="good.nameJa" width="24" height="24" loading="lazy" class="goods-compact-icon" />
   <span class="goods-compact-name">{{ good.nameJa }}</span>
   <span class="goods-compact-region">{{ regionText(good.regions) }}</span>
   <span v-if="hasCalc(cat)" class="goods-compact-arrow">›</span>

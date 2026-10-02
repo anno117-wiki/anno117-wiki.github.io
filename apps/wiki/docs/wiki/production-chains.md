@@ -77,7 +77,7 @@ watch(hash, scrollToHash)
 <tbody>
 <tr v-for="entry in data.byCategory[cat]" :key="entry.id" :data-anchor="entry.id">
 <td style="white-space:nowrap;">
-  <img v-if="entry.icon" :src="withBase('/icons/goods/' + entry.icon + '.png')" :alt="entry.nameJa" style="width:28px;height:28px;vertical-align:middle;margin-right:6px;object-fit:contain;" />
+  <img v-if="entry.icon" :src="withBase('/icons/goods-thumb/' + entry.icon + '.webp')" :alt="entry.nameJa" width="28" height="28" loading="lazy" style="width:28px;height:28px;vertical-align:middle;margin-right:6px;object-fit:contain;" />
   {{ entry.nameJa }}
 </td>
 <td>{{ regionText(entry.regions) }}</td>
@@ -95,7 +95,7 @@ watch(hash, scrollToHash)
 <div class="chain-card-list">
 <div class="chain-card" v-for="entry in data.byCategory[cat]" :key="entry.id" :data-anchor="entry.id">
   <div class="chain-card-header">
-    <img v-if="entry.icon" :src="withBase('/icons/goods/' + entry.icon + '.png')" :alt="entry.nameJa" class="chain-card-icon" />
+    <img v-if="entry.icon" :src="withBase('/icons/goods-thumb/' + entry.icon + '.webp')" :alt="entry.nameJa" width="28" height="28" loading="lazy" class="chain-card-icon" />
     <span class="chain-card-name">{{ entry.nameJa }}</span>
     <a class="calc-link-btn" :href="withBase(`/calculator/?good=${entry.id}`)" target="_blank" rel="noopener noreferrer">開く</a>
   </div>
