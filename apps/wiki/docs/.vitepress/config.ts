@@ -1,8 +1,9 @@
 import { defineConfig } from 'vitepress'
 import type { HeadConfig, PageData } from 'vitepress'
 import { fileURLToPath } from 'url'
+import { execFileSync } from 'child_process'
 
-// Anno 117 統合Wiki — VitePress 設定
+// Anno 117攻略Wiki — VitePress 設定
 // 配信規約: wiki = '/'（ルート）、calculator = '/calculator/'
 // 計算機本体は別SPA。本wikiからは誘導リンクで案内する（フルUI埋め込みはしない）。
 
@@ -11,6 +12,27 @@ const SITE_NAME = 'Anno 117攻略Wiki'
 const SITE_DESCRIPTION = 'Anno 117（PS5/Steam）の日本語情報Wiki + 生産チェーン計算機'
 // SNS共有カード用の画像（1200x630）。og:image は絶対URL必須
 const OGP_IMAGE = SITE_HOSTNAME + 'images/ogp.png'
+
+// sitemap の lastmod 用
+const DOCS_DIR = fileURLToPath(new URL('../', import.meta.url))
+const CALCULATOR_SRC = fileURLToPath(new URL('../../../calculator/src/', import.meta.url))
+
+// sitemap の URL（例: 'wiki/goods.html'、トップは ''）→ 元の .md ファイルの絶対パス
+function sourcePathForUrl(url: string): string {
+  const rel = url.replace(/^\//, '')
+  return DOCS_DIR + (rel === '' ? 'index.md' : rel.replace(/\.html$/, '.md'))
+}
+
+// git の最終コミット日時（ISO 8601）。取得できなければ undefined（lastmod を出さない）
+function gitLastModified(path: string): string | undefined {
+  try {
+    const out = execFileSync('git', ['log', '-1', '--format=%cI', '--', path], { encoding: 'utf8' }).trim()
+    return out || undefined
+  } catch (e) {
+    console.warn(`[sitemap] lastmod 取得失敗: ${path}`, e)
+    return undefined
+  }
+}
 
 // ページの正規URL（og:url と canonical で共用）
 function pageUrl(relativePath: string): string {
@@ -47,6 +69,20 @@ function buildOgpTags(pageData: PageData): HeadConfig[] {
   ]
 }
 
+// トップページ用: 検索結果に表示されるサイト名を安定させる WebSite 構造化データ。
+// alternateName は旧表記（ナビに使っていた略称）
+function buildWebSiteJsonLd(): HeadConfig {
+  const jsonLd = {
+    '@context': 'https://schema.org',
+    '@type': 'WebSite',
+    name: SITE_NAME,
+    alternateName: ['Anno117DB', 'アノ117 攻略Wiki'],
+    url: SITE_HOSTNAME,
+    inLanguage: 'ja',
+  }
+  return ['script', { type: 'application/ld+json' }, JSON.stringify(jsonLd)]
+}
+
 // パンくずJSON-LD用: サイドバー階層のうち「親ページ」を持つページだけ登録する。
 // 未登録ページは「ホーム > 自ページ」の2階層になる。
 const BREADCRUMB_PARENT: Record<string, { path: string; name: string }> = {
@@ -63,15 +99,19 @@ const BREADCRUMB_PARENT: Record<string, { path: string; name: string }> = {
 
 export default defineConfig({
   lang: 'ja-JP',
-  title: 'Anno117DB',
-  titleTemplate: ':title | Anno 117攻略Wiki',
+  title: SITE_NAME,
+  titleTemplate: `:title | ${SITE_NAME}`,
   description: SITE_DESCRIPTION,
 
   // Google検索向け sitemap.xml をビルド時に自動生成
   sitemap: {
     hostname: 'https://anno117-wiki.github.io/',
     // /calculator/ はVitePress外の別SPAビルドのため、自動収集対象に含まれない。手動で追加する
-    transformItems: (items) => [...items, { url: '/calculator/' }],
+    // lastmod はソースの最終コミット日（VitePress の lastUpdated はページに表示も出るため使わない）
+    transformItems: (items) => [
+      ...items.map((item) => ({ ...item, lastmod: gitLastModified(sourcePathForUrl(item.url)) })),
+      { url: '/calculator/', lastmod: gitLastModified(CALCULATOR_SRC) },
+    ],
   },
 
   head: [
@@ -84,7 +124,8 @@ export default defineConfig({
     const ogp = [...buildCanonicalTag(pageData), ...buildOgpTags(pageData)]
     const path = pageData.relativePath
     const title = pageData.frontmatter.title || pageData.title
-    if (path === 'index.md' || !title) return ogp
+    if (path === 'index.md') return [...ogp, buildWebSiteJsonLd()]
+    if (!title) return ogp
 
     const items: { name: string; url: string }[] = [{ name: 'ホーム', url: SITE_HOSTNAME }]
 

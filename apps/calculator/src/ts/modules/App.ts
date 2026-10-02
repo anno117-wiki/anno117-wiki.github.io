@@ -158,6 +158,11 @@ export class App {
         const initialLang: Locale = state.lang || storedLang || 'ja';
 
         await this.i18nManager.init(initialLang);
+        // 検索エンジン・読み上げ向けに <html lang> を表示言語と一致させる
+        document.documentElement.lang = initialLang;
+        this.i18nManager.onChange(() => {
+            document.documentElement.lang = this.i18nManager.getLocale();
+        });
         this.applyStaticTranslations();
         this.settingsManager.init();
 

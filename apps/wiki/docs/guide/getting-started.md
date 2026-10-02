@@ -1,11 +1,11 @@
 ---
 title: はじめに
-description: Anno 117統合Wikiの構成と使い方を紹介。日本語Wikiと生産チェーン計算機の連携方法を解説。
+description: Anno 117攻略Wikiの構成と使い方を紹介。日本語Wikiと生産チェーン計算機の連携方法を解説。
 ---
 
 # はじめに
 
-Anno 117 統合Wiki へようこそ。Anno 117（PS5 / Steam）の日本語情報Wikiと生産チェーン計算機を1つにまとめたサイトです。
+Anno 117攻略Wiki へようこそ。Anno 117（PS5 / Steam）の日本語情報Wikiと生産チェーン計算機を1つにまとめたサイトです。
 
 ## 構成
 
