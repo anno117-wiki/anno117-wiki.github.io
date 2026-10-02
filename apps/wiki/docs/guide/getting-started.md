@@ -23,3 +23,9 @@ Anno 117攻略Wiki へようこそ。Anno 117（PS5 / Steam）の日本語情報
 ## データの出典
 
 商品・生産チェーンのデータは、anno-calculator公式（GitHub: agentquackyt/Anno117Calculator）のものを使っています。
+
+## 関連ページ
+
+- [攻略ガイド](/guide/strategy) — 序盤・経済・交易・軍事などの攻略情報
+- [データベース一覧](/wiki/) — 商品・建物・住民・スキル・アイテムのデータ
+- [計算機の使い方](/guide/calculator-guide) — 生産チェーン計算機の操作方法

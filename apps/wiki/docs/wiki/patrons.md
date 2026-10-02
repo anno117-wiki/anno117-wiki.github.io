@@ -107,6 +107,11 @@ DLC01「灰の予言」で追加された神です。
 
 <PatronDetail :patron="byId.vulcan" :wonder-threshold="wonderThreshold" :dominant-threshold="dominantThreshold" />
 
+## 関連データ
+
+- [スキルツリー・市民](/wiki/techs-civic) — 信仰に関わるスキル
+- [モニュメントの輝き](/wiki/splendor) — 競馬場・円形闘技場の「輝き」ランク
+
 ## 関連ガイド
 
 - [経済・収入最適化ガイド](/guide/economy-guide) — 信仰神による経済バフのまとめ

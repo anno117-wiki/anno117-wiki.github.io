@@ -14,6 +14,11 @@ import BuildingsTable from '../.vitepress/components/BuildingsTable.vue'
 
 <BuildingsTable />
 
+## 関連データ
+
+- [住民層](/wiki/population) — 建物の効果を受ける住民層と需要
+- [アイテム一覧](/wiki/items) — 専門家に装着して建物の効果を伸ばすアイテム
+
 ## 関連ガイド
 
 - [経済・収入最適化ガイド](/guide/economy-guide) — 建物配置と税収・維持費の最適化のコツ

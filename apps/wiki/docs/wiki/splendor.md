@@ -102,6 +102,10 @@ const xpOf = (rank: number) => data.ranks[rank - 1].xp.toLocaleString()
 
 4つのステータスはどれも同じレンジで決まります（例えばレアなら、速度・スタミナ・ダッシュ・信頼性すべてが初期値1〜4です）。
 
+## 関連データ
+
+- [スキルツリー・競馬場](/wiki/techs-dlc02) — 競馬場まわりのスキル
+
 ## 関連ガイド
 
 - [DLC02・競馬場](/guide/dlc02-hippodrome) — 競馬場の建設・チャリオットレース・輝きボーナス

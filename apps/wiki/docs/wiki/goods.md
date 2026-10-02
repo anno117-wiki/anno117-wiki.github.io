@@ -175,6 +175,12 @@ Anno 117 で生産・消費される全 {{ data.categories.reduce((n, c) => n + 
 }
 </style>
 
+## 関連データ
+
+- [生産チェーン一覧](/wiki/production-chains) — 各商品の生産工程と必要な素材
+- [商品需要逆引き](/wiki/needs-index) — その商品を欲しがる住民層
+- [地域別商品](/wiki/regions) — ラティウム・アルビオンで作れる商品の違い
+
 ## 関連ガイド
 
 - [序盤攻略・基本戦略](/guide/early-game-strategy) — 建設順・木材チェーン・住民需要の基本

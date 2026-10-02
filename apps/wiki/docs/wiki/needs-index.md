@@ -123,6 +123,11 @@ const TIER_CSS: Record<string, string> = {
 .dark .tier-pat { border-color: #c084fc; color: #c084fc; }
 </style>
 
+## 関連データ
+
+- [住民層](/wiki/population) — 住民層ごとの需要の全体像
+- [商品一覧](/wiki/goods) — 分類ごとの全商品
+
 ## 関連ガイド
 
 - [経済・収入最適化ガイド](/guide/economy-guide) — 需要充足による税収ボーナスの詳細

@@ -176,6 +176,11 @@ watch(hash, scrollToHash)
 }
 </style>
 
+## 関連データ
+
+- [商品一覧](/wiki/goods) — 分類ごとの全商品
+- [商品需要逆引き](/wiki/needs-index) — その商品を欲しがる住民層
+
 ## 関連ガイド
 
 - [序盤攻略・基本戦略](/guide/early-game-strategy) — 木材生産チェーンなど序盤の組み方
