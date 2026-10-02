@@ -2,20 +2,6 @@
 import { ref, computed, onMounted, watch } from 'vue'
 import { withBase, useData } from 'vitepress'
 import { data } from '../../wiki/buildings.data.ts'
-import itemsFullJson from '../../../../../packages/shared/public/data/items-full.json'
-
-// 建物名(nameJa) -> この建物を対象とするアイテム件数
-const ITEM_COUNT_BY_TARGET: Record<string, number> = {}
-for (const it of (itemsFullJson as any[])) {
-  if (!it.targets) continue
-  for (const name of it.targets.split('、')) {
-    ITEM_COUNT_BY_TARGET[name] = (ITEM_COUNT_BY_TARGET[name] ?? 0) + 1
-  }
-}
-
-function itemCountFor(nameJa?: string | null): number {
-  return nameJa ? (ITEM_COUNT_BY_TARGET[nameJa] ?? 0) : 0
-}
 
 const tableWrap = ref<HTMLElement | null>(null)
 const isPanning = ref(false)
@@ -215,7 +201,7 @@ watch(hash, scrollToHash)
           <td style="padding:8px 4px;"><StatBar :n="b.happiness" :maxAbs="3" /></td>
           <td style="padding:8px 4px;"><StatBar :n="b.fireSafety" :maxAbs="3" /></td>
           <td style="padding:8px 4px;text-align:center;">
-            <a v-if="itemCountFor(b.nameJa)" :href="withBase(`/wiki/items.html?target=${encodeURIComponent(b.nameJa ?? '')}`)" class="calc-link-btn">{{ itemCountFor(b.nameJa) }}件</a>
+            <a v-if="b.itemCount" :href="withBase(`/wiki/items.html?target=${encodeURIComponent(b.nameJa ?? '')}`)" class="calc-link-btn">{{ b.itemCount }}件</a>
             <span v-else>—</span>
           </td>
         </tr>

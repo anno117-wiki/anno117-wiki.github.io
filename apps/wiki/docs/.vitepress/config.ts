@@ -12,13 +12,23 @@ const SITE_DESCRIPTION = 'Anno 117（PS5/Steam）の日本語情報Wiki + 生産
 // SNS共有カード用の画像（1200x630）。og:image は絶対URL必須
 const OGP_IMAGE = SITE_HOSTNAME + 'images/ogp.png'
 
+// ページの正規URL（og:url と canonical で共用）
+function pageUrl(relativePath: string): string {
+  return relativePath === 'index.md' ? SITE_HOSTNAME : SITE_HOSTNAME + relativePath.replace(/\.md$/, '.html')
+}
+
+// 検索エンジン向けの正規URL指定。?target= 等のクエリ付きURLを同一ページとして扱わせる
+function buildCanonicalTag(pageData: PageData): HeadConfig[] {
+  if (pageData.isNotFound) return []
+  return [['link', { rel: 'canonical', href: pageUrl(pageData.relativePath) }]]
+}
+
 // X / Discord / LINE 等でURLを共有したときのカード表示用メタタグ
 function buildOgpTags(pageData: PageData): HeadConfig[] {
-  const path = pageData.relativePath
   const title = pageData.frontmatter.title || pageData.title
   const fullTitle = title ? `${title} | ${SITE_NAME}` : SITE_NAME
   const description = pageData.description || SITE_DESCRIPTION
-  const url = path === 'index.md' ? SITE_HOSTNAME : SITE_HOSTNAME + path.replace(/\.md$/, '.html')
+  const url = pageUrl(pageData.relativePath)
 
   return [
     ['meta', { property: 'og:type', content: 'website' }],
@@ -69,9 +79,9 @@ export default defineConfig({
     ['link', { rel: 'apple-touch-icon', href: '/images/anno_icon.png' }],
   ],
 
-  // 全ページにOGPを付与。加えて検索結果にパンくずを表示させるための BreadcrumbList 構造化データ
+  // 全ページにcanonical・OGPを付与。加えて検索結果にパンくずを表示させるための BreadcrumbList 構造化データ
   transformHead: ({ pageData }) => {
-    const ogp = buildOgpTags(pageData)
+    const ogp = [...buildCanonicalTag(pageData), ...buildOgpTags(pageData)]
     const path = pageData.relativePath
     const title = pageData.frontmatter.title || pageData.title
     if (path === 'index.md' || !title) return ogp
@@ -82,7 +92,7 @@ export default defineConfig({
     if (parent) {
       items.push({ name: parent.name, url: SITE_HOSTNAME + parent.path.slice(1) + '.html' })
     }
-    items.push({ name: title, url: SITE_HOSTNAME + path.replace(/\.md$/, '.html') })
+    items.push({ name: title, url: pageUrl(path) })
 
     const jsonLd = {
       '@context': 'https://schema.org',

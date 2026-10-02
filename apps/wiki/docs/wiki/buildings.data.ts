@@ -1,5 +1,6 @@
 import effectsJson from './buildings-effects.json'
 import jaJson from '../../../../packages/shared/public/i18n/locales/ja.json'
+import itemsFullJson from '../../../../packages/shared/public/data/items-full.json'
 
 interface BuildingEffect {
   id: string
@@ -17,6 +18,21 @@ interface BuildingEffect {
   health: number
   happiness: number
   fireSafety: number
+  /** この建物を対象とするアイテムの件数 */
+  itemCount: number
+}
+
+// 建物名(nameJa) -> この建物を対象とするアイテム件数。
+// ビルド時に集計し、クライアントへ items-full.json 本体を送らないようにする。
+function countItemsByTarget(): Record<string, number> {
+  const counts: Record<string, number> = {}
+  for (const it of itemsFullJson as { targets?: string }[]) {
+    if (!it.targets) continue
+    for (const name of it.targets.split('、')) {
+      counts[name] = (counts[name] ?? 0) + 1
+    }
+  }
+  return counts
 }
 
 function getCategory(icon?: string | null): string {
@@ -34,10 +50,12 @@ function getCategory(icon?: string | null): string {
 export default {
   load(): { buildings: BuildingEffect[] } {
     const tierNames = (jaJson as { populationTiers: Record<string, string> }).populationTiers
+    const itemCounts = countItemsByTarget()
     const buildings = effectsJson.buildings.map((b) => ({
       ...b,
       tierJa: tierNames[b.tier] ?? b.tier,
       category: getCategory(b.icon),
+      itemCount: b.nameJa ? (itemCounts[b.nameJa] ?? 0) : 0,
     }))
     return { buildings }
   },
