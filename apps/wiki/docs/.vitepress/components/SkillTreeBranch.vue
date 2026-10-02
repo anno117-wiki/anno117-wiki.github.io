@@ -56,6 +56,8 @@
     </div>
   </div>
 
+  <SkillEffectList :techs="techs" />
+
   <Teleport to="body">
     <div v-if="hoveredTech && !selected" class="tech-tooltip" :style="tooltipStyle">
       <div class="tt-name">{{ hoveredTech.label }}</div>
@@ -68,6 +70,8 @@
 
 <script setup lang="ts">
 import { ref, onMounted, onUnmounted } from 'vue'
+import SkillEffectList from './SkillEffectList.vue'
+import { stripTags, formatKnowledge } from './techFormat'
 
 interface TechEntry {
   guid: string
@@ -137,18 +141,8 @@ function selectTech(tech: any) {
   selected.value = selected.value?.guid === tech.guid ? null : tech
 }
 
-function stripTags(s: string) {
-  return s ? s.replace(/<[^>]+>/g, '') : ''
-}
-
 function zoomStep(d: number) {
   zoom.value = Math.min(1.0, Math.max(0.3, +(zoom.value + d).toFixed(2)))
-}
-
-function formatKnowledge(n: number): string {
-  if (n >= 1_000_000) return parseFloat((n / 1_000_000).toFixed(1)) + 'M'
-  if (n >= 1_000) return parseFloat((n / 1_000).toFixed(1)) + 'k'
-  return String(n)
 }
 
 // パン操作
