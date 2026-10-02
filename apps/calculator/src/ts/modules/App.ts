@@ -151,8 +151,6 @@ export class App {
     }
 
     public async initialize(): Promise<void> {
-        this.registerServiceWorker();
-
         // URL から言語を取得し、設定マネージャーと i18n を初期化
         const url = new URL(window.location.href);
         const state = ParameterParser.parse(url);
@@ -229,19 +227,6 @@ export class App {
         });
 
         this.updateRegionButtonState(this.currentRegion);
-    }
-
-    // -----------------------------------------------------------------------
-    // Service worker
-    // -----------------------------------------------------------------------
-
-    private registerServiceWorker(): void {
-        if (!('serviceWorker' in navigator)) return;
-        window.addEventListener('load', () => {
-            navigator.serviceWorker.register('/sw.js', { scope: '/' })
-                .then((registration) => setInterval(() => registration.update(), 60_000))
-                .catch((error) => console.error('[SW] Registration failed:', error));
-        });
     }
 
     // -----------------------------------------------------------------------
