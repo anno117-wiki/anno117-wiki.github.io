@@ -93,6 +93,28 @@ class ParameterParser {
 }
 
 // ---------------------------------------------------------------------------
+// Regions
+// ---------------------------------------------------------------------------
+
+interface RegionDef {
+    /** list.json の regions と一致する内部キー */
+    key: string;
+    label: string;
+    /** icons/ 配下のファイル名。画像が無い地域はアイコンを出さない */
+    icon?: string;
+    /** true の地域は、その地域の商品データがあるときだけ切替対象になる */
+    dlc?: boolean;
+}
+
+// 並び順が切替ボタンの巡回順になる。
+// Egyptian（DLC03 アエギプトゥス）は商品データが入るまで切替に出ない。
+const REGIONS: readonly RegionDef[] = [
+    { key: 'Roman', label: 'Latium', icon: 'latium.webp' },
+    { key: 'Celtic', label: 'Albion', icon: 'albion.webp' },
+    { key: 'Egyptian', label: 'Aegyptus', dlc: true },
+];
+
+// ---------------------------------------------------------------------------
 // App — singleton application root
 // ---------------------------------------------------------------------------
 
@@ -205,12 +227,25 @@ export class App {
     // Region toggle
     // -----------------------------------------------------------------------
 
+    /** 現在切り替えられる地域。DLC地域は商品データがあるときだけ含める。 */
+    private availableRegions(): RegionDef[] {
+        return REGIONS.filter((def) => !def.dlc || this.allGoods.some((good) => good.regions?.includes(def.key)));
+    }
+
     private updateRegionButtonState(region: string): void {
+        const def = REGIONS.find((r) => r.key === region);
+        if (!def) {
+            console.warn(`[App] Unknown region: ${region}`);
+            return;
+        }
         const toggleBtn = document.getElementById('region-toggle-btn');
         const icon = toggleBtn?.querySelector<HTMLImageElement>('.region-icon');
         const text = toggleBtn?.querySelector<HTMLElement>('.region-text');
-        if (icon) icon.src = region === 'Roman' ? `${ASSETS_ICONS_PATH}latium.webp` : `${ASSETS_ICONS_PATH}albion.webp`;
-        if (text) text.textContent = region === 'Roman' ? 'Latium' : 'Albion';
+        if (icon) {
+            icon.hidden = !def.icon;
+            if (def.icon) icon.src = `${ASSETS_ICONS_PATH}${def.icon}`;
+        }
+        if (text) text.textContent = def.label;
     }
 
     private bindRegionToggle(): void {
@@ -228,7 +263,9 @@ export class App {
         };
 
         toggleBtn?.addEventListener('click', () => {
-            setRegion(this.currentRegion === 'Roman' ? 'Celtic' : 'Roman');
+            const regions = this.availableRegions();
+            const index = regions.findIndex((r) => r.key === this.currentRegion);
+            setRegion(regions[(index + 1) % regions.length].key);
         });
 
         this.updateRegionButtonState(this.currentRegion);
@@ -338,7 +375,7 @@ export class App {
 
         if (state.region) {
             const region = state.region.charAt(0).toUpperCase() + state.region.slice(1).toLowerCase();
-            if (region === 'Roman' || region === 'Celtic') {
+            if (this.availableRegions().some((r) => r.key === region)) {
                 this.currentRegion = region;
                 this.updateRegionButtonState(region);
             }

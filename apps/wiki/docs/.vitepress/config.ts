@@ -2,6 +2,7 @@ import { defineConfig } from 'vitepress'
 import type { HeadConfig, PageData } from 'vitepress'
 import { fileURLToPath } from 'url'
 import { execFileSync } from 'child_process'
+import { readFileSync } from 'fs'
 
 // Anno 117攻略Wiki — VitePress 設定
 // 配信規約: wiki = '/'（ルート）、calculator = '/calculator/'
@@ -16,6 +17,24 @@ const OGP_IMAGE = SITE_HOSTNAME + 'images/ogp.png'
 // sitemap の lastmod 用
 const DOCS_DIR = fileURLToPath(new URL('../', import.meta.url))
 const CALCULATOR_SRC = fileURLToPath(new URL('../../../calculator/src/', import.meta.url))
+
+// DLC03のスキルツリーページ(wiki/techs-dlc03.md)は、techs.json に公開できるスキル
+// （hidden でない dlc03 のエントリ）が入るまでビルド対象・サイドバーから外す。
+// スキルを登録すれば、設定を触らなくてもページとサイドバー項目が出る。
+function hasPublishedDlc03Techs(): boolean {
+  try {
+    const json = JSON.parse(readFileSync(DOCS_DIR + 'wiki/techs.json', 'utf8')) as {
+      techs: { hidden?: boolean; branchOverride?: string; internalName?: string }[]
+    }
+    return json.techs.some(
+      (t) => !t.hidden && (t.branchOverride ? t.branchOverride === 'dlc03' : (t.internalName ?? '').includes('DLC03')),
+    )
+  } catch (e) {
+    console.warn('[config] techs.json を読めないため、DLC03スキルツリーページは非公開のままにします', e)
+    return false
+  }
+}
+const DLC03_TECHS_READY = hasPublishedDlc03Techs()
 
 // sitemap の URL（例: 'wiki/goods.html'、トップは ''、入口ページは 'wiki/'）→ 元の .md ファイルの絶対パス
 function sourcePathForUrl(url: string): string {
@@ -115,6 +134,7 @@ export default defineConfig({
   title: SITE_NAME,
   titleTemplate: `:title | ${SITE_NAME}`,
   description: SITE_DESCRIPTION,
+  srcExclude: DLC03_TECHS_READY ? [] : ['wiki/techs-dlc03.md'],
 
   // Google検索向け sitemap.xml をビルド時に自動生成
   sitemap: {
@@ -294,6 +314,7 @@ export default defineConfig({
                 { text: '軍事', link: '/wiki/techs-military' },
                 { text: '灰の予言', link: '/wiki/techs-dlc01' },
                 { text: '競馬場', link: '/wiki/techs-dlc02' },
+                ...(DLC03_TECHS_READY ? [{ text: 'デルタの夜明け', link: '/wiki/techs-dlc03' }] : []),
               ],
             },
             { text: '信仰神', link: '/wiki/patrons' },

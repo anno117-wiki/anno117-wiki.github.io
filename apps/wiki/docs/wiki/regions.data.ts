@@ -6,6 +6,8 @@ interface GoodEntry {
   nameJa: string
   nameEn: string
   category: string
+  // 生産できる地域の表示名（複数地域で作れる商品の一覧で使う）
+  regionsJa: string
 }
 
 const CATEGORY_LABEL: Record<string, string> = {
@@ -15,49 +17,73 @@ const CATEGORY_LABEL: Record<string, string> = {
   culture: '文化',
 }
 
+// 地域の内部キー → 表示名。DLC03（アエギプトゥス）は商品データが入るまで該当0件で、ページには出ない
+const REGION_LABEL: Record<string, string> = {
+  Roman: 'ラティウム',
+  Celtic: 'アルビオン',
+  Egyptian: 'アエギプトゥス',
+}
+
 export default {
   load(): {
     roman: GoodEntry[]
     celtic: GoodEntry[]
+    egyptian: GoodEntry[]
     both: GoodEntry[]
     romanCount: number
     celticCount: number
+    egyptianCount: number
     bothCount: number
+    // アエギプトゥスで作れる商品が1つでもあるか（3地域表示への切替に使う）
+    hasEgyptian: boolean
   } {
     const jaGoods = (jaJson as { goods: Record<string, string> }).goods
 
-    const toEntry = (g: any): GoodEntry => ({
+    const toEntry = (g: any, regions: string[]): GoodEntry => ({
       id: g.id,
       nameJa: jaGoods[g.id] ?? g.displayName,
       nameEn: g.displayName,
       category: g.category,
+      regionsJa: regions.map((r) => REGION_LABEL[r]).join('・'),
     })
 
     const sort = (arr: GoodEntry[]) =>
       arr.sort((a, b) => a.nameJa.localeCompare(b.nameJa, 'ja'))
 
-    const roman: GoodEntry[] = []
-    const celtic: GoodEntry[] = []
+    // 1地域だけで作れる商品は地域ごと、2地域以上で作れる商品は both に入れる
+    const exclusive: Record<string, GoodEntry[]> = { Roman: [], Celtic: [], Egyptian: [] }
     const both: GoodEntry[] = []
+    let hasEgyptian = false
 
     for (const g of (listJson as { goods: any[] }).goods) {
-      const r = g.regions as string[]
-      if (r.includes('Roman') && r.includes('Celtic')) {
-        both.push(toEntry(g))
-      } else if (r.includes('Roman')) {
-        roman.push(toEntry(g))
+      const all = (g.regions ?? []) as string[]
+      const known = Object.keys(REGION_LABEL).filter((r) => all.includes(r))
+      const unknown = all.filter((r) => !(r in REGION_LABEL))
+      if (unknown.length > 0) {
+        console.warn(`[regions] 未対応の地域キー: ${g.id} → ${unknown.join(', ')}`)
+      }
+      if (known.length === 0) {
+        console.warn(`[regions] 地域が分からないため一覧から除外: ${g.id}`)
+        continue
+      }
+      if (known.includes('Egyptian')) hasEgyptian = true
+      if (known.length === 1) {
+        exclusive[known[0]].push(toEntry(g, known))
       } else {
-        celtic.push(toEntry(g))
+        both.push(toEntry(g, known))
       }
     }
 
     return {
-      roman: sort(roman),
-      celtic: sort(celtic),
+      roman: sort(exclusive.Roman),
+      celtic: sort(exclusive.Celtic),
+      egyptian: sort(exclusive.Egyptian),
       both: sort(both),
-      romanCount: roman.length,
-      celticCount: celtic.length,
+      romanCount: exclusive.Roman.length,
+      celticCount: exclusive.Celtic.length,
+      egyptianCount: exclusive.Egyptian.length,
       bothCount: both.length,
+      hasEgyptian,
     }
   },
 }
