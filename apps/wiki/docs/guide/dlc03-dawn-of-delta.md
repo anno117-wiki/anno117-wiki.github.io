@@ -1,11 +1,11 @@
 ---
 title: DLC03・デルタの夜明け
-description: Anno 117 DLC03「デルタの夜明け（Dawn of the Delta）」の情報ページ。エジプト地方アエギプトゥス・灌漑システム・新祭神ソベクなどを解説（2026年11月追加予定）。
+description: Anno 117 DLC03「デルタの夜明け（Dawn of the Delta）」の情報ページ。エジプト地方アエギプトゥス・灌漑システム・新祭神ソベクなどを解説（2026年11月5日リリース予定）。
 ---
 
 # DLC03・デルタの夜明け
 
-> 出典: [Anno Union公式ブログ「Gamescom recap: Dawn of the Delta and Echoes of Kassandra」](https://www.anno-union.com/gamescom-recap-dawn-of-the-delta-and-echoes-of-kassandra/)（2026年9月3日）。
+> 出典: [Anno Union公式ブログ「Gamescom recap: Dawn of the Delta and Echoes of Kassandra」](https://www.anno-union.com/gamescom-recap-dawn-of-the-delta-and-echoes-of-kassandra/)（2026年9月3日）、[「Roadmap for 2026」](https://www.anno-union.com/roadmap-for-2026/)（2026年9月30日更新）。
 > 2026年10月に詳細デブログ・ライブ配信が予定されており、本ページの内容は今後変更される可能性があります。
 
 > このページは作成中です。確定情報が増え次第、随時更新します。
@@ -15,7 +15,7 @@ description: Anno 117 DLC03「デルタの夜明け（Dawn of the Delta）」の
 - 舞台は帝国南東部の<strong>アエギプトゥス</strong>（ナイル川デルタ地方）。
 - 新規ゲーム開始時の地域として選択できるほか、既存セーブでもDLC有効化により探索可能になります。
 - <strong>灌漑システム</strong>・新祭神・独自の軍事ユニットが導入されます。
-- <strong>2026年11月</strong>、無料アップデート3.0と同時リリースが予定されています。
+- <strong>2026年11月5日</strong>、無料アップデート3.0と同時リリースが予定されています。
 
 ## 地形・建築エリア
 
@@ -64,6 +64,17 @@ description: Anno 117 DLC03「デルタの夜明け（Dawn of the Delta）」の
 ## その他
 
 - 他地域との交易により、独自の経済戦略を構築できます。
+
+## 無料アップデート3.0の内容
+
+DLC03と同じ<strong>2026年11月5日</strong>に配信予定です。DLCを持っていなくても適用されます。
+
+- 統計メニューにアイテム一覧と倉庫一覧を追加
+- <strong>スタンプ機能</strong>：建物の配置をテンプレートとして保存し、再利用できます
+- 属性・外交などのバランス調整
+- Hall of Fameのコンテンツ追加
+
+詳しいパッチノートは、リリースが近づいてから公開される予定です。
 
 ## 未発表の要素
 
