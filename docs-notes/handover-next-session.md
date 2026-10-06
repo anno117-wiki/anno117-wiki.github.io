@@ -92,6 +92,9 @@
 - 同スクリプトの`source`（取得先）解決ロジック（2026-09-24追加、アーカイブQ節参照）は`NPC_NAME_JA`/`FESTIVAL_NAME_BY_GUID`/`ENDGAME_TECH_JA`等の辞書はコード内に確定値として書いてあるため、再実行しても消えない（`caution`とは違い手動で戻す必要はない）。新しいDLCでNPC・祭り・エンドゲーム技術が追加されたら辞書に追記すること
 - `apply-skilltree-connections.py`はguid一致時にconnections等を無条件上書き。`_local/skilltree-full-data.json`をDLC対応版に更新しないまま実行しない
 - **`tools/build-buildings-data.py`は既存の建物の効果値を更新するだけで、新しい建物は追加しない**。新規は`buildings-effects.json`に手で追加し、同スクリプトの`ID_TO_GUID`にも登録する（今回の炭鉱・炭焼き師がその例）
+- **建物効果の全件照合（2026-10-06）**: 公式v2.1と突き合わせ、効果値の誤りは無し。9建物を追加（ラティウムの鉄鉱山・溶鉱炉・瓦工房・武器工房・防具工房・石灰岩の採石場・大理石の採石場、アルビオンの花崗岩の採石場・地窯）。粉ひき所の維持費を-12に修正（実機確認済み）。採石場3件と地窯はアイコン画像なし。石灰岩の採石場のアルビオン版（GUID 5978、効果は同じ）は未追加
+- **`skillBonuses`（スキルで追加される範囲効果）は `buildings-effects.json` に手で入れてある**（13スキル・13建物）。公式では `BuildingBuff` の `AdditionalFunctionalEffect` → `Effect` → 対象プール、配る元が `Tech` のもの。スキルを足すDLCが来たら同じ辿り方で追記する。祭り・信仰神・専門家・選択肢イベント由来の範囲効果は**載せない**（ユーザー決定）。野営地の行（`military_camp`）は公式の歩兵・騎兵・攻城部隊の野営地に当たるものとして「陣地戦略」を付けた
+- **`tools/build-buildings-data.py` の参照先を `v2.1/assets.xml` に変更**（以前は6月の `config/export/assets.xml` で、v2.0以降の変更が入らなかった）。`MANUAL_IDS`（円形闘技場）は上書きしない。再実行して内容が変わらないことを確認済み。出力の改行はCRLFになるので、差分を見るときは内容で比べること。新しいデータ版が来たら、このパスを差し替える
 - **今回追加した生成スクリプト**（いずれも`_local/anno-official-data/`が必要）: `build-patrons-data.py`（信仰神）/ `build-splendor-data.py`（輝き）/ `build-goods-producers.py`（石炭・金の生産元）。手書きの表示定義（`LOCAL2_DISPLAY`・`SPECIALS`・`PRODUCERS`）は実機確認済みの値のみ載せ、未確認は載せない方針
 - **ツールの罠**: Write/ヒアドキュメントで`\uXXXX`のような文字エスケープを書くと実文字に展開されることがある（不可視のゼロ幅スペースがファイルに残る）。日本語の範囲指定などは**実文字で直接書く**
 
