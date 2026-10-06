@@ -28,7 +28,8 @@
     "test:ui": "playwright test --ui",
     "test:headed": "playwright test --headed",
     "test:report": "playwright show-report",
-    "build:site": "bun run scripts/build-site.ts"
+    "build:site": "bun run scripts/build-site.ts",
+    "check:site": "bun run scripts/check-site.ts"
   },
   "devDependencies": {
     "@playwright/test": "^1.60.0",

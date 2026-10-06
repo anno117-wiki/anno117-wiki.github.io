@@ -67,7 +67,8 @@
 
 ### ビルド
 - 必ず `bun run build:site`（wikiも含む全ビルド）
-- build:site 後は `ls docs/` で wiki ファイルの存在確認
+- build:site は最後の `[5/5]` で `docs/` を自動検査する（必須ファイル・sitemapの実ファイル・サイト内リンク切れ。2026-10-06追加、`scripts/check-site.ts`）。問題があれば exit 1 で止まる。検査だけなら `bun run check:site`。拡張子なしのリンク（`/wiki/items` 等）は GitHub Pages が `.html` を補うため正常扱い
+- sitemap の lastmod はソース.mdの最終コミット日から作るため、**ソースをコミットする前にビルドすると1つ前の日付になる**（2026-10-06に4ページ分のずれを再ビルドで解消）。気になるときはコミット後にもう一度ビルドする
 - devサーバ(`bun run dev:wiki`)はCSRのためSPA遷移・アンカースクロールの検証には向かない。本番相当の検証は `bun run preview:wiki` を使う
 - `bun run preview`はファイルを再ビルドしても、古いプロセスがポートを掴んだままだと404が出る。**再ビルド後は必ずプレビューを止めて起動し直す**。Windowsでは`PowerShell`ツールで`Get-NetTCPConnection -LocalPort 4173 -State Listen`→`Stop-Process -Id <OwningProcess> -Force`で確実に停止
 - GitHub Pagesの本番デプロイ確認は `gh run list --repo anno117-wiki/anno117-wiki.github.io --limit 5`。push直後は前回の実行が先頭に出るため、`headSha`で今回分を選んで待つこと

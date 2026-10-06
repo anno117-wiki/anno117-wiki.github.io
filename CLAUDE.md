@@ -81,7 +81,7 @@ anno_db2/
 - VitePressデータローダーからnamed exportは不可（`export default { load() }` のみ）
 - 建物効果: FunctionalEffectsのみ集計・AttributeProviderは二重計上になるため除外
 - **ビルドは必ず `bun run build:site`**（`bun run build` は計算機のみ・wikiが docs/ から消える）
-- build:site 実行後は `ls docs/` で wiki ファイルの存在を確認してからコミット
+- build:site は最後に `docs/` を自動検査する（必須ファイル・sitemap・サイト内リンク。`scripts/check-site.ts`）。`[5/5]` が OK で終わったのを実出力で確かめてからコミット。検査だけなら `bun run check:site`
 - VitePressで日本語文字の直後の `**太字**` 記法は機能しない → `<strong>` タグを使う
 - VitePress SPA遷移後のアンカースクロール: `useRoute()` に `hash` は無い（`useData()` の `hash` を使う）。かつVitePress自身の遷移時スクロール処理と競合するため `setTimeout(100ms)` 程度遅延させて後勝ちにする必要がある（`nextTick` だけでは早すぎて負ける）
 

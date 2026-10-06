@@ -2,6 +2,7 @@ import { build, mergeConfig, loadConfigFromFile } from 'vite';
 import { execSync } from 'child_process';
 import { rmSync, mkdirSync, cpSync, writeFileSync, existsSync, statSync } from 'fs';
 import { resolve, pathToFileURL } from 'path';
+import { checkSite, reportSiteCheck } from './check-site';
 
 const root = resolve(import.meta.dir, '..');
 const docsDir = resolve(root, 'docs');
@@ -81,5 +82,9 @@ cpSync(wikiDist, docsDir, { recursive: true });
 // Step 4: .nojekyll
 console.log('[4/5] Placing .nojekyll...');
 writeFileSync(resolve(docsDir, '.nojekyll'), '');
+
+// Step 5: 生成物の検査（必須ファイル・sitemap・サイト内リンク）。問題があればビルド失敗として終える。
+console.log('[5/5] Checking docs/ ...');
+if (!reportSiteCheck(checkSite(docsDir))) process.exit(1);
 
 console.log('Done. docs/ = wiki(/) + calculator(/calculator/)');
