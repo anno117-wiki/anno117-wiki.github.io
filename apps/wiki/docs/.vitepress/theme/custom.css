@@ -319,6 +319,13 @@
   overflow-wrap: anywhere;
 }
 
+/* モバイルでは表の自動幅で建物名の列が2文字幅まで潰れるため、最小幅を確保する */
+@media (max-width: 959px) {
+  .building-name-cell {
+    min-width: 7.5em;
+  }
+}
+
 /* buildings フィルタバー sticky 固定 */
 .buildings-filter-bar {
   position: sticky;

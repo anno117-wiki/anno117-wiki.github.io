@@ -203,7 +203,7 @@ watch(hash, scrollToHash)
       <tbody>
         <tr v-for="b in sortedFiltered" :key="b.id" :id="b.id">
           <td style="white-space:normal;">
-            <div style="max-width:140px;word-break:break-all;">
+            <div class="building-name-cell" style="max-width:140px;word-break:break-all;">
               <img v-if="b.icon" :src="withBase('/icons/buildings-thumb/icon_3d_' + b.icon + '.webp')" :alt="b.nameJa ?? b.nameEn" width="28" height="28" loading="lazy" style="width:28px;height:28px;vertical-align:middle;margin-right:4px;object-fit:contain;" />
               {{ b.nameJa ?? b.nameEn }}
               <div v-for="s in b.skillBonuses" :key="s.skill" class="building-skill-bonus">
