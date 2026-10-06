@@ -33,7 +33,8 @@ Anno 117統合Wikiプロジェクト（`C:\Users\kojif\Desktop\anno_db2\`）の�
 `docs-notes/handover-next-session.md` を更新する。
 
 **Constraints:**
-- You MUST record: 完了した作業 / 未コミット分 / 残課題 / 注意点・保留事項
+- You MUST record in `handover-next-session.md`: 現在の状態 / 未コミット分 / 残課題 / 注意点・保留事項
+- You MUST append 完了した作業の記録 to `docs-notes/handover-archive.md`（末尾に新しい節として追記）instead of the handover itself, because 引き継ぎ書は毎セッション最初に全文を読むため、完了記録を溜めると読み込みが重くなるため。完了分に由来する残課題・注意点だけを引き継ぎ書に書き、「アーカイブX節」で参照する
 - You MUST NOT delete the 「セッション開始時の確認事項」 section because 全セッション共通の起動チェックリストであり削除禁止と明記されているため
 - You MUST record unconfirmed values as 「公式名未確定・実機確認待ち」or「保留・確認待ち」（推測での確定禁止）
 - You SHOULD convert relative dates（「今日」「昨日」等）to absolute dates because 次セッションでは基準日が変わるため
