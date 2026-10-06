@@ -44,47 +44,26 @@ anno_db2/
 - 情報源不明の数値をタグなしで記載 / 不整合解決以外の独自フォーマット
 - 大きなサイズの並列処理 / 絶対fetchパス（`/i18n/...` 等）の新規追加
 
-## フェーズ進捗
+## 現在の状態（2026-10-06）
+- v1.0 を2026-06-30に公開済み（git tag `v1.0`）。開発フェーズ1〜9は完了し、今は**運用フェーズ**。過去の経緯は `git log` と `docs-notes/handover-archive.md` を見る
+- 表示上のサイト名は「Anno 117攻略Wiki」。wiki は日本語のみ（英語化は2026-09-20に中止）。日英切替があるのは計算機だけ
+- データはゲームのアップデート2.1時点。数値は公式データと実機(PS5)確認が元で、食い違えば実機を優先する
+- 主な作業: 検索流入と表示速度の改善、データの検証と更新、ガイドの加筆
+- 次の節目: 2026-11-05 のアップデート3.0・DLC03。受け皿は用意済み（`docs-notes/dlc03-ingame-checklist.md`）
+- 直近の任務・保留・注意点は引き継ぎ書に書く。このファイルには長く変わらない決まりだけを置く
 
-| フェーズ | 内容 | 状態 |
-|---------|------|------|
-| 1〜7 | 言語基盤・E2E・Vue移行・UI・モノレポ | ✅ 完了 |
-| 8 | wikiコンテンツ充実 | ✅ 完了 |
-| 9 | コード品質・v1.0リリース | ✅ 完了 |
-
-### フェーズ9 完了済み（2026-06-30）
-- GraphRenderer.ts 神クラス解体（813行→91行ファサード＋3クラス分割）
-- NodeInfoPopup.ts / GraphInteractionHandler.ts / GraphNodeRenderer.ts 切り出し
-- /code-review --fix によるバグ修正20件超（XSS・viewBox上書き・タッチ移行等）
-- v1.0 正式リリース（git tag v1.0・UpdateLog更新）
-
-### フェーズ8 完了済み（〜2026-06-27）
-- 商品一覧（食料/建設/ファッション/文化/中間品/原材料の6分類・全商品）
-- 生産チェーン一覧（Mermaid図）・地域別商品・住民層・建物効果（173件）
-- アイテム一覧（421件）・生産品需要逆引き（tier表示・上位互換含む）
-- スキルツリー（193件・4ブランチ・アイコン150件）
-- wiki↔計算機 双方向ナビ
-- 公式データ自動生成インフラ（build-buildings-data.py / build-game-data.py）
-- 建物効果2倍バグ修正（AttributeProvider二重計上を除去）
-- スマホ対応一式（計算機ボトムシート・WIKI余白・横向き・SOG15対応・セクションナビ）
-- アイテム効果値の検証・更新
-- DLC商品アイコン差し替え（Statuettes/Latrunculi Sets）
-- military_camp 建物効果の実機確認
-- 計算機Mermaid生産チェーン表示修正
-- DLC01攻略ページ添削・goods.mdに商品行アンカー追加（`:id="good.id"`）
-- calculator-guide.md Storage説明削除・言語切替表記を「EN / 日本語」に修正
-
-### モバイルCSS設計メモ（2026-06-27確定）
+## モバイルCSS設計メモ（2026-06-27確定）
 - 縦向きモバイル: `@media (max-width:768px)` in theme.css
 - 横向きスマホ全機種(SOG15含む): `@media (orientation:landscape) and (max-height:500px) and (max-width:1024px)` — ボトムシート+生産チェーン表示を含む
 - WIKIモバイル: `@media (max-width:959px)` in custom.css
 - セクションナビ: Layout.vue `onContentUpdated` DOM直接挿入（Teleport廃止）
 - 計算機リンク: Layout.vue `fixCalculatorLinks()` でSPAルーター横取り回避
 
-### 公式ゲームデータ（最重要資産）
+## 公式ゲームデータ（最重要資産）
 - `_local/anno-official-data/`（gitignore・未追跡）: assets.xml + official_master.csv（30,719件）
 - スクリプト: `tools/build-buildings-data.py`（建物）/ `tools/build-game-data.py`（商品等）
 - 軽量参照: `_local/anno-official-data/buildings-data.json` / `game-data.json`
+- 版ごとのフォルダ（`v2.0.0.1/` `v2.1/`）に一次データがある。上流の配布方式が変わり、v2.1 が最後のフル版になる恐れがある（引き継ぎ書アーカイブO節）。**消さない・上書きしない**
 
 ## 制作の基本行動【MUST】
 1. CLAUDE.mdは200行以内。超える場合は要約または分離
@@ -98,7 +77,7 @@ anno_db2/
 
 ## 重要な教訓
 - `@anno/shared` の fetch文字列は変更しない（publicDir契約を壊す）
-- 並列セッションでの同一ファイル競合に注意
+- 並列で動かすときは、同一ファイルの競合に注意
 - VitePressデータローダーからnamed exportは不可（`export default { load() }` のみ）
 - 建物効果: FunctionalEffectsのみ集計・AttributeProviderは二重計上になるため除外
 - **ビルドは必ず `bun run build:site`**（`bun run build` は計算機のみ・wikiが docs/ から消える）
