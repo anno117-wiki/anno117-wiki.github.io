@@ -80,4 +80,49 @@ const sortedTechs = computed(() =>
   white-space: nowrap;
   text-align: right;
 }
+
+/* モバイルでは3列の表だと効果文が細く折り返すため、1スキル=1カードの縦並びにする。
+   DOMは表のまま（検索エンジン向けの構造を変えない）で、見た目だけ切り替える。 */
+@media (max-width: 959px) {
+  .skill-effect-list table,
+  .skill-effect-list tbody,
+  .skill-effect-list tr,
+  .skill-effect-list td {
+    display: block;
+    width: 100%;
+  }
+  .skill-effect-list table {
+    overflow-x: visible;
+    border: none;
+  }
+  .skill-effect-list thead {
+    display: none;
+  }
+  .skill-effect-list tr {
+    margin-bottom: 8px;
+    padding: 8px 10px;
+    border: 1px solid var(--vp-c-divider);
+    border-radius: 6px;
+    background: var(--vp-c-bg-soft);
+  }
+  .skill-effect-list td {
+    padding: 0;
+    border: none;
+    background: transparent;
+  }
+  .name {
+    white-space: normal;
+    font-weight: 600;
+    margin-bottom: 2px;
+  }
+  .cost {
+    margin-top: 4px;
+    text-align: left;
+    font-size: 0.8rem;
+    color: var(--vp-c-text-2);
+  }
+  .cost::before {
+    content: '知識コスト ';
+  }
+}
 </style>
