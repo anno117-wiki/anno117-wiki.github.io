@@ -16,7 +16,8 @@ from collections import defaultdict
 import xml.etree.ElementTree as ET
 
 BASE = Path(__file__).parent.parent
-ASSETS_XML   = BASE / "_local/anno-official-data/config/export/assets.xml"
+# 2026-10-06: 6月時点の config/export/assets.xml から現行版へ変更（粉ひき所の維持費など、v2.0以降の変更が反映されなかったため）
+ASSETS_XML   = BASE / "_local/anno-official-data/v2.1/assets.xml"
 OFFICIAL_CSV = BASE / "_local/anno-official-data/official_master.csv"
 CURRENT_JSON = BASE / "apps/wiki/docs/wiki/buildings-effects.json"
 OUTPUT_JSON  = BASE / "apps/wiki/docs/wiki/buildings-effects.json"
@@ -75,7 +76,7 @@ print(f"  {len(guid_to_en)} entries", file=sys.stderr)
 
 
 # ---- Step 2: assets.xml パース ----
-print("Parsing assets.xml (31 MB, may take ~10 sec)...", file=sys.stderr)
+print("Parsing assets.xml (33 MB, may take ~10 sec)...", file=sys.stderr)
 tree = ET.parse(str(ASSETS_XML))
 root = tree.getroot()
 
@@ -259,6 +260,18 @@ ID_TO_GUID: dict[str, str] = {
     "albion_coal_mine":        "144811", # Coal Mine (Roman Celtic)
     "albion_sail_factory":     "5955",   # Sailmaker (Celtic)
     "albion_rope_mill":        "5956",   # Ropemaker (Celtic)
+    # ラティウム版と採石場・地窯(2026-10-06追加)。同名のアルビオン版があるため手動で固定する
+    "iron_mine":               "2918",   # Iron Mine (Roman)
+    "furnace":                 "3070",   # Furnace (Roman)
+    "tile_factory":            "3091",   # Tiler (Roman)
+    "weapon_workshop":         "3170",   # Weaponsmith (Roman)
+    "armor_workshop":          "13808",  # Armourer (Roman)
+    "limestone_quarry":        "2916",   # Limestone Quarry (Roman)
+    "marble_quarry":           "2954",   # Marble Quarry (Roman)
+    "albion_granite_quarry":   "5295",   # Granite Quarry (Celtic)
+    "albion_earth_oven":       "31767",  # Earth Oven (Celtic)
+    # 名前照合だと同名の Effect 資産(144816)に当たるため、建物の資産に固定する
+    "shrine_of_vulcan":        "144812", # Shrine of Vulcan (Roman)
     # nameEn と officialEN が一致しないため手動マッピング
     "warehouse":           "3402",   # officialEN="Trading Post" (HarborWarehouse Lv1)
     "aqueduct_source":     "19723",  # officialEN="Aqueduct" (AqueductConnector Roman)
@@ -303,11 +316,17 @@ def find_guid(entry: dict) -> str | None:
 EFFECT_FIELDS = ["maintenance", "population", "income", "faith",
                  "knowledge", "prestige", "health", "happiness", "fireSafety"]
 
+# 効果値を手で入れてある行。公式の建物資産に範囲効果の定義が無く、上書きすると0で潰れる。
+# 円形闘技場の基本効果は輝きランクの仕組みに由来する（実機確認値）。
+MANUAL_IDS = {"amphitheatre"}
+
 updated = 0
 unmatched = []
 new_buildings = list(current_data["buildings"])
 
 for entry in new_buildings:
+    if entry["id"] in MANUAL_IDS:
+        continue
     guid = find_guid(entry)
     if guid is None or guid not in extracted:
         unmatched.append(entry["id"])

@@ -20,6 +20,8 @@ interface BuildingEffect {
   fireSafety: number
   /** この建物を対象とするアイテムの件数 */
   itemCount: number
+  /** スキルを取ると付近の建物に追加で付く効果（表の数値には含めない） */
+  skillBonuses?: { skill: string; effects: Record<string, number> }[]
 }
 
 // 建物名(nameJa) -> この建物を対象とするアイテム件数。

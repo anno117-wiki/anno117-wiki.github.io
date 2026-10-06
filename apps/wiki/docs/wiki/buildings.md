@@ -12,6 +12,8 @@ import BuildingsTable from '../.vitepress/components/BuildingsTable.vue'
 
 各建物が周辺住民に与える効果の一覧です。
 
+表の数値は、建物がはじめから持っている効果です。建物名の下に「スキル「○○」で…」とあるものは、そのスキルを取ると付近の建物に追加で付く効果で、表の数値には含めていません。
+
 <BuildingsTable />
 
 ## 関連データ

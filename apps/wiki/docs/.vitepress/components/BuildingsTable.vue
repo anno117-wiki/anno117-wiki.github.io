@@ -49,6 +49,24 @@ const categoryLabels: Record<string, string> = {
   production: '生産施設',
 }
 
+const effectLabels: Record<string, string> = {
+  population: '人口',
+  income: '収入',
+  faith: '信仰',
+  knowledge: '知識',
+  prestige: '名声',
+  health: '健康度',
+  happiness: '幸福',
+  fireSafety: '防火',
+}
+
+// 例: { prestige: 1, happiness: 1 } -> 「名声+1・幸福+1」
+function formatEffects(effects: Record<string, number>): string {
+  return Object.entries(effects)
+    .map(([key, n]) => `${effectLabels[key] ?? key}${n > 0 ? '+' : ''}${n}`)
+    .join('・')
+}
+
 const searchText = ref('')
 const selectedTier = ref('')
 const selectedCategory = ref('')
@@ -188,6 +206,9 @@ watch(hash, scrollToHash)
             <div style="max-width:140px;word-break:break-all;">
               <img v-if="b.icon" :src="withBase('/icons/buildings-thumb/icon_3d_' + b.icon + '.webp')" :alt="b.nameJa ?? b.nameEn" width="28" height="28" loading="lazy" style="width:28px;height:28px;vertical-align:middle;margin-right:4px;object-fit:contain;" />
               {{ b.nameJa ?? b.nameEn }}
+              <div v-for="s in b.skillBonuses" :key="s.skill" class="building-skill-bonus">
+                スキル「{{ s.skill }}」で{{ formatEffects(s.effects) }}
+              </div>
             </div>
           </td>
           <td>{{ b.tierJa }}</td>

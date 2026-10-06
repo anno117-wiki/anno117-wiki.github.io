@@ -309,6 +309,16 @@
   cursor: grabbing;
 }
 
+/* buildings スキルで追加される効果（建物名の下の補足行） */
+.building-skill-bonus {
+  margin-top: 2px;
+  font-size: 0.78em;
+  line-height: 1.35;
+  color: var(--vp-c-text-2);
+  word-break: normal;
+  overflow-wrap: anywhere;
+}
+
 /* buildings フィルタバー sticky 固定 */
 .buildings-filter-bar {
   position: sticky;
