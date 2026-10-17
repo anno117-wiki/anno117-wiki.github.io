@@ -54,12 +54,12 @@ const xpOf = (rank: number) => data.ranks[rank - 1].xp.toLocaleString()
 
 ## ランク別のボーナス
 
-各ランクでは、効果範囲内の建物に属性がつきます。ランクIIからは、効果範囲内のパトリキの住居にも属性が追加されます（後者の対象は公式データ上の定義で、<strong>要検証</strong>）。
+各ランクでは、建物に属性がつきます。ランクIIからは、パトリキの住居にだけ属性が追加されます（エクィテスの住居にはつきません）。競馬場は、島内に置いてあれば効果が島内すべての建物に及びます（実機確認済み。円形闘技場の範囲は<strong>要検証</strong>）。数値は%ではなく、そのままの加算値です。
 
 ## 競馬場
 
 <table>
-<thead><tr><th>ランク（必要な輝き）</th><th>効果範囲内の建物</th><th>パトリキの住居（追加）</th><th>特別な効果</th></tr></thead>
+<thead><tr><th>ランク（必要な輝き）</th><th>島内の建物</th><th>パトリキの住居（追加）</th><th>特別な効果</th></tr></thead>
 <tbody>
 <tr v-for="r in data.hippodrome" :key="r.rank">
 <td>{{ r.roman }}（{{ xpOf(r.rank) }}）</td>
