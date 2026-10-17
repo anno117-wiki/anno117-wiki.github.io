@@ -136,6 +136,10 @@ export default defineConfig({
   description: SITE_DESCRIPTION,
   srcExclude: DLC03_TECHS_READY ? [] : ['wiki/techs-dlc03.md'],
 
+  // メインのランドマークが無いとの指摘対策。VPContent は div なので role="main" を付ける
+  transformHtml: (code) =>
+    code.replace(/<div class="(VPContent[^"]*)"/, '<div role="main" class="$1"'),
+
   // Google検索向け sitemap.xml をビルド時に自動生成
   sitemap: {
     hostname: 'https://anno117-wiki.github.io/',

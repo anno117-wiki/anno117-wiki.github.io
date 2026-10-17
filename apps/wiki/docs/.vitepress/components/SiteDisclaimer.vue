@@ -11,6 +11,6 @@
   border-top: 1px solid var(--vp-c-divider);
   font-size: 12px;
   line-height: 1.7;
-  color: var(--vp-c-text-3);
+  color: var(--vp-c-text-2);
 }
 </style>
