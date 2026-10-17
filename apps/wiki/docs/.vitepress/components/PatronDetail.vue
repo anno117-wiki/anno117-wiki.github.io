@@ -3,7 +3,7 @@
     <p class="patron-desc">{{ patron.descJa }}</p>
 
     <div class="patron-block wonder">
-      <div class="block-label">奇跡（世界の信仰 {{ wonderThreshold.toLocaleString() }} で解放）</div>
+      <div class="block-label">崇拝の効果（世界の信仰 {{ wonderThreshold.toLocaleString() }} で解放）</div>
       <div class="block-body">{{ patron.wonder.descJa }}</div>
     </div>
 
@@ -33,7 +33,7 @@
     </div>
 
     <div class="patron-block">
-      <div class="block-label">支配効果（世界の信仰 {{ dominantThreshold.toLocaleString() }} 以上の最多信仰の1柱）：{{ patron.dominant.titleJa }}</div>
+      <div class="block-label">高揚の効果（世界の信仰 {{ dominantThreshold.toLocaleString() }} 以上の最多信仰の1柱）：{{ patron.dominant.titleJa }}</div>
       <div class="block-body">{{ patron.dominant.descJa }}</div>
     </div>
   </div>

@@ -25,7 +25,7 @@
       {
         "name": "炭鉱",
         "place": "山スロット",
-        "unlock": "ウルカヌスの奇跡（世界の信仰4,000）",
+        "unlock": "ウルカヌスの崇拝の効果（世界の信仰4,000）",
         "cycle": 30,
         "cycleUnverified": false,
         "effects": [
@@ -57,7 +57,7 @@
       {
         "name": "金鉱",
         "place": "山スロット",
-        "unlock": "メルクリウス・ルグスの奇跡（世界の信仰4,000）",
+        "unlock": "メルクリウス・ルグスの崇拝の効果（世界の信仰4,000）",
         "cycle": 150,
         "cycleUnverified": false,
         "effects": [

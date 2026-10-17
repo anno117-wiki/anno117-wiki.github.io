@@ -1,6 +1,6 @@
 ---
 title: 信仰神
-description: Anno 117の信仰神8柱の一覧。信仰値ごとの解放しきい値、奇跡（炭鉱・金鉱・サイロなどの解放）、局所効果・支配効果を公式データから整理。
+description: Anno 117の信仰神8柱の一覧。信仰値ごとの解放しきい値、崇拝の効果（炭鉱・金鉱・サイロなどの解放）、局所効果・高揚の効果を公式データから整理。
 ---
 
 <script setup lang="ts">
@@ -21,20 +21,20 @@ const sharedMilestones: [number, number][] = data.patrons[0].local[0].milestones
 
 - 島の祭神を選ぶと、その島の信心（Belief）から時間をかけて信仰が貯まります。祭神を選ぶには信心が1以上必要です。
 - <strong>祭神を変えると、その島の信仰は0にリセット</strong>されます。
-- 島ごとの信仰（局所効果）と、全島の信仰を合計した世界の信仰（奇跡・支配効果・祭壇）があります。
+- 島ごとの信仰（局所効果）と、全島の信仰を合計した世界の信仰（祈りの効果・崇拝の効果・高揚の効果）があります。
 - 世界の信仰は、複数の島で同じ神を祭神にしていれば合算されます。
 
 ## 解放のしきい値
 
 | 世界の信仰 | 解放されるもの |
 |---|---|
-| {{ data.thresholds.shrine.toLocaleString() }} | その神の祭壇 |
-| {{ data.thresholds.wonder.toLocaleString() }} | その神の奇跡（新しい建物などの解放）。どの神でも、信仰が足りていれば解放できます |
-| {{ data.thresholds.dominant.toLocaleString() }} | 高位祭神。しきい値を超えた神のうち、信仰が最も多い1柱だけが支配効果を発動します |
+| {{ data.thresholds.shrine.toLocaleString() }} | 祈りの効果（その神の祭壇を建てられるようになる） |
+| {{ data.thresholds.wonder.toLocaleString() }} | 崇拝の効果（新しい建物などの解放）。どの神でも、信仰が足りていれば解放できます |
+| {{ data.thresholds.dominant.toLocaleString() }} | 高揚の効果（高位祭神）。しきい値を超えた神のうち、信仰が最も多い1柱だけが高揚の効果を発動します |
 
-解放後にしきい値を下回った場合の扱いとして、公式データには祭壇800・奇跡3,500というヒステリシス値があります。この値を下回ると効果が切れるとみられます（<strong>要検証</strong>）。
+解放後にしきい値を下回った場合の扱いとして、公式データには祈りの効果800・崇拝の効果3,500というヒステリシス値があります。この値を下回ると効果が切れるとみられます（<strong>要検証</strong>）。
 
-## 奇跡の一覧
+## 崇拝の効果の一覧
 
 世界の信仰が {{ wonderThreshold.toLocaleString() }} に達すると解放されます。
 
@@ -84,7 +84,7 @@ const sharedMilestones: [number, number][] = data.patrons[0].local[0].milestones
 
 <PatronDetail :patron="byId.epona" :wonder-threshold="wonderThreshold" :dominant-threshold="dominantThreshold" />
 
-### サイロ（奇跡で解放）
+### サイロ（崇拝の効果で解放）
 
 サイロは、牧場に取り付けて生産を増やすモジュールです。小麦を与えると、その牧場の生産量がアップします。
 
