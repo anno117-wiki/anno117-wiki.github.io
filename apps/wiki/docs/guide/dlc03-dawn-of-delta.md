@@ -5,8 +5,8 @@ description: Anno 117 DLC03「デルタの夜明け（Dawn of the Delta）」の
 
 # DLC03・デルタの夜明け
 
-> 出典: [Anno Union公式ブログ「Gamescom recap: Dawn of the Delta and Echoes of Kassandra」](https://www.anno-union.com/gamescom-recap-dawn-of-the-delta-and-echoes-of-kassandra/)（2026年9月3日）、[「Roadmap for 2026」](https://www.anno-union.com/roadmap-for-2026/)（2026年9月30日更新）。
-> 2026年10月に詳細デブログ・ライブ配信が予定されており、本ページの内容は今後変更される可能性があります。
+> 出典: [Anno Union公式ブログ「Gamescom recap: Dawn of the Delta and Echoes of Kassandra」](https://www.anno-union.com/gamescom-recap-dawn-of-the-delta-and-echoes-of-kassandra/)（2026年9月3日）、[「Roadmap for 2026」](https://www.anno-union.com/roadmap-for-2026/)（2026年9月30日更新）、[「Arriving in Aegyptus」](https://www.anno-union.com/devblog-arriving-in-aegyptus/)（デブログ第1回、2026年10月15日。地形とゾーンの説明はこちらを優先）。
+> 2026年10月にデブログが続く予定で、本ページの内容は今後変更される可能性があります。
 
 > このページは作成中です。確定情報が増え次第、随時更新します。
 
@@ -23,9 +23,9 @@ description: Anno 117 DLC03「デルタの夜明け（Dawn of the Delta）」の
 
 | ゾーン | 特徴 |
 |---|---|
-| アリッドゾーン | 現状は何も育たないが、建設用スペースが豊富 |
-| ファームランド | ナイル川に近い肥沃な土地。農業・林業向け |
-| 氾濫原 | 定期的に冠水し、生産に影響を与える |
+| アリッドゾーン | 内陸にあり、農業には向かないが、都市の建設に適している |
+| ファームランド | 海岸沿いにあり、農業と港の建設に使う |
+| 氾濫原 | 川沿いにあり、洪水の影響を受ける。泥のおかげで建物の生産量が増える。葦・泥などの産地 |
 
 ## 住民層
 
