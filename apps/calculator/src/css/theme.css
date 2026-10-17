@@ -959,7 +959,7 @@ input[type="number"]:focus,
   margin: 4px 0 8px;
   padding: 6px 10px;
   font-size: 0.85rem;
-  color: var(--text-secondary);
+  color: #4a5f7f; /* --text-secondary は背景との比が4.4:1で基準(4.5:1)に届かないため濃くする */
   background: var(--background-accent);
   border-radius: 4px;
 }
