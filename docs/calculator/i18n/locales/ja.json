@@ -128,6 +128,8 @@
   },
   "ui": {
     "selectGood": "生産品を選択",
+    "mobileSelectGood": "商品を選ぶ",
+    "mobileModifier": "補正",
     "searchGoods": "生産品を検索...",
     "noResults": "検索結果がありません",
     "recentlyViewed": "最近表示",
