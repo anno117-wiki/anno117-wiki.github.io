@@ -1,6 +1,6 @@
 <template>
   <div class="modifier-panel">
-    <h3 class="modifier-panel-title">{{ $t('ui.modifierSettings') }}</h3>
+    <h2 class="modifier-panel-title">{{ $t('ui.modifierSettings') }}</h2>
 
     <div class="modifier-sections">
       <div
@@ -9,7 +9,7 @@
         class="modifier-section"
       >
         <div class="modifier-section-header">
-          <h4>{{ $t(`modifiers.${modifier.id}`, modifier.label) }}</h4>
+          <h3>{{ $t(`modifiers.${modifier.id}`, modifier.label) }}</h3>
         </div>
 
         <div class="modifier-toggles">
@@ -149,7 +149,7 @@ onUnmounted(() => {
   gap: 0.75rem;
 }
 
-.modifier-section-header h4 {
+.modifier-section-header h3 {
   font-size: 0.9rem;
   font-weight: 600;
   color: var(--text-primary);

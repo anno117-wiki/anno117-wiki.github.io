@@ -1,6 +1,6 @@
 <template>
   <div class="goods-list-container">
-    <h3>{{ $t('ui.selectGood') }}</h3>
+    <h2>{{ $t('ui.selectGood') }}</h2>
 
     <!-- 検索ボックス -->
     <div class="search-container">
@@ -130,6 +130,12 @@ watch(() => props.goods, () => {
 </script>
 
 <style scoped>
+/* 見出し順序のため h3 から h2 に変えた。見た目はブラウザ標準の h3 のまま保つ */
+h2 {
+  font-size: 1.17em;
+  margin: 1em 0;
+}
+
 /* Vueコンポーネント用のスタイル（必要に応じて追加） */
 /* 既存のCSSがtheme.cssに定義されているため、追加スタイルは最小限に */
 </style>
