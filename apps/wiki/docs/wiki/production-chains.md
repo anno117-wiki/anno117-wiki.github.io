@@ -84,8 +84,16 @@ watch(hash, scrollToHash)
 <td>{{ regionText(entry.regions) }}</td>
 <td>{{ timeText(entry.timeSeconds) }}</td>
 <td>
-  {{ entry.inputs.join('、') || '—' }}
-  <ProductionChainSvg v-if="entry.graph" :graph="entry.graph" />
+  <template v-if="entry.variants.length > 1">
+    <div v-for="v in entry.variants" :key="v.label" class="chain-variant">
+      <strong>{{ v.label }}</strong>：{{ v.inputs.join('、') || '—' }}
+      <ProductionChainSvg v-if="v.graph" :graph="v.graph" :title="v.label + 'の生産チェーン図を表示'" />
+    </div>
+  </template>
+  <template v-else>
+    {{ entry.inputs.join('、') || '—' }}
+    <ProductionChainSvg v-if="entry.graph" :graph="entry.graph" />
+  </template>
 </td>
 <td><a class="calc-link-btn" :href="withBase(`/calculator/?good=${entry.id}`)" target="_blank" rel="noopener noreferrer">開く</a></td>
 </tr>
@@ -105,10 +113,20 @@ watch(hash, scrollToHash)
       <span>{{ regionText(entry.regions) }}</span>
       <span>{{ timeText(entry.timeSeconds) }}</span>
     </div>
-    <div class="chain-card-row" v-if="entry.inputs.length">
-      <span class="chain-card-label">直接素材:</span>{{ entry.inputs.join('、') }}
-    </div>
-    <ProductionChainSvg v-if="entry.graph" :graph="entry.graph" />
+    <template v-if="entry.variants.length > 1">
+      <div v-for="v in entry.variants" :key="v.label" class="chain-variant">
+        <div class="chain-card-row">
+          <span class="chain-card-label">{{ v.label }} 直接素材:</span>{{ v.inputs.join('、') || '—' }}
+        </div>
+        <ProductionChainSvg v-if="v.graph" :graph="v.graph" :title="v.label + 'の生産チェーン図を表示'" />
+      </div>
+    </template>
+    <template v-else>
+      <div class="chain-card-row" v-if="entry.inputs.length">
+        <span class="chain-card-label">直接素材:</span>{{ entry.inputs.join('、') }}
+      </div>
+      <ProductionChainSvg v-if="entry.graph" :graph="entry.graph" />
+    </template>
   </div>
 </div>
 </div>
@@ -174,6 +192,9 @@ watch(hash, scrollToHash)
 .chain-card-label {
   color: var(--vp-c-text-2);
   margin-right: 4px;
+}
+.chain-variant + .chain-variant {
+  margin-top: 8px;
 }
 </style>
 

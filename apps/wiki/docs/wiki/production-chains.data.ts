@@ -49,6 +49,19 @@ interface ProductionEntry {
   needsFuel: boolean
   inputs: string[]
   graph: ProductionGraph | null
+  /** ラティウム版・アルビオン版の両方があるときだけ入る。地域ごとの直接素材と図 */
+  variants: ProductionVariant[]
+}
+
+interface ProductionVariant {
+  label: string
+  inputs: string[]
+  graph: ProductionGraph | null
+}
+
+const VARIANT_LABELS: Record<string, string> = {
+  roman: 'ラティウム版',
+  celtic: 'アルビオン版',
 }
 
 const CATEGORY_ORDER = ['food', 'construction', 'fashion', 'culture']
@@ -118,6 +131,21 @@ export default {
         jaGoods[inp.id] ?? inp.name ?? inp.id
       )
 
+      // 地域別のファイルが2つ以上あるときは、地域ごとの版を作る（直接素材や図が地域で違う商品がある）
+      const variants: ProductionVariant[] = []
+      const fileEntries = Object.entries(good.files as Record<string, string>)
+      if (fileEntries.length > 1) {
+        for (const [regionKey, file] of fileEntries) {
+          const p = readProduction(file)
+          if (!p) continue
+          variants.push({
+            label: VARIANT_LABELS[regionKey] ?? regionKey,
+            inputs: (p.input ?? []).map((inp: any) => jaGoods[inp.id] ?? inp.name ?? inp.id),
+            graph: buildProductionGraph(p, jaGoods, RATIOS[file]),
+          })
+        }
+      }
+
       const nameJa = jaGoods[good.id] ?? good.displayName
       entries.push({
         id: good.id,
@@ -131,6 +159,7 @@ export default {
         needsFuel: prod.needs_fuel ?? false,
         inputs,
         graph: buildProductionGraph(prod, jaGoods, RATIOS[firstFile as string]),
+        variants,
       })
     }
 

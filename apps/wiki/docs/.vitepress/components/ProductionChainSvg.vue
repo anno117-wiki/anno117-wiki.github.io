@@ -1,6 +1,6 @@
 <template>
   <details class="production-chain" @toggle="onToggle">
-    <summary>生産チェーン図を表示</summary>
+    <summary>{{ title ?? '生産チェーン図を表示' }}</summary>
     <div v-if="isOpen" class="chain-scroll">
     <svg
       :viewBox="layout.viewBox"
@@ -49,7 +49,7 @@ const GAP_X = 70
 const GAP_Y = 20
 const PADDING = 10
 
-const props = defineProps<{ graph: ProductionGraph }>()
+const props = defineProps<{ graph: ProductionGraph; title?: string }>()
 const isOpen = ref(false)
 
 function onToggle(e: Event) {
