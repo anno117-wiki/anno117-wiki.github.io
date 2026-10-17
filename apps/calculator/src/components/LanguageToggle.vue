@@ -2,7 +2,6 @@
   <button
     id="language-toggle-btn"
     class="language-toggle-btn"
-    aria-label="Toggle Language"
     @click="toggleLanguage"
   >
     {{ buttonText }}
