@@ -23,6 +23,8 @@
   - 反映先: `guide/dlc03-dawn-of-delta.md`、スキルツリー（`techs.json`・`techs-dlc03.md`新規）、商品・生産チェーン・信仰神（新祭神3柱）・アイテム
   - **実機確認シート `docs-notes/dlc03-ingame-checklist.md` を用意済み（2026-10-06、`b86b273`）**。控える項目、反映先のファイル、事前に済ませた準備、配信後に決めることをまとめてある。配信後はまずこのシートを見ること
   - 事前に済ませた準備: 地域別商品ページと計算機の3地域対応（データが入るまで表示は従来どおり）、`wiki/techs-dlc03.md` の骨組み（スキル登録までビルド対象外）、住民層ページのアエギプトゥス節（準備中として公開）
+  - **【確認予定 2026-10-22】公式デブログ第2回**（住民階層・ローマ化・生産チェーン・技術・洪水と灌漑の仕組みを扱う予定）。公開後に `https://www.anno-union.com/tag/anno-117-en/` で記事を確認し、`dlc03-ingame-checklist.md` の反映先へ照らす。第3回（ピラミッド、日付は記事に記載なし）は10月末の見込み。同日17時(CEST)にTwitchライブ配信（Annogameチャンネル）あり
+  - 2026-10-17時点の確認: 第1回「Arriving in Aegyptus」（2026-10-15）が公開済み。発売日は原文 "releases on November 5th on all platforms" で**11月5日確定**。州Aegyptusは3ゾーン（Floodplains／Farmland／Arid Zone）、最初の住民層はThreshers、Firepit・Date Farm・Wesekh Collars、木材の代わりにMud Bricks（reed+mud）。日本語名はいずれも**公式名未確定・実機確認待ち**。アップデート3.0のパッチノートは未公開（発売近くに公開と案内）
   - クラウドの予約（2026-11-06 09:00 JST に1回、調査と報告のみ）: https://claude.ai/code/routines/trig_01WtBULkotMsf91c594bardj
   - DLC03ページには2026-10-05にリリース日（11月5日）とアップデート3.0の内容（統計メニュー拡張・スタンプ機能・バランス調整・栄誉の殿堂）を追記済み（`ffdcde5`〜`c111e2b`、push済み）
 
