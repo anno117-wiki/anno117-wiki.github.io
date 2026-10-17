@@ -759,6 +759,13 @@ def resolve_source(raw):
 
 ALLOCATION_JA = {"Villa": "住居", "Ship": "船"}
 
+# 栄誉の殿堂の専門家・船長9件。Item Inspector の CSV は Unique だが、公式 assets.xml は
+# Rarity=Legendary で、実機（PS5）もレジェンダリー表示（2026-10-17、ユーザー確認）。実機に合わせる。
+RARITY_OVERRIDE = {
+    guid: "Legendary"
+    for guid in ("42049", "149292", "91417", "91415", "42050", "42625", "91419", "91421", "149281")
+}
+
 items = []
 with CSV.open(encoding="utf-8") as f:
     for r in csv.DictReader(f):
@@ -773,7 +780,7 @@ with CSV.open(encoding="utf-8") as f:
             "guid": guid,
             "nameJa": clean(JP.get(r["Name"], "")) or clean(EN.get(r["Name"], "")) or "",
             "nameEn": clean(EN.get(r["Name"], "")),
-            "rarity": r.get("Rarity", "") or "",
+            "rarity": RARITY_OVERRIDE.get(guid) or r.get("Rarity", "") or "",
             "niche": r.get("Niche", "") or "",
             "price": (r.get("Price") or "").strip(),
             "description": clean(JP.get(r["InfoDescription"], "")),

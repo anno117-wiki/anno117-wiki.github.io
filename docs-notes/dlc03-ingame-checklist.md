@@ -306,23 +306,23 @@ v2.1（DLC03配信前）の `assets.xml` の Product 資産155件のうち、地
 
 アイテム一覧（`/wiki/items`）の2点について、他サイト（Codex Romana）と元データを比べて食い違いが見つかった。**どちらが実機に合うか分からない**ので、PS5で確かめる。結果次第で `tools/build-items-ja.py` などを直す。数値は2026-10-17時点の記録。
 
-### 11-1. 栄誉の殿堂の専門家・船長9件のレアリティ（現状: ユニーク表示）
+### 11-1. 栄誉の殿堂の専門家・船長9件のレアリティ（**解決済み 2026-10-17: 実機はレジェンダリー**）
 
-- 公式の `assets.xml`（v2.1）では、9件とも `Rarity = Legendary`（レジェンダリー）。Item Inspector の `items.csv` と、こちらのサイトは **Unique（ユニーク）** と表示している。Codex Romana は Legendary。
-- 確かめること: ゲーム内でこの9人のアイテム欄を開き、**レアリティの表示（枠の色・名称）**を控える。栄誉の殿堂に載っていれば、そこでも確認できる。
-- 分かったら: Legendary なら `items-full.json` の元データ（`build-items-ja.py` の `rarity`）をレジェンダリーに直す。Unique なら現状維持（一次データと違う理由を記録する）。
+- 結論: ユーザーが実機（PS5）で確認し、9件とも**ユニークではなくレジェンダリー**だった。公式 assets.xml（`Rarity = Legendary`）と一致する。Item Inspector の `items.csv`（Unique）が誤りで、こちらのサイトも同じ誤りを引き継いでいた。
+- 対応: `tools/build-items-ja.py` に `RARITY_OVERRIDE`（9 GUID を Legendary）を追加して再生成。差分は9件のレアリティのみ。ユニークは16件から7件、レジェンダリーは73件から82件になった。`guide/economy-guide.md` の「アクティウス・マクシミヌス（ユニーク）」もレジェンダリーに直した。
+- 今後: Item Inspector のデータを更新して再生成するときも、上書きが効く。上流が直った場合は `RARITY_OVERRIDE` を外してよい。
 
 | GUID | 日本語名 | 英語名 | 区分 | 実機のレアリティ |
 |---|---|---|---|---|
-| 42049 | 無比の勘定役-アクティウス・マクシミヌス | Actorius Maximinus, Nummularius Nonpareil | 住居・金融 | |
-| 149292 | ラレス・コンピタレス神の寵児-アンカリア | Ancharia, Darling of the Lares Compitales | 住居・文化 | |
-| 91417 | 靴以外に口出ししない靴屋-アルンス・スペディウス・ファストゥス | Arruns Spedius Fastus, Sutor Supra Crepidam | 住居・外交 | |
-| 91415 | ギンバイカの塔出身-ジュドック・ダイダロス | Judoc Daidalos, of the Myrtle Tower | 住居・軍事 | |
-| 42050 | 吉兆の内臓占い師-メナンドロス・ニコメデス | Menander of Nicomedes, Auspicious Haruspex | 住居・宗教 | |
-| 42625 | ローマの測量士-メリーパス | Merypath, Gromatic Surveyor | 船・航海 | |
-| 91419 | ボイオ族の叙事詩の語り部-シーホカーンリ・ビハルブ | Síocháinri Bíchearb, Boioran Rhapsodist | 住居・研究 | |
-| 91421 | 支配する補佐裁判官-トルコトゥト | Troucotouto, Subjugating Subiudex | 住居・経済 | |
-| 149281 | 大渦を広げる者-ヴェルコヌス | Verconus, Potentiate Widener of Gyres | 船・軍事 | |
+| 42049 | 無比の勘定役-アクティウス・マクシミヌス | Actorius Maximinus, Nummularius Nonpareil | 住居・金融 | レジェンダリー |
+| 149292 | ラレス・コンピタレス神の寵児-アンカリア | Ancharia, Darling of the Lares Compitales | 住居・文化 | レジェンダリー |
+| 91417 | 靴以外に口出ししない靴屋-アルンス・スペディウス・ファストゥス | Arruns Spedius Fastus, Sutor Supra Crepidam | 住居・外交 | レジェンダリー |
+| 91415 | ギンバイカの塔出身-ジュドック・ダイダロス | Judoc Daidalos, of the Myrtle Tower | 住居・軍事 | レジェンダリー |
+| 42050 | 吉兆の内臓占い師-メナンドロス・ニコメデス | Menander of Nicomedes, Auspicious Haruspex | 住居・宗教 | レジェンダリー |
+| 42625 | ローマの測量士-メリーパス | Merypath, Gromatic Surveyor | 船・航海 | レジェンダリー |
+| 91419 | ボイオ族の叙事詩の語り部-シーホカーンリ・ビハルブ | Síocháinri Bíchearb, Boioran Rhapsodist | 住居・研究 | レジェンダリー |
+| 91421 | 支配する補佐裁判官-トルコトゥト | Troucotouto, Subjugating Subiudex | 住居・経済 | レジェンダリー |
+| 149281 | 大渦を広げる者-ヴェルコヌス | Verconus, Potentiate Widener of Gyres | 船・軍事 | レジェンダリー |
 
 ### 11-2. 黒曜石で買うアイテム43件の価格表示（**解決済み 2026-10-17**）
 
