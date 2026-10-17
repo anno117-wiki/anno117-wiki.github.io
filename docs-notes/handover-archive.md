@@ -301,3 +301,21 @@
 #### モバイル表示の改善（`0328630`・`64f54e0`）
 - 建物効果: 建物名の列が約61pxまで潰れていたため、959px以下でだけ最小幅 `7.5em` を持たせた（`.building-name-cell`）。固定列が広がる分、初期表示で見える効果の列は減る
 - スキル効果一覧（`SkillEffectList.vue`）: 959px以下では1スキル=1カードの縦並び。DOMは表のままでCSSだけ切り替え。画面で確かめたのは市民スキルのページのみ（他ブランチも同じ部品）
+
+### Y. PageSpeed Insightsの指摘を全件解消（2026-10-17、単独セッション、全てpush済み）
+- 発端: ユーザーがPageSpeedの画面を示して改善可否を尋ねた。wiki（携帯）の2件、計算機（携帯）の1件、計算機（デスクトップ）の1件が対象。最終的に計算機は携帯・デスクトップとも全項目100点（ユーザーが再計測して確認）
+
+#### 変更の一覧（全てpush済み）
+- `0646976` wiki: 免責文 `SiteDisclaimer.vue` の文字色を `--vp-c-text-3` から `--vp-c-text-2` に変更（コントラスト）。本文領域 `VPContent` は div なので、`config.ts` の `transformHtml` でビルド時に `role="main"` を付与（mainランドマーク）
+- `d0b9dc2` 計算機: `.usage-note` の文字色を `#4a5f7f` に変更（`--text-secondary` #5a7092 は背景 #f0f0ee に対し約4.4:1で基準4.5:1に未達。変数自体は他への影響を避けて変更せず）
+- `c239a39` 使い方注記の初期文言を「軒数」に統一（`index.html` だけ「件数」で、翻訳適用時にちらついていた。`buildingUnit` が「軒」でwikiガイドも「軒」のため）
+- `a50eb48` モバイルボタンを「商品を選ぶ」「補正」に統一。`ui.selectGood` と `ui.modifierSettings` はパネル見出し（`GoodsList.vue`・`ModifierPanel.vue`）でも使うため、ボタン専用キー `ui.mobileSelectGood`・`ui.mobileModifier` を `ja.json`・`en.json` に追加（英語は既存の英語と同じ値）
+- `82d6467` 見出し順序: h1の次にh3が来ていたため、パネル見出しを h3→h2、修正設定の項目名を h4→h3 に変更。「生産品を選択」は標準h3の見た目に頼っていたため、scopedで `font-size:1.17em; margin:1em 0` を指定
+- `c81780b` `packages/shared/public/data/manifest.json` のアイコンを `/assets/images/anno_icon.png`（404）から `../images/anno_icon.png` に変更。`start_url: "/"` は挙動が変わるため未変更
+- `25e65fe` 見た目の文字と `aria-label` が不一致の6要素（言語切替・地域切替・カテゴリ見出し4件）から `aria-label` を削除（ユーザーが「削除」案を選択）。`TreeCategory.vue` の `categoryAriaLabel` も削除。翻訳キー `ui.categorySuffix` は参照元が無くなったが残してある
+
+#### 確認と注意
+- 手元の検証: chrome-devtools MCP の `lighthouse_audit` を `docs/` のローカル配信（`python -m http.server 4173`）に対して実行。Chromeが起動していないと接続できない（`DevToolsActivePort` が見つからない）。変更前は label-content-name-mismatch と404コンソールエラーが出ていたが、変更後は全項目100点・失敗0件
+- 「英語になった」と見えた件は、`ja.json` のブラウザキャッシュ（`max-age=600`）が原因。キー名がそのまま出る。10分ほどで解消し、故障ではない
+- `build:site` 後のフックの「`docs/` の必須ファイルがない」警告は4回とも誤検知
+- 未対応のまま残したもの: カテゴリ見出しの絵文字・件数・記号が読み上げられる可能性（必要なら `aria-hidden`）、`index.html` の初期テキストと `ja.json` の照合は他の13件で一致を確認済み

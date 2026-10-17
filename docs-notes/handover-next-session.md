@@ -1,9 +1,9 @@
-# 引き継ぎ: 次回セッション向け（2026-10-06 更新・第18版）
+# 引き継ぎ: 次回セッション向け（2026-10-17 更新・第19版）
 
 この文書には「今の状態・次の任務・保留・注意点」だけを書く。完了した作業の記録は `docs-notes/handover-archive.md` に移してあり、開始時に読む必要はない（文中の「アーカイブX節」で必要な箇所だけ引く）。
 
 ## git状態
-- ブランチ: master。`60fc20e`（2026-10-06、更新履歴の追記）まで**push済み・本番反映確認済み**。2026-10-06の作業（運用整理、建物アイコンの復元、建物効果の全件照合と追加、モバイル表示の改善、更新履歴の追記）の経緯はアーカイブX節。この引き継ぎ書の更新コミットだけ、push されているかを `git status -sb` で確認すること。直近の作業は `git log -15`
+- ブランチ: master。`25e65fe`（2026-10-17、aria-label削除）まで**push済み・本番反映確認済み**。2026-10-17の作業（PageSpeedの指摘をwiki・計算機とも全件解消。計算機は携帯・デスクトップとも全項目100点）の経緯はアーカイブY節、2026-10-06分はX節。この引き継ぎ書の更新コミットだけ、push されているかを `git status -sb` で確認すること。直近の作業は `git log -15`
 - GitHub Pagesデプロイの確認は `gh run list --repo anno117-wiki/anno117-wiki.github.io --limit 5`
 - **`docs-notes/` は `.gitignore` 対象**（`handover-next-session.md` / `handover-archive.md` / `building-icon-mapping.md` / `how-to-edit-site.md` / `dlc03-ingame-checklist.md` / `wiki/` のみ例外で追跡）。次の調査メモ3本は**ローカルのみでGit未管理**
   - `docs-notes/research-alt-producers-coal-gold.md`（石炭・金の生産元、信仰神、サイロ、実機確認の記録）
@@ -30,7 +30,8 @@
 - **検索CTRの比較（アーカイブU節）**: 2026-09-30に `/`・`guide/strategy.html`・`wiki/goods.html` のtitleを変更済み。10月中旬〜下旬に、`docs-notes/gsc-baseline-2026-09-30/` と同じ形式でGSCのCSVを出力し、3ページのCTR・順位・表示回数を比べる
 - GSC「ウェブに関する主な指標」（アーカイブR節）: ユーザーがCrUXキャッシュ更新を待って再計測予定。相談があれば経過を確認
 - アイコン圧縮: **wiki側は対応済み**（アーカイブV節。商品・建物をWebPサムネイル化）。**計算機側（`docs/calculator/icons/`、約21MB）は未対応**。計算機の初期ロードはアイコン5件206KBで、skill-*.png（1枚56〜60KB）が主。着手するなら計算機の表示サイズを確認してから
-- 2026-10-02の調査で出た未着手の低優先度項目（ユーザー未依頼）: 計算機の使い方ページの「計算」リンク表記が実際のボタン名「開く」と不一致（`guide/calculator-guide.md:47`）／計算機ページで`/assets/images/anno_icon.png`が404（manifest経由と推測）／llms.txtにpatrons・splendor・スキル各ブランチ・DLC02/03・/wiki/が未掲載／計算機の初期ロードで`data/items/*.json`64件を個別fetch（1ファイル統合の余地）／wiki全ページのCLS 0.034（Layout.vueのセクションナビDOM挿入が原因と推測、合格域）
+- 2026-10-02の調査で出た未着手の低優先度項目（ユーザー未依頼）: 計算機の使い方ページの「計算」リンク表記が実際のボタン名「開く」と不一致（`guide/calculator-guide.md:47`）／llms.txtにpatrons・splendor・スキル各ブランチ・DLC02/03・/wiki/が未掲載／計算機の初期ロードで`data/items/*.json`64件を個別fetch（1ファイル統合の余地）／wiki全ページのCLS 0.034（Layout.vueのセクションナビDOM挿入が原因と推測、合格域）
+- 計算機のモバイル版で、PageSpeed全項目100点のあと実機の見た目（ボタン文言・パネル見出しの大きさ）を目視していない。見出しを h3 から h2 に変えた「生産品を選択」は、標準の h3 と同じ見た目になるようCSSで合わせてあるが、画面で比べていない（アーカイブY節）
 - 要検証の実機確認（アーカイブB・C節の「要検証のまま」）
 - 競馬場ガイド: 馬需要(ランクVII)・戦車産出(ランクX)が本文では「レベルが上がると」とまとめ書きのまま（`/wiki/splendor` へのリンクは追加済み）
 - 獣脂(`lard`)の別の生産元アスピック職人(GUID5475, アルビオン)は、商品一覧に未対応（現行チェーンは31756を使用）。建物効果ページに載っているかも未確認
@@ -68,6 +69,8 @@
 
 ### ビルド
 - 必ず `bun run build:site`（wikiも含む全ビルド）
+- ビルド後に「`docs/` に index.html・wiki・calculator がない」というフックの警告が毎回出るが、2026-10-17に4回とも誤検知だった（実ファイルあり・`check:site` OK）。警告が出たら `ls docs/index.html docs/wiki docs/calculator` と `bun run check:site` で実物を確かめる
+- 翻訳キーを追加した直後は、公開から約10分（GitHub Pagesのキャッシュ）古い `ja.json` が残り、画面にキー名がそのまま出ることがある。故障ではない（アーカイブY節）
 - build:site は最後の `[5/5]` で `docs/` を自動検査する（必須ファイル・sitemapの実ファイル・サイト内リンク切れ。2026-10-06追加、`scripts/check-site.ts`）。問題があれば exit 1 で止まる。検査だけなら `bun run check:site`。拡張子なしのリンク（`/wiki/items` 等）は GitHub Pages が `.html` を補うため正常扱い
 - sitemap の lastmod はソース.mdの最終コミット日から作るため、**ソースをコミットする前にビルドすると1つ前の日付になる**（2026-10-06に4ページ分のずれを再ビルドで解消）。気になるときはコミット後にもう一度ビルドする
 - devサーバ(`bun run dev:wiki`)はCSRのためSPA遷移・アンカースクロールの検証には向かない。本番相当の検証は `bun run preview:wiki` を使う
