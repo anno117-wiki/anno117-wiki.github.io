@@ -17,11 +17,11 @@ const CATEGORY_LABEL: Record<string, string> = {
   culture: '文化',
 }
 
-// 地域の内部キー → 表示名。DLC03（アエギプトゥス）は商品データが入るまで該当0件で、ページには出ない
+// 地域の内部キー → 表示名。DLC03（アイギュプト）は商品データが入るまで該当0件で、ページには出ない
 const REGION_LABEL: Record<string, string> = {
   Roman: 'ラティウム',
   Celtic: 'アルビオン',
-  Egyptian: 'アエギプトゥス',
+  Egyptian: 'アイギュプト',
 }
 
 export default {
@@ -34,7 +34,7 @@ export default {
     celticCount: number
     egyptianCount: number
     bothCount: number
-    // アエギプトゥスで作れる商品が1つでもあるか（3地域表示への切替に使う）
+    // アイギュプトで作れる商品が1つでもあるか（3地域表示への切替に使う）
     hasEgyptian: boolean
   } {
     const jaGoods = (jaJson as { goods: Record<string, string> }).goods

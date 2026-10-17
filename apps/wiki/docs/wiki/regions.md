@@ -19,7 +19,7 @@ const categoryLabel: Record<string, string> = {
 # 地域別商品
 
 <p v-if="!data.hasEgyptian">Anno 117 には <strong>ラティウム地域</strong> と <strong>アルビオン地域</strong> の2つの地域があり、生産できる商品が異なります。</p>
-<p v-else>Anno 117 には <strong>ラティウム地域</strong>・<strong>アルビオン地域</strong>・<strong>アエギプトゥス地域</strong>（DLC03）の3つの地域があり、生産できる商品が異なります。</p>
+<p v-else>Anno 117 には <strong>ラティウム地域</strong>・<strong>アルビオン地域</strong>・<strong>アイギュプト地域</strong>（DLC03）の3つの地域があり、生産できる商品が異なります。</p>
 
 各商品の詳細な生産チェーンは[計算機](/calculator/)で確認できます。
 
@@ -30,7 +30,7 @@ const categoryLabel: Record<string, string> = {
 <tbody>
 <tr><td>ラティウム固有</td><td>{{ data.romanCount }}種</td><td>—</td></tr>
 <tr><td>アルビオン固有</td><td>{{ data.celticCount }}種</td><td>—</td></tr>
-<tr v-if="data.egyptianCount > 0"><td>アエギプトゥス固有</td><td>{{ data.egyptianCount }}種</td><td>—</td></tr>
+<tr v-if="data.egyptianCount > 0"><td>アイギュプト固有</td><td>{{ data.egyptianCount }}種</td><td>—</td></tr>
 <tr><td>{{ data.hasEgyptian ? '複数地域共通' : '両地域共通' }}</td><td>—</td><td>{{ data.bothCount }}種</td></tr>
 </tbody>
 </table>
@@ -65,9 +65,9 @@ const categoryLabel: Record<string, string> = {
 
 <div v-if="data.egyptianCount > 0">
 
-## アエギプトゥス固有商品
+## アイギュプト固有商品
 
-アエギプトゥス地域（DLC03）でのみ生産できる商品です。
+アイギュプト地域（DLC03）でのみ生産できる商品です。
 
 <table>
 <thead><tr><th>商品名</th><th>カテゴリ</th></tr></thead>

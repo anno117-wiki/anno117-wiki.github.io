@@ -5,7 +5,7 @@ description: Anno 117のラティウム（ローマ）・アルビオン（ケ�
 
 # 住民層
 
-Anno 117 には<strong>ラティウム（ローマ）</strong>と<strong>アルビオン（ケルト）</strong>の2系統の住民層があります。DLC03「デルタの夜明け」（2026年11月5日追加予定）で、3系統目の<strong>アエギプトゥス（エジプト）</strong>が加わります。
+Anno 117 には<strong>ラティウム（ローマ）</strong>と<strong>アルビオン（ケルト）</strong>の2系統の住民層があります。DLC03「デルタの夜明け」（2026年11月5日追加予定）で、3系統目の<strong>アイギュプト（エジプト）</strong>が加わります。
 
 ## 需要システムの仕組み
 
@@ -158,7 +158,7 @@ Anno 117 には<strong>ラティウム（ローマ）</strong>と<strong>アル�
 
 ---
 
-## アエギプトゥス住民層
+## アイギュプト住民層
 
 > <strong>準備中です。</strong>DLC03「デルタの夜明け」（2026年11月5日追加予定）の住民層です。いま分かっているのは、公式ブログで発表された層の名前と分岐だけです。需要と昇格条件は配信後に追記します。
 >
@@ -166,13 +166,13 @@ Anno 117 には<strong>ラティウム（ローマ）</strong>と<strong>アル�
 >
 > 出典: [Anno Union公式ブログ「Gamescom recap: Dawn of the Delta and Echoes of Kassandra」](https://www.anno-union.com/gamescom-recap-dawn-of-the-delta-and-echoes-of-kassandra/)（2026年9月3日）
 
-アエギプトゥスでは、最初の層から<strong>ギリシャ・ローマ文化</strong>と<strong>エジプト文化</strong>の2つの路線に分かれます。
+アイギュプトでは、最初の層から<strong>ギリシャ・ローマ文化</strong>と<strong>エジプト文化</strong>の2つの路線に分かれます。
 
-![アエギプトゥス住民層の進化](/diagrams/aegyptus-tiers.svg)
+![アイギュプト住民層の進化](/diagrams/aegyptus-tiers.svg)
 
 ### スレッシャー
 
-アエギプトゥスの最初の層です。この土地の農業の伝統を担います。
+アイギュプトの最初の層です。この土地の農業の伝統を担います。
 
 | カテゴリ | 商品・施設 |
 |--------|-----------|
@@ -205,7 +205,7 @@ Anno 117 には<strong>ラティウム（ローマ）</strong>と<strong>アル�
 
 - [商品需要逆引き](/wiki/needs-index) — 商品からどの住民層の需要かを調べる
 - [建物効果](/wiki/buildings) — 住民の幸福・健康などに効く建物
-- [DLC03・デルタの夜明け](/guide/dlc03-dawn-of-delta) — アエギプトゥスの発表済み情報
+- [DLC03・デルタの夜明け](/guide/dlc03-dawn-of-delta) — アイギュプトの発表済み情報
 
 ## 関連ガイド
 

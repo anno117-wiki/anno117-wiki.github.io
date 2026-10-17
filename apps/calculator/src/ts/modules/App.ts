@@ -107,7 +107,7 @@ interface RegionDef {
 }
 
 // 並び順が切替ボタンの巡回順になる。
-// Egyptian（DLC03 アエギプトゥス）は商品データが入るまで切替に出ない。
+// Egyptian（DLC03 アイギュプト）は商品データが入るまで切替に出ない。
 const REGIONS: readonly RegionDef[] = [
     { key: 'Roman', label: 'Latium', icon: 'latium.webp' },
     { key: 'Celtic', label: 'Albion', icon: 'albion.webp' },

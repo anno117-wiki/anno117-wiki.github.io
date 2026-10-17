@@ -22,9 +22,10 @@
   - GitHub: `Taludas/Anno-117-Item-Inspector`（v3.0データの有無。アーカイブO節のとおり全体データは配布されなくなった可能性が高い）、`agentquackyt/Anno117Calculator`（生産チェーンの更新）
   - 反映先: `guide/dlc03-dawn-of-delta.md`、スキルツリー（`techs.json`・`techs-dlc03.md`新規）、商品・生産チェーン・信仰神（新祭神3柱）・アイテム
   - **実機確認シート `docs-notes/dlc03-ingame-checklist.md` を用意済み（2026-10-06、`b86b273`）**。控える項目、反映先のファイル、事前に済ませた準備、配信後に決めることをまとめてある。配信後はまずこのシートを見ること
-  - 事前に済ませた準備: 地域別商品ページと計算機の3地域対応（データが入るまで表示は従来どおり）、`wiki/techs-dlc03.md` の骨組み（スキル登録までビルド対象外）、住民層ページのアエギプトゥス節（準備中として公開）
+  - 事前に済ませた準備: 地域別商品ページと計算機の3地域対応（データが入るまで表示は従来どおり）、`wiki/techs-dlc03.md` の骨組み（スキル登録までビルド対象外）、住民層ページのアイギュプト節（準備中として公開）
   - **【確認予定 2026-10-22】公式デブログ第2回**（住民階層・ローマ化・生産チェーン・技術・洪水と灌漑の仕組みを扱う予定）。公開後に `https://www.anno-union.com/tag/anno-117-en/` で記事を確認し、`dlc03-ingame-checklist.md` の反映先へ照らす。第3回（ピラミッド、日付は記事に記載なし）は10月末の見込み。同日17時(CEST)にTwitchライブ配信（Annogameチャンネル）あり
   - 2026-10-17時点の確認: 第1回「Arriving in Aegyptus」（2026-10-15）が公開済み。発売日は原文 "releases on November 5th on all platforms" で**11月5日確定**。州Aegyptusは3ゾーン（Floodplains／Farmland／Arid Zone）、最初の住民層はThreshers、Firepit・Date Farm・Wesekh Collars、木材の代わりにMud Bricks（reed+mud）。日本語名はいずれも**公式名未確定・実機確認待ち**（仮訳の一覧は `dlc03-ingame-checklist.md` の「1. 名前の確定」末尾。Mud Bricks=日干しレンガ はユーザー指摘）。サイトの `guide/dlc03-dawn-of-delta.md` の3ゾーン説明はデブログ第1回に合わせて修正済み（`b42ad2b`）。未反映として残るのは、地形（川の向き・北からのみ進入・Latium/Albionの中間）・最初の入植地（Firepit・Date Farm・Wesekh Collars・Mud Bricks）で。反映するかどうかはユーザー判断（10月22日の第2回を見てからまとめるほうが手戻りが少ない、という案は提示済みで、未決定）。アップデート3.0のパッチノートは未公開（発売近くに公開と案内）
+  - **属州名を2026-10-17に「アエギプトゥス」から「アイギュプト」へ変更**（公式データ v2.1 の PlayerLogo「Aegyptus=アイギュプト」「Princess of Aegyptus=アイギュプトの王女」が根拠。配信前データなので、実機の日本語版で確認すること。ラテン語読みの旧表記は私たちの音写で、公式ではなかった可能性が高い）。名前の再検討結果は `dlc03-ingame-checklist.md` の「名前の再検討（2026-10-17）」。「貯水槽（シスターン）」はノリア方式のもので、既存の「貯水池」と同じ施設か不明のため据え置き
   - クラウドの予約（2026-11-06 09:00 JST に1回、調査と報告のみ）: https://claude.ai/code/routines/trig_01WtBULkotMsf91c594bardj
   - DLC03ページには2026-10-05にリリース日（11月5日）とアップデート3.0の内容（統計メニュー拡張・スタンプ機能・バランス調整・栄誉の殿堂）を追記済み（`ffdcde5`〜`c111e2b`、push済み）
 
