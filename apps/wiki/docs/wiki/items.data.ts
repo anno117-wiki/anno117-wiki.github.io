@@ -94,12 +94,27 @@ const RARITY_EN_FROM_JA: Record<string, string> = Object.fromEntries(
   Object.entries(RARITY_JA).map(([en, ja]) => [ja, en])
 )
 
+// カエシリアとの「取引」は黒曜石で払う（実機確認済み、2026-10-17）。元データの価格はコイン換算の
+// 値（黒曜石の枚数 x 168。取引43件すべてで一致）なので、割り戻して黒曜石の枚数で表示する。
+// 「契約」「撃破ドロップ」など取引以外の取得先は通常のコイン価格のまま。
+const OBSIDIAN_RATE = 168
+const OBSIDIAN_TRADE_SOURCE = 'カエシリアとの取引'
+
+function toObsidianPrice(price: string, source: string[]): number | null {
+  if (!source.some((s) => s.startsWith(OBSIDIAN_TRADE_SOURCE))) return null
+  const n = Number(price)
+  if (!Number.isInteger(n) || n <= 0 || n % OBSIDIAN_RATE !== 0) return null
+  return n / OBSIDIAN_RATE
+}
+
 interface ItemEntry {
   guid: string
   nameJa: string
   rarityJa: string
   nicheJa: string
   price: string
+  /** 黒曜石で買うアイテムの枚数。コイン価格のときはnull */
+  obsidianPrice: number | null
   effects: string[]
   description: string
   targets: string
@@ -124,6 +139,7 @@ export default {
         rarityJa: RARITY_JA[row.rarity] ?? row.rarity,
         nicheJa: NICHE_JA[row.niche] ?? row.niche,
         price: row.price ?? '',
+        obsidianPrice: toObsidianPrice(row.price ?? '', Array.isArray(row.source) ? row.source : []),
         effects: Array.isArray(row.effects) ? row.effects : [],
         description: row.description ?? '',
         targets: row.targets ?? '',

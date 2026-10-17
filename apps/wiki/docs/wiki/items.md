@@ -54,7 +54,9 @@ function resetFilters(): void {
   selTarget.value = ''
 }
 
-function fmtPrice(p: string): string {
+function fmtPrice(item: { price: string; obsidianPrice: number | null }): string {
+  if (item.obsidianPrice !== null) return `黒曜石 ${item.obsidianPrice}`
+  const p = item.price
   if (!p) return '—'
   const n = Number(p)
   if (!Number.isFinite(n) || n === 0) return p || '—'
@@ -361,7 +363,7 @@ Anno 117 の専門家が装着できる全アイテムの一覧です。分類�
     <div>{{ item.boostEffects.join('、') }}</div>
   </div>
 </td>
-<td>{{ fmtPrice(item.price) }}</td>
+<td>{{ fmtPrice(item) }}</td>
 </tr>
 </tbody>
 </table>
@@ -406,7 +408,7 @@ Anno 117 の専門家が装着できる全アイテムの一覧です。分類�
     </div>
     <div class="item-card-row">
       <span class="item-card-label">価格:</span>
-      <span>{{ fmtPrice(item.price) }}</span>
+      <span>{{ fmtPrice(item) }}</span>
     </div>
   </div>
 </div>
