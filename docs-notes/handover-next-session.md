@@ -1,9 +1,9 @@
-# 引き継ぎ: 次回セッション向け（2026-10-20 更新・第23版）
+# 引き継ぎ: 次回セッション向け（2026-10-20 更新・第24版）
 
 この文書には「今の状態・次の任務・保留・注意点」だけを書く。完了した作業の記録は `docs-notes/handover-archive.md` に移してあり、開始時に読む必要はない（文中の「アーカイブX節」で必要な箇所だけ引く）。
 
 ## git状態
-- ブランチ: master。2026-10-18の実機確認3件の反映まで**push済み**（`78c1550` 輝きの範囲とパトリキ追加効果、`607dad0` 生産性+20%の範囲、`7753cd8` ヒエロ最終段階の試走+2）。この引き継ぎ書の更新コミットだけ、push されているかを `git status -sb` で確認すること。2026-10-17の経緯は、前半（PageSpeed）がアーカイブY節、後半（実機確認・DLC03準備・アルビオン版の図）がZ節、2026-10-06分はX節。直近の作業は `git log -15`
+- ブランチ: master。2026-10-20の作業まで**全てpush済み**（最新 `0703d6c` 来訪者の名声5,000未満の追記。この引き継ぎ書の更新コミットだけ、push されているかを `git status -sb` で確認すること）。2026-10-20の経緯はアーカイブAA〜AC節、2026-10-17の前半（PageSpeed）がY節、後半（実機確認・DLC03準備・アルビオン版の図）がZ節、2026-10-06分はX節。直近の作業は `git log -15`
 - GitHub Pagesデプロイの確認は `gh run list --repo anno117-wiki/anno117-wiki.github.io --limit 5`
 - **`docs-notes/` は `.gitignore` 対象**（`handover-next-session.md` / `handover-archive.md` / `building-icon-mapping.md` / `how-to-edit-site.md` / `dlc03-ingame-checklist.md` / `wiki/` のみ例外で追跡）。次の調査メモ3本は**ローカルのみでGit未管理**
   - `docs-notes/research-alt-producers-coal-gold.md`（石炭・金の生産元、信仰神、サイロ、実機確認の記録）
@@ -32,9 +32,9 @@
 - GSC「ページのインデックス登録」: **2026-10-20に解決を確認**（アーカイブAA節）。登録済み30件、未登録1件は sitemap.xml のみで実害なし。追加の対応は不要
 - **検索CTRの比較（アーカイブU節）**: 2026-09-30に `/`・`guide/strategy.html`・`wiki/goods.html` のtitleを変更済み。10月中旬〜下旬に、`docs-notes/gsc-baseline-2026-09-30/` と同じ形式でGSCのCSVを出力し、3ページのCTR・順位・表示回数を比べる
 - GSC「ウェブに関する主な指標」（アーカイブR節）: ユーザーがCrUXキャッシュ更新を待って再計測予定。相談があれば経過を確認
-- アイコン圧縮: **wiki側は対応済み**（アーカイブV節。商品・建物をWebPサムネイル化）。**計算機側（`docs/calculator/icons/`、約21MB）は未対応**。計算機の初期ロードはアイコン5件206KBで、skill-*.png（1枚56〜60KB）が主。着手するなら計算機の表示サイズを確認してから
-- 2026-10-02の調査で出た未着手の低優先度項目（ユーザー未依頼）: 計算機の使い方ページの「計算」リンク表記が実際のボタン名「開く」と不一致（`guide/calculator-guide.md:47`）／llms.txtにpatrons・splendor・スキル各ブランチ・DLC02/03・/wiki/が未掲載／計算機の初期ロードで`data/items/*.json`64件を個別fetch（1ファイル統合の余地）／wiki全ページのCLS 0.034（Layout.vueのセクションナビDOM挿入が原因と推測、合格域）
-- 計算機のモバイル版で、PageSpeed全項目100点のあと実機の見た目（ボタン文言・パネル見出しの大きさ）を目視していない。見出しを h3 から h2 に変えた「生産品を選択」は、標準の h3 と同じ見た目になるようCSSで合わせてあるが、画面で比べていない（アーカイブY節）
+- アイコン圧縮: wiki側は対応済み（アーカイブV節。WebPサムネイル）。**計算機側も2026-10-20に商品アイコン111枚を256px→128pxへ縮小済み**（PNGのまま、9.0MB→3.0MB、アーカイブAC節）。未対応: `icons/` のサブフォルダ（buildings・infrastructure・items・tech等）と `skill-*.png`。`docs/calculator/icons/` 全体は約14.9MB。なお `apps/wiki/docs/public/icons/goods` は `packages/shared/public/icons` へのジャンクション（同一ファイル）
+- 2026-10-02の調査で出た未着手の低優先度項目（ユーザー未依頼）: 計算機の使い方ページの「計算」リンク表記が実際のボタン名「開く」と不一致（`guide/calculator-guide.md:47`）／計算機の初期ロードで`data/items/*.json`64件を個別fetch（1ファイル統合の余地）／wiki全ページのCLS 0.034（Layout.vueのセクションナビDOM挿入が原因と推測、合格域）
+- 計算機のモバイル版で、PageSpeed全項目100点のあと実機の見た目（ボタン文言・パネル見出しの大きさ）を目視していない。見出しを h3 から h2 に変えた「生産品を選択」は、標準の h3 と同じ見た目になるようCSSで合わせてあるが、画面で比べていない（アーカイブY節）。2026-10-20にヘッドレスPlaywrightで縦横の初期画面を撮り、崩れが無いことだけ確認済み（実機の見た目の確認ではない）
 - **2026-10-17夜の実機確認（サイト反映済み・`/wiki/splendor`）**: 競馬場Xの戦車8サイクルごと、円形闘技場VIIの全部隊攻撃+1、Xの祝祭頻度アップと反乱抑制（公式の「祭り+25%」は画面に出ず外した）、円形闘技場の建築工程（フェーズI〜IV、公式 `Monument Colosseum Phase 0/1/2` と一致）。競馬場・円形闘技場の報酬/輝きは準備品で変動するため式は調べない（ユーザー決定）。コモン御者は初期値1〜3で確定。詳細は調査メモ2本。次回アーカイブへ移すこと
 - **2026-10-17の実機確認の結果はアーカイブZ節に移した**（アイテム一覧の価格・レアリティ、競馬場VII/Xの効果、コモンのレース参加、来訪する専門家の確率の式、軍事ユニット11種の表、燃料、信仰神の用語統一、アルビオン版の図）。以下は**残っている確認・未解決**
   - **2026-10-18の実機確認（反映・push済み、`/wiki/splendor` と `guide/dlc02-hippodrome.md`）**: 競馬場の効果は島内すべての建物に及ぶ／ランクIIからの追加属性（VIIで収+2 幸+1 信+2 名+1）はパトリキの住居だけ（エクィテスは基本値＋公有馬の特権のみ）で単位は加算値／ランクXの生産性+20%は馬ブリーダー中心の円形範囲（外側の大きい円）で、馬と無関係の施設（調理場）にもかかる／ヒエロの最終段階「競馬場の頂にある星」だけ、配置すると試走+2回（途中段階には無い）。詳細は調査メモ2本の末尾
@@ -46,7 +46,7 @@
 - GSC: アーカイブI・N・Q節を参照。**guide系9件+`updates.html`は2026-09-28のURL検査で全件登録済みと確認済み**（アーカイブS節）。`techs-economy.html`等「クロール済み-インデックス未登録」表示は解消見込み（数日後に再確認）
 - アイテム取得先(アーカイブQ節): Julia(ユリア)は実在・用途不明のため表示除外中。実機で「ユリア」という商人/NPCを確認できれば`tools/build-items-ja.py`の`NPC_NAME_EXCLUDED`から外して復活可能。GUID90573「花形の潜り手」の入手方法も未解明のまま（2026-10-17にCodex Romana（codex-romana.com）のデータを確認: 同サイトでもこのアイテム（Natanhael Sithar, the Star Diver）の取得先は「UNBEKANNT（不明）」で、480件中ただ1件の取得先不明。Julia/Iulia という商人・NPCは同サイトのアイテム・取得先データに1件も無く、取得先の商人名はValeria・Diana・Procurator・Caeso・Manx・Voada・Caecilia・ライバル7人・祭り等のみ。Codex RomanaのデータはItem Inspector 2.1と同じ480件なので、独立した追加情報ではない）
 - Item Inspectorリポジトリの配布方式変更・全体データ入手先リスク（アーカイブO節）: 次パッチ時に改めて状況確認
-- 隣接太字崩れバグ（アーカイブP節）の横展開チェック未実施。同節に載せた検索コマンドで他ページも確認するとよい
+- 隣接太字崩れバグ（アーカイブP節）の横展開チェック: **2026-10-20に実施済み**（`research-guide.md` 1件・`trade-guide.md` 3件を `<strong>` に修正、`bun run build:site` 後の描画HTMLで `**` 残り0件を確認。アーカイブAC節）。検索は「描画後のHTMLに残る `**`」を全マッチで数えること（行ごとの先頭マッチだけだと見落とす）
 - 宣伝: 案は提示済み（実施はユーザー判断）。日本語圏（X・Steam・Discord）→英語圏（Reddit r/anno 等）の順。上流のライセンス確認は済み（アーカイブK節。アイコン以外は自由に使用可）
 
 ## 保留・未解決（従来の持ち越し）
@@ -86,6 +86,8 @@
 - **`docs/`をローカルサーバー（`python -m http.server`等）で配信中に`build:site`すると`EBUSY: rm docs`で失敗する**。サーバーを止めてからビルドする
 - Lighthouseのローカル実行: `CHROME_PATH="C:/Users/kojif/AppData/Local/ms-playwright/chromium-1223/chrome-win64/chrome.exe" npx -y lighthouse@12 <URL> --only-categories=performance --output=json --output-path=<file> --chrome-flags="--headless=new" --quiet`（既定はモバイル、`--preset=desktop`でデスクトップ）。**`python -m http.server`は非圧縮配信のため、ローカルのスコアは本番より大幅に低く出る**。判断は本番URLで計測すること
 - **見た目比較の罠**: この開発PCには Noto Sans JP がインストール済み（`C:\Windows\Fonts\NotoSansJP-VF.ttf`）。フォントの比較をするときは、フォント指定からNotoを外さないと一般的なWindows（游ゴシック）の見え方にならない
+
+- 更新履歴 `updates.json` の先頭5件が全ページのフッター付近に表示される（`GitHistory.vue`）。1件足すと5件目のリンクが外れ、`check:site` のサイト内リンク数が減るが正常（2026-10-20）
 
 ### VitePress / Vite
 - 日本語文字の直後の `**太字**` 記法は機能しない → `<strong>` タグを使う
