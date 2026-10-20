@@ -1,9 +1,9 @@
-# 引き継ぎ: 次回セッション向け（2026-10-20 更新・第24版）
+# 引き継ぎ: 次回セッション向け（2026-10-20 更新・第25版）
 
 この文書には「今の状態・次の任務・保留・注意点」だけを書く。完了した作業の記録は `docs-notes/handover-archive.md` に移してあり、開始時に読む必要はない（文中の「アーカイブX節」で必要な箇所だけ引く）。
 
 ## git状態
-- ブランチ: master。2026-10-20の作業まで**全てpush済み**（最新 `0703d6c` 来訪者の名声5,000未満の追記。この引き継ぎ書の更新コミットだけ、push されているかを `git status -sb` で確認すること）。2026-10-20の経緯はアーカイブAA〜AC節、2026-10-17の前半（PageSpeed）がY節、後半（実機確認・DLC03準備・アルビオン版の図）がZ節、2026-10-06分はX節。直近の作業は `git log -15`
+- ブランチ: master。2026-10-20の作業まで**全てpush済み**（最新 `965094f` 信仰神の効果が、しきい値を下回っても続く範囲の反映。この引き継ぎ書の更新コミットだけ、push されているかを `git status -sb` で確認すること）。2026-10-20の経緯はアーカイブAA〜AC節、2026-10-17の前半（PageSpeed）がY節、後半（実機確認・DLC03準備・アルビオン版の図）がZ節、2026-10-06分はX節。直近の作業は `git log -15`
 - GitHub Pagesデプロイの確認は `gh run list --repo anno117-wiki/anno117-wiki.github.io --limit 5`
 - **`docs-notes/` は `.gitignore` 対象**（`handover-next-session.md` / `handover-archive.md` / `building-icon-mapping.md` / `how-to-edit-site.md` / `dlc03-ingame-checklist.md` / `wiki/` のみ例外で追跡）。次の調査メモ3本は**ローカルのみでGit未管理**
   - `docs-notes/research-alt-producers-coal-gold.md`（石炭・金の生産元、信仰神、サイロ、実機確認の記録）
