@@ -364,3 +364,4 @@
 - 実機(PS5)で、アルビオン版の維持費の労働力は**メルカトル3**と確認（ユーザー、2026-10-20）。公式データ上は「Workforce Merchants」
 - `packages/shared/public/productions/bird_tongues_in_aspic.json`（Celtic）の獣脂ノードを31756・プレブス3から5475・メルカトル3へ修正。計算機は`mercators`キー（表示「メルカトル」）に対応済み。`soap.json`はRoman用なので31756のまま
 - 建物効果ページには`renderer`（ラティウム）と`albion_renderer`（アルビオン）の両方が載っており、維持費-10などの値は合っている
+- 円形闘技場の輝きの効果範囲は島内全域（ユーザー確認 2026-10-20）。`/wiki/splendor` の見出し・本文・「要検証」注記を修正し、更新履歴に追記
