@@ -365,3 +365,4 @@
 - `packages/shared/public/productions/bird_tongues_in_aspic.json`（Celtic）の獣脂ノードを31756・プレブス3から5475・メルカトル3へ修正。計算機は`mercators`キー（表示「メルカトル」）に対応済み。`soap.json`はRoman用なので31756のまま
 - 建物効果ページには`renderer`（ラティウム）と`albion_renderer`（アルビオン）の両方が載っており、維持費-10などの値は合っている
 - 円形闘技場の輝きの効果範囲は島内全域（ユーザー確認 2026-10-20）。`/wiki/splendor` の見出し・本文・「要検証」注記を修正し、更新履歴に追記
+- ヒエロ関連の外部調査（2026-10-20）: Steam・AnnoZone・dq7reimagined・Codex Romana を確認したが、段階別の能力値は見つからず。ユーザー説明で、成長途中の4パラメーターはストーリーの選択肢・進行順で変わると判明。プリセット157301〜157304との対応づけは打ち切り
