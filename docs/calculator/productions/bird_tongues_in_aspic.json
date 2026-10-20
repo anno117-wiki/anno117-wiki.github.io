@@ -60,7 +60,7 @@
             "id": "lard",
             "name": "Lard",
             "type": "extractor",
-            "guid": "31756",
+            "guid": "5475",
             "time": 60,
             "needs_fuel": true,
             "building_cost": {
@@ -73,7 +73,7 @@
             },
             "maintanance_cost": {
                 "money": 10,
-                "plebeian": 3
+                "mercators": 3
             },
             "input": [
                 {
