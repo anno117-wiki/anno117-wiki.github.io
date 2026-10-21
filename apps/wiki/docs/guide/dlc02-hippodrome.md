@@ -5,7 +5,7 @@ description: Anno 117 DLC02「競馬場（The Hippodrome）」の攻略ガイド
 
 # DLC02・競馬場
 
-> 一部の数値は<strong>要検証</strong>。
+> 一部の数値は未確認です。
 
 ## 概要
 
