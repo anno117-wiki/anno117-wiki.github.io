@@ -334,7 +334,7 @@ Anno 117 の専門家が装着できる全アイテムの一覧です。分類�
 <td style="white-space:normal;">
   <div style="min-width:350px;word-break:break-all;">
     {{ item.nameJa }}
-    <span v-if="item.caution" class="item-caution-badge" :title="item.caution">要検証</span>
+    <span v-if="item.caution" class="item-caution-badge" :title="item.caution">未確認</span>
     <span
       v-if="item.source.length"
       class="item-source-badge"
@@ -373,7 +373,7 @@ Anno 117 の専門家が装着できる全アイテムの一覧です。分類�
 <div class="item-card" v-for="item in filtered" :key="item.guid">
   <div class="item-card-header">
     <span>{{ item.nameJa }}</span>
-    <span v-if="item.caution" class="item-caution-badge" :title="item.caution">要検証</span>
+    <span v-if="item.caution" class="item-caution-badge" :title="item.caution">未確認</span>
     <span
       v-if="item.source.length"
       class="item-source-badge"
@@ -426,7 +426,7 @@ Anno 117 の専門家が装着できる全アイテムの一覧です。分類�
     <ul class="item-source-popover-list">
       <li v-for="(s, i) in sourcePopover.item.source" :key="i">{{ s }}</li>
     </ul>
-    <div v-if="sourcePopover.item.sourceCaution" class="item-source-popover-caution">※内部名から独自に意訳した箇所を含むため要検証</div>
+    <div v-if="sourcePopover.item.sourceCaution" class="item-source-popover-caution">※内部名から独自に意訳した箇所を含むため、未確認です</div>
   </div>
 </Teleport>
 

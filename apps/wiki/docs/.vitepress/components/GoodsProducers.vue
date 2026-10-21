@@ -10,7 +10,7 @@
         <span v-for="e in p.effects" :key="e.label" class="gp-effect">{{ e.label }} {{ e.value }}</span>
       </div>
       <div class="gp-line">
-        <span class="gp-label">サイクルタイム</span>{{ p.cycle }}秒<span v-if="p.cycleUnverified">（要検証）</span>
+        <span class="gp-label">サイクルタイム</span>{{ p.cycle }}秒<span v-if="p.cycleUnverified">（未確認）</span>
       </div>
       <div class="gp-line">
         <span class="gp-label">解放条件</span>{{ p.unlock ?? '—' }}
