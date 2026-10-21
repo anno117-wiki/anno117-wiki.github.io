@@ -118,7 +118,7 @@ const BREADCRUMB_PARENT: Record<string, { path: string; name: string }> = {
   'guide/dlc01-ashes-of-prophecy.md': { path: '/guide/strategy', name: '攻略ガイド' },
   'guide/dlc02-hippodrome.md': { path: '/guide/strategy', name: '攻略ガイド' },
   'guide/dlc03-dawn-of-delta.md': { path: '/guide/strategy', name: '攻略ガイド' },
-  'guide/calculator-guide.md': { path: '/guide/getting-started', name: 'はじめに' },
+  'guide/calculator-guide.md': { path: '/guide/getting-started', name: 'このサイトについて' },
 }
 
 // データベース配下の各ページは入口ページ(/wiki/)を親とする
@@ -279,7 +279,7 @@ export default defineConfig({
           text: 'このWikiについて',
           items: [
             {
-              text: 'はじめに',
+              text: 'このサイトについて',
               link: '/guide/getting-started',
               items: [
                 { text: '計算機の使い方', link: '/guide/calculator-guide' },

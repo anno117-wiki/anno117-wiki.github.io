@@ -38,4 +38,4 @@ Anno 117 は Ubisoft の都市builderシリーズ最新作。本サイトは日�
 ## Optional
 
 - [更新履歴](https://anno117-wiki.github.io/updates.html): サイトの更新履歴
-- [はじめに](https://anno117-wiki.github.io/guide/getting-started.html): サイト構成の説明
+- [このサイトについて](https://anno117-wiki.github.io/guide/getting-started.html): サイトの紹介とデータの出どころ
