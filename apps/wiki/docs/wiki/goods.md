@@ -58,8 +58,8 @@ watch(hash, scrollToHash)
 # 商品一覧
 
 Anno 117 で生産・消費される全 {{ data.categories.reduce((n, c) => n + data.byCategory[c].length, 0) }} 商品の一覧です。
-個別の生産チェーンと必要量の計算は[計算機](/calculator/)をご利用ください。
-ラティウム・アルビオン地域別の商品分布は[地域別商品](/wiki/regions)をご覧ください。
+個別の生産チェーンと必要量の計算は[計算機](/calculator/)で。
+ラティウム・アルビオン地域別の商品分布は[地域別商品](/wiki/regions)にあります。
 
 <div v-for="cat in data.categories" :key="cat">
 

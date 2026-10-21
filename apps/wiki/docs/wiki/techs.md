@@ -27,7 +27,7 @@ function getBranchDisplayLabel(b: string): string {
 
 # スキルツリー
 
-知識を消費して解放できるスキルの一覧です。ブランチごとにページを分けています。見たいブランチを選んでください。
+知識を消費して解放できるスキルの一覧です。ブランチごとにページを分けています。
 
 <div class="branch-links">
   <a
