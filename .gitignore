@@ -58,6 +58,7 @@ docs-notes/*
 !docs-notes/how-to-edit-site.md
 !docs-notes/handover-archive.md
 !docs-notes/dlc03-ingame-checklist.md
+!docs-notes/unverified-items.md
 
 # Claude Code mod（.claude/skills/<mod>）の読み込み時に自動生成される型定義・tsconfig
 .claude/skills/*/.claude-plugin/types/
