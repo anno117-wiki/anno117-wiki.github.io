@@ -383,6 +383,11 @@ WAR_STATE_VALUES_JA = {"Dominating": "優勢", "Struggling": "苦戦", "CloseToW
 # ConditionCompareVariableで使われる変数名。用例が少なく汎用マッピングを作れないため、
 # 既知のものだけ個別に訳語を用意する。
 COMPARE_VARIABLE_JA = {"PopularityMax": "人気度の上限"}
+# 真のときに文章で表示する変数条件。PopularityMaxはヒエロのストーリーの人気度が
+# 1,000,000に達すると真になる（ゲーム内データ。実機では未確認）。
+COMPARE_VARIABLE_TRUE_JA = {
+    "PopularityMax": "ヒエロのストーリーで人気度が上限（1,000,000）に達する（未確認です）",
+}
 DIPLOMACY_STATE_VALUES = {
     "Undiscovered": "-6910984867916216313", "Alliance": "-6909792988828917153",
     "DefensivePact": "-6913251946263130178", "Peace": "-6913646454384213306",
@@ -513,12 +518,15 @@ def tr_condition(raw):
                 right = resolve_loca(FESTIVAL_ANY_ID)
             if left == "ConditionCompareVariable":
                 var_name, _, bool_val = right.strip().partition(" ")
+                raw_var = var_name.strip()
                 var_name = COMPARE_VARIABLE_JA.get(
                     var_name.strip(),
                     re.sub(r"(?<!^)(?=[A-Z])", " ", var_name.strip()).strip(),
                 )
                 check = "○" if bool_val.strip() == "1" else "×"
                 right = f"{var_name} {check}"
+                if bool_val.strip() == "1" and raw_var in COMPARE_VARIABLE_TRUE_JA:
+                    right = COMPARE_VARIABLE_TRUE_JA[raw_var]
             if left == "ConditionRaceOutcome":
                 position, _, event_guid = right.strip().partition(" ")
                 right = f"{resolve_all_condition_guids(event_guid)} {position}位".strip()
