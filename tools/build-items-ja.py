@@ -774,6 +774,12 @@ RARITY_OVERRIDE = {
     for guid in ("42049", "149292", "91417", "91415", "42050", "42625", "91419", "91421", "149281")
 }
 
+# 試走回数（TrainingChargesUpgrade）を増やす専門家。Item Inspector の CSV は RaceTrackUpgrades を
+# 出力しないので手書きで足す。ヒエロ・ケンタウルスの基本・強化の両バフが +2（assets.xml の 157299・157300、
+# 画面の「利用可能なアップグレード +2」と一致）。
+TRAINING_CHARGES_GUIDS = {"157292": 2}
+TRAINING_CHARGES_LABEL_ID = "-6908760938196925069"
+
 items = []
 with CSV.open(encoding="utf-8") as f:
     for r in csv.DictReader(f):
@@ -783,6 +789,11 @@ with CSV.open(encoding="utf-8") as f:
         if needed_prestige:
             effects.append(f"必要名声: {needed_prestige}")
         effects.extend(tr_effects(r.get("MythicEffect Effects", "")))
+        boost_effects = tr_effects(r.get("BoostBuff Effects", ""))
+        if guid in TRAINING_CHARGES_GUIDS:
+            charges = f"{clean(JP.get(TRAINING_CHARGES_LABEL_ID, ''))}: +{TRAINING_CHARGES_GUIDS[guid]}"
+            effects.append(charges)
+            boost_effects.append(charges)
         source_ja, source_caution = resolve_source(r.get("Source", ""))
         items.append({
             "guid": guid,
@@ -794,7 +805,7 @@ with CSV.open(encoding="utf-8") as f:
             "description": clean(JP.get(r["InfoDescription"], "")),
             "effects": effects,
             "boostHint": clean(JP.get(r.get("Boost Hint", ""), "")),
-            "boostEffects": tr_effects(r.get("BoostBuff Effects", "")),
+            "boostEffects": boost_effects,
             "boostCondition": tr_condition(r.get("Boost Condition", "")),
             "targets": format_targets(r.get("Targets", "")),
             "source": source_ja,
