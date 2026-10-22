@@ -1,9 +1,9 @@
-# 引き継ぎ: 次回セッション向け（2026-10-22 更新・第27版）
+# 引き継ぎ: 次回セッション向け（2026-10-23 更新・第28版）
 
 この文書には「今の状態・次の任務・保留・注意点」だけを書く。完了した作業の記録は `docs-notes/handover-archive.md` に移してあり、開始時に読む必要はない（文中の「アーカイブX節」で必要な箇所だけ引く）。
 
 ## git状態
-- ブランチ: master。2026-10-22の作業まで**全てpush済み**（最新の作業コミット `a3b9c5f` ヒエロの試走回数+2の追加。この引き継ぎ書の更新コミットだけ、push されているかを `git status -sb` で確認すること）。2026-10-22の経緯（競馬場ガイドの実機確認・アイテム条件・Codex Romana比較）はアーカイブAE節、2026-10-21（サイト文言の見直し）はアーカイブAD節、2026-10-20はAA〜AC節、2026-10-17の前半（PageSpeed）がY節、後半（実機確認・DLC03準備・アルビオン版の図）がZ節、2026-10-06分はX節。直近の作業は `git log -15`
+- ブランチ: master。2026-10-23のデブログ第2回の反映まで**全てpush済み**（最新の作業コミットは更新履歴の追加。2026-10-22は `a3b9c5f` ヒエロの試走回数+2の追加。この引き継ぎ書の更新コミットだけ、push されているかを `git status -sb` で確認すること）。2026-10-23（デブログ第2回の反映）はアーカイブAF節、2026-10-22の経緯（競馬場ガイドの実機確認・アイテム条件・Codex Romana比較）はアーカイブAE節、2026-10-21（サイト文言の見直し）はアーカイブAD節、2026-10-20はAA〜AC節、2026-10-17の前半（PageSpeed）がY節、後半（実機確認・DLC03準備・アルビオン版の図）がZ節、2026-10-06分はX節。直近の作業は `git log -15`
 - GitHub Pagesデプロイの確認は `gh run list --repo anno117-wiki/anno117-wiki.github.io --limit 5`
 - **`docs-notes/` は `.gitignore` 対象**（`handover-next-session.md` / `handover-archive.md` / `building-icon-mapping.md` / `how-to-edit-site.md` / `dlc03-ingame-checklist.md` / `unverified-items.md` / `wiki/` のみ例外で追跡）。次の調査メモ3本は**ローカルのみでGit未管理**
   - `docs-notes/research-alt-producers-coal-gold.md`（石炭・金の生産元、信仰神、サイロ、実機確認の記録）
@@ -23,7 +23,8 @@
   - 反映先: `guide/dlc03-dawn-of-delta.md`、スキルツリー（`techs.json`・`techs-dlc03.md`新規）、商品・生産チェーン・信仰神（新祭神3柱）・アイテム
   - **実機確認シート `docs-notes/dlc03-ingame-checklist.md` を用意済み（2026-10-06、`b86b273`）**。控える項目、反映先のファイル、事前に済ませた準備、配信後に決めることをまとめてある。配信後はまずこのシートを見ること
   - 事前に済ませた準備: 地域別商品ページと計算機の3地域対応（データが入るまで表示は従来どおり）、`wiki/techs-dlc03.md` の骨組み（スキル登録までビルド対象外）、住民層ページのアイギュプト節（準備中として公開）
-  - **【確認予定 2026-10-22公開・内容の確認は10-23朝】公式デブログ第2回**（第1回の記事に "the next one will release on October 22nd" とある。住民階層・ローマ化・生産チェーン・技術・洪水と灌漑の仕組みを扱う予定。**公開時刻は未公表**）。公開後に `https://www.anno-union.com/category/devblog-en/` で記事を確認し、`dlc03-ingame-checklist.md` の反映先へ照らす。第3回（ピラミッド、日付は記事に記載なし）は「10月末」の予告。同日17時(CEST、日本時間10/23 0時)にTwitchライブ配信（Annogameチャンネル）あり（デブログではなく配信の時刻）
+  - **【2026-10-23 反映済み】公式デブログ第2回**（"Population, Floods and the power of knowledge"、2026-10-22公開、時刻の記載なし）。`guide/dlc03-dawn-of-delta.md` と `wiki/population.md`（アイギュプト住民層）、`aegyptus-tiers.svg`（3階層）、更新履歴に反映。経緯と注意はアーカイブAF節。**第3回は2026-10-29公開予定**（新しい神々3柱・物語・新キャラクター・ピラミッド）。公開後に同じ手順で確認し、`dlc03-dawn-of-delta.md` の「宗教」「未発表の要素」を更新すること。以下は第2回の公開前に書いた予定（経緯として残す）:
+  - **【旧・確認予定 2026-10-22公開・内容の確認は10-23朝】公式デブログ第2回**（第1回の記事に "the next one will release on October 22nd" とある。住民階層・ローマ化・生産チェーン・技術・洪水と灌漑の仕組みを扱う予定。**公開時刻は未公表**）。公開後に `https://www.anno-union.com/category/devblog-en/` で記事を確認し、`dlc03-ingame-checklist.md` の反映先へ照らす。第3回（ピラミッド、日付は記事に記載なし）は「10月末」の予告。同日17時(CEST、日本時間10/23 0時)にTwitchライブ配信（Annogameチャンネル）あり（デブログではなく配信の時刻）
   - 10/23朝の確認は**二重に予約済み**: ローカルのcron（そのセッション内のみ有効、9:07ごろ）と、クラウドのルーチン https://claude.ai/code/routines/trig_019PtkfHFJC1kjkvp2PkWv1a （2026-10-23 09:10 JST に1回、報告のみ・ファイル変更なし）。**結果が届いていなければ、この確認は未実施として扱う**。ローカルのcronはセッションを閉じると消える
   - 2026-10-17時点の確認: 第1回「Arriving in Aegyptus」（2026-10-15）が公開済み。発売日は原文 "releases on November 5th on all platforms" で**11月5日確定**。州Aegyptusは3ゾーン（Floodplains／Farmland／Arid Zone）、最初の住民層はThreshers、Firepit・Date Farm・Wesekh Collars、木材の代わりにMud Bricks（reed+mud）。日本語名はいずれも**公式名未確定・実機確認待ち**（仮訳の一覧は `dlc03-ingame-checklist.md` の「1. 名前の確定」末尾。Mud Bricks=日干しレンガ はユーザー指摘）。サイトの `guide/dlc03-dawn-of-delta.md` の3ゾーン説明はデブログ第1回に合わせて修正済み（`b42ad2b`）。未反映として残るのは、地形（川の向き・北からのみ進入・Latium/Albionの中間）・最初の入植地（Firepit・Date Farm・Wesekh Collars・Mud Bricks）で。反映するかどうかはユーザー判断（10月22日の第2回を見てからまとめるほうが手戻りが少ない、という案は提示済みで、未決定）。アップデート3.0のパッチノートは未公開（発売近くに公開と案内）
   - **属州名を2026-10-17に「アエギプトゥス」から「アイギュプト」へ変更**（公式データ v2.1 の PlayerLogo「Aegyptus=アイギュプト」「Princess of Aegyptus=アイギュプトの王女」が根拠。配信前データなので、実機の日本語版で確認すること。ラテン語読みの旧表記は私たちの音写で、公式ではなかった可能性が高い）。名前の再検討結果は `dlc03-ingame-checklist.md` の「名前の再検討（2026-10-17）」。「貯水槽（シスターン）」はノリア方式のもので、既存の「貯水池」と同じ施設か不明のため据え置き
