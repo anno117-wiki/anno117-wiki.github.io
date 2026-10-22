@@ -383,10 +383,10 @@ WAR_STATE_VALUES_JA = {"Dominating": "優勢", "Struggling": "苦戦", "CloseToW
 # ConditionCompareVariableで使われる変数名。用例が少なく汎用マッピングを作れないため、
 # 既知のものだけ個別に訳語を用意する。
 COMPARE_VARIABLE_JA = {"PopularityMax": "人気度の上限"}
-# 真のときに文章で表示する変数条件。PopularityMaxはヒエロのストーリーの人気度が
-# 1,000,000に達すると真になる（ゲーム内データ。実機では未確認）。
+# 真のときに文章で表示する変数条件。PopularityMaxは人気度が1,000,000に達すると真になる
+# （ゲーム内データ。貯まり方は外部サイトの記載。実機では未確認）。
 COMPARE_VARIABLE_TRUE_JA = {
-    "PopularityMax": "ヒエロのストーリーで人気度が上限（1,000,000）に達する（未確認です）",
+    "PopularityMax": "人気度が上限に達する。ストーリーのレースを進めるか、ヴィラ・オフィキウムに配置して使うと貯まる（未確認です）",
 }
 DIPLOMACY_STATE_VALUES = {
     "Undiscovered": "-6910984867916216313", "Alliance": "-6909792988828917153",
