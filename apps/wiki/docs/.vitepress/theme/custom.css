@@ -293,6 +293,22 @@
     -webkit-overflow-scrolling: touch;
     max-width: 100%;
   }
+
+  /* (3) 軍事ガイドのユニット表: 見出しと数値を折り返さず、ユニット名の列を固定して横スクロールで読む */
+  .vp-doc._guide_military-guide table th,
+  .vp-doc._guide_military-guide table td {
+    white-space: nowrap;
+    padding: 8px 10px;
+  }
+
+  .vp-doc._guide_military-guide table th:first-child,
+  .vp-doc._guide_military-guide table td:first-child {
+    position: sticky;
+    left: 0;
+    z-index: 1;
+    background-color: var(--vp-c-bg);
+    box-shadow: 1px 0 0 var(--vp-c-divider);
+  }
 }
 
 /* buildings テーブルパン操作 */
