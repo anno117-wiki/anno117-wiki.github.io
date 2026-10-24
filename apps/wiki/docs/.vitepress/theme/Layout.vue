@@ -83,6 +83,15 @@ function fixCalculatorLinks() {
   })
 }
 
+// 文章が長い表のセルに印を付ける。モバイルで列が数文字幅まで潰れるのを、CSS側のmin-widthで防ぐ。
+const LONG_CELL_MIN_LENGTH = 20
+function markLongCells() {
+  document.querySelectorAll<HTMLElement>('.vp-doc table td').forEach(td => {
+    if (td.querySelector('br, .sp-attr')) return // 改行や属性ごとの行で縦に並べたセルは、元から狭くて読める
+    if ((td.textContent ?? '').trim().length >= LONG_CELL_MIN_LENGTH) td.classList.add('long-cell')
+  })
+}
+
 // VPLocalNav(Menu行+セクション間ナビボタン)は内容によって高さが可変のため、
 // sticky要素(item-filters・buildings-filter-bar等)がtop固定値だと重なって隠れる。
 // 実測高さをCSS変数化し、各ページのCSSからvar(--local-nav-height)で参照させる。
@@ -96,12 +105,14 @@ function updateLocalNavHeight() {
 onMounted(() => {
   renderSectionNav()
   fixCalculatorLinks()
+  markLongCells()
   updateLocalNavHeight()
   window.addEventListener('resize', updateLocalNavHeight)
 })
 onContentUpdated(() => nextTick(() => {
   renderSectionNav()
   fixCalculatorLinks()
+  markLongCells()
   updateLocalNavHeight()
 }))
 </script>

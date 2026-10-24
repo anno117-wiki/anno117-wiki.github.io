@@ -294,15 +294,33 @@
     max-width: 100%;
   }
 
-  /* (3) 軍事ガイドのユニット表: 見出しと数値を折り返さず、ユニット名の列を固定して横スクロールで読む */
-  .vp-doc._guide_military-guide table th,
-  .vp-doc._guide_military-guide table td {
+  /* (3) 全ページ共通: 見出しは折り返さず、セルが1〜2文字幅まで潰れないようにする
+     （潰れた分は横スクロールで読む） */
+  .vp-doc table th {
     white-space: nowrap;
-    padding: 8px 10px;
   }
 
-  .vp-doc._guide_military-guide table th:first-child,
-  .vp-doc._guide_military-guide table td:first-child {
+  .vp-doc table td {
+    min-width: 4.5em;
+  }
+
+  .vp-doc table td:first-child {
+    min-width: 6em;
+  }
+
+  /* 長文セル（Layout.vue の markLongCells が付ける）は、読める幅を確保する */
+  .vp-doc table td.long-cell {
+    min-width: 14em;
+  }
+
+  /* (4) 数値だけの表（軍事ガイドのユニット表）: 値も折り返さず、1列目を固定して横スクロールで読む
+     表を <div class="unit-table"> で囲むと有効になる */
+  .vp-doc .unit-table table td {
+    white-space: nowrap;
+  }
+
+  .vp-doc .unit-table table th:first-child,
+  .vp-doc .unit-table table td:first-child {
     position: sticky;
     left: 0;
     z-index: 1;
