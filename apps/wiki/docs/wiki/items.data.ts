@@ -65,10 +65,12 @@ const RARITY_JA: Record<string, string> = {
   'Quest Item': 'クエストアイテム',
 }
 
+// 表示名は実機（PS5）のアイテム振り直し画面の分野一覧に合わせる（2026-10-26、ユーザー確認）。
+// 内部名 Agriculture は「自然」、Diplomacy は「社会」と表示される（一覧9分野に「外交」は無い）。
 const NICHE_JA: Record<string, string> = {
-  Agriculture: '農業',
+  Agriculture: '自然',
   Culture: '文化',
-  Diplomacy: '外交',
+  Diplomacy: '社会',
   Economy: '経済',
   Finance: '財政',
   Military: '軍事',
