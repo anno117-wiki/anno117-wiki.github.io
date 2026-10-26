@@ -421,3 +421,10 @@
 - 軍事ガイドのユニット表（戦闘性能・コスト）は `<div class="unit-table">` で囲むと、値の折り返し禁止と1列目の固定（sticky）が効く。コスト欄・遠隔攻撃欄は `<br>` で品目ごとに改行。
 - 特性「徹甲」: ゲーム内データの `AttackModifier`（39821=徹甲、39822=徹甲＋基本防御無視、39823=防御無効化）に合わせて特性欄を修正。騎兵隊・近衛騎兵・斧兵=39821、投石兵・バリスタ・戦車=39822、カタパルト=39823。効果の説明文はデータに無く（日本語テキストは名称のみ）、本文に「実際の効果は未確認です」と書き、`unverified-items.md` に追記。
 - 失敗: `docs/` を `python -m http.server` で配信したまま `build:site` して `EBUSY` になった（既知の注意点）。止めるときは `Get-NetTCPConnection -LocalPort <port>` で自分のサーバのPIDだけを止める（`Get-Process python*` を全部止めるのは権限で拒否される）。
+
+## AH. 2026-10-26 アイテムの分類名と覚醒条件の実機照合（単独セッション、全てpush済み。`93e7f4c`〜`74412f2`）
+- きっかけ: マイオ・トゥルヌス（160081）の対象が合っているかの確認。他サイト（anno117.tools）と、ゲーム内データ（assets.xml v2.1）で照合。配置先は「ウルカヌスの祭壇」（Asset Pool All Vulcanus Shrines＝144812・144813）で正しく、鉱石の追加産出は島内の鉄鉱山（Asset Pool All Production Raw Mountain IronOre＝50237）に付く。祭壇が鉱石を産出するのではない。
+- 覚醒条件（`ConditionItemUsed`）: 公式の定型文「以下のアイテムを使う: すべてのアイテム N以上」は、実機で「同一の提督のヴィラにN個以上」の意味と確認（靴屋-アルンス・スペディウス・ファストゥス=4、アルヌス=9）。馬の執政官の条件（コルムカパイル）は「同一のヴィラまたはオフィキウムに配置」と確認。クララ・トゲイルは4体のいずれか（オフィキウムのスロットは3で全員は置けない）。表記は `tools/build-items-ja.py` の `tr_condition` 末尾の置換で直し、`items-full.json` も同じ文字列に直接修正（再生成の差分確認はしていない）。
+- 分類名: `items.data.ts` の `NICHE_JA` で Agriculture=自然、Diplomacy=社会（旧: 農業・外交）。根拠は実機の振り直し画面（9分野）と専門家詳細画面（ファッショニスト=社会）、ゲーム内テキスト（texts_japanese.xml: Nature→自然、Seafaring→航海）、`Icon ItemNiche *` のアイコン対応。
+- 財政49件は assets.xml に `<Niche>` の行が無い（既定値の省略とみられる。`<Niche>None` は `TestItem QC` の開発用3件のみ）。実機でパシェドゥ・金の石工・万能の鍋職人・責任ある保証人・書記官・仕立て屋・葦職人・ズボン専門家の8件が財政と確認。
+- 手順の教訓: `python -I` はstdoutがcp932になり日本語の出力が化けるので `-X utf8` を付ける。ゲーム内日本語テキストは `_local/anno-official-data/config/gui/texts_japanese.xml`（`<LineId>` と `<Text>`、先頭にゼロ幅スペースが付く）、英語は同フォルダの `texts_english.xml`。
