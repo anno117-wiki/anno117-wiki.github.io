@@ -570,7 +570,10 @@ def tr_condition(raw):
         merged_parts.append(p)
         i += 1
 
-    return "、".join(p for p in merged_parts if p)
+    text = "、".join(p for p in merged_parts if p)
+    # 「以下のアイテムを使う: すべてのアイテム N以上」は、実機（PS5）では「同一の提督のヴィラに
+    # N個以上」の意味（2026-10-26、ユーザー確認）。公式文言のままだと島全体の合計と読めるので直す。
+    return re.sub(r"以下のアイテムを使う: すべてのアイテム (\d+)以上", r"同一の提督のヴィラにアイテム \1以上", text)
 
 # --- Source（取得先）ローカライズ ---
 # ライバル専門家・商人・皇帝・海賊のRewardPool内部名（英語・未ローカライズ）を日本語化する。
