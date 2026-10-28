@@ -30,6 +30,7 @@ export class I18nManager {
     private translations: Map<Locale, TranslationData>;
     private listeners: Set<LocaleChangeListener>;
     private loadPromises: Map<Locale, Promise<void>>;
+    private initialized = false;
 
     private constructor() {
         this.currentLocale = 'en';
@@ -44,6 +45,7 @@ export class I18nManager {
     async init(locale: Locale = 'en'): Promise<void> {
         await this.loadLocale(locale);
         this.currentLocale = locale;
+        this.initialized = true;
     }
 
     /**
@@ -89,7 +91,10 @@ export class I18nManager {
         const data = this.translations.get(this.currentLocale);
 
         if (!data) {
-            console.warn(`[I18n] No translations loaded for locale: ${this.currentLocale}`);
+            // init() 完了前（起動時）は未ロードが正常なので警告しない
+            if (this.initialized) {
+                console.warn(`[I18n] No translations loaded for locale: ${this.currentLocale}`);
+            }
             return this.fallbackTranslation(category, subKeys);
         }
 
@@ -109,6 +114,20 @@ export class I18nManager {
         }
 
         return translation;
+    }
+
+    /**
+     * 翻訳キーが現在の言語または英語に存在するか（警告を出さずに確認する）
+     */
+    has(key: string): boolean {
+        const [category, ...subKeys] = key.split('.');
+        if (subKeys.length === 0) return false;
+
+        const fullSubKey = subKeys.join('.');
+        return [this.currentLocale, 'en' as Locale].some((locale) => {
+            const categoryData = this.translations.get(locale)?.[category as keyof TranslationData];
+            return Boolean(categoryData?.[fullSubKey]);
+        });
     }
 
     /**

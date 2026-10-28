@@ -57,6 +57,10 @@ const settingsManager = SettingsManager.getInstance();
 const iconsPath = import.meta.env.BASE_URL + 'icons/';
 
 const $t = (key: string, fallback?: string): string => {
+  // 動的キー（アイテム等）は翻訳が無く fallback で表示するため、警告を出さずに分岐する
+  if (fallback && !i18n.has(key)) {
+    return fallback;
+  }
   const result = i18n.t(key);
   const subKey = key.split('.').slice(1).join('.');
   if ((result === key || result === subKey) && fallback) {
