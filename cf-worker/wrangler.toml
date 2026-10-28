@@ -5,6 +5,15 @@ compatibility_date = "2024-01-01"
 [vars]
 # GITHUB_TOKEN は secrets で設定（wrangler secret put GITHUB_TOKEN）
 
+# 短時間の連投を抑える（1分に3件まで。period は 10 か 60 のみ。要 Wrangler 4.36 以上）
+[[ratelimits]]
+name = "POST_LIMITER"
+namespace_id = "117001"
+
+  [ratelimits.simple]
+  limit = 3
+  period = 60
+
 [[kv_namespaces]]
 binding = "COMMENT_KV"
 id = "b102b98e22de49729c8702ddc7abaae5"

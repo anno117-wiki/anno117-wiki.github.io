@@ -31,19 +31,40 @@ function json(data, status = 200, origin = '') {
   });
 }
 
-async function checkRateLimit(env, ip) {
+const DAILY_LIMIT_PER_IP = 5;
+const DAILY_LIMIT_GLOBAL = 50;
+
+// 短時間の連投を抑える（Workers の ratelimit バインディング。ロケーションごとの近似値）。
+// バインディングが無い・失敗したときは投稿を止めない。
+async function checkBurstLimit(env, ip) {
+  if (!env.POST_LIMITER) return true;
+  try {
+    const { success } = await env.POST_LIMITER.limit({ key: ip });
+    return success;
+  } catch (error) {
+    console.error('[rate-limit] POST_LIMITER failed:', error);
+    return true;
+  }
+}
+
+// 1日あたりの件数を KV で数える（keyBase ごとに日付で分ける）
+async function incrementDailyCount(env, keyBase, limit) {
   if (!env.COMMENT_KV) return true;
-  const key = `rate:${ip}:${new Date().toISOString().slice(0, 10)}`;
+  const key = `${keyBase}:${new Date().toISOString().slice(0, 10)}`;
   const count = parseInt((await env.COMMENT_KV.get(key)) || '0', 10);
-  if (count >= 20) return false;
+  if (count >= limit) return false;
   await env.COMMENT_KV.put(key, String(count + 1), { expirationTtl: 86400 });
   return true;
 }
 
 async function handlePost(request, env, origin) {
   const ip = request.headers.get('CF-Connecting-IP') || 'unknown';
-  const allowed = await checkRateLimit(env, ip);
-  if (!allowed) return json({ error: '1日の投稿上限（20件）に達しました' }, 429, origin);
+  if (!(await checkBurstLimit(env, ip))) {
+    return json({ error: '短時間に投稿が集中しています。しばらく待ってからお試しください' }, 429, origin);
+  }
+  if (!(await incrementDailyCount(env, `rate:${ip}`, DAILY_LIMIT_PER_IP))) {
+    return json({ error: `1日の投稿上限（${DAILY_LIMIT_PER_IP}件）に達しました` }, 429, origin);
+  }
 
   let body;
   try {
@@ -62,6 +83,11 @@ async function handlePost(request, env, origin) {
   if (!page) return json({ error: 'page は必須です' }, 400, origin);
   if (!type) return json({ error: 'type は必須です' }, 400, origin);
   if (!TYPE_JA[type]) return json({ error: 'type は comment / report / bug のいずれかです' }, 400, origin);
+
+  // 全体の上限は、入力が正しい投稿だけ数える（不正な入力で枠を使い切られないため）
+  if (!(await incrementDailyCount(env, 'rate-global', DAILY_LIMIT_GLOBAL))) {
+    return json({ error: '本日の投稿受付数が上限に達しました。明日以降にお試しください' }, 429, origin);
+  }
 
   name = name.replace(/[*_`#\[\]]/g, '');
 
