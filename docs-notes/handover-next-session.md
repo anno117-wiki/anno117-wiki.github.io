@@ -1,9 +1,9 @@
-# 引き継ぎ: 次回セッション向け（2026-10-26 更新・第30版）
+# 引き継ぎ: 次回セッション向け（2026-10-28 更新・第31版）
 
 この文書には「今の状態・次の任務・保留・注意点」だけを書く。完了した作業の記録は `docs-notes/handover-archive.md` に移してあり、開始時に読む必要はない（文中の「アーカイブX節」で必要な箇所だけ引く）。
 
 ## git状態
-- ブランチ: master。**2026-10-26のアイテムの分類名・覚醒条件の修正（アーカイブAH節、`93e7f4c`〜`74412f2`）は全てpush済み**。この第30版の更新コミットだけ、push されているかを `git status -sb` で確認すること。以下は第29版時点の記述: 2026-10-24の表のモバイル表示・徹甲の修正（アーカイブAG節、`16b6291`まで）を含め**全てpush済み**（この第29版の更新コミットだけ、push されているかを `git status -sb` で確認すること。2026-10-24分の更新履歴 `updates.json` は**未追加**。2026-10-23の最新の作業コミットは更新履歴の追加。2026-10-22は `a3b9c5f` ヒエロの試走回数+2の追加。この引き継ぎ書の更新コミットだけ、push されているかを `git status -sb` で確認すること）。2026-10-23（デブログ第2回の反映）はアーカイブAF節、2026-10-22の経緯（競馬場ガイドの実機確認・アイテム条件・Codex Romana比較）はアーカイブAE節、2026-10-21（サイト文言の見直し）はアーカイブAD節、2026-10-20はAA〜AC節、2026-10-17の前半（PageSpeed）がY節、後半（実機確認・DLC03準備・アルビオン版の図）がZ節、2026-10-06分はX節。直近の作業は `git log -15`
+- ブランチ: master。**2026-10-28の依存更新・翻訳警告の修正・docs再生成（`ebdc49e`・`b05da1c`・`11c1778`）と、この第31版の更新コミットは、push 済みかを `git status -sb` で確認すること**。以下は第30版時点の記述: **2026-10-26のアイテムの分類名・覚醒条件の修正（アーカイブAH節、`93e7f4c`〜`74412f2`）は全てpush済み**。この第30版の更新コミットだけ、push されているかを `git status -sb` で確認すること。以下は第29版時点の記述: 2026-10-24の表のモバイル表示・徹甲の修正（アーカイブAG節、`16b6291`まで）を含め**全てpush済み**（この第29版の更新コミットだけ、push されているかを `git status -sb` で確認すること。2026-10-24分の更新履歴 `updates.json` は**未追加**。2026-10-23の最新の作業コミットは更新履歴の追加。2026-10-22は `a3b9c5f` ヒエロの試走回数+2の追加。この引き継ぎ書の更新コミットだけ、push されているかを `git status -sb` で確認すること）。2026-10-23（デブログ第2回の反映）はアーカイブAF節、2026-10-22の経緯（競馬場ガイドの実機確認・アイテム条件・Codex Romana比較）はアーカイブAE節、2026-10-21（サイト文言の見直し）はアーカイブAD節、2026-10-20はAA〜AC節、2026-10-17の前半（PageSpeed）がY節、後半（実機確認・DLC03準備・アルビオン版の図）がZ節、2026-10-06分はX節。直近の作業は `git log -15`
 - GitHub Pagesデプロイの確認は `gh run list --repo anno117-wiki/anno117-wiki.github.io --limit 5`
 - **`docs-notes/` は `.gitignore` 対象**（`handover-next-session.md` / `handover-archive.md` / `building-icon-mapping.md` / `how-to-edit-site.md` / `dlc03-ingame-checklist.md` / `unverified-items.md` / `wiki/` のみ例外で追跡）。次の調査メモ3本は**ローカルのみでGit未管理**
   - `docs-notes/research-alt-producers-coal-gold.md`（石炭・金の生産元、信仰神、サイロ、実機確認の記録）
@@ -16,6 +16,14 @@
 
 ## 次セッションのミッション
 **最優先ミッションはなし**。以下は候補（着手前にユーザーへ確認）。
+
+- **【2026-10-28】PCのソフトと依存パッケージの更新（コミット済み）**: PHPの脆弱性報道をきっかけにPCの更新状況を確認した。PHPは未導入で対象外
+  - winget で更新済み: Git 2.56.0.3・GitHub CLI 2.103.3・Node.js 24.22.1・Python 3.14.7・Thunderbird・Tailscale・Teams・Outlook・.NET（SDK 8/10とランタイム）・Visual Studio 2022/2026。**bun は winget 管理外**（`~\.bun\bin`）なので `bun upgrade` で更新（1.4.2→1.4.4）。winget に未更新で残る: Brother iPrint&Scan・Garmin Express・K-Lite・VC++ 2010・Windows ターミナル・Android Studio（優先度低）
+  - 依存を更新（`ebdc49e`）: vue 3.5.44・vite 8.3.5・@vitejs/plugin-vue 6.0.10・@playwright/test 1.64.1。`build:site` は `[5/5]` OK、E2E は35件成功。Playwright 1.64 用に Chromium v1248 を `playwright install chromium` で追加済み（旧v1223は残してある）
+  - **見送り（安定優先・脆弱性対応ではなく機能更新）**: TypeScript 7（`tsconfig.json` の `baseUrl` が削除されたとの報告があり、vue-tsc が TS7 で動かない）・vue-tsc 3・@types/node 26（今のNodeは24系。上げるなら `^24` に合わせる）。いずれも調査は二次情報が中心で、公式の確認はしていない
+  - **`bun audit` は20件（high 10・moderate 9・low 1）**。全て間接依存でビルド・開発サーバー側。大半は VitePress 1.6.4 が内部に持つ旧 vite 5.4.21 と esbuild 0.21.5 が原因。VitePress は 1.6.4 が安定版の最新で、2.0 は alpha（2.0.0-alpha.21、2026-10-25）。**2.0 が正式版になったら移行を検討**。公開サイト（`docs/`）は静的ファイルなので影響なし。月1回ほど `bun audit` を見る運用を提案済み（`bun audit fix` は未実行）
+  - 計算機の翻訳警告を解消（`b05da1c`）: `I18nManager` に `initialized` と `has()` を追加、`ModifierPanel.vue` の `$t` は fallback があってキーが無いとき `t()` を呼ばない。E2E実行中の警告は「未ロード864件・キー欠落84件」から0件になった。更新前の旧依存で出ていた `Failed to fetch`（旧版だけで出ていた通信エラー）も、新依存では0件
+  - 注意: `build:site` に Vite の警告（`vite.config.ts` が CommonJS として読まれる。将来のメジャー更新で問題になりうる、今は無害）。目視による画面確認はしていない
 
 - **【リマインド・ユーザー依頼 2026-10-05】2026年11月5日（アップデート3.0・DLC03「デルタの夜明け」配信日）以降の最初のセッションで、冒頭にユーザーへ声をかけること**: 「公式データ調査とGitHubからの情報収集の時期です」
   - 公式: Anno Union のパッチノート・デブログ（`https://www.anno-union.com/tag/anno-117-en/`、`/roadmap-for-2026/`）。10月中旬に配信・デブログの予告あり
