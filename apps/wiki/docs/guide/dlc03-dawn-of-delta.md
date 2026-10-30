@@ -5,8 +5,8 @@ description: Anno 117 DLC03「デルタの夜明け（Dawn of the Delta）」の
 
 # DLC03・デルタの夜明け
 
-> 出典: [Anno Union公式ブログ「Gamescom recap: Dawn of the Delta and Echoes of Kassandra」](https://www.anno-union.com/gamescom-recap-dawn-of-the-delta-and-echoes-of-kassandra/)（2026年9月3日）、[「Roadmap for 2026」](https://www.anno-union.com/roadmap-for-2026/)（2026年9月30日更新）、[「Arriving in Aegyptus」](https://www.anno-union.com/devblog-arriving-in-aegyptus/)（デブログ第1回、2026年10月15日。地形とゾーンの説明はこちらを優先）、[「Population, Floods and the power of knowledge」](https://www.anno-union.com/devblog-population-floods-and-the-power-of-knowledge/)（デブログ第2回、2026年10月22日。住民層・生産チェーン・洪水と灌漑）。
-> 第3回は10月29日に公開予定で、本ページの内容は今後変更される可能性があります。
+> 出典: [Anno Union公式ブログ「Gamescom recap: Dawn of the Delta and Echoes of Kassandra」](https://www.anno-union.com/gamescom-recap-dawn-of-the-delta-and-echoes-of-kassandra/)（2026年9月3日）、[「Roadmap for 2026」](https://www.anno-union.com/roadmap-for-2026/)（2026年9月30日更新）、[「Arriving in Aegyptus」](https://www.anno-union.com/devblog-arriving-in-aegyptus/)（デブログ第1回、2026年10月15日。地形とゾーンの説明はこちらを優先）、[「Population, Floods and the power of knowledge」](https://www.anno-union.com/devblog-population-floods-and-the-power-of-knowledge/)（デブログ第2回、2026年10月22日。住民層・生産チェーン・洪水と灌漑）、[「Of unsatiable deities and warmongering rivals」](https://www.anno-union.com/devblog-of-unsatiable-deities-and-warmongering-rivals/)（デブログ第3回、2026年10月29日。新祭神・ライバル・ピラミッド）。
+> 本ページの内容は今後変更される可能性があります。
 
 > このページは作成中です。確定情報が増え次第、随時更新します。
 
@@ -82,9 +82,36 @@ description: Anno 117 DLC03「デルタの夜明け（Dawn of the Delta）」の
 
 ## 宗教
 
-新祭神が3柱導入される予定です。判明しているのは以下の1柱です。
+新祭神が3柱導入されます。名前は仮の訳です。
 
-- <strong>ソベク</strong>：「デルタ川の神」。信仰すると灌漑システムと農場の管理が強化されます。
+- <strong>ソベク</strong>：「デルタ川の神」。研究なしで使えます。チーズソーセージ・詰めガチョウ・サンガ牛などの食料生産が増え、灌漑用水とボーナス人口も増えます。世界的な信仰ボーナスで鳩小屋が解放され、プランテーションに付けると生産性が上がります。
+- <strong>イシス＝バステト</strong>：研究ツリーで発見が必要です。ラベンダー・香水・ナツメヤシの生産が増え、住民の商品消費量は減ります。世界的な信仰で祭りの持続時間が延び、大型の猫の神殿が解放されます（影響範囲が広く、人口・収入・名声が上がる）。
+- <strong>トート＝トリスメギストス</strong>：研究ツリーで発見が必要です。ガラス・ワイン・書字板・書写セットなどの生産が増えます。島の収入と名声は知識レベルに連動します。世界的に広がると、図書館の範囲内の全建物の生産が増えます。
+
+エジプトの神を信仰すると、聖域・神殿の外観がエジプト風（猫やワニの聖域など）になります。
+
+## ピラミッド
+
+島ではなく、州全体のプロジェクトです。ナウクラティスの近くにあり、修復すると州全体にボーナスが付きます。
+
+- 修復の各段階で、タイル・花崗岩・大理石・チュニック・労働者の食料・輸送用のヒトコブラクダなどを、ピラミッド用の波止場に納めます。
+- 段階ごとの効果は、全島での帝国の土地税の低下と名声の上昇です。ライバルがいると、先に必要量を納めた総督ほど強い効果を得られます。
+- 完成時にピリミディオン（頂石）を載せると、州全体の名声ボーナスと、英雄スペシャリストの出現確率の一時的な上昇が得られます。新しい英雄スペシャリストは3人です。
+- 儀式を定期的に行うと、効果の持続時間を延ばせます。
+- 修復したピラミッドは、第3階層（チャンター・ジムナシアーク）の需要になり、幸福と名声を与えます。
+
+## キャラクター
+
+メインストーリーは殺人ミステリーで、ナウクラティスで遺体が見つかるところから始まります。ストーリーを飛ばして、島の経営に専念することもできます。
+
+| 名前 | 役割 |
+|---|---|
+| エピストラテゴス・ヘロン（Epistrategos Heron） | ナウクラティスの皇帝代理人。軍事力はほぼ無く、仲介役・商人 |
+| ヴァレリア（Valeria） | 川沿いの小さな港を拠点に、交易帝国を広げる |
+| カンディス（Kandis） | ファラオの谷を拠点とする略奪者。身代金を要求し、払わないと攻撃してくる。倒すには、港の破壊と谷への軍の派遣が必要 |
+| デキムス・ナウクラティウス・ネルウァ（Decimus Naukratius Nerva） | 「エジプトの暴君」。ライバル総督として追加できる。キャンペーン主人公の父 |
+
+日本語名は仮の訳です。
 
 ## 新軍事ユニット・船舶
 
@@ -113,9 +140,9 @@ DLC03と同じ<strong>2026年11月5日</strong>に配信予定です。
 
 ## 未発表の要素
 
-以下は、10月29日の第3回デブログなどでの発表が予定されています。
+以下は、まだ発表されていません。
 
-- 新しい神々3柱の詳細（信仰の効果を含む）、物語、新キャラクター、ピラミッド
+- ピラミッドの各段階の必要量と効果量、儀式の内容
 - 需要品の数量、建物・スキルツリーの詳細
 - 数値バランス（生産量・信仰要求量など）
 
