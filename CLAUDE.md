@@ -17,20 +17,7 @@ Anno 117（PS5/Steam）の日本語情報Wiki + 生産チェーン計算機を�
 anno-calculator公式（GitHub: agentquackyt/Anno117Calculator）のデータを活用。
 
 ## 技術スタック
-- TypeScript ^5.6 / Vue 3.5.35 / Vite 8.x / bun / VitePress / Playwright 1.60.0
 - **Capacitor・Tailwindは未導入**（標準CSS: apps/calculator/src/css/theme.css）
-
-## プロジェクト構造
-
-```
-anno_db2/
-├── packages/shared/public/   # データ・アイコン・i18n（productions/list.json等）
-├── apps/calculator/          # 生産チェーン計算機SPA
-├── apps/wiki/docs/wiki/      # VitePress wikiページ・データローダー
-├── tools/                    # データ生成スクリプト
-└── _local/                   # gitignore済みローカル資産
-    └── anno-official-data/   # 公式全言語テキスト+assets.xml+official_master.csv
-```
 
 ## 言語ルール【絶対順守】
 - **内部キー（フォルダ名・ID・変数）**: すべて英語
