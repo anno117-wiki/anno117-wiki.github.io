@@ -428,3 +428,9 @@
 - 分類名: `items.data.ts` の `NICHE_JA` で Agriculture=自然、Diplomacy=社会（旧: 農業・外交）。根拠は実機の振り直し画面（9分野）と専門家詳細画面（ファッショニスト=社会）、ゲーム内テキスト（texts_japanese.xml: Nature→自然、Seafaring→航海）、`Icon ItemNiche *` のアイコン対応。
 - 財政49件は assets.xml に `<Niche>` の行が無い（既定値の省略とみられる。`<Niche>None` は `TestItem QC` の開発用3件のみ）。実機でパシェドゥ・金の石工・万能の鍋職人・責任ある保証人・書記官・仕立て屋・葦職人・ズボン専門家の8件が財政と確認。
 - 手順の教訓: `python -I` はstdoutがcp932になり日本語の出力が化けるので `-X utf8` を付ける。ゲーム内日本語テキストは `_local/anno-official-data/config/gui/texts_japanese.xml`（`<LineId>` と `<Text>`、先頭にゼロ幅スペースが付く）、英語は同フォルダの `texts_english.xml`。
+
+## AI. 2026-10-30 デブログ第3回の確認と実機確認シートの更新（単独セッション、未コミット）
+- `/doctor` の診断で、`.claude/settings.local.json` の UserPromptSubmit フック（解散トリガー）が相対パスのため、サブフォルダ作業中に68回失敗していたのを、`$CLAUDE_PROJECT_DIR` を使うコマンドに直した。同時に `CLAUDE.md` から導出できる節を削除（90行から77行）。`.claude/skills/anno-build-guard` と `anno-roles` は `SKILL.md` が無くスキルとして動いていない（プラグインの残骸とみられる）。**削除するかはユーザー判断で未決**。
+- 公式デブログ第3回（2026-10-29）と第2回を、Anno Union から取得して確認。内容は `dlc03-ingame-checklist.md` の節1（名前の表）・節2・節4・節5・節7・節8・節10に追記し、新しい節12（ピラミッド・キャラクター）を作った。数値は全て開発ブログの値で実機確認前。
+- 同シートの11-2（黒曜石の価格表）で、見出し行が失われていた表を復元（元の列名は git `bd8a797d` から）。「実機の表示」欄は未記入。
+- 注意: 発売は 2026-11-05 10:00 UTC（日本時間 19:00）。最新版の Claude Code の確認は、ネットワーク取得に失敗して不明のまま（現在 2.1.312）。
