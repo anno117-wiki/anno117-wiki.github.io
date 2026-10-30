@@ -430,7 +430,16 @@
 - 手順の教訓: `python -I` はstdoutがcp932になり日本語の出力が化けるので `-X utf8` を付ける。ゲーム内日本語テキストは `_local/anno-official-data/config/gui/texts_japanese.xml`（`<LineId>` と `<Text>`、先頭にゼロ幅スペースが付く）、英語は同フォルダの `texts_english.xml`。
 
 ## AI. 2026-10-30 デブログ第3回の確認と実機確認シートの更新（単独セッション、未コミット）
-- `/doctor` の診断で、`.claude/settings.local.json` の UserPromptSubmit フック（解散トリガー）が相対パスのため、サブフォルダ作業中に68回失敗していたのを、`$CLAUDE_PROJECT_DIR` を使うコマンドに直した。同時に `CLAUDE.md` から導出できる節を削除（90行から77行）。`.claude/skills/anno-build-guard` と `anno-roles` は `SKILL.md` が無くスキルとして動いていない（プラグインの残骸とみられる）。**削除するかはユーザー判断で未決**。
+- `/doctor` の診断で、`.claude/settings.local.json` の UserPromptSubmit フック（解散トリガー）が相対パスのため、サブフォルダ作業中に68回失敗していたのを、`$CLAUDE_PROJECT_DIR` を使うコマンドに直した。同時に `CLAUDE.md` から導出できる節を削除（90行から77行）。`.claude/skills/anno-build-guard` と `anno-roles` は、`SKILL.md` が無いが、スキルではなくプラグイン（`plugin.json` とフック）として読み込まれていた（最初の説明は誤りで、訂正した）。**2026-10-30に `anno-roles`（並列時の家老の直接操作のガード）だけ削除し、`CLAUDE.md` と `prompts/startup-auto.md` の言及も消した。`anno-build-guard`（計算機のみのビルドの誤用を止め、`build:site` 後に `docs/` を点検する）は残した**。
 - 公式デブログ第3回（2026-10-29）と第2回を、Anno Union から取得して確認。内容は `dlc03-ingame-checklist.md` の節1（名前の表）・節2・節4・節5・節7・節8・節10に追記し、新しい節12（ピラミッド・キャラクター）を作った。数値は全て開発ブログの値で実機確認前。
 - 同シートの11-2（黒曜石の価格表）で、見出し行が失われていた表を復元（元の列名は git `bd8a797d` から）。「実機の表示」欄は未記入。
 - 注意: 発売は 2026-11-05 10:00 UTC（日本時間 19:00）。最新版の Claude Code の確認は、ネットワーク取得に失敗して不明のまま（現在 2.1.312）。
+
+### 2026-10-30 ネットワーク設定の調整（NordVPN と Tailscale）
+- 症状: `git push`・`gh`・`curl` が接続できなかった（`Failed to connect to github.com:443 after 37 ms`）。NASの管理画面（`https://192.168.11.200:9443`）も開けなかった。直接の経路（NordVPN を通さない通信）が通らない環境だった。
+- NordVPN（8.14.4.0）は「スプリットトンネリング: 選択したアプリでVPNを使用する」。**リストに入れたアプリだけ VPN を通る**。追加したもの: `git.exe`、`git-remote-https.exe`（`C:/Program Files/Git/ucrt64/libexec/git-core/`）、`gh.exe`、`node.exe`、Tailscale の `tailscaled.exe` `tailscale-ipn.exe` `tailscale.exe`。もとから入っていたもの: Bun、Claude、Claude Code、VS Code、Firefox、Chrome。`curl.exe` と `pwsh.exe` は未追加（コマンドからの接続確認には、追加するか WebFetch を使う）。
+- NordVPN の「接続とセキュリティ」の「**LAN上で非表示のままにする**」を**オフ**にした。オンだと NAS・ルーターに届かない。
+- Tailscale: このPCは `tailscale set --accept-routes=false`（`RouteAll: false`）にした。NAS（`dxp2800`、100.123.9.117）が `192.168.11.0/24` を広告しており、受け入れる設定だと、LAN宛の通信が Tailscale に吸われてNASに届かなくなる。外出先から使う端末の設定とは別。戻すなら `tailscale set --accept-routes=true`。
+- Tailscale 経由の NAS への通信は、VPN を通るため中継（DERP の Tokyo、約35〜43ms）になる。自宅では LAN の IP で直接つなぐ。
+- ルーターが DHCP で配る DNS `100.95.162.18` と `8.8.8.8` は、直接の経路では応答しない（Tailscale の IP ではない）。VPN 経由では名前解決できる。
+- Claude Code は 2.1.314（latest と同じ。2026-10-30確認）。
