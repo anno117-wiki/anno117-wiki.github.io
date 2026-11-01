@@ -1,5 +1,5 @@
 <template>
-  <div class="user-comments">
+  <div id="comments" class="user-comments">
     <h2 class="uc-heading">コメント</h2>
 
     <p class="uc-intro">
@@ -18,6 +18,26 @@
           <span class="uc-date">{{ c.createdAt.slice(0, 10) }}</span>
         </div>
         <p class="uc-body">{{ c.body }}</p>
+        <button v-if="replyingTo !== c.number" type="button" class="uc-reply-toggle" @click="openReply(c.number)">
+          返信する
+        </button>
+        <form v-else class="uc-reply-form" @submit.prevent="submitReply(c.number)">
+          <label class="uc-label">
+            名前 <span class="uc-required">*</span>
+            <input v-model="replyForm.name" class="uc-input" type="text" required maxlength="100" placeholder="名前を入力" />
+          </label>
+          <label class="uc-label">
+            返信 <span class="uc-required">*</span>
+            <textarea v-model="replyForm.body" class="uc-textarea" required maxlength="2000" rows="3" placeholder="返信を入力" />
+          </label>
+          <p v-if="replyError" class="uc-status uc-error">{{ replyError }}</p>
+          <div class="uc-reply-buttons">
+            <button class="uc-submit" type="submit" :disabled="replySubmitting">
+              {{ replySubmitting ? '送信中...' : '返信を送る' }}
+            </button>
+            <button type="button" class="uc-reply-cancel" @click="closeReply">やめる</button>
+          </div>
+        </form>
         <div v-if="c.replies && c.replies.length > 0" class="uc-replies">
           <div v-for="r in c.replies" :key="r.id" class="uc-reply">
             <div class="uc-reply-meta">
@@ -31,7 +51,6 @@
     </div>
 
     <!-- 投稿フォーム -->
-    <template v-if="props.showForm">
     <form class="uc-form" @submit.prevent="submit">
       <h3 class="uc-form-title">コメントを投稿する</h3>
 
@@ -61,15 +80,12 @@
         {{ submitting ? '送信中...' : '投稿する' }}
       </button>
     </form>
-    </template>
   </div>
 </template>
 
 <script setup lang="ts">
 import { ref, onMounted, watch } from 'vue'
 import { useData } from 'vitepress'
-
-const props = withDefaults(defineProps<{ showForm?: boolean; allPages?: boolean }>(), { showForm: true, allPages: false })
 
 const WORKER_URL = import.meta.env.VITE_WORKER_URL as string
 
@@ -88,6 +104,7 @@ interface Reply {
 
 interface Comment {
   id: number
+  number: number
   page: string
   name: string
   type: string
@@ -107,6 +124,12 @@ const submitting = ref(false)
 const submitError = ref('')
 const submitSuccess = ref(false)
 
+// 返信フォームは、開いている1件だけ（コメントのIssue番号で持つ）
+const replyingTo = ref<number | null>(null)
+const replyForm = ref({ name: '', body: '' })
+const replySubmitting = ref(false)
+const replyError = ref('')
+
 let currentAbort: AbortController | null = null
 
 async function fetchComments() {
@@ -117,9 +140,7 @@ async function fetchComments() {
   loading.value = true
   fetchError.value = ''
   try {
-    const url = props.allPages
-      ? `${WORKER_URL}/comments`
-      : `${WORKER_URL}/comments?page=${encodeURIComponent(page.value.relativePath)}`
+    const url = `${WORKER_URL}/comments?page=${encodeURIComponent(page.value.relativePath)}`
     const res = await fetch(url, { signal })
     if (!res.ok) throw new Error(`HTTP ${res.status}`)
     comments.value = await res.json()
@@ -154,6 +175,41 @@ async function submit() {
     submitError.value = '投稿に失敗しました。しばらくしてからもう一度お試しください。'
   } finally {
     submitting.value = false
+  }
+}
+
+function openReply(number: number) {
+  replyingTo.value = number
+  replyError.value = ''
+}
+
+function closeReply() {
+  replyingTo.value = null
+  replyError.value = ''
+}
+
+async function submitReply(number: number) {
+  replySubmitting.value = true
+  replyError.value = ''
+  try {
+    const res = await fetch(`${WORKER_URL}/reply`, {
+      method: 'POST',
+      headers: { 'Content-Type': 'application/json' },
+      body: JSON.stringify({ number, name: replyForm.value.name, body: replyForm.value.body }),
+    })
+    if (!res.ok) {
+      // 上限超過や名前の制限など、Worker側の理由をそのまま見せる
+      const data = await res.json().catch(() => ({}))
+      replyError.value = data.error ?? '返信に失敗しました。しばらくしてからもう一度お試しください。'
+      return
+    }
+    replyForm.value = { name: replyForm.value.name, body: '' }
+    closeReply()
+    await fetchComments()
+  } catch (e) {
+    replyError.value = '返信に失敗しました。しばらくしてからもう一度お試しください。'
+  } finally {
+    replySubmitting.value = false
   }
 }
 
@@ -252,18 +308,65 @@ watch(() => page.value.relativePath, fetchComments)
   white-space: pre-wrap;
 }
 
+.uc-reply-toggle {
+  margin-top: 6px;
+  padding: 0;
+  font-size: 13px;
+  color: var(--vp-c-brand-1);
+  background: none;
+  border: none;
+  cursor: pointer;
+}
+
+.uc-reply-toggle:hover {
+  text-decoration: underline;
+}
+
+.uc-reply-form {
+  margin: 8px 0 0 20px;
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+}
+
+.uc-reply-buttons {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+}
+
+.uc-reply-cancel {
+  font-size: 13px;
+  color: var(--vp-c-text-2);
+  background: none;
+  border: none;
+  cursor: pointer;
+}
+
 .uc-replies {
-  margin-top: 8px;
+  margin: 8px 0 0 20px;
   display: flex;
   flex-direction: column;
   gap: 8px;
 }
 
 .uc-reply {
+  position: relative;
   padding: 8px 12px;
-  border-left: 3px solid var(--vp-c-brand-1);
   background: var(--vp-c-bg-soft);
-  border-radius: 0 4px 4px 0;
+  border-radius: 4px;
+}
+
+.uc-reply::before {
+  content: '';
+  position: absolute;
+  left: -22px;
+  top: 0;
+  width: 18px;
+  height: 22px;
+  background-color: var(--vp-c-text-2);
+  -webkit-mask: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 18 22'%3E%3Cpath d='M2 0V18H12' fill='none' stroke='black' stroke-width='1.6'/%3E%3Cpath d='M11 14.5L17 18L11 21.5Z'/%3E%3C/svg%3E") no-repeat center / contain;
+  mask: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 18 22'%3E%3Cpath d='M2 0V18H12' fill='none' stroke='black' stroke-width='1.6'/%3E%3Cpath d='M11 14.5L17 18L11 21.5Z'/%3E%3C/svg%3E") no-repeat center / contain;
 }
 
 .uc-reply-meta {

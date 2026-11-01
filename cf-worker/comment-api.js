@@ -57,7 +57,8 @@ async function incrementDailyCount(env, keyBase, limit) {
   return true;
 }
 
-async function handlePost(request, env, origin) {
+// IPごとの連投・1日上限を調べる。超過していれば返すレスポンス、問題なければ null
+async function checkIpLimits(request, env, origin) {
   const ip = request.headers.get('CF-Connecting-IP') || 'unknown';
   if (!(await checkBurstLimit(env, ip))) {
     return json({ error: '短時間に投稿が集中しています。しばらく待ってからお試しください' }, 429, origin);
@@ -65,6 +66,17 @@ async function handlePost(request, env, origin) {
   if (!(await incrementDailyCount(env, `rate:${ip}`, DAILY_LIMIT_PER_IP))) {
     return json({ error: `1日の投稿上限（${DAILY_LIMIT_PER_IP}件）に達しました` }, 429, origin);
   }
+  return null;
+}
+
+// 名前から改行とMarkdownの記号を除く
+function cleanName(raw) {
+  return (raw ?? '').trim().replaceAll('\n', '').replaceAll('\r', '').replace(/[*_`#\[\]]/g, '');
+}
+
+async function handlePost(request, env, origin) {
+  const limited = await checkIpLimits(request, env, origin);
+  if (limited) return limited;
 
   let body;
   try {
@@ -119,6 +131,73 @@ async function handlePost(request, env, origin) {
   return json({ number: issue.number, url: issue.html_url }, 201, origin);
 }
 
+const GH_HEADERS_BASE = {
+  Accept: 'application/vnd.github+json',
+  'X-GitHub-Api-Version': '2022-11-28',
+  'User-Agent': 'anno117-wiki-worker',
+};
+
+const MAX_REPLIES_PER_ISSUE = 50;
+const MAX_REPLY_LENGTH = 2000;
+const RESERVED_NAME = '運営';
+
+// 訪問者の返信は、運営のトークンでIssueコメントとして作る。
+// 見分けのため本文の先頭に「**投稿者**: 名前」を付ける（GET側でこの形式を読む）。
+async function handleReply(request, env, origin) {
+  const limited = await checkIpLimits(request, env, origin);
+  if (limited) return limited;
+
+  let body;
+  try {
+    body = await request.json();
+  } catch {
+    return json({ error: 'リクエストボディが不正です' }, 400, origin);
+  }
+
+  const number = Number(body.number);
+  const name = cleanName(body.name);
+  const text = (body.body ?? '').trim();
+
+  if (!Number.isInteger(number) || number <= 0) return json({ error: 'number が不正です' }, 400, origin);
+  if (!name || name.length > 100) return json({ error: 'name は1〜100文字で入力してください' }, 400, origin);
+  // 運営の返信と見分けがつかなくなるため、名前に使わせない
+  if (name.includes(RESERVED_NAME)) return json({ error: `「${RESERVED_NAME}」を含む名前は使えません` }, 400, origin);
+  if (!text || text.length > MAX_REPLY_LENGTH) {
+    return json({ error: `body は1〜${MAX_REPLY_LENGTH}文字で入力してください` }, 400, origin);
+  }
+
+  const headers = { ...GH_HEADERS_BASE, Authorization: `Bearer ${env.GITHUB_TOKEN}` };
+
+  // 返信先は「公開中のコメントIssue」だけに限る（無関係なIssueやPRに書かせない）
+  const issueRes = await fetch(`${GH_API}/repos/${REPO}/issues/${number}`, { headers });
+  if (!issueRes.ok) return json({ error: '返信先のコメントが見つかりません' }, 404, origin);
+  const issue = await issueRes.json();
+  const isCommentIssue =
+    !issue.pull_request &&
+    issue.state === 'open' &&
+    (issue.labels ?? []).some((l) => l.name === 'user-comment');
+  if (!isCommentIssue) return json({ error: '返信先のコメントが見つかりません' }, 404, origin);
+  if (issue.comments >= MAX_REPLIES_PER_ISSUE) {
+    return json({ error: 'このコメントへの返信数が上限に達しています' }, 429, origin);
+  }
+
+  // 全体の上限は、入力が正しい返信だけ数える（投稿と同じ枠を共有する）
+  if (!(await incrementDailyCount(env, 'rate-global', DAILY_LIMIT_GLOBAL))) {
+    return json({ error: '本日の投稿受付数が上限に達しました。明日以降にお試しください' }, 429, origin);
+  }
+
+  const res = await fetch(`${GH_API}/repos/${REPO}/issues/${number}/comments`, {
+    method: 'POST',
+    headers: { ...headers, 'Content-Type': 'application/json' },
+    body: JSON.stringify({ body: `**投稿者**: ${name}\n\n---\n\n${text}` }),
+  });
+  if (!res.ok) return json({ error: 'GitHub API エラー' }, 502, origin);
+
+  // 返信一覧のキャッシュを消し、すぐ画面に出す
+  if (env.COMMENT_KV) await env.COMMENT_KV.delete(`replies:${number}`);
+  return json({ ok: true }, 201, origin);
+}
+
 function parseIssueBody(rawBody) {
   const nameMatch = rawBody.match(/^\*\*投稿者\*\*: (.+)$/m);
   const typeMatch = rawBody.match(/^\*\*種別\*\*: (.+)$/m);
@@ -127,6 +206,23 @@ function parseIssueBody(rawBody) {
     name: nameMatch ? nameMatch[1].trim() : '',
     typeJa: typeMatch ? typeMatch[1].trim() : '',
     text: bodyMatch ? bodyMatch[1].trim() : rawBody,
+  };
+}
+
+// 返信1件を表示用に整える。
+// ヘッダー付きは Worker 経由の訪問者の返信。なりすまし防止のため、運営のトークンで作られたコメント（user が運営）だけに限って読む。
+function parseReply(c) {
+  const isOwner = c.user?.login === OWNER_LOGIN;
+  const raw = c.body ?? '';
+  const posted = isOwner ? raw.match(/^\*\*投稿者\*\*: (.+)\n\n---\n\n([\s\S]*)$/) : null;
+  if (posted) {
+    return { id: c.id, author: posted[1].trim(), body: posted[2].trim(), createdAt: c.created_at };
+  }
+  return {
+    id: c.id,
+    author: isOwner ? '運営' : (c.user?.login ?? ''),
+    body: raw,
+    createdAt: c.created_at,
   };
 }
 
@@ -179,12 +275,7 @@ async function handleGet(request, env, origin) {
           });
           if (rRes.ok) {
             const rData = await rRes.json();
-            replies = rData.map((c) => ({
-              id: c.id,
-              author: c.user?.login === OWNER_LOGIN ? '運営' : (c.user?.login ?? ''),
-              body: c.body ?? '',
-              createdAt: c.created_at,
-            }));
+            replies = rData.map((c) => parseReply(c));
             if (env.COMMENT_KV) {
               await env.COMMENT_KV.put(cacheKey, JSON.stringify(replies), { expirationTtl: 60 });
             }
@@ -226,6 +317,7 @@ export default {
     const path = url.pathname;
 
     if (path === '/comment' && request.method === 'POST') return handlePost(request, env, origin);
+    if (path === '/reply' && request.method === 'POST') return handleReply(request, env, origin);
     if (path === '/comments' && request.method === 'GET') return handleGet(request, env, origin);
 
     return json({ error: 'Not Found' }, 404, origin);
