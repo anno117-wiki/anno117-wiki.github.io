@@ -3,7 +3,7 @@
     <summary>更新履歴</summary>
     <ul>
       <li v-for="(entry, i) in recent" :key="i">
-        <span class="gh-badge" :class="entry.type">{{ entry.type === 'post' ? '投稿' : '修正' }}</span>
+        <span class="gh-badge" :class="entry.type">{{ BADGE_LABEL[entry.type] }}</span>
         <span class="gh-date">{{ entry.date }}</span>
         <a v-if="entry.link" class="gh-text" :href="withBase(entry.link)">{{ entry.title }}</a>
         <a v-else-if="entry.type === 'fix'" class="gh-text" :href="withBase('/updates')">{{ entry.title }}</a>
@@ -15,10 +15,19 @@
 </template>
 
 <script setup lang="ts">
+import { computed } from 'vue'
 import { withBase } from 'vitepress'
 import updates from '../data/updates.json'
+import { useCommentEntries, type LogEntry } from './commentEntries'
 
-const recent = updates.slice(0, 5)
+const RECENT_COUNT = 5
+const BADGE_LABEL: Record<string, string> = { post: '投稿', fix: '修正', comment: 'コメント' }
+
+const commentEntries = useCommentEntries()
+
+const recent = computed<LogEntry[]>(() =>
+  [...updates, ...commentEntries.value].sort((a, b) => b.date.localeCompare(a.date)).slice(0, RECENT_COUNT),
+)
 </script>
 
 <style scoped>
@@ -75,6 +84,10 @@ li {
 .gh-badge.fix {
   background: #fce8e8;
   color: #6b1a1a;
+}
+.gh-badge.comment {
+  background: #e6f4ea;
+  color: #1a4d2e;
 }
 
 .gh-date {

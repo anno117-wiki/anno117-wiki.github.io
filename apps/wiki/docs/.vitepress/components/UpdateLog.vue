@@ -20,91 +20,16 @@
 </template>
 
 <script setup lang="ts">
-import { computed, ref, onMounted } from 'vue'
+import { computed } from 'vue'
 import { withBase } from 'vitepress'
 import updates from '../data/updates.json'
-import { data as pageTitles } from '../../page-titles.data'
-
-const WORKER_URL = import.meta.env.VITE_WORKER_URL as string
-const SUMMARY_LENGTH = 30
+import { useCommentEntries, type LogEntry } from './commentEntries'
 
 const BADGE_LABEL: Record<string, string> = { post: '追加', fix: '修正', comment: 'コメント' }
 
-interface Reply {
-  author: string
-  body: string
-  createdAt: string
-}
+const commentEntries = useCommentEntries()
 
-interface WorkerComment {
-  title: string
-  name: string
-  type: string
-  body: string
-  createdAt: string
-  replies: Reply[]
-}
-
-interface ReplyEntry {
-  date: string
-  author: string
-  summary: string
-}
-
-interface Entry {
-  date: string
-  type: string
-  title: string
-  link?: string
-  summary?: string
-  replies?: ReplyEntry[]
-}
-
-const commentEntries = ref<Entry[]>([])
-
-function excerpt(text: string): string {
-  const oneLine = text.replace(/\s+/g, ' ').trim()
-  return oneLine.length > SUMMARY_LENGTH ? `${oneLine.slice(0, SUMMARY_LENGTH)}…` : oneLine
-}
-
-// Issueタイトルは "[種別] ページパス.md — 投稿者名" の形式（cf-worker/comment-api.js）
-function pageOf(title: string): string | null {
-  const m = title.match(/^\[[^\]]*\]\s+(.+?)\.md\s+—\s/)
-  return m ? m[1] : null
-}
-
-// 返信は別行にせず、元コメントの下にぶら下げる
-function toEntry(c: WorkerComment): Entry | null {
-  const page = pageOf(c.title)
-  if (!page) return null
-  return {
-    date: c.createdAt.slice(0, 10),
-    type: 'comment',
-    title: `${pageTitles[page] ?? page}に${c.type}（${c.name}）`,
-    link: `/${page}#comments`,
-    summary: excerpt(c.body),
-    replies: (c.replies ?? []).map((r) => ({
-      date: r.createdAt.slice(0, 10),
-      author: r.author,
-      summary: excerpt(r.body),
-    })),
-  }
-}
-
-// コメントは実行時にWorkerから取る。取れなくても更新履歴だけは出す
-onMounted(async () => {
-  if (!WORKER_URL) return
-  try {
-    const res = await fetch(`${WORKER_URL}/comments`)
-    if (!res.ok) throw new Error(`HTTP ${res.status}`)
-    const list: WorkerComment[] = await res.json()
-    commentEntries.value = list.map(toEntry).filter((e): e is Entry => e !== null)
-  } catch (e) {
-    console.warn('コメントの取得に失敗しました', e)
-  }
-})
-
-const entries = computed<Entry[]>(() =>
+const entries = computed<LogEntry[]>(() =>
   [...updates, ...commentEntries.value].sort((a, b) => b.date.localeCompare(a.date)),
 )
 </script>
