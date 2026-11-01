@@ -89,6 +89,8 @@ import { useData } from 'vitepress'
 
 const WORKER_URL = import.meta.env.VITE_WORKER_URL as string
 
+const FAILED_MESSAGE = '送信に失敗しました。しばらくしてからもう一度お試しください。'
+
 const TYPE_LABEL: Record<string, string> = {
   comment: 'コメント',
   report: '誤り報告',
@@ -167,12 +169,17 @@ async function submit() {
         body: form.value.body,
       }),
     })
-    if (!res.ok) throw new Error(`HTTP ${res.status}`)
+    if (!res.ok) {
+      // 上限超過や入力の誤りなど、Worker側の理由をそのまま見せる
+      const data = await res.json().catch(() => ({}))
+      submitError.value = data.error ?? FAILED_MESSAGE
+      return
+    }
     form.value = { name: '', type: 'comment', body: '' }
     submitSuccess.value = true
     await fetchComments()
   } catch (e) {
-    submitError.value = '投稿に失敗しました。しばらくしてからもう一度お試しください。'
+    submitError.value = FAILED_MESSAGE
   } finally {
     submitting.value = false
   }
@@ -200,14 +207,14 @@ async function submitReply(number: number) {
     if (!res.ok) {
       // 上限超過や名前の制限など、Worker側の理由をそのまま見せる
       const data = await res.json().catch(() => ({}))
-      replyError.value = data.error ?? '返信に失敗しました。しばらくしてからもう一度お試しください。'
+      replyError.value = data.error ?? FAILED_MESSAGE
       return
     }
     replyForm.value = { name: replyForm.value.name, body: '' }
     closeReply()
     await fetchComments()
   } catch (e) {
-    replyError.value = '返信に失敗しました。しばらくしてからもう一度お試しください。'
+    replyError.value = FAILED_MESSAGE
   } finally {
     replySubmitting.value = false
   }
