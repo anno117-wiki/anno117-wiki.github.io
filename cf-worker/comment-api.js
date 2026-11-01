@@ -137,6 +137,8 @@ const GH_HEADERS_BASE = {
   'User-Agent': 'anno117-wiki-worker',
 };
 
+// 表示するのは open・closed どちらでもよい。サイトから隠したいIssueには、このラベルを付ける
+const HIDDEN_LABEL = 'hidden';
 const MAX_REPLIES_PER_ISSUE = 50;
 const MAX_REPLY_LENGTH = 2000;
 const RESERVED_NAME = '運営';
@@ -168,15 +170,14 @@ async function handleReply(request, env, origin) {
 
   const headers = { ...GH_HEADERS_BASE, Authorization: `Bearer ${env.GITHUB_TOKEN}` };
 
-  // 返信先は「公開中のコメントIssue」だけに限る（無関係なIssueやPRに書かせない）
+  // 返信先は「サイトに表示中のコメントIssue」だけに限る（無関係なIssueやPR、隠したコメントに書かせない）
   const issueRes = await fetch(`${GH_API}/repos/${REPO}/issues/${number}`, { headers });
   if (!issueRes.ok) return json({ error: '返信先のコメントが見つかりません' }, 404, origin);
   const issue = await issueRes.json();
-  const isCommentIssue =
-    !issue.pull_request &&
-    issue.state === 'open' &&
-    (issue.labels ?? []).some((l) => l.name === 'user-comment');
-  if (!isCommentIssue) return json({ error: '返信先のコメントが見つかりません' }, 404, origin);
+  const labelNames = (issue.labels ?? []).map((l) => l.name);
+  const isVisibleComment =
+    !issue.pull_request && labelNames.includes('user-comment') && !labelNames.includes(HIDDEN_LABEL);
+  if (!isVisibleComment) return json({ error: '返信先のコメントが見つかりません' }, 404, origin);
   if (issue.comments >= MAX_REPLIES_PER_ISSUE) {
     return json({ error: 'このコメントへの返信数が上限に達しています' }, 429, origin);
   }
@@ -232,7 +233,7 @@ async function handleGet(request, env, origin) {
 
   const MAX_PAGES = 5;
   let issues = [];
-  let nextUrl = `${GH_API}/repos/${REPO}/issues?state=open&labels=user-comment&sort=created&direction=desc&per_page=100`;
+  let nextUrl = `${GH_API}/repos/${REPO}/issues?state=all&labels=user-comment&sort=created&direction=desc&per_page=100`;
   for (let p = 0; p < MAX_PAGES && nextUrl; p++) {
     const res = await fetch(nextUrl, {
       headers: {
@@ -250,7 +251,8 @@ async function handleGet(request, env, origin) {
     nextUrl = m ? m[1] : null;
   }
   const filtered = issues.filter((issue) =>
-    !page || (issue.body || '').includes(`**ページ**: ${page}`)
+    !(issue.labels ?? []).some((l) => l.name === HIDDEN_LABEL) &&
+    (!page || (issue.body || '').includes(`**ページ**: ${page}`))
   );
   const ghHeaders = {
     Authorization: `Bearer ${env.GITHUB_TOKEN}`,
