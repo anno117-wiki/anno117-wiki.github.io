@@ -485,3 +485,26 @@
     padding: 0 64px 32px;
   }
 }
+
+/* PSボタン記号（環境依存文字を避けるためSVGで描画） */
+.pad {
+  display: inline-block;
+  width: 1.3em;
+  height: 1.3em;
+  vertical-align: -0.3em;
+  background-repeat: no-repeat;
+  background-position: center;
+  background-size: contain;
+}
+.pad-tri {
+  background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24'%3E%3Cpath d='M12 4 L21 19 H3 Z' fill='none' stroke='%2300a86b' stroke-width='2.4' stroke-linejoin='round'/%3E%3C/svg%3E");
+}
+.pad-circle {
+  background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24'%3E%3Ccircle cx='12' cy='12' r='8' fill='none' stroke='%23e0393e' stroke-width='2.4'/%3E%3C/svg%3E");
+}
+.pad-cross {
+  background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24'%3E%3Cpath d='M5 5 L19 19 M19 5 L5 19' fill='none' stroke='%232f6fdb' stroke-width='2.4' stroke-linecap='round'/%3E%3C/svg%3E");
+}
+.pad-square {
+  background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24'%3E%3Crect x='5' y='5' width='14' height='14' rx='1' fill='none' stroke='%23d9569f' stroke-width='2.4' stroke-linejoin='round'/%3E%3C/svg%3E");
+}
