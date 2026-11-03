@@ -266,6 +266,7 @@ export default defineConfig({
                 { text: '軍事・戦闘', link: '/guide/military-guide' },
               ],
             },
+            { text: '操作方法（PS5版）', link: '/guide/controls' },
             {
               text: 'DLC要素',
               items: [
