@@ -52,6 +52,8 @@
   - **サンダラク苗木場**: プランテーション扱いになり、プランテーションのバフが効く。水道灌漑も再び使う。`buildings-effects.json` の `sandarac_nursery` に分類の記述なし
   - **見つからず反映先なしと判断したもの**: 神殿の範囲22タイルに統一（`patrons.md` に範囲の記述なし）／祝祭の終盤コスト 50,000→25,000コイン／貯水池の範囲を少し拡大／壁と生垣に島の名声が付く／水道橋は川・崖をまっすぐ通す配置のみ可／「Healthy as a Horse」は能力が上限の競走馬には出なくなった／難易度の既定が Normal・Very hard は消費+75%（DLC03ページ節10の「very high 約+75%」と食い違わないか確認）
   - 反映したら `updates.json` に追記するか、ユーザーに確認する
+  - **データの入手先の調査（2026-11-03）**: 3.0版の `assets.xml` を置いた公開リポジトリは無し。`anno-mods/asset-extractor` は抽出ツールのみ、`anno-mods/AssetViewer` は Anno 1800 用、Item Inspector は v2.1.0.1 から全体データを同梱しない。PS5からの正規の抽出手段は無い。PC版の持ち主に `assets.xml`・`texts_japanese.xml` を抽出してもらうか、実機照合で足りる。`anno-mods/anno-117-calculator` のデータ構成は未確認
+  - **Redditの調査方法と結果（2026-11-03）**: WebSearch は reddit.com を扱えない。`curl -A "Mozilla/5.0 (research script)" "https://www.reddit.com/r/anno/search.rss?q=anno+117&restrict_sr=1&sort=new&t=week"` のRSSは取れる（`.json` は403、個別投稿のRSSは連続すると429）。配信後（11月5日19:00以降）に再調査する（ユーザー決定）。見る点: 水道スペシャリスト弱体化への反応（再調整の有無）、スクライブ（第2階層）の需要一覧（投稿は「新商品は書写セットだけ。パン・チーズ・サンダル・石鹸・ブローチ・パピルス・書写セット・オリーブ油」と主張、出典未確認。`population.md` のアイギュプト節と照合）
 - **【リマインド・ユーザー依頼 2026-10-05】2026年11月5日（アップデート3.0・DLC03「デルタの夜明け」配信日）以降の最初のセッションで、冒頭にユーザーへ声をかけること**: 「公式データ調査とGitHubからの情報収集の時期です」（上の2026-11-03の項目もあわせて伝える）
   - 公式: Anno Union のパッチノート・デブログ（`https://www.anno-union.com/tag/anno-117-en/`、`/roadmap-for-2026/`）。10月中旬に配信・デブログの予告あり
   - GitHub: `Taludas/Anno-117-Item-Inspector`（v3.0データの有無。アーカイブO節のとおり全体データは配布されなくなった可能性が高い）、`agentquackyt/Anno117Calculator`（生産チェーンの更新）
