@@ -236,6 +236,7 @@ export default defineConfig({
               { text: 'スキルツリー', link: '/wiki/techs' },
               { text: '信仰神', link: '/wiki/patrons' },
               { text: 'モニュメントの輝き', link: '/wiki/splendor' },
+              { text: '街の状況の段階', link: '/wiki/city-status' },
             ],
           },
           {
@@ -323,6 +324,7 @@ export default defineConfig({
             },
             { text: '信仰神', link: '/wiki/patrons' },
             { text: 'モニュメントの輝き', link: '/wiki/splendor' },
+            { text: '街の状況の段階', link: '/wiki/city-status' },
           ],
         },
         {

@@ -1,0 +1,77 @@
+---
+title: 街の状況（都市ステータス）の段階
+description: Anno 117の「街の状況」（都市ステータス）の段階一覧。ラティウムの45段階の名前、必要人口、段階ごとの属性効果（幸福・健康・火災安全度・信仰・知識・名声）を整理。
+---
+
+<script setup lang="ts">
+import { data } from './city-status.data.ts'
+
+const attrKeys = Object.keys(data.attrs) as (keyof typeof data.attrs)[]
+
+// 属性の値を「+18」「-15.6」の形にする。値が無い属性は「—」
+const fmt = (v: number | undefined) => (v === undefined ? '—' : v > 0 ? `+${v}` : `${v}`)
+// 必要人口。人口の表に載っていない段階は「未確認」
+const pop = (p: number | null) => (p === null ? '未確認' : p === 0 ? 'なし' : p.toLocaleString())
+</script>
+
+# 街の状況（都市ステータス）の段階
+
+島の人口が増えると、島の「街の状況」が上がっていきます。段階ごとに名前が決まっていて、「拠点」から始まり、「村」「町」「都市」「コロニア」「帝国都市」「メガロポリス」と続きます。段階が上がると、島の属性（幸福・健康・火災安全度・信仰・知識・名声）に加わる値も変わります。
+
+## 段階のしくみ
+
+- 段階は、その島の<strong>ローマ人の人口</strong>で決まります。表の「必要人口」に届くと、次の段階に上がります。
+- ラティウムの島は45段階です。人口の表があるのは40段階（主要なティタノポリス、260,000人）までで、その先の5段階は必要人口が未確認です。
+- 島の画面の右上に、段階がローマ数字で出ます（表の「段階」の列がその読み方です。画面の表示との対応は未確認です）。
+- アルビオン（ケルト系）にも、25段階の別の表があります。このページには載せていません。
+
+## 属性効果
+
+- 幸福・健康・火災安全度は、値がある段階ではどれもマイナスです。段階が上がるほど、マイナスが大きくなります。
+- 信仰・知識・名声は、値がある段階ではどれもプラスです。段階が上がるほど、プラスが大きくなります。
+- 画面でこの値がどこに出るか、どの建物に効くかは未確認です。
+- 「—」は、その段階にその属性の値が無いことを示します。段階1と2には、どの属性の値もありません。
+
+<div class="unit-table">
+<table>
+<thead><tr>
+<th>段階</th><th>名前</th><th>必要人口</th>
+<th v-for="k in attrKeys" :key="k">{{ data.attrs[k] }}</th>
+</tr></thead>
+<tbody>
+<tr v-for="s in data.stages" :key="s.level">
+<td>{{ s.roman }}</td>
+<td>{{ s.nameJa }}</td>
+<td>{{ pop(s.population) }}</td>
+<td v-for="k in attrKeys" :key="k">{{ fmt(s.attrs[k]) }}</td>
+</tr>
+</tbody>
+</table>
+</div>
+
+## 英語名
+
+英語表記（Outpost、Small Vicus、Large Vicus、Minor Town など）で探す場合の対応です。名前は、「小さな（Minor）・発展途上の（Growing）・主要な（Major）・巨大な（Vast）」と、都市の種類の組み合わせです。
+
+<div class="unit-table">
+<table>
+<thead><tr><th>段階</th><th>日本語名</th><th>英語名</th></tr></thead>
+<tbody>
+<tr v-for="s in data.stages" :key="s.level">
+<td>{{ s.roman }}</td>
+<td>{{ s.nameJa }}</td>
+<td>{{ s.nameEn }}</td>
+</tr>
+</tbody>
+</table>
+</div>
+
+## 注意
+
+- 数値は、ゲームのアップデート2.1時点のゲーム内データです。
+- アップデート3.0（2026年11月5日）で、都市ステータスによる属性のペナルティの増え方が変わります。人口ティア2・3の前後でゆるやかになり、終盤の値は変わりません。配信後に、このページの数値を実機に合わせて直します。
+
+## 関連ページ
+
+- [住民層](/wiki/population) — ラティウムの住民層と需要
+- [モニュメントの輝き](/wiki/splendor) — 競馬場・円形闘技場による島の属性ボーナス
