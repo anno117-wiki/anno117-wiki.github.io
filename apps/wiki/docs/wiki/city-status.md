@@ -49,23 +49,6 @@ const pop = (p: number | null) => (p === null ? '未確認' : p === 0 ? 'なし'
 </table>
 </div>
 
-## 英語名
-
-英語表記（Outpost、Small Vicus、Large Vicus、Minor Town など）で探す場合の対応です。名前は、「小さな（Minor）・発展途上の（Growing）・主要な（Major）・巨大な（Vast）」と、都市の種類の組み合わせです。
-
-<div class="unit-table">
-<table>
-<thead><tr><th>段階</th><th>日本語名</th><th>英語名</th></tr></thead>
-<tbody>
-<tr v-for="s in data.stages" :key="s.level">
-<td>{{ s.roman }}</td>
-<td>{{ s.nameJa }}</td>
-<td>{{ s.nameEn }}</td>
-</tr>
-</tbody>
-</table>
-</div>
-
 ## 注意
 
 - 数値は、ゲームのアップデート2.1時点のゲーム内データです。
