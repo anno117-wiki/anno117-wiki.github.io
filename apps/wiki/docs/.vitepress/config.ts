@@ -275,6 +275,12 @@ export default defineConfig({
                 { text: 'DLC03・デルタの夜明け', link: '/guide/dlc03-dawn-of-delta' },
               ],
             },
+            {
+              text: '小ネタ',
+              items: [
+                { text: '一人称モード（自由散策モード）', link: '/guide/controls#first-person' },
+              ],
+            },
           ],
         },
         {
