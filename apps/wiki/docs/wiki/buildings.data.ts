@@ -1,6 +1,8 @@
 import effectsJson from './buildings-effects.json'
 import jaJson from '../../../../packages/shared/public/i18n/locales/ja.json'
 import itemsFullJson from '../../../../packages/shared/public/data/items-full.json'
+// アイギュプト(DLC03)の建物。tools/build-buildings-aegyptus.py で生成
+import aegyptusJson from './buildings-aegyptus.json'
 
 interface BuildingEffect {
   id: string
@@ -37,6 +39,31 @@ function countItemsByTarget(): Record<string, number> {
   return counts
 }
 
+// アイギュプトの建物は、アイコンが無いので建物の種類(template)から分類を決める
+const TEMPLATE_CATEGORY: Record<string, string> = {
+  PublicServiceBuilding: 'public',
+  Monument: 'wonder',
+  MonumentEventBuilding: 'wonder',
+  HarborWarehouse: 'harbour',
+  HarborDepot: 'harbour',
+  TradeBuilding: 'harbour',
+  RepairCrane: 'harbour',
+  RecruitmentBuilding: 'military',
+  MiniInstitutionBuilding: 'institution',
+  CityInstitutionBuilding: 'institution',
+  ResidenceBuilding: 'base',
+}
+
+// 層の名前。ja.json に無いアイギュプトの層と、層が決まらない建物
+const EXTRA_TIER_NAMES: Record<string, string> = {
+  thresher: '麦打ち人',
+  potter: '陶工',
+  priestess: '奉唱巫女',
+  scribe: '書記',
+  gymnasiarch: 'ギムナシアリコス',
+  none: '—',
+}
+
 function getCategory(icon?: string | null): string {
   if (!icon) return 'production'
   if (icon.startsWith('public_')) return 'public'
@@ -59,6 +86,16 @@ export default {
       category: getCategory(b.icon),
       itemCount: b.nameJa ? (itemCounts[b.nameJa] ?? 0) : 0,
     }))
-    return { buildings }
+    // 既にある建物と同じ名前(市場・劇場など)には、地域を付けて区別する
+    const existing = new Set(effectsJson.buildings.map((b) => b.nameJa))
+    const aegyptus = aegyptusJson.buildings.map((b) => ({
+      ...b,
+      nameEn: existing.has(b.nameJa) ? `${b.nameEn} (Aegyptus)` : b.nameEn,
+      nameJa: existing.has(b.nameJa) ? `${b.nameJa}（アイギュプト）` : b.nameJa,
+      tierJa: EXTRA_TIER_NAMES[b.tier] ?? b.tier,
+      category: TEMPLATE_CATEGORY[b.template] ?? 'production',
+      itemCount: itemCounts[b.nameJa] ?? 0,
+    }))
+    return { buildings: [...buildings, ...aegyptus] }
   },
 }

@@ -21,6 +21,11 @@ SRC = ROOT / '_local' / 'anno-official-data' / 'v3.0-planner' / 'techs.json'
 OUT = ROOT / 'apps' / 'wiki' / 'docs' / 'wiki' / 'techs.json'
 DLC03_CATEGORY = 151465
 ZW = '​'
+# ゲームの日本語が崩れている・向きが他言語と逆の効果文の直し(スキルのGUID -> 日本語の効果文)。
+# 「イテルの旅人」は、日本語・中国語だけ「金を売って小麦を得る」向きだが、他の10言語は「小麦を売って金を得る」。ユーザーが向きを確認(2026-11-05)
+EFFECT_FIX_JA = {
+    153952: 'NPCに小麦を50t売却するごとに、金を1t獲得する。',
+}
 
 
 def tx(d, lang: str) -> str:
@@ -51,7 +56,7 @@ def main() -> None:
             'nameJa': tx(t['loca'], 'japanese'),
             'descEn': tx(t['description'], 'english'),
             'descJa': tx(t['description'], 'japanese'),
-            'effectJa': effect_text(t, 'japanese'),
+            'effectJa': EFFECT_FIX_JA.get(t['guid']) or effect_text(t, 'japanese'),
             'effectEn': effect_text(t, 'english'),
             'iconKey': None,
             'techIconPath': '',

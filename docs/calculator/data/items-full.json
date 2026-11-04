@@ -744,26 +744,6 @@
     "allocation": "船"
   },
   {
-    "guid": "90573",
-    "nameJa": "花形の潜り手-ナタンハエル・シタール、",
-    "nameEn": "Natanhael Sithar, the Star Diver",
-    "rarity": "Epic",
-    "niche": "Research",
-    "price": "100000",
-    "description": "海に潜って見つけた数々の驚異にまつわる、信じられないような物語を語って聞かせる。",
-    "effects": [
-      "浴場: 信仰 +1",
-      "浴場: 知識 +2"
-    ],
-    "boostHint": "",
-    "boostEffects": [],
-    "boostCondition": "",
-    "targets": "住居",
-    "source": [],
-    "sourceCaution": false,
-    "allocation": "住居"
-  },
-  {
     "guid": "109532",
     "nameJa": "ヘラクレスの献身的な兄弟",
     "nameEn": "Devoted Brother of Herakles",
@@ -6943,7 +6923,7 @@
     "price": "15000",
     "description": "盆地の水が地下に流れ込まないようにする。",
     "effects": [
-      "水の供給: +50%"
+      "水の供給: +25%"
     ],
     "boostHint": "",
     "boostEffects": [],
@@ -6965,7 +6945,7 @@
     "description": "あらゆる水道を整然とさせる。",
     "effects": [
       "維持費: -30%",
-      "水の供給: +200%",
+      "水の供給: +100%",
       "火災安全度: +100"
     ],
     "boostHint": "島で最も権威あるものを探し求める",
@@ -11433,6 +11413,1494 @@
     "targets": "競馬場",
     "source": [
       "クエスト「星の創世記 III：ファクス～火種」"
+    ],
+    "sourceCaution": false,
+    "allocation": "住居"
+  },
+  {
+    "guid": "153695",
+    "nameJa": "雁叩き",
+    "nameEn": "Goosebumper",
+    "rarity": "Common",
+    "niche": "Agriculture",
+    "price": "3000",
+    "description": "彼女は雁に棍棒を「ガン」とくれる。",
+    "effects": [
+      "生産性: +10%"
+    ],
+    "targets": "詰め物入りガチョウの生産チェーン",
+    "source": [
+      "未確認です",
+      "ヘロン地方長官との取引（2.148%）",
+      "ウァレリアとの取引（1.018%）",
+      "ヘロン地方長官との契約（並）（2.963%）",
+      "ウァレリアとの契約（並）（1.404%）",
+      "ヘロン地方長官との契約（良）（2.222%）",
+      "ウァレリアとの契約（良）（1.053%）",
+      "ヘロン地方長官との撃破ドロップ（0.203%）",
+      "ウァレリアとの撃破ドロップ（0.132%）"
+    ],
+    "sourceCaution": true,
+    "allocation": "住居"
+  },
+  {
+    "guid": "166421",
+    "nameJa": "泥ふるい",
+    "nameEn": "Mud Sifter",
+    "rarity": "Rare",
+    "niche": "Economy",
+    "price": "18000",
+    "description": "川は豊かだが、彼は豊かではない。",
+    "effects": [
+      "生産性: +10%",
+      "1tの鉱物をサイクル毎に追加で生産: "
+    ],
+    "targets": "金選鉱",
+    "source": [
+      "多数の交易商・祭りからランダム入手（低確率）"
+    ],
+    "sourceCaution": false,
+    "allocation": "住居"
+  },
+  {
+    "guid": "173061",
+    "nameJa": "カフク職人",
+    "nameEn": "Kaykbaker",
+    "rarity": "Common",
+    "niche": "Economy",
+    "price": "3000",
+    "description": "彼女は奴隷も生地も決して酷使しない。",
+    "effects": [
+      "生産性: +10%"
+    ],
+    "targets": "カフクの生産チェーン",
+    "source": [
+      "ヘロン地方長官との取引（1.074%）",
+      "ウァレリアとの取引（1.018%）",
+      "ヘロン地方長官との契約（並）（1.481%）",
+      "ウァレリアとの契約（並）（1.404%）",
+      "ヘロン地方長官との契約（良）（1.111%）",
+      "ウァレリアとの契約（良）（1.053%）",
+      "ウァレリアとの撃破ドロップ（0.132%）",
+      "ヘロン地方長官との撃破ドロップ（0.101%）"
+    ],
+    "sourceCaution": false,
+    "allocation": "住居"
+  },
+  {
+    "guid": "173071",
+    "nameJa": "デーツを投げる者",
+    "nameEn": "Datetosser",
+    "rarity": "Common",
+    "niche": "Agriculture",
+    "price": "3000",
+    "description": "恐れることなくヤシの木に登り、一番熟した果実を採る。",
+    "effects": [
+      "生産性: +10%"
+    ],
+    "targets": "ナツメヤシ農場",
+    "source": [
+      "ヘロン地方長官との取引（1.074%）",
+      "ウァレリアとの取引（1.018%）",
+      "ヘロン地方長官との契約（並）（1.481%）",
+      "ウァレリアとの契約（並）（1.404%）",
+      "ヘロン地方長官との契約（良）（1.111%）",
+      "ウァレリアとの契約（良）（1.053%）",
+      "ウァレリアとの撃破ドロップ（0.132%）",
+      "ヘロン地方長官との撃破ドロップ（0.101%）"
+    ],
+    "sourceCaution": false,
+    "allocation": "住居"
+  },
+  {
+    "guid": "173073",
+    "nameJa": "カバ使い",
+    "nameEn": "Hippopotamist",
+    "rarity": "Common",
+    "niche": "Agriculture",
+    "price": "3000",
+    "description": "彼女が新鮮な果物を与えた獣たちは、少しおとなしくなるようだ。",
+    "effects": [
+      "生産性: +10%"
+    ],
+    "targets": "大型獣の狩猟小屋",
+    "source": [
+      "ヘロン地方長官との取引（2.148%）",
+      "ウァレリアとの取引（2.035%）",
+      "カシュタのカンディスとの取引（0.909%）",
+      "ヘロン地方長官との契約（並）（2.963%）",
+      "ウァレリアとの契約（並）（2.807%）",
+      "カシュタのカンディスとの契約（並）（1.455%）",
+      "ヘロン地方長官との契約（良）（2.222%）",
+      "ウァレリアとの契約（良）（2.105%）",
+      "ウァレリアとの撃破ドロップ（0.265%）",
+      "ヘロン地方長官との撃破ドロップ（0.203%）"
+    ],
+    "sourceCaution": false,
+    "allocation": "住居"
+  },
+  {
+    "guid": "173077",
+    "nameJa": "ミルクをかき回す者",
+    "nameEn": "Milkchurner",
+    "rarity": "Common",
+    "niche": "Agriculture",
+    "price": "3000",
+    "description": "ヤギの皮を使ってチーズの塊を次々と作り出す。",
+    "effects": [
+      "生産性: +10%"
+    ],
+    "targets": "乳工房",
+    "source": [
+      "ウァレリアとの取引（2.035%）",
+      "ヘロン地方長官との取引（1.074%）",
+      "ウァレリアとの契約（並）（2.807%）",
+      "ヘロン地方長官との契約（並）（1.481%）",
+      "ウァレリアとの契約（良）（2.105%）",
+      "ヘロン地方長官との契約（良）（1.111%）",
+      "ウァレリアとの撃破ドロップ（0.265%）",
+      "ヘロン地方長官との撃破ドロップ（0.101%）"
+    ],
+    "sourceCaution": false,
+    "allocation": "住居"
+  },
+  {
+    "guid": "179649",
+    "nameJa": "セシェン、花摘み",
+    "nameEn": "Seshen, Petal Picker",
+    "rarity": "Epic",
+    "niche": "Economy",
+    "price": "18000",
+    "description": "彼の香しい煎じ茶は、夜明けのネクタルの甘さを見事にとらえている。",
+    "effects": [
+      "生産性: +35%"
+    ],
+    "targets": "青スイレン茶",
+    "source": [
+      "ウァレリアとの取引（0.099%）",
+      "ウァレリアとの契約（良）（0.070%）",
+      "ウァレリアとの契約（最高）（0.127%）"
+    ],
+    "sourceCaution": false,
+    "allocation": "住居"
+  },
+  {
+    "guid": "179652",
+    "nameJa": "首飾り職人",
+    "nameEn": "Collarist",
+    "rarity": "Common",
+    "niche": "Economy",
+    "price": "3000",
+    "description": "ビーズを連ねてあらゆる首飾りを作る。",
+    "effects": [
+      "生産性: +10%"
+    ],
+    "targets": "ウェセクの首輪の生産チェーン",
+    "source": [
+      "ヘロン地方長官との取引（1.074%）",
+      "ウァレリアとの取引（1.018%）",
+      "カシュタのカンディスとの取引（0.909%）",
+      "ヘロン地方長官との契約（並）（1.481%）",
+      "カシュタのカンディスとの契約（並）（1.455%）",
+      "ウァレリアとの契約（並）（1.404%）",
+      "ヘロン地方長官との契約（良）（1.111%）",
+      "ウァレリアとの契約（良）（1.053%）",
+      "ウァレリアとの撃破ドロップ（0.132%）",
+      "ヘロン地方長官との撃破ドロップ（0.101%）"
+    ],
+    "sourceCaution": false,
+    "allocation": "住居"
+  },
+  {
+    "guid": "179653",
+    "nameJa": "ケペシュの剣職人",
+    "nameEn": "Khopesh Bladesmith",
+    "rarity": "Rare",
+    "niche": "Military",
+    "price": "18000",
+    "description": "征服の費用を一瞬で切り刻む。",
+    "effects": [
+      "生産性: +20%",
+      "必要な労働力: -50%"
+    ],
+    "targets": "武器庫",
+    "source": [
+      "カシュタのカンディスとの取引（0.563%）",
+      "ウァレリアとの取引（0.466%）",
+      "カシュタのカンディスとの契約（並）（0.282%）",
+      "ウァレリアとの契約（並）（0.274%）",
+      "ウァレリアとの契約（良）（0.479%）",
+      "ウァレリアとの契約（最高）（1.233%）",
+      "ウァレリアとの撃破ドロップ（0.026%）"
+    ],
+    "sourceCaution": false,
+    "allocation": "住居"
+  },
+  {
+    "guid": "181055",
+    "nameJa": "シェンティ職人",
+    "nameEn": "Shentifitter",
+    "rarity": "Common",
+    "niche": "Diplomacy",
+    "price": "3000",
+    "description": "きれいなひだを作る。",
+    "effects": [
+      "生産性: +10%"
+    ],
+    "targets": "シェンティの生産チェーン",
+    "source": [
+      "ヘロン地方長官との取引（1.074%）",
+      "ウァレリアとの取引（1.018%）",
+      "ヘロン地方長官との契約（並）（1.481%）",
+      "ウァレリアとの契約（並）（1.404%）",
+      "ヘロン地方長官との契約（良）（1.111%）",
+      "ウァレリアとの契約（良）（1.053%）",
+      "ウァレリアとの撃破ドロップ（0.132%）",
+      "ヘロン地方長官との撃破ドロップ（0.101%）"
+    ],
+    "sourceCaution": false,
+    "allocation": "住居"
+  },
+  {
+    "guid": "181067",
+    "nameJa": "写本書記",
+    "nameEn": "Scriptor",
+    "rarity": "Common",
+    "niche": "Culture",
+    "price": "3000",
+    "description": "あらゆる巻物を見事に並べる。",
+    "effects": [
+      "生産性: +10%"
+    ],
+    "targets": "書記道具一式の生産チェーン",
+    "source": [
+      "ヘロン地方長官との取引（1.074%）",
+      "ウァレリアとの取引（1.018%）",
+      "ヘロン地方長官との契約（並）（1.481%）",
+      "ウァレリアとの契約（並）（1.404%）",
+      "ヘロン地方長官との契約（良）（1.111%）",
+      "ウァレリアとの契約（良）（1.053%）",
+      "ウァレリアとの撃破ドロップ（0.132%）",
+      "ヘロン地方長官との撃破ドロップ（0.101%）"
+    ],
+    "sourceCaution": false,
+    "allocation": "住居"
+  },
+  {
+    "guid": "181070",
+    "nameJa": "イシドラ、カラシリスの仕立屋",
+    "nameEn": "Isidora, Kalasiris Clothier",
+    "rarity": "Epic",
+    "niche": "Culture",
+    "price": "120000",
+    "description": "どんな地味な服にも、またとない彩りを少しばかり添える。",
+    "effects": [
+      "生産性: +35%",
+      "すべての施設: 名声 +2"
+    ],
+    "targets": "カラシリスの生産チェーン",
+    "source": [
+      "ウァレリアとの取引（0.099%）",
+      "ウァレリアとの契約（良）（0.070%）",
+      "ウァレリアとの契約（最高）（0.127%）"
+    ],
+    "sourceCaution": false,
+    "allocation": "住居"
+  },
+  {
+    "guid": "184812",
+    "nameJa": "レンガ職人",
+    "nameEn": "Brickmaker",
+    "rarity": "Common",
+    "niche": "Agriculture",
+    "price": "3000",
+    "description": "常に正しい角度で的確に捉える。",
+    "effects": [
+      "生産性: +10%"
+    ],
+    "targets": "日干しレンガの生産チェーン",
+    "source": [
+      "ヘロン地方長官との取引（1.074%）",
+      "ウァレリアとの取引（1.018%）",
+      "カシュタのカンディスとの取引（0.909%）",
+      "ヘロン地方長官との契約（並）（1.481%）",
+      "カシュタのカンディスとの契約（並）（1.455%）",
+      "ウァレリアとの契約（並）（1.404%）",
+      "ヘロン地方長官との契約（良）（1.111%）",
+      "ウァレリアとの契約（良）（1.053%）",
+      "ウァレリアとの撃破ドロップ（0.132%）",
+      "ヘロン地方長官との撃破ドロップ（0.101%）"
+    ],
+    "sourceCaution": false,
+    "allocation": "住居"
+  },
+  {
+    "guid": "184821",
+    "nameJa": "ラクダ使い",
+    "nameEn": "Kamel Herder",
+    "rarity": "Rare",
+    "niche": "Agriculture",
+    "price": "18000",
+    "description": "砂漠でずっと暮らしていたため、背中に小さなこぶがある。",
+    "effects": [
+      "生産性: +10%"
+    ],
+    "targets": "ラクダの生産チェーン",
+    "source": [
+      "多数の交易商・祭りからランダム入手（低確率）"
+    ],
+    "sourceCaution": false,
+    "allocation": "住居"
+  },
+  {
+    "guid": "184824",
+    "nameJa": "アシュキス、食欲の占者",
+    "nameEn": "Asychis, Diviner of Appetites",
+    "rarity": "Epic",
+    "niche": "Culture",
+    "price": "120000",
+    "description": "彼女が作る前菜は、当然ながら意見が分かれる。",
+    "effects": [
+      "生産性: +35%"
+    ],
+    "targets": "希少な肉の盛り合わせの生産チェーン",
+    "source": [
+      "ヘロン地方長官との取引（0.100%）",
+      "ヘロン地方長官との契約（良）（0.071%）",
+      "ヘロン地方長官との契約（最高）（0.129%）",
+      "ヘロン地方長官との撃破ドロップ（0.009%）"
+    ],
+    "sourceCaution": false,
+    "allocation": "住居"
+  },
+  {
+    "guid": "184828",
+    "nameJa": "ランプ職人",
+    "nameEn": "Lamp Maker",
+    "rarity": "Rare",
+    "niche": "Economy",
+    "price": "18000",
+    "description": "レンペトラは香油、粘土、そして仲間といることを好む。彼女がいると部屋が明るくなる。",
+    "effects": [
+      "生産性: +20%"
+    ],
+    "targets": "オイルランプの生産チェーン",
+    "source": [
+      "多数の交易商・祭りからランダム入手（低確率）"
+    ],
+    "sourceCaution": false,
+    "allocation": "住居"
+  },
+  {
+    "guid": "166417",
+    "nameJa": "儀式の画家",
+    "nameEn": "Ritual Painter",
+    "rarity": "Rare",
+    "niche": "Religion",
+    "price": "18000",
+    "description": "彼は死者の書を絵で彩り、大胆な筆さばきで人々の最後の旅路を描く。",
+    "effects": [
+      "信仰を供給された書記道具一式から提供する: +4",
+      "名声を供給された書記道具一式から提供する: +2"
+    ],
+    "targets": "住居",
+    "source": [
+      "ヘロン地方長官との取引（0.472%）",
+      "ヘロン地方長官との契約（並）（0.278%）",
+      "ヘロン地方長官との契約（良）（0.486%）",
+      "ヘロン地方長官との契約（最高）（1.250%）",
+      "ヘロン地方長官との撃破ドロップ（0.045%）"
+    ],
+    "sourceCaution": false,
+    "allocation": "住居"
+  },
+  {
+    "guid": "174657",
+    "nameJa": "墓荒らし",
+    "nameEn": "Tomb Raider",
+    "rarity": "Rare",
+    "niche": "Research",
+    "price": "120000",
+    "description": "盛大な埋葬が行われても、見る者が誰もいなければ何の意味があろうか？",
+    "effects": [
+      "すべての施設: 収入 +1",
+      "すべての施設: 知識 +1"
+    ],
+    "targets": "岩窟墓",
+    "source": [
+      "ヘロン地方長官との取引（0.472%）",
+      "ウァレリアとの取引（0.466%）",
+      "ヘロン地方長官との契約（並）（0.278%）",
+      "ウァレリアとの契約（並）（0.274%）",
+      "ヘロン地方長官との契約（良）（0.486%）",
+      "ウァレリアとの契約（良）（0.479%）",
+      "ヘロン地方長官との契約（最高）（1.250%）",
+      "ウァレリアとの契約（最高）（1.233%）",
+      "ヘロン地方長官との撃破ドロップ（0.045%）",
+      "ウァレリアとの撃破ドロップ（0.026%）"
+    ],
+    "sourceCaution": false,
+    "allocation": "住居"
+  },
+  {
+    "guid": "174661",
+    "nameJa": "優秀な薬剤師",
+    "nameEn": "Apt Apothecaria",
+    "rarity": "Rare",
+    "niche": "Agriculture",
+    "price": "120000",
+    "description": "救済のために、アカシアの樹脂、シルフィウム、サルビアを売る。",
+    "effects": [
+      "すべての施設: 健康 +1.2"
+    ],
+    "targets": "薬屋",
+    "source": [
+      "ヘロン地方長官との取引（0.472%）",
+      "ウァレリアとの取引（0.466%）",
+      "ヘロン地方長官との契約（並）（0.278%）",
+      "ウァレリアとの契約（並）（0.274%）",
+      "ヘロン地方長官との契約（良）（0.486%）",
+      "ウァレリアとの契約（良）（0.479%）",
+      "ヘロン地方長官との契約（最高）（1.250%）",
+      "ウァレリアとの契約（最高）（1.233%）",
+      "ヘロン地方長官との撃破ドロップ（0.045%）",
+      "ウァレリアとの撃破ドロップ（0.026%）"
+    ],
+    "sourceCaution": false,
+    "allocation": "住居"
+  },
+  {
+    "guid": "181031",
+    "nameJa": "見張り番",
+    "nameEn": "Warden",
+    "rarity": "Common",
+    "niche": "Culture",
+    "price": "3000",
+    "description": "過熱した議論を鎮め、焚き火の周囲で収める方法を知っている。",
+    "effects": [
+      "すべての施設: 火災安全度 +0.5"
+    ],
+    "targets": "焚き火",
+    "source": [
+      "ヘロン地方長官との取引（1.074%）",
+      "ウァレリアとの取引（1.018%）",
+      "カシュタのカンディスとの取引（0.909%）",
+      "ヘロン地方長官との契約（並）（1.481%）",
+      "カシュタのカンディスとの契約（並）（1.455%）",
+      "ウァレリアとの契約（並）（1.404%）",
+      "ヘロン地方長官との契約（良）（1.111%）",
+      "ウァレリアとの契約（良）（1.053%）",
+      "ウァレリアとの撃破ドロップ（0.132%）",
+      "ヘロン地方長官との撃破ドロップ（0.101%）"
+    ],
+    "sourceCaution": false,
+    "allocation": "住居"
+  },
+  {
+    "guid": "155786",
+    "nameJa": "ピイ王、乳香を施されし者",
+    "nameEn": "Pharaoh Piye, Frankincensed",
+    "rarity": "Epic",
+    "niche": "Religion",
+    "price": "18000",
+    "description": "しっかりと包まれている。",
+    "effects": [
+      "信仰を供給された岩窟墓から提供する: +4"
+    ],
+    "targets": "すべての施設",
+    "source": [
+      "未確認です"
+    ],
+    "sourceCaution": true,
+    "allocation": "住居"
+  },
+  {
+    "guid": "181048",
+    "nameJa": "デーツ採集者",
+    "nameEn": "Dater",
+    "rarity": "Common",
+    "niche": "Agriculture",
+    "price": "2500",
+    "description": "こだわりが強い。",
+    "effects": [
+      "健康を供給されたナツメヤシから提供する: +1"
+    ],
+    "targets": "住居",
+    "source": [
+      "ヘロン地方長官との取引（1.074%）",
+      "ウァレリアとの取引（1.018%）",
+      "ヘロン地方長官との契約（並）（1.481%）",
+      "ウァレリアとの契約（並）（1.404%）",
+      "ヘロン地方長官との契約（良）（1.111%）",
+      "ウァレリアとの契約（良）（1.053%）",
+      "ウァレリアとの撃破ドロップ（0.132%）",
+      "ヘロン地方長官との撃破ドロップ（0.101%）"
+    ],
+    "sourceCaution": false,
+    "allocation": "住居"
+  },
+  {
+    "guid": "156274",
+    "nameJa": "百人隊長",
+    "nameEn": "Centurion",
+    "rarity": "Common",
+    "niche": "Military",
+    "price": "2000",
+    "description": "ラクダでさえも敬意を払う。",
+    "effects": [
+      "兵士の募集費用: -10%",
+      "兵士の募集速度: +20%"
+    ],
+    "targets": "募集施設",
+    "source": [
+      "カシュタのカンディスとの取引（0.909%）",
+      "カシュタのカンディスとの契約（並）（1.455%）"
+    ],
+    "sourceCaution": false,
+    "allocation": "住居"
+  },
+  {
+    "guid": "181026",
+    "nameJa": "猫の友キャットゥルス",
+    "nameEn": "Catfriend Cattulus",
+    "rarity": "Rare",
+    "niche": "Agriculture",
+    "price": "3000",
+    "description": "穀物倉の平和を維持している。私的な催しに頻繁に招待されるが、出席しないのは周知の事実だ。",
+    "effects": [
+      "ネズミの危険性を抑える。: -60%"
+    ],
+    "targets": "すべての穀物庫",
+    "source": [
+      "多数の交易商・祭りからランダム入手（低確率）"
+    ],
+    "sourceCaution": false,
+    "allocation": "住居"
+  },
+  {
+    "guid": "159509",
+    "nameJa": "ナイルの民",
+    "nameEn": "Nilote",
+    "rarity": "Common",
+    "niche": "Finance",
+    "price": "3000",
+    "description": "川のあらゆる急流や浅瀬を知り尽くしており、どの支流でも迷うことはない。",
+    "effects": [
+      "移動速度: +10%",
+      "河川の流れによる悪影響：: +10%"
+    ],
+    "targets": "船",
+    "source": [
+      "未確認です"
+    ],
+    "sourceCaution": true,
+    "allocation": "船"
+  },
+  {
+    "guid": "181028",
+    "nameJa": "漕ぎ手",
+    "nameEn": "Oarsman",
+    "rarity": "Common",
+    "niche": "Finance",
+    "price": "3000",
+    "description": "川のあらゆる急流や浅瀬を知り尽くしており、どの支流でも迷うことはない。",
+    "effects": [
+      "河川の流れによる悪影響：: +20%"
+    ],
+    "targets": "すべての川の船",
+    "source": [
+      "ヘロン地方長官との取引（1.074%）",
+      "ウァレリアとの取引（1.018%）",
+      "カシュタのカンディスとの取引（0.909%）",
+      "ヘロン地方長官との契約（並）（1.481%）",
+      "カシュタのカンディスとの契約（並）（1.455%）",
+      "ウァレリアとの契約（並）（1.404%）",
+      "ヘロン地方長官との契約（良）（1.111%）",
+      "ウァレリアとの契約（良）（1.053%）",
+      "ウァレリアとの撃破ドロップ（0.132%）",
+      "ヘロン地方長官との撃破ドロップ（0.101%）"
+    ],
+    "sourceCaution": false,
+    "allocation": "船"
+  },
+  {
+    "guid": "184834",
+    "nameJa": "川を襲う者",
+    "nameEn": "River Raider",
+    "rarity": "Rare",
+    "niche": "Finance",
+    "price": "18000",
+    "description": "葦を読めるのは誰だ？ あらゆる矢を真っ二つにし、あらゆる町を焼き払うのは誰だ？",
+    "effects": [
+      "精度: +10%",
+      "船上弓兵の攻撃速度: +20%",
+      "松明の攻撃速度: +20%"
+    ],
+    "targets": "船",
+    "source": [
+      "カシュタのカンディスとの取引（0.909%）",
+      "カシュタのカンディスとの契約（並）（1.455%）"
+    ],
+    "sourceCaution": false,
+    "allocation": "船"
+  },
+  {
+    "guid": "179655",
+    "nameJa": "油の種に囁く者",
+    "nameEn": "Oilseed Whisperer",
+    "rarity": "Rare",
+    "niche": "Agriculture",
+    "price": "12600",
+    "description": "開け、ゴマ！",
+    "effects": [
+      "追加生産力：ゴマの生産力: 75%"
+    ],
+    "targets": "ゴマ農場、ゴマ農場",
+    "source": [
+      "ウァレリアとの取引（0.466%）",
+      "ウァレリアとの契約（並）（0.274%）",
+      "ウァレリアとの契約（良）（0.479%）",
+      "ウァレリアとの契約（最高）（1.233%）",
+      "ウァレリアとの撃破ドロップ（0.026%）"
+    ],
+    "sourceCaution": false,
+    "allocation": "住居"
+  },
+  {
+    "guid": "179657",
+    "nameJa": "スイレン採集者",
+    "nameEn": "Lotus Spotter",
+    "rarity": "Rare",
+    "niche": "Agriculture",
+    "price": "12600",
+    "description": "この繊細な花を見つけるには、泥の「読み方」を身につける必要がある。",
+    "effects": [
+      "追加生産力：スイレンの生産力: 75%"
+    ],
+    "targets": "青スイレン農園",
+    "source": [
+      "ヘロン地方長官との取引（0.472%）",
+      "ウァレリアとの取引（0.466%）",
+      "ヘロン地方長官との契約（並）（0.278%）",
+      "ウァレリアとの契約（並）（0.274%）",
+      "ヘロン地方長官との契約（良）（0.486%）",
+      "ウァレリアとの契約（良）（0.479%）",
+      "ヘロン地方長官との契約（最高）（1.250%）",
+      "ウァレリアとの契約（最高）（1.233%）",
+      "ヘロン地方長官との撃破ドロップ（0.045%）",
+      "ウァレリアとの撃破ドロップ（0.026%）"
+    ],
+    "sourceCaution": false,
+    "allocation": "住居"
+  },
+  {
+    "guid": "179659",
+    "nameJa": "果樹園の監督",
+    "nameEn": "Orchard Overseer",
+    "rarity": "Rare",
+    "niche": "Agriculture",
+    "price": "12600",
+    "description": "カルタゴの港から遠く離れた地にザクロを広める。",
+    "effects": [
+      "追加生産力：ザクロの生産力: 75%"
+    ],
+    "targets": "ザクロ農場",
+    "source": [
+      "ヘロン地方長官との取引（0.472%）",
+      "ウァレリアとの取引（0.466%）",
+      "ヘロン地方長官との契約（並）（0.278%）",
+      "ウァレリアとの契約（並）（0.274%）",
+      "ヘロン地方長官との契約（良）（0.486%）",
+      "ウァレリアとの契約（良）（0.479%）",
+      "ヘロン地方長官との契約（最高）（1.250%）",
+      "ウァレリアとの契約（最高）（1.233%）",
+      "ヘロン地方長官との撃破ドロップ（0.045%）",
+      "ウァレリアとの撃破ドロップ（0.026%）"
+    ],
+    "sourceCaution": false,
+    "allocation": "住居"
+  },
+  {
+    "guid": "179663",
+    "nameJa": "牛担ぎ",
+    "nameEn": "Cowlifter",
+    "rarity": "Common",
+    "niche": "Nautics",
+    "price": "3000",
+    "description": "重い荷物を軽々と積み下ろしする。",
+    "effects": [
+      "品物の移送速度: +33%"
+    ],
+    "targets": "すべての川の船",
+    "source": [
+      "ヘロン地方長官との取引（1.074%）",
+      "ヘロン地方長官との契約（並）（1.481%）",
+      "ヘロン地方長官との契約（良）（1.111%）",
+      "ヘロン地方長官との撃破ドロップ（0.101%）"
+    ],
+    "sourceCaution": false,
+    "allocation": "船"
+  },
+  {
+    "guid": "179665",
+    "nameJa": "密輸人",
+    "nameEn": "Smuggler",
+    "rarity": "Common",
+    "niche": "Finance",
+    "price": "2250",
+    "description": "浅瀬で、パピルス草が詮索好きな者の目を阻むところに留まる。",
+    "effects": [
+      "貿易価格: -10%",
+      "積荷による減速：: -30%"
+    ],
+    "targets": "すべての川の船",
+    "source": [
+      "未確認です",
+      "ウァレリアとの取引（1.018%）",
+      "カシュタのカンディスとの取引（0.909%）",
+      "カシュタのカンディスとの契約（並）（1.455%）",
+      "ウァレリアとの契約（並）（1.404%）",
+      "ウァレリアとの契約（良）（1.053%）",
+      "ウァレリアとの撃破ドロップ（0.132%）"
+    ],
+    "sourceCaution": true,
+    "allocation": "船"
+  },
+  {
+    "guid": "181024",
+    "nameJa": "アンティパテル、ナバテアの首謀者",
+    "nameEn": "Antipater, Nabatu Chief Conspirator",
+    "rarity": "Epic",
+    "niche": "Military",
+    "price": "110000",
+    "description": "ナバテアとその根強い反感を、誰が予想できただろうか。",
+    "effects": [
+      "河川の流れによる悪影響：: +100%",
+      "船上弓兵の精度: +20%",
+      "船上カタパルトの精度: +20%",
+      "船上弓兵の遠距離攻撃力: +5",
+      "船上カタパルトの遠距離攻撃力: +30"
+    ],
+    "targets": "船",
+    "source": [
+      "カシュタのカンディスとの取引（0.129%）"
+    ],
+    "sourceCaution": false,
+    "allocation": "船"
+  },
+  {
+    "guid": "184805",
+    "nameJa": "猫使い",
+    "nameEn": "Felinist",
+    "rarity": "Common",
+    "niche": "Agriculture",
+    "price": "3000",
+    "description": "猫からの便りを聞くのが好き。",
+    "effects": [
+      "ネズミの危険性を抑える。: -20%"
+    ],
+    "targets": "すべての穀物庫",
+    "source": [
+      "ヘロン地方長官との取引（1.074%）",
+      "ウァレリアとの取引（1.018%）",
+      "カシュタのカンディスとの取引（0.909%）",
+      "ヘロン地方長官との契約（並）（1.481%）",
+      "カシュタのカンディスとの契約（並）（1.455%）",
+      "ウァレリアとの契約（並）（1.404%）",
+      "ヘロン地方長官との契約（良）（1.111%）",
+      "ウァレリアとの契約（良）（1.053%）",
+      "ウァレリアとの撃破ドロップ（0.132%）",
+      "ヘロン地方長官との撃破ドロップ（0.101%）"
+    ],
+    "sourceCaution": false,
+    "allocation": "住居"
+  },
+  {
+    "guid": "155088",
+    "nameJa": "潜り手",
+    "nameEn": "Free Diver",
+    "rarity": "Common",
+    "niche": "Agriculture",
+    "price": "",
+    "description": "この輝く目を持つ志願者は、深潜りが大好きだ。重要な証拠を回収できるだろうか？",
+    "effects": [
+      "必要エリア: -15%"
+    ],
+    "targets": "ビーズ工房",
+    "source": [
+      "未確認です"
+    ],
+    "sourceCaution": true,
+    "allocation": "住居"
+  },
+  {
+    "guid": "159505",
+    "nameJa": "葦切り",
+    "nameEn": "Reedcutter",
+    "rarity": "Common",
+    "niche": "Agriculture",
+    "price": "3000",
+    "description": "また生えてくる。",
+    "effects": [
+      "生産性: +10%"
+    ],
+    "targets": "すべての葦農場",
+    "source": [
+      "未確認です",
+      "ウァレリアとの取引（1.018%）",
+      "ウァレリアとの契約（並）（1.404%）",
+      "ウァレリアとの契約（良）（1.053%）",
+      "ウァレリアとの撃破ドロップ（0.132%）"
+    ],
+    "sourceCaution": true,
+    "allocation": "住居"
+  },
+  {
+    "guid": "155956",
+    "nameJa": "アトレイドス・ザ・ヤンガー、驚異の徴税官",
+    "nameEn": "Atreides The Younger, Prodigious Publicanus",
+    "rarity": "Epic",
+    "niche": "Finance",
+    "price": "180000",
+    "description": "自分で計算していない数字は信用すべきでないと心得ている。",
+    "effects": [
+      "収入を供給された書記道具一式から提供する: +2",
+      "名声を供給された書記道具一式から提供する: +2"
+    ],
+    "targets": "住居",
+    "source": [
+      "未確認です"
+    ],
+    "sourceCaution": true,
+    "allocation": "住居"
+  },
+  {
+    "guid": "155788",
+    "nameJa": "サラキウス、潮の書記",
+    "nameEn": "Salacius, Tidal Scribe",
+    "rarity": "Epic",
+    "niche": "Research",
+    "price": "180000",
+    "description": "海、星、海水に意味のあるパターンを見出し、船乗り仲間と共有する。",
+    "effects": [
+      "すべての施設: 幸福度 +2",
+      "すべての施設: 知識 +2"
+    ],
+    "targets": "天文台",
+    "source": [
+      "未確認です"
+    ],
+    "sourceCaution": true,
+    "allocation": "住居"
+  },
+  {
+    "guid": "155766",
+    "nameJa": "ゲメルス、落書き芸術家",
+    "nameEn": "Gemellus, Graffiti Artist",
+    "rarity": "Rare",
+    "niche": "Culture",
+    "price": "18000",
+    "description": "アイギュプトのあちこちの壁に、総督と瓜二つの肖像を刻みつけることを好む。",
+    "effects": [
+      "名声: +1.2"
+    ],
+    "targets": "住居",
+    "source": [
+      "未確認です",
+      "ウァレリアとの取引（0.466%）",
+      "ウァレリアとの契約（並）（0.274%）",
+      "ウァレリアとの契約（良）（0.479%）",
+      "ウァレリアとの契約（最高）（1.233%）",
+      "ウァレリアとの撃破ドロップ（0.026%）"
+    ],
+    "sourceCaution": true,
+    "allocation": "住居"
+  },
+  {
+    "guid": "155778",
+    "nameJa": "徴税請負人",
+    "nameEn": "Taxing Telones",
+    "rarity": "Rare",
+    "niche": "Economy",
+    "price": "120000",
+    "description": "才能の持つ価値を教えてくれる。",
+    "effects": [
+      "すべての施設: 収入 +2",
+      "すべての施設: 名声 +1"
+    ],
+    "targets": "市場",
+    "source": [
+      "未確認です",
+      "ヘロン地方長官との取引（0.472%）",
+      "ヘロン地方長官との契約（並）（0.278%）",
+      "ヘロン地方長官との契約（良）（0.486%）",
+      "ヘロン地方長官との契約（最高）（1.250%）",
+      "ヘロン地方長官との撃破ドロップ（0.045%）"
+    ],
+    "sourceCaution": true,
+    "allocation": "住居"
+  },
+  {
+    "guid": "155948",
+    "nameJa": "ピル、ギリシャ人",
+    "nameEn": "Phil, Hellene",
+    "rarity": "Rare",
+    "niche": "Culture",
+    "price": "120000",
+    "description": "ゴルギアスと、ブドウと、文法を好む。",
+    "effects": [
+      "すべての施設: 健康 +2",
+      "すべての施設: 名声 +1"
+    ],
+    "targets": "ラテン語学校",
+    "source": [
+      "未確認です",
+      "ウァレリアとの取引（0.466%）",
+      "ウァレリアとの契約（並）（0.274%）",
+      "ウァレリアとの契約（良）（0.479%）",
+      "ウァレリアとの契約（最高）（1.233%）",
+      "ウァレリアとの撃破ドロップ（0.026%）"
+    ],
+    "sourceCaution": true,
+    "allocation": "住居"
+  },
+  {
+    "guid": "166523",
+    "nameJa": "小スコルピオ・アフリカヌス、法的に別人の将軍",
+    "nameEn": "Scorpio Africanus Minor, Legally Distinct General",
+    "rarity": "Legendary",
+    "niche": "Military",
+    "price": "180000",
+    "description": "彼を敵に回せば、手痛く刺される。",
+    "effects": [
+      "生産性: +50%",
+      "募集施設: 収入 +2",
+      "募集施設: 名声 +1"
+    ],
+    "boostHint": "反乱で真価を発揮する",
+    "boostEffects": [
+      "生産性: +100%",
+      "募集施設: 兵士の募集速度 +100%"
+    ],
+    "boostCondition": "未確認です",
+    "targets": "軍用品生産",
+    "source": [
+      "栄誉の殿堂"
+    ],
+    "sourceCaution": false,
+    "allocation": "住居"
+  },
+  {
+    "guid": "172289",
+    "nameJa": "ポルトゥスのパトリキ、ユリア・プブリカ",
+    "nameEn": "Julia Publica, Patrician of Portus",
+    "rarity": "Legendary",
+    "niche": "Economy",
+    "price": "600000",
+    "description": "アフリクスや遠いアルビオンからガレー船が帰還するたびに、それを最初に迎えるのは税関役人の妻だ。",
+    "effects": [
+      "維持費: -60%",
+      "品物の移送速度: +40%"
+    ],
+    "boostHint": "帆が増えるのを見ることを好む",
+    "boostEffects": [
+      "維持費: -60%",
+      "必要な労働力: -75%",
+      "品物の移送速度: +60%"
+    ],
+    "boostCondition": "未確認です",
+    "targets": "倉庫、交易所",
+    "source": [
+      "栄誉の殿堂"
+    ],
+    "sourceCaution": false,
+    "allocation": "住居"
+  },
+  {
+    "guid": "156201",
+    "nameJa": "トトメスス、水路の見張り番",
+    "nameEn": "Thutmoses, Watcher of Waterways",
+    "rarity": "Legendary",
+    "niche": "Research",
+    "price": "180000",
+    "description": "乏しさの中で生きられる者は、豊かさにも対処できる。",
+    "effects": [
+      "維持費: -50%",
+      "水路の容量: +50",
+      "すべての施設: 健康 +1",
+      "すべての施設: 知識 +2"
+    ],
+    "boostHint": "農地を水浸しにするのを好む",
+    "boostEffects": [
+      "維持費: -80%",
+      "水路の容量: +100",
+      "すべての施設: 健康 +1",
+      "すべての施設: 知識 +3"
+    ],
+    "boostCondition": "未確認です",
+    "targets": "貯水池、水路の水溜め",
+    "source": [
+      "ウァレリアとの取引（0.032%）",
+      "ウァレリアとの契約（最高）（0.032%）"
+    ],
+    "sourceCaution": false,
+    "allocation": "住居"
+  },
+  {
+    "guid": "181017",
+    "nameJa": "イセト・ハムト・ネテル、イシスの崇拝者",
+    "nameEn": "Iset Hmt-ntr, Idolizer of Isis",
+    "rarity": "Legendary",
+    "niche": "Religion",
+    "price": "120000",
+    "description": "彼女にとって象牙とは、自分の声の振動に同調させられる新たな骨だ。",
+    "effects": [
+      "生産性: +50%",
+      "維持費: -25%",
+      "すべての施設: 信仰 +1.5"
+    ],
+    "boostHint": "守護神に献身する",
+    "boostEffects": [
+      "生産性: +100%",
+      "維持費: -80%",
+      "すべての施設: 信仰 +3"
+    ],
+    "boostCondition": "未確認です",
+    "targets": "象牙の小箱の生産チェーン",
+    "source": [
+      "ヘロン地方長官との取引（0.033%）",
+      "ヘロン地方長官との契約（最高）（0.033%）",
+      "ヘロン地方長官との撃破ドロップ（0.003%）"
+    ],
+    "sourceCaution": false,
+    "allocation": "住居"
+  },
+  {
+    "guid": "184794",
+    "nameJa": "マルクス・トライウス・ベローナ、戦太鼓奏者",
+    "nameEn": "Marcus Traius Bellona, Wardrummer",
+    "rarity": "Legendary",
+    "niche": "Military",
+    "price": "550000",
+    "description": "リズムを一定に、殴るのは最小限に。デキムスは彼の寛大さに不満を抱いているという噂がある。",
+    "effects": [
+      "ヒットポイント: +80%",
+      "自己修復速度: +100%",
+      "精度: +20%"
+    ],
+    "boostHint": "自らの船を武装で固めることを好む",
+    "boostEffects": [
+      "ヒットポイント: +100%",
+      "自己修復速度: +200%",
+      "追い風の風向: +45",
+      "精度: +30%"
+    ],
+    "boostCondition": "未確認です",
+    "targets": "船",
+    "source": [],
+    "sourceCaution": false,
+    "allocation": "船"
+  },
+  {
+    "guid": "159507",
+    "nameJa": "ミウト、水鳥の脅威",
+    "nameEn": "Miut, Terror of Waterfowl",
+    "rarity": "Legendary",
+    "niche": "Finance",
+    "price": "180000",
+    "description": "おお、その真夜中の如き毛並み。おお、そのしなやかな尻尾！ 神が我らの間を歩む。多くのネズミを捕れる日にならんことを。",
+    "effects": [
+      "ネズミの危険性を抑える。: -80%",
+      "すべての施設: 信仰 +2"
+    ],
+    "boostHint": "すべての猫の女神がミウトを守る。",
+    "boostEffects": [
+      "ネズミの危険性を抑える。: -100%",
+      "すべての施設: 信仰 +4"
+    ],
+    "boostCondition": "未確認です",
+    "targets": "すべての穀物庫",
+    "source": [
+      "未確認です"
+    ],
+    "sourceCaution": true,
+    "allocation": "住居"
+  },
+  {
+    "guid": "155327",
+    "nameJa": "デキムス、解任されたデルタの暴君",
+    "nameEn": "Decimus, Deposed Tyrannus of the Delta",
+    "rarity": "Unique",
+    "niche": "Economy",
+    "price": "1000",
+    "description": "デキムスは敗北したわけではない。ただ、統治者としての立場から退き、あなたのキャリアを支えるために全力で尽くすことを決めただけだ。よく言われるように、彼は失望された時が最も危険なのだ…",
+    "effects": [
+      "人々: +10%",
+      "すべての施設: 収入 +2",
+      "すべての施設: 名声 +2"
+    ],
+    "boostHint": "帝国の道を着実に歩む",
+    "boostEffects": [
+      "人々: +15%",
+      "すべての施設: 収入 +4",
+      "すべての施設: 名声 +4"
+    ],
+    "boostCondition": "未確認です",
+    "targets": "すべてのアイギュプト属州の住居、すべてのローマ化された住居",
+    "source": [
+      "デキムスを撃破"
+    ],
+    "sourceCaution": false,
+    "allocation": "住居"
+  },
+  {
+    "guid": "175089",
+    "nameJa": "スプリウス・ウェロ、攻勢な弁論家",
+    "nameEn": "Spurius Vero, Orator on the Offensive",
+    "rarity": "Legendary",
+    "niche": "Culture",
+    "price": "500000",
+    "description": "扇動的な演説で知られる。かつてはあなたを激しく非難していたが、恩を仇で返すような男ではない。",
+    "effects": [
+      "維持費: -25%",
+      "すべての施設: 収入 +1",
+      "すべての施設: 名声 +1",
+      "すべての施設: 筆記板の供給が必要 "
+    ],
+    "boostHint": "長年にわたり皇帝に仕え続けてきた",
+    "boostEffects": [
+      "維持費: -50%",
+      "すべての施設: 収入 +2",
+      "すべての施設: 名声 +1",
+      "すべての施設: 筆記板の供給が必要 "
+    ],
+    "boostCondition": "未確認です",
+    "targets": "公共広場",
+    "source": [
+      "未確認です"
+    ],
+    "sourceCaution": true,
+    "allocation": "住居"
+  },
+  {
+    "guid": "175090",
+    "nameJa": "ハナ・レクター、視点の提唱者",
+    "nameEn": "Hana Lector, Promulgator of Perspectives",
+    "rarity": "Legendary",
+    "niche": "Culture",
+    "price": "500000",
+    "description": "あなたがニュンパイオスの死の真相を公表するかどうかを決めた後、あなたに仕えることとなった専門家。",
+    "effects": [
+      "幸福度を供給された劇場から提供する: +1",
+      "幸福度を供給された改修されたピラミッドから提供する: +1",
+      "名声を供給された劇場から提供する: +1",
+      "名声を供給された改修されたピラミッドから提供する: +1"
+    ],
+    "boostHint": "偉大な空を三度見よ…",
+    "boostEffects": [
+      "人々を供給された劇場から提供する: +1",
+      "人々を供給された改修されたピラミッドから提供する: +1",
+      "幸福度を供給された劇場から提供する: +1",
+      "幸福度を供給された改修されたピラミッドから提供する: +1",
+      "名声を供給された劇場から提供する: +1",
+      "名声を供給された改修されたピラミッドから提供する: +1"
+    ],
+    "boostCondition": "未確認です",
+    "targets": "住居",
+    "source": [
+      "未確認です"
+    ],
+    "sourceCaution": true,
+    "allocation": "住居"
+  },
+  {
+    "guid": "160148",
+    "nameJa": "タンティエマニ、アペデマクの黄金の建築家",
+    "nameEn": "Tantiemani, Aureate Architect of Apedemak",
+    "rarity": "Legendary",
+    "niche": "Finance",
+    "price": "600000",
+    "description": "獅子の神殿の傾斜路と吠える柱を建てたのは誰か？ カシュタに異邦人のコインをもたらしたのは誰か？",
+    "effects": [
+      "収入: +50",
+      "名声: +50"
+    ],
+    "boostHint": "平和を好む",
+    "boostEffects": [
+      "収入: +75",
+      "名声: +50"
+    ],
+    "boostCondition": "未確認です",
+    "targets": "公共サービス",
+    "source": [
+      "未確認です"
+    ],
+    "sourceCaution": true,
+    "allocation": "住居"
+  },
+  {
+    "guid": "183250",
+    "nameJa": "ガイウス・ロマーヌス・ガイソス、熱烈な帝国主義者",
+    "nameEn": "Gaius Romanus Gaisos, Ardent Imperialist",
+    "rarity": "Legendary",
+    "niche": "Military",
+    "price": "600000",
+    "description": "決して現在の栄光に満足しない。",
+    "effects": [
+      "野営中に治癒を行う: +150%"
+    ],
+    "boostHint": "長年にわたり皇帝に仕え続けてきた",
+    "boostEffects": [
+      "野営中に治癒を行う: +200%"
+    ],
+    "boostCondition": "未確認です",
+    "targets": "野営地",
+    "source": [
+      "未確認です"
+    ],
+    "sourceCaution": true,
+    "allocation": "住居"
+  },
+  {
+    "guid": "183253",
+    "nameJa": "クレオパトラ、ギリシャを愛する交響曲作家",
+    "nameEn": "Caliopatra, Philhellennic Symphonist",
+    "rarity": "Legendary",
+    "niche": "Culture",
+    "price": "600000",
+    "description": "シンポジウムで最も白熱した議論をも沈黙させる曲を奏でることができる。",
+    "effects": [
+      "収入を供給された劇場から提供する: +2",
+      "名声を供給された劇場から提供する: +0.5"
+    ],
+    "boostHint": "高尚な文学に愛着を持っている",
+    "boostEffects": [
+      "収入を供給された劇場から提供する: +3",
+      "名声を供給された劇場から提供する: +1"
+    ],
+    "boostCondition": "未確認です",
+    "targets": "すべての施設",
+    "source": [
+      "未確認です"
+    ],
+    "sourceCaution": true,
+    "allocation": "住居"
+  },
+  {
+    "guid": "183256",
+    "nameJa": "アメンテスの砂の中を歩く者",
+    "nameEn": "The One Who Walks In Sands of Amenthes",
+    "rarity": "Legendary",
+    "niche": "Religion",
+    "price": "600000",
+    "description": "時が来る前に冥界へ放浪することを選んだ者は少ないが、ドゥアトの悪魔と話す者はさらに少ない。",
+    "effects": [
+      "1tの銀を6サイクル毎に追加で生産: ",
+      "すべての施設: 幸福度 -1"
+    ],
+    "boostHint": "三度偉大なる者の秘めた知恵を求める。",
+    "boostEffects": [
+      "1tの銀を6サイクル毎に追加で生産: ",
+      "1tの金を8サイクル毎に追加で生産: ",
+      "すべての施設: 幸福度 -1",
+      "すべての施設: 健康 -1"
+    ],
+    "boostCondition": "未確認です",
+    "targets": "溶鉱炉",
+    "source": [
+      "未確認です"
+    ],
+    "sourceCaution": true,
+    "allocation": "住居"
+  },
+  {
+    "guid": "183259",
+    "nameJa": "ラムセス・ピラムセス、アイギュプト人らしく歩く者",
+    "nameEn": "Ramesses Piramesses, Who Walks Like An Aegyptian",
+    "rarity": "Legendary",
+    "niche": "Agriculture",
+    "price": "600000",
+    "description": "ファラオの血筋が途絶えることはなかった。ただ、横向きに歩き始めただけだ。",
+    "effects": [
+      "幸福度を供給されたシストラムから提供する: +1",
+      "信仰を供給されたシストラムから提供する: +3"
+    ],
+    "boostHint": "ファラオが眠る古の場所を探す。",
+    "boostEffects": [],
+    "boostCondition": "未確認です",
+    "targets": "住居",
+    "source": [
+      "未確認です"
+    ],
+    "sourceCaution": true,
+    "allocation": "住居"
+  },
+  {
+    "guid": "180888",
+    "nameJa": "ニュンピウォルス、下から死をもたらす者",
+    "nameEn": "Nymphivorus, Death From Below",
+    "rarity": "Legendary",
+    "niche": "Military",
+    "price": "550000",
+    "description": "航路に沿って遊覧船を追いかけ、襲いかかることで知られる。柔らかい肉を好む。",
+    "effects": [
+      "ダメージによる減速: -50%",
+      "河川の流れによる悪影響：: +50%",
+      "船を沈めた際にデナリウスを獲得する: +1000",
+      "船上弓兵の攻撃範囲: +15%",
+      "船上カタパルトの攻撃範囲: +15%"
+    ],
+    "boostHint": "セベクと特別な絆で結ばれている",
+    "boostEffects": [
+      "ダメージによる減速: -75%",
+      "河川の流れによる悪影響：: +100%",
+      "船を沈めた際にデナリウスを獲得する: +2000",
+      "船上弓兵の攻撃範囲: +30%",
+      "船上カタパルトの攻撃範囲: +30%"
+    ],
+    "boostCondition": "未確認です",
+    "targets": "船",
+    "source": [
+      "カシュタのカンディスとの取引（0.033%）"
+    ],
+    "sourceCaution": false,
+    "allocation": "船"
+  },
+  {
+    "guid": "185142",
+    "nameJa": "近衛兵プラウトゥス・ヒッピウス・ペディカ",
+    "nameEn": "Plautus Hippius Pedica, Praetorian Guard",
+    "rarity": "Mythic",
+    "niche": "Diplomacy",
+    "price": "1000",
+    "description": "「彼は精力的に働く。神々を崇め、奴隷に教えを説き、セルウィウスを引用する。これほど献身的な男は見たことがない。きっと偽物だ」 - デ・ペディカ",
+    "effects": [
+      "維持費: -25%",
+      "すべての施設: 幸福度 +1",
+      "すべての施設: 名声 +1"
+    ],
+    "boostHint": "古参兵の一人",
+    "boostEffects": [
+      "維持費: -35%",
+      "すべての施設: 幸福度 +2",
+      "すべての施設: 名声 +1"
+    ],
+    "boostCondition": "未確認です",
+    "targets": "公共サービス",
+    "source": [
+      "来訪者イベントの報酬（2.857%）"
+    ],
+    "sourceCaution": false,
+    "allocation": "住居"
+  },
+  {
+    "guid": "185162",
+    "nameJa": "コンセンティア・ストラータ、上等な衣服を渇望する者",
+    "nameEn": "Consentia Stolata, Coveter of Fine Apparel",
+    "rarity": "Mythic",
+    "niche": "Culture",
+    "price": "1000",
+    "description": "「彼女のデーツとヘマタイトのビールのおかげで、全人類は救われました。ハトホルの女司祭はとてつもなく機嫌が悪かったので」 - 合唱団の女性",
+    "effects": [
+      "生産性: +35%",
+      "維持費: -50%",
+      "必要な労働力: +35%",
+      "すべての施設: 人々 +1",
+      "すべての施設: 健康 +1"
+    ],
+    "boostHint": "作物のことになると非常に熱心に取り組む",
+    "boostEffects": [
+      "生産性: +50%",
+      "維持費: -75%",
+      "必要な労働力: +35%",
+      "すべての施設: 人々 +1",
+      "すべての施設: 健康 +1"
+    ],
+    "boostCondition": "未確認です",
+    "targets": "宝石商",
+    "source": [
+      "来訪者イベントの報酬（2.857%）"
+    ],
+    "sourceCaution": false,
+    "allocation": "住居"
+  },
+  {
+    "guid": "185129",
+    "nameJa": "収穫の声を聴く者フーイ",
+    "nameEn": "Huy, Who Speaks to the Harvest",
+    "rarity": "Mythic",
+    "niche": "Agriculture",
+    "price": "1000",
+    "description": "「彼女のデーツとヘマタイトのビールのおかげで、全人類は救われました。ハトホルの女司祭はとてつもなく機嫌が悪かったので」 - 合唱団の女性",
+    "effects": [
+      "生産性: +35%",
+      "維持費: -50%",
+      "必要な労働力: +35%",
+      "すべての施設: 人々 +1",
+      "すべての施設: 健康 +1"
+    ],
+    "boostHint": "作物のことになると非常に熱心に取り組む",
+    "boostEffects": [
+      "生産性: +50%",
+      "維持費: -75%",
+      "必要な労働力: +35%",
+      "すべての施設: 人々 +1",
+      "すべての施設: 健康 +1"
+    ],
+    "boostCondition": "未確認です",
+    "targets": "耕作可能な農場",
+    "source": [
+      "来訪者イベントの報酬（2.857%）"
+    ],
+    "sourceCaution": false,
+    "allocation": "住居"
+  },
+  {
+    "guid": "185136",
+    "nameJa": "死体を埋葬する者セベクホテプ",
+    "nameEn": "Sobekhotep, He Who Buries the Bodies",
+    "rarity": "Mythic",
+    "niche": "Religion",
+    "price": "1000",
+    "description": "「あいつが来たんだ。汚染された水に足首まで浸かってさ。やつらはピクリとも動かなかったよ。あいつから餌がもらえるって、絶対わかってたんだ」 — ある漁師",
+    "effects": [
+      "兵士の募集費用: -40%",
+      "兵士の募集速度: +75%",
+      "すべての施設: 知識 +3"
+    ],
+    "boostHint": "神の筆頭しもべ",
+    "boostEffects": [
+      "消費: -30%"
+    ],
+    "boostCondition": "未確認です",
+    "targets": "ナイルの造船所",
+    "source": [
+      "来訪者イベントの報酬（2.857%）"
+    ],
+    "sourceCaution": false,
+    "allocation": "住居"
+  },
+  {
+    "guid": "185170",
+    "nameJa": "燃える眼のタウセルト",
+    "nameEn": "Tausret Of the Burning Eye",
+    "rarity": "Mythic",
+    "niche": "Military",
+    "price": "1000",
+    "description": "「イベリア産の辰砂に、パルタヴァ産の天藍石に、ビアウ産の孔雀石。実に色とりどりだ。この楽しみをティルス人だけに独占させてよいものだろうか？」――多色宣言",
+    "effects": [
+      "生産性: +35%",
+      "維持費: -15%"
+    ],
+    "boostHint": "猫はいくらいても困らない",
+    "boostEffects": [
+      "生産性: +50%",
+      "維持費: -35%"
+    ],
+    "boostCondition": "未確認です",
+    "targets": "武器庫",
+    "source": [
+      "来訪者イベントの報酬（2.857%）"
     ],
     "sourceCaution": false,
     "allocation": "住居"

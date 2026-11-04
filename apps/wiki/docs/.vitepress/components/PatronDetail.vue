@@ -14,6 +14,14 @@
         <span v-else>{{ effect1.descJa }}</span>
         <span class="muted">{{ effect1.note ?? '（信仰値ごとの増加率は上の共通表と同じ）' }}</span>
       </div>
+      <table v-if="effect1.showMilestones" class="milestone-table">
+        <thead>
+          <tr><th>島の信仰値</th><th v-for="[devotion] in effect1.milestones" :key="devotion">{{ devotion.toLocaleString() }}</th></tr>
+        </thead>
+        <tbody>
+          <tr><th>生産性</th><td v-for="[devotion, scale] in effect1.milestones" :key="devotion">+{{ scale }}%</td></tr>
+        </tbody>
+      </table>
     </div>
 
     <div class="patron-block">
@@ -47,6 +55,8 @@ interface LocalEffect {
   descJa: string
   targets: string[]
   note?: string
+  /** 全神共通の表と段階が違う神だけ、自分の表を出す */
+  showMilestones?: boolean
   milestones: [number, number][]
   display?: { rows: { label: string; multiplier: number; sign: string; unit: string }[] }
 }

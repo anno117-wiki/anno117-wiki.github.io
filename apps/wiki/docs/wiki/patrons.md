@@ -1,6 +1,6 @@
 ---
 title: 信仰神
-description: Anno 117の信仰神8柱の一覧。信仰値ごとの解放しきい値、崇拝の効果（炭鉱・金鉱・サイロなどの解放）、局所効果・高揚の効果をゲーム内データから整理。
+description: Anno 117の信仰神11柱の一覧と、神ごとの祭り。信仰値ごとの解放しきい値、崇拝の効果（炭鉱・金鉱・サイロなどの解放）、局所効果・高揚の効果をゲーム内データから整理。
 ---
 
 <script setup lang="ts">
@@ -106,6 +106,42 @@ const sharedMilestones: [number, number][] = data.patrons[0].local[0].milestones
 DLC01「灰の予言」で追加された神です。
 
 <PatronDetail :patron="byId.vulcan" :wonder-threshold="wonderThreshold" :dominant-threshold="dominantThreshold" />
+
+## イシス・バステト {#isis_bastet}
+
+DLC03「デルタの夜明け」で追加された神です。数値はゲームのアップデート3.0のゲーム内データで、実機の画面との照合は未確認です。局所効果2の「1段階あたりの値」も未確認です。
+
+<PatronDetail :patron="byId.isis_bastet" :wonder-threshold="wonderThreshold" :dominant-threshold="dominantThreshold" />
+
+## セベク {#sobek}
+
+DLC03「デルタの夜明け」で追加された神です。数値はゲームのアップデート3.0のゲーム内データで、実機の画面との照合は未確認です。局所効果2の「1段階あたりの値」も未確認です。
+
+<PatronDetail :patron="byId.sobek" :wonder-threshold="wonderThreshold" :dominant-threshold="dominantThreshold" />
+
+## トト・トリスメギストス {#thoth}
+
+DLC03「デルタの夜明け」で追加された神です。数値はゲームのアップデート3.0のゲーム内データで、実機の画面との照合は未確認です。局所効果2の「1段階あたりの値」も未確認です。
+
+<PatronDetail :patron="byId.thoth" :wonder-threshold="wonderThreshold" :dominant-threshold="dominantThreshold" />
+
+## 祭り
+
+神を祭神にして信仰を貯めると、その神の祭りを開けます。祭りの開始に必要な信仰は、どの祭りも250です（島の信仰か世界の信仰かは未確認です）。開催期間は4時間です。祭りを始めるときは、資金を出すか、下の商品のどれかを出します。必要な量は、街の発展段階や商品の価値で変わります。
+
+<table>
+<thead><tr><th>祭り</th><th>神</th><th>出せる商品</th><th>説明</th></tr></thead>
+<tbody>
+<tr v-for="f in data.festivals" :key="f.guid">
+<td>{{ f.nameJa }}</td>
+<td>{{ f.patron }}</td>
+<td>{{ f.goods.join('、') }}</td>
+<td>{{ f.descJa }}</td>
+</tr>
+</tbody>
+</table>
+
+祭りを開くと、その神にちなんだ施設の生産などが一時的に上がります。効果の数値は載せていません。
 
 ## 関連データ
 
