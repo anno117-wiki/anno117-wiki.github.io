@@ -166,11 +166,11 @@ Anno 117 には<strong>ラティウム（ローマ）</strong>と<strong>アル�
 >
 > 出典: [Anno Union公式ブログ「Gamescom recap: Dawn of the Delta and Echoes of Kassandra」](https://www.anno-union.com/gamescom-recap-dawn-of-the-delta-and-echoes-of-kassandra/)（2026年9月3日）、[「Population, Floods and the power of knowledge」](https://www.anno-union.com/devblog-population-floods-and-the-power-of-knowledge/)（デブログ第2回、2026年10月22日）
 
-アイギュプトでは、最初の層から<strong>ギリシャ・ローマ文化</strong>と<strong>エジプト文化</strong>の2つの路線に分かれます。各路線は3段階で、最初のスレッシャーの上に、路線ごとの第2階層と第3階層が続きます。
+アイギュプトでは、最初の層から<strong>ギリシャ・ローマ文化</strong>と<strong>エジプト文化</strong>の2つの路線に分かれます。各路線は3段階で、最初の麦打ち人の上に、路線ごとの第2階層と第3階層が続きます。
 
 ![アイギュプト住民層の進化](/diagrams/aegyptus-tiers.svg)
 
-### スレッシャー
+### 麦打ち人
 
 アイギュプトの最初の層です。この土地の農業の伝統を担います。
 
