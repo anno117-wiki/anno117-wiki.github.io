@@ -1,5 +1,5 @@
 {
-  "source": "ゲーム内データ(v2.1)",
+  "source": "ゲーム内データ(アップデート3.0。41〜45段階のみ2.1)",
   "attrs": {
     "Happiness": "幸福",
     "Health": "健康",
@@ -35,7 +35,7 @@
       "nameEn": "Large Vicus",
       "population": 500,
       "attrs": {
-        "FireSafety": -1,
+        "FireSafety": -0.5,
         "Belief": 1
       }
     },
@@ -47,8 +47,8 @@
       "nameEn": "Minor Town",
       "population": 1000,
       "attrs": {
-        "Happiness": -2,
-        "FireSafety": -2,
+        "Happiness": -1,
+        "FireSafety": -1,
         "Belief": 2,
         "Knowledge": 1
       }
@@ -61,9 +61,9 @@
       "nameEn": "Growing Town",
       "population": 1500,
       "attrs": {
-        "Happiness": -4,
-        "Health": -2,
-        "FireSafety": -3,
+        "Happiness": -3,
+        "Health": -1,
+        "FireSafety": -2,
         "Belief": 3,
         "Knowledge": 2,
         "Prestige": 1
@@ -77,9 +77,9 @@
       "nameEn": "Large Town",
       "population": 3000,
       "attrs": {
-        "Happiness": -6,
-        "Health": -4,
-        "FireSafety": -4,
+        "Happiness": -5,
+        "Health": -3,
+        "FireSafety": -3,
         "Belief": 4,
         "Knowledge": 3,
         "Prestige": 2
@@ -93,9 +93,9 @@
       "nameEn": "Minor City",
       "population": 5000,
       "attrs": {
-        "Happiness": -8,
-        "Health": -6,
-        "FireSafety": -5,
+        "Happiness": -7,
+        "Health": -5,
+        "FireSafety": -4,
         "Belief": 5,
         "Knowledge": 4,
         "Prestige": 3
@@ -109,9 +109,9 @@
       "nameEn": "Growing City",
       "population": 7500,
       "attrs": {
-        "Happiness": -10,
-        "Health": -8,
-        "FireSafety": -6,
+        "Happiness": -9,
+        "Health": -7,
+        "FireSafety": -5,
         "Belief": 6,
         "Knowledge": 5,
         "Prestige": 4
@@ -125,9 +125,9 @@
       "nameEn": "Major City",
       "population": 10000,
       "attrs": {
-        "Happiness": -11,
-        "Health": -10,
-        "FireSafety": -6.2,
+        "Happiness": -10.5,
+        "Health": -9,
+        "FireSafety": -6,
         "Belief": 7,
         "Knowledge": 6,
         "Prestige": 5
@@ -142,7 +142,7 @@
       "population": 15000,
       "attrs": {
         "Happiness": -12,
-        "Health": -10.2,
+        "Health": -10,
         "FireSafety": -6.4,
         "Belief": 8,
         "Knowledge": 7,
@@ -708,6 +708,288 @@
         "Knowledge": 30,
         "Prestige": 29
       }
+    }
+  ],
+  "aegyptus": [
+    {
+      "level": 1,
+      "roman": "I",
+      "guid": "149795",
+      "nameJa": "拠点",
+      "nameEn": "Outpost",
+      "population": 0
+    },
+    {
+      "level": 2,
+      "roman": "II",
+      "guid": "149796",
+      "nameJa": "小さな村",
+      "nameEn": "Small Vicus",
+      "population": 175
+    },
+    {
+      "level": 3,
+      "roman": "III",
+      "guid": "154821",
+      "nameJa": "大きな村",
+      "nameEn": "Large Vicus",
+      "population": 425
+    },
+    {
+      "level": 4,
+      "roman": "IV",
+      "guid": "154822",
+      "nameJa": "小さな町",
+      "nameEn": "Minor Town",
+      "population": 875
+    },
+    {
+      "level": 5,
+      "roman": "V",
+      "guid": "154823",
+      "nameJa": "発展途上の町",
+      "nameEn": "Growing Town",
+      "population": 1375
+    },
+    {
+      "level": 6,
+      "roman": "VI",
+      "guid": "154824",
+      "nameJa": "大きな町",
+      "nameEn": "Large Town",
+      "population": 2750
+    },
+    {
+      "level": 7,
+      "roman": "VII",
+      "guid": "154825",
+      "nameJa": "小さな都市",
+      "nameEn": "Minor City",
+      "population": 4250
+    },
+    {
+      "level": 8,
+      "roman": "VIII",
+      "guid": "154826",
+      "nameJa": "発展途上の都市",
+      "nameEn": "Growing City",
+      "population": 6250
+    },
+    {
+      "level": 9,
+      "roman": "IX",
+      "guid": "154827",
+      "nameJa": "主要な都市",
+      "nameEn": "Major City",
+      "population": 8750
+    },
+    {
+      "level": 10,
+      "roman": "X",
+      "guid": "154828",
+      "nameJa": "小さなコロニア",
+      "nameEn": "Minor Colonia",
+      "population": 12500
+    },
+    {
+      "level": 11,
+      "roman": "XI",
+      "guid": "154829",
+      "nameJa": "発展途上のコロニア",
+      "nameEn": "Growing Colonia",
+      "population": 16250
+    },
+    {
+      "level": 12,
+      "roman": "XII",
+      "guid": "154830",
+      "nameJa": "主要なコロニア",
+      "nameEn": "Major Colonia",
+      "population": 20000
+    },
+    {
+      "level": 13,
+      "roman": "XIII",
+      "guid": "154831",
+      "nameJa": "巨大なコロニア",
+      "nameEn": "Vast Colonia",
+      "population": 23750
+    },
+    {
+      "level": 14,
+      "roman": "XIV",
+      "guid": "154832",
+      "nameJa": "小さな帝国都市",
+      "nameEn": "Minor Imperial City",
+      "population": 27500
+    },
+    {
+      "level": 15,
+      "roman": "XV",
+      "guid": "154833",
+      "nameJa": "発展途上の帝国都市",
+      "nameEn": "Growing Imperial City",
+      "population": 31250
+    },
+    {
+      "level": 16,
+      "roman": "XVI",
+      "guid": "154834",
+      "nameJa": "主要な帝国都市",
+      "nameEn": "Major Imperial City",
+      "population": 35000
+    },
+    {
+      "level": 17,
+      "roman": "XVII",
+      "guid": "154835",
+      "nameJa": "巨大な帝国都市",
+      "nameEn": "Vast Imperial City",
+      "population": 38750
+    },
+    {
+      "level": 18,
+      "roman": "XVIII",
+      "guid": "154836",
+      "nameJa": "小さなメガロポリス",
+      "nameEn": "Minor Megalopolis",
+      "population": 42500
+    },
+    {
+      "level": 19,
+      "roman": "XIX",
+      "guid": "154837",
+      "nameJa": "発展途上のメガロポリス",
+      "nameEn": "Growing Megalopolis",
+      "population": 46250
+    },
+    {
+      "level": 20,
+      "roman": "XX",
+      "guid": "154838",
+      "nameJa": "主要なメガロポリス",
+      "nameEn": "Major Megalopolis",
+      "population": 50000
+    },
+    {
+      "level": 21,
+      "roman": "XXI",
+      "guid": "154839",
+      "nameJa": "巨大なメガロポリス",
+      "nameEn": "Vast Megalopolis",
+      "population": 53750
+    },
+    {
+      "level": 22,
+      "roman": "XXII",
+      "guid": "154840",
+      "nameJa": "小さなコスモポリス",
+      "nameEn": "Minor Cosmopolis",
+      "population": 57500
+    },
+    {
+      "level": 23,
+      "roman": "XXIII",
+      "guid": "154841",
+      "nameJa": "発展途上のコスモポリス",
+      "nameEn": "Growing Cosmopolis",
+      "population": 61250
+    },
+    {
+      "level": 24,
+      "roman": "XXIV",
+      "guid": "154842",
+      "nameJa": "主要なコスモポリス",
+      "nameEn": "Major Cosmopolis",
+      "population": 65000
+    },
+    {
+      "level": 25,
+      "roman": "XXV",
+      "guid": "154843",
+      "nameJa": "巨大なコスモポリス",
+      "nameEn": "Vast Cosmopolis",
+      "population": 68750
+    },
+    {
+      "level": 26,
+      "roman": "XXVI",
+      "guid": "154844",
+      "nameJa": "小さなモンストロポリス",
+      "nameEn": "Minor Monstropolis",
+      "population": 72500
+    },
+    {
+      "level": 27,
+      "roman": "XXVII",
+      "guid": "154845",
+      "nameJa": "発展途上のモンストロポリス",
+      "nameEn": "Growing Monstropolis",
+      "population": 76250
+    },
+    {
+      "level": 28,
+      "roman": "XXVIII",
+      "guid": "154846",
+      "nameJa": "主要なモンストロポリス",
+      "nameEn": "Major Monstropolis",
+      "population": 80000
+    },
+    {
+      "level": 29,
+      "roman": "XXIX",
+      "guid": "154847",
+      "nameJa": "巨大なモンストロポリス",
+      "nameEn": "Vast Monstropolis",
+      "population": 83750
+    },
+    {
+      "level": 30,
+      "roman": "XXX",
+      "guid": "154848",
+      "nameJa": "オムニポリス",
+      "nameEn": "Omnipolis",
+      "population": 87500
+    },
+    {
+      "level": 31,
+      "roman": "XXXI",
+      "guid": "154849",
+      "nameJa": "発展途上のオムニポリス",
+      "nameEn": "Growing Omnipolis",
+      "population": 95000
+    },
+    {
+      "level": 32,
+      "roman": "XXXII",
+      "guid": "154850",
+      "nameJa": "主要なオムニポリス",
+      "nameEn": "Major Omnipolis",
+      "population": 102500
+    },
+    {
+      "level": 33,
+      "roman": "XXXIII",
+      "guid": "154851",
+      "nameJa": "巨大なオムニポリス",
+      "nameEn": "Vast Omnipolis",
+      "population": 110000
+    },
+    {
+      "level": 34,
+      "roman": "XXXIV",
+      "guid": "154852",
+      "nameJa": "小さなアウレリオポリス",
+      "nameEn": "Minor Aureliopolis",
+      "population": 117500
+    },
+    {
+      "level": 35,
+      "roman": "XXXV",
+      "guid": "154853",
+      "nameJa": "発展途上のアウレリオポリス",
+      "nameEn": "Growing Aureliopolis",
+      "population": 125000
     }
   ]
 }
