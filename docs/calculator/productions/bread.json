@@ -34,8 +34,8 @@
                 "mosaics": 0
             },
             "maintanance_cost": {
-                "money": 8,
-                "plebeian": 3
+                "money": 12,
+                "plebeian": 4
             },
             "input": [
                 {
