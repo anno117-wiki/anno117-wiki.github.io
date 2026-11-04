@@ -1,0 +1,1432 @@
+{
+ "source": "ゲーム内データ(アップデート3.0)",
+ "tiers": [
+  {
+   "key": "thresher",
+   "nameJa": "麦打ち人",
+   "parent": null,
+   "all": [
+    {
+     "category": "食料",
+     "names": [
+      "ナツメヤシ",
+      "お粥"
+     ]
+    },
+    {
+     "category": "ファッション",
+     "names": [
+      "ウェセクの首輪",
+      "チュニック"
+     ]
+    },
+    {
+     "category": "公共サービス",
+     "names": [
+      "市場",
+      "焚き火"
+     ]
+    }
+   ],
+   "added": [
+    {
+     "category": "食料",
+     "names": [
+      "ナツメヤシ",
+      "お粥"
+     ]
+    },
+    {
+     "category": "ファッション",
+     "names": [
+      "ウェセクの首輪",
+      "チュニック"
+     ]
+    },
+    {
+     "category": "公共サービス",
+     "names": [
+      "市場",
+      "焚き火"
+     ]
+    }
+   ]
+  },
+  {
+   "key": "potter",
+   "nameJa": "陶工",
+   "parent": "thresher",
+   "all": [
+    {
+     "category": "食料",
+     "names": [
+      "ナツメヤシ",
+      "お粥",
+      "詰め物入りガチョウ",
+      "ビール"
+     ]
+    },
+    {
+     "category": "ファッション",
+     "names": [
+      "ウェセクの首輪",
+      "チュニック",
+      "シェンティ",
+      "コール"
+     ]
+    },
+    {
+     "category": "家庭",
+     "names": [
+      "魔除けのお守り",
+      "オイルランプ",
+      "角杯",
+      "小像"
+     ]
+    },
+    {
+     "category": "公共サービス",
+     "names": [
+      "市場",
+      "焚き火",
+      "薬屋",
+      "聖域"
+     ]
+    }
+   ],
+   "added": [
+    {
+     "category": "食料",
+     "names": [
+      "詰め物入りガチョウ",
+      "ビール"
+     ]
+    },
+    {
+     "category": "ファッション",
+     "names": [
+      "シェンティ",
+      "コール"
+     ]
+    },
+    {
+     "category": "家庭",
+     "names": [
+      "魔除けのお守り",
+      "オイルランプ",
+      "角杯",
+      "小像"
+     ]
+    },
+    {
+     "category": "公共サービス",
+     "names": [
+      "薬屋",
+      "聖域"
+     ]
+    }
+   ]
+  },
+  {
+   "key": "priestess",
+   "nameJa": "奉唱巫女",
+   "parent": "potter",
+   "all": [
+    {
+     "category": "食料",
+     "names": [
+      "ナツメヤシ",
+      "お粥",
+      "詰め物入りガチョウ",
+      "ビール",
+      "カフク",
+      "青スイレン茶"
+     ]
+    },
+    {
+     "category": "ファッション",
+     "names": [
+      "ウェセクの首輪",
+      "チュニック",
+      "シェンティ",
+      "コール",
+      "カラシリス",
+      "香油",
+      "外套"
+     ]
+    },
+    {
+     "category": "家庭",
+     "names": [
+      "魔除けのお守り",
+      "オイルランプ",
+      "角杯",
+      "小像",
+      "シストラム",
+      "高級ガラス",
+      "手鏡"
+     ]
+    },
+    {
+     "category": "公共サービス",
+     "names": [
+      "市場",
+      "焚き火",
+      "薬屋",
+      "聖域",
+      "岩窟墓",
+      "劇場",
+      "賭博場"
+     ]
+    },
+    {
+     "category": "驚異",
+     "names": [
+      "神殿",
+      "天文台",
+      "改修されたピラミッド"
+     ]
+    }
+   ],
+   "added": [
+    {
+     "category": "食料",
+     "names": [
+      "カフク",
+      "青スイレン茶"
+     ]
+    },
+    {
+     "category": "ファッション",
+     "names": [
+      "カラシリス",
+      "香油",
+      "外套"
+     ]
+    },
+    {
+     "category": "家庭",
+     "names": [
+      "シストラム",
+      "高級ガラス",
+      "手鏡"
+     ]
+    },
+    {
+     "category": "公共サービス",
+     "names": [
+      "岩窟墓",
+      "劇場",
+      "賭博場"
+     ]
+    },
+    {
+     "category": "驚異",
+     "names": [
+      "神殿",
+      "天文台",
+      "改修されたピラミッド"
+     ]
+    }
+   ]
+  },
+  {
+   "key": "scribe",
+   "nameJa": "書記",
+   "parent": "thresher",
+   "all": [
+    {
+     "category": "食料",
+     "names": [
+      "ナツメヤシ",
+      "お粥",
+      "パン",
+      "チーズ"
+     ]
+    },
+    {
+     "category": "ファッション",
+     "names": [
+      "ウェセクの首輪",
+      "チュニック",
+      "サンダル",
+      "石鹸",
+      "ブローチ"
+     ]
+    },
+    {
+     "category": "家庭",
+     "names": [
+      "書記道具一式",
+      "オリーブオイル"
+     ]
+    },
+    {
+     "category": "公共サービス",
+     "names": [
+      "市場",
+      "焚き火",
+      "ラテン語学校",
+      "聖域"
+     ]
+    }
+   ],
+   "added": [
+    {
+     "category": "食料",
+     "names": [
+      "パン",
+      "チーズ"
+     ]
+    },
+    {
+     "category": "ファッション",
+     "names": [
+      "サンダル",
+      "石鹸",
+      "ブローチ"
+     ]
+    },
+    {
+     "category": "家庭",
+     "names": [
+      "書記道具一式",
+      "オリーブオイル"
+     ]
+    },
+    {
+     "category": "公共サービス",
+     "names": [
+      "ラテン語学校",
+      "聖域"
+     ]
+    }
+   ]
+  },
+  {
+   "key": "gymnasiarch",
+   "nameJa": "ギムナシアリコス",
+   "parent": "scribe",
+   "all": [
+    {
+     "category": "食料",
+     "names": [
+      "ナツメヤシ",
+      "お粥",
+      "パン",
+      "チーズ",
+      "希少な肉の盛り合わせ",
+      "ワイン",
+      "鳥舌肉アスピック"
+     ]
+    },
+    {
+     "category": "ファッション",
+     "names": [
+      "ウェセクの首輪",
+      "チュニック",
+      "サンダル",
+      "石鹸",
+      "ブローチ",
+      "ネックレス",
+      "ポッパエアのミルク",
+      "かつら"
+     ]
+    },
+    {
+     "category": "家庭",
+     "names": [
+      "書記道具一式",
+      "オリーブオイル",
+      "象牙の小箱",
+      "肘掛け椅子"
+     ]
+    },
+    {
+     "category": "公共サービス",
+     "names": [
+      "市場",
+      "焚き火",
+      "ラテン語学校",
+      "聖域",
+      "貯水池",
+      "劇場",
+      "賭博場"
+     ]
+    },
+    {
+     "category": "驚異",
+     "names": [
+      "浴場",
+      "図書館",
+      "改修されたピラミッド"
+     ]
+    }
+   ],
+   "added": [
+    {
+     "category": "食料",
+     "names": [
+      "希少な肉の盛り合わせ",
+      "ワイン",
+      "鳥舌肉アスピック"
+     ]
+    },
+    {
+     "category": "ファッション",
+     "names": [
+      "ネックレス",
+      "ポッパエアのミルク",
+      "かつら"
+     ]
+    },
+    {
+     "category": "家庭",
+     "names": [
+      "象牙の小箱",
+      "肘掛け椅子"
+     ]
+    },
+    {
+     "category": "公共サービス",
+     "names": [
+      "貯水池",
+      "劇場",
+      "賭博場"
+     ]
+    },
+    {
+     "category": "驚異",
+     "names": [
+      "浴場",
+      "図書館",
+      "改修されたピラミッド"
+     ]
+    }
+   ]
+  }
+ ],
+ "needsIndex": [
+  {
+   "productGuid": "2136",
+   "productNameEn": "Porridge",
+   "productNameJa": "お粥",
+   "demands": [
+    {
+     "region": "Egyptian",
+     "category": "Food"
+    }
+   ],
+   "tiers": [
+    {
+     "tier": "thresher",
+     "region": "Egyptian"
+    },
+    {
+     "tier": "potter",
+     "region": "Egyptian"
+    },
+    {
+     "tier": "priestess",
+     "region": "Egyptian"
+    },
+    {
+     "tier": "scribe",
+     "region": "Egyptian"
+    },
+    {
+     "tier": "gymnasiarch",
+     "region": "Egyptian"
+    }
+   ]
+  },
+  {
+   "productGuid": "31708",
+   "productNameEn": "Wigs",
+   "productNameJa": "かつら",
+   "demands": [
+    {
+     "region": "Egyptian",
+     "category": "Fashion"
+    }
+   ],
+   "tiers": [
+    {
+     "tier": "gymnasiarch",
+     "region": "Egyptian"
+    }
+   ]
+  },
+  {
+   "productGuid": "151693",
+   "productNameEn": "Wesekh Collars",
+   "productNameJa": "ウェセクの首輪",
+   "demands": [
+    {
+     "region": "Egyptian",
+     "category": "Fashion"
+    }
+   ],
+   "tiers": [
+    {
+     "tier": "thresher",
+     "region": "Egyptian"
+    },
+    {
+     "tier": "potter",
+     "region": "Egyptian"
+    },
+    {
+     "tier": "priestess",
+     "region": "Egyptian"
+    },
+    {
+     "tier": "scribe",
+     "region": "Egyptian"
+    },
+    {
+     "tier": "gymnasiarch",
+     "region": "Egyptian"
+    }
+   ]
+  },
+  {
+   "productGuid": "151700",
+   "productNameEn": "Oil Lamps",
+   "productNameJa": "オイルランプ",
+   "demands": [
+    {
+     "region": "Egyptian",
+     "category": "Household"
+    }
+   ],
+   "tiers": [
+    {
+     "tier": "potter",
+     "region": "Egyptian"
+    },
+    {
+     "tier": "priestess",
+     "region": "Egyptian"
+    }
+   ]
+  },
+  {
+   "productGuid": "2149",
+   "productNameEn": "Olive Oil",
+   "productNameJa": "オリーブオイル",
+   "demands": [
+    {
+     "region": "Egyptian",
+     "category": "Household"
+    }
+   ],
+   "tiers": [
+    {
+     "tier": "scribe",
+     "region": "Egyptian"
+    },
+    {
+     "tier": "gymnasiarch",
+     "region": "Egyptian"
+    }
+   ]
+  },
+  {
+   "productGuid": "151691",
+   "productNameEn": "Kayk",
+   "productNameJa": "カフク",
+   "demands": [
+    {
+     "region": "Egyptian",
+     "category": "Food"
+    }
+   ],
+   "tiers": [
+    {
+     "tier": "priestess",
+     "region": "Egyptian"
+    }
+   ]
+  },
+  {
+   "productGuid": "151696",
+   "productNameEn": "Kalasirises",
+   "productNameJa": "カラシリス",
+   "demands": [
+    {
+     "region": "Egyptian",
+     "category": "Fashion"
+    }
+   ],
+   "tiers": [
+    {
+     "tier": "priestess",
+     "region": "Egyptian"
+    }
+   ]
+  },
+  {
+   "productGuid": "151694",
+   "productNameEn": "Kollurion",
+   "productNameJa": "コール",
+   "demands": [
+    {
+     "region": "Egyptian",
+     "category": "Fashion"
+    }
+   ],
+   "tiers": [
+    {
+     "tier": "potter",
+     "region": "Egyptian"
+    },
+    {
+     "tier": "priestess",
+     "region": "Egyptian"
+    }
+   ]
+  },
+  {
+   "productGuid": "2144",
+   "productNameEn": "Sandals",
+   "productNameJa": "サンダル",
+   "demands": [
+    {
+     "region": "Egyptian",
+     "category": "Fashion"
+    }
+   ],
+   "tiers": [
+    {
+     "tier": "scribe",
+     "region": "Egyptian"
+    },
+    {
+     "tier": "gymnasiarch",
+     "region": "Egyptian"
+    }
+   ]
+  },
+  {
+   "productGuid": "151695",
+   "productNameEn": "Shentis",
+   "productNameJa": "シェンティ",
+   "demands": [
+    {
+     "region": "Egyptian",
+     "category": "Fashion"
+    }
+   ],
+   "tiers": [
+    {
+     "tier": "potter",
+     "region": "Egyptian"
+    },
+    {
+     "tier": "priestess",
+     "region": "Egyptian"
+    }
+   ]
+  },
+  {
+   "productGuid": "151701",
+   "productNameEn": "Sistrums",
+   "productNameJa": "シストラム",
+   "demands": [
+    {
+     "region": "Egyptian",
+     "category": "Household"
+    }
+   ],
+   "tiers": [
+    {
+     "tier": "priestess",
+     "region": "Egyptian"
+    }
+   ]
+  },
+  {
+   "productGuid": "2141",
+   "productNameEn": "Tunics",
+   "productNameJa": "チュニック",
+   "demands": [
+    {
+     "region": "Egyptian",
+     "category": "Fashion"
+    }
+   ],
+   "tiers": [
+    {
+     "tier": "thresher",
+     "region": "Egyptian"
+    },
+    {
+     "tier": "potter",
+     "region": "Egyptian"
+    },
+    {
+     "tier": "priestess",
+     "region": "Egyptian"
+    },
+    {
+     "tier": "scribe",
+     "region": "Egyptian"
+    },
+    {
+     "tier": "gymnasiarch",
+     "region": "Egyptian"
+    }
+   ]
+  },
+  {
+   "productGuid": "2153",
+   "productNameEn": "Cheese",
+   "productNameJa": "チーズ",
+   "demands": [
+    {
+     "region": "Egyptian",
+     "category": "Food"
+    }
+   ],
+   "tiers": [
+    {
+     "tier": "scribe",
+     "region": "Egyptian"
+    },
+    {
+     "tier": "gymnasiarch",
+     "region": "Egyptian"
+    }
+   ]
+  },
+  {
+   "productGuid": "151680",
+   "productNameEn": "Dates",
+   "productNameJa": "ナツメヤシ",
+   "demands": [
+    {
+     "region": "Egyptian",
+     "category": "Food"
+    }
+   ],
+   "tiers": [
+    {
+     "tier": "thresher",
+     "region": "Egyptian"
+    },
+    {
+     "tier": "potter",
+     "region": "Egyptian"
+    },
+    {
+     "tier": "priestess",
+     "region": "Egyptian"
+    },
+    {
+     "tier": "scribe",
+     "region": "Egyptian"
+    },
+    {
+     "tier": "gymnasiarch",
+     "region": "Egyptian"
+    }
+   ]
+  },
+  {
+   "productGuid": "2146",
+   "productNameEn": "Necklaces",
+   "productNameJa": "ネックレス",
+   "demands": [
+    {
+     "region": "Egyptian",
+     "category": "Fashion"
+    }
+   ],
+   "tiers": [
+    {
+     "tier": "gymnasiarch",
+     "region": "Egyptian"
+    }
+   ]
+  },
+  {
+   "productGuid": "2137",
+   "productNameEn": "Bread",
+   "productNameJa": "パン",
+   "demands": [
+    {
+     "region": "Egyptian",
+     "category": "Food"
+    }
+   ],
+   "tiers": [
+    {
+     "tier": "scribe",
+     "region": "Egyptian"
+    },
+    {
+     "tier": "gymnasiarch",
+     "region": "Egyptian"
+    }
+   ]
+  },
+  {
+   "productGuid": "2154",
+   "productNameEn": "Beer",
+   "productNameJa": "ビール",
+   "demands": [
+    {
+     "region": "Egyptian",
+     "category": "Food"
+    }
+   ],
+   "tiers": [
+    {
+     "tier": "potter",
+     "region": "Egyptian"
+    },
+    {
+     "tier": "priestess",
+     "region": "Egyptian"
+    }
+   ]
+  },
+  {
+   "productGuid": "2156",
+   "productNameEn": "Brooches",
+   "productNameJa": "ブローチ",
+   "demands": [
+    {
+     "region": "Egyptian",
+     "category": "Fashion"
+    }
+   ],
+   "tiers": [
+    {
+     "tier": "scribe",
+     "region": "Egyptian"
+    },
+    {
+     "tier": "gymnasiarch",
+     "region": "Egyptian"
+    }
+   ]
+  },
+  {
+   "productGuid": "151698",
+   "productNameEn": "Milk of Poppea",
+   "productNameJa": "ポッパエアのミルク",
+   "demands": [
+    {
+     "region": "Egyptian",
+     "category": "Fashion"
+    }
+   ],
+   "tiers": [
+    {
+     "tier": "gymnasiarch",
+     "region": "Egyptian"
+    }
+   ]
+  },
+  {
+   "productGuid": "2680",
+   "productNameEn": "Grammaticus",
+   "productNameJa": "ラテン語学校",
+   "demands": [
+    {
+     "region": "Egyptian",
+     "category": "Public"
+    }
+   ],
+   "tiers": [
+    {
+     "tier": "scribe",
+     "region": "Egyptian"
+    },
+    {
+     "tier": "gymnasiarch",
+     "region": "Egyptian"
+    }
+   ]
+  },
+  {
+   "productGuid": "2138",
+   "productNameEn": "Wine",
+   "productNameJa": "ワイン",
+   "demands": [
+    {
+     "region": "Egyptian",
+     "category": "Food"
+    }
+   ],
+   "tiers": [
+    {
+     "tier": "gymnasiarch",
+     "region": "Egyptian"
+    }
+   ]
+  },
+  {
+   "productGuid": "2683",
+   "productNameEn": "Theatre",
+   "productNameJa": "劇場",
+   "demands": [
+    {
+     "region": "Egyptian",
+     "category": "Public"
+    }
+   ],
+   "tiers": [
+    {
+     "tier": "priestess",
+     "region": "Egyptian"
+    },
+    {
+     "tier": "gymnasiarch",
+     "region": "Egyptian"
+    }
+   ]
+  },
+  {
+   "productGuid": "2678",
+   "productNameEn": "Library",
+   "productNameJa": "図書館",
+   "demands": [
+    {
+     "region": "Egyptian",
+     "category": "Wonder"
+    }
+   ],
+   "tiers": [
+    {
+     "tier": "gymnasiarch",
+     "region": "Egyptian"
+    }
+   ]
+  },
+  {
+   "productGuid": "2161",
+   "productNameEn": "Cloaks",
+   "productNameJa": "外套",
+   "demands": [
+    {
+     "region": "Egyptian",
+     "category": "Fashion"
+    }
+   ],
+   "tiers": [
+    {
+     "tier": "priestess",
+     "region": "Egyptian"
+    }
+   ]
+  },
+  {
+   "productGuid": "151677",
+   "productNameEn": "Observatory",
+   "productNameJa": "天文台",
+   "demands": [
+    {
+     "region": "Egyptian",
+     "category": "Wonder"
+    }
+   ],
+   "tiers": [
+    {
+     "tier": "priestess",
+     "region": "Egyptian"
+    }
+   ]
+  },
+  {
+   "productGuid": "145220",
+   "productNameEn": "Statuettes",
+   "productNameJa": "小像",
+   "demands": [
+    {
+     "region": "Egyptian",
+     "category": "Household"
+    }
+   ],
+   "tiers": [
+    {
+     "tier": "potter",
+     "region": "Egyptian"
+    },
+    {
+     "tier": "priestess",
+     "region": "Egyptian"
+    }
+   ]
+  },
+  {
+   "productGuid": "151676",
+   "productNameEn": "Rock Tomb",
+   "productNameJa": "岩窟墓",
+   "demands": [
+    {
+     "region": "Egyptian",
+     "category": "Public"
+    }
+   ],
+   "tiers": [
+    {
+     "tier": "priestess",
+     "region": "Egyptian"
+    }
+   ]
+  },
+  {
+   "productGuid": "2671",
+   "productNameEn": "Market",
+   "productNameJa": "市場",
+   "demands": [
+    {
+     "region": "Egyptian",
+     "category": "Public"
+    }
+   ],
+   "tiers": [
+    {
+     "tier": "thresher",
+     "region": "Egyptian"
+    },
+    {
+     "tier": "potter",
+     "region": "Egyptian"
+    },
+    {
+     "tier": "priestess",
+     "region": "Egyptian"
+    },
+    {
+     "tier": "scribe",
+     "region": "Egyptian"
+    },
+    {
+     "tier": "gymnasiarch",
+     "region": "Egyptian"
+    }
+   ]
+  },
+  {
+   "productGuid": "151692",
+   "productNameEn": "Rare Meat Platters",
+   "productNameJa": "希少な肉の盛り合わせ",
+   "demands": [
+    {
+     "region": "Egyptian",
+     "category": "Food"
+    }
+   ],
+   "tiers": [
+    {
+     "tier": "gymnasiarch",
+     "region": "Egyptian"
+    }
+   ]
+  },
+  {
+   "productGuid": "2162",
+   "productNameEn": "Handmirrors",
+   "productNameJa": "手鏡",
+   "demands": [
+    {
+     "region": "Egyptian",
+     "category": "Household"
+    }
+   ],
+   "tiers": [
+    {
+     "tier": "priestess",
+     "region": "Egyptian"
+    }
+   ]
+  },
+  {
+   "productGuid": "155933",
+   "productNameEn": "Renovated Pyramids",
+   "productNameJa": "改修されたピラミッド",
+   "demands": [
+    {
+     "region": "Egyptian",
+     "category": "Wonder"
+    }
+   ],
+   "tiers": [
+    {
+     "tier": "priestess",
+     "region": "Egyptian"
+    },
+    {
+     "tier": "gymnasiarch",
+     "region": "Egyptian"
+    }
+   ]
+  },
+  {
+   "productGuid": "151702",
+   "productNameEn": "Scribing Sets",
+   "productNameJa": "書記道具一式",
+   "demands": [
+    {
+     "region": "Egyptian",
+     "category": "Household"
+    }
+   ],
+   "tiers": [
+    {
+     "tier": "scribe",
+     "region": "Egyptian"
+    },
+    {
+     "tier": "gymnasiarch",
+     "region": "Egyptian"
+    }
+   ]
+  },
+  {
+   "productGuid": "2685",
+   "productNameEn": "Baths",
+   "productNameJa": "浴場",
+   "demands": [
+    {
+     "region": "Egyptian",
+     "category": "Wonder"
+    }
+   ],
+   "tiers": [
+    {
+     "tier": "gymnasiarch",
+     "region": "Egyptian"
+    }
+   ]
+  },
+  {
+   "productGuid": "151674",
+   "productNameEn": "Firepit",
+   "productNameJa": "焚き火",
+   "demands": [
+    {
+     "region": "Egyptian",
+     "category": "Public"
+    }
+   ],
+   "tiers": [
+    {
+     "tier": "thresher",
+     "region": "Egyptian"
+    },
+    {
+     "tier": "potter",
+     "region": "Egyptian"
+    },
+    {
+     "tier": "priestess",
+     "region": "Egyptian"
+    },
+    {
+     "tier": "scribe",
+     "region": "Egyptian"
+    },
+    {
+     "tier": "gymnasiarch",
+     "region": "Egyptian"
+    }
+   ]
+  },
+  {
+   "productGuid": "2143",
+   "productNameEn": "Soap",
+   "productNameJa": "石鹸",
+   "demands": [
+    {
+     "region": "Egyptian",
+     "category": "Fashion"
+    }
+   ],
+   "tiers": [
+    {
+     "tier": "scribe",
+     "region": "Egyptian"
+    },
+    {
+     "tier": "gymnasiarch",
+     "region": "Egyptian"
+    }
+   ]
+  },
+  {
+   "productGuid": "2684",
+   "productNameEn": "Temple",
+   "productNameJa": "神殿",
+   "demands": [
+    {
+     "region": "Egyptian",
+     "category": "Wonder"
+    }
+   ],
+   "tiers": [
+    {
+     "tier": "priestess",
+     "region": "Egyptian"
+    }
+   ]
+  },
+  {
+   "productGuid": "2679",
+   "productNameEn": "Sanctuary",
+   "productNameJa": "聖域",
+   "demands": [
+    {
+     "region": "Egyptian",
+     "category": "Public"
+    }
+   ],
+   "tiers": [
+    {
+     "tier": "potter",
+     "region": "Egyptian"
+    },
+    {
+     "tier": "priestess",
+     "region": "Egyptian"
+    },
+    {
+     "tier": "scribe",
+     "region": "Egyptian"
+    },
+    {
+     "tier": "gymnasiarch",
+     "region": "Egyptian"
+    }
+   ]
+  },
+  {
+   "productGuid": "2147",
+   "productNameEn": "Loungers",
+   "productNameJa": "肘掛け椅子",
+   "demands": [
+    {
+     "region": "Egyptian",
+     "category": "Household"
+    }
+   ],
+   "tiers": [
+    {
+     "tier": "gymnasiarch",
+     "region": "Egyptian"
+    }
+   ]
+  },
+  {
+   "productGuid": "151675",
+   "productNameEn": "Apothecary",
+   "productNameJa": "薬屋",
+   "demands": [
+    {
+     "region": "Egyptian",
+     "category": "Public"
+    }
+   ],
+   "tiers": [
+    {
+     "tier": "potter",
+     "region": "Egyptian"
+    },
+    {
+     "tier": "priestess",
+     "region": "Egyptian"
+    }
+   ]
+  },
+  {
+   "productGuid": "55954",
+   "productNameEn": "Drinking Horns",
+   "productNameJa": "角杯",
+   "demands": [
+    {
+     "region": "Egyptian",
+     "category": "Household"
+    }
+   ],
+   "tiers": [
+    {
+     "tier": "potter",
+     "region": "Egyptian"
+    },
+    {
+     "tier": "priestess",
+     "region": "Egyptian"
+    }
+   ]
+  },
+  {
+   "productGuid": "151689",
+   "productNameEn": "Stuffed Goose",
+   "productNameJa": "詰め物入りガチョウ",
+   "demands": [
+    {
+     "region": "Egyptian",
+     "category": "Food"
+    }
+   ],
+   "tiers": [
+    {
+     "tier": "potter",
+     "region": "Egyptian"
+    },
+    {
+     "tier": "priestess",
+     "region": "Egyptian"
+    }
+   ]
+  },
+  {
+   "productGuid": "151703",
+   "productNameEn": "Ivory Caskets",
+   "productNameJa": "象牙の小箱",
+   "demands": [
+    {
+     "region": "Egyptian",
+     "category": "Household"
+    }
+   ],
+   "tiers": [
+    {
+     "tier": "gymnasiarch",
+     "region": "Egyptian"
+    }
+   ]
+  },
+  {
+   "productGuid": "30724",
+   "productNameEn": "Aqueduct Cistern",
+   "productNameJa": "貯水池",
+   "demands": [
+    {
+     "region": "Egyptian",
+     "category": "Public"
+    }
+   ],
+   "tiers": [
+    {
+     "tier": "gymnasiarch",
+     "region": "Egyptian"
+    }
+   ]
+  },
+  {
+   "productGuid": "31757",
+   "productNameEn": "Gambling House",
+   "productNameJa": "賭博場",
+   "demands": [
+    {
+     "region": "Egyptian",
+     "category": "Public"
+    }
+   ],
+   "tiers": [
+    {
+     "tier": "priestess",
+     "region": "Egyptian"
+    },
+    {
+     "tier": "gymnasiarch",
+     "region": "Egyptian"
+    }
+   ]
+  },
+  {
+   "productGuid": "151690",
+   "productNameEn": "Blue Lotus Tea",
+   "productNameJa": "青スイレン茶",
+   "demands": [
+    {
+     "region": "Egyptian",
+     "category": "Food"
+    }
+   ],
+   "tiers": [
+    {
+     "tier": "priestess",
+     "region": "Egyptian"
+    }
+   ]
+  },
+  {
+   "productGuid": "151697",
+   "productNameEn": "Perfumed Oils",
+   "productNameJa": "香油",
+   "demands": [
+    {
+     "region": "Egyptian",
+     "category": "Fashion"
+    }
+   ],
+   "tiers": [
+    {
+     "tier": "priestess",
+     "region": "Egyptian"
+    }
+   ]
+  },
+  {
+   "productGuid": "2151",
+   "productNameEn": "Fine Glass",
+   "productNameJa": "高級ガラス",
+   "demands": [
+    {
+     "region": "Egyptian",
+     "category": "Household"
+    }
+   ],
+   "tiers": [
+    {
+     "tier": "priestess",
+     "region": "Egyptian"
+    }
+   ]
+  },
+  {
+   "productGuid": "151699",
+   "productNameEn": "Apotropaic Talismans",
+   "productNameJa": "魔除けのお守り",
+   "demands": [
+    {
+     "region": "Egyptian",
+     "category": "Household"
+    }
+   ],
+   "tiers": [
+    {
+     "tier": "potter",
+     "region": "Egyptian"
+    },
+    {
+     "tier": "priestess",
+     "region": "Egyptian"
+    }
+   ]
+  },
+  {
+   "productGuid": "2155",
+   "productNameEn": "Bird Tongues in Aspic",
+   "productNameJa": "鳥舌肉アスピック",
+   "demands": [
+    {
+     "region": "Egyptian",
+     "category": "Food"
+    }
+   ],
+   "tiers": [
+    {
+     "tier": "gymnasiarch",
+     "region": "Egyptian"
+    }
+   ]
+  }
+ ]
+}

@@ -1,6 +1,6 @@
 ---
 title: Anno 117 全商品一覧｜食料・建設・文化・原材料
-description: Anno 117の全商品を食料・建設・ファッション・文化・中間品・原材料の6分類で一覧表示。ゲーム内データ準拠の日本語商品名と地域情報を掲載。
+description: Anno 117の全商品を食料・建設・ファッション・文化・家庭・中間品・原材料の7分類で一覧表示。ゲーム内データ準拠の日本語商品名と地域情報を掲載。
 ---
 
 <script setup lang="ts">
@@ -13,6 +13,7 @@ const categoryLabels: Record<string, string> = {
   construction: '建設',
   fashion: 'ファッション',
   culture: '文化',
+  household: '家庭',
   intermediate: '中間品',
   resource: '原材料',
 }
@@ -20,6 +21,7 @@ const categoryLabels: Record<string, string> = {
 const regionLabels: Record<string, string> = {
   Roman: 'ラティウム',
   Celtic: 'アルビオン',
+  Egyptian: 'アイギュプト',
 }
 
 function regionText(regions: string[]): string {
@@ -27,8 +29,8 @@ function regionText(regions: string[]): string {
   return regions.map((r) => regionLabels[r] ?? r).join(' / ')
 }
 
-function hasCalc(cat: string): boolean {
-  return cat !== 'intermediate' && cat !== 'resource'
+function hasCalc(cat: string, good: { calc: boolean }): boolean {
+  return good.calc && cat !== 'intermediate' && cat !== 'resource'
 }
 
 // SPA遷移直後はまだ描画されておらずアンカーへスクロールできないため、
@@ -59,7 +61,7 @@ watch(hash, scrollToHash)
 
 Anno 117 で生産・消費される全 {{ data.categories.reduce((n, c) => n + data.byCategory[c].length, 0) }} 商品の一覧です。
 個別の生産チェーンと必要量の計算は[計算機](/calculator/)で。
-ラティウム・アルビオン地域別の商品分布は[地域別商品](/wiki/regions)にあります。
+ラティウム・アルビオン・アイギュプト地域別の商品分布は[地域別商品](/wiki/regions)にあります。アイギュプトの新商品は、計算機がまだ対応していないので「—」です。
 
 <div v-for="cat in data.categories" :key="cat">
 
@@ -79,7 +81,7 @@ Anno 117 で生産・消費される全 {{ data.categories.reduce((n, c) => n + 
 </td>
 <td>{{ regionText(good.regions) }}</td>
 <td>
-  <a v-if="hasCalc(cat)" class="calc-link-btn" :href="withBase(`/calculator/?good=${good.id}`)" target="_blank" rel="noopener noreferrer">開く</a>
+  <a v-if="hasCalc(cat, good)" class="calc-link-btn" :href="withBase(`/calculator/?good=${good.id}`)" target="_blank" rel="noopener noreferrer">開く</a>
   <span v-else>—</span>
 </td>
 </tr>
@@ -94,15 +96,15 @@ Anno 117 で生産・消費される全 {{ data.categories.reduce((n, c) => n + 
 <div class="goods-compact-list">
 <template v-for="good in data.byCategory[cat]" :key="good.id">
 <component
-  :is="hasCalc(cat) ? 'a' : 'div'"
+  :is="hasCalc(cat, good) ? 'a' : 'div'"
   :data-anchor="good.id"
   class="goods-compact-row"
-  v-bind="hasCalc(cat) ? { href: withBase(`/calculator/?good=${good.id}`), target: '_blank', rel: 'noopener noreferrer' } : {}"
+  v-bind="hasCalc(cat, good) ? { href: withBase(`/calculator/?good=${good.id}`), target: '_blank', rel: 'noopener noreferrer' } : {}"
 >
   <img v-if="good.icon" :src="withBase('/icons/goods-thumb/' + good.icon + '.webp')" :alt="good.nameJa" width="24" height="24" loading="lazy" class="goods-compact-icon" />
   <span class="goods-compact-name">{{ good.nameJa }}</span>
   <span class="goods-compact-region">{{ regionText(good.regions) }}</span>
-  <span v-if="hasCalc(cat)" class="goods-compact-arrow">›</span>
+  <span v-if="hasCalc(cat, good)" class="goods-compact-arrow">›</span>
 </component>
 <div v-if="good.producers" class="goods-compact-producers"><GoodsProducers :producers="good.producers" /></div>
 </template>

@@ -1,0 +1,81 @@
+#!/usr/bin/env python3
+"""DLC03(デルタの夜明け)のスキルツリーを、Anno 117 Planner のゲーム3.0データから techs.json に入れる。
+
+入力 : _local/anno-official-data/v3.0-planner/techs.json
+出力 : apps/wiki/docs/wiki/techs.json (DLC03の項目だけを入れ替える。他のブランチには触れない)
+
+- DLC03 は category 151465 の41項目(ゲート7、スキル34)
+- 配置は Planner の x, y。ゲートを基準(0)にそろえるため y に 1 を足す。
+  表示は行(annoR)で縦位置を決めるので、1行を2とし、奇数列は半行ずらした目安の配置にする(ゲーム内の見た目とは未照合)
+- つながり(connections)は Planner のデータに無いので空にする(未確認)
+- 効果文は「対象 項目 値」を並べる。解放される建物などがあれば「解放: ○○」を付ける
+- 日本語は単語間にゼロ幅スペース(U+200B)があるので除く
+- techs.json は CRLF・インデント2で書かれているので、同じ書式で書き戻す
+"""
+import json
+import sys
+from pathlib import Path
+
+ROOT = Path(__file__).resolve().parent.parent
+SRC = ROOT / '_local' / 'anno-official-data' / 'v3.0-planner' / 'techs.json'
+OUT = ROOT / 'apps' / 'wiki' / 'docs' / 'wiki' / 'techs.json'
+DLC03_CATEGORY = 151465
+ZW = '​'
+
+
+def tx(d, lang: str) -> str:
+    return (d or {}).get(lang, '').replace(ZW, '') if isinstance(d, dict) else ''
+
+
+def effect_text(t: dict, lang: str) -> str:
+    parts = [' '.join(p for p in (tx(e.get('target'), lang), tx(e.get('text'), lang), e.get('value', '')) if p) for e in t['effectLines']]
+    unlocks = [tx(u, lang) for u in t['unlocks']]
+    if unlocks:
+        parts.append(('解放: ' if lang == 'japanese' else 'Unlocks: ') + '、'.join(unlocks))
+    return ' / '.join(parts)
+
+
+def main() -> None:
+    src = json.loads(SRC.read_text(encoding='utf-8'))['techs']
+    dlc03 = [t for t in src if t['category'] == DLC03_CATEGORY]
+    if len(dlc03) != 41:
+        sys.exit(f'DLC03の項目数が想定(41)と違う: {len(dlc03)}')
+
+    entries = []
+    for t in dlc03:
+        gate = t['gate']
+        entries.append({
+            'guid': str(t['guid']),
+            'internalName': t['name'],
+            'nameEn': tx(t['loca'], 'english'),
+            'nameJa': tx(t['loca'], 'japanese'),
+            'descEn': tx(t['description'], 'english'),
+            'descJa': tx(t['description'], 'japanese'),
+            'effectJa': effect_text(t, 'japanese'),
+            'effectEn': effect_text(t, 'english'),
+            'iconKey': None,
+            'techIconPath': '',
+            'isGate': gate,
+            'color': 'Green',
+            'knowledgeCost': None if gate else int(t['knowledge']),
+            'gridX': t['x'],
+            'gridY': t['y'] + 1,
+            'annoR': 2 * (t['y'] + 1) - (1 if t['x'] % 2 else 0),
+            'connections': [],
+            'annoNodeId': str(t['guid']),
+            'branchOverride': 'dlc03',
+            '_source': 'Anno 117 Planner v1.0.0 (ゲーム3.0)。つながりは未確認',
+        })
+
+    raw = OUT.read_text(encoding='utf-8', newline='')
+    data = json.loads(raw)
+    others = [t for t in data['techs'] if t.get('branchOverride') != 'dlc03' and 'DLC03' not in t.get('internalName', '')]
+    removed = len(data['techs']) - len(others)
+    data['techs'] = others + entries
+    text = json.dumps(data, ensure_ascii=False, indent=2) + '\n'
+    OUT.write_text(text.replace('\n', '\r\n'), encoding='utf-8', newline='')
+    print(f'DLC03の既存 {removed}件を入れ替え、{len(entries)}件を書き出した(合計 {len(data["techs"])}件)')
+
+
+if __name__ == '__main__':
+    main()
