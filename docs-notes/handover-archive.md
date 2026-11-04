@@ -452,3 +452,12 @@
 - **導線**: 左サイドバー「攻略ガイド」内に「操作方法（PS5版）」（攻略ガイド一覧の下・DLC要素の上）と、「DLC要素」の下に「小ネタ」＞「一人称モード（自由散策モード）」。ページ冒頭にも「小ネタ: 一人称モード（自由散策モード）」へのリンク。更新履歴（`updates.json`）に2026-11-04の `post` を1件追加済み。
 - **フックの誤検知**: `anno-build-guard`（`.claude/skills/anno-build-guard/hooks/register.ts`）は build:site 後に `docs/index.html`・`docs/wiki`・`docs/calculator` の有無を**セッションの現在フォルダ基準**で確認する。作業フォルダがサブフォルダ（例 `.vitepress/data`）に移っていると、実際は存在しても「ありません」と警告する（2026-11-04に発生、`check:site` は OK）。警告が出たら `bun run check:site` で確かめる。直す案は基準をGitルートに固定すること（未実施・ユーザー判断で現状維持）。
 
+
+## AK. 2026-11-04 DLC03先行プレイ動画の確認とPC版RDA展開の準備（単独セッション、コミット済み・未push。`5115fc33`・`2c4bda3c`・`ef56ac5f`）
+- **動画2本を確認**: ①日本語表示 `https://www.youtube.com/watch?v=vpvf4RDwEHY`（約15分）、②英語表示 `https://www.youtube.com/watch?v=nVUhfvCTPxg`（Nivarias、約52分）。字幕を `youtube-transcript-api`、動画を `yt-dlp`＋`imageio-ffmpeg` で取得（作業用の一時フォルダだけに導入、プロジェクトには入れていない）。字幕（自動）は誤認識が多く、数値は**5秒おきに切り出したフレームを画面で読んだものだけ**採用した
+- **結果は `docs-notes/dlc03-ingame-checklist.md` の13節（動画1）・13-2節（動画2）**。確定した主な点: 最初の住民層は「麦打ち人」（スレッシャーは仮訳で誤り、動画2の英語表示は Thresher Residence）／エジプト側は「クマト」（動画の編集テロップの「ケマト」は不採用）／建材は泥レンガ／泥干し工房30秒・葦採集者30秒・泥レンガ集積場（Mud Stacker）30秒（維持費 -10 と -2、建設費250）／氾濫期「アケト」で氾濫原の生産施設は倍率 -75%／穀物庫は貯蔵+100t／新祭神3柱の効果の一部／研究5件のコスト
+- **動画からは分からなかった点**: アップデート3.0そのものの変更点（動画はDLC03の先行プレイ）／泥レンガ集積場の材料数量（字幕では泥と葦が1対1）／岩窟墓の数値／石灰レンガ（字幕のみ）
+- **PC版のRDA展開の準備**: ツール（RdaConsole v1.2、FileDBReader v3.0.3、RDAExplorer v1.4.0-jakob2）を `_local/tools/` に導入し、`--help` の起動を確認（ユーザーが実行）。**Anno 117の `.rda` を読めるかは未確認**。当日の手順は `docs-notes/rda-extraction-plan.md`（`.gitignore` に許可を追加して追跡）
+- **PCの仕様**: Minisforum NAB9（無印）、Core i9-12900H・RAM 31.8GB・内蔵 Iris Xe・SSD。GPUが最低要件（GTX 1660相当）に届かず、USB4もOCuLinkも無いので外付けGPUも不可（背面にOCuLink表記なし、USB4デバイス検出なし）。ゲームの起動は期待しない（展開が目的で影響なし）
+- **無料プレイ**: 2026-11-05（木）19:00 JST（10:00 UTC）〜11-09、**ベースゲームのみ**（出所は Anno Union の記事 `union-update-free-weekend-and-dawn-of-the-delta-release`）。対象プラットフォームは記事に明記なし。11-04時点のSteamストアには無料の表示なし。Steamは導入済み（2026-11-04）。Steamストアの注記: Ubisoftアカウント必須・EULA同意・DRMはDenuvo
+- **PCの権限判定**: 外部からダウンロードした実行ファイル（RdaConsole等）の実行は自動で拒否された。ユーザーが `! ` 付きで実行するか、許可ルールの追加が必要
