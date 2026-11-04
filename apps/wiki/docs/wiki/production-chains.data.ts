@@ -5,6 +5,8 @@ import listJson from '../../../../packages/shared/public/productions/list.json'
 import jaJson from '../../../../packages/shared/public/i18n/locales/ja.json'
 // 100%効率の建物数の比率。tools/build-chain-ratios.py で生成
 import ratiosJson from './chain-ratios.json'
+// アイギュプト専用の新商品の生産チェーン。tools/build-chain-aegyptus.py で生成
+import aegyptusJson from './production-chains-aegyptus.json'
 
 const __filename = fileURLToPath(import.meta.url)
 const __dirname = dirname(__filename)
@@ -51,6 +53,8 @@ interface ProductionEntry {
   graph: ProductionGraph | null
   /** ラティウム版・アルビオン版の両方があるときだけ入る。地域ごとの直接素材と図 */
   variants: ProductionVariant[]
+  /** 計算機で開けるか。アイギュプトの商品は計算機が未対応なので false */
+  calc: boolean
 }
 
 interface ProductionVariant {
@@ -64,7 +68,7 @@ const VARIANT_LABELS: Record<string, string> = {
   celtic: 'アルビオン版',
 }
 
-const CATEGORY_ORDER = ['food', 'construction', 'fashion', 'culture']
+const CATEGORY_ORDER = ['food', 'construction', 'fashion', 'culture', 'household']
 
 function fmtTime(seconds: number): string {
   if (!seconds) return ''
@@ -160,6 +164,28 @@ export default {
         inputs,
         graph: buildProductionGraph(prod, jaGoods, RATIOS[firstFile as string]),
         variants,
+        calc: true,
+      })
+    }
+
+    // アイギュプト専用の新商品（計算機には無いので、wiki専用のデータから足す）
+    for (const e of aegyptusJson.entries) {
+      entries.push({
+        id: e.id,
+        nameJa: e.nameJa,
+        nameEn: e.nameEn,
+        icon: '',
+        category: e.category,
+        regions: ['Egyptian'],
+        buildingType: e.buildingJa,
+        timeSeconds: e.timeSeconds,
+        needsFuel: e.needsFuel,
+        inputs: e.inputs,
+        graph: e.graph
+          ? { nodes: e.graph.nodes.map((n) => ({ ...n, time: fmtTime(n.time) })), edges: e.graph.edges }
+          : null,
+        variants: [],
+        calc: false,
       })
     }
 

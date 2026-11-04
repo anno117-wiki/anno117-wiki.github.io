@@ -1,6 +1,6 @@
 ---
 title: 地域別商品
-description: Anno 117のラティウム・アルビオン地域別に、固有商品と両地域共通の商品を一覧表示。オリーブオイル・ガルムはラティウム、ウナギ・ビールはアルビオンなど、どこで何を作れるかを確認できる。
+description: Anno 117のラティウム・アルビオン・アイギュプト地域別に、固有商品と複数地域で作れる商品を一覧表示。ガルムはラティウム、ウナギはアルビオン、カフクやシストラムはアイギュプトなど、どこで何を作れるかを確認できる。
 ---
 
 <script setup lang="ts">
@@ -11,6 +11,7 @@ const categoryLabel: Record<string, string> = {
   construction: '建設',
   fashion: 'ファッション',
   culture: '文化',
+  household: '家庭',
   intermediate: '中間品',
   resource: '原材料',
 }
@@ -21,7 +22,7 @@ const categoryLabel: Record<string, string> = {
 <p v-if="!data.hasEgyptian">Anno 117 には <strong>ラティウム地域</strong> と <strong>アルビオン地域</strong> の2つの地域があり、生産できる商品が異なります。</p>
 <p v-else>Anno 117 には <strong>ラティウム地域</strong>・<strong>アルビオン地域</strong>・<strong>アイギュプト地域</strong>（DLC03）の3つの地域があり、生産できる商品が異なります。</p>
 
-各商品の詳細な生産チェーンは[計算機](/calculator/)で確認できます。
+各商品の詳細な生産チェーンは[計算機](/calculator/)で確認できます。アイギュプトの商品は、計算機がまだ対応していません。[生産チェーン一覧](/wiki/production-chains)に新商品のチェーンを載せています。
 
 ## 地域サマリー
 

@@ -1,5 +1,7 @@
 import listJson from '../../../../packages/shared/public/productions/list.json'
 import jaJson from '../../../../packages/shared/public/i18n/locales/ja.json'
+// アイギュプト(DLC03)で作れる商品。tools/build-regions-aegyptus.py で生成
+import aegyptusJson from './regions-aegyptus.json'
 
 interface GoodEntry {
   id: string
@@ -15,9 +17,10 @@ const CATEGORY_LABEL: Record<string, string> = {
   construction: '建設',
   fashion: 'ファッション',
   culture: '文化',
+  household: '家庭',
 }
 
-// 地域の内部キー → 表示名。DLC03（アイギュプト）は商品データが入るまで該当0件で、ページには出ない
+// 地域の内部キー → 表示名
 const REGION_LABEL: Record<string, string> = {
   Roman: 'ラティウム',
   Celtic: 'アルビオン',
@@ -54,9 +57,11 @@ export default {
     const exclusive: Record<string, GoodEntry[]> = { Roman: [], Celtic: [], Egyptian: [] }
     const both: GoodEntry[] = []
     let hasEgyptian = false
+    // 既存の商品のうち、アイギュプトでも作れるもの
+    const alsoEgyptian = new Set<string>(aegyptusJson.shared)
 
     for (const g of (listJson as { goods: any[] }).goods) {
-      const all = (g.regions ?? []) as string[]
+      const all = [...((g.regions ?? []) as string[]), ...(alsoEgyptian.has(g.id) ? ['Egyptian'] : [])]
       const known = Object.keys(REGION_LABEL).filter((r) => all.includes(r))
       const unknown = all.filter((r) => !(r in REGION_LABEL))
       if (unknown.length > 0) {
@@ -72,6 +77,18 @@ export default {
       } else {
         both.push(toEntry(g, known))
       }
+    }
+
+    // アイギュプト専用の新商品（計算機には無いので、wiki専用のデータから足す）
+    for (const e of aegyptusJson.exclusive) {
+      exclusive.Egyptian.push({
+        id: e.id,
+        nameJa: e.nameJa,
+        nameEn: e.nameEn,
+        category: e.category,
+        regionsJa: REGION_LABEL.Egyptian,
+      })
+      hasEgyptian = true
     }
 
     return {

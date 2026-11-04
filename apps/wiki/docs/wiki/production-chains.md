@@ -14,11 +14,13 @@ const categoryLabels: Record<string, string> = {
   construction: '建設',
   fashion: 'ファッション',
   culture: '文化',
+  household: '家庭',
 }
 
 const regionLabels: Record<string, string> = {
   Roman: 'ラティウム',
   Celtic: 'アルビオン',
+  Egyptian: 'アイギュプト',
 }
 
 function regionText(regions: string[]): string {
@@ -66,6 +68,8 @@ watch(hash, scrollToHash)
 詳しい計算は[計算機](/calculator/)で。
 ラティウム・アルビオン地域別の商品分布は[地域別商品](/wiki/regions)にあります。
 
+アイギュプトで新しく作れる商品（DLC03）も載せています。計算機はまだ対応していないので、「計算機」の欄は「—」です。同じ素材を複数の建物で作れる場合（石炭は炭焼き師と炭鉱、金鉱石は金選鉱と金鉱）は、図に両方を並べています。並べた建物の数は、その建物だけで全量をまかなう場合の数です。
+
 <div v-for="cat in data.categories" :key="cat">
 
 <h2>{{ categoryLabels[cat] ?? cat }}</h2>
@@ -95,7 +99,7 @@ watch(hash, scrollToHash)
     <ProductionChainSvg v-if="entry.graph" :graph="entry.graph" />
   </template>
 </td>
-<td><a class="calc-link-btn" :href="withBase(`/calculator/?good=${entry.id}`)" target="_blank" rel="noopener noreferrer">開く</a></td>
+<td><a v-if="entry.calc" class="calc-link-btn" :href="withBase(`/calculator/?good=${entry.id}`)" target="_blank" rel="noopener noreferrer">開く</a><span v-else>—</span></td>
 </tr>
 </tbody>
 </table>
@@ -106,7 +110,7 @@ watch(hash, scrollToHash)
   <div class="chain-card-header">
     <img v-if="entry.icon" :src="withBase('/icons/goods-thumb/' + entry.icon + '.webp')" :alt="entry.nameJa" width="28" height="28" loading="lazy" class="chain-card-icon" />
     <span class="chain-card-name">{{ entry.nameJa }}</span>
-    <a class="calc-link-btn" :href="withBase(`/calculator/?good=${entry.id}`)" target="_blank" rel="noopener noreferrer">開く</a>
+    <a v-if="entry.calc" class="calc-link-btn" :href="withBase(`/calculator/?good=${entry.id}`)" target="_blank" rel="noopener noreferrer">開く</a>
   </div>
   <div class="chain-card-body">
     <div class="chain-card-meta">

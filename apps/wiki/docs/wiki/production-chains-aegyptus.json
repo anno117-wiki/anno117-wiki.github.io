@@ -1,0 +1,963 @@
+{
+ "source": "ゲーム内データ(アップデート3.0)",
+ "entries": [
+  {
+   "id": "aegyptus_dates",
+   "nameJa": "ナツメヤシ",
+   "nameEn": "Dates",
+   "category": "food",
+   "buildingJa": "ナツメヤシ農場",
+   "timeSeconds": 60.0,
+   "needsFuel": false,
+   "inputs": [],
+   "graph": null,
+   "ratioOk": true
+  },
+  {
+   "id": "aegyptus_stuffed_goose",
+   "nameJa": "詰め物入りガチョウ",
+   "nameEn": "Stuffed Goose",
+   "category": "food",
+   "buildingJa": "詰め物肉工房",
+   "timeSeconds": 120.0,
+   "needsFuel": false,
+   "inputs": [
+    "雁",
+    "小麦"
+   ],
+   "graph": {
+    "nodes": [
+     {
+      "id": "p151689",
+      "label": "詰め物入りガチョウ",
+      "time": 120.0,
+      "count": 2
+     },
+     {
+      "id": "p151712",
+      "label": "雁",
+      "time": 60.0,
+      "count": 1
+     },
+     {
+      "id": "p2069",
+      "label": "小麦",
+      "time": 60.0,
+      "count": 1
+     }
+    ],
+    "edges": [
+     {
+      "from": "p151712",
+      "to": "p151689"
+     },
+     {
+      "from": "p2069",
+      "to": "p151689"
+     }
+    ]
+   },
+   "ratioOk": true
+  },
+  {
+   "id": "aegyptus_blue_lotus_tea",
+   "nameJa": "青スイレン茶",
+   "nameEn": "Blue Lotus Tea",
+   "category": "food",
+   "buildingJa": "煎じ茶工房",
+   "timeSeconds": 90.0,
+   "needsFuel": false,
+   "inputs": [
+    "青スイレン",
+    "蜂の巣"
+   ],
+   "graph": {
+    "nodes": [
+     {
+      "id": "p151690",
+      "label": "青スイレン茶",
+      "time": 90.0,
+      "count": 6
+     },
+     {
+      "id": "p151713",
+      "label": "青スイレン",
+      "time": 120.0,
+      "count": 8
+     },
+     {
+      "id": "p2076",
+      "label": "蜂の巣",
+      "time": 45.0,
+      "count": 3
+     }
+    ],
+    "edges": [
+     {
+      "from": "p151713",
+      "to": "p151690"
+     },
+     {
+      "from": "p2076",
+      "to": "p151690"
+     }
+    ]
+   },
+   "ratioOk": true
+  },
+  {
+   "id": "aegyptus_kayk",
+   "nameJa": "カフク",
+   "nameEn": "Kayk",
+   "category": "food",
+   "buildingJa": "カイク工房",
+   "timeSeconds": 90.0,
+   "needsFuel": false,
+   "inputs": [
+    "蜂の巣",
+    "小麦粉"
+   ],
+   "graph": {
+    "nodes": [
+     {
+      "id": "p151691",
+      "label": "カフク",
+      "time": 90.0,
+      "count": 6
+     },
+     {
+      "id": "p2076",
+      "label": "蜂の巣",
+      "time": 45.0,
+      "count": 3
+     },
+     {
+      "id": "p2119",
+      "label": "小麦粉",
+      "time": 60.0,
+      "count": 4
+     },
+     {
+      "id": "p2069",
+      "label": "小麦",
+      "time": 60.0,
+      "count": 4
+     }
+    ],
+    "edges": [
+     {
+      "from": "p2069",
+      "to": "p2119"
+     },
+     {
+      "from": "p2076",
+      "to": "p151691"
+     },
+     {
+      "from": "p2119",
+      "to": "p151691"
+     }
+    ]
+   },
+   "ratioOk": true
+  },
+  {
+   "id": "aegyptus_rare_meat_platters",
+   "nameJa": "希少な肉の盛り合わせ",
+   "nameEn": "Rare Meat Platters",
+   "category": "food",
+   "buildingJa": "大地の美食家",
+   "timeSeconds": 120.0,
+   "needsFuel": false,
+   "inputs": [
+    "カバ",
+    "ザクロ"
+   ],
+   "graph": {
+    "nodes": [
+     {
+      "id": "p151692",
+      "label": "希少な肉の盛り合わせ",
+      "time": 120.0,
+      "count": 4
+     },
+     {
+      "id": "p151714",
+      "label": "カバ",
+      "time": 60.0,
+      "count": 2
+     },
+     {
+      "id": "p151679",
+      "label": "ザクロ",
+      "time": 90.0,
+      "count": 3
+     }
+    ],
+    "edges": [
+     {
+      "from": "p151679",
+      "to": "p151692"
+     },
+     {
+      "from": "p151714",
+      "to": "p151692"
+     }
+    ]
+   },
+   "ratioOk": true
+  },
+  {
+   "id": "aegyptus_wesekh_collars",
+   "nameJa": "ウェセクの首輪",
+   "nameEn": "Wesekh Collars",
+   "category": "fashion",
+   "buildingJa": "ビーズ工房",
+   "timeSeconds": 90.0,
+   "needsFuel": false,
+   "inputs": [
+    "ビーズ"
+   ],
+   "graph": {
+    "nodes": [
+     {
+      "id": "p151693",
+      "label": "ウェセクの首輪",
+      "time": 90.0,
+      "count": 1
+     },
+     {
+      "id": "p151706",
+      "label": "ビーズ",
+      "time": 90.0,
+      "count": 1
+     }
+    ],
+    "edges": [
+     {
+      "from": "p151706",
+      "to": "p151693"
+     }
+    ]
+   },
+   "ratioOk": true
+  },
+  {
+   "id": "aegyptus_kollurion",
+   "nameJa": "コール",
+   "nameEn": "Kollurion",
+   "category": "fashion",
+   "buildingJa": "コリュラ工房",
+   "timeSeconds": 90.0,
+   "needsFuel": false,
+   "inputs": [
+    "獣脂",
+    "石炭"
+   ],
+   "graph": {
+    "nodes": [
+     {
+      "id": "p151694",
+      "label": "コール",
+      "time": 90.0,
+      "count": 3
+     },
+     {
+      "id": "p2132",
+      "label": "獣脂",
+      "time": 60.0,
+      "count": 2,
+      "fuel": 0.5
+     },
+     {
+      "id": "p151712",
+      "label": "雁",
+      "time": 60.0,
+      "count": 2
+     },
+     {
+      "id": "p2085_152271",
+      "label": "石炭（炭焼き師）",
+      "time": 30.0,
+      "count": 1
+     },
+     {
+      "id": "p2085_152245",
+      "label": "石炭（炭鉱）",
+      "time": 30.0,
+      "count": 1
+     }
+    ],
+    "edges": [
+     {
+      "from": "p151712",
+      "to": "p2132"
+     },
+     {
+      "from": "p2085_152245",
+      "to": "p151694"
+     },
+     {
+      "from": "p2085_152271",
+      "to": "p151694"
+     },
+     {
+      "from": "p2132",
+      "to": "p151694"
+     }
+    ]
+   },
+   "ratioOk": true
+  },
+  {
+   "id": "aegyptus_shentis",
+   "nameJa": "シェンティ",
+   "nameEn": "Shentis",
+   "category": "fashion",
+   "buildingJa": "プリーツ工房",
+   "timeSeconds": 90.0,
+   "needsFuel": false,
+   "inputs": [
+    "布"
+   ],
+   "graph": {
+    "nodes": [
+     {
+      "id": "p151695",
+      "label": "シェンティ",
+      "time": 90.0,
+      "count": 3
+     },
+     {
+      "id": "p2121",
+      "label": "布",
+      "time": 120.0,
+      "count": 4
+     },
+     {
+      "id": "p2063",
+      "label": "亜麻",
+      "time": 90.0,
+      "count": 3
+     }
+    ],
+    "edges": [
+     {
+      "from": "p2063",
+      "to": "p2121"
+     },
+     {
+      "from": "p2121",
+      "to": "p151695"
+     }
+    ]
+   },
+   "ratioOk": true
+  },
+  {
+   "id": "aegyptus_kalasirises",
+   "nameJa": "カラシリス",
+   "nameEn": "Kalasirises",
+   "category": "fashion",
+   "buildingJa": "裁縫工房",
+   "timeSeconds": 90.0,
+   "needsFuel": false,
+   "inputs": [
+    "布",
+    "アイギュプトの青"
+   ],
+   "graph": {
+    "nodes": [
+     {
+      "id": "p151696",
+      "label": "カラシリス",
+      "time": 90.0,
+      "count": 6
+     },
+     {
+      "id": "p2121",
+      "label": "布",
+      "time": 120.0,
+      "count": 8
+     },
+     {
+      "id": "p2063",
+      "label": "亜麻",
+      "time": 90.0,
+      "count": 6
+     },
+     {
+      "id": "p151685",
+      "label": "アイギュプトの青",
+      "time": 90.0,
+      "count": 6,
+      "fuel": 1.5
+     },
+     {
+      "id": "p2099",
+      "label": "銅鉱石",
+      "time": 30.0,
+      "count": 2
+     },
+     {
+      "id": "p2091",
+      "label": "シリカ",
+      "time": 45.0,
+      "count": 3
+     }
+    ],
+    "edges": [
+     {
+      "from": "p151685",
+      "to": "p151696"
+     },
+     {
+      "from": "p2063",
+      "to": "p2121"
+     },
+     {
+      "from": "p2091",
+      "to": "p151685"
+     },
+     {
+      "from": "p2099",
+      "to": "p151685"
+     },
+     {
+      "from": "p2121",
+      "to": "p151696"
+     }
+    ]
+   },
+   "ratioOk": true
+  },
+  {
+   "id": "aegyptus_perfumed_oils",
+   "nameJa": "香油",
+   "nameEn": "Perfumed Oils",
+   "category": "fashion",
+   "buildingJa": "香油工房",
+   "timeSeconds": 90.0,
+   "needsFuel": false,
+   "inputs": [
+    "青スイレン",
+    "ゴマ油"
+   ],
+   "graph": {
+    "nodes": [
+     {
+      "id": "p151697",
+      "label": "香油",
+      "time": 90.0,
+      "count": 3
+     },
+     {
+      "id": "p151713",
+      "label": "青スイレン",
+      "time": 120.0,
+      "count": 4
+     },
+     {
+      "id": "p151687",
+      "label": "ゴマ油",
+      "time": 90.0,
+      "count": 3
+     },
+     {
+      "id": "p151678",
+      "label": "ゴマのさや",
+      "time": 120.0,
+      "count": 4
+     }
+    ],
+    "edges": [
+     {
+      "from": "p151678",
+      "to": "p151687"
+     },
+     {
+      "from": "p151687",
+      "to": "p151697"
+     },
+     {
+      "from": "p151713",
+      "to": "p151697"
+     }
+    ]
+   },
+   "ratioOk": true
+  },
+  {
+   "id": "aegyptus_milk_of_poppea",
+   "nameJa": "ポッパエアのミルク",
+   "nameEn": "Milk of Poppea",
+   "category": "fashion",
+   "buildingJa": "美容師",
+   "timeSeconds": 120.0,
+   "needsFuel": false,
+   "inputs": [
+    "ザクロ",
+    "蜂蜜入りミルク"
+   ],
+   "graph": {
+    "nodes": [
+     {
+      "id": "p151698",
+      "label": "ポッパエアのミルク",
+      "time": 120.0,
+      "count": 8
+     },
+     {
+      "id": "p151679",
+      "label": "ザクロ",
+      "time": 90.0,
+      "count": 6
+     },
+     {
+      "id": "p151686",
+      "label": "蜂蜜入りミルク",
+      "time": 90.0,
+      "count": 6
+     },
+     {
+      "id": "p2076",
+      "label": "蜂の巣",
+      "time": 45.0,
+      "count": 3
+     },
+     {
+      "id": "p151683",
+      "label": "サンガ牛",
+      "time": 60.0,
+      "count": 4
+     }
+    ],
+    "edges": [
+     {
+      "from": "p151679",
+      "to": "p151698"
+     },
+     {
+      "from": "p151683",
+      "to": "p151686"
+     },
+     {
+      "from": "p151686",
+      "to": "p151698"
+     },
+     {
+      "from": "p2076",
+      "to": "p151686"
+     }
+    ]
+   },
+   "ratioOk": true
+  },
+  {
+   "id": "aegyptus_apotropaic_talismans",
+   "nameJa": "魔除けのお守り",
+   "nameEn": "Apotropaic Talismans",
+   "category": "household",
+   "buildingJa": "ガラス細工工房",
+   "timeSeconds": 90.0,
+   "needsFuel": true,
+   "inputs": [
+    "泥",
+    "アイギュプトの青"
+   ],
+   "graph": {
+    "nodes": [
+     {
+      "id": "p151699",
+      "label": "魔除けのお守り",
+      "time": 90.0,
+      "count": 6,
+      "fuel": 1.5
+     },
+     {
+      "id": "p2102",
+      "label": "泥",
+      "time": 30.0,
+      "count": 2
+     },
+     {
+      "id": "p151685",
+      "label": "アイギュプトの青",
+      "time": 90.0,
+      "count": 6,
+      "fuel": 1.5
+     },
+     {
+      "id": "p2099",
+      "label": "銅鉱石",
+      "time": 30.0,
+      "count": 2
+     },
+     {
+      "id": "p2091",
+      "label": "シリカ",
+      "time": 45.0,
+      "count": 3
+     }
+    ],
+    "edges": [
+     {
+      "from": "p151685",
+      "to": "p151699"
+     },
+     {
+      "from": "p2091",
+      "to": "p151685"
+     },
+     {
+      "from": "p2099",
+      "to": "p151685"
+     },
+     {
+      "from": "p2102",
+      "to": "p151699"
+     }
+    ]
+   },
+   "ratioOk": true
+  },
+  {
+   "id": "aegyptus_oil_lamps",
+   "nameJa": "オイルランプ",
+   "nameEn": "Oil Lamps",
+   "category": "household",
+   "buildingJa": "ランプ工房",
+   "timeSeconds": 90.0,
+   "needsFuel": true,
+   "inputs": [
+    "泥",
+    "ゴマ油"
+   ],
+   "graph": {
+    "nodes": [
+     {
+      "id": "p151700",
+      "label": "オイルランプ",
+      "time": 90.0,
+      "count": 3,
+      "fuel": 0.75
+     },
+     {
+      "id": "p2102",
+      "label": "泥",
+      "time": 30.0,
+      "count": 1
+     },
+     {
+      "id": "p151687",
+      "label": "ゴマ油",
+      "time": 90.0,
+      "count": 3
+     },
+     {
+      "id": "p151678",
+      "label": "ゴマのさや",
+      "time": 120.0,
+      "count": 4
+     }
+    ],
+    "edges": [
+     {
+      "from": "p151678",
+      "to": "p151687"
+     },
+     {
+      "from": "p151687",
+      "to": "p151700"
+     },
+     {
+      "from": "p2102",
+      "to": "p151700"
+     }
+    ]
+   },
+   "ratioOk": true
+  },
+  {
+   "id": "aegyptus_sistrums",
+   "nameJa": "シストラム",
+   "nameEn": "Sistrums",
+   "category": "household",
+   "buildingJa": "ティンパニ工房",
+   "timeSeconds": 120.0,
+   "needsFuel": false,
+   "inputs": [
+    "ビーズ",
+    "青銅"
+   ],
+   "graph": {
+    "nodes": [
+     {
+      "id": "p151701",
+      "label": "シストラム",
+      "time": 120.0,
+      "count": 4
+     },
+     {
+      "id": "p151706",
+      "label": "ビーズ",
+      "time": 90.0,
+      "count": 3
+     },
+     {
+      "id": "p2127",
+      "label": "青銅",
+      "time": 60.0,
+      "count": 2,
+      "fuel": 0.5
+     },
+     {
+      "id": "p2100",
+      "label": "錫鉱石",
+      "time": 30.0,
+      "count": 1
+     },
+     {
+      "id": "p2099",
+      "label": "銅鉱石",
+      "time": 30.0,
+      "count": 1
+     }
+    ],
+    "edges": [
+     {
+      "from": "p151706",
+      "to": "p151701"
+     },
+     {
+      "from": "p2099",
+      "to": "p2127"
+     },
+     {
+      "from": "p2100",
+      "to": "p2127"
+     },
+     {
+      "from": "p2127",
+      "to": "p151701"
+     }
+    ]
+   },
+   "ratioOk": true
+  },
+  {
+   "id": "aegyptus_scribing_sets",
+   "nameJa": "書記道具一式",
+   "nameEn": "Scribing Sets",
+   "category": "household",
+   "buildingJa": "写本室",
+   "timeSeconds": 120.0,
+   "needsFuel": false,
+   "inputs": [
+    "顔料",
+    "パピルス"
+   ],
+   "graph": {
+    "nodes": [
+     {
+      "id": "p151702",
+      "label": "書記道具一式",
+      "time": 120.0,
+      "count": 8
+     },
+     {
+      "id": "p2124",
+      "label": "顔料",
+      "time": 60.0,
+      "count": 4
+     },
+     {
+      "id": "p8563",
+      "label": "鉱物",
+      "time": 45.0,
+      "count": 3
+     },
+     {
+      "id": "p151688",
+      "label": "パピルス",
+      "time": 120.0,
+      "count": 8
+     },
+     {
+      "id": "p2103",
+      "label": "葦",
+      "time": 30.0,
+      "count": 2
+     }
+    ],
+    "edges": [
+     {
+      "from": "p151688",
+      "to": "p151702"
+     },
+     {
+      "from": "p2103",
+      "to": "p151688"
+     },
+     {
+      "from": "p2124",
+      "to": "p151702"
+     },
+     {
+      "from": "p8563",
+      "to": "p2124"
+     }
+    ]
+   },
+   "ratioOk": true
+  },
+  {
+   "id": "aegyptus_ivory_caskets",
+   "nameJa": "象牙の小箱",
+   "nameEn": "Ivory Caskets",
+   "category": "household",
+   "buildingJa": "錠前師",
+   "timeSeconds": 90.0,
+   "needsFuel": false,
+   "inputs": [
+    "金",
+    "カバ"
+   ],
+   "graph": {
+    "nodes": [
+     {
+      "id": "p151703",
+      "label": "象牙の小箱",
+      "time": 90.0,
+      "count": 3
+     },
+     {
+      "id": "p31698",
+      "label": "金",
+      "time": 60.0,
+      "count": 2,
+      "fuel": 0.5
+     },
+     {
+      "id": "p31697_152204",
+      "label": "金鉱石（金選鉱）",
+      "time": 240.0,
+      "count": 8
+     },
+     {
+      "id": "p31697_152249",
+      "label": "金鉱石（金鉱）",
+      "time": 150.0,
+      "count": 5
+     },
+     {
+      "id": "p151714",
+      "label": "カバ",
+      "time": 60.0,
+      "count": 2
+     }
+    ],
+    "edges": [
+     {
+      "from": "p151714",
+      "to": "p151703"
+     },
+     {
+      "from": "p31697_152204",
+      "to": "p31698"
+     },
+     {
+      "from": "p31697_152249",
+      "to": "p31698"
+     },
+     {
+      "from": "p31698",
+      "to": "p151703"
+     }
+    ]
+   },
+   "ratioOk": true
+  },
+  {
+   "id": "aegyptus_mud_bricks",
+   "nameJa": "泥レンガ",
+   "nameEn": "Mud Bricks",
+   "category": "construction",
+   "buildingJa": "泥レンガ集積場",
+   "timeSeconds": 30.0,
+   "needsFuel": false,
+   "inputs": [
+    "泥",
+    "葦"
+   ],
+   "graph": {
+    "nodes": [
+     {
+      "id": "p151704",
+      "label": "泥レンガ",
+      "time": 30.0,
+      "count": 1
+     },
+     {
+      "id": "p2102",
+      "label": "泥",
+      "time": 30.0,
+      "count": 1
+     },
+     {
+      "id": "p2103",
+      "label": "葦",
+      "time": 30.0,
+      "count": 1
+     }
+    ],
+    "edges": [
+     {
+      "from": "p2102",
+      "to": "p151704"
+     },
+     {
+      "from": "p2103",
+      "to": "p151704"
+     }
+    ]
+   },
+   "ratioOk": true
+  },
+  {
+   "id": "aegyptus_limestone_bricks",
+   "nameJa": "石灰岩レンガ",
+   "nameEn": "Limestone Bricks",
+   "category": "construction",
+   "buildingJa": "石灰岩の石工所",
+   "timeSeconds": 60.0,
+   "needsFuel": false,
+   "inputs": [
+    "石灰岩"
+   ],
+   "graph": {
+    "nodes": [
+     {
+      "id": "p151705",
+      "label": "石灰岩レンガ",
+      "time": 60.0,
+      "count": 2
+     },
+     {
+      "id": "p2078",
+      "label": "石灰岩",
+      "time": 30.0,
+      "count": 1
+     }
+    ],
+    "edges": [
+     {
+      "from": "p2078",
+      "to": "p151705"
+     }
+    ]
+   },
+   "ratioOk": true
+  }
+ ]
+}

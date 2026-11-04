@@ -1,0 +1,238 @@
+{
+ "source": "ゲーム内データ(アップデート3.0)",
+ "shared": [
+  "armour",
+  "barley",
+  "beer",
+  "bread",
+  "bronze",
+  "charcoal",
+  "cheese",
+  "cloth",
+  "concrete",
+  "copper_ore",
+  "flax",
+  "flour",
+  "gold",
+  "gold_ore",
+  "granite",
+  "granite_block",
+  "grapes",
+  "hemp",
+  "honeycombs",
+  "horses",
+  "iron",
+  "iron_ore",
+  "lard",
+  "lavender",
+  "leather",
+  "limestone",
+  "malt",
+  "minerals",
+  "mosaics",
+  "mud",
+  "necklaces",
+  "oats",
+  "olive_oil",
+  "olives",
+  "pigments",
+  "porridge",
+  "reeds",
+  "rope",
+  "sails",
+  "sandals",
+  "sheep",
+  "silica",
+  "soap",
+  "tiles",
+  "timber",
+  "tin_ore",
+  "tunics",
+  "weapons",
+  "wheat",
+  "wine",
+  "wood"
+ ],
+ "exclusive": [
+  {
+   "id": "aegyptus_sesame_pods",
+   "nameJa": "ゴマのさや",
+   "nameEn": "Sesame Pods",
+   "category": "resource"
+  },
+  {
+   "id": "aegyptus_pomegranates",
+   "nameJa": "ザクロ",
+   "nameEn": "Pomegranates",
+   "category": "resource"
+  },
+  {
+   "id": "aegyptus_dates",
+   "nameJa": "ナツメヤシ",
+   "nameEn": "Dates",
+   "category": "food"
+  },
+  {
+   "id": "aegyptus_sanga_cattle",
+   "nameJa": "サンガ牛",
+   "nameEn": "Sanga Cattle",
+   "category": "resource"
+  },
+  {
+   "id": "aegyptus_kamel",
+   "nameJa": "ラクダ",
+   "nameEn": "Kamel",
+   "category": "resource"
+  },
+  {
+   "id": "aegyptus_aegyptian_blue",
+   "nameJa": "アイギュプトの青",
+   "nameEn": "Aegyptian Blue",
+   "category": "intermediate"
+  },
+  {
+   "id": "aegyptus_honeyed_milk",
+   "nameJa": "蜂蜜入りミルク",
+   "nameEn": "Honeyed Milk",
+   "category": "intermediate"
+  },
+  {
+   "id": "aegyptus_sesame_oil",
+   "nameJa": "ゴマ油",
+   "nameEn": "Sesame Oil",
+   "category": "intermediate"
+  },
+  {
+   "id": "aegyptus_papyrus",
+   "nameJa": "パピルス",
+   "nameEn": "Papyrus",
+   "category": "intermediate"
+  },
+  {
+   "id": "aegyptus_stuffed_goose",
+   "nameJa": "詰め物入りガチョウ",
+   "nameEn": "Stuffed Goose",
+   "category": "food"
+  },
+  {
+   "id": "aegyptus_blue_lotus_tea",
+   "nameJa": "青スイレン茶",
+   "nameEn": "Blue Lotus Tea",
+   "category": "food"
+  },
+  {
+   "id": "aegyptus_kayk",
+   "nameJa": "カフク",
+   "nameEn": "Kayk",
+   "category": "food"
+  },
+  {
+   "id": "aegyptus_rare_meat_platters",
+   "nameJa": "希少な肉の盛り合わせ",
+   "nameEn": "Rare Meat Platters",
+   "category": "food"
+  },
+  {
+   "id": "aegyptus_wesekh_collars",
+   "nameJa": "ウェセクの首輪",
+   "nameEn": "Wesekh Collars",
+   "category": "fashion"
+  },
+  {
+   "id": "aegyptus_kollurion",
+   "nameJa": "コール",
+   "nameEn": "Kollurion",
+   "category": "fashion"
+  },
+  {
+   "id": "aegyptus_shentis",
+   "nameJa": "シェンティ",
+   "nameEn": "Shentis",
+   "category": "fashion"
+  },
+  {
+   "id": "aegyptus_kalasirises",
+   "nameJa": "カラシリス",
+   "nameEn": "Kalasirises",
+   "category": "fashion"
+  },
+  {
+   "id": "aegyptus_perfumed_oils",
+   "nameJa": "香油",
+   "nameEn": "Perfumed Oils",
+   "category": "fashion"
+  },
+  {
+   "id": "aegyptus_milk_of_poppea",
+   "nameJa": "ポッパエアのミルク",
+   "nameEn": "Milk of Poppea",
+   "category": "fashion"
+  },
+  {
+   "id": "aegyptus_apotropaic_talismans",
+   "nameJa": "魔除けのお守り",
+   "nameEn": "Apotropaic Talismans",
+   "category": "household"
+  },
+  {
+   "id": "aegyptus_oil_lamps",
+   "nameJa": "オイルランプ",
+   "nameEn": "Oil Lamps",
+   "category": "household"
+  },
+  {
+   "id": "aegyptus_sistrums",
+   "nameJa": "シストラム",
+   "nameEn": "Sistrums",
+   "category": "household"
+  },
+  {
+   "id": "aegyptus_scribing_sets",
+   "nameJa": "書記道具一式",
+   "nameEn": "Scribing Sets",
+   "category": "household"
+  },
+  {
+   "id": "aegyptus_ivory_caskets",
+   "nameJa": "象牙の小箱",
+   "nameEn": "Ivory Caskets",
+   "category": "household"
+  },
+  {
+   "id": "aegyptus_mud_bricks",
+   "nameJa": "泥レンガ",
+   "nameEn": "Mud Bricks",
+   "category": "construction"
+  },
+  {
+   "id": "aegyptus_limestone_bricks",
+   "nameJa": "石灰岩レンガ",
+   "nameEn": "Limestone Bricks",
+   "category": "construction"
+  },
+  {
+   "id": "aegyptus_beads",
+   "nameJa": "ビーズ",
+   "nameEn": "Beads",
+   "category": "resource"
+  },
+  {
+   "id": "aegyptus_wild_geese",
+   "nameJa": "雁",
+   "nameEn": "Wild Geese",
+   "category": "resource"
+  },
+  {
+   "id": "aegyptus_blue_lotus",
+   "nameJa": "青スイレン",
+   "nameEn": "Blue Lotus",
+   "category": "resource"
+  },
+  {
+   "id": "aegyptus_hippopotami",
+   "nameJa": "カバ",
+   "nameEn": "Hippopotami",
+   "category": "resource"
+  }
+ ]
+}
