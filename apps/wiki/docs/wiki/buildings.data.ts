@@ -20,6 +20,8 @@ interface BuildingEffect {
   health: number
   happiness: number
   fireSafety: number
+  /** アイギュプトでも同じ効果値の建物は、行を分けずに、アイギュプトの層をここに足す */
+  extraTiers?: { tier: string; tierJa: string }[]
   /** この建物を対象とするアイテムの件数 */
   itemCount: number
   /** スキルを取ると付近の建物に追加で付く効果（表の数値には含めない） */
@@ -64,6 +66,9 @@ const EXTRA_TIER_NAMES: Record<string, string> = {
   none: '—',
 }
 
+// 効果値を比べる項目。全て同じなら、アイギュプトの建物は既存の建物と同じ行にまとめる
+const EFFECT_KEYS = ['maintenance', 'population', 'income', 'faith', 'knowledge', 'prestige', 'health', 'happiness', 'fireSafety'] as const
+
 function getCategory(icon?: string | null): string {
   if (!icon) return 'production'
   if (icon.startsWith('public_')) return 'public'
@@ -88,14 +93,26 @@ export default {
     }))
     // 既にある建物と同じ名前(市場・劇場など)には、地域を付けて区別する
     const existing = new Set(effectsJson.buildings.map((b) => b.nameJa))
-    const aegyptus = aegyptusJson.buildings.map((b) => ({
-      ...b,
-      nameEn: existing.has(b.nameJa) ? `${b.nameEn} (Aegyptus)` : b.nameEn,
-      nameJa: existing.has(b.nameJa) ? `${b.nameJa}（アイギュプト）` : b.nameJa,
-      tierJa: EXTRA_TIER_NAMES[b.tier] ?? b.tier,
-      category: TEMPLATE_CATEGORY[b.template] ?? 'production',
-      itemCount: itemCounts[b.nameJa] ?? 0,
-    }))
+    const byName = new Map<string, (typeof buildings)[number] & { extraTiers?: { tier: string; tierJa: string }[] }>()
+    for (const b of buildings) if (b.nameJa && !byName.has(b.nameJa)) byName.set(b.nameJa, b)
+    const aegyptus = []
+    for (const b of aegyptusJson.buildings) {
+      const tierJa = EXTRA_TIER_NAMES[b.tier] ?? b.tier
+      const same = byName.get(b.nameJa)
+      if (same && EFFECT_KEYS.every((k) => same[k] === b[k])) {
+        // 既存と効果値が同じ建物は、行を分けず、アイギュプトの層だけを足す
+        same.extraTiers = [...(same.extraTiers ?? []), { tier: b.tier, tierJa }]
+        continue
+      }
+      aegyptus.push({
+        ...b,
+        nameEn: existing.has(b.nameJa) ? `${b.nameEn} (Aegyptus)` : b.nameEn,
+        nameJa: existing.has(b.nameJa) ? `${b.nameJa}（アイギュプト）` : b.nameJa,
+        tierJa,
+        category: TEMPLATE_CATEGORY[b.template] ?? 'production',
+        itemCount: itemCounts[b.nameJa] ?? 0,
+      })
+    }
     return { buildings: [...buildings, ...aegyptus] }
   },
 }

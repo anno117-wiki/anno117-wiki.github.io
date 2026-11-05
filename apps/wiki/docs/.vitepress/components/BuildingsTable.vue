@@ -97,9 +97,16 @@ function sortArrow(key: string) {
 
 const tiers = computed(() => {
   const seen = new Set<string>()
-  return data.buildings
-    .filter(b => !seen.has(b.tier) && seen.add(b.tier))
-    .map(b => ({ value: b.tier, label: b.tierJa }))
+  const list: { value: string; label: string }[] = []
+  for (const b of data.buildings) {
+    for (const t of [{ tier: b.tier, tierJa: b.tierJa }, ...(b.extraTiers ?? [])]) {
+      if (!seen.has(t.tier)) {
+        seen.add(t.tier)
+        list.push({ value: t.tier, label: t.tierJa })
+      }
+    }
+  }
+  return list
 })
 
 const categories = computed(() => {
@@ -113,7 +120,7 @@ const filtered = computed(() => {
   const q = searchText.value.trim().toLowerCase()
   return data.buildings.filter(b => {
     const matchName = !q || (b.nameJa ?? b.nameEn).toLowerCase().includes(q) || b.nameEn.toLowerCase().includes(q)
-    const matchTier = !selectedTier.value || b.tier === selectedTier.value
+    const matchTier = !selectedTier.value || b.tier === selectedTier.value || (b.extraTiers ?? []).some(t => t.tier === selectedTier.value)
     const matchCategory = !selectedCategory.value || b.category === selectedCategory.value
     return matchName && matchTier && matchCategory
   })
@@ -211,7 +218,7 @@ watch(hash, scrollToHash)
               </div>
             </div>
           </td>
-          <td>{{ b.tierJa }}</td>
+          <td>{{ [b.tierJa, ...(b.extraTiers ?? []).map(t => t.tierJa)].join('／') }}</td>
           <td>{{ b.maintenance }}</td>
           <td style="padding:8px 4px;"><StatBar :n="b.population" :maxAbs="3" /></td>
           <td style="padding:8px 4px;"><StatBar :n="b.income" :maxAbs="3" /></td>
