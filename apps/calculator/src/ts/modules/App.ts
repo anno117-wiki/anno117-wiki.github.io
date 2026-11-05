@@ -290,11 +290,7 @@ export class App {
             }
 
             // ツリービューの初回マウント（データ取得完了後）
-            const filtered = this.allGoods.filter((good) => {
-                if (good.startOfChain) return true;
-                if (!good.regions?.length) return false;
-                return good.regions.includes(this.currentRegion);
-            });
+            const filtered = this.goodsInCurrentRegion();
 
             // 先にマウント（goods=[]の状態で）
             this.treeApp.mount();
@@ -308,12 +304,13 @@ export class App {
         }
     }
 
+    /** 現在の地域で作れる商品。起点商品（いわし・ウナギなど）も、その地域のものだけを出す。 */
+    private goodsInCurrentRegion(): RecipeListItem[] {
+        return this.allGoods.filter((good) => good.regions?.includes(this.currentRegion) === true);
+    }
+
     private updateGoodsList(): void {
-        const filtered = this.allGoods.filter((good) => {
-            if (good.startOfChain) return true;
-            if (!good.regions?.length) return false;
-            return good.regions.includes(this.currentRegion);
-        });
+        const filtered = this.goodsInCurrentRegion();
 
         // ツリービューを更新
         this.treeApp.updateGoods(filtered);
