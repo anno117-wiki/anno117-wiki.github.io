@@ -1,0 +1,41 @@
+{
+    "id": "cheese",
+    "name": "Cheese",
+    "type": "kitchen",
+    "guid": "152388",
+    "time": 120,
+    "needs_fuel": false,
+    "building_cost": {
+        "money": 0,
+        "aegyptus_mud_bricks": 2,
+        "tiles": 2
+    },
+    "maintanance_cost": {
+        "money": 10,
+        "scribe": 4
+    },
+    "input": [
+        {
+            "id": "aegyptus_sanga_cattle",
+            "name": "Sanga Cattle",
+            "type": "livestock_farm",
+            "guid": "152257",
+            "time": 60,
+            "needs_fuel": false,
+            "building_cost": {
+                "money": 0,
+                "aegyptus_mud_bricks": 3,
+                "tiles": 2
+            },
+            "maintanance_cost": {
+                "money": 8,
+                "thresher": 4
+            },
+            "input": [],
+            "start_of_chain": true
+        }
+    ],
+    "region": [
+        "Egyptian"
+    ]
+}

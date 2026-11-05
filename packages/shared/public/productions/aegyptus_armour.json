@@ -1,0 +1,115 @@
+{
+    "id": "armour",
+    "name": "Armour",
+    "type": "armoury",
+    "guid": "152794",
+    "time": 90,
+    "needs_fuel": true,
+    "building_cost": {
+        "money": 0,
+        "aegyptus_mud_bricks": 4,
+        "tiles": 5
+    },
+    "maintanance_cost": {
+        "money": 20,
+        "scribe": 6
+    },
+    "input": [
+        {
+            "id": "leather",
+            "name": "Leather",
+            "type": "upholsterer",
+            "guid": "152334",
+            "time": 60,
+            "needs_fuel": false,
+            "building_cost": {
+                "money": 0,
+                "aegyptus_mud_bricks": 2,
+                "tiles": 2
+            },
+            "maintanance_cost": {
+                "money": 10,
+                "scribe": 3
+            },
+            "input": [
+                {
+                    "id": "aegyptus_sanga_cattle",
+                    "name": "Sanga Cattle",
+                    "type": "livestock_farm",
+                    "guid": "152257",
+                    "time": 60,
+                    "needs_fuel": false,
+                    "building_cost": {
+                        "money": 0,
+                        "aegyptus_mud_bricks": 3,
+                        "tiles": 2
+                    },
+                    "maintanance_cost": {
+                        "money": 8,
+                        "thresher": 4
+                    },
+                    "input": [],
+                    "start_of_chain": true
+                },
+                {
+                    "id": "wood",
+                    "name": "Wood",
+                    "type": "forest_camp",
+                    "guid": "152270",
+                    "time": 30,
+                    "needs_fuel": false,
+                    "building_cost": {
+                        "money": 100
+                    },
+                    "maintanance_cost": {
+                        "money": 4,
+                        "thresher": 3
+                    },
+                    "input": [],
+                    "start_of_chain": true
+                }
+            ]
+        },
+        {
+            "id": "iron",
+            "name": "Iron",
+            "type": "smelter",
+            "guid": "152353",
+            "time": 60,
+            "needs_fuel": true,
+            "building_cost": {
+                "money": 0,
+                "aegyptus_mud_bricks": 1,
+                "tiles": 4
+            },
+            "maintanance_cost": {
+                "money": 8,
+                "thresher": 3
+            },
+            "input": [
+                {
+                    "id": "iron_ore",
+                    "name": "Iron Ore",
+                    "type": "mine",
+                    "guid": "152243",
+                    "time": 30,
+                    "needs_fuel": false,
+                    "building_cost": {
+                        "money": 0,
+                        "aegyptus_mud_bricks": 2,
+                        "tiles": 2
+                    },
+                    "maintanance_cost": {
+                        "money": 10,
+                        "thresher": 5
+                    },
+                    "input": [],
+                    "start_of_chain": true
+                }
+            ]
+        }
+    ],
+    "region": [
+        "Egyptian"
+    ]
+}

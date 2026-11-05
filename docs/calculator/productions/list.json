@@ -37,11 +37,13 @@
       "icon": "armour",
       "regions": [
         "Roman",
-        "Celtic"
+        "Celtic",
+        "Egyptian"
       ],
       "files": {
         "roman": "armour",
-        "celtic": "armour_albion"
+        "celtic": "armour_albion",
+        "egyptian": "aegyptus_armour"
       },
       "category": "construction",
       "startOfChain": false
@@ -124,11 +126,13 @@
       "icon": "bread",
       "regions": [
         "Roman",
-        "Celtic"
+        "Celtic",
+        "Egyptian"
       ],
       "files": {
         "roman": "bread",
-        "celtic": "bread_albion"
+        "celtic": "bread_albion",
+        "egyptian": "aegyptus_bread"
       },
       "category": "food",
       "startOfChain": false
@@ -232,10 +236,12 @@
       "id": "cheese",
       "icon": "cheese",
       "regions": [
-        "Celtic"
+        "Celtic",
+        "Egyptian"
       ],
       "files": {
-        "celtic": "cheese"
+        "celtic": "cheese",
+        "egyptian": "aegyptus_cheese"
       },
       "category": "food",
       "startOfChain": false
@@ -846,10 +852,12 @@
       "id": "mosaics",
       "icon": "mosaics",
       "regions": [
-        "Roman"
+        "Roman",
+        "Egyptian"
       ],
       "files": {
-        "roman": "mosaics"
+        "roman": "mosaics",
+        "egyptian": "aegyptus_mosaics"
       },
       "category": "construction",
       "startOfChain": false
@@ -1210,10 +1218,12 @@
       "id": "sandals",
       "icon": "sandals",
       "regions": [
-        "Roman"
+        "Roman",
+        "Egyptian"
       ],
       "files": {
-        "roman": "sandals"
+        "roman": "sandals",
+        "egyptian": "aegyptus_sandals"
       },
       "category": "fashion",
       "startOfChain": false
@@ -1367,10 +1377,12 @@
       "id": "soap",
       "icon": "soap",
       "regions": [
-        "Roman"
+        "Roman",
+        "Egyptian"
       ],
       "files": {
-        "roman": "soap"
+        "roman": "soap",
+        "egyptian": "aegyptus_soap"
       },
       "category": "culture",
       "startOfChain": false
@@ -1429,11 +1441,13 @@
       "icon": "tiles",
       "regions": [
         "Roman",
-        "Celtic"
+        "Celtic",
+        "Egyptian"
       ],
       "files": {
         "roman": "tiles",
-        "celtic": "tiles_albion"
+        "celtic": "tiles_albion",
+        "egyptian": "aegyptus_tiles"
       },
       "category": "construction",
       "startOfChain": false

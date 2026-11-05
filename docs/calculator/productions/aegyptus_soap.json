@@ -1,0 +1,78 @@
+{
+    "id": "soap",
+    "name": "Soap",
+    "type": "victualler",
+    "guid": "152683",
+    "time": 60,
+    "needs_fuel": false,
+    "building_cost": {
+        "money": 0,
+        "aegyptus_mud_bricks": 2,
+        "tiles": 1
+    },
+    "maintanance_cost": {
+        "money": 12,
+        "scribe": 3
+    },
+    "input": [
+        {
+            "id": "lavender",
+            "name": "Lavender",
+            "type": "plantation",
+            "guid": "152152",
+            "time": 120,
+            "needs_fuel": false,
+            "building_cost": {
+                "money": 0,
+                "aegyptus_mud_bricks": 2,
+                "tiles": 2
+            },
+            "maintanance_cost": {
+                "money": 6,
+                "thresher": 4
+            },
+            "input": [],
+            "start_of_chain": true
+        },
+        {
+            "id": "lard",
+            "name": "Lard",
+            "type": "extractor",
+            "guid": "152333",
+            "time": 60,
+            "needs_fuel": true,
+            "building_cost": {
+                "money": 0,
+                "aegyptus_mud_bricks": 1,
+                "tiles": 2
+            },
+            "maintanance_cost": {
+                "money": 10,
+                "thresher": 3
+            },
+            "input": [
+                {
+                    "id": "aegyptus_wild_geese",
+                    "name": "Wild Geese",
+                    "type": "hunting_cabin",
+                    "guid": "151999",
+                    "time": 60,
+                    "needs_fuel": false,
+                    "building_cost": {
+                        "money": 0,
+                        "aegyptus_mud_bricks": 3
+                    },
+                    "maintanance_cost": {
+                        "money": 6,
+                        "thresher": 6
+                    },
+                    "input": [],
+                    "start_of_chain": true
+                }
+            ]
+        }
+    ],
+    "region": [
+        "Egyptian"
+    ]
+}

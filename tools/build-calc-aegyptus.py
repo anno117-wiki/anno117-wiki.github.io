@@ -4,11 +4,15 @@
 入力 : _local/anno-official-data/v3.0-planner/{production,products,population}.json
        apps/wiki/docs/wiki/regions-aegyptus.json (商品id・日本語名。tools/build-regions-aegyptus.py が生成)
 出力 : packages/shared/public/productions/aegyptus_*.json (チェーンJSON、各ファイルは入れ子を全て展開済み)
+       apps/wiki/docs/wiki/chain-ratios-aegyptus.json (共通商品のアイギュプト版の建物数の比率。wikiの生産チェーン一覧が読む)
        packages/shared/public/productions/list.json (アイギュプト分を追加。既存の行は変えない)
        packages/shared/public/i18n/locales/{ja,en}.json (商品名・労働力名)
        packages/shared/public/icons/<id>.png (商品128px・労働力60px。元はゲームのアイコン、(c) Ubisoft)
 
-- 対象は、wiki の生産チェーン一覧(production-chains-aegyptus.json)と同じ18商品
+- 対象は、wiki の生産チェーン一覧(production-chains-aegyptus.json)と同じ18商品(アイギュプト専用)に加え、
+  ラティウム・アルビオンと作り方が違う共通商品(サンダル・石鹸・チーズ・パン・瓦など)。
+  共通商品は、既存の行(list.json)に「egyptian」のファイルと地域を足す。違いは建物名・サイクル・材料の木で判定し、
+  労働力(住民層)の違いは含めない
 - 同じ商品を作る建物が複数あるとき(石炭=炭焼き師/炭鉱、金鉱石=金選鉱/金鉱)は、建物ごとに別チェーンへ分割する。
   農場の「氾濫原」版(建設メニューに無い重複)は、建設メニューにある方を使う
 - 計算機は入出力の個数を1個前提で計算する。Planner の全建物で個数が1であることを実行時に確認する
@@ -19,6 +23,7 @@
 """
 import json
 import sys
+from fractions import Fraction
 from itertools import product as cartesian
 from pathlib import Path
 
@@ -44,6 +49,9 @@ WORKFORCE_KEY = {
     2181: 'libertus', 2184: 'plebeian', 2185: 'equites', 2186: 'patrician',
     149685: 'thresher', 150543: 'potter', 150544: 'chanter', 150545: 'scribe', 150546: 'gymnasiarch',
 }
+CHARCOAL_BURNER_CYCLE = 30  # 炭焼き師のサイクル秒(tools/build-chain-aegyptus.py と同じ値)
+MAX_SCALE = 60  # 建物数を整数にするために掛ける倍率の上限
+OTHER_REGIONS = ('Roman', 'Celtic')  # 共通商品の比較相手
 WORKFORCE_ICON = {  # キー -> アーカイブ内のファイル(workforce/)
     'thresher': 'icon_2d_thresher_workforce.png', 'potter': 'icon_2d_potter_workforce.png',
     'chanter': 'icon_2d_priestress_workforce.png', 'scribe': 'icon_2d_scribe_workforce.png',
@@ -85,6 +93,11 @@ class Planner:
         self.fuel_seconds = prod['fuel']['duration']
         self.products = {x['guid']: x for x in read_json(SRC / 'products.json')['products']}
         self.makers: dict[int, list[dict]] = {}
+        self.region_makers: dict[tuple[str, int], list[dict]] = {}  # (地域, 商品) -> 建物(全地域。共通商品の比較用)
+        for f in prod['factories']:
+            for r in f['regions']:
+                for o in f['outputs']:
+                    self.region_makers.setdefault((r, o['product']), []).append(f)
         self.variant_names: dict[str, tuple[str, str]] = {}  # name_key -> (日本語, 英語)
         for f in prod['factories']:
             if REGION not in f['regions']:
@@ -105,6 +118,7 @@ class Planner:
         wiki = read_json(WIKI / 'regions-aegyptus.json')
         self.exclusive = {e['nameEn']: e for e in wiki['exclusive']}
         self.list_goods = {g['displayName']: g for g in read_json(PRODUCTIONS / 'list.json')['goods'] if FILE_PREFIX not in g['id']}
+        self.rows_by_id = {g['id']: g for g in self.list_goods.values()}
         self.id_of: dict[int, str] = {}
         for guid, p in self.products.items():
             en = p['loca']['english']
@@ -177,6 +191,38 @@ def variants(pl: Planner, product: int, trail: tuple = ()) -> list[tuple[dict, l
     return result
 
 
+def shape(pl: Planner, region: str, product: int, cache: dict) -> object:
+    """その地域で商品を作るチェーンの形(建物名・サイクル・材料の木)。労働力は含めない。産地が無い商品は None。"""
+    key = (region, product)
+    if key not in cache:
+        fs = pl.region_makers.get(key)
+        # 順番に依らず同じ値になるよう、集合ではなく並べ替えたタプルにする(集合のreprは並びが変わりうる)
+        # 建物は日本語名で見分ける(アイギュプトの農場には、同名の「氾濫原版」が別にあるため、重複は1つにまとめる)
+        cache[key] = None if not fs else tuple(sorted(
+            {(ja(f), f['cycleTime'],
+              tuple(sorted((repr(shape(pl, region, i['product'], cache)), i['amount']) for i in f['inputs'])))
+             for f in fs},
+            key=repr,
+        ))
+    return cache[key]
+
+
+def differing_shared_goals(pl: Planner) -> list[int]:
+    """計算機に既にある共通商品のうち、アイギュプトのチェーンの形が、ラティウムかアルビオンと違う最終商品。
+    チェーンのファイルを持つ行(最終商品)だけが対象。原料や中間品は、その最終商品のチェーンの中に入る。"""
+    cache: dict = {}
+    result = []
+    for guid in sorted(pl.makers):
+        good_id = pl.id_of.get(guid)
+        row = pl.rows_by_id.get(good_id) if good_id else None
+        if not row or not row.get('files'):
+            continue
+        others = [r for r in OTHER_REGIONS if r in row['regions'] and (r, guid) in pl.region_makers]
+        if others and any(shape(pl, r, guid, cache) != shape(pl, REGION, guid, cache) for r in others):
+            result.append(guid)
+    return result
+
+
 def build_chains(pl: Planner) -> list[dict]:
     """生産チェーン一覧(wiki)の18商品について、チェーンのパターンごとに1件作る。"""
     wiki_entries = read_json(WIKI / 'production-chains-aegyptus.json')['entries']
@@ -201,7 +247,58 @@ def build_chains(pl: Planner) -> list[dict]:
                 'category': CALC_CATEGORY[entry['category']],
                 'icon': pl.good_id(goal),  # icons/<商品id>.png (変種も同じ絵)
             })
+    out.extend(build_shared_chains(pl))
     return out
+
+
+def build_shared_chains(pl: Planner) -> list[dict]:
+    """ラティウム・アルビオンと形が違う共通商品の、アイギュプト版チェーン。既存の行(list.json)に足す。"""
+    out = []
+    for goal in differing_shared_goals(pl):
+        good_id = pl.good_id(goal)
+        row = pl.rows_by_id[good_id]
+        vs = variants(pl, goal)
+        if len(vs) != 1:
+            sys.exit(f"共通商品 {good_id} のアイギュプト版が{len(vs)}パターンある。1つだけを前提にしているので作り直しが必要")
+        node = vs[0][0]
+        node['region'] = [REGION]
+        node.pop('start_of_chain', None)
+        out.append({
+            'file': f"{FILE_PREFIX}{good_id}",
+            'node': node,
+            'shared_row': good_id,
+            'displayName': row['displayName'],
+            'category': row['category'],
+            'icon': row['icon'],
+        })
+    return out
+
+
+def chain_ratios(pl: Planner, node: dict) -> dict:
+    """木構造のチェーンから、100%効率の建物数の比率を出す。数量は全て1個(Planner の前提)なので、
+    子の必要数 = 親の数 x (子のサイクル / 親のサイクル)。整数になる最小の倍率で掛ける。燃料の炭焼き師も同様。"""
+    counts: dict[str, Fraction] = {}
+    fuel: dict[str, Fraction] = {}
+
+    def walk(n: dict, k: Fraction) -> None:
+        counts[n['id']] = counts.get(n['id'], Fraction(0)) + k
+        if n['needs_fuel']:
+            fuel[n['id']] = fuel.get(n['id'], Fraction(0)) + k
+        for c in n['input']:
+            walk(c, k * Fraction(str(c['time'])) / Fraction(str(n['time'])))
+
+    walk(node, Fraction(1))
+    scale = next((m for m in range(1, MAX_SCALE + 1) if all((v * m).denominator == 1 for v in counts.values())), None)
+    m = scale or 1
+    burners = Fraction(CHARCOAL_BURNER_CYCLE) / Fraction(int(pl.fuel_seconds))
+    num = lambda fr: int(fr) if fr.denominator == 1 else round(float(fr), 2)
+    return {
+        'warnings': [] if scale else ['整数比にならない'],
+        'ok': scale is not None,
+        'scale': m,
+        'counts': {k: num(v * m) for k, v in counts.items()},
+        'fuel': {k: num(v * m * burners) for k, v in fuel.items()},
+    }
 
 
 def ja_building(pl: Planner, english: str) -> str:
@@ -227,7 +324,17 @@ def update_list(chains: list[dict]) -> None:
     path = PRODUCTIONS / 'list.json'
     data = read_json(path)
     data['goods'] = [g for g in data['goods'] if not g['id'].startswith(FILE_PREFIX)]
+    for g in data['goods']:  # 前回足した共通商品のアイギュプト分を外す(何度実行しても同じ結果にする)
+        g.get('files', {}).pop(REGION.lower(), None)
+        if REGION in g['regions']:
+            g['regions'].remove(REGION)
+    rows = {g['id']: g for g in data['goods']}
     for c in chains:
+        if 'shared_row' in c:
+            row = rows[c['shared_row']]
+            row['regions'].append(REGION)
+            row['files'][REGION.lower()] = c['file']
+            continue
         data['goods'].append({
             'displayName': c['displayName'],
             'id': c['file'],
@@ -248,7 +355,8 @@ def update_i18n(pl: Planner, chains: list[dict]) -> None:
     for e in pl.exclusive.values():
         names[e['id']] = (e['nameJa'], e['nameEn'])
     for c in chains:
-        names[c['file']] = (c['nameJa'], c['displayName'])
+        if 'shared_row' not in c:  # 共通商品は既存の行の名前をそのまま使う
+            names[c['file']] = (c['nameJa'], c['displayName'])
     for key, (j, e) in WORKFORCE_NAME.items():
         names[key] = (j, e)
     names.update(pl.variant_names)
@@ -283,12 +391,14 @@ def main() -> None:
     for c in chains:
         write_json(PRODUCTIONS / f"{c['file']}.json", c['node'], 4)
     warn_fuel_ingredient(chains)
+    shared = [c for c in chains if 'shared_row' in c]
+    write_json(WIKI / 'chain-ratios-aegyptus.json', {c['file']: chain_ratios(pl, c['node']) for c in shared}, 1, trailing_newline=True)
     update_list(chains)
     update_i18n(pl, chains)
     build_icons(pl)
     print(f'チェーン {len(chains)}件、アイコン {len(pl.exclusive) + len(WORKFORCE_ICON)}点を出力')
     for c in chains:
-        print(' ', c['file'], '|', c['nameJa'], '|', c['category'])
+        print(' ', c['file'], '|', c.get('nameJa', '(共通商品: ' + c.get('shared_row', '') + ')'), '|', c['category'])
 
 
 if __name__ == '__main__':

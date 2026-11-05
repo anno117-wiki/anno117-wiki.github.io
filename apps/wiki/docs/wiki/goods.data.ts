@@ -33,7 +33,7 @@ export default {
       nameEn: g.displayName,
       icon: g.icon ?? '',
       category: g.category,
-      regions: [...(g.regions as string[]), ...(alsoEgyptian.has(g.id) ? ['Egyptian'] : [])],
+      regions: [...new Set([...(g.regions as string[]), ...(alsoEgyptian.has(g.id) ? ['Egyptian'] : [])])],
       producers: (producersJson as { goods: Record<string, unknown[]> }).goods[g.id],
       calc: true,
     }))

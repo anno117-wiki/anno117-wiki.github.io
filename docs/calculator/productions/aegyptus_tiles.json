@@ -1,0 +1,38 @@
+{
+    "id": "tiles",
+    "name": "Tiles",
+    "type": "refinery",
+    "guid": "152795",
+    "time": 60,
+    "needs_fuel": true,
+    "building_cost": {
+        "money": 0,
+        "aegyptus_mud_bricks": 3
+    },
+    "maintanance_cost": {
+        "money": 12,
+        "thresher": 4
+    },
+    "input": [
+        {
+            "id": "mud",
+            "name": "Mud",
+            "type": "pit",
+            "guid": "151998",
+            "time": 30,
+            "needs_fuel": false,
+            "building_cost": {
+                "money": 100
+            },
+            "maintanance_cost": {
+                "money": 4,
+                "thresher": 3
+            },
+            "input": [],
+            "start_of_chain": true
+        }
+    ],
+    "region": [
+        "Egyptian"
+    ]
+}

@@ -62,7 +62,7 @@ export default {
 
     for (const g of (listJson as { goods: any[] }).goods) {
       if (g.id.startsWith('aegyptus_')) continue // 計算機用のアイギュプト分。wikiは専用データから足す
-      const all = [...((g.regions ?? []) as string[]), ...(alsoEgyptian.has(g.id) ? ['Egyptian'] : [])]
+      const all = [...new Set([...((g.regions ?? []) as string[]), ...(alsoEgyptian.has(g.id) ? ['Egyptian'] : [])])]
       const known = Object.keys(REGION_LABEL).filter((r) => all.includes(r))
       const unknown = all.filter((r) => !(r in REGION_LABEL))
       if (unknown.length > 0) {

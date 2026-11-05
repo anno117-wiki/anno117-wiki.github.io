@@ -1,0 +1,94 @@
+{
+ "aegyptus_bread": {
+  "warnings": [],
+  "ok": true,
+  "scale": 1,
+  "counts": {
+   "bread": 1,
+   "flour": 1,
+   "wheat": 1
+  },
+  "fuel": {
+   "bread": 0.25
+  }
+ },
+ "aegyptus_soap": {
+  "warnings": [],
+  "ok": true,
+  "scale": 1,
+  "counts": {
+   "soap": 1,
+   "lavender": 2,
+   "lard": 1,
+   "aegyptus_wild_geese": 1
+  },
+  "fuel": {
+   "lard": 0.25
+  }
+ },
+ "aegyptus_sandals": {
+  "warnings": [],
+  "ok": true,
+  "scale": 4,
+  "counts": {
+   "sandals": 4,
+   "leather": 2,
+   "aegyptus_sanga_cattle": 2,
+   "wood": 1
+  },
+  "fuel": {}
+ },
+ "aegyptus_mosaics": {
+  "warnings": [],
+  "ok": true,
+  "scale": 8,
+  "counts": {
+   "mosaics": 8,
+   "mud": 2,
+   "pigments": 4,
+   "minerals": 3
+  },
+  "fuel": {
+   "mosaics": 2
+  }
+ },
+ "aegyptus_cheese": {
+  "warnings": [],
+  "ok": true,
+  "scale": 2,
+  "counts": {
+   "cheese": 2,
+   "aegyptus_sanga_cattle": 1
+  },
+  "fuel": {}
+ },
+ "aegyptus_tiles": {
+  "warnings": [],
+  "ok": true,
+  "scale": 2,
+  "counts": {
+   "tiles": 2,
+   "mud": 1
+  },
+  "fuel": {
+   "tiles": 0.5
+  }
+ },
+ "aegyptus_armour": {
+  "warnings": [],
+  "ok": true,
+  "scale": 3,
+  "counts": {
+   "armour": 3,
+   "leather": 2,
+   "aegyptus_sanga_cattle": 2,
+   "wood": 1,
+   "iron": 2,
+   "iron_ore": 1
+  },
+  "fuel": {
+   "armour": 0.75,
+   "iron": 0.5
+  }
+ }
+}

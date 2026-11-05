@@ -5,6 +5,8 @@ import listJson from '../../../../packages/shared/public/productions/list.json'
 import jaJson from '../../../../packages/shared/public/i18n/locales/ja.json'
 // 100%効率の建物数の比率。tools/build-chain-ratios.py で生成
 import ratiosJson from './chain-ratios.json'
+// 共通商品のアイギュプト版の比率。tools/build-calc-aegyptus.py で生成(chain-ratios.json はassets.xml(v2.1)由来で、アイギュプトは入らない)
+import ratiosAegyptusJson from './chain-ratios-aegyptus.json'
 // アイギュプト専用の新商品の生産チェーン。tools/build-chain-aegyptus.py で生成
 import aegyptusJson from './production-chains-aegyptus.json'
 
@@ -37,7 +39,7 @@ interface ChainRatio {
   fuel: Record<string, number>
 }
 
-const RATIOS = ratiosJson as Record<string, ChainRatio>
+const RATIOS = { ...ratiosJson, ...ratiosAegyptusJson } as Record<string, ChainRatio>
 
 interface ProductionEntry {
   id: string
@@ -66,6 +68,7 @@ interface ProductionVariant {
 const VARIANT_LABELS: Record<string, string> = {
   roman: 'ラティウム版',
   celtic: 'アルビオン版',
+  egyptian: 'アイギュプト版',
 }
 
 const CATEGORY_ORDER = ['food', 'construction', 'fashion', 'culture', 'household']
