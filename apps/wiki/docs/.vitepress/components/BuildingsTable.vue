@@ -229,8 +229,6 @@ watch(hash, scrollToHash)
       <thead>
         <tr>
           <th>建物</th>
-          <th @click="toggleSort('tier')" style="cursor:pointer;white-space:nowrap;">需要Tier {{ sortArrow('tier') }}</th>
-          <th>維持費</th>
           <th @click="toggleSort('population')" style="cursor:pointer;white-space:nowrap;padding:8px 4px;">人口 {{ sortArrow('population') }}</th>
           <th @click="toggleSort('income')" style="cursor:pointer;white-space:nowrap;padding:8px 4px;">収入 {{ sortArrow('income') }}</th>
           <th @click="toggleSort('faith')" style="cursor:pointer;white-space:nowrap;padding:8px 4px;">信仰 {{ sortArrow('faith') }}</th>
@@ -239,6 +237,8 @@ watch(hash, scrollToHash)
           <th @click="toggleSort('health')" style="cursor:pointer;white-space:nowrap;padding:8px 4px;">健康度 {{ sortArrow('health') }}</th>
           <th @click="toggleSort('happiness')" style="cursor:pointer;white-space:nowrap;padding:8px 4px;">幸福 {{ sortArrow('happiness') }}</th>
           <th @click="toggleSort('fireSafety')" style="cursor:pointer;white-space:nowrap;padding:8px 4px;">防火 {{ sortArrow('fireSafety') }}</th>
+          <th @click="toggleSort('tier')" style="cursor:pointer;white-space:nowrap;">需要Tier {{ sortArrow('tier') }}</th>
+          <th>維持費</th>
           <th style="white-space:nowrap;padding:8px 4px;">関連アイテム</th>
         </tr>
       </thead>
@@ -262,8 +262,6 @@ watch(hash, scrollToHash)
               </template>
             </div>
           </td>
-          <td class="building-tier-cell"><div v-for="t in [b.tierJa, ...(b.extraTiers ?? []).map(t => t.tierJa)]" :key="t">{{ t }}</div></td>
-          <td>{{ b.maintenance }}</td>
           <td style="padding:8px 4px;"><StatBar :n="b.population" :maxAbs="3" /></td>
           <td style="padding:8px 4px;"><StatBar :n="b.income" :maxAbs="3" /></td>
           <td style="padding:8px 4px;"><StatBar :n="b.faith" :maxAbs="6" /></td>
@@ -272,6 +270,8 @@ watch(hash, scrollToHash)
           <td style="padding:8px 4px;"><StatBar :n="b.health" :maxAbs="3" /></td>
           <td style="padding:8px 4px;"><StatBar :n="b.happiness" :maxAbs="3" /></td>
           <td style="padding:8px 4px;"><StatBar :n="b.fireSafety" :maxAbs="3" /></td>
+          <td class="building-tier-cell"><div v-for="t in [b.tierJa, ...(b.extraTiers ?? []).map(t => t.tierJa)]" :key="t">{{ t }}</div></td>
+          <td>{{ b.maintenance }}</td>
           <td style="padding:8px 4px;text-align:center;">
             <a v-if="b.itemCount" :href="withBase(`/wiki/items.html?target=${encodeURIComponent(b.nameJa ?? '')}`)" class="calc-link-btn">{{ b.itemCount }}件</a>
             <span v-else>—</span>
