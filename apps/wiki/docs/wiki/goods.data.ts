@@ -43,7 +43,7 @@ export default {
         id: e.id,
         nameJa: e.nameJa,
         nameEn: e.nameEn,
-        icon: '',
+        icon: e.icon,
         category: e.category,
         regions: ['Egyptian'],
         calc: false,

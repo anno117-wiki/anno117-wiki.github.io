@@ -58,181 +58,211 @@
    "id": "aegyptus_sesame_pods",
    "nameJa": "ゴマのさや",
    "nameEn": "Sesame Pods",
-   "category": "resource"
+   "category": "resource",
+   "icon": "icon_3d_sesame_goods"
   },
   {
    "id": "aegyptus_pomegranates",
    "nameJa": "ザクロ",
    "nameEn": "Pomegranates",
-   "category": "resource"
+   "category": "resource",
+   "icon": "icon_3d_pomegranates_goods"
   },
   {
    "id": "aegyptus_dates",
    "nameJa": "ナツメヤシ",
    "nameEn": "Dates",
-   "category": "food"
+   "category": "food",
+   "icon": "icon_3d_dates_goods"
   },
   {
    "id": "aegyptus_sanga_cattle",
    "nameJa": "サンガ牛",
    "nameEn": "Sanga Cattle",
-   "category": "resource"
+   "category": "resource",
+   "icon": "icon_3d_sanga_cows_goods"
   },
   {
    "id": "aegyptus_kamel",
    "nameJa": "ラクダ",
    "nameEn": "Kamel",
-   "category": "resource"
+   "category": "resource",
+   "icon": "icon_3d_camels_goods"
   },
   {
    "id": "aegyptus_aegyptian_blue",
    "nameJa": "アイギュプトの青",
    "nameEn": "Aegyptian Blue",
-   "category": "intermediate"
+   "category": "intermediate",
+   "icon": "icon_3d_egyptian_blue_goods"
   },
   {
    "id": "aegyptus_honeyed_milk",
    "nameJa": "蜂蜜入りミルク",
    "nameEn": "Honeyed Milk",
-   "category": "intermediate"
+   "category": "intermediate",
+   "icon": "icon_3d_honey_milk_goods"
   },
   {
    "id": "aegyptus_sesame_oil",
    "nameJa": "ゴマ油",
    "nameEn": "Sesame Oil",
-   "category": "intermediate"
+   "category": "intermediate",
+   "icon": "icon_3d_sesame_oil_goods"
   },
   {
    "id": "aegyptus_papyrus",
    "nameJa": "パピルス",
    "nameEn": "Papyrus",
-   "category": "intermediate"
+   "category": "intermediate",
+   "icon": "icon_3d_papyrus_goods"
   },
   {
    "id": "aegyptus_stuffed_goose",
    "nameJa": "詰め物入りガチョウ",
    "nameEn": "Stuffed Goose",
-   "category": "food"
+   "category": "food",
+   "icon": "icon_3d_stuffed_goose_goods"
   },
   {
    "id": "aegyptus_blue_lotus_tea",
    "nameJa": "青スイレン茶",
    "nameEn": "Blue Lotus Tea",
-   "category": "food"
+   "category": "food",
+   "icon": "icon_3d_lotus_tea_goods"
   },
   {
    "id": "aegyptus_kayk",
    "nameJa": "カフク",
    "nameEn": "Kayk",
-   "category": "food"
+   "category": "food",
+   "icon": "icon_3d_kahk_goods"
   },
   {
    "id": "aegyptus_rare_meat_platters",
    "nameJa": "希少な肉の盛り合わせ",
    "nameEn": "Rare Meat Platters",
-   "category": "food"
+   "category": "food",
+   "icon": "icon_3d_appetizers_goods"
   },
   {
    "id": "aegyptus_wesekh_collars",
    "nameJa": "ウェセクの首輪",
    "nameEn": "Wesekh Collars",
-   "category": "fashion"
+   "category": "fashion",
+   "icon": "icon_3d_usekh_collar_goods"
   },
   {
    "id": "aegyptus_kollurion",
    "nameJa": "コール",
    "nameEn": "Kollurion",
-   "category": "fashion"
+   "category": "fashion",
+   "icon": "icon_3d_kohl_goods"
   },
   {
    "id": "aegyptus_shentis",
    "nameJa": "シェンティ",
    "nameEn": "Shentis",
-   "category": "fashion"
+   "category": "fashion",
+   "icon": "icon_3d_shenti_goods"
   },
   {
    "id": "aegyptus_kalasirises",
    "nameJa": "カラシリス",
    "nameEn": "Kalasirises",
-   "category": "fashion"
+   "category": "fashion",
+   "icon": "icon_3d_kalasiris_goods"
   },
   {
    "id": "aegyptus_perfumed_oils",
    "nameJa": "香油",
    "nameEn": "Perfumed Oils",
-   "category": "fashion"
+   "category": "fashion",
+   "icon": "icon_3d_perfumed_oil_goods"
   },
   {
    "id": "aegyptus_milk_of_poppea",
    "nameJa": "ポッパエアのミルク",
    "nameEn": "Milk of Poppea",
-   "category": "fashion"
+   "category": "fashion",
+   "icon": "icon_3d_bathing_milk_goods"
   },
   {
    "id": "aegyptus_apotropaic_talismans",
    "nameJa": "魔除けのお守り",
    "nameEn": "Apotropaic Talismans",
-   "category": "household"
+   "category": "household",
+   "icon": "icon_3d_talismans_goods"
   },
   {
    "id": "aegyptus_oil_lamps",
    "nameJa": "オイルランプ",
    "nameEn": "Oil Lamps",
-   "category": "household"
+   "category": "household",
+   "icon": "icon_3d_oil_lamps_goods"
   },
   {
    "id": "aegyptus_sistrums",
    "nameJa": "シストラム",
    "nameEn": "Sistrums",
-   "category": "household"
+   "category": "household",
+   "icon": "icon_3d_sistrum_rattle_goods"
   },
   {
    "id": "aegyptus_scribing_sets",
    "nameJa": "書記道具一式",
    "nameEn": "Scribing Sets",
-   "category": "household"
+   "category": "household",
+   "icon": "icon_3d_scribes_sets_goods"
   },
   {
    "id": "aegyptus_ivory_caskets",
    "nameJa": "象牙の小箱",
    "nameEn": "Ivory Caskets",
-   "category": "household"
+   "category": "household",
+   "icon": "icon_3d_ivory_casket_goods"
   },
   {
    "id": "aegyptus_mud_bricks",
    "nameJa": "泥レンガ",
    "nameEn": "Mud Bricks",
-   "category": "construction"
+   "category": "construction",
+   "icon": "icon_3d_mud_bricks_goods"
   },
   {
    "id": "aegyptus_limestone_bricks",
    "nameJa": "石灰岩レンガ",
    "nameEn": "Limestone Bricks",
-   "category": "construction"
+   "category": "construction",
+   "icon": "icon_3d_limestone_bricks_goods"
   },
   {
    "id": "aegyptus_beads",
    "nameJa": "ビーズ",
    "nameEn": "Beads",
-   "category": "resource"
+   "category": "resource",
+   "icon": "icon_3d_beads_goods"
   },
   {
    "id": "aegyptus_wild_geese",
    "nameJa": "雁",
    "nameEn": "Wild Geese",
-   "category": "resource"
+   "category": "resource",
+   "icon": "icon_3d_wild_goose_goods"
   },
   {
    "id": "aegyptus_blue_lotus",
    "nameJa": "青スイレン",
    "nameEn": "Blue Lotus",
-   "category": "resource"
+   "category": "resource",
+   "icon": "icon_3d_blue_lotus_goods"
   },
   {
    "id": "aegyptus_hippopotami",
    "nameJa": "カバ",
    "nameEn": "Hippopotami",
-   "category": "resource"
+   "category": "resource",
+   "icon": "icon_3d_hippos_goods"
   }
  ]
 }

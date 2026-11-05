@@ -17,6 +17,9 @@ import sys
 from fractions import Fraction
 from pathlib import Path
 
+sys.path.insert(0, str(Path(__file__).resolve().parent))
+from aegyptus_icons import icon_name  # noqa: E402
+
 ROOT = Path(__file__).resolve().parent.parent
 SRC = ROOT / '_local' / 'anno-official-data' / 'v3.0-planner'
 OUT = ROOT / 'apps' / 'wiki' / 'docs' / 'wiki' / 'production-chains-aegyptus.json'
@@ -108,6 +111,7 @@ def main() -> None:
             'nameJa': ja(products[goal]),
             'nameEn': products[goal]['loca']['english'],
             'category': cat,
+            'icon': icon_name(f"aegyptus_{products[goal]['loca']['english'].lower().replace(' ', '_')}"),
             'buildingJa': ja(root),
             'timeSeconds': root['cycleTime'],
             'needsFuel': root['needsFuel'],

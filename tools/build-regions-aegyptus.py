@@ -17,6 +17,9 @@ import json
 import sys
 from pathlib import Path
 
+sys.path.insert(0, str(Path(__file__).resolve().parent))
+from aegyptus_icons import icon_name  # noqa: E402
+
 ROOT = Path(__file__).resolve().parent.parent
 SRC = ROOT / '_local' / 'anno-official-data' / 'v3.0-planner'
 PRODUCTIONS = ROOT / 'packages' / 'shared' / 'public' / 'productions'
@@ -82,6 +85,7 @@ def main() -> None:
             'nameJa': p['loca']['japanese'].replace(ZW, ''),
             'nameEn': p['loca']['english'],
             'category': cat,
+            'icon': icon_name(f"aegyptus_{p['loca']['english'].lower().replace(' ', '_')}"),
         })
 
     OUT.write_text(json.dumps({'source': 'ゲーム内データ(アップデート3.0)', 'shared': shared, 'exclusive': exclusive},

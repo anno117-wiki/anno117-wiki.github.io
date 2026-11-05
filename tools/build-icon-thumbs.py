@@ -7,6 +7,8 @@ wiki の商品一覧・生産チェーン一覧・建物効果はアイコンを
 入力→出力（各入力ディレクトリの直下の *.png のみ。サブディレクトリは対象外）:
   packages/shared/public/icons/*.png          -> apps/wiki/docs/public/icons/goods-thumb/<名前>.webp
   apps/wiki/docs/public/icons/buildings/*.png -> apps/wiki/docs/public/icons/buildings-thumb/<名前>.webp
+  _local/anno-official-data/icons-archive/.../dlc03/icon_content/production_goods/*.png
+                                              -> apps/wiki/docs/public/icons/goods-thumb/<名前>.webp (アイギュプト専用商品)
 
 使い方: python tools/build-icon-thumbs.py
 依存: Pillow
@@ -26,6 +28,8 @@ WIKI_ICONS = ROOT / "apps" / "wiki" / "docs" / "public" / "icons"
 JOBS: list[tuple[Path, Path]] = [
     (ROOT / "packages" / "shared" / "public" / "icons", WIKI_ICONS / "goods-thumb"),
     (WIKI_ICONS / "buildings", WIKI_ICONS / "buildings-thumb"),
+    (ROOT / "_local" / "anno-official-data" / "icons-archive" / "layout-tool-data-ui" / "fhd" / "dlc03"
+     / "icon_content" / "production_goods", WIKI_ICONS / "goods-thumb"),
 ]
 
 # 表示は最大28px。高解像度スマホ(3倍)でもぼやけないよう 28*3 を上回る96pxにする
