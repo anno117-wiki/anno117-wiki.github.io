@@ -8,8 +8,8 @@
 - 維持費 = 維持費のうちコイン(1010017)の量にマイナスを付けた値
 - 効果 = 建物の functionalEffects の各効果が持つバフの属性値の合計(既存と同じく FunctionalEffects だけを数える)。
   属性: 人口(Population)・収入(Money)・信仰(Belief)・知識(Knowledge)・名声(Prestige)・健康(Health)・幸福(Happiness)・火災安全度(FireSafety)
-- 層(tier): 住居の建物はその住居の層。維持費に労働力があればその層。無い建物は、需要(公共サービス)から、同じアイコンの需要を最初に持つ層。
-  どちらも決まらない建物は層なし('none')にする
+- 層(tier): その建物を必要とする層。住居の建物はその住居の層。それ以外は、同じアイコンの需要(公共サービス・商品)を最初に持つ層。
+  住民が直接必要としない建物(中間品の生産施設・軍事・港湾など)は層なし('none')にする。労働力の層は使わない
 - icon は Planner の建物アイコン名(生産施設は生産品の絵)。画像は tools/build-aegyptus-building-icons.py が用意する
 - 日本語は単語間にゼロ幅スペース(U+200B)があるので除く
 """
@@ -82,8 +82,7 @@ def main() -> None:
                 for k, v in (buffs.get(str(buff), {}).get('calc') or {}).get('attributes', {}).items():
                     if k in ATTR:
                         attrs[ATTR[k]] += v
-        tier = (residence_tier.get(b['guid']) or next((workforce_tier[p] for p in maint if p in workforce_tier), None)
-                or first_need.get(b.get('icon')) or 'none')
+        tier = residence_tier.get(b['guid']) or first_need.get(b.get('icon')) or 'none'
         rows.append({
             'id': f"aegyptus_{b['guid']}",
             'nameEn': b['loca']['english'],

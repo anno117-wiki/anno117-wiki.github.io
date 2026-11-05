@@ -65,7 +65,7 @@ const EXTRA_TIER_NAMES: Record<string, string> = {
   priestess: '奉唱巫女',
   scribe: '書記',
   gymnasiarch: 'ギムナシアリコス',
-  none: '—',
+  none: '層なし',
 }
 
 // 効果値を比べる項目。全て同じなら、アイギュプトの建物は既存の建物と同じ行にまとめる
@@ -89,7 +89,7 @@ export default {
     const itemCounts = countItemsByTarget()
     const buildings = effectsJson.buildings.map((b) => ({
       ...b,
-      tierJa: tierNames[b.tier] ?? b.tier,
+      tierJa: tierNames[b.tier] ?? EXTRA_TIER_NAMES[b.tier] ?? b.tier,
       category: getCategory(b.icon),
       itemCount: b.nameJa ? (itemCounts[b.nameJa] ?? 0) : 0,
     }))
@@ -125,6 +125,9 @@ export default {
         r.skillBonuses = [...(r.skillBonuses ?? []), { skill: bonus.skill, effects: bonus.effects, unverified: true }]
       }
     }
-    return { buildings: all }
+    // 効果の補正値（スキルの追加効果を含む）も関連アイテムも無い建物は載せない
+    const hasValue = (b: BuildingEffect) =>
+      b.itemCount > 0 || (b.skillBonuses?.length ?? 0) > 0 || EFFECT_KEYS.some((k) => k !== 'maintenance' && b[k] !== 0)
+    return { buildings: all.filter(hasValue) }
   },
 }

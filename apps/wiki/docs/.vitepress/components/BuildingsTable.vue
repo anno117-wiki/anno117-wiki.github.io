@@ -79,7 +79,7 @@ function toggleSort(key: string) {
     sortDir.value = sortDir.value === 1 ? -1 : 1
   } else {
     sortKey.value = key
-    sortDir.value = -1
+    sortDir.value = key === 'tier' ? 1 : -1
   }
 }
 
@@ -96,18 +96,26 @@ function sortArrow(key: string) {
   return sortDir.value === 1 ? '↑' : '↓'
 }
 
+// 絞り込みの並び: ラティウム -> アルビオン -> アイギュプト（各地域の中は住民層の低い順）。
+// ここに無い層は最後に、データに出た順で並べる
+const TIER_ORDER = [
+  'libertus', 'plebeian', 'equites', 'patrician', // ラティウム
+  'wader', 'smith', 'alderman', 'mercators', 'nobles', // アルビオン
+  'thresher', 'potter', 'priestess', 'scribe', 'gymnasiarch', // アイギュプト
+  'none',
+]
+
 const tiers = computed(() => {
-  const seen = new Set<string>()
-  const list: { value: string; label: string }[] = []
+  const labels = new Map<string, string>()
   for (const b of data.buildings) {
     for (const t of [{ tier: b.tier, tierJa: b.tierJa }, ...(b.extraTiers ?? [])]) {
-      if (!seen.has(t.tier)) {
-        seen.add(t.tier)
-        list.push({ value: t.tier, label: t.tierJa })
-      }
+      if (!labels.has(t.tier)) labels.set(t.tier, t.tierJa)
     }
   }
-  return list
+  const rank = (k: string) => { const i = TIER_ORDER.indexOf(k); return i < 0 ? TIER_ORDER.length : i }
+  return [...labels]
+    .map(([value, label], i) => ({ value, label, i }))
+    .sort((a, b) => rank(a.value) - rank(b.value) || a.i - b.i)
 })
 
 const categories = computed(() => {
@@ -127,13 +135,19 @@ const filtered = computed(() => {
   })
 })
 
+// 層での並べ替え用: 併記の層のうち最も早い順位
+function tierRank(b: { tier: string; extraTiers?: { tier: string }[] }): number {
+  const rank = (k: string) => { const i = TIER_ORDER.indexOf(k); return i < 0 ? TIER_ORDER.length : i }
+  return Math.min(rank(b.tier), ...(b.extraTiers ?? []).map(t => rank(t.tier)))
+}
+
 const sortedFiltered = computed(() => {
   const key = sortKey.value
   if (!key) return filtered.value
   const dir = sortDir.value
   return [...filtered.value].sort((a, b) => {
-    const av = (a as any)[key] ?? 0
-    const bv = (b as any)[key] ?? 0
+    const av = key === 'tier' ? tierRank(a) : (a as any)[key] ?? 0
+    const bv = key === 'tier' ? tierRank(b) : (b as any)[key] ?? 0
     return (av - bv) * dir
   })
 })
@@ -195,7 +209,7 @@ watch(hash, scrollToHash)
       <thead>
         <tr>
           <th>建物</th>
-          <th>需要Tier</th>
+          <th @click="toggleSort('tier')" style="cursor:pointer;white-space:nowrap;">需要Tier {{ sortArrow('tier') }}</th>
           <th>維持費</th>
           <th @click="toggleSort('population')" style="cursor:pointer;white-space:nowrap;padding:8px 4px;">人口 {{ sortArrow('population') }}</th>
           <th @click="toggleSort('income')" style="cursor:pointer;white-space:nowrap;padding:8px 4px;">収入 {{ sortArrow('income') }}</th>
