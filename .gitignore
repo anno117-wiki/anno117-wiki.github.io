@@ -65,3 +65,7 @@ docs-notes/*
 # Claude Code mod（.claude/skills/<mod>）の読み込み時に自動生成される型定義・tsconfig
 .claude/skills/*/.claude-plugin/types/
 .claude/skills/*/tsconfig.json
+
+# goods は packages/shared/public/icons へのシンボリックリンク。同じ実体が追跡済みなので、リンク越しの二重表示を無視する
+apps/wiki/docs/public/icons/goods
+apps/wiki/docs/public/icons/goods/
