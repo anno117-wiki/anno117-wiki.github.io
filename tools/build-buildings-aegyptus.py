@@ -10,6 +10,7 @@
   属性: 人口(Population)・収入(Money)・信仰(Belief)・知識(Knowledge)・名声(Prestige)・健康(Health)・幸福(Happiness)・火災安全度(FireSafety)
 - 層(tier): 住居の建物はその住居の層。維持費に労働力があればその層。無い建物は、需要(公共サービス)から、同じアイコンの需要を最初に持つ層。
   どちらも決まらない建物は層なし('none')にする
+- icon は Planner の建物アイコン名(生産施設は生産品の絵)。画像は tools/build-aegyptus-building-icons.py が用意する
 - 日本語は単語間にゼロ幅スペース(U+200B)があるので除く
 """
 import json
@@ -35,6 +36,17 @@ TIER_KEY = {149681: 'thresher', 150510: 'potter', 150511: 'priestess', 150534: '
 
 def ja(x: dict) -> str:
     return (x.get('loca') or {}).get('japanese', '').replace(ZW, '')
+
+
+def icon_key(b: dict) -> str | None:
+    """建物一覧(wiki)の icon の値。ゲームの建物アイコンのファイル名から icon_3d_ と .png を除いたもの。
+
+    生産施設は、そのゲームのアイコンが生産品の絵なので、既存の建物と同じく生産品のアイコンになる。
+    """
+    name = (b.get('icon') or '').split('/')[-1]
+    if name.startswith('icon_3d_') and name.endswith('.png'):
+        return name[len('icon_3d_'):-len('.png')]
+    return None
 
 
 def main() -> None:
@@ -80,6 +92,7 @@ def main() -> None:
             'maintenance': -int(maint.get(COIN, 0)),
             **{k: (int(v) if float(v).is_integer() else round(v, 2)) for k, v in attrs.items()},
             'template': b['template'],
+            **({'icon': icon} if (icon := icon_key(b)) else {}),
         })
     rows.sort(key=lambda r: (order.index(r['tier']) if r['tier'] in order else 99, r['nameJa']))
     OUT.write_text(json.dumps({'source': 'ゲーム内データ(アップデート3.0)', 'buildings': rows},
