@@ -233,7 +233,7 @@ watch(hash, scrollToHash)
               </div>
             </div>
           </td>
-          <td>{{ [b.tierJa, ...(b.extraTiers ?? []).map(t => t.tierJa)].join('／') }}</td>
+          <td class="building-tier-cell"><div v-for="t in [b.tierJa, ...(b.extraTiers ?? []).map(t => t.tierJa)]" :key="t">{{ t }}</div></td>
           <td>{{ b.maintenance }}</td>
           <td style="padding:8px 4px;"><StatBar :n="b.population" :maxAbs="3" /></td>
           <td style="padding:8px 4px;"><StatBar :n="b.income" :maxAbs="3" /></td>

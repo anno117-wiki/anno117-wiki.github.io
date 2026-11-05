@@ -103,7 +103,9 @@ export default {
       const same = byName.get(b.nameJa)
       if (same && EFFECT_KEYS.every((k) => same[k] === b[k])) {
         // 既存と効果値が同じ建物は、行を分けず、アイギュプトの層だけを足す
-        same.extraTiers = [...(same.extraTiers ?? []), { tier: b.tier, tierJa }]
+        // 層が同じ（どちらも層なし等）なら足さない
+        const has = same.tier === b.tier || (same.extraTiers ?? []).some((t) => t.tier === b.tier)
+        if (!has) same.extraTiers = [...(same.extraTiers ?? []), { tier: b.tier, tierJa }]
         continue
       }
       aegyptus.push({
