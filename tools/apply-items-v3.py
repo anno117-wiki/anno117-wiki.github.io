@@ -31,6 +31,9 @@ QUEST_TEXTS = PLANNER / 'quest_texts_japanese.json'
 EN_TEXTS = ROOT / '_local' / 'anno-official-data' / 'v3.0-item-inspector' / 'loca' / 'english.json'
 # 2.1にあった項目(これ以外が3.0の新しい項目で、毎回作り直す)
 ITEMS_V21 = ROOT / '_local' / 'anno-official-data' / 'v3.0-item-inspector' / 'items-2.1.csv'
+# 強化条件の元の文字列(Item Inspector 3.0)と日本語テキスト
+ITEMS_V30 = ROOT / '_local' / 'anno-official-data' / 'v3.0-item-inspector' / 'items.csv'
+JA_TEXTS = ROOT / '_local' / 'anno-official-data' / 'v3.0-item-inspector' / 'loca' / 'japanese.json'
 ITEMS = ROOT / 'packages' / 'shared' / 'public' / 'data' / 'items-full.json'
 ZW = '​'
 # 90573: 3.0で消えた「花形の潜り手」。157067: 「厄介な監査」はクエストで付く負の効果で、専門家ではない(分類なし・Quest)
@@ -45,6 +48,19 @@ COMPARE_JA = {'AtLeast': '以上', 'AtMost': '以下', 'LessThan': '未満', 'Mo
 ATTR_JA = {'Prestige': '名声', 'Happiness': '幸福', 'Health': '健康', 'Knowledge': '知識', 'Belief': '信仰',
            'Money': '収入', 'FireSafety': '火災安全度'}
 POOL_THRESHOLD = 11
+# 強化条件の言葉。文字IDは tools/build-items-ja.py の表と同じ(3.0の日本語テキストから引く)
+ZONE_IDS = {
+    'HostileZone': '-6917403091401205128', 'UnrulyZone': '-6915583492848202370', 'CasualZone': '-6914671557303069450',
+    'EffortZone': '-6917351903766265206', 'ChallengeZone': '-6901978489714054004',
+    'RebellionPending': '-6912437379731661339', 'Rebellion': '-6912555987231726209',
+    'ProConsul': '-6904131997685258147', 'Consul': '-6916032052665441306',
+}
+ATTRIBUTE_IDS = {
+    'Belief': '-6917117282888968611', 'FireSafety': '-6913876283495722297', 'Happiness': '-6915056271707822368',
+    'Health': '-6912510107473053226', 'Knowledge': '-6908049578864304337', 'Money': '-6910799479763478465',
+    'Prestige': '-6911554866663245776', 'Population': '-6916310552575698080',
+}
+DIPLOMACY_IDS = {'Alliance': '-6909792988828917153', 'Peace': '-6913646454384213306', 'War': '-6903421091051165993'}
 
 
 def tx(t) -> str:
@@ -93,14 +109,52 @@ def main() -> None:
                         out.append(f"{target}: {tx(l['text'])} {l['value']}" if target else f"{tx(l['text'])}: {l['value']}")
         return out
 
-    def condition(boost) -> str:
-        c = ((boost or {}).get('condition') or {}).get('Condition') or {}
-        if c.get('$type') == 'ConditionNeedAttributeCounter':
-            v = c['ConditionNeedAttributeCounter']
-            attr = ATTR_JA.get(v['NeedAttributeType'])
-            op = COMPARE_JA.get(v['ComparisonOpType'])
-            if attr and op:
-                return f"特性 島の上: {attr} {int(v['NeedAttributeAmount'])}{op}"
+    ja_texts = json.loads(JA_TEXTS.read_text(encoding='utf-8'))
+    raw_conditions = {r['GUID']: r['Boost Condition'] for r in csv.DictReader(ITEMS_V30.open(encoding='utf-8'))}
+    buildings = json.loads((PLANNER / 'buildings.json').read_text(encoding='utf-8'))
+    religion = {str(p['guid']): tx(p['loca']) for p in json.loads((PLANNER / 'religion.json').read_text(encoding='utf-8'))['patrons']}
+
+    # 日本語テキストのJSONに無い言葉(2.1のサイトで使っている「反乱寸前」)
+    word_fallback = {ZONE_IDS['RebellionPending']: '反乱寸前'}
+
+    def word(text_id: str) -> str:
+        return ja_texts.get(text_id, '').replace(ZW, '').strip() or word_fallback.get(text_id, '')
+
+    def name_of(guid: str) -> str:
+        n = name(guid) or (tx(buildings[guid]['loca']) if guid in buildings and buildings[guid].get('loca') else '') or religion.get(guid, '')
+        return n or '？'
+
+    def condition(guid: str) -> str:
+        """強化条件の元の文字列(Item Inspector)を文章にする。表記が決められないものは「未確認です」を付ける。"""
+        raw = raw_conditions.get(guid, '').strip()
+        kind, _, rest = raw.partition(':')
+        kind, rest = kind.strip(), rest.strip()
+        parts = [p.strip() for p in rest.split('|')]
+        first = parts[0].split()
+        if kind == 'ConditionNeedAttributeCounter' and len(first) == 3 and first[0] in ATTRIBUTE_IDS and first[1] in COMPARE_JA:
+            return f"特性 島の上: {word(ATTRIBUTE_IDS[first[0]])} {first[2]}{COMPARE_JA[first[1]]}"
+        if kind == 'ConditionReligion' and parts[0].isdigit():
+            return f"有効な島の祭神: {name_of(parts[0])}"
+        if kind == 'ConditionDominantPatron' and parts[0].isdigit():
+            return f"高位祭神: {name_of(parts[0])}"
+        if kind == 'ConditionEmperorRelation':
+            zones = [word(ZONE_IDS[z]) for z in parts[0].split(';') if z in ZONE_IDS]
+            if len(zones) == len(parts[0].split(';')) and all(zones):
+                return f"現在の評判 皇帝: {';'.join(zones)}"
+        if kind == 'ConditionTradeRouteCount' and len(first) == 2 and first[0] in COMPARE_JA:
+            return f"取引ルート: {first[1]}{COMPARE_JA[first[0]]}"
+        if kind == 'ConditionDiplomacyState' and len(parts) == 2 and parts[0] in DIPLOMACY_IDS:
+            return f"外交状態: {word(DIPLOMACY_IDS[parts[0]])}、{name_of(parts[1])}"
+        if kind == 'ConditionObjectCount' and len(parts) == 2 and len(first) == 2 and first[0] in COMPARE_JA:
+            return f"建設: {name_of(parts[1])} {first[1]}{COMPARE_JA[first[0]]}"
+        if kind == 'ConditionObjectCount' and len(parts) == 4 and parts[2] == 'RequiredMilitaryModuleCount' and len(first) == 2 and first[0] in COMPARE_JA:
+            return f"建設: {name_of(parts[1])} {first[1]}{COMPARE_JA[first[0]]}、設置済みのモジュール 軍事、{parts[3]}"
+        if kind == 'ConditionPlayerCounter' and parts[0] == 'GoodsInStock AtLeast 1000000' and parts[1:] == ['1010017']:
+            return 'バランス: 1000000以上'  # コインの在庫。2.1の「バランス」と同じ意味
+        if kind == 'ConditionPlayerCounter' and len(parts) == 3 and len(first) == 2 and first[0] in COMPARE_JA and parts[2] == 'Area':
+            return f"{name_of(parts[1])} {first[1]}{COMPARE_JA[first[0]]}、現在の島（条件の種類は未確認です）"
+        if kind == 'ConditionRomanization':
+            return f"ローマ化 {parts[0].replace('MoreThan', '').strip()}{' 超' if 'MoreThan' in parts[0] else ''}（表記は未確認です）"
         return '未確認です'
 
     def sources(item) -> tuple[list[str], bool]:
@@ -163,7 +217,7 @@ def main() -> None:
         if boost:
             entry['boostHint'] = tx(boost.get('hint'))
             entry['boostEffects'] = lines(boost.get('buffs'))
-            entry['boostCondition'] = condition(boost)
+            entry['boostCondition'] = condition(guid)
         entry['targets'] = pool_names(q['effect'].get('targets', []))
         entry['source'] = src
         entry['sourceCaution'] = caution

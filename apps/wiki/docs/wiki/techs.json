@@ -5044,10 +5044,14 @@
       "gridX": 0,
       "gridY": 0,
       "annoR": 0,
-      "connections": [],
+      "connections": [
+        "151462",
+        "151474",
+        "154490"
+      ],
       "annoNodeId": "151476",
       "branchOverride": "dlc03",
-      "_source": "Anno 117 Planner v1.0.0 (ゲーム3.0)。つながりは未確認"
+      "_source": "Anno 117 Planner v1.0.0 (ゲーム3.0)。つながりは六角形の隣のマスから作成"
     },
     {
       "guid": "151495",
@@ -5065,11 +5069,14 @@
       "knowledgeCost": null,
       "gridX": -3,
       "gridY": -2,
-      "annoR": -5,
-      "connections": [],
+      "annoR": -3,
+      "connections": [
+        "153952",
+        "153944"
+      ],
       "annoNodeId": "151495",
       "branchOverride": "dlc03",
-      "_source": "Anno 117 Planner v1.0.0 (ゲーム3.0)。つながりは未確認"
+      "_source": "Anno 117 Planner v1.0.0 (ゲーム3.0)。つながりは六角形の隣のマスから作成"
     },
     {
       "guid": "151520",
@@ -5087,11 +5094,14 @@
       "knowledgeCost": null,
       "gridX": 3,
       "gridY": -2,
-      "annoR": -5,
-      "connections": [],
+      "annoR": -3,
+      "connections": [
+        "153961",
+        "153947"
+      ],
       "annoNodeId": "151520",
       "branchOverride": "dlc03",
-      "_source": "Anno 117 Planner v1.0.0 (ゲーム3.0)。つながりは未確認"
+      "_source": "Anno 117 Planner v1.0.0 (ゲーム3.0)。つながりは六角形の隣のマスから作成"
     },
     {
       "guid": "153955",
@@ -5110,10 +5120,15 @@
       "gridX": 0,
       "gridY": -3,
       "annoR": -6,
-      "connections": [],
+      "connections": [
+        "153963",
+        "153945",
+        "153957",
+        "153964"
+      ],
       "annoNodeId": "153955",
       "branchOverride": "dlc03",
-      "_source": "Anno 117 Planner v1.0.0 (ゲーム3.0)。つながりは未確認"
+      "_source": "Anno 117 Planner v1.0.0 (ゲーム3.0)。つながりは六角形の隣のマスから作成"
     },
     {
       "guid": "154482",
@@ -5131,11 +5146,15 @@
       "knowledgeCost": null,
       "gridX": -3,
       "gridY": -5,
-      "annoR": -11,
-      "connections": [],
+      "annoR": -9,
+      "connections": [
+        "154472",
+        "153953",
+        "154471"
+      ],
       "annoNodeId": "154482",
       "branchOverride": "dlc03",
-      "_source": "Anno 117 Planner v1.0.0 (ゲーム3.0)。つながりは未確認"
+      "_source": "Anno 117 Planner v1.0.0 (ゲーム3.0)。つながりは六角形の隣のマスから作成"
     },
     {
       "guid": "154494",
@@ -5153,11 +5172,15 @@
       "knowledgeCost": null,
       "gridX": 3,
       "gridY": -5,
-      "annoR": -11,
-      "connections": [],
+      "annoR": -9,
+      "connections": [
+        "154497",
+        "153962",
+        "154493"
+      ],
       "annoNodeId": "154494",
       "branchOverride": "dlc03",
-      "_source": "Anno 117 Planner v1.0.0 (ゲーム3.0)。つながりは未確認"
+      "_source": "Anno 117 Planner v1.0.0 (ゲーム3.0)。つながりは六角形の隣のマスから作成"
     },
     {
       "guid": "154502",
@@ -5176,10 +5199,15 @@
       "gridX": 0,
       "gridY": -5,
       "annoR": -10,
-      "connections": [],
+      "connections": [
+        "154504",
+        "153963",
+        "185362",
+        "153965"
+      ],
       "annoNodeId": "154502",
       "branchOverride": "dlc03",
-      "_source": "Anno 117 Planner v1.0.0 (ゲーム3.0)。つながりは未確認"
+      "_source": "Anno 117 Planner v1.0.0 (ゲーム3.0)。つながりは六角形の隣のマスから作成"
     },
     {
       "guid": "151462",
@@ -5198,10 +5226,17 @@
       "gridX": 0,
       "gridY": -1,
       "annoR": -2,
-      "connections": [],
+      "connections": [
+        "153945",
+        "151476",
+        "153950",
+        "151475",
+        "151474",
+        "154490"
+      ],
       "annoNodeId": "151462",
       "branchOverride": "dlc03",
-      "_source": "Anno 117 Planner v1.0.0 (ゲーム3.0)。つながりは未確認"
+      "_source": "Anno 117 Planner v1.0.0 (ゲーム3.0)。つながりは六角形の隣のマスから作成"
     },
     {
       "guid": "153945",
@@ -5220,10 +5255,15 @@
       "gridX": 0,
       "gridY": -2,
       "annoR": -4,
-      "connections": [],
+      "connections": [
+        "153955",
+        "151462",
+        "153950",
+        "151475"
+      ],
       "annoNodeId": "153945",
       "branchOverride": "dlc03",
-      "_source": "Anno 117 Planner v1.0.0 (ゲーム3.0)。つながりは未確認"
+      "_source": "Anno 117 Planner v1.0.0 (ゲーム3.0)。つながりは六角形の隣のマスから作成"
     },
     {
       "guid": "151474",
@@ -5241,11 +5281,16 @@
       "knowledgeCost": 4800,
       "gridX": -1,
       "gridY": -1,
-      "annoR": -3,
-      "connections": [],
+      "annoR": -1,
+      "connections": [
+        "153950",
+        "153944",
+        "151462",
+        "151476"
+      ],
       "annoNodeId": "151474",
       "branchOverride": "dlc03",
-      "_source": "Anno 117 Planner v1.0.0 (ゲーム3.0)。つながりは未確認"
+      "_source": "Anno 117 Planner v1.0.0 (ゲーム3.0)。つながりは六角形の隣のマスから作成"
     },
     {
       "guid": "153944",
@@ -5264,10 +5309,14 @@
       "gridX": -2,
       "gridY": -1,
       "annoR": -2,
-      "connections": [],
+      "connections": [
+        "151495",
+        "153950",
+        "151474"
+      ],
       "annoNodeId": "153944",
       "branchOverride": "dlc03",
-      "_source": "Anno 117 Planner v1.0.0 (ゲーム3.0)。つながりは未確認"
+      "_source": "Anno 117 Planner v1.0.0 (ゲーム3.0)。つながりは六角形の隣のマスから作成"
     },
     {
       "guid": "153950",
@@ -5285,11 +5334,16 @@
       "knowledgeCost": 8000,
       "gridX": -1,
       "gridY": -2,
-      "annoR": -5,
-      "connections": [],
+      "annoR": -3,
+      "connections": [
+        "151474",
+        "153945",
+        "153944",
+        "151462"
+      ],
       "annoNodeId": "153950",
       "branchOverride": "dlc03",
-      "_source": "Anno 117 Planner v1.0.0 (ゲーム3.0)。つながりは未確認"
+      "_source": "Anno 117 Planner v1.0.0 (ゲーム3.0)。つながりは六角形の隣のマスから作成"
     },
     {
       "guid": "151475",
@@ -5307,11 +5361,16 @@
       "knowledgeCost": 8000,
       "gridX": 1,
       "gridY": -2,
-      "annoR": -5,
-      "connections": [],
+      "annoR": -3,
+      "connections": [
+        "154490",
+        "153945",
+        "151462",
+        "153947"
+      ],
       "annoNodeId": "151475",
       "branchOverride": "dlc03",
-      "_source": "Anno 117 Planner v1.0.0 (ゲーム3.0)。つながりは未確認"
+      "_source": "Anno 117 Planner v1.0.0 (ゲーム3.0)。つながりは六角形の隣のマスから作成"
     },
     {
       "guid": "153947",
@@ -5330,10 +5389,14 @@
       "gridX": 2,
       "gridY": -1,
       "annoR": -2,
-      "connections": [],
+      "connections": [
+        "151475",
+        "151520",
+        "154490"
+      ],
       "annoNodeId": "153947",
       "branchOverride": "dlc03",
-      "_source": "Anno 117 Planner v1.0.0 (ゲーム3.0)。つながりは未確認"
+      "_source": "Anno 117 Planner v1.0.0 (ゲーム3.0)。つながりは六角形の隣のマスから作成"
     },
     {
       "guid": "154490",
@@ -5351,11 +5414,16 @@
       "knowledgeCost": 4800,
       "gridX": 1,
       "gridY": -1,
-      "annoR": -3,
-      "connections": [],
+      "annoR": -1,
+      "connections": [
+        "151475",
+        "151462",
+        "153947",
+        "151476"
+      ],
       "annoNodeId": "154490",
       "branchOverride": "dlc03",
-      "_source": "Anno 117 Planner v1.0.0 (ゲーム3.0)。つながりは未確認"
+      "_source": "Anno 117 Planner v1.0.0 (ゲーム3.0)。つながりは六角形の隣のマスから作成"
     },
     {
       "guid": "153951",
@@ -5374,10 +5442,14 @@
       "gridX": -4,
       "gridY": -3,
       "annoR": -6,
-      "connections": [],
+      "connections": [
+        "154471",
+        "153953",
+        "153952"
+      ],
       "annoNodeId": "153951",
       "branchOverride": "dlc03",
-      "_source": "Anno 117 Planner v1.0.0 (ゲーム3.0)。つながりは未確認"
+      "_source": "Anno 117 Planner v1.0.0 (ゲーム3.0)。つながりは六角形の隣のマスから作成"
     },
     {
       "guid": "153952",
@@ -5395,11 +5467,15 @@
       "knowledgeCost": 11800,
       "gridX": -3,
       "gridY": -3,
-      "annoR": -7,
-      "connections": [],
+      "annoR": -5,
+      "connections": [
+        "153953",
+        "151495",
+        "153951"
+      ],
       "annoNodeId": "153952",
       "branchOverride": "dlc03",
-      "_source": "Anno 117 Planner v1.0.0 (ゲーム3.0)。つながりは未確認"
+      "_source": "Anno 117 Planner v1.0.0 (ゲーム3.0)。つながりは六角形の隣のマスから作成"
     },
     {
       "guid": "153953",
@@ -5417,11 +5493,16 @@
       "knowledgeCost": 36000,
       "gridX": -3,
       "gridY": -4,
-      "annoR": -9,
-      "connections": [],
+      "annoR": -7,
+      "connections": [
+        "154482",
+        "153952",
+        "154471",
+        "153951"
+      ],
       "annoNodeId": "153953",
       "branchOverride": "dlc03",
-      "_source": "Anno 117 Planner v1.0.0 (ゲーム3.0)。つながりは未確認"
+      "_source": "Anno 117 Planner v1.0.0 (ゲーム3.0)。つながりは六角形の隣のマスから作成"
     },
     {
       "guid": "154471",
@@ -5440,10 +5521,14 @@
       "gridX": -4,
       "gridY": -4,
       "annoR": -8,
-      "connections": [],
+      "connections": [
+        "153951",
+        "154482",
+        "153953"
+      ],
       "annoNodeId": "154471",
       "branchOverride": "dlc03",
-      "_source": "Anno 117 Planner v1.0.0 (ゲーム3.0)。つながりは未確認"
+      "_source": "Anno 117 Planner v1.0.0 (ゲーム3.0)。つながりは六角形の隣のマスから作成"
     },
     {
       "guid": "153957",
@@ -5461,11 +5546,15 @@
       "knowledgeCost": 11800,
       "gridX": -1,
       "gridY": -4,
-      "annoR": -9,
-      "connections": [],
+      "annoR": -7,
+      "connections": [
+        "185362",
+        "153963",
+        "153955"
+      ],
       "annoNodeId": "153957",
       "branchOverride": "dlc03",
-      "_source": "Anno 117 Planner v1.0.0 (ゲーム3.0)。つながりは未確認"
+      "_source": "Anno 117 Planner v1.0.0 (ゲーム3.0)。つながりは六角形の隣のマスから作成"
     },
     {
       "guid": "153963",
@@ -5484,10 +5573,17 @@
       "gridX": 0,
       "gridY": -4,
       "annoR": -8,
-      "connections": [],
+      "connections": [
+        "154502",
+        "153955",
+        "185362",
+        "153965",
+        "153957",
+        "153964"
+      ],
       "annoNodeId": "153963",
       "branchOverride": "dlc03",
-      "_source": "Anno 117 Planner v1.0.0 (ゲーム3.0)。つながりは未確認"
+      "_source": "Anno 117 Planner v1.0.0 (ゲーム3.0)。つながりは六角形の隣のマスから作成"
     },
     {
       "guid": "153964",
@@ -5505,11 +5601,15 @@
       "knowledgeCost": 11800,
       "gridX": 1,
       "gridY": -4,
-      "annoR": -9,
-      "connections": [],
+      "annoR": -7,
+      "connections": [
+        "153965",
+        "153963",
+        "153955"
+      ],
       "annoNodeId": "153964",
       "branchOverride": "dlc03",
-      "_source": "Anno 117 Planner v1.0.0 (ゲーム3.0)。つながりは未確認"
+      "_source": "Anno 117 Planner v1.0.0 (ゲーム3.0)。つながりは六角形の隣のマスから作成"
     },
     {
       "guid": "153965",
@@ -5527,11 +5627,15 @@
       "knowledgeCost": 36000,
       "gridX": 1,
       "gridY": -5,
-      "annoR": -11,
-      "connections": [],
+      "annoR": -9,
+      "connections": [
+        "153964",
+        "154502",
+        "153963"
+      ],
       "annoNodeId": "153965",
       "branchOverride": "dlc03",
-      "_source": "Anno 117 Planner v1.0.0 (ゲーム3.0)。つながりは未確認"
+      "_source": "Anno 117 Planner v1.0.0 (ゲーム3.0)。つながりは六角形の隣のマスから作成"
     },
     {
       "guid": "185362",
@@ -5549,11 +5653,15 @@
       "knowledgeCost": 36000,
       "gridX": -1,
       "gridY": -5,
-      "annoR": -11,
-      "connections": [],
+      "annoR": -9,
+      "connections": [
+        "153957",
+        "154502",
+        "153963"
+      ],
       "annoNodeId": "185362",
       "branchOverride": "dlc03",
-      "_source": "Anno 117 Planner v1.0.0 (ゲーム3.0)。つながりは未確認"
+      "_source": "Anno 117 Planner v1.0.0 (ゲーム3.0)。つながりは六角形の隣のマスから作成"
     },
     {
       "guid": "153960",
@@ -5572,10 +5680,14 @@
       "gridX": 4,
       "gridY": -3,
       "annoR": -6,
-      "connections": [],
+      "connections": [
+        "154493",
+        "153962",
+        "153961"
+      ],
       "annoNodeId": "153960",
       "branchOverride": "dlc03",
-      "_source": "Anno 117 Planner v1.0.0 (ゲーム3.0)。つながりは未確認"
+      "_source": "Anno 117 Planner v1.0.0 (ゲーム3.0)。つながりは六角形の隣のマスから作成"
     },
     {
       "guid": "153961",
@@ -5593,11 +5705,15 @@
       "knowledgeCost": 11800,
       "gridX": 3,
       "gridY": -3,
-      "annoR": -7,
-      "connections": [],
+      "annoR": -5,
+      "connections": [
+        "153962",
+        "151520",
+        "153960"
+      ],
       "annoNodeId": "153961",
       "branchOverride": "dlc03",
-      "_source": "Anno 117 Planner v1.0.0 (ゲーム3.0)。つながりは未確認"
+      "_source": "Anno 117 Planner v1.0.0 (ゲーム3.0)。つながりは六角形の隣のマスから作成"
     },
     {
       "guid": "153962",
@@ -5615,11 +5731,16 @@
       "knowledgeCost": 36000,
       "gridX": 3,
       "gridY": -4,
-      "annoR": -9,
-      "connections": [],
+      "annoR": -7,
+      "connections": [
+        "154494",
+        "153961",
+        "154493",
+        "153960"
+      ],
       "annoNodeId": "153962",
       "branchOverride": "dlc03",
-      "_source": "Anno 117 Planner v1.0.0 (ゲーム3.0)。つながりは未確認"
+      "_source": "Anno 117 Planner v1.0.0 (ゲーム3.0)。つながりは六角形の隣のマスから作成"
     },
     {
       "guid": "154493",
@@ -5638,10 +5759,14 @@
       "gridX": 4,
       "gridY": -4,
       "annoR": -8,
-      "connections": [],
+      "connections": [
+        "153960",
+        "154494",
+        "153962"
+      ],
       "annoNodeId": "154493",
       "branchOverride": "dlc03",
-      "_source": "Anno 117 Planner v1.0.0 (ゲーム3.0)。つながりは未確認"
+      "_source": "Anno 117 Planner v1.0.0 (ゲーム3.0)。つながりは六角形の隣のマスから作成"
     },
     {
       "guid": "154472",
@@ -5659,11 +5784,15 @@
       "knowledgeCost": 64000,
       "gridX": -3,
       "gridY": -6,
-      "annoR": -13,
-      "connections": [],
+      "annoR": -11,
+      "connections": [
+        "154474",
+        "154482",
+        "154473"
+      ],
       "annoNodeId": "154472",
       "branchOverride": "dlc03",
-      "_source": "Anno 117 Planner v1.0.0 (ゲーム3.0)。つながりは未確認"
+      "_source": "Anno 117 Planner v1.0.0 (ゲーム3.0)。つながりは六角形の隣のマスから作成"
     },
     {
       "guid": "154473",
@@ -5682,10 +5811,14 @@
       "gridX": -4,
       "gridY": -6,
       "annoR": -12,
-      "connections": [],
+      "connections": [
+        "154477",
+        "154474",
+        "154472"
+      ],
       "annoNodeId": "154473",
       "branchOverride": "dlc03",
-      "_source": "Anno 117 Planner v1.0.0 (ゲーム3.0)。つながりは未確認"
+      "_source": "Anno 117 Planner v1.0.0 (ゲーム3.0)。つながりは六角形の隣のマスから作成"
     },
     {
       "guid": "154474",
@@ -5703,11 +5836,15 @@
       "knowledgeCost": 92000,
       "gridX": -3,
       "gridY": -7,
-      "annoR": -15,
-      "connections": [],
+      "annoR": -13,
+      "connections": [
+        "154472",
+        "154477",
+        "154473"
+      ],
       "annoNodeId": "154474",
       "branchOverride": "dlc03",
-      "_source": "Anno 117 Planner v1.0.0 (ゲーム3.0)。つながりは未確認"
+      "_source": "Anno 117 Planner v1.0.0 (ゲーム3.0)。つながりは六角形の隣のマスから作成"
     },
     {
       "guid": "154477",
@@ -5726,10 +5863,13 @@
       "gridX": -4,
       "gridY": -7,
       "annoR": -14,
-      "connections": [],
+      "connections": [
+        "154473",
+        "154474"
+      ],
       "annoNodeId": "154477",
       "branchOverride": "dlc03",
-      "_source": "Anno 117 Planner v1.0.0 (ゲーム3.0)。つながりは未確認"
+      "_source": "Anno 117 Planner v1.0.0 (ゲーム3.0)。つながりは六角形の隣のマスから作成"
     },
     {
       "guid": "185359",
@@ -5747,11 +5887,14 @@
       "knowledgeCost": 92000,
       "gridX": -1,
       "gridY": -7,
-      "annoR": -15,
-      "connections": [],
+      "annoR": -13,
+      "connections": [
+        "154506",
+        "154504"
+      ],
       "annoNodeId": "185359",
       "branchOverride": "dlc03",
-      "_source": "Anno 117 Planner v1.0.0 (ゲーム3.0)。つながりは未確認"
+      "_source": "Anno 117 Planner v1.0.0 (ゲーム3.0)。つながりは六角形の隣のマスから作成"
     },
     {
       "guid": "154504",
@@ -5770,10 +5913,15 @@
       "gridX": 0,
       "gridY": -6,
       "annoR": -12,
-      "connections": [],
+      "connections": [
+        "154506",
+        "154502",
+        "185359",
+        "154505"
+      ],
       "annoNodeId": "154504",
       "branchOverride": "dlc03",
-      "_source": "Anno 117 Planner v1.0.0 (ゲーム3.0)。つながりは未確認"
+      "_source": "Anno 117 Planner v1.0.0 (ゲーム3.0)。つながりは六角形の隣のマスから作成"
     },
     {
       "guid": "154505",
@@ -5791,11 +5939,14 @@
       "knowledgeCost": 92000,
       "gridX": 1,
       "gridY": -7,
-      "annoR": -15,
-      "connections": [],
+      "annoR": -13,
+      "connections": [
+        "154506",
+        "154504"
+      ],
       "annoNodeId": "154505",
       "branchOverride": "dlc03",
-      "_source": "Anno 117 Planner v1.0.0 (ゲーム3.0)。つながりは未確認"
+      "_source": "Anno 117 Planner v1.0.0 (ゲーム3.0)。つながりは六角形の隣のマスから作成"
     },
     {
       "guid": "154506",
@@ -5814,10 +5965,14 @@
       "gridX": 0,
       "gridY": -7,
       "annoR": -14,
-      "connections": [],
+      "connections": [
+        "154504",
+        "185359",
+        "154505"
+      ],
       "annoNodeId": "154506",
       "branchOverride": "dlc03",
-      "_source": "Anno 117 Planner v1.0.0 (ゲーム3.0)。つながりは未確認"
+      "_source": "Anno 117 Planner v1.0.0 (ゲーム3.0)。つながりは六角形の隣のマスから作成"
     },
     {
       "guid": "154501",
@@ -5836,10 +5991,14 @@
       "gridX": 4,
       "gridY": -7,
       "annoR": -14,
-      "connections": [],
+      "connections": [
+        "154495",
+        "154499",
+        "154498"
+      ],
       "annoNodeId": "154501",
       "branchOverride": "dlc03",
-      "_source": "Anno 117 Planner v1.0.0 (ゲーム3.0)。つながりは未確認"
+      "_source": "Anno 117 Planner v1.0.0 (ゲーム3.0)。つながりは六角形の隣のマスから作成"
     },
     {
       "guid": "154497",
@@ -5857,11 +6016,15 @@
       "knowledgeCost": 92000,
       "gridX": 3,
       "gridY": -6,
-      "annoR": -13,
-      "connections": [],
+      "annoR": -11,
+      "connections": [
+        "154498",
+        "154494",
+        "154495"
+      ],
       "annoNodeId": "154497",
       "branchOverride": "dlc03",
-      "_source": "Anno 117 Planner v1.0.0 (ゲーム3.0)。つながりは未確認"
+      "_source": "Anno 117 Planner v1.0.0 (ゲーム3.0)。つながりは六角形の隣のマスから作成"
     },
     {
       "guid": "154498",
@@ -5879,11 +6042,16 @@
       "knowledgeCost": 92000,
       "gridX": 3,
       "gridY": -7,
-      "annoR": -15,
-      "connections": [],
+      "annoR": -13,
+      "connections": [
+        "154499",
+        "154497",
+        "154501",
+        "154495"
+      ],
       "annoNodeId": "154498",
       "branchOverride": "dlc03",
-      "_source": "Anno 117 Planner v1.0.0 (ゲーム3.0)。つながりは未確認"
+      "_source": "Anno 117 Planner v1.0.0 (ゲーム3.0)。つながりは六角形の隣のマスから作成"
     },
     {
       "guid": "154499",
@@ -5901,11 +6069,14 @@
       "knowledgeCost": 300000,
       "gridX": 3,
       "gridY": -8,
-      "annoR": -17,
-      "connections": [],
+      "annoR": -15,
+      "connections": [
+        "154498",
+        "154501"
+      ],
       "annoNodeId": "154499",
       "branchOverride": "dlc03",
-      "_source": "Anno 117 Planner v1.0.0 (ゲーム3.0)。つながりは未確認"
+      "_source": "Anno 117 Planner v1.0.0 (ゲーム3.0)。つながりは六角形の隣のマスから作成"
     },
     {
       "guid": "154495",
@@ -5924,10 +6095,14 @@
       "gridX": 4,
       "gridY": -6,
       "annoR": -12,
-      "connections": [],
+      "connections": [
+        "154501",
+        "154498",
+        "154497"
+      ],
       "annoNodeId": "154495",
       "branchOverride": "dlc03",
-      "_source": "Anno 117 Planner v1.0.0 (ゲーム3.0)。つながりは未確認"
+      "_source": "Anno 117 Planner v1.0.0 (ゲーム3.0)。つながりは六角形の隣のマスから作成"
     }
   ]
 }

@@ -6,8 +6,10 @@
 
 - DLC03 は category 151465 の41項目(ゲート7、スキル34)
 - 配置は Planner の x, y。ゲートを基準(0)にそろえるため y に 1 を足す。
-  表示は行(annoR)で縦位置を決めるので、1行を2とし、奇数列は半行ずらした目安の配置にする(ゲーム内の見た目とは未照合)
-- つながり(connections)は Planner のデータに無いので空にする(未確認)
+  ゲームの研究ツリーは「平らな頂点の六角形のマス。奇数列は半行下」(Planner の model/research.py の説明)。
+  表示は行(annoR)で縦位置を決めるので、1行を2とし、奇数列は +1(半行下)にする
+- つながり(connections)は、ゲームの規則「同じ分野の隣のマスの研究が済んでいると研究できる」から、
+  六角形の隣のマス同士を結んで作る(Planner の neighbor_cells と同じ。奇数列と偶数列で隣の取り方が違う)
 - 効果文は「対象 項目 値」を並べる。解放される建物などがあれば「解放: ○○」を付ける
 - 日本語は単語間にゼロ幅スペース(U+200B)があるので除く
 - techs.json は CRLF・インデント2で書かれているので、同じ書式で書き戻す
@@ -46,6 +48,19 @@ def main() -> None:
     if len(dlc03) != 41:
         sys.exit(f'DLC03の項目数が想定(41)と違う: {len(dlc03)}')
 
+    # 六角形(平らな頂点・奇数列は半行下)の隣のマス
+    def neighbor_cells(x: int, y: int):
+        if x % 2:
+            offsets = [(0, -1), (0, 1), (-1, 0), (1, 0), (-1, 1), (1, 1)]
+        else:
+            offsets = [(0, -1), (0, 1), (-1, -1), (1, -1), (-1, 0), (1, 0)]
+        return [(x + dx, y + dy) for dx, dy in offsets]
+
+    cells = {(t['x'], t['y']): str(t['guid']) for t in dlc03}
+    if len(cells) != len(dlc03):
+        sys.exit('同じマスに複数のスキルがある')
+    connections = {str(t['guid']): [cells[c] for c in neighbor_cells(t['x'], t['y']) if c in cells] for t in dlc03}
+
     entries = []
     for t in dlc03:
         gate = t['gate']
@@ -65,11 +80,11 @@ def main() -> None:
             'knowledgeCost': None if gate else int(t['knowledge']),
             'gridX': t['x'],
             'gridY': t['y'] + 1,
-            'annoR': 2 * (t['y'] + 1) - (1 if t['x'] % 2 else 0),
-            'connections': [],
+            'annoR': 2 * (t['y'] + 1) + (1 if t['x'] % 2 else 0),
+            'connections': connections[str(t['guid'])],
             'annoNodeId': str(t['guid']),
             'branchOverride': 'dlc03',
-            '_source': 'Anno 117 Planner v1.0.0 (ゲーム3.0)。つながりは未確認',
+            '_source': 'Anno 117 Planner v1.0.0 (ゲーム3.0)。つながりは六角形の隣のマスから作成',
         })
 
     raw = OUT.read_text(encoding='utf-8', newline='')
