@@ -10,18 +10,27 @@
 やること:
 1. 3.0で値が変わった既存の項目を直す(水道スペシャリスト2件。他の既存項目は、カタログの数値と突き合わせて差が無いことを確認済み)
 2. 3.0で消えた項目(90573 花形の潜り手)と、専門家ではない項目(157067 厄介な監査)を取り除く
-3. カタログにあってサイトに無い項目(DLC03の専門家・船長)を足す
+3. 2.1に無かった項目(DLC03の専門家・船長)を足す(あれば作り直す)
    - 効果文: カタログの効果行から「項目: 値」「対象: 項目 値」を作る
    - 取得先: build-items-ja.py と同じ書式にする(「NPC名との取引・契約・撃破ドロップ」「祭りの報酬」「来訪者イベントの報酬」など)。
      取引・祭りなどの確率つきの取得先が11件以上ある項目は「多数の交易商・祭りからランダム入手（低確率）」にまとめる
    - 強化条件: 名声などの数値条件だけ文章にする。それ以外の種類は「未確認です」と書く
 """
+import csv
 import json
 import sys
 from pathlib import Path
 
 ROOT = Path(__file__).resolve().parent.parent
-CATALOG = ROOT / '_local' / 'anno-official-data' / 'v3.0-planner' / 'item_catalog.json'
+PLANNER = ROOT / '_local' / 'anno-official-data' / 'v3.0-planner'
+CATALOG = PLANNER / 'item_catalog.json'
+# クエストの名前: 取得先のクエスト(GUID) -> 題名の文字ID(quests.json) -> 日本語(quest_texts_japanese.json)
+QUESTS = PLANNER / 'quests.json'
+QUEST_TEXTS = PLANNER / 'quest_texts_japanese.json'
+# 日本語の題名が空のクエストは、英語の題名を出す(Item Inspector の英語テキストに入っている)
+EN_TEXTS = ROOT / '_local' / 'anno-official-data' / 'v3.0-item-inspector' / 'loca' / 'english.json'
+# 2.1にあった項目(これ以外が3.0の新しい項目で、毎回作り直す)
+ITEMS_V21 = ROOT / '_local' / 'anno-official-data' / 'v3.0-item-inspector' / 'items-2.1.csv'
 ITEMS = ROOT / 'packages' / 'shared' / 'public' / 'data' / 'items-full.json'
 ZW = '​'
 # 90573: 3.0で消えた「花形の潜り手」。157067: 「厄介な監査」はクエストで付く負の効果で、専門家ではない(分類なし・Quest)
@@ -50,8 +59,19 @@ def plain(s: str) -> str:
 def main() -> None:
     cat = json.loads(CATALOG.read_text(encoding='utf-8'))
     assets = cat['assets']
-    known = {str(i['guid']) for i in json.loads(ITEMS.read_text(encoding='utf-8'))}
+    known = {r['GUID'] for r in csv.DictReader(ITEMS_V21.open(encoding='utf-8'))}
     items = json.loads(ITEMS.read_text(encoding='utf-8'))
+    quest_texts = json.loads(QUEST_TEXTS.read_text(encoding='utf-8'))
+    en_texts = json.loads(EN_TEXTS.read_text(encoding='utf-8'))
+    quest_name = {}
+    for q in json.loads(QUESTS.read_text(encoding='utf-8'))['quests']:
+        title = str(q.get('title'))
+        ja_name = quest_texts.get(title, '').replace(ZW, '')
+        en_name = en_texts.get(title, '').replace(ZW, '')
+        if ja_name:
+            quest_name[str(q['guid'])] = f'クエスト「{ja_name}」'
+        elif en_name:
+            quest_name[str(q['guid'])] = f'クエスト「{en_name}」（日本語名は未確認です）'
 
     def name(guid) -> str:
         a = assets.get(str(guid))
@@ -98,8 +118,8 @@ def main() -> None:
                 pool.append(f'{owner}の報酬（{pct}）')
             elif kind == 'visitors':
                 pool.append(f'来訪者イベントの報酬（{pct}）')
-            elif kind == 'quest' and owner:
-                fixed.append(f'クエスト「{owner}」')
+            elif kind == 'quest' and quest_name.get(str(s.get('owner'))):
+                fixed.append(quest_name[str(s['owner'])])
             elif kind == 'hallOfFame':
                 fixed.append('栄誉の殿堂')
             elif kind == 'rival' and owner:
@@ -148,7 +168,11 @@ def main() -> None:
         entry['source'] = src
         entry['sourceCaution'] = caution
         entry['allocation'] = ALLOCATION_JA.get(q['allocation'], q['allocation'])
-        items.append(entry)
+        index = next((n for n, i in enumerate(items) if str(i['guid']) == guid), None)
+        if index is None:
+            items.append(entry)
+        else:
+            items[index] = entry
         added.append(entry['nameJa'])
 
     ITEMS.write_text(json.dumps(items, ensure_ascii=False, indent=2), encoding='utf-8', newline='\n')

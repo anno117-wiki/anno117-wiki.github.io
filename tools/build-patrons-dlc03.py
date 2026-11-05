@@ -8,8 +8,7 @@
 - 効果の対象施設は、Planner にある名前のうちサイトに無いものだけ「足す」(減らさない)。
   総称('全住居'など)や、Planner に効果が無いもの(部隊・船)は触らない
 - 説明文は3.0の文言に更新する(全角数字が半角になる等。<b>タグは除く)
-- 3.0で「牛牧場」が「オーロックス牧場」に名前が変わったとみられる。サイト全体の表記が牛牧場なので、
-  ここでは足さずに同じものとして扱う(名前の変更はサイト全体で別に扱う)
+- 「牛牧場」は「オーロックス牧場」に統一する(ユーザー決定 2026-11-05。3.0の建物名)。既存の対象の「牛牧場」は直す
 新祭神3柱(イシス・バステト、セベク、トト・トリスメギストス):
 - 局所効果2の表示行は、Planner の効果文の「1段階あたりの値」から作る。実機での照合は未確認
 祭り: 神に結びついた祭りだけを載せる
@@ -23,7 +22,7 @@ ROOT = Path(__file__).resolve().parent.parent
 SRC = ROOT / '_local' / 'anno-official-data' / 'v3.0-planner'
 OUT = ROOT / 'apps' / 'wiki' / 'docs' / 'wiki' / 'patrons.json'
 ZW = '​'
-ALIAS = {'オーロックス牧場': '牛牧場'}
+RENAME = {'牛牧場': 'オーロックス牧場'}
 NEW_IDS = {153578: 'isis_bastet', 153802: 'sobek', 153803: 'thoth'}
 # 新祭神の局所効果2(行の見出し, 1段階あたりに掛ける倍率, 符号, 単位)。Planner の効果文(1段階あたりの値)から
 NEW_LOCAL2_DISPLAY = {
@@ -86,8 +85,7 @@ def main() -> None:
             ms = [[num(m['devotion']), num(m['buffScaling'])] for m in e['milestones']]
             names = target_names(e['effect'])
             if new:
-                # サイト全体の表記(牛牧場)に合わせる
-                shown = [ALIAS.get(n, n) for n in (names or [])]
+                shown = list(names or [])
                 loc = {'guid': str(e['effect']), 'titleJa': ja(e['title']), 'titleEn': en(e['title']),
                        'descJa': plain(ja(e['description'])), 'targets': shown, 'milestones': ms}
                 if i == 0:
@@ -99,12 +97,13 @@ def main() -> None:
                 s['local'].append(loc)
                 continue
             loc = s['local'][i]
+            loc['targets'] = [RENAME.get(t, t) for t in loc['targets']]
             loc['descJa'] = plain(ja(e['description'])) or loc['descJa']
             if loc['milestones'] != ms:
                 log.append(f"{s['nameJa']} 局所効果{i + 1}: 段階表が変わった(サイトは更新しない。要確認)")
             if names is not None and not any(t.startswith('全') for t in loc['targets']):
                 have = set(loc['targets'])
-                add = [n for n in names if n not in have and ALIAS.get(n) not in have]
+                add = [n for n in names if n not in have]
                 if add:
                     loc['targets'] = loc['targets'] + add
                     log.append(f"{s['nameJa']} 局所効果{i + 1}: 対象に追加 {add}")

@@ -11430,7 +11430,7 @@
     ],
     "targets": "詰め物入りガチョウの生産チェーン",
     "source": [
-      "未確認です",
+      "クエスト「死と税金」",
       "ヘロン地方長官との取引（2.148%）",
       "ウァレリアとの取引（1.018%）",
       "ヘロン地方長官との契約（並）（2.963%）",
@@ -11440,7 +11440,7 @@
       "ヘロン地方長官との撃破ドロップ（0.203%）",
       "ウァレリアとの撃破ドロップ（0.132%）"
     ],
-    "sourceCaution": true,
+    "sourceCaution": false,
     "allocation": "住居"
   },
   {
@@ -11909,9 +11909,9 @@
     ],
     "targets": "すべての施設",
     "source": [
-      "未確認です"
+      "クエスト「ファラオの言葉」"
     ],
-    "sourceCaution": true,
+    "sourceCaution": false,
     "allocation": "住居"
   },
   {
@@ -11991,9 +11991,9 @@
     ],
     "targets": "船",
     "source": [
-      "未確認です"
+      "クエスト「木材不足」"
     ],
-    "sourceCaution": true,
+    "sourceCaution": false,
     "allocation": "船"
   },
   {
@@ -12155,7 +12155,7 @@
     ],
     "targets": "すべての川の船",
     "source": [
-      "未確認です",
+      "クエスト「Lifeblood of Kashta」（日本語名は未確認です）",
       "ウァレリアとの取引（1.018%）",
       "カシュタのカンディスとの取引（0.909%）",
       "カシュタのカンディスとの契約（並）（1.455%）",
@@ -12163,7 +12163,7 @@
       "ウァレリアとの契約（良）（1.053%）",
       "ウァレリアとの撃破ドロップ（0.132%）"
     ],
-    "sourceCaution": true,
+    "sourceCaution": false,
     "allocation": "船"
   },
   {
@@ -12228,9 +12228,9 @@
     ],
     "targets": "ビーズ工房",
     "source": [
-      "未確認です"
+      "クエスト「私的な捜査」"
     ],
-    "sourceCaution": true,
+    "sourceCaution": false,
     "allocation": "住居"
   },
   {
@@ -12246,13 +12246,13 @@
     ],
     "targets": "すべての葦農場",
     "source": [
-      "未確認です",
+      "クエスト「市場の氾濫」",
       "ウァレリアとの取引（1.018%）",
       "ウァレリアとの契約（並）（1.404%）",
       "ウァレリアとの契約（良）（1.053%）",
       "ウァレリアとの撃破ドロップ（0.132%）"
     ],
-    "sourceCaution": true,
+    "sourceCaution": false,
     "allocation": "住居"
   },
   {
@@ -12269,9 +12269,10 @@
     ],
     "targets": "住居",
     "source": [
-      "未確認です"
+      "クエスト「許しを乞うたび」",
+      "クエスト「通訳失敗」"
     ],
-    "sourceCaution": true,
+    "sourceCaution": false,
     "allocation": "住居"
   },
   {
@@ -12288,9 +12289,9 @@
     ],
     "targets": "天文台",
     "source": [
-      "未確認です"
+      "クエスト「純粋理論」"
     ],
-    "sourceCaution": true,
+    "sourceCaution": false,
     "allocation": "住居"
   },
   {
@@ -12306,14 +12307,14 @@
     ],
     "targets": "住居",
     "source": [
-      "未確認です",
+      "クエスト「インクの陰謀」",
       "ウァレリアとの取引（0.466%）",
       "ウァレリアとの契約（並）（0.274%）",
       "ウァレリアとの契約（良）（0.479%）",
       "ウァレリアとの契約（最高）（1.233%）",
       "ウァレリアとの撃破ドロップ（0.026%）"
     ],
-    "sourceCaution": true,
+    "sourceCaution": false,
     "allocation": "住居"
   },
   {
@@ -12330,14 +12331,14 @@
     ],
     "targets": "市場",
     "source": [
-      "未確認です",
+      "クエスト「官僚主義」",
       "ヘロン地方長官との取引（0.472%）",
       "ヘロン地方長官との契約（並）（0.278%）",
       "ヘロン地方長官との契約（良）（0.486%）",
       "ヘロン地方長官との契約（最高）（1.250%）",
       "ヘロン地方長官との撃破ドロップ（0.045%）"
     ],
-    "sourceCaution": true,
+    "sourceCaution": false,
     "allocation": "住居"
   },
   {
@@ -12354,14 +12355,14 @@
     ],
     "targets": "ラテン語学校",
     "source": [
-      "未確認です",
+      "クエスト「追放者」",
       "ウァレリアとの取引（0.466%）",
       "ウァレリアとの契約（並）（0.274%）",
       "ウァレリアとの契約（良）（0.479%）",
       "ウァレリアとの契約（最高）（1.233%）",
       "ウァレリアとの撃破ドロップ（0.026%）"
     ],
-    "sourceCaution": true,
+    "sourceCaution": false,
     "allocation": "住居"
   },
   {
@@ -12521,9 +12522,9 @@
     "boostCondition": "未確認です",
     "targets": "すべての穀物庫",
     "source": [
-      "未確認です"
+      "クエスト「パンドラのアンフォラ」"
     ],
-    "sourceCaution": true,
+    "sourceCaution": false,
     "allocation": "住居"
   },
   {
@@ -12577,9 +12578,9 @@
     "boostCondition": "未確認です",
     "targets": "公共広場",
     "source": [
-      "未確認です"
+      "クエスト「騒乱の声」"
     ],
-    "sourceCaution": true,
+    "sourceCaution": false,
     "allocation": "住居"
   },
   {
@@ -12608,9 +12609,9 @@
     "boostCondition": "未確認です",
     "targets": "住居",
     "source": [
-      "未確認です"
+      "クエスト「私的な結論」"
     ],
-    "sourceCaution": true,
+    "sourceCaution": false,
     "allocation": "住居"
   },
   {
@@ -12633,9 +12634,9 @@
     "boostCondition": "未確認です",
     "targets": "公共サービス",
     "source": [
-      "未確認です"
+      "クエスト「女王の建築家」"
     ],
-    "sourceCaution": true,
+    "sourceCaution": false,
     "allocation": "住居"
   },
   {
@@ -12656,9 +12657,9 @@
     "boostCondition": "未確認です",
     "targets": "野営地",
     "source": [
-      "未確認です"
+      "クエスト「ローマ的新時代」"
     ],
-    "sourceCaution": true,
+    "sourceCaution": false,
     "allocation": "住居"
   },
   {
@@ -12681,9 +12682,9 @@
     "boostCondition": "未確認です",
     "targets": "すべての施設",
     "source": [
-      "未確認です"
+      "クエスト「ギリシャ狂詩曲」"
     ],
-    "sourceCaution": true,
+    "sourceCaution": false,
     "allocation": "住居"
   },
   {
@@ -12708,9 +12709,9 @@
     "boostCondition": "未確認です",
     "targets": "溶鉱炉",
     "source": [
-      "未確認です"
+      "クエスト「ローマ風の会合」"
     ],
-    "sourceCaution": true,
+    "sourceCaution": false,
     "allocation": "住居"
   },
   {
@@ -12730,9 +12731,9 @@
     "boostCondition": "未確認です",
     "targets": "住居",
     "source": [
-      "未確認です"
+      "クエスト「アイギュプト熱」"
     ],
-    "sourceCaution": true,
+    "sourceCaution": false,
     "allocation": "住居"
   },
   {
