@@ -1,0 +1,32 @@
+{
+  "source": "ゲーム内データ(アップデート3.0)",
+  "bonuses": [
+    {
+      "building": "兵舎",
+      "skill": "平和の砂漠",
+      "effects": {
+        "happiness": 2
+      },
+      "unverified": true
+    },
+    {
+      "building": "ラクダ牧場",
+      "skill": "カメル・ワザール",
+      "effects": {
+        "population": 1,
+        "income": 2
+      },
+      "unverified": true
+    },
+    {
+      "building": "総督のヴィラ",
+      "skill": "ギムナシウムのスポンサーシップ",
+      "effects": {
+        "income": 200,
+        "prestige": 100,
+        "gymnasiarchWorkforce": 50
+      },
+      "unverified": true
+    }
+  ]
+}

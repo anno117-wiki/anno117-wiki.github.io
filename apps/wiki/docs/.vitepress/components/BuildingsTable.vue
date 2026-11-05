@@ -58,6 +58,7 @@ const effectLabels: Record<string, string> = {
   health: '健康度',
   happiness: '幸福',
   fireSafety: '防火',
+  gymnasiarchWorkforce: 'ギムナシアリコスの労働力',
 }
 
 // 例: { prestige: 1, happiness: 1 } -> 「名声+1・幸福+1」
@@ -214,7 +215,7 @@ watch(hash, scrollToHash)
               <img v-if="b.icon" :src="withBase('/icons/buildings-thumb/icon_3d_' + b.icon + '.webp')" :alt="b.nameJa ?? b.nameEn" width="28" height="28" loading="lazy" style="width:28px;height:28px;vertical-align:middle;margin-right:4px;object-fit:contain;" />
               {{ b.nameJa ?? b.nameEn }}
               <div v-for="s in b.skillBonuses" :key="s.skill" class="building-skill-bonus">
-                スキル「{{ s.skill }}」で{{ formatEffects(s.effects) }}
+                スキル「{{ s.skill }}」で{{ formatEffects(s.effects) }}<span v-if="s.unverified">（配信前のゲーム内データ。実機では未確認です）</span>
               </div>
             </div>
           </td>

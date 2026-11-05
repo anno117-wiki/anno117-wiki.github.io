@@ -3,6 +3,8 @@ import jaJson from '../../../../packages/shared/public/i18n/locales/ja.json'
 import itemsFullJson from '../../../../packages/shared/public/data/items-full.json'
 // アイギュプト(DLC03)の建物。tools/build-buildings-aegyptus.py で生成
 import aegyptusJson from './buildings-aegyptus.json'
+// DLC03のスキルが建物に付ける追加効果。tools/build-skill-bonuses-dlc03.py で生成（配信前のデータなので unverified）
+import dlc03SkillsJson from './skill-bonuses-dlc03.json'
 
 interface BuildingEffect {
   id: string
@@ -25,7 +27,7 @@ interface BuildingEffect {
   /** この建物を対象とするアイテムの件数 */
   itemCount: number
   /** スキルを取ると付近の建物に追加で付く効果（表の数値には含めない） */
-  skillBonuses?: { skill: string; effects: Record<string, number> }[]
+  skillBonuses?: { skill: string; effects: Record<string, number>; unverified?: boolean }[]
 }
 
 // 建物名(nameJa) -> この建物を対象とするアイテム件数。
@@ -113,6 +115,16 @@ export default {
         itemCount: itemCounts[b.nameJa] ?? 0,
       })
     }
-    return { buildings: [...buildings, ...aegyptus] }
+    const all: (BuildingEffect | (typeof aegyptus)[number])[] = [...buildings, ...aegyptus]
+    // DLC03のスキルの追加効果を、建物名が同じ行に足す（ゲームの配信前データ。画面に「未確認です」と出す）
+    for (const bonus of dlc03SkillsJson.bonuses) {
+      const rows = all.filter((b) => b.nameJa === bonus.building)
+      if (!rows.length) throw new Error(`スキルの追加効果の建物が見つからない: ${bonus.building}`)
+      for (const row of rows) {
+        const r = row as { skillBonuses?: BuildingEffect['skillBonuses'] }
+        r.skillBonuses = [...(r.skillBonuses ?? []), { skill: bonus.skill, effects: bonus.effects, unverified: true }]
+      }
+    }
+    return { buildings: all }
   },
 }
