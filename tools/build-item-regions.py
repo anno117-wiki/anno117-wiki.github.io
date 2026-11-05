@@ -8,7 +8,7 @@
 - アイテムの効果の対象(effect.targets)は、建物か「建物のまとまり(AssetPool。市場・住居・塔など)」
   まとまりは、メンバーを再帰的にたどって建物にする。建物の regions(Roman/Celtic/Egyptian)を集める
 - Roman=latium、Celtic=albion、Egyptian=aegyptus
-- 対象から地域が決まらないアイテム(船のアイテムなど)は空の配列にする。画面では「地域の指定なし」
+- 対象から地域が決まらないアイテム(船のアイテム75件、野営地を対象にする2件)は空の配列にする。画面では「地域の指定なし」
 """
 import json
 from pathlib import Path
@@ -19,6 +19,9 @@ ITEMS = ROOT / 'packages' / 'shared' / 'public' / 'data' / 'items-full.json'
 OUT = ROOT / 'apps' / 'wiki' / 'docs' / 'wiki' / 'item-regions.json'
 REGION_KEY = {'Roman': 'latium', 'Celtic': 'albion', 'Egyptian': 'aegyptus'}
 ORDER = ['latium', 'albion', 'aegyptus']
+# 対象が商品で、建物から地域をたどれないもの。商品がその地域専用なので、手で決める（ユーザー確認 2026-11-05）
+# 179649 セシェン、花摘み: 対象は青スイレン茶（アイギュプト専用の商品）
+MANUAL = {'179649': ['aegyptus']}
 
 
 def main() -> None:
@@ -47,7 +50,7 @@ def main() -> None:
         regs: set[str] = set()
         for t in (item.get('effect') or {}).get('targets') or []:
             regs |= regions_of(t)
-        result[str(row['guid'])] = [k for k in ORDER if k in regs]
+        result[str(row['guid'])] = MANUAL.get(str(row['guid'])) or [k for k in ORDER if k in regs]
 
     OUT.write_text(json.dumps(result, ensure_ascii=False, indent=1) + '\n', encoding='utf-8', newline='\n')
     from collections import Counter
