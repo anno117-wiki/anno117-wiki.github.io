@@ -163,7 +163,11 @@
     "potter": "陶工",
     "chanter": "奉唱巫女",
     "scribe": "書記",
-    "gymnasiarch": "ギムナシアリコス"
+    "gymnasiarch": "ギムナシアリコス",
+    "charcoal_charcoal_burner": "石炭（炭焼き師）",
+    "charcoal_coal_mine": "石炭（炭鉱）",
+    "gold_ore_gold_washer": "金鉱石（金選鉱）",
+    "gold_ore_gold_mine": "金鉱石（金鉱）"
   },
   "ui": {
     "selectGood": "生産品を選択",

@@ -85,6 +85,7 @@ class Planner:
         self.fuel_seconds = prod['fuel']['duration']
         self.products = {x['guid']: x for x in read_json(SRC / 'products.json')['products']}
         self.makers: dict[int, list[dict]] = {}
+        self.variant_names: dict[str, tuple[str, str]] = {}  # name_key -> (日本語, 英語)
         for f in prod['factories']:
             if REGION not in f['regions']:
                 continue
@@ -120,7 +121,7 @@ class Planner:
         return self.id_of[guid]
 
 
-def build_node(pl: Planner, f: dict, product: int, children: list[dict], is_root: bool) -> dict:
+def build_node(pl: Planner, f: dict, product: int, children: list[dict]) -> dict:
     cost: dict[str, int] = {'money': 0}
     for c in f['constructionCosts']:
         cost['money' if c['product'] == MONEY_GUID else pl.good_id(c['product'])] = c['amount']
@@ -140,6 +141,13 @@ def build_node(pl: Planner, f: dict, product: int, children: list[dict], is_root
     }
     if not children:
         node['start_of_chain'] = True
+    if len(pl.makers[product]) > 1:
+        # 同じ商品を作る建物が複数ある(石炭・金鉱石)。図には建物名つきの名前を出す
+        node['name_key'] = f"{node['id']}_{slug(f['loca']['english'])}"
+        pl.variant_names[node['name_key']] = (
+            f"{ja(pl.products[product])}（{ja(f)}）",
+            f"{pl.products[product]['loca']['english']} ({f['loca']['english']})",
+        )
     return node
 
 
@@ -165,7 +173,7 @@ def variants(pl: Planner, product: int, trail: tuple = ()) -> list[tuple[dict, l
             choices = [name for c in combo for name in c[1]]
             if len(makers) > 1:
                 choices = [f['loca']['english']] + choices
-            result.append((build_node(pl, f, product, children, False), choices))
+            result.append((build_node(pl, f, product, children), choices))
     return result
 
 
@@ -243,6 +251,7 @@ def update_i18n(pl: Planner, chains: list[dict]) -> None:
         names[c['file']] = (c['nameJa'], c['displayName'])
     for key, (j, e) in WORKFORCE_NAME.items():
         names[key] = (j, e)
+    names.update(pl.variant_names)
     for lang, idx in (('ja', 0), ('en', 1)):
         path = LOCALES / f'{lang}.json'
         data = read_json(path)

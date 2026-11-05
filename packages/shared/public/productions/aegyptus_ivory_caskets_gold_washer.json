@@ -54,7 +54,8 @@
                         "scribe": 5
                     },
                     "input": [],
-                    "start_of_chain": true
+                    "start_of_chain": true,
+                    "name_key": "gold_ore_gold_washer"
                 }
             ]
         },

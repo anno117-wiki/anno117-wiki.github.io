@@ -68,7 +68,8 @@
                 "thresher": 4
             },
             "input": [],
-            "start_of_chain": true
+            "start_of_chain": true,
+            "name_key": "charcoal_charcoal_burner"
         }
     ],
     "region": [

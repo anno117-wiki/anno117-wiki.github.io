@@ -32,4 +32,6 @@ export interface Goods {
     maintanance_cost: MaintanceCost;
     input: Goods[];
     start_of_chain?: boolean;
+    /** 表示名の翻訳キー(goods.<name_key>)。同じ商品を作る建物が複数あるとき、建物名つきの名前を出すために使う */
+    name_key?: string;
 }

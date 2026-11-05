@@ -163,7 +163,11 @@
     "potter": "Potter",
     "chanter": "Chanter",
     "scribe": "Scribe",
-    "gymnasiarch": "Gymnasiarch"
+    "gymnasiarch": "Gymnasiarch",
+    "charcoal_charcoal_burner": "Coal (Charcoal Burner)",
+    "charcoal_coal_mine": "Coal (Coal Mine)",
+    "gold_ore_gold_washer": "Gold Ore (Gold Washer)",
+    "gold_ore_gold_mine": "Gold Ore (Gold Mine)"
   },
   "ui": {
     "selectGood": "Select a Good",

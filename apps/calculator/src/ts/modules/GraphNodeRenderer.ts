@@ -300,16 +300,23 @@ export class GraphNodeRenderer {
     private findGood(id: string, node?: Goods): GoodMetadata {
         const goods = this.goodsRepository.getGoodsList();
         const found = goods.find((good: RecipeListItem) => good.id === id);
+        // 同じ商品を作る建物が複数あるチェーン(金鉱石=金選鉱/金鉱 など)は、建物名つきの名前を使う
+        const variantName = node?.name_key ? this.i18n.t(`goods.${node.name_key}`) : '';
+        const variantLabel = variantName && variantName !== node?.name_key ? variantName : '';
         if (found) {
             return {
                 id: found.id,
-                displayName: found.displayName,
+                displayName: variantLabel || found.displayName,
                 icon: found.icon
             };
         }
 
         const translatedName = this.i18n.t(`goods.${id}`);
         const fallbackName = node?.name || id;
+
+        if (variantLabel) {
+            return { id, displayName: variantLabel, icon: id };
+        }
 
         if (translatedName !== id && translatedName !== fallbackName) {
             return { id, displayName: translatedName, icon: id };

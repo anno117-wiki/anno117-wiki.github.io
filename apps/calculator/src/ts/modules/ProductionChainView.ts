@@ -254,7 +254,9 @@ class ProductionChainView {
 
         baseInputs.forEach((input, id) => {
             const goodsListEntry = goodsList.find((g: RecipeListItem) => g.id === id);
-            const displayName = goodsListEntry?.displayName || input.name || id;
+            const variantName = input.name_key ? this.i18n.t(`goods.${input.name_key}`) : '';
+            const variantLabel = variantName && variantName !== input.name_key ? variantName : '';
+            const displayName = variantLabel || goodsListEntry?.displayName || input.name || id;
             const icon = goodsListEntry?.icon || input.id || id;
             const time = this.buildTimeBadge(input, id);
             cards.push(`
