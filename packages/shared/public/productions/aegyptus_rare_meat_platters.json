@@ -1,0 +1,64 @@
+{
+    "id": "aegyptus_rare_meat_platters",
+    "name": "Rare Meat Platters",
+    "type": "kitchen",
+    "guid": "152391",
+    "time": 120,
+    "needs_fuel": false,
+    "building_cost": {
+        "money": 0,
+        "aegyptus_mud_bricks": 2,
+        "tiles": 2,
+        "concrete": 1,
+        "mosaics": 1
+    },
+    "maintanance_cost": {
+        "money": 16,
+        "gymnasiarch": 8
+    },
+    "input": [
+        {
+            "id": "aegyptus_hippopotami",
+            "name": "Hippopotami",
+            "type": "hunting_cabin",
+            "guid": "152000",
+            "time": 60,
+            "needs_fuel": false,
+            "building_cost": {
+                "money": 0,
+                "aegyptus_mud_bricks": 3,
+                "tiles": 1,
+                "concrete": 1
+            },
+            "maintanance_cost": {
+                "money": 12,
+                "gymnasiarch": 6
+            },
+            "input": [],
+            "start_of_chain": true
+        },
+        {
+            "id": "aegyptus_pomegranates",
+            "name": "Pomegranates",
+            "type": "plantation",
+            "guid": "152145",
+            "time": 90,
+            "needs_fuel": false,
+            "building_cost": {
+                "money": 0,
+                "aegyptus_mud_bricks": 2,
+                "tiles": 3,
+                "concrete": 1
+            },
+            "maintanance_cost": {
+                "money": 8,
+                "thresher": 4
+            },
+            "input": [],
+            "start_of_chain": true
+        }
+    ],
+    "region": [
+        "Egyptian"
+    ]
+}

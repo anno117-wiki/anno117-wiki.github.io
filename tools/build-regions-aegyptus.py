@@ -52,6 +52,8 @@ def main() -> None:
 
     shared = []
     for g in json.loads((PRODUCTIONS / 'list.json').read_text(encoding='utf-8'))['goods']:
+        if g['id'].startswith('aegyptus_'):
+            continue  # 計算機用のアイギュプト分(tools/build-calc-aegyptus.py が追加)
         if not g.get('files'):
             # 原材料・中間品(チェーンJSONが無い)は、英語名(無ければ日本語名)でPlannerの商品に対応づける
             cands = by_english.get(ENGLISH_ALIAS.get(g['displayName'], g['displayName']).lower()) or by_japanese.get(ja_goods.get(g['id'], ''))

@@ -1,0 +1,99 @@
+{
+    "id": "aegyptus_sistrums",
+    "name": "Sistrums",
+    "type": "workshop",
+    "guid": "152732",
+    "time": 120,
+    "needs_fuel": false,
+    "building_cost": {
+        "money": 0,
+        "aegyptus_mud_bricks": 3,
+        "aegyptus_limestone_bricks": 1,
+        "granite": 2
+    },
+    "maintanance_cost": {
+        "money": 24,
+        "chanter": 12
+    },
+    "input": [
+        {
+            "id": "aegyptus_beads",
+            "name": "Beads",
+            "type": "pit",
+            "guid": "152064",
+            "time": 90,
+            "needs_fuel": false,
+            "building_cost": {
+                "money": 0,
+                "aegyptus_mud_bricks": 3
+            },
+            "maintanance_cost": {
+                "money": 4,
+                "thresher": 4
+            },
+            "input": [],
+            "start_of_chain": true
+        },
+        {
+            "id": "bronze",
+            "name": "Bronze",
+            "type": "smelter",
+            "guid": "152359",
+            "time": 60,
+            "needs_fuel": true,
+            "building_cost": {
+                "money": 0,
+                "aegyptus_mud_bricks": 3,
+                "aegyptus_limestone_bricks": 2,
+                "granite": 2
+            },
+            "maintanance_cost": {
+                "money": 8,
+                "potter": 3
+            },
+            "input": [
+                {
+                    "id": "tin_ore",
+                    "name": "Tin Ore",
+                    "type": "mine",
+                    "guid": "152005",
+                    "time": 30,
+                    "needs_fuel": false,
+                    "building_cost": {
+                        "money": 0,
+                        "aegyptus_mud_bricks": 2,
+                        "aegyptus_limestone_bricks": 2
+                    },
+                    "maintanance_cost": {
+                        "money": 4,
+                        "potter": 5
+                    },
+                    "input": [],
+                    "start_of_chain": true
+                },
+                {
+                    "id": "copper_ore",
+                    "name": "Copper Ore",
+                    "type": "mine",
+                    "guid": "152006",
+                    "time": 30,
+                    "needs_fuel": false,
+                    "building_cost": {
+                        "money": 0,
+                        "aegyptus_mud_bricks": 2,
+                        "aegyptus_limestone_bricks": 2
+                    },
+                    "maintanance_cost": {
+                        "money": 4,
+                        "potter": 5
+                    },
+                    "input": [],
+                    "start_of_chain": true
+                }
+            ]
+        }
+    ],
+    "region": [
+        "Egyptian"
+    ]
+}

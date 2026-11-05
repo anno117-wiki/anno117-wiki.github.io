@@ -124,6 +124,7 @@ export default {
     const entries: ProductionEntry[] = []
 
     for (const good of (listJson as { goods: any[] }).goods) {
+      if (good.id.startsWith('aegyptus_')) continue // 計算機用のアイギュプト分。wikiは専用データから足す
       if (!good.files) continue
       const firstFile = Object.values(good.files as Record<string, string>)[0]
       if (!firstFile) continue

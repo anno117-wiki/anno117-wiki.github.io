@@ -1,0 +1,78 @@
+{
+    "id": "aegyptus_kollurion",
+    "name": "Kollurion",
+    "type": "artisanal_studio",
+    "guid": "152649",
+    "time": 90,
+    "needs_fuel": false,
+    "building_cost": {
+        "money": 0,
+        "aegyptus_mud_bricks": 2,
+        "aegyptus_limestone_bricks": 3
+    },
+    "maintanance_cost": {
+        "money": 10,
+        "potter": 6
+    },
+    "input": [
+        {
+            "id": "lard",
+            "name": "Lard",
+            "type": "extractor",
+            "guid": "152333",
+            "time": 60,
+            "needs_fuel": true,
+            "building_cost": {
+                "money": 0,
+                "aegyptus_mud_bricks": 1,
+                "tiles": 2
+            },
+            "maintanance_cost": {
+                "money": 10,
+                "thresher": 3
+            },
+            "input": [
+                {
+                    "id": "aegyptus_wild_geese",
+                    "name": "Wild Geese",
+                    "type": "hunting_cabin",
+                    "guid": "151999",
+                    "time": 60,
+                    "needs_fuel": false,
+                    "building_cost": {
+                        "money": 0,
+                        "aegyptus_mud_bricks": 3
+                    },
+                    "maintanance_cost": {
+                        "money": 6,
+                        "thresher": 6
+                    },
+                    "input": [],
+                    "start_of_chain": true
+                }
+            ]
+        },
+        {
+            "id": "charcoal",
+            "name": "Coal",
+            "type": "mine",
+            "guid": "152245",
+            "time": 30,
+            "needs_fuel": false,
+            "building_cost": {
+                "money": 0,
+                "aegyptus_mud_bricks": 2,
+                "tiles": 1
+            },
+            "maintanance_cost": {
+                "money": 12,
+                "thresher": 5
+            },
+            "input": [],
+            "start_of_chain": true
+        }
+    ],
+    "region": [
+        "Egyptian"
+    ]
+}

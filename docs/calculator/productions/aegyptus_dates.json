@@ -1,0 +1,21 @@
+{
+    "id": "aegyptus_dates",
+    "name": "Dates",
+    "type": "forest_camp",
+    "guid": "152272",
+    "time": 60,
+    "needs_fuel": false,
+    "building_cost": {
+        "money": 0,
+        "aegyptus_mud_bricks": 3
+    },
+    "maintanance_cost": {
+        "money": 6,
+        "thresher": 4
+    },
+    "input": [],
+    "start_of_chain": true,
+    "region": [
+        "Egyptian"
+    ]
+}

@@ -1,0 +1,54 @@
+{
+    "id": "aegyptus_mud_bricks",
+    "name": "Mud Bricks",
+    "type": "refinery",
+    "guid": "152788",
+    "time": 30,
+    "needs_fuel": false,
+    "building_cost": {
+        "money": 250
+    },
+    "maintanance_cost": {
+        "money": 8,
+        "thresher": 2
+    },
+    "input": [
+        {
+            "id": "mud",
+            "name": "Mud",
+            "type": "pit",
+            "guid": "151998",
+            "time": 30,
+            "needs_fuel": false,
+            "building_cost": {
+                "money": 100
+            },
+            "maintanance_cost": {
+                "money": 4,
+                "thresher": 3
+            },
+            "input": [],
+            "start_of_chain": true
+        },
+        {
+            "id": "reeds",
+            "name": "Reeds",
+            "type": "gatherer",
+            "guid": "151997",
+            "time": 30,
+            "needs_fuel": false,
+            "building_cost": {
+                "money": 100
+            },
+            "maintanance_cost": {
+                "money": 2,
+                "thresher": 2
+            },
+            "input": [],
+            "start_of_chain": true
+        }
+    ],
+    "region": [
+        "Egyptian"
+    ]
+}

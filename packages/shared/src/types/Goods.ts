@@ -13,9 +13,11 @@ interface BuildingCost {
     [key: string]: number;
 }
 
+/** アイギュプトの労働力(thresher・potter・chanter・scribe・gymnasiarch)も同じ形で持つ */
 type MaintanceCost = {
-    [key in WorkerType]: number;
+    [key in WorkerType]?: number;
 } & {
+    [key: string]: number;
     money: number;
 };
 

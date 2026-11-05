@@ -1,0 +1,39 @@
+{
+    "id": "aegyptus_limestone_bricks",
+    "name": "Limestone Bricks",
+    "type": "refinery",
+    "guid": "152789",
+    "time": 60,
+    "needs_fuel": false,
+    "building_cost": {
+        "money": 0,
+        "aegyptus_mud_bricks": 4
+    },
+    "maintanance_cost": {
+        "money": 10,
+        "potter": 5
+    },
+    "input": [
+        {
+            "id": "limestone",
+            "name": "Limestone",
+            "type": "quarry",
+            "guid": "152210",
+            "time": 30,
+            "needs_fuel": false,
+            "building_cost": {
+                "money": 0,
+                "aegyptus_mud_bricks": 2
+            },
+            "maintanance_cost": {
+                "money": 12,
+                "thresher": 5
+            },
+            "input": [],
+            "start_of_chain": true
+        }
+    ],
+    "region": [
+        "Egyptian"
+    ]
+}

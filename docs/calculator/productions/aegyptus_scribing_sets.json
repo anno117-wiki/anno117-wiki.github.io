@@ -1,0 +1,96 @@
+{
+    "id": "aegyptus_scribing_sets",
+    "name": "Scribing Sets",
+    "type": "workshop",
+    "guid": "152733",
+    "time": 120,
+    "needs_fuel": false,
+    "building_cost": {
+        "money": 0,
+        "aegyptus_mud_bricks": 2,
+        "tiles": 2
+    },
+    "maintanance_cost": {
+        "money": 14,
+        "scribe": 4
+    },
+    "input": [
+        {
+            "id": "pigments",
+            "name": "Pigments",
+            "type": "extractor",
+            "guid": "152356",
+            "time": 60,
+            "needs_fuel": false,
+            "building_cost": {
+                "money": 0,
+                "aegyptus_mud_bricks": 3,
+                "tiles": 3
+            },
+            "maintanance_cost": {
+                "money": 10,
+                "scribe": 4
+            },
+            "input": [
+                {
+                    "id": "minerals",
+                    "name": "Minerals",
+                    "type": "quarry",
+                    "guid": "152247",
+                    "time": 45,
+                    "needs_fuel": false,
+                    "building_cost": {
+                        "money": 0,
+                        "aegyptus_mud_bricks": 2,
+                        "tiles": 1
+                    },
+                    "maintanance_cost": {
+                        "money": 20,
+                        "scribe": 5
+                    },
+                    "input": [],
+                    "start_of_chain": true
+                }
+            ]
+        },
+        {
+            "id": "aegyptus_papyrus",
+            "name": "Papyrus",
+            "type": "refinery",
+            "guid": "152371",
+            "time": 120,
+            "needs_fuel": false,
+            "building_cost": {
+                "money": 0,
+                "aegyptus_mud_bricks": 2,
+                "tiles": 5
+            },
+            "maintanance_cost": {
+                "money": 12,
+                "scribe": 6
+            },
+            "input": [
+                {
+                    "id": "reeds",
+                    "name": "Reeds",
+                    "type": "gatherer",
+                    "guid": "151997",
+                    "time": 30,
+                    "needs_fuel": false,
+                    "building_cost": {
+                        "money": 100
+                    },
+                    "maintanance_cost": {
+                        "money": 2,
+                        "thresher": 2
+                    },
+                    "input": [],
+                    "start_of_chain": true
+                }
+            ]
+        }
+    ],
+    "region": [
+        "Egyptian"
+    ]
+}

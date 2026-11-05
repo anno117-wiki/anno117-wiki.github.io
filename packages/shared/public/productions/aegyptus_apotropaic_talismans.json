@@ -1,0 +1,96 @@
+{
+    "id": "aegyptus_apotropaic_talismans",
+    "name": "Apotropaic Talismans",
+    "type": "artisanal_studio",
+    "guid": "152730",
+    "time": 90,
+    "needs_fuel": true,
+    "building_cost": {
+        "money": 0,
+        "aegyptus_mud_bricks": 3,
+        "aegyptus_limestone_bricks": 2
+    },
+    "maintanance_cost": {
+        "money": 12,
+        "potter": 6
+    },
+    "input": [
+        {
+            "id": "mud",
+            "name": "Mud",
+            "type": "pit",
+            "guid": "151998",
+            "time": 30,
+            "needs_fuel": false,
+            "building_cost": {
+                "money": 100
+            },
+            "maintanance_cost": {
+                "money": 4,
+                "thresher": 3
+            },
+            "input": [],
+            "start_of_chain": true
+        },
+        {
+            "id": "aegyptus_aegyptian_blue",
+            "name": "Aegyptian Blue",
+            "type": "extractor",
+            "guid": "152332",
+            "time": 90,
+            "needs_fuel": true,
+            "building_cost": {
+                "money": 0,
+                "aegyptus_mud_bricks": 1,
+                "aegyptus_limestone_bricks": 2
+            },
+            "maintanance_cost": {
+                "money": 20,
+                "potter": 8
+            },
+            "input": [
+                {
+                    "id": "copper_ore",
+                    "name": "Copper Ore",
+                    "type": "mine",
+                    "guid": "152006",
+                    "time": 30,
+                    "needs_fuel": false,
+                    "building_cost": {
+                        "money": 0,
+                        "aegyptus_mud_bricks": 2,
+                        "aegyptus_limestone_bricks": 2
+                    },
+                    "maintanance_cost": {
+                        "money": 4,
+                        "potter": 5
+                    },
+                    "input": [],
+                    "start_of_chain": true
+                },
+                {
+                    "id": "silica",
+                    "name": "Silica",
+                    "type": "pit",
+                    "guid": "152203",
+                    "time": 45,
+                    "needs_fuel": false,
+                    "building_cost": {
+                        "money": 0,
+                        "aegyptus_mud_bricks": 3,
+                        "tiles": 2
+                    },
+                    "maintanance_cost": {
+                        "money": 10,
+                        "thresher": 5
+                    },
+                    "input": [],
+                    "start_of_chain": true
+                }
+            ]
+        }
+    ],
+    "region": [
+        "Egyptian"
+    ]
+}

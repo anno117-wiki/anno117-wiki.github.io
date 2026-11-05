@@ -26,7 +26,8 @@ export default {
     // 既存の商品のうち、アイギュプトでも作れるもの
     const alsoEgyptian = new Set<string>(aegyptusJson.shared)
 
-    const goods: GoodEntry[] = (listJson as { goods: any[] }).goods.map((g) => ({
+    // 計算機の一覧(list.json)に入ったアイギュプト分(aegyptus_*)は、wikiでは専用データから足しているので除く
+    const goods: GoodEntry[] = (listJson as { goods: any[] }).goods.filter((g) => !g.id.startsWith('aegyptus_')).map((g) => ({
       id: g.id,
       nameJa: jaGoods[g.id] ?? g.displayName,
       nameEn: g.displayName,

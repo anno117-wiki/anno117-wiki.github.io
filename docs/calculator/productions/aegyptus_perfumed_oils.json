@@ -1,0 +1,81 @@
+{
+    "id": "aegyptus_perfumed_oils",
+    "name": "Perfumed Oils",
+    "type": "artisanal_studio",
+    "guid": "152651",
+    "time": 90,
+    "needs_fuel": false,
+    "building_cost": {
+        "money": 0,
+        "aegyptus_mud_bricks": 2,
+        "aegyptus_limestone_bricks": 2,
+        "granite": 2
+    },
+    "maintanance_cost": {
+        "money": 14,
+        "chanter": 8
+    },
+    "input": [
+        {
+            "id": "aegyptus_blue_lotus",
+            "name": "Blue Lotus",
+            "type": "plantation",
+            "guid": "152107",
+            "time": 120,
+            "needs_fuel": false,
+            "building_cost": {
+                "money": 0,
+                "aegyptus_mud_bricks": 2,
+                "aegyptus_limestone_bricks": 2,
+                "granite": 2
+            },
+            "maintanance_cost": {
+                "money": 4,
+                "chanter": 8
+            },
+            "input": [],
+            "start_of_chain": true
+        },
+        {
+            "id": "aegyptus_sesame_oil",
+            "name": "Sesame Oil",
+            "type": "victualler",
+            "guid": "152370",
+            "time": 90,
+            "needs_fuel": false,
+            "building_cost": {
+                "money": 0,
+                "aegyptus_mud_bricks": 2,
+                "aegyptus_limestone_bricks": 3
+            },
+            "maintanance_cost": {
+                "money": 16,
+                "potter": 8
+            },
+            "input": [
+                {
+                    "id": "aegyptus_sesame_pods",
+                    "name": "Sesame Pods",
+                    "type": "arable_farm",
+                    "guid": "151994",
+                    "time": 120,
+                    "needs_fuel": false,
+                    "building_cost": {
+                        "money": 0,
+                        "aegyptus_mud_bricks": 2,
+                        "aegyptus_limestone_bricks": 2
+                    },
+                    "maintanance_cost": {
+                        "money": 4,
+                        "thresher": 4
+                    },
+                    "input": [],
+                    "start_of_chain": true
+                }
+            ]
+        }
+    ],
+    "region": [
+        "Egyptian"
+    ]
+}

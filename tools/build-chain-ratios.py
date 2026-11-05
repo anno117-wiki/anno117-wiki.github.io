@@ -134,6 +134,8 @@ def main():
     for path in sorted(PRODUCTIONS.glob("*.json")):
         if path.name == "list.json":
             continue
+        if path.name.startswith("aegyptus_"):
+            continue  # アイギュプトは2.1のassets.xmlに無い。wikiは専用データ(production-chains-aegyptus.json)
         tree = json.loads(path.read_text(encoding="utf-8"))
         if not isinstance(tree, dict) or "id" not in tree:
             continue

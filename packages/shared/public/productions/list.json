@@ -1,7 +1,7 @@
 {
   "README": "This file contains all productions from Anno 117: Pax Romana.",
   "generated": "2026-09-19T07:41:54.434Z",
-  "count": 113,
+  "count": 133,
   "goods": [
     {
       "displayName": "Amphorae",
@@ -14,6 +14,19 @@
       "files": {
         "roman": "amphorae",
         "celtic": "amphorae_albion"
+      },
+      "category": "culture",
+      "startOfChain": false
+    },
+    {
+      "displayName": "Apotropaic Talismans",
+      "id": "aegyptus_apotropaic_talismans",
+      "icon": "aegyptus_apotropaic_talismans",
+      "regions": [
+        "Egyptian"
+      ],
+      "files": {
+        "egyptian": "aegyptus_apotropaic_talismans"
       },
       "category": "culture",
       "startOfChain": false
@@ -88,6 +101,19 @@
       ],
       "files": {
         "celtic": "bird_tongues_in_aspic"
+      },
+      "category": "food",
+      "startOfChain": false
+    },
+    {
+      "displayName": "Blue Lotus Tea",
+      "id": "aegyptus_blue_lotus_tea",
+      "icon": "aegyptus_blue_lotus_tea",
+      "regions": [
+        "Egyptian"
+      ],
+      "files": {
+        "egyptian": "aegyptus_blue_lotus_tea"
       },
       "category": "food",
       "startOfChain": false
@@ -297,6 +323,19 @@
       ],
       "files": {},
       "category": "intermediate",
+      "startOfChain": false
+    },
+    {
+      "displayName": "Dates",
+      "id": "aegyptus_dates",
+      "icon": "aegyptus_dates",
+      "regions": [
+        "Egyptian"
+      ],
+      "files": {
+        "egyptian": "aegyptus_dates"
+      },
+      "category": "food",
       "startOfChain": false
     },
     {
@@ -567,6 +606,84 @@
       "startOfChain": true
     },
     {
+      "displayName": "Ivory Caskets (Gold Mine)",
+      "id": "aegyptus_ivory_caskets_gold_mine",
+      "icon": "aegyptus_ivory_caskets",
+      "regions": [
+        "Egyptian"
+      ],
+      "files": {
+        "egyptian": "aegyptus_ivory_caskets_gold_mine"
+      },
+      "category": "culture",
+      "startOfChain": false
+    },
+    {
+      "displayName": "Ivory Caskets (Gold Washer)",
+      "id": "aegyptus_ivory_caskets_gold_washer",
+      "icon": "aegyptus_ivory_caskets",
+      "regions": [
+        "Egyptian"
+      ],
+      "files": {
+        "egyptian": "aegyptus_ivory_caskets_gold_washer"
+      },
+      "category": "culture",
+      "startOfChain": false
+    },
+    {
+      "displayName": "Kalasirises",
+      "id": "aegyptus_kalasirises",
+      "icon": "aegyptus_kalasirises",
+      "regions": [
+        "Egyptian"
+      ],
+      "files": {
+        "egyptian": "aegyptus_kalasirises"
+      },
+      "category": "fashion",
+      "startOfChain": false
+    },
+    {
+      "displayName": "Kayk",
+      "id": "aegyptus_kayk",
+      "icon": "aegyptus_kayk",
+      "regions": [
+        "Egyptian"
+      ],
+      "files": {
+        "egyptian": "aegyptus_kayk"
+      },
+      "category": "food",
+      "startOfChain": false
+    },
+    {
+      "displayName": "Kollurion (Charcoal Burner)",
+      "id": "aegyptus_kollurion_charcoal_burner",
+      "icon": "aegyptus_kollurion",
+      "regions": [
+        "Egyptian"
+      ],
+      "files": {
+        "egyptian": "aegyptus_kollurion_charcoal_burner"
+      },
+      "category": "fashion",
+      "startOfChain": false
+    },
+    {
+      "displayName": "Kollurion (Coal Mine)",
+      "id": "aegyptus_kollurion_coal_mine",
+      "icon": "aegyptus_kollurion",
+      "regions": [
+        "Egyptian"
+      ],
+      "files": {
+        "egyptian": "aegyptus_kollurion_coal_mine"
+      },
+      "category": "fashion",
+      "startOfChain": false
+    },
+    {
       "displayName": "Lard",
       "id": "lard",
       "icon": "lard",
@@ -625,6 +742,19 @@
       "files": {},
       "category": "resource",
       "startOfChain": true
+    },
+    {
+      "displayName": "Limestone Bricks",
+      "id": "aegyptus_limestone_bricks",
+      "icon": "aegyptus_limestone_bricks",
+      "regions": [
+        "Egyptian"
+      ],
+      "files": {
+        "egyptian": "aegyptus_limestone_bricks"
+      },
+      "category": "construction",
+      "startOfChain": false
     },
     {
       "displayName": "Loungers",
@@ -688,6 +818,19 @@
       "startOfChain": false
     },
     {
+      "displayName": "Milk of Poppea",
+      "id": "aegyptus_milk_of_poppea",
+      "icon": "aegyptus_milk_of_poppea",
+      "regions": [
+        "Egyptian"
+      ],
+      "files": {
+        "egyptian": "aegyptus_milk_of_poppea"
+      },
+      "category": "fashion",
+      "startOfChain": false
+    },
+    {
       "displayName": "Minerals",
       "id": "minerals",
       "icon": "minerals",
@@ -721,6 +864,19 @@
       "files": {},
       "category": "resource",
       "startOfChain": true
+    },
+    {
+      "displayName": "Mud Bricks",
+      "id": "aegyptus_mud_bricks",
+      "icon": "aegyptus_mud_bricks",
+      "regions": [
+        "Egyptian"
+      ],
+      "files": {
+        "egyptian": "aegyptus_mud_bricks"
+      },
+      "category": "construction",
+      "startOfChain": false
     },
     {
       "displayName": "Murex Snails",
@@ -778,6 +934,19 @@
       "files": {},
       "category": "resource",
       "startOfChain": true
+    },
+    {
+      "displayName": "Oil Lamps",
+      "id": "aegyptus_oil_lamps",
+      "icon": "aegyptus_oil_lamps",
+      "regions": [
+        "Egyptian"
+      ],
+      "files": {
+        "egyptian": "aegyptus_oil_lamps"
+      },
+      "category": "culture",
+      "startOfChain": false
     },
     {
       "displayName": "Olive Oil",
@@ -839,6 +1008,19 @@
       "startOfChain": false
     },
     {
+      "displayName": "Perfumed Oils",
+      "id": "aegyptus_perfumed_oils",
+      "icon": "aegyptus_perfumed_oils",
+      "regions": [
+        "Egyptian"
+      ],
+      "files": {
+        "egyptian": "aegyptus_perfumed_oils"
+      },
+      "category": "fashion",
+      "startOfChain": false
+    },
+    {
       "displayName": "Pigments",
       "id": "pigments",
       "icon": "pigments",
@@ -894,6 +1076,19 @@
       ],
       "files": {
         "roman": "porridge"
+      },
+      "category": "food",
+      "startOfChain": false
+    },
+    {
+      "displayName": "Rare Meat Platters",
+      "id": "aegyptus_rare_meat_platters",
+      "icon": "aegyptus_rare_meat_platters",
+      "regions": [
+        "Egyptian"
+      ],
+      "files": {
+        "egyptian": "aegyptus_rare_meat_platters"
       },
       "category": "food",
       "startOfChain": false
@@ -1061,6 +1256,19 @@
       "startOfChain": false
     },
     {
+      "displayName": "Scribing Sets",
+      "id": "aegyptus_scribing_sets",
+      "icon": "aegyptus_scribing_sets",
+      "regions": [
+        "Egyptian"
+      ],
+      "files": {
+        "egyptian": "aegyptus_scribing_sets"
+      },
+      "category": "culture",
+      "startOfChain": false
+    },
+    {
       "displayName": "Seashells",
       "id": "seashells",
       "icon": "seashells",
@@ -1082,6 +1290,19 @@
       "files": {},
       "category": "resource",
       "startOfChain": true
+    },
+    {
+      "displayName": "Shentis",
+      "id": "aegyptus_shentis",
+      "icon": "aegyptus_shentis",
+      "regions": [
+        "Egyptian"
+      ],
+      "files": {
+        "egyptian": "aegyptus_shentis"
+      },
+      "category": "fashion",
+      "startOfChain": false
     },
     {
       "displayName": "Silica",
@@ -1116,6 +1337,19 @@
       "files": {},
       "category": "resource",
       "startOfChain": true
+    },
+    {
+      "displayName": "Sistrums",
+      "id": "aegyptus_sistrums",
+      "icon": "aegyptus_sistrums",
+      "regions": [
+        "Egyptian"
+      ],
+      "files": {
+        "egyptian": "aegyptus_sistrums"
+      },
+      "category": "culture",
+      "startOfChain": false
     },
     {
       "displayName": "Small Birds",
@@ -1163,6 +1397,19 @@
       ],
       "files": {},
       "category": "intermediate",
+      "startOfChain": false
+    },
+    {
+      "displayName": "Stuffed Goose",
+      "id": "aegyptus_stuffed_goose",
+      "icon": "aegyptus_stuffed_goose",
+      "regions": [
+        "Egyptian"
+      ],
+      "files": {
+        "egyptian": "aegyptus_stuffed_goose"
+      },
+      "category": "food",
       "startOfChain": false
     },
     {
@@ -1319,6 +1566,19 @@
         "celtic": "weapons_albion"
       },
       "category": "construction",
+      "startOfChain": false
+    },
+    {
+      "displayName": "Wesekh Collars",
+      "id": "aegyptus_wesekh_collars",
+      "icon": "aegyptus_wesekh_collars",
+      "regions": [
+        "Egyptian"
+      ],
+      "files": {
+        "egyptian": "aegyptus_wesekh_collars"
+      },
+      "category": "fashion",
       "startOfChain": false
     },
     {

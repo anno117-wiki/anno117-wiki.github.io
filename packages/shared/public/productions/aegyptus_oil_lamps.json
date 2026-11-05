@@ -1,0 +1,77 @@
+{
+    "id": "aegyptus_oil_lamps",
+    "name": "Oil Lamps",
+    "type": "workshop",
+    "guid": "152731",
+    "time": 90,
+    "needs_fuel": true,
+    "building_cost": {
+        "money": 0,
+        "aegyptus_mud_bricks": 2,
+        "aegyptus_limestone_bricks": 3
+    },
+    "maintanance_cost": {
+        "money": 14,
+        "potter": 8
+    },
+    "input": [
+        {
+            "id": "mud",
+            "name": "Mud",
+            "type": "pit",
+            "guid": "151998",
+            "time": 30,
+            "needs_fuel": false,
+            "building_cost": {
+                "money": 100
+            },
+            "maintanance_cost": {
+                "money": 4,
+                "thresher": 3
+            },
+            "input": [],
+            "start_of_chain": true
+        },
+        {
+            "id": "aegyptus_sesame_oil",
+            "name": "Sesame Oil",
+            "type": "victualler",
+            "guid": "152370",
+            "time": 90,
+            "needs_fuel": false,
+            "building_cost": {
+                "money": 0,
+                "aegyptus_mud_bricks": 2,
+                "aegyptus_limestone_bricks": 3
+            },
+            "maintanance_cost": {
+                "money": 16,
+                "potter": 8
+            },
+            "input": [
+                {
+                    "id": "aegyptus_sesame_pods",
+                    "name": "Sesame Pods",
+                    "type": "arable_farm",
+                    "guid": "151994",
+                    "time": 120,
+                    "needs_fuel": false,
+                    "building_cost": {
+                        "money": 0,
+                        "aegyptus_mud_bricks": 2,
+                        "aegyptus_limestone_bricks": 2
+                    },
+                    "maintanance_cost": {
+                        "money": 4,
+                        "thresher": 4
+                    },
+                    "input": [],
+                    "start_of_chain": true
+                }
+            ]
+        }
+    ],
+    "region": [
+        "Egyptian"
+    ]
+}

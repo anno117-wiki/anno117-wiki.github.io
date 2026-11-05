@@ -1,0 +1,62 @@
+{
+    "id": "aegyptus_blue_lotus_tea",
+    "name": "Blue Lotus Tea",
+    "type": "victualler",
+    "guid": "152437",
+    "time": 90,
+    "needs_fuel": false,
+    "building_cost": {
+        "money": 0,
+        "aegyptus_mud_bricks": 1,
+        "aegyptus_limestone_bricks": 1,
+        "granite": 4
+    },
+    "maintanance_cost": {
+        "money": 22,
+        "chanter": 12
+    },
+    "input": [
+        {
+            "id": "aegyptus_blue_lotus",
+            "name": "Blue Lotus",
+            "type": "plantation",
+            "guid": "152107",
+            "time": 120,
+            "needs_fuel": false,
+            "building_cost": {
+                "money": 0,
+                "aegyptus_mud_bricks": 2,
+                "aegyptus_limestone_bricks": 2,
+                "granite": 2
+            },
+            "maintanance_cost": {
+                "money": 4,
+                "chanter": 8
+            },
+            "input": [],
+            "start_of_chain": true
+        },
+        {
+            "id": "honeycombs",
+            "name": "Honeycombs",
+            "type": "gatherer",
+            "guid": "152279",
+            "time": 45,
+            "needs_fuel": false,
+            "building_cost": {
+                "money": 0,
+                "aegyptus_mud_bricks": 3,
+                "tiles": 2
+            },
+            "maintanance_cost": {
+                "money": 14,
+                "thresher": 3
+            },
+            "input": [],
+            "start_of_chain": true
+        }
+    ],
+    "region": [
+        "Egyptian"
+    ]
+}

@@ -1,0 +1,58 @@
+{
+    "id": "aegyptus_stuffed_goose",
+    "name": "Stuffed Goose",
+    "type": "kitchen",
+    "guid": "152390",
+    "time": 120,
+    "needs_fuel": false,
+    "building_cost": {
+        "money": 0,
+        "aegyptus_mud_bricks": 3,
+        "aegyptus_limestone_bricks": 1
+    },
+    "maintanance_cost": {
+        "money": 14,
+        "potter": 6
+    },
+    "input": [
+        {
+            "id": "aegyptus_wild_geese",
+            "name": "Wild Geese",
+            "type": "hunting_cabin",
+            "guid": "151999",
+            "time": 60,
+            "needs_fuel": false,
+            "building_cost": {
+                "money": 0,
+                "aegyptus_mud_bricks": 3
+            },
+            "maintanance_cost": {
+                "money": 6,
+                "thresher": 6
+            },
+            "input": [],
+            "start_of_chain": true
+        },
+        {
+            "id": "wheat",
+            "name": "Wheat",
+            "type": "arable_farm",
+            "guid": "152143",
+            "time": 60,
+            "needs_fuel": false,
+            "building_cost": {
+                "money": 0,
+                "aegyptus_mud_bricks": 4
+            },
+            "maintanance_cost": {
+                "money": 6,
+                "thresher": 4
+            },
+            "input": [],
+            "start_of_chain": true
+        }
+    ],
+    "region": [
+        "Egyptian"
+    ]
+}
