@@ -353,6 +353,19 @@
   overflow-wrap: anywhere;
 }
 
+/* モバイルで折りたたむスキル効果の開閉ボタン */
+.building-skill-toggle {
+  margin-top: 2px;
+  padding: 1px 6px;
+  border: 1px solid var(--vp-c-divider);
+  border-radius: 4px;
+  background: var(--vp-c-bg-soft);
+  color: var(--vp-c-text-2);
+  font-size: 0.78em;
+  line-height: 1.4;
+  cursor: pointer;
+}
+
 /* モバイルでは表の自動幅で建物名の列が2文字幅まで潰れるため、最小幅を確保する */
 @media (max-width: 959px) {
   .building-name-cell {

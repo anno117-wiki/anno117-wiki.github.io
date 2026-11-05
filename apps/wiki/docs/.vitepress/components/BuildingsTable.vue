@@ -68,6 +68,26 @@ function formatEffects(effects: Record<string, number>): string {
     .join('・')
 }
 
+// モバイルでは、建物名の下のスキル効果の説明が長く行が縦に伸びるので、折りたたんでタップで開く
+const isMobile = ref(false)
+const openRows = ref<Set<string>>(new Set())
+
+function toggleRow(id: string) {
+  const next = new Set(openRows.value)
+  if (!next.delete(id)) next.add(id)
+  openRows.value = next
+}
+
+onMounted(() => {
+  try {
+    const mq = window.matchMedia('(max-width: 959px)')
+    isMobile.value = mq.matches
+    mq.addEventListener('change', (e) => { isMobile.value = e.matches })
+  } catch {
+    // matchMedia が使えない環境では、常に全て表示する
+  }
+})
+
 const searchText = ref('')
 const selectedTier = ref('')
 const selectedCategory = ref('')
@@ -228,9 +248,18 @@ watch(hash, scrollToHash)
             <div class="building-name-cell" style="max-width:140px;word-break:break-all;">
               <img v-if="b.icon" :src="withBase('/icons/buildings-thumb/icon_3d_' + b.icon + '.webp')" :alt="b.nameJa ?? b.nameEn" width="28" height="28" loading="lazy" style="width:28px;height:28px;vertical-align:middle;margin-right:4px;object-fit:contain;" />
               {{ b.nameJa ?? b.nameEn }}
-              <div v-for="s in b.skillBonuses" :key="s.skill" class="building-skill-bonus">
-                スキル「{{ s.skill }}」で{{ formatEffects(s.effects) }}<span v-if="s.unverified">（配信前のゲーム内データ。実機では未確認です）</span>
-              </div>
+              <button
+                v-if="isMobile && b.skillBonuses?.length"
+                type="button"
+                class="building-skill-toggle"
+                :aria-expanded="openRows.has(b.id)"
+                @click="toggleRow(b.id)"
+              >スキル効果 {{ b.skillBonuses.length }}件 {{ openRows.has(b.id) ? '▲' : '▼' }}</button>
+              <template v-if="!isMobile || openRows.has(b.id)">
+                <div v-for="s in b.skillBonuses" :key="s.skill" class="building-skill-bonus">
+                  スキル「{{ s.skill }}」で{{ formatEffects(s.effects) }}<span v-if="s.unverified">（配信前のゲーム内データ。実機では未確認です）</span>
+                </div>
+              </template>
             </div>
           </td>
           <td class="building-tier-cell"><div v-for="t in [b.tierJa, ...(b.extraTiers ?? []).map(t => t.tierJa)]" :key="t">{{ t }}</div></td>
