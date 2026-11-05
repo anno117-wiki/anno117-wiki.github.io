@@ -2,6 +2,8 @@ import itemsFull from '../../../../packages/shared/public/data/items-full.json'
 import productionListJson from '../../../../packages/shared/public/productions/list.json'
 import jaJson from '../../../../packages/shared/public/i18n/locales/ja.json'
 import buildingsEffectsJson from './buildings-effects.json'
+// アイテムごとの使える地域。tools/build-item-regions.py で生成（効果の対象の建物がある地域）
+import itemRegionsJson from './item-regions.json'
 
 // 対象名 -> リンク先の解決に使う対応表
 const GOOD_ID_BY_NAME_JA: Record<string, string> = {}
@@ -79,6 +81,20 @@ const NICHE_JA: Record<string, string> = {
   Research: '研究',
 }
 
+const REGION_JA: Record<string, string> = {
+  latium: 'ラティウム',
+  albion: 'アルビオン',
+  aegyptus: 'アイギュプト',
+}
+const REGION_KEYS = Object.keys(REGION_JA)
+
+// 表示用: 3地域とも使えるなら「全地域」、対象から地域が決まらない（船のアイテムなど）なら「指定なし」
+function regionLabels(regions: string[]): string[] {
+  if (regions.length === 0) return ['指定なし']
+  if (regions.length === REGION_KEYS.length) return ['全地域']
+  return regions.map((r) => REGION_JA[r])
+}
+
 const NICHE_ORDER = ['Economy', 'Agriculture', 'Finance', 'Diplomacy', 'Culture', 'Religion', 'Research', 'Military', 'Nautics']
 
 const RARITY_RANK: Record<string, number> = {
@@ -114,6 +130,10 @@ interface ItemEntry {
   nameJa: string
   rarityJa: string
   nicheJa: string
+  /** 使える地域（latium / albion / aegyptus）。対象から決まらないものは空 */
+  regions: string[]
+  /** 表示用。表では1つずつ改行、カードでは「／」でつなぐ */
+  regionLabels: string[]
   price: string
   /** 黒曜石で買うアイテムの枚数。コイン価格のときはnull */
   obsidianPrice: number | null
@@ -131,7 +151,7 @@ interface ItemEntry {
 }
 
 export default {
-  load(): { items: ItemEntry[]; niches: string[]; rarities: string[]; targets: string[] } {
+  load(): { items: ItemEntry[]; niches: string[]; rarities: string[]; targets: string[]; regionOptions: { value: string; label: string }[] } {
     const nicheIndex = Object.fromEntries(NICHE_ORDER.map((n, i) => [n, i]))
 
     const items: ItemEntry[] = (itemsFull as any[])
@@ -140,6 +160,8 @@ export default {
         nameJa: row.nameJa ?? row.nameEn,
         rarityJa: RARITY_JA[row.rarity] ?? row.rarity,
         nicheJa: NICHE_JA[row.niche] ?? row.niche,
+        regions: (itemRegionsJson as Record<string, string[]>)[row.guid] ?? [],
+        regionLabels: regionLabels((itemRegionsJson as Record<string, string[]>)[row.guid] ?? []),
         price: row.price ?? '',
         obsidianPrice: toObsidianPrice(row.price ?? '', Array.isArray(row.source) ? row.source : []),
         effects: Array.isArray(row.effects) ? row.effects : [],
@@ -186,6 +208,8 @@ export default {
     }
     const targets = Array.from(targetSet).sort((a, b) => a.localeCompare(b, 'ja'))
 
-    return { items, niches, rarities, targets }
+    const regionOptions = REGION_KEYS.map((value) => ({ value, label: REGION_JA[value] }))
+
+    return { items, niches, rarities, targets, regionOptions }
   },
 }

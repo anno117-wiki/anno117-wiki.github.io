@@ -8,10 +8,13 @@ import { ref, computed, onMounted, onUnmounted } from 'vue'
 import { withBase } from 'vitepress'
 import { data } from './items.data.ts'
 
+const selRegion = ref('')
 const selRarity = ref('')
 const selNiche = ref('')
 const selTarget = ref('')
 const filtered = computed(() => data.items.filter(i =>
+  // 対象から地域が決まらないアイテム（船のアイテムなど）は、どの地域を選んでも出す
+  (!selRegion.value || i.regions.length === 0 || i.regions.includes(selRegion.value)) &&
   (!selRarity.value || i.rarityJa === selRarity.value) &&
   (!selNiche.value || i.nicheJa === selNiche.value) &&
   (!selTarget.value || i.targets.includes(selTarget.value))
@@ -49,6 +52,7 @@ function toggleSourcePopover(item: ItemRow, event: MouseEvent) {
 }
 
 function resetFilters(): void {
+  selRegion.value = ''
   selRarity.value = ''
   selNiche.value = ''
   selTarget.value = ''
@@ -68,11 +72,19 @@ function fmtPrice(item: { price: string; obsidianPrice: number | null }): string
 
 # アイテム一覧
 
-Anno 117 の専門家が装着できる全アイテムの一覧です。分類・レアリティ・対象・効果・価格を掲載しています。
+Anno 117 の専門家が装着できる全アイテムの一覧です。地域・分類・レアリティ・対象・効果・価格を掲載しています。
 
 各項目でソートができます。対象の名称をクリックで関連アイテムを確認できます。
 
+「地域」は、アイテムの効果の対象になる建物がどの地域にあるかで決めています（ゲーム内データ、アップデート3.0）。船のアイテムなど、対象から地域が決まらないものは「指定なし」で、どの地域を選んでも表示します。実機での確認はまだです。
+
 <div class="item-filters">
+  <label><strong>地域:</strong>
+    <select v-model="selRegion">
+      <option value="">すべて</option>
+      <option v-for="r in data.regionOptions" :key="r.value" :value="r.value">{{ r.label }}</option>
+    </select>
+  </label>
   <label><strong>レアリティ:</strong>
     <select v-model="selRarity">
       <option value="">すべて</option>
@@ -327,7 +339,7 @@ Anno 117 の専門家が装着できる全アイテムの一覧です。分類�
 <div class="items-table-wrap">
 <table>
 <thead>
-<tr><th>名称</th><th>レアリティ</th><th>分類</th><th>対象</th><th>効果</th><th>価格</th></tr>
+<tr><th>名称</th><th style="white-space:nowrap;">地域</th><th>レアリティ</th><th>分類</th><th>対象</th><th>効果</th><th>価格</th></tr>
 </thead>
 <tbody>
 <tr v-for="item in filtered" :key="item.guid">
@@ -344,6 +356,7 @@ Anno 117 の専門家が装着できる全アイテムの一覧です。分類�
     >取得先</span>
   </div>
 </td>
+<td style="white-space:nowrap;"><div v-for="r in item.regionLabels" :key="r">{{ r }}</div></td>
 <td>{{ item.rarityJa }}</td>
 <td>{{ item.nicheJa }}</td>
 <td style="white-space:normal;">
@@ -382,6 +395,7 @@ Anno 117 の専門家が装着できる全アイテムの一覧です。分類�
   </div>
   <div class="item-card-body">
     <div class="item-card-meta">
+      <span><span class="item-card-label">地域:</span> {{ item.regionLabels.join('／') }}</span>
       <span><span class="item-card-label">レアリティ:</span> {{ item.rarityJa }}</span>
       <span><span class="item-card-label">分類:</span> {{ item.nicheJa }}</span>
     </div>
