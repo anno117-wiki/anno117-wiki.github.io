@@ -461,3 +461,12 @@
 - **PCの仕様**: Minisforum NAB9（無印）、Core i9-12900H・RAM 31.8GB・内蔵 Iris Xe・SSD。GPUが最低要件（GTX 1660相当）に届かず、USB4もOCuLinkも無いので外付けGPUも不可（背面にOCuLink表記なし、USB4デバイス検出なし）。ゲームの起動は期待しない（展開が目的で影響なし）
 - **無料プレイ**: 2026-11-05（木）19:00 JST（10:00 UTC）〜11-09、**ベースゲームのみ**（出所は Anno Union の記事 `union-update-free-weekend-and-dawn-of-the-delta-release`）。対象プラットフォームは記事に明記なし。11-04時点のSteamストアには無料の表示なし。Steamは導入済み（2026-11-04）。Steamストアの注記: Ubisoftアカウント必須・EULA同意・DRMはDenuvo
 - **PCの権限判定**: 外部からダウンロードした実行ファイル（RdaConsole等）の実行は自動で拒否された。ユーザーが `! ` 付きで実行するか、許可ルールの追加が必要
+
+## AL. 2026-11-05 日中 アイコン・スキルツリー線・計算機のアイギュプト対応（単独セッション、全てpush済み。`7523bf91`〜`bf702064`）
+- **商品アイコン30点**: 元は `_local/anno-official-data/icons-archive/.../dlc03/icon_content/production_goods/`。`tools/build-icon-thumbs.py` にこの入力元を足して96px WebPを `goods-thumb/` へ。商品idとアイコン名の対応は `tools/aegyptus_icons.py`（wiki・計算機の生成スクリプトが共有）。`regions-aegyptus.json` / `production-chains-aegyptus.json` に `icon` を出し、`goods.data.ts` / `production-chains.data.ts` が読む。地域別商品ページは元から商品アイコンを出さない
+- **スキルツリー**: 実機の研究画面で3本の線を確認（ユーザー提供のスクショ）。`techs.json` に双方向で追加。`apply-skilltree-connections.py` を再実行すると上書きされるので実行しない。ゲーム内のツリー名は「社会」（市民ではない）。表示名・ページ名・ガイドを「社会」に統一し、URLの `techs-civic` は据え置き。ゲーム内文言の「市民階層」等は別物なので触らない
+- **計算機のアイギュプト**: `tools/build-calc-aegyptus.py`（入力は Planner 3.0、出力は `packages/shared/public/` の `productions/aegyptus_*.json` 20件・`list.json` 追記・`i18n/locales` の商品名と労働力名・`icons/` 35点）。何度実行しても同じ結果。範囲はwiki生産チェーン一覧と同じ新商品18点（石炭・金鉱石が絡むコール・象牙の小箱は建物ごとに2パターン）。ノードに `name_key`（建物名つきの表示名）。労働力のキーは thresher・potter・chanter・scribe・gymnasiarch。`App.ts` の `REGIONS` に `unverified` を足し、アイギュプト選択時に注記を表示。地域アイコンはゲームの `icon_2d_region_egypt.png`（白）を黒60pxにした `icons/aegyptus.webp`
+- **不具合の修正**: URLに `?region=` を付けて開くと商品一覧が更新されない既存の不具合を `restoreFromUrl` で修正
+- **失敗の記録**: 確認用の `python -m http.server` を `docs/` で動かしたままにすると `build:site` が `EBUSY` で失敗する。PowerShell の `Get-CimInstance Win32_Process` で探して止める。開発サーバー（`bun run dev`、ポート5200）は `Get-NetTCPConnection -LocalPort 5200` の OwningProcess を止める
+- **検証**: E2E 35件成功、`vue-tsc` 通過、軒数をwikiの生産チェーン表と照合（詰め物入りガチョウ 2:1:1、コール 3:2:2:1、象牙の小箱 3:2:8:2 など一致）
+- **研究・序盤ガイド**: 研究システムの記述を「3ツリー+DLC3系統・計6系統・245件」に。更新履歴 `updates.json`（`apps/wiki/docs/.vitepress/data/updates.json`、新しい順・CRLF）に3件追記
