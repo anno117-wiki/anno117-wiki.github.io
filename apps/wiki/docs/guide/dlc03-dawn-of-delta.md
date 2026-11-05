@@ -5,7 +5,6 @@ description: Anno 117 DLC03「デルタの夜明け（Dawn of the Delta）」の
 
 # DLC03・デルタの夜明け
 
-> 出典: [Anno Union公式ブログ「Gamescom recap: Dawn of the Delta and Echoes of Kassandra」](https://www.anno-union.com/gamescom-recap-dawn-of-the-delta-and-echoes-of-kassandra/)（2026年9月3日）、[「Roadmap for 2026」](https://www.anno-union.com/roadmap-for-2026/)（2026年9月30日更新）、[「Arriving in Aegyptus」](https://www.anno-union.com/devblog-arriving-in-aegyptus/)（デブログ第1回、2026年10月15日。地形とゾーンの説明はこちらを優先）、[「Population, Floods and the power of knowledge」](https://www.anno-union.com/devblog-population-floods-and-the-power-of-knowledge/)（デブログ第2回、2026年10月22日。住民層・生産チェーン・洪水と灌漑）、[「Of unsatiable deities and warmongering rivals」](https://www.anno-union.com/devblog-of-unsatiable-deities-and-warmongering-rivals/)（デブログ第3回、2026年10月29日。新祭神・ライバル・ピラミッド）。
 > 本ページの内容は今後変更される可能性があります。
 
 > このページは作成中です。確定情報が増え次第、随時更新します。
