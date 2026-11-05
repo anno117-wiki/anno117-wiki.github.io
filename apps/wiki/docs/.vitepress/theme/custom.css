@@ -355,6 +355,7 @@
 
 /* モバイルで折りたたむスキル効果の開閉ボタン */
 .building-skill-toggle {
+  display: block;
   margin-top: 2px;
   padding: 1px 6px;
   border: 1px solid var(--vp-c-divider);
@@ -369,7 +370,20 @@
 /* モバイルでは表の自動幅で建物名の列が2文字幅まで潰れるため、最小幅を確保する */
 @media (max-width: 959px) {
   .building-name-cell {
-    min-width: 7.5em;
+    min-width: 6em;
+    max-width: 6.5em !important;
+  }
+  /* 建物名の列は左右の余白も詰める（固定列が画面の半分近くを占めないように） */
+  .buildings-table-wrap table td:first-child,
+  .buildings-table-wrap table th:first-child {
+    padding-left: 8px;
+    padding-right: 8px;
+    width: 7em;
+    max-width: 7em;
+  }
+  /* 全ページ共通の long-cell（最小幅14em）が、スキル説明の長い行の建物名セルに付いて列を広げるので、この表では外す */
+  .buildings-table-wrap table td.long-cell {
+    min-width: 6em;
   }
 }
 

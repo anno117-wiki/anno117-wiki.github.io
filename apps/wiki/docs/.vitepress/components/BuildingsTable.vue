@@ -254,7 +254,7 @@ watch(hash, scrollToHash)
                 class="building-skill-toggle"
                 :aria-expanded="openRows.has(b.id)"
                 @click="toggleRow(b.id)"
-              >スキル効果 {{ b.skillBonuses.length }}件 {{ openRows.has(b.id) ? '▲' : '▼' }}</button>
+              >スキル{{ b.skillBonuses.length }}件 {{ openRows.has(b.id) ? '▲' : '▼' }}</button>
               <template v-if="!isMobile || openRows.has(b.id)">
                 <div v-for="s in b.skillBonuses" :key="s.skill" class="building-skill-bonus">
                   スキル「{{ s.skill }}」で{{ formatEffects(s.effects) }}<span v-if="s.unverified">（配信前のゲーム内データ。実機では未確認です）</span>
