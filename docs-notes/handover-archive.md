@@ -470,3 +470,8 @@
 - **失敗の記録**: 確認用の `python -m http.server` を `docs/` で動かしたままにすると `build:site` が `EBUSY` で失敗する。PowerShell の `Get-CimInstance Win32_Process` で探して止める。開発サーバー（`bun run dev`、ポート5200）は `Get-NetTCPConnection -LocalPort 5200` の OwningProcess を止める
 - **検証**: E2E 35件成功、`vue-tsc` 通過、軒数をwikiの生産チェーン表と照合（詰め物入りガチョウ 2:1:1、コール 3:2:2:1、象牙の小箱 3:2:8:2 など一致）
 - **研究・序盤ガイド**: 研究システムの記述を「3ツリー+DLC3系統・計6系統・245件」に。更新履歴 `updates.json`（`apps/wiki/docs/.vitepress/data/updates.json`、新しい順・CRLF）に3件追記
+
+- **ガイド3.0対応 手順1・2（push済み。`8aa6ace3`・`a87810ab`）**: 手順1は `strategy`（3.0の案内）・`getting-started`（データの出どころ）・`calculator-guide`（アイギュプトと石炭金の2パターン）・`dlc03`（「未発表の要素」を「まだ分かっていない要素」に）。手順2は `early-game`（既定難易度ノーマル・スタンプ・クエストログ）・`economy`（保管タブ・祭りのルール・水道スペシャリスト・粉ひき所）・`research`（アイテム・スペシャリストタブ）。すべて「公式パッチノートの内容で、実機では未確認です」と明記。**手順3（アイギュプトを economy・trade・military・research に追記）は未着手**
+- **計算機の商品一覧の不具合修正（`0df896cb`）**: 起点商品（いわし・ウナギ・ザル貝・馬）が全地域に出ていたのを、`App.ts` の `goodsInCurrentRegion` で地域の判定に統一（ラティウム30・アルビオン32・アイギュプト20）
+- **建物効果のアイギュプトの建物にアイコン（`512e3562`）**: `build-buildings-aegyptus.py` が Planner の建物アイコン名を `icon` として出す（生産施設は生産品の絵）。画像は `tools/build-aegyptus-building-icons.py` が `buildings-thumb/` に96px WebPで用意する（既にあるものは作り直さない、見つからなければ異常終了）。**建物データを再生成したら、必ずこのスクリプトも実行する**。公共施設・住居・港は、その建物のアイコン
+- **更新履歴（`fc512af1`）**: 今日の分として合計5件（計算機のアイギュプト・商品アイコン・スキルツリーの線と社会表記・建物効果のアイコン・計算機の商品一覧の修正）
