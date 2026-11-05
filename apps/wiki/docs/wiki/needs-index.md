@@ -24,6 +24,12 @@ const TIER_CSS: Record<string, string> = {
   plebeian:  'tier-ple',
   equites:   'tier-equ',
   patrician: 'tier-pat',
+  // アイギュプトは、住民層の低い順にラティウムと同じ色。5段階目だけ緑
+  thresher:    'tier-lib',
+  potter:      'tier-ple',
+  priestess:   'tier-equ',
+  scribe:      'tier-pat',
+  gymnasiarch: 'tier-gym',
 }
 </script>
 
@@ -117,10 +123,12 @@ const TIER_CSS: Record<string, string> = {
 .tier-ple { border-color: #2563eb; color: #2563eb; }
 .tier-equ { border-color: #d97706; color: #d97706; }
 .tier-pat { border-color: #9333ea; color: #9333ea; }
+.tier-gym { border-color: #059669; color: #059669; }
 .dark .tier-lib { border-color: #9ca3af; color: #9ca3af; }
 .dark .tier-ple { border-color: #60a5fa; color: #60a5fa; }
 .dark .tier-equ { border-color: #fbbf24; color: #fbbf24; }
 .dark .tier-pat { border-color: #c084fc; color: #c084fc; }
+.dark .tier-gym { border-color: #34d399; color: #34d399; }
 </style>
 
 ## 関連データ
