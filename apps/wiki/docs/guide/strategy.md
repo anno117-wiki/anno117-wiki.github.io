@@ -15,6 +15,10 @@ description: Anno 117の攻略ガイド一覧です。序盤攻略・経済・�
 - [交易・交易ルート](/guide/trade-guide) — ルート設定・船の選び方・外交・運用のコツ
 - [軍事・戦闘](/guide/military-guide) — ユニット相性・兵舎・艦船・防衛施設・戦闘スタンス
 
+## 操作方法
+
+- [操作方法（PS5版）](/guide/controls) — ボタン操作の一覧
+
 ## DLC要素
 
 ### Year 1
@@ -22,6 +26,10 @@ description: Anno 117の攻略ガイド一覧です。序盤攻略・経済・�
 - [DLC01・灰の予言](/guide/dlc01-ashes-of-prophecy) — 2026年5月1日追加
 - [DLC02・競馬場](/guide/dlc02-hippodrome) — 2026年8月20日追加
 - [DLC03・デルタの夜明け](/guide/dlc03-dawn-of-delta) — 2026年11月5日追加予定。同じ日に無料アップデート3.0も配信予定（変更点は同ページにまとめています）
+
+## 小ネタ
+
+- [一人称モード（自由散策モード）](/guide/controls#first-person) — 解放コマンドで使える、自分視点のモード
 
 ## 関連データ
 
