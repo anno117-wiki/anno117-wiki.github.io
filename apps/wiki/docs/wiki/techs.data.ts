@@ -24,7 +24,7 @@ function parseLabel(internalName: string): string {
 
 const BRANCH_LABELS: Record<string, string> = {
   economy: '経済',
-  civic: '市民',
+  civic: '社会',
   military: '軍事',
   dlc01: '灰の予言',
   dlc02: '競馬場',

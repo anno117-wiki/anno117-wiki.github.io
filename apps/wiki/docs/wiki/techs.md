@@ -7,7 +7,7 @@ description: Anno 117のスキルツリーを5ブランチ・204件のスキル�
 import { data } from './techs.data.ts'
 
 const branchLabelMap: Record<string, string> = {
-  economy: '経済', civic: '市民', military: '軍事',
+  economy: '経済', civic: '社会', military: '軍事',
   dlc01: '灰の予言', dlc02: '競馬場', dlc03: 'デルタの夜明け',
 }
 const branchColorMap: Record<string, string> = {

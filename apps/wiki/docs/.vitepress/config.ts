@@ -322,7 +322,7 @@ export default defineConfig({
               link: '/wiki/techs',
               items: [
                 { text: '経済', link: '/wiki/techs-economy' },
-                { text: '市民', link: '/wiki/techs-civic' },
+                { text: '社会', link: '/wiki/techs-civic' },
                 { text: '軍事', link: '/wiki/techs-military' },
                 { text: '灰の予言', link: '/wiki/techs-dlc01' },
                 { text: '競馬場', link: '/wiki/techs-dlc02' },
