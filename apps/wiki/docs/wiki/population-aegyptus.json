@@ -586,6 +586,10 @@
     {
      "region": "Roman",
      "category": "Fashion"
+    },
+    {
+     "region": "Celtic",
+     "category": "Fashion"
     }
    ],
    "tiers": [
@@ -604,6 +608,14 @@
     {
      "tier": "patrician",
      "region": "Roman"
+    },
+    {
+     "tier": "plebeian",
+     "region": "Celtic"
+    },
+    {
+     "tier": "equites",
+     "region": "Celtic"
     }
    ]
   },
@@ -1067,12 +1079,20 @@
     {
      "region": "Egyptian",
      "category": "Food"
+    },
+    {
+     "region": "Roman Celtic",
+     "category": "Food"
     }
    ],
    "tiers": [
     {
      "tier": "gymnasiarch",
      "region": "Egyptian"
+    },
+    {
+     "tier": "equites",
+     "region": "RomanCeltic"
     }
    ]
   },
@@ -1126,6 +1146,10 @@
     {
      "region": "Roman",
      "category": "Household"
+    },
+    {
+     "region": "Roman Celtic",
+     "category": "Household"
     }
    ],
    "tiers": [
@@ -1144,6 +1168,14 @@
     {
      "tier": "patrician",
      "region": "Roman"
+    },
+    {
+     "tier": "plebeian",
+     "region": "RomanCeltic"
+    },
+    {
+     "tier": "equites",
+     "region": "RomanCeltic"
     }
    ]
   },
@@ -1415,12 +1447,20 @@
     {
      "region": "Egyptian",
      "category": "Food"
+    },
+    {
+     "region": "Celtic",
+     "category": "Food"
     }
    ],
    "tiers": [
     {
      "tier": "priestess",
      "region": "Egyptian"
+    },
+    {
+     "tier": "equites",
+     "region": "Celtic"
     }
    ]
   },
@@ -1432,12 +1472,20 @@
     {
      "region": "Egyptian",
      "category": "Fashion"
+    },
+    {
+     "region": "Roman Celtic",
+     "category": "Fashion"
     }
    ],
    "tiers": [
     {
      "tier": "priestess",
      "region": "Egyptian"
+    },
+    {
+     "tier": "equites",
+     "region": "RomanCeltic"
     }
    ]
   },
@@ -1466,6 +1514,10 @@
     {
      "region": "Egyptian",
      "category": "Household"
+    },
+    {
+     "region": "Celtic",
+     "category": "Household"
     }
    ],
    "tiers": [
@@ -1476,6 +1528,14 @@
     {
      "tier": "priestess",
      "region": "Egyptian"
+    },
+    {
+     "tier": "plebeian",
+     "region": "Celtic"
+    },
+    {
+     "tier": "equites",
+     "region": "Celtic"
     }
    ]
   },

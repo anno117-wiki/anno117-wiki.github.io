@@ -23,9 +23,18 @@ CATEGORY_ORDER = list(CATEGORY_JA)
 # 逆引きのカテゴリ名は既存(needs-index.json)に合わせる
 INDEX_CATEGORY = {'Wonders': 'Wonder'}
 TIER_KEY = {149681: 'thresher', 150510: 'potter', 150511: 'priestess', 150534: 'scribe', 150542: 'gymnasiarch'}
-# 3.0で、ラティウムのエクィテス・パトリキの需要に、アイギュプトの商品が加わった(実機で確認: ユーザー 2026-11-06)
-ROMAN_RESIDENCE_TIER = {3142: 'equites', 3145: 'patrician'}
-ROMAN_ADDED_NEEDS = {157040, 157041, 157042, 157043, 157044, 157045, 157046}  # ナツメヤシ・コール・書記道具一式・カフク・ポッパエアのミルク・象牙の小箱・シストラム
+# 3.0で、ラティウムとアルビオンの住居の需要に、アイギュプトの商品が加わった
+# 実機で確認したもの(ユーザー 2026-11-06): ラティウムのエクィテスのナツメヤシ(一覧もユーザー確認)、アルビオンのアルダーの青スイレン茶・魔除けのお守り。残りはゲーム内データのみ
+# 住居のGUID -> (層, 逆引きの地域)。逆引きの demands の地域名は 'Roman Celtic'(空白あり)、tiers の地域名は 'RomanCeltic'
+EXTRA_RESIDENCES = {
+    3142: ('equites', 'Roman'), 3145: ('patrician', 'Roman'),
+    6471: ('plebeian', 'Celtic'), 6472: ('equites', 'Celtic'),
+    6475: ('plebeian', 'RomanCeltic'), 6514: ('equites', 'RomanCeltic'),
+}
+DEMAND_REGION = {'Roman': 'Roman', 'Celtic': 'Celtic', 'RomanCeltic': 'Roman Celtic'}
+# ラティウム: ナツメヤシ・コール・書記道具一式・カフク・ポッパエアのミルク・象牙の小箱・シストラム
+# アルビオン(ケルト): コール・魔除けのお守り・青スイレン茶 / (ローマ文化): 書記道具一式・香油・希少な肉の盛り合わせ
+EXTRA_NEEDS = {157040, 157041, 157042, 157043, 157044, 157045, 157046, 157047, 157048, 157049, 157050, 157052, 157053}
 
 
 def ja(x: dict) -> str:
@@ -89,15 +98,15 @@ def main() -> None:
     needs_index = sorted(index.values(), key=lambda e: e['productNameJa'])
     for e in needs_index:
         e['tiers'].sort(key=lambda t: order.index(t['tier']))
-    # ラティウム(Roman)のエクィテス・パトリキの追加需要を、同じ商品の行に足す
+    # ラティウム・アルビオンの追加需要を、同じ商品の行に足す
     by_product = {e['productGuid']: e for e in needs_index}
-    roman_residences = {r['guid']: r for r in pop['residences'] if r['guid'] in ROMAN_RESIDENCE_TIER}
-    if set(roman_residences) != set(ROMAN_RESIDENCE_TIER):
-        sys.exit(f'ローマの住居が見つからない: {sorted(roman_residences)}')
-    found_roman = set()
-    for rg, tier in ROMAN_RESIDENCE_TIER.items():
-        for q in roman_residences[rg]['needs']:
-            if q['need'] not in ROMAN_ADDED_NEEDS:
+    extra_residences = {r['guid']: r for r in pop['residences'] if r['guid'] in EXTRA_RESIDENCES}
+    if set(extra_residences) != set(EXTRA_RESIDENCES):
+        sys.exit(f'住居が見つからない: {sorted(set(EXTRA_RESIDENCES) - set(extra_residences))}')
+    found_extra = set()
+    for rg, (tier, region) in EXTRA_RESIDENCES.items():
+        for q in extra_residences[rg]['needs']:
+            if q['need'] not in EXTRA_NEEDS:
                 continue
             n = needs[q['need']]
             key = str(n.get('product') or n['guid'])
@@ -105,12 +114,12 @@ def main() -> None:
             if e is None:
                 sys.exit(f'アイギュプトの逆引きに無い商品: {need_name(n)}')
             cat = INDEX_CATEGORY.get(n['category'], n['category'])
-            if not any(d['region'] == 'Roman' for d in e['demands']):
-                e['demands'].append({'region': 'Roman', 'category': cat})
-            e['tiers'].append({'tier': tier, 'region': 'Roman'})
-            found_roman.add(q['need'])
-    if found_roman != ROMAN_ADDED_NEEDS:
-        sys.exit(f'ローマの追加需要が足りない: {sorted(ROMAN_ADDED_NEEDS - found_roman)}')
+            if not any(d['region'] == DEMAND_REGION[region] for d in e['demands']):
+                e['demands'].append({'region': DEMAND_REGION[region], 'category': cat})
+            e['tiers'].append({'tier': tier, 'region': region})
+            found_extra.add(q['need'])
+    if found_extra != EXTRA_NEEDS:
+        sys.exit(f'追加需要が足りない: {sorted(EXTRA_NEEDS - found_extra)}')
     OUT.write_text(json.dumps({'source': 'ゲーム内データ(アップデート3.0)', 'tiers': tiers, 'needsIndex': needs_index},
                               ensure_ascii=False, indent=1) + '\n', encoding='utf-8', newline='\n')
     print(f'{len(tiers)}層、逆引き {len(needs_index)}商品を出力 -> {OUT}')
