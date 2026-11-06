@@ -125,6 +125,8 @@ DLC03「デルタの夜明け」で追加された神です。数値はゲーム
 
 DLC03「デルタの夜明け」で追加された神です。数値はゲームのアップデート3.0のゲーム内データで、実機の画面との照合は未確認です。局所効果2の「1段階あたりの値」も未確認です。
 
+崇拝の効果は「トトの書」で、図書館の範囲内の生産が20%上がります（実機で名前と説明文を確認）。
+
 <PatronDetail :patron="byId.thoth" :wonder-threshold="wonderThreshold" :dominant-threshold="dominantThreshold" />
 
 ## 祭り
