@@ -540,12 +540,20 @@
     {
      "region": "Egyptian",
      "category": "Food"
+    },
+    {
+     "region": "Roman",
+     "category": "Food"
     }
    ],
    "tiers": [
     {
      "tier": "priestess",
      "region": "Egyptian"
+    },
+    {
+     "tier": "patrician",
+     "region": "Roman"
     }
    ]
   },
@@ -574,6 +582,10 @@
     {
      "region": "Egyptian",
      "category": "Fashion"
+    },
+    {
+     "region": "Roman",
+     "category": "Fashion"
     }
    ],
    "tiers": [
@@ -584,6 +596,14 @@
     {
      "tier": "priestess",
      "region": "Egyptian"
+    },
+    {
+     "tier": "equites",
+     "region": "Roman"
+    },
+    {
+     "tier": "patrician",
+     "region": "Roman"
     }
    ]
   },
@@ -637,12 +657,20 @@
     {
      "region": "Egyptian",
      "category": "Household"
+    },
+    {
+     "region": "Roman",
+     "category": "Culture"
     }
    ],
    "tiers": [
     {
      "tier": "priestess",
      "region": "Egyptian"
+    },
+    {
+     "tier": "patrician",
+     "region": "Roman"
     }
    ]
   },
@@ -708,6 +736,10 @@
     {
      "region": "Egyptian",
      "category": "Food"
+    },
+    {
+     "region": "Roman",
+     "category": "Food"
     }
    ],
    "tiers": [
@@ -730,6 +762,14 @@
     {
      "tier": "gymnasiarch",
      "region": "Egyptian"
+    },
+    {
+     "tier": "equites",
+     "region": "Roman"
+    },
+    {
+     "tier": "patrician",
+     "region": "Roman"
     }
    ]
   },
@@ -821,12 +861,20 @@
     {
      "region": "Egyptian",
      "category": "Fashion"
+    },
+    {
+     "region": "Roman",
+     "category": "Fashion"
     }
    ],
    "tiers": [
     {
      "tier": "gymnasiarch",
      "region": "Egyptian"
+    },
+    {
+     "tier": "patrician",
+     "region": "Roman"
     }
    ]
   },
@@ -1074,6 +1122,10 @@
     {
      "region": "Egyptian",
      "category": "Household"
+    },
+    {
+     "region": "Roman",
+     "category": "Household"
     }
    ],
    "tiers": [
@@ -1084,6 +1136,14 @@
     {
      "tier": "gymnasiarch",
      "region": "Egyptian"
+    },
+    {
+     "tier": "equites",
+     "region": "Roman"
+    },
+    {
+     "tier": "patrician",
+     "region": "Roman"
     }
    ]
   },
@@ -1292,12 +1352,20 @@
     {
      "region": "Egyptian",
      "category": "Household"
+    },
+    {
+     "region": "Roman",
+     "category": "Household"
     }
    ],
    "tiers": [
     {
      "tier": "gymnasiarch",
      "region": "Egyptian"
+    },
+    {
+     "tier": "patrician",
+     "region": "Roman"
     }
    ]
   },
