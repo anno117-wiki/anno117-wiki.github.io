@@ -42,6 +42,11 @@ VALUE_FIX = {  # guid -> [(旧, 新)] 効果文の差し替え(3.0のパッチ�
     '42054': [('水の供給: +200%', '水の供給: +100%')],
     '106397': [('水の供給: +50%', '水の供給: +25%')],
 }
+# 強化後の効果を、Item Inspector 3.0 の items.csv の値で丸ごと差し替える(guid -> 効果のリスト)
+# ティランナ: 2.1は追加の品物がティリアンパープル。3.0は顔料になり、品物の置換(ティリアンパープル→顔料)も付く
+BOOST_FIX = {
+    '160513': ['生産性: +50%', '追加の品物: 顔料 1/2', '品物の置換: ティリアンパープル → 顔料', '維持費: -35%'],
+}
 ALLOCATION_JA = {'Villa': '住居', 'Ship': '船'}
 CONTRACT_TIER_JA = {0: '並', 1: '良', 2: '最高'}
 COMPARE_JA = {'AtLeast': '以上', 'AtMost': '以下', 'LessThan': '未満', 'MoreThan': '超'}
@@ -192,6 +197,9 @@ def main() -> None:
             if old not in it['effects']:
                 sys.exit(f"{it['nameJa']}: 直す文が見つからない: {old} / {it['effects']}")
             it['effects'] = [new if e == old else e for e in it['effects']]
+    for it in items:
+        if str(it['guid']) in BOOST_FIX:
+            it['boostEffects'] = BOOST_FIX[str(it['guid'])]
     before = len(items)
     items = [i for i in items if str(i['guid']) not in REMOVED]
     removed = before - len(items)
