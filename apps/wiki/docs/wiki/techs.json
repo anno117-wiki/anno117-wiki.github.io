@@ -5909,7 +5909,7 @@
       "nameJa": "漁られた廃墟",
       "descEn": "Opportunistic local excavators churn up much material useful in brick and concrete manufacture...",
       "descJa": "地元の日和見主義の採掘者たちは、レンガやコンクリートの製造に役立つ材料をたくさん掘り起こす…",
-      "effectJa": "石灰岩レンガの生産チェーン 生産性 +25%",
+      "effectJa": "石灰岩レンガの生産チェーン、コンクリートの生産チェーン 生産性 +25%",
       "effectEn": "Limestone Brick Chain Productivity +25%",
       "iconKey": null,
       "techIconPath": "",
