@@ -32,6 +32,9 @@ TEMPLATES = {
 ATTR = {'Population': 'population', 'Money': 'income', 'Belief': 'faith', 'Knowledge': 'knowledge',
         'Prestige': 'prestige', 'Health': 'health', 'Happiness': 'happiness', 'FireSafety': 'fireSafety'}
 TIER_KEY = {149681: 'thresher', 150510: 'potter', 150511: 'priestess', 150534: 'scribe', 150542: 'gymnasiarch'}
+# 同じアイコンの需要があっても、その建物自体は需要を満たさないので、層なしにする建物
+# ピラミッドの波止場: アイコンが需要「改修されたピラミッド」と同じだが、満たすのは完成した記念碑(実機で需要の名前を確認 2026-11-06)
+NO_TIER_NAMES = {'ピラミッドの波止場'}
 
 
 def ja(x: dict) -> str:
@@ -83,6 +86,8 @@ def main() -> None:
                     if k in ATTR:
                         attrs[ATTR[k]] += v
         tier = residence_tier.get(b['guid']) or first_need.get(b.get('icon')) or 'none'
+        if ja(b) in NO_TIER_NAMES:
+            tier = 'none'
         rows.append({
             'id': f"aegyptus_{b['guid']}",
             'nameEn': b['loca']['english'],
