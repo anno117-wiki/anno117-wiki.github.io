@@ -89,6 +89,7 @@ def main() -> None:
             'annoNodeId': str(t['guid']),
             'branchOverride': 'dlc03',
             '_source': 'Anno 117 Planner v1.0.0 (ゲーム3.0)。つながりは六角形の隣のマスから作成',
+            **({'repeatable': True} if t['repeatable'] else {}),  # 繰り返し研究できるスキル(月桂冠風の飾り枠で表示)
         })
 
     raw = OUT.read_text(encoding='utf-8', newline='')

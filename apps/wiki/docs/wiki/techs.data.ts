@@ -52,6 +52,7 @@ export interface TechEntry {
   iconKey: string | null
   techIconPath: string
   isGate: boolean
+  isRepeatable?: boolean
   color: string
   knowledgeCost: number | null
   gridX: number
@@ -93,6 +94,7 @@ export default {
       connections: t.connections ?? [],
       ...(t.annoS !== undefined ? { annoS: t.annoS } : {}),
       ...(t.annoR !== undefined ? { annoR: t.annoR } : {}),
+      ...(t.repeatable ? { isRepeatable: true } : {}),
     }
     })
 

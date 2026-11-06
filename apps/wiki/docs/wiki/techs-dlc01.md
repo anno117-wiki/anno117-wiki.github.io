@@ -10,7 +10,7 @@ import { data } from './techs.data.ts'
 
 # スキルツリー・灰の予言
 
-DLC01「灰の予言」で解放される追加スキルの一覧です。**ゲート**（太枠）は次フェーズへの解放条件です。セルをクリックすると詳細を確認できます。
+DLC01「灰の予言」で解放される追加スキルの一覧です。**ゲート**（太枠）は次フェーズへの解放条件です。<strong>月桂冠の飾り</strong>が付いたスキルは、繰り返し研究できます。セルをクリックすると詳細を確認できます。
 
 <SkillTreeBranch branch="dlc01" :techs="data.byBranch['dlc01'] || []" :meta="data.branchMeta['dlc01']" color="#d97706" />
 

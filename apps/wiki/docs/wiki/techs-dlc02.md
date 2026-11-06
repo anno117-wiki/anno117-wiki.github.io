@@ -10,7 +10,7 @@ import { data } from './techs.data.ts'
 
 # スキルツリー・競馬場
 
-DLC02「競馬場」で解放される追加スキルの一覧です。**ゲート**（太枠）は次フェーズへの解放条件です。セルをクリックすると詳細を確認できます。
+DLC02「競馬場」で解放される追加スキルの一覧です。**ゲート**（太枠）は次フェーズへの解放条件です。<strong>月桂冠の飾り</strong>が付いたスキルは、繰り返し研究できます。セルをクリックすると詳細を確認できます。
 
 <SkillTreeBranch branch="dlc02" :techs="data.byBranch['dlc02'] || []" :meta="data.branchMeta['dlc02']" color="#0891b2" />
 

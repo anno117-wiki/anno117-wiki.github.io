@@ -1085,7 +1085,8 @@
         "82032"
       ],
       "annoS": 12,
-      "annoR": 14
+      "annoR": 14,
+      "repeatable": true
     },
     {
       "guid": "82032",
@@ -1182,7 +1183,8 @@
         "80779"
       ],
       "annoS": 15,
-      "annoR": 21
+      "annoR": 21,
+      "repeatable": true
     },
     {
       "guid": "28282",
@@ -1327,7 +1329,8 @@
         "94181"
       ],
       "annoS": 19,
-      "annoR": 21
+      "annoR": 21,
+      "repeatable": true
     },
     {
       "guid": "38706",
@@ -2702,7 +2705,8 @@
         "81221"
       ],
       "annoS": 21,
-      "annoR": 25
+      "annoR": 25,
+      "repeatable": true
     },
     {
       "guid": "37918",
@@ -2795,7 +2799,8 @@
         "24722"
       ],
       "annoS": 25,
-      "annoR": 29
+      "annoR": 29,
+      "repeatable": true
     },
     {
       "guid": "82037",
@@ -2891,7 +2896,8 @@
         "38713"
       ],
       "annoS": 29,
-      "annoR": 25
+      "annoR": 25,
+      "repeatable": true
     },
     {
       "guid": "37643",
@@ -4163,7 +4169,8 @@
         "38678"
       ],
       "annoS": 33,
-      "annoR": 21
+      "annoR": 21,
+      "repeatable": true
     },
     {
       "guid": "37865",
@@ -4234,7 +4241,8 @@
         "37865"
       ],
       "annoS": 36,
-      "annoR": 18
+      "annoR": 18,
+      "repeatable": true
     },
     {
       "guid": "94254",
@@ -4330,7 +4338,8 @@
       ],
       "annoS": 38,
       "annoR": 14,
-      "branchOverride": "military"
+      "branchOverride": "military",
+      "repeatable": true
     },
     {
       "guid": "145332",
@@ -4609,7 +4618,8 @@
         "145377",
         "148041"
       ],
-      "annoR": -13
+      "annoR": -13,
+      "repeatable": true
     },
     {
       "guid": "148041",
@@ -5031,7 +5041,8 @@
       "annoR": -14,
       "branchOverride": "dlc02",
       "_source": "assets.xml v2.0.0.1 (GitHub:Taludas/Anno-117-Item-Inspector)+texts_japanese.xml / 効果文・配置はスクショ Desktop/DLC2 2026-09-07",
-      "annoNodeId": "157971"
+      "annoNodeId": "157971",
+      "repeatable": true
     },
     {
       "guid": "151476",
@@ -5875,7 +5886,8 @@
       ],
       "annoNodeId": "154477",
       "branchOverride": "dlc03",
-      "_source": "Anno 117 Planner v1.0.0 (ゲーム3.0)。つながりは六角形の隣のマスから作成"
+      "_source": "Anno 117 Planner v1.0.0 (ゲーム3.0)。つながりは六角形の隣のマスから作成",
+      "repeatable": true
     },
     {
       "guid": "185359",
@@ -5978,7 +5990,8 @@
       ],
       "annoNodeId": "154506",
       "branchOverride": "dlc03",
-      "_source": "Anno 117 Planner v1.0.0 (ゲーム3.0)。つながりは六角形の隣のマスから作成"
+      "_source": "Anno 117 Planner v1.0.0 (ゲーム3.0)。つながりは六角形の隣のマスから作成",
+      "repeatable": true
     },
     {
       "guid": "154501",
@@ -6082,7 +6095,8 @@
       ],
       "annoNodeId": "154499",
       "branchOverride": "dlc03",
-      "_source": "Anno 117 Planner v1.0.0 (ゲーム3.0)。つながりは六角形の隣のマスから作成"
+      "_source": "Anno 117 Planner v1.0.0 (ゲーム3.0)。つながりは六角形の隣のマスから作成",
+      "repeatable": true
     },
     {
       "guid": "154495",

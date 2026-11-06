@@ -10,7 +10,7 @@ import { data } from './techs.data.ts'
 
 # スキルツリー・経済
 
-知識を消費して解放できる経済スキルの一覧です。**ゲート**（太枠）は次フェーズへの解放条件です。セルをクリックすると詳細を確認できます。
+知識を消費して解放できる経済スキルの一覧です。**ゲート**（太枠）は次フェーズへの解放条件です。<strong>月桂冠の飾り</strong>が付いたスキルは、繰り返し研究できます。セルをクリックすると詳細を確認できます。
 
 <SkillTreeBranch branch="economy" :techs="data.byBranch['economy'] || []" :meta="data.branchMeta['economy']" color="#16a34a" />
 

@@ -10,7 +10,7 @@ import { data } from './techs.data.ts'
 
 # スキルツリー・社会
 
-知識を消費して解放できる社会スキルの一覧です。**ゲート**（太枠）は次フェーズへの解放条件です。セルをクリックすると詳細を確認できます。
+知識を消費して解放できる社会スキルの一覧です。**ゲート**（太枠）は次フェーズへの解放条件です。<strong>月桂冠の飾り</strong>が付いたスキルは、繰り返し研究できます。セルをクリックすると詳細を確認できます。
 
 <SkillTreeBranch branch="civic" :techs="data.byBranch['civic'] || []" :meta="data.branchMeta['civic']" color="#7c3aed" />
 

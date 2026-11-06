@@ -2,7 +2,7 @@
   <svg
     :width="svgW"
     :height="svgH"
-    style="position:absolute;top:4px;left:4px;pointer-events:none;z-index:0;"
+    style="position:absolute;top:18px;left:18px;pointer-events:none;z-index:0;"
     aria-hidden="true"
   >
     <line

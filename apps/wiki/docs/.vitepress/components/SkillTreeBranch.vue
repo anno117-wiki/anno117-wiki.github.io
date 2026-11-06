@@ -11,6 +11,7 @@
       <span :class="['color-dot', `dot-${selected.color.toLowerCase()}`]"></span>
       <strong>{{ selected.label }}</strong>
       <span v-if="selected.isGate" class="gate-badge">ゲート</span>
+      <span v-if="selected.isRepeatable" class="gate-badge repeat-badge">繰り返し研究できます</span>
       <button class="close-btn" @click="selected = null">×</button>
     </div>
     <div class="detail-body">
@@ -43,13 +44,18 @@
       <div
         v-for="tech in techs"
         :key="tech.guid"
-        :class="['tech-cell', `color-${tech.color.toLowerCase()}`, { 'is-gate': tech.isGate, 'is-selected': selected?.guid === tech.guid }]"
+        :class="['tech-cell', `color-${tech.color.toLowerCase()}`, { 'is-gate': tech.isGate, 'is-repeatable': tech.isRepeatable, 'is-selected': selected?.guid === tech.guid }]"
         :style="gridStyle(tech)"
         @mouseenter="onEnter(tech, $event)"
         @mousemove="onMove($event)"
         @mouseleave="onLeave"
         @click="selectTech(tech)"
       >
+        <svg v-if="tech.isRepeatable" class="rep-wreath" :width="WR.W" :height="WR.H" :viewBox="`0 0 ${WR.W} ${WR.H}`" aria-hidden="true" focusable="false">
+          <path v-for="(d, i) in WR.stems" :key="'s' + i" :d="d" class="rep-stem" />
+          <path v-for="(l, i) in WR.leaves" :key="'l' + i" :d="l.d" :transform="l.tf" class="rep-leaf" />
+          <circle :cx="WR.cx" :cy="WR.bowY" r="3" class="rep-leaf" />
+        </svg>
         <span v-if="tech.isGate && tech.knowledgeCost" class="gate-cost">{{ formatKnowledge(tech.knowledgeCost) }}</span>
         <span class="tech-label">{{ tech.label }}</span>
       </div>
@@ -64,6 +70,7 @@
       <div v-if="hoveredTech.effectJa" class="tt-effect">{{ stripTags(hoveredTech.effectJa) }}</div>
       <div v-if="hoveredTech.knowledgeCost" class="tt-cost">知識コスト: {{ formatKnowledge(hoveredTech.knowledgeCost) }}</div>
       <div v-if="hoveredTech.isGate" class="tt-gate">ゲート（フェーズ解放条件）</div>
+      <div v-if="hoveredTech.isRepeatable" class="tt-gate">繰り返し研究できます</div>
     </div>
   </Teleport>
 </template>
@@ -78,6 +85,7 @@ interface TechEntry {
   label: string
   color: string
   isGate: boolean
+  isRepeatable?: boolean
   knowledgeCost: number | null
   effectJa: string
   descJa: string
@@ -104,6 +112,36 @@ const hoveredTech = ref<any>(null)
 const tooltipStyle = ref('')
 const selected = ref<any>(null)
 const zoom = ref(0.6)
+
+// 繰り返し研究できるスキルの飾り枠(月桂冠風)。マス(96x40)の周りに、葉の付いた枝を左右に1本ずつ描く
+const WR = (() => {
+  const rx = 60, ry = 30, pad = 14
+  const W = 2 * (rx + pad), H = 2 * (ry + pad), cx = W / 2, cy = H / 2
+  const n = 6, phiMax = Math.PI * 0.78, len = 8, wd = 2.6
+  const stems: string[] = []
+  const leaves: { d: string; tf: string }[] = []
+  for (const side of [-1, 1]) {
+    let d = ''
+    for (let k = 0; k <= 24; k++) {
+      const phi = (k / 24) * phiMax
+      d += (k ? 'L' : 'M') + (cx + side * rx * Math.sin(phi)).toFixed(1) + ',' + (cy + ry * Math.cos(phi)).toFixed(1)
+    }
+    stems.push(d)
+    for (let k = 0; k < n; k++) {
+      const phi = (k / (n - 1)) * phiMax * 0.98
+      const x = cx + side * rx * Math.sin(phi)
+      const y = cy + ry * Math.cos(phi)
+      const base = (Math.atan2(-ry * Math.sin(phi), side * rx * Math.cos(phi)) * 180) / Math.PI
+      for (const off of [-38, 38]) {
+        leaves.push({
+          d: `M0,0 Q${len / 2},${-wd} ${len},0 Q${len / 2},${wd} 0,0Z`,
+          tf: `translate(${x.toFixed(1)} ${y.toFixed(1)}) rotate(${(base + off).toFixed(1)})`,
+        })
+      }
+    }
+  }
+  return { W, H, cx, bowY: cy + ry + 1, stems, leaves }
+})()
 
 const CELL_W = 120
 const CELL_R = 60
@@ -254,7 +292,7 @@ onUnmounted(() => {
   border: 1px solid var(--vp-c-divider);
   border-radius: 6px;
   background: var(--vp-c-bg-soft);
-  padding: 4px;
+  padding: 18px; /* 繰り返しスキルの飾り枠が、端でも切れない余白。TechLinks.vue の線の位置(top/left)と同じ値にする */
   position: relative;
   cursor: grab;
   user-select: none;
@@ -319,6 +357,15 @@ onUnmounted(() => {
 .tech-cell.is-gate .gate-cost { color: #92400e; }
 .dark .tech-cell.is-gate { border-color: #fbbf24; background: #b45309; color: #fffbeb; box-shadow: 0 0 0 2px #b45309, 0 0 10px rgba(251,191,36,0.55); }
 .dark .tech-cell.is-gate .gate-cost { color: #fef3c7; }
+
+/* 繰り返し研究できるスキル: 月桂冠風の飾り枠 */
+.tech-cell.is-repeatable { overflow: visible; z-index: 1; }
+.rep-wreath { position: absolute; left: 50%; top: 50%; transform: translate(-50%, -50%); pointer-events: none; z-index: -1; overflow: visible; }
+.rep-leaf { fill: #d4a017; stroke: #7a5a00; stroke-width: 0.5; }
+.rep-stem { fill: none; stroke: #7a5a00; stroke-width: 1; }
+.dark .rep-leaf { fill: #fbbf24; stroke: #92400e; }
+.dark .rep-stem { stroke: #92400e; }
+.repeat-badge { background: #d4a017; color: #451a03; }
 </style>
 
 <style>
