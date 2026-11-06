@@ -18,11 +18,11 @@ ROOT = Path(__file__).resolve().parent.parent
 SRC = ROOT / '_local' / 'anno-official-data' / 'v3.0-planner' / 'techs.json'
 OUT = ROOT / 'apps' / 'wiki' / 'docs' / 'wiki' / 'skill-bonuses-dlc03.json'
 ZW = '​'
-# スキルの日本語名 -> 効果を付ける建物の日本語名(サイトの建物効果の表の名前)
+# スキルの日本語名 -> 効果を付ける建物の日本語名のリスト(サイトの建物効果の表の名前)
 SKILLS = {
-    '平和の砂漠': '兵舎',
-    'カメル・ワザール': 'ラクダ牧場',
-    'ギムナシウムのスポンサーシップ': '総督のヴィラ',
+    '平和の砂漠': ['兵舎', '攻城兵器工房', '騎兵養成所'],  # 実機(2026-11-06)で3つ。Plannerは兵舎のみ
+    'カメル・ワザール': ['ラクダ牧場'],
+    'ギムナシウムのスポンサーシップ': ['総督のヴィラ'],
 }
 ATTR = {'Income': 'income', 'Income Area Effect': 'income', 'Population Area Effect': 'population',
         'Prestige': 'prestige', 'Prestige Area Effect': 'prestige', 'Happiness Area Effect': 'happiness',
@@ -33,7 +33,7 @@ def main() -> None:
     techs = json.loads(SRC.read_text(encoding='utf-8'))['techs']
     by_name = {t['loca']['japanese'].replace(ZW, ''): t for t in techs if t.get('loca') and t['name'].startswith('Tech DLC03')}
     rows = []
-    for skill, building in SKILLS.items():
+    for skill, buildings in SKILLS.items():
         tech = by_name.get(skill)
         if tech is None:
             sys.exit(f'スキルがPlannerに無い: {skill}')
@@ -43,7 +43,8 @@ def main() -> None:
             if key is None:
                 sys.exit(f"{skill}: 対応づけの無い効果 {line['text']['english']}")
             effects[key] = int(line['value'].replace('+', ''))
-        rows.append({'building': building, 'skill': skill, 'effects': effects, 'unverified': True})
+        for building in buildings:
+            rows.append({'building': building, 'skill': skill, 'effects': effects, 'unverified': True})
     OUT.write_text(json.dumps({'source': 'ゲーム内データ(アップデート3.0)', 'bonuses': rows}, ensure_ascii=False, indent=2) + '\n',
                    encoding='utf-8', newline='\n')
     for r in rows:
