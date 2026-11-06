@@ -199,7 +199,7 @@ ATTR = {
 }
 ETYPE = {
     "ProductivityUpgrade": "生産性", "MaintenanceFactorUpgrade": "維持費",
-    "WorkforceMaintenanceFactorUpgrade": "労働力維持費", "FertilityPercent": "肥沃度",
+    "WorkforceMaintenanceFactorUpgrade": "必要な労働力", "FertilityPercent": "肥沃度",
     "AddedFertility": "肥沃度追加", "BaseHealthUpgrade": "基礎耐久", "SelfHealUpgrade": "自己回復",
     "BuffBaseSpeedUpgrade": "基礎速度", "BuffTransferSpeedUpgrade": "輸送速度",
     "ResolverUnitCountUpgrade": "ユニット数", "ReplaceWorkforce": "労働力置換",
