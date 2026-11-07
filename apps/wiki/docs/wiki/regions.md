@@ -12,7 +12,7 @@ const categoryLabel: Record<string, string> = {
   fashion: 'ファッション',
   culture: '文化',
   household: '家庭',
-  intermediate: '中間品',
+  intermediate: '中間財',
   resource: '原材料',
 }
 </script>
