@@ -17,7 +17,7 @@
           <span class="uc-badge" :class="c.type">{{ TYPE_LABEL[c.type] ?? c.type }}</span>
           <span class="uc-date">{{ c.createdAt.slice(0, 10) }}</span>
         </div>
-        <p class="uc-body">{{ c.body }}</p>
+        <p class="uc-body"><template v-for="(s, i) in splitLinks(c.body)" :key="i"><a v-if="s.url" :href="s.url" target="_blank" rel="noopener noreferrer">{{ s.text }}</a><template v-else>{{ s.text }}</template></template></p>
         <button v-if="replyingTo !== c.number" type="button" class="uc-reply-toggle" @click="openReply(c.number)">
           返信する
         </button>
@@ -44,7 +44,7 @@
               <span class="uc-reply-author">{{ r.author }}</span>
               <span class="uc-date">{{ r.createdAt.slice(0, 10) }}</span>
             </div>
-            <p class="uc-body">{{ r.body }}</p>
+            <p class="uc-body"><template v-for="(s, i) in splitLinks(r.body)" :key="i"><a v-if="s.url" :href="s.url" target="_blank" rel="noopener noreferrer">{{ s.text }}</a><template v-else>{{ s.text }}</template></template></p>
           </div>
         </div>
       </div>
@@ -86,6 +86,7 @@
 <script setup lang="ts">
 import { ref, onMounted, watch } from 'vue'
 import { useData } from 'vitepress'
+import { splitLinks } from './splitLinks'
 
 const WORKER_URL = import.meta.env.VITE_WORKER_URL as string
 
