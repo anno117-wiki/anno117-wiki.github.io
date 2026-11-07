@@ -5475,7 +5475,7 @@
       "nameJa": "イテルの旅人",
       "descEn": "With Kashtan traders bringing precious metals from the south, we could come to a mutually beneficial arrangement.",
       "descJa": "カシュタの商人たちが南から貴金属を運んでくるなら、お互いに利益のある取引ができるはずだ。",
-      "effectJa": "NPCに小麦を50t売却するごとに、金を1t獲得する。",
+      "effectJa": "NPCに小麦を50t売却するごとに、金を1t獲得する。（ゲーム内の日本語表示は、売る商品と得る商品が逆に書かれています。内部データと他言語の表示に合わせて、この向きで載せています）",
       "effectEn": "1t Gold gained, for every 50t Wheat sold to NPCs.",
       "iconKey": null,
       "techIconPath": "",
