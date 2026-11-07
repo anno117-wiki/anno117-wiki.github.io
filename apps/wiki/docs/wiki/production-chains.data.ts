@@ -3,6 +3,7 @@ import { resolve, dirname } from 'node:path'
 import { fileURLToPath } from 'node:url'
 import listJson from '../../../../packages/shared/public/productions/list.json'
 import jaJson from '../../../../packages/shared/public/i18n/locales/ja.json'
+import { wikiCategory } from './goods-category'
 // 100%効率の建物数の比率。tools/build-chain-ratios.py で生成
 import ratiosJson from './chain-ratios.json'
 // 共通商品のアイギュプト版の比率。tools/build-calc-aegyptus.py で生成(chain-ratios.json はassets.xml(v2.1)由来で、アイギュプトは入らない)
@@ -160,7 +161,7 @@ export default {
         nameJa,
         nameEn: good.displayName,
         icon: good.icon ?? '',
-        category: good.category,
+        category: wikiCategory(good.id, good.category),
         regions: good.regions,
         buildingType: prod.type ?? '',
         timeSeconds: prod.time ?? 0,

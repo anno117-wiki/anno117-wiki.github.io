@@ -1,5 +1,6 @@
 import listJson from '../../../../packages/shared/public/productions/list.json'
 import jaJson from '../../../../packages/shared/public/i18n/locales/ja.json'
+import { wikiCategory } from './goods-category'
 // アイギュプト(DLC03)で作れる商品。tools/build-regions-aegyptus.py で生成
 import aegyptusJson from './regions-aegyptus.json'
 
@@ -46,7 +47,7 @@ export default {
       id: g.id,
       nameJa: jaGoods[g.id] ?? g.displayName,
       nameEn: g.displayName,
-      category: g.category,
+      category: wikiCategory(g.id, g.category),
       regionsJa: regions.map((r) => REGION_LABEL[r]).join('・'),
     })
 

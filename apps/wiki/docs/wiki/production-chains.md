@@ -11,7 +11,7 @@ import ProductionChainSvg from '../.vitepress/components/ProductionChainSvg.vue'
 
 const categoryLabels: Record<string, string> = {
   food: '食料',
-  construction: '建設',
+  construction: '建設資材',
   fashion: 'ファッション',
   culture: '文化',
   household: '家庭',
