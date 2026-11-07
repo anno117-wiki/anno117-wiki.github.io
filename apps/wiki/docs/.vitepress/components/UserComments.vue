@@ -316,6 +316,13 @@ watch(() => page.value.relativePath, fetchComments)
   white-space: pre-wrap;
 }
 
+.uc-body a {
+  color: var(--vp-c-brand-1);
+  text-decoration: underline;
+  text-underline-offset: 2px;
+  word-break: break-all;
+}
+
 .uc-reply-toggle {
   margin-top: 6px;
   padding: 0;
