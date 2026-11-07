@@ -1,6 +1,6 @@
 ---
-title: Anno 117 全商品一覧｜食料・建設・文化・原材料
-description: Anno 117の全商品を食料・建設・ファッション・文化・家庭・中間財・原材料の7分類で一覧表示。ゲーム内データ準拠の日本語商品名と地域情報を掲載。
+title: Anno 117 全商品一覧｜食料・建設資材・文化・原材料
+description: Anno 117の全商品を食料・建設資材・ファッション・文化・家庭・中間財・原材料の7分類で一覧表示。ゲーム内データ準拠の日本語商品名と地域情報を掲載。
 ---
 
 <script setup lang="ts">
@@ -10,7 +10,7 @@ import { data } from './goods.data.ts'
 
 const categoryLabels: Record<string, string> = {
   food: '食料',
-  construction: '建設',
+  construction: '建設資材',
   fashion: 'ファッション',
   culture: '文化',
   household: '家庭',
