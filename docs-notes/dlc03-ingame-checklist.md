@@ -100,7 +100,7 @@ PS5の実機で何を控えれば、wikiと計算機に反映できるかをま�
 | 商品 | Scribing Sets | 書字セット | 書記の需要（原文は "scribing sets"）。上の「筆記用具」と同じ商品かを確認 | |
 | 軍事ユニット | Dromedarii / Kumatic Archers | ラクダ騎兵部隊 / クマトの弓兵 | 公式英名はKumatic。実機の日本語名と照合済みか要確認 | |
 | 船 | Epholkion / Aba | スキフ / ガレー船 | 川専用・改造不可。英語名は記事の表記 | |
-| 人物 | Epistrategos Heron / Valeria / Kandis / Decimus Naukratius Nerva | エピストラトス・ヘロン / ウァレリア / カンディス / デキムス・ナウクラティウス・ネルウァ | 記事は「カシュタのカンディス」と表記。確度は中 | |
+| 人物 | Epistrategos Heron / Valeria / Kandis / Decimus Naukratius Nerva | ヘロン地方長官 / ウァレリア / カンディス / デキムス・ナウクラティウス・ネルウァ | 記事は「カシュタのカンディス」と表記。確度は中 | |
 | 専門家 | Catfriend Cattulus | ネコ好きのカットゥルス | ネズミ対策。確度は低〜中 | |
 
 ## 2. 住民層
