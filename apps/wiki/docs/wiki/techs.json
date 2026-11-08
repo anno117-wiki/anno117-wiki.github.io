@@ -5449,7 +5449,7 @@
       "nameJa": "外人部隊",
       "descEn": "If they be worthy of the legion, let all be enlisted, whatever their provenance...",
       "descJa": "彼らが軍団にふさわしいなら、出自に関わらず全員を徴募しよう…",
-      "effectJa": "解放: 外人部隊",
+      "effectJa": "解放: ローマ軍団兵の徴兵（ラティウム以外でも可能）",
       "effectEn": "Unlocks: Foreign Legion",
       "iconKey": null,
       "techIconPath": "",
