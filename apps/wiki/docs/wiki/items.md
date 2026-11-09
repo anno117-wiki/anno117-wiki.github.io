@@ -12,12 +12,14 @@ const selRegion = ref('')
 const selRarity = ref('')
 const selNiche = ref('')
 const selTarget = ref('')
+const selName = ref('')
 const filtered = computed(() => data.items.filter(i =>
   // 対象から地域が決まらないアイテム（船のアイテムなど）は、どの地域を選んでも出す
   (!selRegion.value || i.regions.length === 0 || i.regions.includes(selRegion.value)) &&
   (!selRarity.value || i.rarityJa === selRarity.value) &&
   (!selNiche.value || i.nicheJa === selNiche.value) &&
-  (!selTarget.value || i.targets.includes(selTarget.value))
+  (!selTarget.value || i.targets.includes(selTarget.value)) &&
+  (!selName.value || i.nameJa.includes(selName.value.trim()))
 ))
 
 onMounted(() => {
@@ -56,6 +58,7 @@ function resetFilters(): void {
   selRarity.value = ''
   selNiche.value = ''
   selTarget.value = ''
+  selName.value = ''
 }
 
 function fmtPrice(item: { price: string; obsidianPrice: number | null }): string {
@@ -79,6 +82,9 @@ Anno 117 の専門家が装着できる全アイテムの一覧です。地域�
 「地域」は、アイテムの効果の対象になる建物がどの地域にあるかで決めています（ゲーム内データ、アップデート3.0）。船のアイテムなど、対象から地域が決まらないものは「指定なし」で、どの地域を選んでも表示します。実機での確認はまだです。
 
 <div class="item-filters">
+  <label><strong>アイテム名:</strong>
+    <input type="text" v-model="selName" placeholder="アイテム名で検索" />
+  </label>
   <label><strong>地域:</strong>
     <select v-model="selRegion">
       <option value="">すべて</option>
@@ -98,7 +104,7 @@ Anno 117 の専門家が装着できる全アイテムの一覧です。地域�
     </select>
   </label>
   <label><strong>対象:</strong>
-    <input type="text" v-model="selTarget" list="item-target-list" placeholder="名称で検索" />
+    <input type="text" v-model="selTarget" list="item-target-list" placeholder="対象名で検索" />
     <datalist id="item-target-list">
       <option v-for="t in data.targets" :key="t" :value="t" />
     </datalist>
