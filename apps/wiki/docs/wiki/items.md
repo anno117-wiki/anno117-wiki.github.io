@@ -377,9 +377,9 @@ Anno 117 の専門家が装着できる全アイテムの一覧です。地域�
 </td>
 <td style="white-space:normal;">
   {{ item.effects.length ? item.effects.join('、') : '—' }}
-  <div v-if="item.boostEffects.length" class="item-boost-block">
+  <div v-if="item.boostEffects.length || item.boostHint || item.boostCondition" class="item-boost-block">
     <div class="item-boost-label">覚醒<template v-if="item.boostHint">: {{ item.boostHint }}</template><template v-if="item.boostCondition">（条件: {{ item.boostCondition }}）</template></div>
-    <div>{{ item.boostEffects.join('、') }}</div>
+    <div>{{ item.boostEffects.length ? item.boostEffects.join('、') : '覚醒後の効果は未確認です' }}</div>
   </div>
 </td>
 <td>{{ fmtPrice(item) }}</td>
@@ -422,9 +422,9 @@ Anno 117 の専門家が装着できる全アイテムの一覧です。地域�
       <span class="item-card-label">効果:</span>
       <span>{{ item.effects.length ? item.effects.join('、') : '—' }}</span>
     </div>
-    <div v-if="item.boostEffects.length" class="item-card-row item-boost-block">
+    <div v-if="item.boostEffects.length || item.boostHint || item.boostCondition" class="item-card-row item-boost-block">
       <div class="item-boost-label">覚醒<template v-if="item.boostHint">: {{ item.boostHint }}</template><template v-if="item.boostCondition">（条件: {{ item.boostCondition }}）</template></div>
-      <div>{{ item.boostEffects.join('、') }}</div>
+      <div>{{ item.boostEffects.length ? item.boostEffects.join('、') : '覚醒後の効果は未確認です' }}</div>
     </div>
     <div class="item-card-row">
       <span class="item-card-label">価格:</span>
