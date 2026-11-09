@@ -1,5 +1,5 @@
 ---
-title: DLC02・競馬場
+title: Anno 117 DLC02「競馬場」攻略・新要素まとめ
 description: Anno 117 DLC02「競馬場（The Hippodrome）」の攻略ガイド。戦車競走モニュメント・レースの育成要素・輝きボーナス・無料アップデート2.0を解説。
 ---
 
