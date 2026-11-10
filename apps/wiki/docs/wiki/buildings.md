@@ -18,6 +18,7 @@ import BuildingsTable from '../.vitepress/components/BuildingsTable.vue'
 
 ## 関連データ
 
+- [建物データ](/wiki/building-specs) — 建物のサイズ・範囲・配置制限・建設費・維持費
 - [住民層](/wiki/population) — 建物の効果を受ける住民層と需要
 - [アイテム一覧](/wiki/items) — 専門家に装着して建物の効果を伸ばすアイテム
 
