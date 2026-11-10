@@ -105,10 +105,10 @@ def radius_text(b):
     if not r:
         return ""
     if r["type"] == "Radius":
-        return f"半径{r['value']:g}"
+        return f"半径{r['value']:g}タイル"
     if r["type"] == "StreetDistance":
-        # 道のりは、つなぐ道の種類（土・舗装・大理石）で変わる。種類ごとの値が実機で確認できるまで数値は出さない
-        return "道のり（道の種類で変わる）"
+        # 基本距離: 砂利道でつないだときの距離(元データの値)。舗装道・大理石の道では、これより遠くまで届く
+        return f"基本距離{r['value']:g}タイル"
     raise ValueError(f"未知の範囲の種類: {r['type']} (guid {b['guid']})")
 
 
