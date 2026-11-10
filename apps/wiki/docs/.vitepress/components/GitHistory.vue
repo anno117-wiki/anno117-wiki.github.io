@@ -1,15 +1,18 @@
 <template>
   <details class="git-history" open>
     <summary>更新履歴</summary>
-    <ul>
-      <li v-for="(entry, i) in recent" :key="i">
-        <span class="gh-badge" :class="entry.type">{{ BADGE_LABEL[entry.type] }}</span>
-        <span class="gh-date">{{ entry.date }}</span>
-        <a v-if="entry.link" class="gh-text" :href="withBase(entry.link)">{{ entry.title }}</a>
-        <a v-else-if="entry.type === 'fix'" class="gh-text" :href="withBase('/updates')">{{ entry.title }}</a>
-        <span v-else class="gh-text">{{ entry.title }}</span>
-      </li>
-    </ul>
+    <template v-for="group in groups" :key="group.heading">
+      <h4 class="gh-heading">{{ group.heading }}</h4>
+      <ul>
+        <li v-for="(entry, i) in group.items" :key="i">
+          <span class="gh-badge" :class="entry.type">{{ BADGE_LABEL[entry.type] }}</span>
+          <span class="gh-date">{{ entry.date }}</span>
+          <a v-if="entry.link" class="gh-text" :href="withBase(entry.link)">{{ entry.title }}</a>
+          <a v-else-if="entry.type === 'fix'" class="gh-text" :href="withBase('/updates')">{{ entry.title }}</a>
+          <span v-else class="gh-text">{{ entry.title }}</span>
+        </li>
+      </ul>
+    </template>
     <a class="gh-all" :href="withBase('/updates')">すべて見る →</a>
   </details>
 </template>
@@ -20,14 +23,22 @@ import { withBase } from 'vitepress'
 import updates from '../data/updates.json'
 import { useCommentEntries, type LogEntry } from './commentEntries'
 
-const RECENT_COUNT = 5
+const RECENT_UPDATE_COUNT = 5
+const RECENT_COMMENT_COUNT = 3
 const BADGE_LABEL: Record<string, string> = { post: '投稿', fix: '修正', comment: 'コメント' }
 
 const commentEntries = useCommentEntries()
 
-const recent = computed<LogEntry[]>(() =>
-  [...updates, ...commentEntries.value].sort((a, b) => b.date.localeCompare(a.date)).slice(0, RECENT_COUNT),
-)
+const byDateDesc = (a: LogEntry, b: LogEntry) => b.date.localeCompare(a.date)
+
+// コメントを上、更新履歴を下に置く（更新履歴ページと同じ並び）。コメントが無い間は更新履歴だけ出す
+const groups = computed(() => {
+  const list: { heading: string; items: LogEntry[] }[] = []
+  const comments = [...commentEntries.value].sort(byDateDesc).slice(0, RECENT_COMMENT_COUNT)
+  if (comments.length > 0) list.push({ heading: 'みなさんからのコメント', items: comments })
+  list.push({ heading: '更新', items: [...updates].sort(byDateDesc).slice(0, RECENT_UPDATE_COUNT) })
+  return list
+})
 </script>
 
 <style scoped>
@@ -53,6 +64,13 @@ const recent = computed<LogEntry[]>(() =>
 }
 details:not([open]) summary::before {
   content: '▸ ';
+}
+
+.gh-heading {
+  margin: 8px 0 4px;
+  font-size: 10px;
+  font-weight: 700;
+  color: var(--vp-c-text-2);
 }
 
 ul {
