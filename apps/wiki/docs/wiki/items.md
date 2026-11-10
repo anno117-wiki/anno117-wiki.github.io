@@ -18,7 +18,7 @@ const filtered = computed(() => data.items.filter(i =>
   (!selRegion.value || i.regions.length === 0 || i.regions.includes(selRegion.value)) &&
   (!selRarity.value || i.rarityJa === selRarity.value) &&
   (!selNiche.value || i.nicheJa === selNiche.value) &&
-  (!selTarget.value.trim() || i.targets.some(t => t.includes(selTarget.value.trim()))) &&
+  (!selTarget.value.trim() || i.targets.split('、').some(t => t.includes(selTarget.value.trim()))) &&
   (!selName.value || i.nameJa.includes(selName.value.trim()))
 ))
 

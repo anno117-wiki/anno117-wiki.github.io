@@ -72,6 +72,12 @@ details:not([open]) summary::before {
   font-weight: 700;
   color: var(--vp-c-text-2);
 }
+/* 2つ目以降の枠(更新)は、上の枠(コメント)との間に罫線を引く */
+.gh-heading:not(:first-of-type) {
+  margin-top: 12px;
+  padding-top: 10px;
+  border-top: 1px solid var(--vp-c-divider);
+}
 
 ul {
   list-style: none;
