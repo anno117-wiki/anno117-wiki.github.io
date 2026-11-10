@@ -1,45 +1,90 @@
 <template>
   <div class="update-log">
-    <div v-for="(entry, i) in entries" :key="i" class="update-entry">
-      <div class="update-meta">
-        <span class="ul-badge" :class="entry.type">{{ BADGE_LABEL[entry.type] }}</span>
-        <span class="ul-date">{{ entry.date }}</span>
-      </div>
-      <div class="update-body">
-        <a v-if="entry.link" class="ul-title" :href="withBase(entry.link)">{{ entry.title }}</a>
-        <span v-else class="ul-title">{{ entry.title }}</span>
-        <p v-if="entry.summary" class="ul-summary">{{ entry.summary }}</p>
-        <div v-for="(r, j) in entry.replies" :key="j" class="ul-reply">
-          <span class="ul-reply-meta">{{ r.author }}・{{ r.date }}</span>
-          <p class="ul-summary">{{ r.summary }}</p>
+    <section v-for="section in sections" :key="section.id" class="ul-section">
+      <h2 :id="section.id">{{ section.heading }}</h2>
+      <div class="ul-list">
+        <div v-for="(entry, i) in section.items" :key="i" class="update-entry">
+          <div class="update-meta">
+            <span class="ul-badge" :class="entry.type">{{ BADGE_LABEL[entry.type] }}</span>
+            <span class="ul-date">{{ entry.date }}</span>
+          </div>
+          <div class="update-body">
+            <a v-if="entry.link" class="ul-title" :href="withBase(entry.link)">{{ entry.title }}</a>
+            <span v-else class="ul-title">{{ entry.title }}</span>
+            <p v-if="entry.summary" class="ul-summary">{{ entry.summary }}</p>
+            <div v-for="(r, j) in entry.replies" :key="j" class="ul-reply">
+              <span class="ul-reply-meta">{{ r.author }}・{{ r.date }}</span>
+              <p class="ul-summary">{{ r.summary }}</p>
+            </div>
+          </div>
         </div>
       </div>
-    </div>
+      <button v-if="section.canExpand" type="button" class="ul-more" @click="showAllComments = true">
+        もっと見る（全{{ comments.length }}件）
+      </button>
+    </section>
   </div>
-
 </template>
 
 <script setup lang="ts">
-import { computed } from 'vue'
+import { computed, ref } from 'vue'
 import { withBase } from 'vitepress'
 import updates from '../data/updates.json'
 import { useCommentEntries, type LogEntry } from './commentEntries'
 
 const BADGE_LABEL: Record<string, string> = { post: '追加', fix: '修正', comment: 'コメント' }
 
-const commentEntries = useCommentEntries()
+// 最初に見せるコメントの件数。残りは「もっと見る」で開く
+const INITIAL_COMMENT_COUNT = 5
 
-const entries = computed<LogEntry[]>(() =>
-  [...updates, ...commentEntries.value].sort((a, b) => b.date.localeCompare(a.date)),
-)
+const commentEntries = useCommentEntries()
+const showAllComments = ref(false)
+
+const byDateDesc = (a: LogEntry, b: LogEntry) => b.date.localeCompare(a.date)
+const comments = computed<LogEntry[]>(() => [...commentEntries.value].sort(byDateDesc))
+const updateEntries = computed<LogEntry[]>(() => [...updates].sort(byDateDesc))
+
+// コメントを上、更新履歴を下に置く。コメントが無い間（読み込み中・取得失敗）はコメント枠ごと出さない
+const sections = computed(() => {
+  const hasMore = !showAllComments.value && comments.value.length > INITIAL_COMMENT_COUNT
+  const list = []
+  if (comments.value.length > 0) {
+    list.push({
+      id: 'comments-from-everyone',
+      heading: 'みなさんからのコメント',
+      items: hasMore ? comments.value.slice(0, INITIAL_COMMENT_COUNT) : comments.value,
+      canExpand: hasMore,
+    })
+  }
+  list.push({ id: 'update-history', heading: '更新履歴', items: updateEntries.value, canExpand: false })
+  return list
+})
 </script>
 
 <style scoped>
 .update-log {
+  margin-top: 16px;
+}
+
+.ul-list {
   display: flex;
   flex-direction: column;
   gap: 16px;
   margin-top: 16px;
+}
+
+.ul-more {
+  margin-top: 12px;
+  padding: 6px 14px;
+  font-size: 13px;
+  color: var(--vp-c-brand-1);
+  border: 1px solid var(--vp-c-divider);
+  border-radius: 6px;
+  background: var(--vp-c-bg-soft);
+  cursor: pointer;
+}
+.ul-more:hover {
+  border-color: var(--vp-c-brand-1);
 }
 
 .update-entry {

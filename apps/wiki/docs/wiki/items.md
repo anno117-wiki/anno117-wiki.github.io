@@ -18,7 +18,7 @@ const filtered = computed(() => data.items.filter(i =>
   (!selRegion.value || i.regions.length === 0 || i.regions.includes(selRegion.value)) &&
   (!selRarity.value || i.rarityJa === selRarity.value) &&
   (!selNiche.value || i.nicheJa === selNiche.value) &&
-  (!selTarget.value || i.targets.includes(selTarget.value)) &&
+  (!selTarget.value.trim() || i.targets.some(t => t.includes(selTarget.value.trim()))) &&
   (!selName.value || i.nameJa.includes(selName.value.trim()))
 ))
 
@@ -82,7 +82,7 @@ Anno 117 の専門家が装着できる全アイテムの一覧です。地域�
 - 下の絞り込み欄で表を絞れます。複数を指定すると、すべてに当てはまるアイテムだけが残ります。
   - アイテム名: 名前の一部を入れると絞り込めます。
   - 地域・レアリティ・分類: 一覧から選びます。
-  - 対象名: 入力すると候補が出るので、選んでください。
+  - 対象名: 名前の一部を入れると絞り込めます。入力すると候補も出ます。
 - 「リセット」で、指定した条件をすべて解除します。右側の件数は、表示中のアイテム数です。
 - 「対象」欄の名前をクリックすると、その建物・生産チェーン・住居のページに移動します。
 - 「取得先」は、PCならマウスを乗せる、スマホならタップすると、入手先が出ます。
