@@ -93,7 +93,7 @@ interface Building {
 }
 
 const REGIONS = ['ラティウム', 'アルビオン', 'アイギュプト']
-const PLACEMENTS = ['川スロット', '山スロット']
+const PLACEMENTS = ['氾濫原限定', '川スロット', '山スロット']
 
 const buildings = specs.buildings as Building[]
 const categories = specs.categories as string[]

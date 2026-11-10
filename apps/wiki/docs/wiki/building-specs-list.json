@@ -4547,7 +4547,9 @@
    "width": 4,
    "height": 3,
    "radius": "半径22タイル",
-   "placement": [],
+   "placement": [
+    "氾濫原限定"
+   ],
    "construction": [
     {
      "name": "デナリウス",
@@ -5916,7 +5918,9 @@
    "width": 4,
    "height": 5,
    "radius": "",
-   "placement": [],
+   "placement": [
+    "氾濫原限定"
+   ],
    "construction": [
     {
      "name": "泥レンガ",
@@ -5945,7 +5949,9 @@
    "width": 5,
    "height": 6,
    "radius": "",
-   "placement": [],
+   "placement": [
+    "氾濫原限定"
+   ],
    "construction": [
     {
      "name": "デナリウス",
@@ -6514,7 +6520,9 @@
    "width": 4,
    "height": 5,
    "radius": "半径22タイル",
-   "placement": [],
+   "placement": [
+    "氾濫原限定"
+   ],
    "construction": [
     {
      "name": "泥レンガ",
@@ -6551,7 +6559,9 @@
    "width": 5,
    "height": 4,
    "radius": "",
-   "placement": [],
+   "placement": [
+    "氾濫原限定"
+   ],
    "construction": [
     {
      "name": "泥レンガ",
@@ -8068,7 +8078,9 @@
    "width": 1,
    "height": 1,
    "radius": "",
-   "placement": [],
+   "placement": [
+    "氾濫原限定"
+   ],
    "construction": [
     {
      "name": "デナリウス",

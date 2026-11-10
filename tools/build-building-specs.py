@@ -93,6 +93,9 @@ def generalize_workforce(entries):
 def placement(b):
     # 水上(waterBuilding)は、Planner 3.0 では723件すべて未設定
     labels = []
+    # 氾濫原限定は印が無いので、内部名の「Riverbank」で判別する(ユーザー確認 2026-11-10: 川岸の建物は全て氾濫原限定)
+    if "Riverbank" in (b.get("name") or ""):
+        labels.append("氾濫原限定")
     if b.get("riverBuilding"):
         labels.append("川スロット")
     if b.get("mountainBuilding"):
