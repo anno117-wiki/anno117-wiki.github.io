@@ -227,7 +227,6 @@ export default defineConfig({
             text: '建物・住民',
             items: [
               { text: '建物効果', link: '/wiki/buildings' },
-            { text: '建物データ', link: '/wiki/building-specs' },
               { text: '建物データ', link: '/wiki/building-specs' },
               { text: '住民層', link: '/wiki/population' },
             ],
