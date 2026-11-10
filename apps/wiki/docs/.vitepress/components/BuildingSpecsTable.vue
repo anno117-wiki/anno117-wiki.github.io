@@ -44,12 +44,12 @@
         <tbody>
           <tr v-for="b in filtered" :key="b.guid">
             <td><strong>{{ b.name }}</strong><br /><span class="bs-sub">{{ b.category }}</span></td>
-            <td>{{ regionText(b) }}</td>
+            <td class="bs-nowrap"><span v-for="r in regionList(b)" :key="r" class="bs-region">{{ r }}</span></td>
             <td class="bs-nowrap">{{ sizeText(b) }}</td>
             <td class="bs-nowrap">{{ b.radius || '—' }}</td>
             <td>{{ placementText(b) }}</td>
-            <td>{{ costText(b.construction) }}</td>
-            <td>{{ costText(b.maintenance) }}</td>
+            <td class="bs-cost"><BuildingCostList :costs="b.construction" /></td>
+            <td class="bs-cost"><BuildingCostList :costs="b.maintenance" /></td>
           </tr>
         </tbody>
       </table>
@@ -65,8 +65,8 @@
           <div><dt>サイズ</dt><dd>{{ sizeText(b) }}</dd></div>
           <div><dt>範囲</dt><dd>{{ b.radius || '—' }}</dd></div>
           <div><dt>配置制限</dt><dd>{{ placementText(b) }}</dd></div>
-          <div><dt>建設費</dt><dd>{{ costText(b.construction) }}</dd></div>
-          <div><dt>維持費</dt><dd>{{ costText(b.maintenance) }}</dd></div>
+          <div><dt>建設費</dt><dd><BuildingCostList :costs="b.construction" /></dd></div>
+          <div><dt>維持費</dt><dd><BuildingCostList :costs="b.maintenance" /></dd></div>
         </dl>
       </div>
     </div>
@@ -76,6 +76,7 @@
 <script setup lang="ts">
 import { ref, computed } from 'vue'
 import specs from '../../wiki/building-specs-list.json'
+import BuildingCostList from './BuildingCostList.vue'
 
 interface Cost { name: string; amount: number }
 interface Building {
@@ -125,11 +126,12 @@ function sizeText(b: Building): string {
 function regionText(b: Building): string {
   return b.regions.length === REGIONS.length ? '全地域' : b.regions.join('・')
 }
+// 表では地域を縦に並べて、列の幅を抑える
+function regionList(b: Building): string[] {
+  return b.regions.length === REGIONS.length ? ['全地域'] : b.regions
+}
 function placementText(b: Building): string {
   return b.placement.length ? b.placement.join('・') : '—'
-}
-function costText(costs: Cost[]): string {
-  return costs.length ? costs.map(c => `${c.name}${c.amount}`).join('、') : '—'
 }
 </script>
 
@@ -190,12 +192,24 @@ function costText(costs: Cost[]): string {
 .bs-nowrap {
   white-space: nowrap;
 }
+.bs-region {
+  display: block;
+}
+.bs-table-wrap th {
+  white-space: nowrap;
+}
+/* 費用の欄は、資材が多い建物でも列が広がりすぎないよう、幅を抑えて折り返す */
+.bs-cost {
+  min-width: 9em;
+  max-width: 15em;
+}
 
 .bs-cards {
   display: none;
 }
 
-@media (max-width: 959px) {
+@media (max-width: 1119px) {
+  /* 表は約800pxの幅が要るので、これより狭いときはカード表示にする */
   .bs-table-wrap {
     display: none;
   }
