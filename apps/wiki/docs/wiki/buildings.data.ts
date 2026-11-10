@@ -1,6 +1,6 @@
 import effectsJson from './buildings-effects.json'
 import jaJson from '../../../../packages/shared/public/i18n/locales/ja.json'
-import itemsFullJson from '../../../../packages/shared/public/data/items-full.json'
+import itemTargetBuildingsJson from './item-target-buildings.json'
 // アイギュプト(DLC03)の建物。tools/build-buildings-aegyptus.py で生成
 import aegyptusJson from './buildings-aegyptus.json'
 // DLC03のスキルが建物に付ける追加効果。tools/build-skill-bonuses-dlc03.py で生成（配信前のデータなので unverified）
@@ -31,14 +31,12 @@ interface BuildingEffect {
 }
 
 // 建物名(nameJa) -> この建物を対象とするアイテム件数。
-// ビルド時に集計し、クライアントへ items-full.json 本体を送らないようにする。
+// 総称・生産チェーンが対象のアイテムも、中の建物に展開して数える（tools/build-item-targets.py で生成した表を使う）。
+// ビルド時に集計し、クライアントへアイテムのデータを送らない。
 function countItemsByTarget(): Record<string, number> {
   const counts: Record<string, number> = {}
-  for (const it of itemsFullJson as { targets?: string }[]) {
-    if (!it.targets) continue
-    for (const name of it.targets.split('、')) {
-      counts[name] = (counts[name] ?? 0) + 1
-    }
+  for (const names of Object.values(itemTargetBuildingsJson as Record<string, string[]>)) {
+    for (const name of names) counts[name] = (counts[name] ?? 0) + 1
   }
   return counts
 }
@@ -114,7 +112,8 @@ export default {
         nameJa: existing.has(b.nameJa) ? `${b.nameJa}（アイギュプト）` : b.nameJa,
         tierJa,
         category: TEMPLATE_CATEGORY[b.template] ?? 'production',
-        itemCount: itemCounts[b.nameJa] ?? 0,
+        // 名前に「（アイギュプト）」が付く行は、アイギュプトの建物だけを対象にするアイテムを数える
+        itemCount: itemCounts[existing.has(b.nameJa) ? `${b.nameJa}（アイギュプト）` : b.nameJa] ?? 0,
       })
     }
     const all: (BuildingEffect | (typeof aegyptus)[number])[] = [...buildings, ...aegyptus]

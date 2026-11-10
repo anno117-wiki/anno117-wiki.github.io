@@ -4,7 +4,7 @@ description: Anno 117の全アイテムをニッチ・レアリティ別に一�
 ---
 
 <script setup lang="ts">
-import { ref, computed, onMounted, onUnmounted } from 'vue'
+import { ref, computed, watch, nextTick, onMounted, onUnmounted } from 'vue'
 import { withBase } from 'vitepress'
 import { data } from './items.data.ts'
 
@@ -13,18 +13,28 @@ const selRarity = ref('')
 const selNiche = ref('')
 const selTarget = ref('')
 const selName = ref('')
+// 建物効果の「関連アイテム」のリンクから来たときは、建物名が完全に一致するものだけに絞る（件数と一覧を合わせるため）。
+// 総称の名前は建物名と同じでも中身が違うことがある（総称「貯水池」の中身は水源とノリア）ので、建物名だけで照合する。
+// 入力欄を触ったら、これまでどおり部分一致にする
+const exactTarget = ref(false)
+watch(selTarget, () => { exactTarget.value = false })
+const matchTarget = (t: string) => exactTarget.value ? t === selTarget.value.trim() : t.includes(selTarget.value.trim())
 const filtered = computed(() => data.items.filter(i =>
   // 対象から地域が決まらないアイテム（船のアイテムなど）は、どの地域を選んでも出す
   (!selRegion.value || i.regions.length === 0 || i.regions.includes(selRegion.value)) &&
   (!selRarity.value || i.rarityJa === selRarity.value) &&
   (!selNiche.value || i.nicheJa === selNiche.value) &&
-  (!selTarget.value.trim() || i.targets.split('、').some(t => t.includes(selTarget.value.trim()))) &&
+  (!selTarget.value.trim() || (exactTarget.value ? i.targetBuildings : [...i.targets.split('、'), ...i.targetBuildings]).some(matchTarget)) &&
   (!selName.value || i.nameJa.includes(selName.value.trim()))
 ))
 
 onMounted(() => {
-  const target = new URLSearchParams(window.location.search).get('target')
-  if (target) selTarget.value = target
+  const params = new URLSearchParams(window.location.search)
+  const target = params.get('target')
+  if (target) {
+    selTarget.value = target
+    if (params.get('exact') === '1') nextTick(() => { exactTarget.value = true })
+  }
   document.addEventListener('click', hideSourcePopover)
 })
 onUnmounted(() => {
@@ -82,7 +92,7 @@ Anno 117 の専門家が装着できる全アイテムの一覧です。地域�
 - 下の絞り込み欄で表を絞れます。複数を指定すると、すべてに当てはまるアイテムだけが残ります。
   - アイテム名: 名前の一部を入れると絞り込めます。
   - 地域・レアリティ・分類: 一覧から選びます。
-  - 対象名: 名前の一部を入れると絞り込めます。入力すると候補も出ます。
+  - 対象名: 名前の一部を入れると絞り込めます。入力すると候補も出ます。「生産チェーン」や「農場」のような総称が対象のアイテムも、中の建物名（カイク工房など）で探せます。
 - 「リセット」で、指定した条件をすべて解除します。右側の件数は、表示中のアイテム数です。
 - 「対象」欄の名前をクリックすると、その建物・生産チェーン・住居のページに移動します。
 - 「取得先」は、PCならマウスを乗せる、スマホならタップすると、入手先が出ます。

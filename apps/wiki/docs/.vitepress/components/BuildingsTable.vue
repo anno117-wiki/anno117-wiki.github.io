@@ -273,7 +273,7 @@ watch(hash, scrollToHash)
           <td class="building-tier-cell"><div v-for="t in [b.tierJa, ...(b.extraTiers ?? []).map(t => t.tierJa)]" :key="t">{{ t }}</div></td>
           <td>{{ b.maintenance }}</td>
           <td style="padding:8px 4px;text-align:center;">
-            <a v-if="b.itemCount" :href="withBase(`/wiki/items.html?target=${encodeURIComponent(b.nameJa ?? '')}`)" class="calc-link-btn">{{ b.itemCount }}件</a>
+            <a v-if="b.itemCount" :href="withBase(`/wiki/items.html?target=${encodeURIComponent(b.nameJa ?? '')}&exact=1`)" class="calc-link-btn">{{ b.itemCount }}件</a>
             <span v-else>—</span>
           </td>
         </tr>

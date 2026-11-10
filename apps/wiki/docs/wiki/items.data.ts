@@ -4,6 +4,8 @@ import jaJson from '../../../../packages/shared/public/i18n/locales/ja.json'
 import buildingsEffectsJson from './buildings-effects.json'
 // アイテムごとの使える地域。tools/build-item-regions.py で生成（効果の対象の建物がある地域）
 import itemRegionsJson from './item-regions.json'
+// アイテムの効果が掛かる建物の名前（総称・生産チェーンを建物に展開したもの）。tools/build-item-targets.py で生成
+import itemTargetBuildingsJson from './item-target-buildings.json'
 
 // 対象名 -> リンク先の解決に使う対応表
 const GOOD_ID_BY_NAME_JA: Record<string, string> = {}
@@ -141,6 +143,8 @@ interface ItemEntry {
   description: string
   targets: string
   targetLinks: TargetLink[]
+  /** 対象を建物まで展開した名前。対象名の絞り込み用（表には出さない） */
+  targetBuildings: string[]
   caution: string
   boostHint: string
   boostEffects: string[]
@@ -168,6 +172,7 @@ export default {
         description: row.description ?? '',
         targets: row.targets ?? '',
         targetLinks: (row.targets ? row.targets.split('、') : []).map(resolveTargetLink),
+        targetBuildings: (itemTargetBuildingsJson as Record<string, string[]>)[row.guid] ?? [],
         caution: row.caution ?? '',
         boostHint: row.boostHint ?? '',
         boostEffects: Array.isArray(row.boostEffects) ? row.boostEffects : [],
@@ -204,6 +209,12 @@ export default {
       if (!item.targets) continue
       for (const name of item.targets.split('、')) {
         targetSet.add(name)
+      }
+    }
+    // 総称・生産チェーンの中身の建物名も、候補に出す（「（アイギュプト）」付きは重複するので省く）
+    for (const item of items) {
+      for (const name of item.targetBuildings) {
+        if (!name.endsWith('（アイギュプト）')) targetSet.add(name)
       }
     }
     const targets = Array.from(targetSet).sort((a, b) => a.localeCompare(b, 'ja'))
