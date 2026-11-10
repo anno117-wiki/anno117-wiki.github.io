@@ -7,7 +7,7 @@
        （items.data.ts と buildings.data.ts が読む。建物効果の「関連アイテム」と、アイテム一覧の対象の絞り込みに使う）
        apps/wiki/docs/wiki/item-target-pools.json  [{'name': '総称', 'buildings': ['建物名', ...]}, ...]
        （items.data.ts が読む。アイテム一覧の「対象の総称と内訳」の表。ユーザー指示 2026-11-10 の範囲:
-         アイテムの対象に出てくる総称のうち、建物が2つ以上のもの。生産チェーン・住居・船は除く）
+         アイテムの対象に出てくる総称のうち、建物が2つ以上のもの。生産チェーン・住居・生産施設・船は除く）
 
 - アイテムの効果の対象(effect.targets)は、建物か「建物のまとまり(AssetPool。生産チェーン・市場・住居・塔など)」
   まとまりは、メンバーを再帰的にたどって建物にする（tools/build-item-regions.py と同じやり方）
@@ -28,9 +28,10 @@ SRC = ROOT / '_local' / 'anno-official-data' / 'v3.0-planner'
 ITEMS = ROOT / 'packages' / 'shared' / 'public' / 'data' / 'items-full.json'
 OUT = ROOT / 'apps' / 'wiki' / 'docs' / 'wiki' / 'item-target-buildings.json'
 OUT_POOLS = ROOT / 'apps' / 'wiki' / 'docs' / 'wiki' / 'item-target-pools.json'
-# 内訳の表に載せない総称。生産チェーンは名前から中身が分かり、住居(全住居層)は名前どおりなので省く
+# 内訳の表に載せない総称。生産チェーンは名前から中身が分かり、住居(全住居層)と生産施設(ほぼ全ての生産施設142件)は名前どおりなので省く
+# 生産施設はユーザー決定 2026-11-10(対象にするアイテムは1件だけで、表が長くなるため)
 POOL_EXCLUDE_SUFFIX = 'の生産チェーン'
-POOL_EXCLUDE_NAMES = {'住居'}
+POOL_EXCLUDE_NAMES = {'住居', '生産施設'}
 ZW = '​'
 EGYPT_SUFFIX = '（アイギュプト）'
 
