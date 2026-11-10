@@ -359,6 +359,23 @@
       "icon": "base_residence"
     },
     {
+      "id": "aegyptus_renovated_pyramid_priestess",
+      "nameEn": "",
+      "nameJa": "改修されたピラミッド",
+      "tier": "priestess",
+      "maintenance": 0,
+      "population": 0,
+      "income": 0,
+      "faith": 0,
+      "knowledge": 0,
+      "prestige": 5,
+      "health": 0,
+      "happiness": 5,
+      "fireSafety": 0,
+      "template": "Monument",
+      "icon": "sector_project"
+    },
+    {
       "id": "aegyptus_152437",
       "nameEn": "House of Infusion",
       "nameJa": "煎じ茶工房",
@@ -646,6 +663,23 @@
       "fireSafety": -2,
       "template": "Production",
       "icon": "necklaces_goods"
+    },
+    {
+      "id": "aegyptus_renovated_pyramid_gymnasiarch",
+      "nameEn": "",
+      "nameJa": "改修されたピラミッド",
+      "tier": "gymnasiarch",
+      "maintenance": 0,
+      "population": 0,
+      "income": 0,
+      "faith": 0,
+      "knowledge": 0,
+      "prestige": 4,
+      "health": 0,
+      "happiness": 4,
+      "fireSafety": 0,
+      "template": "Monument",
+      "icon": "sector_project"
     },
     {
       "id": "aegyptus_152072",

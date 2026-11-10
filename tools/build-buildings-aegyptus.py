@@ -35,6 +35,12 @@ TIER_KEY = {149681: 'thresher', 150510: 'potter', 150511: 'priestess', 150534: '
 # 同じアイコンの需要があっても、その建物自体は需要を満たさないので、層なしにする建物
 # ピラミッドの波止場: アイコンが需要「改修されたピラミッド」と同じだが、満たすのは完成した記念碑(実機で需要の名前を確認 2026-11-06)
 NO_TIER_NAMES = {'ピラミッドの波止場'}
+# 完成した記念碑「改修されたピラミッド」は、データに建物として無い(需要だけがある)ので、実機の需要の画面の値を直接書く。
+# 実機確認 2026-11-10: 供給100%で、驚異の需要を満たし、幸福度・名声が層ごとに違う(ギムナシアリコス +4/+4、奉唱巫女 +5/+5)
+RENOVATED_PYRAMID_ROWS = [
+    {'tier': 'priestess', 'happiness': 5, 'prestige': 5},
+    {'tier': 'gymnasiarch', 'happiness': 4, 'prestige': 4},
+]
 
 
 def ja(x: dict) -> str:
@@ -97,6 +103,17 @@ def main() -> None:
             **{k: (int(v) if float(v).is_integer() else round(v, 2)) for k, v in attrs.items()},
             'template': b['template'],
             **({'icon': icon} if (icon := icon_key(b)) else {}),
+        })
+    for p in RENOVATED_PYRAMID_ROWS:
+        rows.append({
+            'id': f"aegyptus_renovated_pyramid_{p['tier']}",
+            'nameEn': '',  # 英名は未確認
+            'nameJa': '改修されたピラミッド',
+            'tier': p['tier'],
+            'maintenance': 0,
+            **{k: p.get(k, 0) for k in ATTR.values()},
+            'template': 'Monument',
+            'icon': 'sector_project',  # ピラミッドの波止場と同じ絵(需要のアイコンと同じ)
         })
     rows.sort(key=lambda r: (order.index(r['tier']) if r['tier'] in order else 99, r['nameJa']))
     OUT.write_text(json.dumps({'source': 'ゲーム内データ(アップデート3.0)', 'buildings': rows},
