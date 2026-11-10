@@ -5,6 +5,9 @@
        packages/shared/public/data/items-full.json（アイテムの一覧。guid の突き合わせ先）
 出力 : apps/wiki/docs/wiki/item-target-buildings.json  {アイテムguid: ['建物名', ...]}
        （items.data.ts と buildings.data.ts が読む。建物効果の「関連アイテム」と、アイテム一覧の対象の絞り込みに使う）
+       apps/wiki/docs/wiki/item-target-pools.json  [{'name': '総称', 'buildings': ['建物名', ...]}, ...]
+       （items.data.ts が読む。アイテム一覧の「対象の総称と内訳」の表。ユーザー指示 2026-11-10 の範囲:
+         アイテムの対象に出てくる総称のうち、建物が2つ以上のもの。生産チェーン・住居・船は除く）
 
 - アイテムの効果の対象(effect.targets)は、建物か「建物のまとまり(AssetPool。生産チェーン・市場・住居・塔など)」
   まとまりは、メンバーを再帰的にたどって建物にする（tools/build-item-regions.py と同じやり方）
@@ -24,6 +27,10 @@ ROOT = Path(__file__).resolve().parent.parent
 SRC = ROOT / '_local' / 'anno-official-data' / 'v3.0-planner'
 ITEMS = ROOT / 'packages' / 'shared' / 'public' / 'data' / 'items-full.json'
 OUT = ROOT / 'apps' / 'wiki' / 'docs' / 'wiki' / 'item-target-buildings.json'
+OUT_POOLS = ROOT / 'apps' / 'wiki' / 'docs' / 'wiki' / 'item-target-pools.json'
+# 内訳の表に載せない総称。生産チェーンは名前から中身が分かり、住居(全住居層)は名前どおりなので省く
+POOL_EXCLUDE_SUFFIX = 'の生産チェーン'
+POOL_EXCLUDE_NAMES = {'住居'}
 ZW = '​'
 EGYPT_SUFFIX = '（アイギュプト）'
 
@@ -64,17 +71,36 @@ def main() -> None:
         # buildings.json・production.json に無い建物(水源など)は、カタログの名前を使う
         if pool and not pool.get('members') and ja(pool.get('loca')) and seen:
             info[g] = (ja(pool.get('loca')), False)
+            catalog_only.add(g)
             return {g}
         return set()
 
+    def ordered_members(guid: int | str, seen: tuple = ()) -> list[str]:
+        """総称の中身の建物guidを、データの並び順で返す(内訳の表用)"""
+        g = str(guid)
+        pool = pools.get(g)
+        if g not in info and pool and pool.get('members') and g not in seen:
+            out: list[str] = []
+            for m in pool['members']:
+                out += ordered_members(m, seen + (g,))
+            return out
+        return [g] if buildings_of(g, seen or ('-',)) else []
+
+    catalog_only: set[str] = set()  # 建物データに無く、カタログの名前で補ったもの(水源・船など)
     result: dict[str, list[str]] = {}
     unresolved: Counter = Counter()
+    pool_guids: dict[str, list[str]] = {}  # 総称の名前 -> その名前の総称のguid(同じ名前で複数ある)
     for row in json.loads(ITEMS.read_text(encoding='utf-8')):
         item = by_guid.get(str(row['guid']))
         if item is None:
             raise SystemExit(f"アイテムがカタログに無い: {row['guid']} {row.get('nameJa')}")
         names: set[str] = set()
         for t in (item.get('effect') or {}).get('targets') or []:
+            pool = pools.get(str(t))
+            if str(t) not in info and pool and pool.get('members'):
+                guids = pool_guids.setdefault(ja(pool.get('loca')), [])
+                if str(t) not in guids:
+                    guids.append(str(t))
             found = buildings_of(t)
             if not found:
                 unresolved[(str(t), ja((pools.get(str(t)) or {}).get('loca')))] += 1
@@ -91,6 +117,24 @@ def main() -> None:
     print(f'建物に展開できなかった対象: {len(unresolved)}種')
     for (g, n), c in unresolved.most_common(15):
         print(f'  {g} {n or "(名前なし)"}: {c}件')
+
+    # 対象の総称と内訳
+    table = []
+    for pool_name, guids in pool_guids.items():
+        if not pool_name or pool_name.endswith(POOL_EXCLUDE_SUFFIX) or pool_name in POOL_EXCLUDE_NAMES:
+            continue
+        members = [m for g in guids for m in ordered_members(g)]
+        if members and all(m in catalog_only for m in members):
+            continue  # 船など、建物でないものだけの総称
+        names: list[str] = []
+        for m in members:
+            name = info[m][0]
+            if name and name not in names:
+                names.append(name)
+        if len(names) >= 2:
+            table.append({'name': pool_name, 'buildings': names})
+    OUT_POOLS.write_text(json.dumps(table, ensure_ascii=False, indent=1) + '\n', encoding='utf-8', newline='\n')
+    print(f'総称の内訳 {len(table)}件 -> {OUT_POOLS}')
 
 
 if __name__ == '__main__':

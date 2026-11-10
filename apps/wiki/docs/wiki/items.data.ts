@@ -6,6 +6,8 @@ import buildingsEffectsJson from './buildings-effects.json'
 import itemRegionsJson from './item-regions.json'
 // アイテムの効果が掛かる建物の名前（総称・生産チェーンを建物に展開したもの）。tools/build-item-targets.py で生成
 import itemTargetBuildingsJson from './item-target-buildings.json'
+// 「対象の総称と内訳」の表。tools/build-item-targets.py で生成
+import itemTargetPoolsJson from './item-target-pools.json'
 
 // 対象名 -> リンク先の解決に使う対応表
 const GOOD_ID_BY_NAME_JA: Record<string, string> = {}
@@ -155,7 +157,7 @@ interface ItemEntry {
 }
 
 export default {
-  load(): { items: ItemEntry[]; niches: string[]; rarities: string[]; targets: string[]; regionOptions: { value: string; label: string }[] } {
+  load(): { items: ItemEntry[]; niches: string[]; rarities: string[]; targets: string[]; regionOptions: { value: string; label: string }[]; pools: { name: string; buildings: string[] }[] } {
     const nicheIndex = Object.fromEntries(NICHE_ORDER.map((n, i) => [n, i]))
 
     const items: ItemEntry[] = (itemsFull as any[])
@@ -221,6 +223,8 @@ export default {
 
     const regionOptions = REGION_KEYS.map((value) => ({ value, label: REGION_JA[value] }))
 
-    return { items, niches, rarities, targets, regionOptions }
+    const pools = [...(itemTargetPoolsJson as { name: string; buildings: string[] }[])].sort((a, b) => a.name.localeCompare(b.name, 'ja'))
+
+    return { items, niches, rarities, targets, regionOptions, pools }
   },
 }
