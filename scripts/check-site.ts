@@ -1,5 +1,6 @@
 import { existsSync, readFileSync, readdirSync, statSync } from 'fs';
 import { resolve, dirname, relative } from 'path';
+import { execFileSync } from 'child_process';
 
 // build:site の生成物（docs/）が公開できる状態かを機械的に確かめる。
 // 「wiki が docs/ から消えたままコミット」「リンク切れのまま公開」を、目視に頼らず止めるのが目的。
@@ -19,9 +20,16 @@ const REQUIRED_OUTPUTS = [
   'calculator/index.html',
 ];
 
+// 画像の減少チェックの対象にする拡張子
+const IMAGE_EXTENSIONS = /\.(png|webp|svg|jpe?g|gif|ico)$/i;
+
+// ビルドのたびにハッシュ付きの名前で入れ替わるフォルダ（減っても正常なので対象外）
+const HASHED_ASSET_DIRS = ['docs/assets/', 'docs/calculator/assets/'];
+
 export interface SiteCheckResult {
   htmlFiles: number;
   linksChecked: number;
+  imagesChecked: number | null; // null は Git が使えず画像の減少チェックを飛ばしたとき
   errors: string[];
 }
 
@@ -116,24 +124,71 @@ function checkLinks(docsDir: string, htmlFiles: string[], errors: string[]): num
   return linksChecked;
 }
 
+// Git に登録済みの docs/ の画像を返す。Git が使えないときは null。
+function listTrackedImages(repoRoot: string): string[] | null {
+  try {
+    const output = execFileSync('git', ['ls-files', '-z', '--', 'docs'], {
+      cwd: repoRoot,
+      encoding: 'utf-8',
+      stdio: ['ignore', 'pipe', 'ignore'],
+      maxBuffer: 64 * 1024 * 1024,
+    });
+
+    return output
+      .split('\0')
+      .filter((path) => IMAGE_EXTENSIONS.test(path))
+      .filter((path) => !HASHED_ASSET_DIRS.some((dir) => path.startsWith(dir)));
+  } catch {
+    return null;
+  }
+}
+
+// Git に登録済みの画像が、作り直した docs/ から消えていないかを調べる。
+// アイコン等は JavaScript が画面を開いてから読み込むため、リンク切れの検査では見つからない
+// （2026-11-12、Windows 以外のビルドでアイギュプトのアイコン36件が消えた件）。
+function checkImagesNotRemoved(docsDir: string, errors: string[]): number | null {
+  const repoRoot = resolve(docsDir, '..');
+  const trackedImages = listTrackedImages(repoRoot);
+  if (trackedImages === null) {
+    console.warn('  [WARN] git が使えないため、画像の減少チェックを飛ばしました');
+
+    return null;
+  }
+
+  const missing = trackedImages.filter((path) => !existsSync(resolve(repoRoot, path)));
+  if (missing.length > 0) {
+    errors.push(
+      `Git に登録済みの画像が ${missing.length}件、docs/ から消えています。` +
+        '元のフォルダ（apps/wiki/docs/public 等）に画像があるか確かめてください。' +
+        '意図して消したなら git rm で登録から外してください'
+    );
+    for (const path of missing.slice(0, 20)) errors.push(`画像が消えています: ${path}`);
+    if (missing.length > 20) errors.push(`（ほか ${missing.length - 20}件）`);
+  }
+
+  return trackedImages.length;
+}
+
 export function checkSite(docsDir: string): SiteCheckResult {
   const errors: string[] = [];
   if (!existsSync(docsDir)) {
-    return { htmlFiles: 0, linksChecked: 0, errors: [`docs/ がありません: ${docsDir}`] };
+    return { htmlFiles: 0, linksChecked: 0, imagesChecked: null, errors: [`docs/ がありません: ${docsDir}`] };
   }
 
   checkRequiredOutputs(docsDir, errors);
   checkSitemap(docsDir, errors);
   const htmlFiles = listHtmlFiles(docsDir);
   const linksChecked = checkLinks(docsDir, htmlFiles, errors);
+  const imagesChecked = checkImagesNotRemoved(docsDir, errors);
 
-  return { htmlFiles: htmlFiles.length, linksChecked, errors };
+  return { htmlFiles: htmlFiles.length, linksChecked, imagesChecked, errors };
 }
 
 // 結果を表示し、問題が無ければ true を返す。
 export function reportSiteCheck(result: SiteCheckResult): boolean {
   if (result.errors.length === 0) {
-    console.log(`  OK: HTML ${result.htmlFiles}件・サイト内リンク ${result.linksChecked}件に問題なし`);
+    const images = result.imagesChecked === null ? '' : `・画像 ${result.imagesChecked}件`;
+    console.log(`  OK: HTML ${result.htmlFiles}件・サイト内リンク ${result.linksChecked}件${images}に問題なし`);
 
     return true;
   }
