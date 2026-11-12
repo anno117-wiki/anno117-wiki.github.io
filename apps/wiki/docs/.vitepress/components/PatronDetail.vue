@@ -14,14 +14,26 @@
         <span v-else>{{ effect1.descJa }}</span>
         <span class="muted">{{ effect1.note ?? '（信仰値ごとの増加率は上の共通表と同じ）' }}</span>
       </div>
-      <table v-if="effect1.showMilestones" class="milestone-table">
-        <thead>
-          <tr><th>島の信仰値</th><th v-for="[devotion] in effect1.milestones" :key="devotion">{{ devotion.toLocaleString() }}</th></tr>
-        </thead>
-        <tbody>
-          <tr><th>生産性</th><td v-for="[devotion, scale] in effect1.milestones" :key="devotion">+{{ scale }}%</td></tr>
-        </tbody>
-      </table>
+      <template v-if="effect1.showMilestones">
+        <!-- PC: 信仰値を横に並べる -->
+        <table class="milestone-table milestone-wide">
+          <thead>
+            <tr><th>島の信仰値</th><th v-for="[devotion] in effect1.milestones" :key="devotion">{{ devotion.toLocaleString() }}</th></tr>
+          </thead>
+          <tbody>
+            <tr><th>生産性</th><td v-for="[devotion, scale] in effect1.milestones" :key="devotion">+{{ scale }}%</td></tr>
+          </tbody>
+        </table>
+        <!-- スマホ: 信仰値を縦に並べる（横スクロールさせない） -->
+        <table class="milestone-table milestone-tall">
+          <thead>
+            <tr><th>島の信仰値</th><th>生産性</th></tr>
+          </thead>
+          <tbody>
+            <tr v-for="[devotion, scale] in effect1.milestones" :key="devotion"><td>{{ devotion.toLocaleString() }}</td><td>+{{ scale }}%</td></tr>
+          </tbody>
+        </table>
+      </template>
     </div>
 
     <div class="patron-block">
@@ -30,12 +42,22 @@
         {{ effect2.descJa }}
         <span v-if="effect2.targets.length && !isGeneric(effect2.targets)">対象：{{ effect2.targets.join('、') }}</span>
       </div>
-      <table class="milestone-table">
+      <!-- PC: 信仰値を横に並べる -->
+      <table class="milestone-table milestone-wide">
         <thead>
           <tr><th>島の信仰値</th><th v-for="[devotion] in effect2.milestones" :key="devotion">{{ devotion.toLocaleString() }}</th></tr>
         </thead>
         <tbody>
-          <tr v-for="row in effect2Rows" :key="row.label"><th>{{ row.label }}</th><td v-for="[devotion, scale] in effect2.milestones" :key="devotion">{{ row.sign + scale * row.multiplier + row.unit }}</td></tr>
+          <tr v-for="row in effect2Rows" :key="row.label"><th>{{ row.label }}</th><td v-for="[devotion, scale] in effect2.milestones" :key="devotion">{{ formatValue(row, scale) }}</td></tr>
+        </tbody>
+      </table>
+      <!-- スマホ: 信仰値を縦に並べる（横スクロールさせない） -->
+      <table class="milestone-table milestone-tall">
+        <thead>
+          <tr><th>島の信仰値</th><th v-for="row in effect2Rows" :key="row.label">{{ row.label }}</th></tr>
+        </thead>
+        <tbody>
+          <tr v-for="[devotion, scale] in effect2.milestones" :key="devotion"><td>{{ devotion.toLocaleString() }}</td><td v-for="row in effect2Rows" :key="row.label">{{ formatValue(row, scale) }}</td></tr>
         </tbody>
       </table>
     </div>
@@ -84,6 +106,9 @@ const effect2Rows = computed(() => {
   return d.rows
 })
 
+type ValueRow = { sign: string; multiplier: number; unit: string }
+const formatValue = (row: ValueRow, scale: number) => row.sign + scale * row.multiplier + row.unit
+
 // 「全住居」等の総称のみの対象は本文の説明と重複するため表示しない
 const isGeneric = (targets: string[]) => targets.length === 1 && targets[0].startsWith('全')
 </script>
@@ -127,5 +152,25 @@ const isGeneric = (targets: string[]) => targets.length === 1 && targets[0].star
   text-align: left;
   white-space: normal;
   min-width: 9em;
+}
+/* 縦向きの表はスマホだけで出す（959px は custom.css のモバイル判定と同じ） */
+.milestone-tall {
+  display: none;
+}
+@media (max-width: 959px) {
+  .milestone-wide {
+    display: none !important;
+  }
+  .milestone-tall {
+    display: table !important;
+    width: 100%;
+  }
+  /* 見出し（効果の名前）が長いので折り返してよい */
+  .milestone-tall th {
+    white-space: normal;
+  }
+  .milestone-tall td {
+    min-width: 0;
+  }
 }
 </style>

@@ -314,6 +314,21 @@
     min-width: 6em;
   }
 
+  /* セルの左右の余白を詰める（VitePress既定の16pxを8pxに）。1列ごとに16px狭くなり、
+     わずかにはみ出していた表が画面に収まる（2026-11-12） */
+  .vp-doc table th,
+  .vp-doc table td {
+    padding-left: 8px;
+    padding-right: 8px;
+  }
+
+  /* 商品需要逆引き: 住民層の札が横一列に並んで表がはみ出すので、モバイルでは折り返す
+     （PCでは上の「折り返し禁止」の指定のまま） */
+  .vp-doc._wiki_needs-index table td:nth-child(2) {
+    white-space: normal;
+    min-width: 0;
+  }
+
   /* 長文セル（Layout.vue の markLongCells が付ける）は、読める幅を確保する */
   .vp-doc table td.long-cell {
     min-width: 14em;
