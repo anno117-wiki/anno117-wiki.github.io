@@ -276,6 +276,7 @@ export default defineConfig({
                 { text: 'DLC03・デルタの夜明け', link: '/guide/dlc03-dawn-of-delta' },
               ],
             },
+            { text: 'アップデート・パッチ情報', link: '/guide/patch-notes' },
             {
               text: '小ネタ',
               items: [
