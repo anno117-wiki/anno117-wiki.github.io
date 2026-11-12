@@ -1,6 +1,7 @@
 import { existsSync, readFileSync, readdirSync, statSync } from 'fs';
 import { resolve, dirname, relative } from 'path';
 import { execFileSync } from 'child_process';
+import { checkCalculatorData } from './check-calculator-data';
 
 // build:site の生成物（docs/）が公開できる状態かを機械的に確かめる。
 // 「wiki が docs/ から消えたままコミット」「リンク切れのまま公開」を、目視に頼らず止めるのが目的。
@@ -30,6 +31,8 @@ export interface SiteCheckResult {
   htmlFiles: number;
   linksChecked: number;
   imagesChecked: number | null; // null は Git が使えず画像の減少チェックを飛ばしたとき
+  calculatorJson: number;
+  calculatorIconRefs: number;
   errors: string[];
 }
 
@@ -172,7 +175,14 @@ function checkImagesNotRemoved(docsDir: string, errors: string[]): number | null
 export function checkSite(docsDir: string): SiteCheckResult {
   const errors: string[] = [];
   if (!existsSync(docsDir)) {
-    return { htmlFiles: 0, linksChecked: 0, imagesChecked: null, errors: [`docs/ がありません: ${docsDir}`] };
+    return {
+      htmlFiles: 0,
+      linksChecked: 0,
+      imagesChecked: null,
+      calculatorJson: 0,
+      calculatorIconRefs: 0,
+      errors: [`docs/ がありません: ${docsDir}`],
+    };
   }
 
   checkRequiredOutputs(docsDir, errors);
@@ -180,8 +190,16 @@ export function checkSite(docsDir: string): SiteCheckResult {
   const htmlFiles = listHtmlFiles(docsDir);
   const linksChecked = checkLinks(docsDir, htmlFiles, errors);
   const imagesChecked = checkImagesNotRemoved(docsDir, errors);
+  const calculator = checkCalculatorData(docsDir, errors);
 
-  return { htmlFiles: htmlFiles.length, linksChecked, imagesChecked, errors };
+  return {
+    htmlFiles: htmlFiles.length,
+    linksChecked,
+    imagesChecked,
+    calculatorJson: calculator.jsonFiles,
+    calculatorIconRefs: calculator.iconRefs,
+    errors,
+  };
 }
 
 // 結果を表示し、問題が無ければ true を返す。
@@ -189,6 +207,7 @@ export function reportSiteCheck(result: SiteCheckResult): boolean {
   if (result.errors.length === 0) {
     const images = result.imagesChecked === null ? '' : `・画像 ${result.imagesChecked}件`;
     console.log(`  OK: HTML ${result.htmlFiles}件・サイト内リンク ${result.linksChecked}件${images}に問題なし`);
+    console.log(`  OK: 計算機のデータ ${result.calculatorJson}件・画像の参照 ${result.calculatorIconRefs}件に問題なし`);
 
     return true;
   }
