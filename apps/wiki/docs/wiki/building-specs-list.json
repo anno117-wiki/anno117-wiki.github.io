@@ -7198,7 +7198,7 @@
    ],
    "width": 5,
    "height": 3,
-   "radius": "基本距離27タイル",
+   "radius": "基本距離25タイル（実機）",
    "placement": [],
    "construction": [
     {

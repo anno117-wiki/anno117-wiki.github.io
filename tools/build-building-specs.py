@@ -103,7 +103,15 @@ def placement(b):
     return labels
 
 
+# 実機(PS5)で測った基本距離(砂利道でつないだときのタイル数)。元データと違うときは実機を優先する
+MEASURED_STREET_DISTANCE = {
+    153592: 25,  # レプリカのスフィンクスの祭壇(元データ27。2026-11-12 ユーザー実測)
+}
+
+
 def radius_text(b):
+    if b["guid"] in MEASURED_STREET_DISTANCE:
+        return f"基本距離{MEASURED_STREET_DISTANCE[b['guid']]}タイル（実機）"
     r = b.get("radius")
     if not r:
         return ""
