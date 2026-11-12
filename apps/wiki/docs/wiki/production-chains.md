@@ -68,7 +68,7 @@ watch(hash, scrollToHash)
 詳しい計算は[計算機](/calculator/)で。
 ラティウム・アルビオン・アイギュプト地域別の商品分布は[地域別商品](/wiki/regions)にあります。
 
-アイギュプトで新しく作れる商品（DLC03）も載せています。計算機で地域をアイギュプトに切り替えると計算できますが、この一覧からは計算機を開けないので、「計算機」の欄は「—」です。同じ素材を複数の建物で作れる場合（石炭は炭焼き師と炭鉱、金鉱石は金選鉱と金鉱）は、図に両方を並べています。並べた建物の数は、その建物だけで全量をまかなう場合の数です。
+アイギュプトで新しく作れる商品（DLC03）も載せています。「開く」は、計算機の地域をアイギュプトにして開きます。象牙の小箱とコールは、作り方（建物）ごとにボタンが2つあります。同じ素材を複数の建物で作れる場合（石炭は炭焼き師と炭鉱、金鉱石は金選鉱と金鉱）は、図に両方を並べています。並べた建物の数は、その建物だけで全量をまかなう場合の数です。
 
 <div v-for="cat in data.categories" :key="cat">
 
@@ -99,7 +99,7 @@ watch(hash, scrollToHash)
     <ProductionChainSvg v-if="entry.graph" :graph="entry.graph" />
   </template>
 </td>
-<td><a v-if="entry.calc" class="calc-link-btn" :href="withBase(`/calculator/?good=${entry.id}`)" target="_blank" rel="noopener noreferrer">開く</a><span v-else>—</span></td>
+<td><span v-if="entry.calcLinks.length" class="calc-links"><a v-for="l in entry.calcLinks" :key="l.query" class="calc-link-btn" :href="withBase('/calculator/?' + l.query)" target="_blank" rel="noopener noreferrer">{{ l.label ? '開く（' + l.label + '）' : '開く' }}</a></span><span v-else>—</span></td>
 </tr>
 </tbody>
 </table>
@@ -110,7 +110,7 @@ watch(hash, scrollToHash)
   <div class="chain-card-header">
     <img v-if="entry.icon" :src="withBase('/icons/goods-thumb/' + entry.icon + '.webp')" :alt="entry.nameJa" width="28" height="28" loading="lazy" class="chain-card-icon" />
     <span class="chain-card-name">{{ entry.nameJa }}</span>
-    <a v-if="entry.calc" class="calc-link-btn" :href="withBase(`/calculator/?good=${entry.id}`)" target="_blank" rel="noopener noreferrer">開く</a>
+    <span v-if="entry.calcLinks.length" class="calc-links"><a v-for="l in entry.calcLinks" :key="l.query" class="calc-link-btn" :href="withBase('/calculator/?' + l.query)" target="_blank" rel="noopener noreferrer">{{ l.label ? '開く（' + l.label + '）' : '開く' }}</a></span>
   </div>
   <div class="chain-card-body">
     <div class="chain-card-meta">
@@ -162,6 +162,7 @@ watch(hash, scrollToHash)
 }
 .chain-card-header {
   display: flex;
+  flex-wrap: wrap;
   align-items: center;
   gap: 8px;
   padding: 10px 12px;
@@ -175,7 +176,8 @@ watch(hash, scrollToHash)
 }
 .chain-card-name {
   font-weight: 700;
-  flex: 1;
+  /* 名前は縮めずに、入りきらない「開く」ボタンのほうを次の行へ回す */
+  flex: 1 0 auto;
   min-width: 0;
   word-break: break-word;
 }

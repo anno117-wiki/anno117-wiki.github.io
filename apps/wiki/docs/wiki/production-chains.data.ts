@@ -4,6 +4,7 @@ import { fileURLToPath } from 'node:url'
 import listJson from '../../../../packages/shared/public/productions/list.json'
 import jaJson from '../../../../packages/shared/public/i18n/locales/ja.json'
 import { wikiCategory } from './goods-category'
+import { calcLinksFor, assertAegyptusCalcLinked, type CalcLink } from './calc-links'
 // 100%効率の建物数の比率。tools/build-chain-ratios.py で生成
 import ratiosJson from './chain-ratios.json'
 // 共通商品のアイギュプト版の比率。tools/build-calc-aegyptus.py で生成(chain-ratios.json はassets.xml(v2.1)由来で、アイギュプトは入らない)
@@ -57,7 +58,8 @@ interface ProductionEntry {
   /** ラティウム版・アルビオン版の両方があるときだけ入る。地域ごとの直接素材と図 */
   variants: ProductionVariant[]
   /** 計算機で開けるか。アイギュプトの商品は計算機が未対応なので false */
-  calc: boolean
+  /** 計算機を開くリンク（作り方が複数ある商品は複数） */
+  calcLinks: CalcLink[]
 }
 
 interface ProductionVariant {
@@ -169,11 +171,11 @@ export default {
         inputs,
         graph: buildProductionGraph(prod, jaGoods, RATIOS[firstFile as string]),
         variants,
-        calc: true,
+        calcLinks: calcLinksFor(good.id),
       })
     }
 
-    // アイギュプト専用の新商品（計算機には無いので、wiki専用のデータから足す）
+    // アイギュプト専用の新商品（wiki専用のデータから足す。計算機のチェーンがあればリンクする）
     for (const e of aegyptusJson.entries) {
       entries.push({
         id: e.id,
@@ -190,9 +192,10 @@ export default {
           ? { nodes: e.graph.nodes.map((n) => ({ ...n, time: fmtTime(n.time) })), edges: e.graph.edges }
           : null,
         variants: [],
-        calc: false,
+        calcLinks: calcLinksFor(e.id),
       })
     }
+    assertAegyptusCalcLinked(aegyptusJson.entries.map((e) => e.id))
 
     const byCategory: Record<string, ProductionEntry[]> = {}
     for (const entry of entries) {

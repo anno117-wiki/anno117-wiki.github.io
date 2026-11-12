@@ -261,6 +261,12 @@
   transition: background-color 0.2s, color 0.2s;
 }
 
+.calc-links {
+  display: inline-flex;
+  flex-wrap: wrap;
+  gap: 4px;
+}
+
 .calc-link-btn:hover {
   background-color: var(--vp-c-brand-1);
   color: #fff;

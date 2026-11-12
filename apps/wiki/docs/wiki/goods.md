@@ -29,8 +29,13 @@ function regionText(regions: string[]): string {
   return regions.map((r) => regionLabels[r] ?? r).join(' / ')
 }
 
-function hasCalc(cat: string, good: { calc: boolean }): boolean {
-  return good.calc && cat !== 'intermediate' && cat !== 'resource'
+function hasCalc(cat: string, good: { calcLinks: unknown[] }): boolean {
+  return good.calcLinks.length > 0 && cat !== 'intermediate' && cat !== 'resource'
+}
+
+// 一覧（スマホ幅）では、リンクが1つの商品だけ行全体をリンクにする。作り方が複数ある商品は行の中にリンクを並べる
+function rowLink(cat: string, good: { calcLinks: { query: string }[] }): string | null {
+  return hasCalc(cat, good) && good.calcLinks.length === 1 ? good.calcLinks[0].query : null
 }
 
 // SPA遷移直後はまだ描画されておらずアンカーへスクロールできないため、
@@ -61,7 +66,7 @@ watch(hash, scrollToHash)
 
 Anno 117 で生産・消費される全 {{ data.categories.reduce((n, c) => n + data.byCategory[c].length, 0) }} 商品の一覧です。
 個別の生産チェーンと必要量の計算は[計算機](/calculator/)で。
-ラティウム・アルビオン・アイギュプト地域別の商品分布は[地域別商品](/wiki/regions)にあります。アイギュプトの新商品は、計算機で地域をアイギュプトに切り替えると計算できます。この表からは計算機を開けないので「—」です。
+ラティウム・アルビオン・アイギュプト地域別の商品分布は[地域別商品](/wiki/regions)にあります。アイギュプトの新商品は、計算機の地域をアイギュプトにして開きます。象牙の小箱とコールは、作り方（建物）ごとにボタンが2つあります。
 
 <div v-for="cat in data.categories" :key="cat">
 
@@ -81,7 +86,7 @@ Anno 117 で生産・消費される全 {{ data.categories.reduce((n, c) => n + 
 </td>
 <td>{{ regionText(good.regions) }}</td>
 <td>
-  <a v-if="hasCalc(cat, good)" class="calc-link-btn" :href="withBase(`/calculator/?good=${good.id}`)" target="_blank" rel="noopener noreferrer">開く</a>
+  <span v-if="hasCalc(cat, good)" class="calc-links"><a v-for="l in good.calcLinks" :key="l.query" class="calc-link-btn" :href="withBase('/calculator/?' + l.query)" target="_blank" rel="noopener noreferrer">{{ l.label ? '開く（' + l.label + '）' : '開く' }}</a></span>
   <span v-else>—</span>
 </td>
 </tr>
@@ -96,15 +101,16 @@ Anno 117 で生産・消費される全 {{ data.categories.reduce((n, c) => n + 
 <div class="goods-compact-list">
 <template v-for="good in data.byCategory[cat]" :key="good.id">
 <component
-  :is="hasCalc(cat, good) ? 'a' : 'div'"
+  :is="rowLink(cat, good) ? 'a' : 'div'"
   :data-anchor="good.id"
   class="goods-compact-row"
-  v-bind="hasCalc(cat, good) ? { href: withBase(`/calculator/?good=${good.id}`), target: '_blank', rel: 'noopener noreferrer' } : {}"
+  v-bind="rowLink(cat, good) ? { href: withBase('/calculator/?' + rowLink(cat, good)), target: '_blank', rel: 'noopener noreferrer' } : {}"
 >
   <img v-if="good.icon" :src="withBase('/icons/goods-thumb/' + good.icon + '.webp')" :alt="good.nameJa" width="24" height="24" loading="lazy" class="goods-compact-icon" />
   <span class="goods-compact-name">{{ good.nameJa }}</span>
   <span class="goods-compact-region">{{ regionText(good.regions) }}</span>
-  <span v-if="hasCalc(cat, good)" class="goods-compact-arrow">›</span>
+  <span v-if="rowLink(cat, good)" class="goods-compact-arrow">›</span>
+  <template v-else-if="hasCalc(cat, good)"><a v-for="l in good.calcLinks" :key="l.query" class="goods-compact-link" :href="withBase('/calculator/?' + l.query)" target="_blank" rel="noopener noreferrer">{{ l.label }}›</a></template>
 </component>
 <div v-if="good.producers" class="goods-compact-producers"><GoodsProducers :producers="good.producers" /></div>
 </template>
@@ -168,6 +174,14 @@ Anno 117 で生産・消費される全 {{ data.categories.reduce((n, c) => n + 
 .goods-compact-producers {
   padding: 8px 12px;
   border-bottom: 1px solid var(--vp-c-divider);
+}
+.goods-compact-link {
+  color: var(--vp-c-brand-1);
+  font-size: 12px;
+  font-weight: 600;
+  white-space: nowrap;
+  flex-shrink: 0;
+  text-decoration: none;
 }
 .goods-compact-arrow {
   color: var(--vp-c-brand-1);
