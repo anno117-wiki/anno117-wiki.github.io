@@ -38,6 +38,7 @@ const xpOf = (rank: number) => data.ranks[rank - 1].xp.toLocaleString()
 - 属性ボーナスは、島内の建物につきます。
 - ランクは I〜X の10段階で、必要な輝きと減り方は競馬場・円形闘技場で共通です。
 
+<div class="wrap-head">
 <table>
 <thead><tr><th>ランク</th><th>必要な輝き</th><th>1分あたりの減少</th><th>色</th></tr></thead>
 <tbody>
@@ -49,6 +50,7 @@ const xpOf = (rank: number) => data.ranks[rank - 1].xp.toLocaleString()
 </tr>
 </tbody>
 </table>
+</div>
 
 競馬場のレース1回で分配される輝きは、ゲーム内データ上はアマチュア2,000／クラシック3,000／インペリアル5,000で、着順に応じて 50%／25%／20%／5% に分けられます（この配分は未確認です）。
 

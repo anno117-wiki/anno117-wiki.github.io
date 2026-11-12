@@ -408,7 +408,8 @@
   - **絞り込み・並べ替えのある大きな一覧 → 部品の中でカード表示を持つ**: 建物データ（`BuildingSpecsTable.vue` の `bs-cards`。1119px以下）、建物効果（`BuildingsTable.vue` の `bt-cards`。スマホでは並べ替えメニュー `bt-sort-mobile` を出す）。商品一覧・生産チェーン一覧・アイテム一覧もスマホでは別表示
   - 札やアイコンを並べるセル: 折り返しを許す（商品需要逆引きの住民層の札。`custom.css` で `white-space: normal`）
 - **ページ内リンクの id に注意**: PC用とスマホ用で同じ行を2回描くときは、id を片方にだけ付ける（`BuildingsTable.vue` は `isMobile` で、スマホはカード、PCは表の行に付ける）。同じ id が2つあるとリンクで飛ぶ先がずれる
-- **確かめ方**: `bun run build:site` 後、`docs/` を node の小さな静的サーバーで配信し、Playwright の `devices['iPhone 13']` で各ページを開いて、`.vp-doc table` ごとに `scrollWidth` と `.vp-doc` の `clientWidth` を比べる（表示されていない表は幅0になるので除く）。2026-11-12 時点で、はみ出す表は0個（2〜3pxだけ余る表が3つ: 研究ガイドの装着先とスロット数、競馬場・円形闘技場の建築工程。実害なしとして残した）
+- **確かめ方: `bun run check:mobile`**（`scripts/check-mobile.ts`、2026-11-12 新設。スキル `mobile-check` が手順）。`build:site` で作った `docs/` を Bun の静的サーバーで配信し、Playwright で全ページを開いて、表ごとの「見えている幅（clientWidth）と中身の幅（scrollWidth）の差」とページ全体の横ずれを数える。約1分。`--device "Galaxy S8"`（360px）でも確かめる。`--page`・`--screenshots`・`--all`・`--threshold` あり。はみ出しがあれば終了コード1。クラウドでは `/opt/pw-browsers/chromium` に切り替えて動く
+- **2026-11-12 の結果: iPhone 13（390px）・Galaxy S8（360px）とも、はみ出す表は0個**。初回に「0個」と報告した時の測り方（表の幅を本文の枠の幅と比べた）は甘く、check:mobile で測り直すと8個（10〜34px）残っていた。サイト全体のスマホの最小幅を、1列目 6em→5em・長文セル 14em→10em に下げ、見出しの長い2表（輝きのしくみ・アイギュプトの段階）を `<div class="wrap-head">`（見出しとセルの折り返しを許す）で囲んで解消。iPhone SE 初代（320px）は対象外
 
 ### 生成スクリプト運用
 - `tools/generate-goods-list.ts` / `generate-items-list.ts` は既存`list.json`等の手動メンテ値を継承する設計。再実行前にバックアップ・差分確認

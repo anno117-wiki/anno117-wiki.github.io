@@ -118,7 +118,7 @@ const shortAttr = (label: string) => (label === '火災安全度' ? '防火' : l
 
 アイギュプトの島は35段階で、島の<strong>アイギュプト人の人口</strong>で決まります。属性効果は、使い分けが分からないため載せていません。
 
-<div class="unit-table">
+<div class="wrap-head">
 <table>
 <thead><tr><th>段階</th><th>名前</th><th>必要人口</th></tr></thead>
 <tbody>

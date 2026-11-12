@@ -310,8 +310,9 @@
     min-width: 4.5em;
   }
 
+  /* 1列目は数文字幅まで潰れないように。6emだと画面ぎりぎりの表がはみ出したので5emに（2026-11-12） */
   .vp-doc table td:first-child {
-    min-width: 6em;
+    min-width: 5em;
   }
 
   /* セルの左右の余白を詰める（VitePress既定の16pxを8pxに）。1列ごとに16px狭くなり、
@@ -320,6 +321,13 @@
   .vp-doc table td {
     padding-left: 8px;
     padding-right: 8px;
+  }
+
+  /* 見出しの折り返しを許す表: <div class="wrap-head"> で囲む。見出しが長く、幅360pxの端末で
+     はみ出す表に使う（全体の「見出しは折り返さない」の例外） */
+  .vp-doc .wrap-head table th,
+  .vp-doc .wrap-head table td {
+    white-space: normal;
   }
 
   /* (5) カード表示の表: <div class="stack-table"> で囲んだ表は、1行を1枚のカードにして縦に並べる
@@ -389,8 +397,9 @@
   }
 
   /* 長文セル（Layout.vue の markLongCells が付ける）は、読める幅を確保する */
+  /* 14emだと3列の表が10〜30pxはみ出したので10emに（2026-11-12、bun run check:mobile で確認） */
   .vp-doc table td.long-cell {
-    min-width: 14em;
+    min-width: 10em;
   }
 
   /* (4) 数値だけの表（軍事ガイドのユニット表）: 値も折り返さず、1列目を固定して横スクロールで読む
