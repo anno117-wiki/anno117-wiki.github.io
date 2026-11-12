@@ -27,7 +27,7 @@
   - 建物データの `BuildingCostList.vue` も `CoinIcon` を使う形にした（見た目は同じ。アイコン878個の表示を確認済み）
   - `guide/military-guide.md` のコスト表の26か所を置き換え、表の下に「コインのアイコン（<CoinIcon />）はデナリウスです。」を1行足した。更新履歴にも1件追記
   - ほかのページ（DLC03ガイドの船の維持費・建設費など）は「コイン」の文字のまま。揃えるかはユーザー未決定
-- **【注意】Windows 以外（クラウドの Linux 等）で `build:site` すると、`docs/icons/goods/` のアイギュプトのアイコン36件が消える**（下の「ビルド」の節にも記載）
+- **Windows 以外（クラウドの Linux 等）で `build:site` すると `docs/icons/goods/` のアイギュプトのアイコン36件が消えた件は、根本対策済み**（ユーザー指示）。`apps/wiki/docs/public/icons/goods/` に36件を `git add -f` で追加し、`packages/shared/public/icons` と中身・件数（250件）を一致させた。追加後のビルドで `docs/` から何も消えないことを確認。`.gitignore` の説明文も直した（下の「ビルド」の節）
 
 ## 2026-11-10 夜の作業（第51版。単独セッション。`80abbf30`〜`4c76511a` の9コミット。全てpush済み。詳細はアーカイブAQ節）
 - **済み**: DLC03ガイド（ピラミッドの儀式の材料と3段階の効果・修復後の効果・頂石の文言・「貯水池方式」・新祭神3柱で生産が増える建物の表）／建物データに「氾濫原限定」（内部名 `Riverbank` の6件）／アイテム一覧の対象の絞り込みの不具合（`.some` を文字列に使っていた。前回の自分のミス）／左パネルの罫線／建物効果に「改修されたピラミッド」（実機の値を `build-buildings-aegyptus.py` に直書き）／**建物効果の「関連アイテム」を総称・生産チェーンまで展開して数える**／**アイテム一覧の「対象の総称と内訳」をデータから作る**。更新履歴は各件追記済み
@@ -361,7 +361,7 @@
 
 ### ビルド
 - 必ず `bun run build:site`（wikiも含む全ビルド）
-- **【2026-11-12追加】Windows 以外でビルドすると、アイギュプトの商品・労働力のアイコン36件が `docs/icons/goods/` から消える**。`apps/wiki/docs/public/icons/goods` は、Windows の開発PCでは `packages/shared/public/icons` へのシンボリックリンクだが、Git には普通のフォルダとして入っている（`aegyptus_*.png`・`aegyptus.webp`・`chanter.png`・`gymnasiarch.png`・`potter.png`・`scribe.png`・`thresher.png` は `packages/shared` 側にしか無い）。クラウドなどで取り出すとこれらが入らず、ビルド後の `git status` に `D docs/icons/goods/...` が並ぶ。`check:site` はこれを検出しない。**コミット前に `git checkout -- docs/icons/goods` で戻す**（2026-11-12 `db90271` はこの手順で戻してからコミットした）。根本対策（Git 側のフォルダに36件を足す、ビルドでコピーする等）は未着手
+- **【2026-11-12追加】Windows 以外でビルドすると、アイギュプトの商品・労働力のアイコン36件が `docs/icons/goods/` から消える**。`apps/wiki/docs/public/icons/goods` は、Windows の開発PCでは `packages/shared/public/icons` へのシンボリックリンクだが、Git には普通のフォルダとして入っている（`aegyptus_*.png`・`aegyptus.webp`・`chanter.png`・`gymnasiarch.png`・`potter.png`・`scribe.png`・`thresher.png` は `packages/shared` 側にしか無い）。クラウドなどで取り出すとこれらが入らず、ビルド後の `git status` に `D docs/icons/goods/...` が並ぶ。`check:site` はこれを検出しない。**2026-11-12 に根本対策済み**: Git 側の `apps/wiki/docs/public/icons/goods/` に36件を足し、`packages/shared/public/icons` と同じ250件にした。**今後 `packages/shared/public/icons` にアイコンを足したら、`apps/wiki/docs/public/icons/goods/` にも同じファイルを置いて `git add -f` する**（`.gitignore` でこのフォルダは無視されているため `-f` が要る。`public/images` と同じく両方のパスを追跡する運用）。忘れると Windows 以外のビルドで再発する。再発したら、ビルド後の `git status` に `D docs/icons/goods/...` が並ぶ
 - ビルド後に「`docs/` に index.html・wiki・calculator がない」というフックの警告が毎回出るが、2026-10-17に4回とも誤検知だった（実ファイルあり・`check:site` OK）。警告が出たら `ls docs/index.html docs/wiki docs/calculator` と `bun run check:site` で実物を確かめる（2026-10-21にも複数回出たが誤検知）
 - **Bashツールを並列で呼ぶと、片方の `cd` で作業場所がずれ、`bun run build:site` が「Script not found」で失敗することがある**（2026-10-21）。ビルドは単独の呼び出しで、`cd /c/Users/kojif/Desktop/anno_db2 && bun run build:site` とする
 - Windowsのコンソール出力で日本語が文字化けして見えても、ファイルがUTF-8なら実体は壊れていない。確かめるときは `grep` で目的の文字列を探し、置換文字（U+FFFD）が0件か調べる。`cut -c` は日本語をバイトで切るので、確認用でも使わない

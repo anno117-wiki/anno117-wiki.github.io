@@ -67,6 +67,8 @@ docs-notes/*
 .claude/skills/*/.claude-plugin/types/
 .claude/skills/*/tsconfig.json
 
-# goods は packages/shared/public/icons へのシンボリックリンク。同じ実体が追跡済みなので、リンク越しの二重表示を無視する
+# goods は（Windowsの開発PCでは）packages/shared/public/icons へのシンボリックリンク。リンク越しの二重表示を無視する
+# ただし Git では普通のフォルダとして両方のパスを追跡している（Linux 等のビルドで必要）。
+# packages/shared/public/icons にアイコンを足したら、こちらにも同じファイルを `git add -f` で追加すること
 apps/wiki/docs/public/icons/goods
 apps/wiki/docs/public/icons/goods/
