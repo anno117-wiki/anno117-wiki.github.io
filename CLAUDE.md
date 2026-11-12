@@ -44,6 +44,7 @@ anno-calculator公式（GitHub: agentquackyt/Anno117Calculator）のデータを
 - WIKIモバイル: `@media (max-width:959px)` in custom.css
 - セクションナビ: Layout.vue `onContentUpdated` DOM直接挿入（Teleport廃止）
 - 計算機リンク: Layout.vue `fixCalculatorLinks()` でSPAルーター横取り回避
+- 表（2026-11-12）: スマホ（959px以下）では表を横にはみ出させない・PCは変えない。列の多い表は `<div class="stack-table">` で囲みカード表示（custom.css モバイル節(5)・Layout.vue `labelStackTables()`）。数値の多い表はPC用/スマホ用の2表をCSSで切替、絞り込み付きの一覧は部品内にカード表示。詳細は引き継ぎ書の「スマホの表」
 
 ## 公式ゲームデータ（最重要資産）
 - `_local/anno-official-data/`（gitignore・未追跡）: assets.xml + official_master.csv（30,719件）
