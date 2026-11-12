@@ -3,7 +3,7 @@ import jaJson from '../../../../packages/shared/public/i18n/locales/ja.json'
 import itemTargetBuildingsJson from './item-target-buildings.json'
 // アイギュプト(DLC03)の建物。tools/build-buildings-aegyptus.py で生成
 import aegyptusJson from './buildings-aegyptus.json'
-// DLC03のスキルが建物に付ける追加効果。tools/build-skill-bonuses-dlc03.py で生成（配信前のデータなので unverified）
+// DLC03のスキルが建物に付ける追加効果。tools/build-skill-bonuses-dlc03.py で生成（実機未確認なので unverified）
 import dlc03SkillsJson from './skill-bonuses-dlc03.json'
 
 interface BuildingEffect {
@@ -117,7 +117,7 @@ export default {
       })
     }
     const all: (BuildingEffect | (typeof aegyptus)[number])[] = [...buildings, ...aegyptus]
-    // DLC03のスキルの追加効果を、建物名が同じ行に足す（ゲームの配信前データ。画面に「未確認です」と出す）
+    // DLC03のスキルの追加効果を、建物名が同じ行に足す（実機未確認のデータ。画面に「未確認です」と出す）
     for (const bonus of dlc03SkillsJson.bonuses) {
       const rows = all.filter((b) => b.nameJa === bonus.building)
       if (!rows.length) throw new Error(`スキルの追加効果の建物が見つからない: ${bonus.building}`)

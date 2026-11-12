@@ -257,7 +257,7 @@ watch(hash, scrollToHash)
               >スキル{{ b.skillBonuses.length }}件 {{ openRows.has(b.id) ? '▲' : '▼' }}</button>
               <template v-if="!isMobile || openRows.has(b.id)">
                 <div v-for="s in b.skillBonuses" :key="s.skill" class="building-skill-bonus">
-                  スキル「{{ s.skill }}」で{{ formatEffects(s.effects) }}<span v-if="s.unverified">（配信前のゲーム内データ。実機では未確認です）</span>
+                  スキル「{{ s.skill }}」で{{ formatEffects(s.effects) }}<span v-if="s.unverified">（ゲーム内データの値。実機では未確認です）</span>
                 </div>
               </template>
             </div>

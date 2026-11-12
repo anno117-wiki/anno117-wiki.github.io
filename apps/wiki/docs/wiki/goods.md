@@ -61,7 +61,7 @@ watch(hash, scrollToHash)
 
 Anno 117 で生産・消費される全 {{ data.categories.reduce((n, c) => n + data.byCategory[c].length, 0) }} 商品の一覧です。
 個別の生産チェーンと必要量の計算は[計算機](/calculator/)で。
-ラティウム・アルビオン・アイギュプト地域別の商品分布は[地域別商品](/wiki/regions)にあります。アイギュプトの新商品は、計算機がまだ対応していないので「—」です。
+ラティウム・アルビオン・アイギュプト地域別の商品分布は[地域別商品](/wiki/regions)にあります。アイギュプトの新商品は、計算機で地域をアイギュプトに切り替えると計算できます。この表からは計算機を開けないので「—」です。
 
 <div v-for="cat in data.categories" :key="cat">
 
@@ -181,7 +181,7 @@ Anno 117 で生産・消費される全 {{ data.categories.reduce((n, c) => n + 
 
 - [生産チェーン一覧](/wiki/production-chains) — 各商品の生産工程と必要な素材
 - [商品需要逆引き](/wiki/needs-index) — その商品を欲しがる住民層
-- [地域別商品](/wiki/regions) — ラティウム・アルビオンで作れる商品の違い
+- [地域別商品](/wiki/regions) — ラティウム・アルビオン・アイギュプトで作れる商品の違い
 
 ## 関連ガイド
 
