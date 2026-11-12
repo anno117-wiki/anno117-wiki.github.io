@@ -413,6 +413,20 @@
 - グローバル登録するVueコンポーネントは `apps/wiki/docs/.vitepress/theme/index.ts` の `enhanceApp` に足す（PatronDetail / GoodsProducers など）
 - **ただし大きなデータ（JSON・データローダー）をimportするコンポーネントはグローバル登録しない**。グローバル登録すると全ページ共通のtheme chunkに入り全ページが読み込む（`BuildingsTable`がこれで404KBになっていた、アーカイブV節）。使うページの`<script setup>`で個別にimportする
 
+### スマホの表（2026-11-12追加。スマホからの閲覧が多いため、表は横スクロールさせない方針）
+- **方針**: スマホ（iPhone 13 幅 390px、本文は約366px）で表を横にはみ出させない。PC（960px以上）の表示は変えない。モバイル判定はどこも `@media (max-width: 959px)` に揃える
+- **表の形ごとの使い分け**（新しい表を足すときもこれに従う）
+  - 2〜4列で短い表: そのままでよい。スマホではセルの左右の余白が8px（`custom.css` モバイル節 (3) の直後）
+  - **列が多い、または中身が長い表 → カード表示 `stack-table`**: 表を `<div class="stack-table">` で囲む（Markdown の表は前後に空行を入れる。HTML の表・`v-for` の表も可）。スマホでは1行を1枚のカードにし、1列目がカードの見出し、2列目以降は「列の見出し＋値」になる
+    - CSS: `custom.css` のモバイル節 (5)。見出しは `td::before { content: attr(data-label) }` を左に float し（幅7em）、値は右側で折り返す
+    - 列の見出しは `Layout.vue` の `labelStackTables()` が `thead th` の文字を各セルの `data-label` に写す（`onMounted` と `onContentUpdated` で実行）。**クライアント側で付けるので、ページ生成直後のHTMLには `data-label` が無い**。表の中身を後から Vue で差し替える（絞り込み等）表には向かない
+    - 使用中: 軍事ガイド（戦闘性能・コスト・ユニットの4分類）、信仰神（祭り）、輝き（競馬場・円形闘技場・レース適性）、DLC02（来訪する専門家の確率・名声とレア度の確率の重み）、DLC03（生産施設・キャラクター）、アイテム一覧（対象の総称と内訳）
+  - **行が多く数値を比べる表 → スマホ用の別の表を出す**: PC用とスマホ用の2つを描き、CSSで切り替える。例: 信仰神の信仰値の表（`PatronDetail.vue` の `milestone-wide` / `milestone-tall`。スマホでは行と列を入れ替える）、街の状況の属性効果（`city-status.md` の `cs-wide` / `cs-tall`。スマホでは2つの表に分け、見出しを短くする）
+  - **絞り込み・並べ替えのある大きな一覧 → 部品の中でカード表示を持つ**: 建物データ（`BuildingSpecsTable.vue` の `bs-cards`。1119px以下）、建物効果（`BuildingsTable.vue` の `bt-cards`。スマホでは並べ替えメニュー `bt-sort-mobile` を出す）。商品一覧・生産チェーン一覧・アイテム一覧もスマホでは別表示
+  - 札やアイコンを並べるセル: 折り返しを許す（商品需要逆引きの住民層の札。`custom.css` で `white-space: normal`）
+- **ページ内リンクの id に注意**: PC用とスマホ用で同じ行を2回描くときは、id を片方にだけ付ける（`BuildingsTable.vue` は `isMobile` で、スマホはカード、PCは表の行に付ける）。同じ id が2つあるとリンクで飛ぶ先がずれる
+- **確かめ方**: `bun run build:site` 後、`docs/` を node の小さな静的サーバーで配信し、Playwright の `devices['iPhone 13']` で各ページを開いて、`.vp-doc table` ごとに `scrollWidth` と `.vp-doc` の `clientWidth` を比べる（表示されていない表は幅0になるので除く）。2026-11-12 時点で、はみ出す表は0個（2〜3pxだけ余る表が3つ: 研究ガイドの装着先とスロット数、競馬場・円形闘技場の建築工程。実害なしとして残した）
+
 ### 生成スクリプト運用
 - `tools/generate-goods-list.ts` / `generate-items-list.ts` は既存`list.json`等の手動メンテ値を継承する設計。再実行前にバックアップ・差分確認
 - `tools/build-items-ja.py`は一次ソース参照先を`v2.1`。`caution`フィールドは手動追記のため再実行のたびに消える（Tiranna/Laevinus/Kirjokansiは再実行後に手動で戻す）
