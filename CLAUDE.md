@@ -69,7 +69,7 @@ Anno 117（PS5/Steam）の日本語攻略Wiki（表示名「Anno 117攻略Wiki�
 
 ## ビルドと公開の手順
 - **ビルドは必ず `bun run build:site`**（`bun run build` は計算機のみ・wikiが docs/ から消える）
-- build:site は最後に `docs/` を自動検査する（必須ファイル・sitemap・サイト内リンク・Git登録済み画像の減少・計算機のデータとそれが指す画像。`scripts/check-site.ts` / `check-calculator-data.ts`）。`[5/5]` が OK で終わったのを実出力で確かめてからコミット。検査だけなら `bun run check:site`
+- build:site は最後に `docs/` を自動検査する（必須ファイル・sitemap・サイト内リンク・Git登録済み画像の減少・計算機のデータとそれが指す画像・計算機の翻訳キー・更新履歴の中身・各ページのタイトルと説明文。`scripts/check-*.ts`）。`[5/5]` が OK で終わったのを実出力で確かめてからコミット。検査だけなら `bun run check:site`
 - コミットは「ソースを先にコミット → `build:site` → `docs/` を別にコミット」の順にする（sitemap の最終更新日がソースの最終コミット日から作られるため）
 - push 後のデプロイは GitHub Pages が行う。完了は Actions の「pages build and deployment」の結果で確かめる
 
