@@ -61,6 +61,7 @@ anno-calculator公式（GitHub: agentquackyt/Anno117Calculator）のデータを
 6. 制作は単独セッションを基本とし、並列はユーザーの指示があるときだけ（上記「セッション体制」）
 7. ビルド可否は必ず実コマンド出力で確認（目視「成功」報告禁止）
 8. 環境依存文字を受け答えでは使用しない
+9. 表を新しく作った・表の列や中身を変えた・表まわりのCSSを変えたときは、スキル `mobile-check`（`bun run check:mobile`）でスマホ表示を確かめる。iPhone 13（390px）と Galaxy S8（360px）の両方ではみ出しが0件になってからコミットする
 
 ## 重要な教訓
 - `@anno/shared` の fetch文字列は変更しない（publicDir契約を壊す）
