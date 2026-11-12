@@ -103,6 +103,36 @@ function toggleSort(key: string) {
   }
 }
 
+// スマホのカード表示では見出しをタップできないので、並べ替えはメニューで選ぶ
+const SORT_OPTIONS = [
+  { value: 'population', label: '人口' },
+  { value: 'income', label: '収入' },
+  { value: 'faith', label: '信仰' },
+  { value: 'knowledge', label: '知識' },
+  { value: 'prestige', label: '名声' },
+  { value: 'health', label: '健康度' },
+  { value: 'happiness', label: '幸福' },
+  { value: 'fireSafety', label: '防火' },
+  { value: 'tier', label: '需要Tier' },
+]
+
+function setSort(key: string) {
+  sortKey.value = key
+  sortDir.value = key === 'tier' ? 1 : -1 // 効果は大きい順、層は低い順
+}
+
+// カード表示用: 値が0でない効果だけを「人口+1・収入+2」の形にする
+const CARD_EFFECT_KEYS = ['population', 'income', 'faith', 'knowledge', 'prestige', 'health', 'happiness', 'fireSafety']
+
+function cardEffects(b: Record<string, unknown>): string {
+  const effects: Record<string, number> = {}
+  for (const key of CARD_EFFECT_KEYS) {
+    const n = b[key]
+    if (typeof n === 'number' && n !== 0) effects[key] = n
+  }
+  return Object.keys(effects).length ? formatEffects(effects) : '—'
+}
+
 function resetFilters() {
   searchText.value = ''
   selectedTier.value = ''
@@ -213,6 +243,16 @@ watch(hash, scrollToHash)
       <option v-for="t in tiers" :key="t.value" :value="t.value">{{ t.label }}</option>
     </select>
     <button @click="resetFilters()" style="padding:6px 12px;border:1px solid var(--vp-c-divider);border-radius:6px;font-size:14px;background:var(--vp-c-bg);color:var(--vp-c-text-1);cursor:pointer;">リセット</button>
+    <select
+      class="bt-sort-mobile"
+      :value="sortKey"
+      aria-label="並べ替え"
+      @change="setSort(($event.target as HTMLSelectElement).value)"
+      style="padding:6px 10px;border:1px solid var(--vp-c-divider);border-radius:6px;font-size:14px;background:var(--vp-c-bg);color:var(--vp-c-text-1);"
+    >
+      <option value="">並べ替えなし</option>
+      <option v-for="o in SORT_OPTIONS" :key="o.value" :value="o.value">{{ o.label }}{{ o.value === 'tier' ? 'の低い順' : 'の大きい順' }}</option>
+    </select>
     <span style="font-size:13px;color:var(--vp-c-text-2);">{{ sortedFiltered.length }} / {{ data.buildings.length }} 件</span>
   </div>
 
@@ -243,7 +283,7 @@ watch(hash, scrollToHash)
         </tr>
       </thead>
       <tbody>
-        <tr v-for="b in sortedFiltered" :key="b.id" :id="b.id">
+        <tr v-for="b in sortedFiltered" :key="b.id" :id="isMobile ? undefined : b.id">
           <td style="white-space:normal;">
             <div class="building-name-cell" style="max-width:140px;word-break:break-all;">
               <img v-if="b.icon" :src="withBase('/icons/buildings-thumb/icon_3d_' + b.icon + '.webp')" :alt="b.nameJa ?? b.nameEn" width="28" height="28" loading="lazy" style="width:28px;height:28px;vertical-align:middle;margin-right:4px;object-fit:contain;" />
@@ -280,4 +320,105 @@ watch(hash, scrollToHash)
       </tbody>
     </table>
   </div>
+
+  <!-- スマホ: 1建物を1枚のカードにする（横スクロールさせない。値が0の効果は省く） -->
+  <div class="bt-cards">
+    <div v-for="b in sortedFiltered" :key="b.id" :id="isMobile ? b.id : undefined" class="bt-card">
+      <div class="bt-card-header">
+        <img v-if="b.icon" :src="withBase('/icons/buildings-thumb/icon_3d_' + b.icon + '.webp')" alt="" width="28" height="28" loading="lazy" class="bt-card-icon" />
+        <div>
+          <strong>{{ b.nameJa ?? b.nameEn }}</strong>
+          <div class="bt-sub">{{ [b.tierJa, ...(b.extraTiers ?? []).map(t => t.tierJa)].join('・') }}</div>
+        </div>
+      </div>
+      <dl class="bt-card-body">
+        <div><dt>効果</dt><dd>{{ cardEffects(b) }}</dd></div>
+        <div><dt>維持費</dt><dd>{{ b.maintenance }}</dd></div>
+        <div v-if="b.itemCount"><dt>関連アイテム</dt><dd><a :href="withBase(`/wiki/items.html?target=${encodeURIComponent(b.nameJa ?? '')}&exact=1`)" class="calc-link-btn">{{ b.itemCount }}件</a></dd></div>
+        <div v-if="b.skillBonuses?.length">
+          <dt>スキル</dt>
+          <dd>
+            <button
+              type="button"
+              class="building-skill-toggle"
+              :aria-expanded="openRows.has(b.id)"
+              @click="toggleRow(b.id)"
+            >{{ b.skillBonuses.length }}件 {{ openRows.has(b.id) ? '▲' : '▼' }}</button>
+            <template v-if="openRows.has(b.id)">
+              <div v-for="s in b.skillBonuses" :key="s.skill" class="building-skill-bonus">
+                スキル「{{ s.skill }}」で{{ formatEffects(s.effects) }}<span v-if="s.unverified">（ゲーム内データの値。実機では未確認です）</span>
+              </div>
+            </template>
+          </dd>
+        </div>
+      </dl>
+    </div>
+  </div>
 </template>
+
+<style scoped>
+.bt-cards,
+.bt-sort-mobile {
+  display: none;
+}
+
+/* 959px は custom.css のモバイル判定と同じ。PCは従来の表のまま */
+@media (max-width: 959px) {
+  .buildings-table-wrap {
+    display: none;
+  }
+  .bt-sort-mobile {
+    display: inline-block;
+  }
+  .bt-cards {
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+    margin: 12px 0;
+  }
+  .bt-card {
+    border: 1px solid var(--vp-c-divider);
+    border-radius: 8px;
+    overflow: hidden;
+    scroll-margin-top: calc(var(--vp-nav-height) + var(--local-nav-height, 0px) + 8px);
+  }
+  .bt-card-header {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    padding: 8px 12px;
+    background: var(--vp-c-bg-soft);
+  }
+  .bt-card-icon {
+    width: 28px;
+    height: 28px;
+    flex: none;
+    object-fit: contain;
+  }
+  .bt-sub {
+    font-size: 0.8rem;
+    color: var(--vp-c-text-2);
+  }
+  .bt-card-body {
+    margin: 0;
+    padding: 8px 12px;
+    display: flex;
+    flex-direction: column;
+    gap: 4px;
+    font-size: 0.9rem;
+  }
+  .bt-card-body > div {
+    display: flex;
+    gap: 8px;
+  }
+  .bt-card-body dt {
+    flex: none;
+    width: 6.5em;
+    color: var(--vp-c-text-2);
+  }
+  .bt-card-body dd {
+    margin: 0;
+    min-width: 0;
+  }
+}
+</style>

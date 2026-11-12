@@ -92,6 +92,23 @@ function markLongCells() {
   })
 }
 
+// <div class="stack-table"> で囲んだ表は、スマホでは1行を1枚のカードにする（custom.css）。
+// カードの中で各値に見出しを添えるため、列の見出しをセルの data-label に写す。
+function labelStackTables() {
+  try {
+    document.querySelectorAll<HTMLTableElement>('.vp-doc .stack-table table').forEach(table => {
+      const labels = [...table.querySelectorAll('thead th')].map(th => (th.textContent ?? '').trim())
+      table.querySelectorAll('tbody tr').forEach(tr => {
+        ;[...tr.children].forEach((cell, i) => {
+          if (labels[i]) cell.setAttribute('data-label', labels[i])
+        })
+      })
+    })
+  } catch {
+    // 見出しが付かなくても値は読めるので、失敗しても表示は続ける
+  }
+}
+
 // VPLocalNav(Menu行+セクション間ナビボタン)は内容によって高さが可変のため、
 // sticky要素(item-filters・buildings-filter-bar等)がtop固定値だと重なって隠れる。
 // 実測高さをCSS変数化し、各ページのCSSからvar(--local-nav-height)で参照させる。
@@ -106,6 +123,7 @@ onMounted(() => {
   renderSectionNav()
   fixCalculatorLinks()
   markLongCells()
+  labelStackTables()
   updateLocalNavHeight()
   window.addEventListener('resize', updateLocalNavHeight)
 })
@@ -113,6 +131,7 @@ onContentUpdated(() => nextTick(() => {
   renderSectionNav()
   fixCalculatorLinks()
   markLongCells()
+  labelStackTables()
   updateLocalNavHeight()
 }))
 </script>

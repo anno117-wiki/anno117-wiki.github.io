@@ -13,7 +13,36 @@ const attrKeys = Object.keys(data.attrs) as (keyof typeof data.attrs)[]
 const fmt = (v: number | undefined) => (v === undefined ? '—' : v > 0 ? `+${v}` : `${v}`)
 // 必要人口。人口の表に載っていない段階は「未確認」
 const pop = (p: number | null) => (p === null ? '未確認' : p === 0 ? 'なし' : p.toLocaleString())
+// スマホの属性の表では見出しを短くして列幅を詰める
+const shortAttr = (label: string) => (label === '火災安全度' ? '防火' : label)
 </script>
+
+<style>
+/* 属性効果の表: PCは1つの表、スマホ（959px以下、custom.css のモバイル判定と同じ）は2つの表に分ける */
+.cs-tall {
+  display: none;
+}
+@media (max-width: 959px) {
+  .cs-wide {
+    display: none;
+  }
+  .cs-tall {
+    display: block;
+  }
+  .cs-tall table {
+    display: table;
+    width: 100%;
+  }
+  /* 属性の表は数値だけなので、列の最小幅と余白を詰めて画面に収める */
+  .vp-doc .cs-tall .cs-attr-table th,
+  .vp-doc .cs-tall .cs-attr-table td {
+    min-width: 0;
+    padding-left: 4px;
+    padding-right: 4px;
+    text-align: right;
+  }
+}
+</style>
 
 # 街の状況（都市ステータス）の段階
 
@@ -35,7 +64,7 @@ const pop = (p: number | null) => (p === null ? '未確認' : p === 0 ? 'なし'
 - この値は、街の状況の画面の「住民ごとの効果」に出ます。どの建物に効くかは未確認です。
 - 「—」は、その段階にその属性の値が無いことを示します。段階1と2には、どの属性の値もありません。
 
-<div class="unit-table">
+<div class="unit-table cs-wide">
 <table>
 <thead><tr>
 <th>段階</th><th>名前</th><th>必要人口</th>
@@ -50,6 +79,39 @@ const pop = (p: number | null) => (p === null ? '未確認' : p === 0 ? 'なし'
 </tr>
 </tbody>
 </table>
+</div>
+
+<!-- スマホ: 横スクロールさせないため、名前・必要人口と属性の2つの表に分ける -->
+<div class="cs-tall">
+
+<strong>名前と必要人口</strong>
+
+<table>
+<thead><tr><th>段階</th><th>名前</th><th>必要人口</th></tr></thead>
+<tbody>
+<tr v-for="s in data.stages" :key="s.level">
+<td>{{ s.roman }}</td>
+<td>{{ s.nameJa }}</td>
+<td>{{ pop(s.population) }}</td>
+</tr>
+</tbody>
+</table>
+
+<strong>属性効果</strong>（「防火」は火災安全度）
+
+<table class="cs-attr-table">
+<thead><tr>
+<th>段階</th>
+<th v-for="k in attrKeys" :key="k">{{ shortAttr(data.attrs[k]) }}</th>
+</tr></thead>
+<tbody>
+<tr v-for="s in data.stages" :key="s.level">
+<td>{{ s.roman }}</td>
+<td v-for="k in attrKeys" :key="k">{{ fmt(s.attrs[k]) }}</td>
+</tr>
+</tbody>
+</table>
+
 </div>
 
 ## アイギュプトの段階

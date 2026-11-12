@@ -322,6 +322,65 @@
     padding-right: 8px;
   }
 
+  /* (5) カード表示の表: <div class="stack-table"> で囲んだ表は、1行を1枚のカードにして縦に並べる
+     （横スクロールさせない）。1列目がカードの見出し、2列目以降は「列の見出し＋値」の行になる。
+     列の見出しは Layout.vue の labelStackTables() が data-label に写す。見た目は建物データのカードに揃える */
+  .vp-doc .stack-table table {
+    display: block;
+    overflow: visible;
+    border: none;
+    margin: 12px 0;
+  }
+  .vp-doc .stack-table thead {
+    display: none;
+  }
+  .vp-doc .stack-table tbody {
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+  }
+  .vp-doc .stack-table tr,
+  .vp-doc .stack-table tr:nth-child(2n) {
+    display: block;
+    border: 1px solid var(--vp-c-divider);
+    border-radius: 8px;
+    overflow: hidden;
+    background-color: var(--vp-c-bg);
+  }
+  /* 見出しは左に浮かせ、値は右側で普通に折り返す（値が複数の要素でも横にはみ出さない） */
+  .vp-doc .stack-table table td {
+    display: block;
+    border: none;
+    padding: 3px 12px 3px calc(12px + 7.5em);
+    min-width: 0;
+    white-space: normal;
+    font-size: 0.9rem;
+  }
+  .vp-doc .stack-table table td::before {
+    content: attr(data-label);
+    float: left;
+    width: 7em;
+    margin-left: -7.5em;
+    color: var(--vp-c-text-2);
+  }
+  .vp-doc .stack-table table td::after {
+    content: '';
+    display: block;
+    clear: both;
+  }
+  .vp-doc .stack-table table td:first-child {
+    padding: 8px 12px;
+    margin-bottom: 4px;
+    background-color: var(--vp-c-bg-soft);
+    font-weight: 600;
+  }
+  .vp-doc .stack-table table td:first-child::before {
+    content: none;
+  }
+  .vp-doc .stack-table table td:last-child {
+    padding-bottom: 8px;
+  }
+
   /* 商品需要逆引き: 住民層の札が横一列に並んで表がはみ出すので、モバイルでは折り返す
      （PCでは上の「折り返し禁止」の指定のまま） */
   .vp-doc._wiki_needs-index table td:nth-child(2) {

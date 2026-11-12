@@ -58,6 +58,7 @@ const xpOf = (rank: number) => data.ranks[rank - 1].xp.toLocaleString()
 
 ## 競馬場
 
+<div class="stack-table">
 <table>
 <thead><tr><th>ランク（必要な輝き）</th><th>島内の建物</th><th>パトリキの住居（追加）</th><th>特別な効果</th></tr></thead>
 <tbody>
@@ -69,9 +70,11 @@ const xpOf = (rank: number) => data.ranks[rank - 1].xp.toLocaleString()
 </tr>
 </tbody>
 </table>
+</div>
 
 ## 円形闘技場
 
+<div class="stack-table">
 <table>
 <thead><tr><th>ランク（必要な輝き）</th><th>島内の建物</th><th>パトリキの住居（追加）</th><th>特別な効果</th></tr></thead>
 <tbody>
@@ -83,6 +86,7 @@ const xpOf = (rank: number) => data.ranks[rank - 1].xp.toLocaleString()
 </tr>
 </tbody>
 </table>
+</div>
 
 - ランクIVで加わるリベルトゥスのパンの需要は、アップデート3.0で消費量がプレブスと同じ水準まで下がりました（公式パッチノートの内容）。リベルトゥスの需要は[住民層](/wiki/population#リベルトゥス)にあります。
 
@@ -108,6 +112,7 @@ const xpOf = (rank: number) => data.ranks[rank - 1].xp.toLocaleString()
 
 専門家1体ごとの数値は、レアリティごとに決まった範囲の中でランダムに決まります。下表は最終的な値ではなく、取りうる範囲です。
 
+<div class="stack-table">
 <table>
 <thead><tr><th>レアリティ</th><th>初期値</th><th>追加ポテンシャル</th><th>追加トレーニング回数</th></tr></thead>
 <tbody>
@@ -117,6 +122,7 @@ const xpOf = (rank: number) => data.ranks[rank - 1].xp.toLocaleString()
 <tr><td>レジェンダリー</td><td>2〜5</td><td>+1〜+5</td><td>8〜15回</td></tr>
 </tbody>
 </table>
+</div>
 
 4つのステータスはどれも同じレンジで決まります（例えばレアなら、速度・スタミナ・ダッシュ・信頼性すべてが初期値1〜4です）。
 
