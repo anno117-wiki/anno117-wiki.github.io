@@ -10,7 +10,7 @@
 
 ### 作業環境
 - 主な環境は Windows の開発PC（`SHELL` は **Git Bash**。BashツールもPowerShellツールも利用可。迷わず実行する）。
-- クラウド（Linux）のセッションでも作業できる。違い: `_local/`（公式ゲームデータ）と `docs-notes/research-*.md` は無い／本番サイトには直接アクセスできない（デプロイは GitHub の Actions の結果で確かめる）／ビルド後に `docs/` の画像が消えていないかを `git status` で見る（引き継ぎ書「ビルド」節）。
+- クラウド（Linux）のセッションでも作業できる。違い: `_local/`（公式ゲームデータ）と `docs-notes/research-*.md` は無い／本番サイトには直接アクセスできない（デプロイは GitHub の Actions の結果で確かめる）／ビルド後に `docs/` の画像が消えていないかを `git status` で見る（引き継ぎ書「ビルド」節）／**クローンが浅い（`git rev-parse --is-shallow-repository` が true）ときは、`build:site` の前に `git fetch --depth=2000 origin master` で履歴を取り寄せる**（sitemap の最終更新日を git の履歴から作るため、浅いと古いページまで最新の日付になる）。
 
 ## 概要
 Anno 117（PS5/Steam）の日本語攻略Wiki（表示名「Anno 117攻略Wiki」）と生産チェーン計算機を統合したWebサイト。GitHub Pages で公開（`anno117-wiki/anno117-wiki.github.io`、master ブランチの `docs/`）。

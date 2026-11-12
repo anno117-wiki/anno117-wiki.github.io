@@ -27,7 +27,7 @@
   - **Windows での確認（最優先）**: 下の「次セッションのミッション」の先頭。goods アイコン36件の追跡で `git pull`・`git status`・`build:site` が問題ないか
   - **スマホのカード表示の感想待ち**: カードにした表は縦に長くなる（軍事ガイドの戦闘性能は13枚）。ユーザーが実機で見て、長すぎる所があれば調整する
   - DLC03ガイドの「コイン」表記（表の外の文章3か所）はアイコンにしない（ユーザー決定。目的は表の中のスペース節約）
-  - 検査の追加候補で未着手: 更新履歴 `updates.json` の中身・各ページの title/description・計算機の ja/en 翻訳キー・文字化けとファイルサイズ（ユーザーに提示済み・着手は未決定）
+  - 検査の追加候補で未着手: 文字化け（U+FFFD）とファイルサイズの急増の警告（「急に大きくなった」の基準の設計が要る。着手は未決定）。更新履歴・タイトルと説明文・翻訳キーの検査は追加済み（下の「ビルド」節）
   - 未確認の情報メモの項目を実機で確かめる（A から。C は照合シート `dlc03-verify-sheet.md` と合わせて）
 - **注意点**（詳細は下の「注意点」の各節）: スマホの表の方針と `stack-table` の使い方は「スマホの表」節／Windows 以外のビルドと検査の内容は「ビルド」節。ソースを先にコミットしてから `build:site` し、`docs/` を別コミットにすると、sitemap の最終更新日が今回の日付になる
 - **環境の気づき（クラウドのセッション）**: GitHub の push には、Claude の GitHub App が `anno117-wiki` 組織にインストールされている必要がある（個人アカウントだけでは push が 403 になった。2026-11-12 に組織へインストール済み）。クラウドからは `anno117-wiki.github.io` へ直接アクセスできず（プロキシで拒否）、本番の表示は確かめられない。デプロイの確認は GitHub の Actions の実行結果で行う
@@ -370,6 +370,8 @@
 
 ### ビルド
 - 必ず `bun run build:site`（wikiも含む全ビルド）
+- **【2026-11-12追加・重要】浅いクローン（クラウドのセッション等）で `build:site` すると、sitemap の最終更新日（lastmod）が狂う**。lastmod は各ページのソースの最終コミット日から作る（`config.ts` の `gitLastModified`）ため、履歴が浅いと、それより前に更新されたページが「手元で最も古いコミットの日付」になる。2026-11-12 のクラウドのセッションでは、`db90271`〜`a22767b3` の公開版で35ページ中20ページが「2026-11-12T10:22:34」になっていた（履歴を取り寄せて作り直し、正しい日付に戻した）。**ビルド前に `git rev-parse --is-shallow-repository` を見て、true なら `git fetch --depth=2000 origin master`**
+- **【2026-11-12追加】build:site の検査 `[5/5]` に3つ追加**: (1) 更新履歴 `updates.json`（`scripts/check-updates-log.ts`）: 日付 YYYY-MM-DD・種類 post/fix・タイトル・説明が必須、リンクは任意だがあればサイト内の実在ページ、同じ日付・タイトルの重複なし、**新しい順（新しい項目は先頭に足す）** (2) 各ページのタイトルと説明文（`scripts/check-page-meta.ts`）: 空・ほかのページと同じ、はエラー。404 と google の確認用ファイルは対象外。直すのは各 .md の frontmatter (3) 計算機の翻訳キー（`scripts/check-i18n-keys.ts`）: ja/en の片方にしかないキー・空の値はエラー。直すのは `packages/shared/public/i18n/locales/`。OK 時の表示は「計算機のデータ 160件・画像の参照 2404件・翻訳キー 334件」「更新履歴 91件・ページのタイトルと説明文 35件」
 - **【2026-11-12追加】Windows 以外でビルドすると、アイギュプトの商品・労働力のアイコン36件が `docs/icons/goods/` から消える**。`apps/wiki/docs/public/icons/goods` は、Windows の開発PCでは `packages/shared/public/icons` へのシンボリックリンクだが、Git には普通のフォルダとして入っている（`aegyptus_*.png`・`aegyptus.webp`・`chanter.png`・`gymnasiarch.png`・`potter.png`・`scribe.png`・`thresher.png` は `packages/shared` 側にしか無い）。クラウドなどで取り出すとこれらが入らず、ビルド後の `git status` に `D docs/icons/goods/...` が並ぶ。**2026-11-12 から `check:site` が検出する**（Git に登録済みの `docs/` の画像が消えていたらエラー。`assets/` は対象外。意図して消す画像は `git rm` で登録から外す）。さらに `scripts/check-calculator-data.ts` で、計算機が画面で読み込む JSON（必須5件の実在・全160件が読めるか・商品一覧が指す生産チェーンのファイル）と、データが指すアイコン（商品一覧・生産チェーンの各段・建設費/維持費の資材・アイテム対応表。約2,400件）の実在も調べる。新しく足したアイコンの置き忘れもここで止まる。Wiki 側の画像はページ生成時に HTML の `src` に出るので、従来のリンク切れ検査で守られている。**同日に根本対策済み**: Git 側の `apps/wiki/docs/public/icons/goods/` に36件を足し、`packages/shared/public/icons` と同じ250件にした。**今後 `packages/shared/public/icons` にアイコンを足したら、`apps/wiki/docs/public/icons/goods/` にも同じファイルを置いて `git add -f` する**（`.gitignore` でこのフォルダは無視されているため `-f` が要る。`public/images` と同じく両方のパスを追跡する運用）。忘れると Windows 以外のビルドで再発する。再発したら、ビルド後の `git status` に `D docs/icons/goods/...` が並ぶ
 - ビルド後に「`docs/` に index.html・wiki・calculator がない」というフックの警告が毎回出るが、2026-10-17に4回とも誤検知だった（実ファイルあり・`check:site` OK）。警告が出たら `ls docs/index.html docs/wiki docs/calculator` と `bun run check:site` で実物を確かめる（2026-10-21にも複数回出たが誤検知）
 - **Bashツールを並列で呼ぶと、片方の `cd` で作業場所がずれ、`bun run build:site` が「Script not found」で失敗することがある**（2026-10-21）。ビルドは単独の呼び出しで、`cd /c/Users/kojif/Desktop/anno_db2 && bun run build:site` とする
