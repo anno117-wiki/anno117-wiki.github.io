@@ -238,8 +238,7 @@
     "buildingUnit": "x",
     "clearSearch": "Clear search",
     "categorySuffix": "Category",
-    "autoRatioTooltip": "Automatically sets the optimal rate for whole building counts",
-    "regionNotice.egyptian": "Aegyptus figures come from in-game data (update 3.0). They have not been checked against the live game yet."
+    "autoRatioTooltip": "Automatically sets the optimal rate for whole building counts"
   },
   "regions": {
     "latium": "Latium",
