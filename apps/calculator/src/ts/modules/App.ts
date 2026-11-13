@@ -104,8 +104,6 @@ interface RegionDef {
     icon?: string;
     /** true の地域は、その地域の商品データがあるときだけ切替対象になる */
     dlc?: boolean;
-    /** true の地域は、ゲーム内データ未照合の注記を表示する */
-    unverified?: boolean;
 }
 
 // 並び順が切替ボタンの巡回順になる。
@@ -113,7 +111,7 @@ interface RegionDef {
 const REGIONS: readonly RegionDef[] = [
     { key: 'Roman', label: 'Latium', icon: 'latium.webp' },
     { key: 'Celtic', label: 'Albion', icon: 'albion.webp' },
-    { key: 'Egyptian', label: 'Aegyptus', icon: 'aegyptus.webp', dlc: true, unverified: true },
+    { key: 'Egyptian', label: 'Aegyptus', icon: 'aegyptus.webp', dlc: true },
 ];
 
 // ---------------------------------------------------------------------------
@@ -248,8 +246,6 @@ export class App {
             if (def.icon) icon.src = `${ASSETS_ICONS_PATH}${def.icon}`;
         }
         if (text) text.textContent = def.label;
-        const notice = document.getElementById('region-notice');
-        if (notice) notice.hidden = !def.unverified;
     }
 
     private bindRegionToggle(): void {

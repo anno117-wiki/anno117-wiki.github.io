@@ -238,8 +238,7 @@
     "buildingUnit": "軒",
     "clearSearch": "検索をクリア",
     "categorySuffix": "カテゴリ",
-    "autoRatioTooltip": "整数建物数になる最適レートを自動設定します",
-    "regionNotice.egyptian": "アイギュプトの数値はゲーム内データ(アップデート3.0)です。実機との照合は未確認です。"
+    "autoRatioTooltip": "整数建物数になる最適レートを自動設定します"
   },
   "regions": {
     "latium": "ラティウム",
