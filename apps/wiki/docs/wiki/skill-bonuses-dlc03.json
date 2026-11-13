@@ -6,24 +6,21 @@
       "skill": "平和の砂漠",
       "effects": {
         "happiness": 2
-      },
-      "unverified": true
+      }
     },
     {
       "building": "攻城兵器工房",
       "skill": "平和の砂漠",
       "effects": {
         "happiness": 2
-      },
-      "unverified": true
+      }
     },
     {
       "building": "騎兵養成所",
       "skill": "平和の砂漠",
       "effects": {
         "happiness": 2
-      },
-      "unverified": true
+      }
     },
     {
       "building": "ラクダ牧場",
@@ -31,8 +28,7 @@
       "effects": {
         "population": 1,
         "income": 2
-      },
-      "unverified": true
+      }
     },
     {
       "building": "総督のヴィラ",
@@ -41,8 +37,7 @@
         "income": 200,
         "prestige": 100,
         "gymnasiarchWorkforce": 50
-      },
-      "unverified": true
+      }
     }
   ]
 }

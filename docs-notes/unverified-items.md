@@ -69,7 +69,7 @@ DLC03 と 3.0 の分は、ゲーム内データから作っていて、ページ
 | C4 | `guide/economy-guide.md` 175行 | 住民ティアと必要需要（アイギュプト） |
 | C5 | `wiki/population.md` 178行 | アイギュプトの層と需要の内容 |
 | C6 | `wiki/population.md` 33行 | ビールの需要（社会のスキル「ケレースとバッカス」）の効果：人口+1・収入+1・幸福+2・知識-1 |
-| C7 | `wiki/buildings.md` 15・17行 | アイギュプトの建物の効果（生産施設の維持費と「改修されたピラミッド」は確認済み）と、DLC03のスキルの追加効果5件（兵舎・攻城兵器工房・騎兵養成所の幸福+2、ラクダ牧場の人口+1・収入+2、総督のヴィラの収入+200・名声+100・ギムナシアリコスの労働力+50。`wiki/skill-bonuses-dlc03.json` の `unverified`） |
+| C7 | `wiki/buildings.md` 15・17行 | アイギュプトの建物の効果（生産施設の維持費と「改修されたピラミッド」は確認済み）（DLC03のスキルの追加効果5件は、2026-11-13に実機で確認が済み、印を外した） |
 | C8 | `wiki/building-specs.md` 20行 | 全建物の建設費・維持費（ゲーム内データが元） |
 | C9 | `wiki/techs-dlc03.md` 15行・`guide/research-guide.md` 89行 | スキルツリーのつながり（線）。ゲームの規則から作った推定 |
 | C10 | `wiki/items.md` 476行・`guide/research-guide.md` 129行 | アイテムの「対象の総称と内訳」の表、DLC03 の専門家の数値 |
@@ -92,7 +92,7 @@ DLC03 と 3.0 の分は、ゲーム内データから作っていて、ページ
 
 - アイテムの注意の印（`items-full.json` の `caution` / `sourceCaution`）: 0件
 - 生産建物のサイクルタイムの未確認の印（`goods-producers.json` の `cycleUnverified`）: 0件
-- DLC03 のスキルの追加効果（`skill-bonuses-dlc03.json` の `unverified`）: 5件（上の C7）
+- DLC03 のスキルの追加効果（`skill-bonuses-dlc03.json` の `unverified`）: 0件（2026-11-13 に5件とも確認済みで印を外した）
 
 ## 更新のしかた
 

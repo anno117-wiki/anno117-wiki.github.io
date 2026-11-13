@@ -7,7 +7,7 @@
 - 対象は、対象の建物が1つに決まる3スキル(下の SKILLS)。「すべての施設」が対象のスキル
   (遊牧商人・文献一覧)は、対象の建物が決まらないので含めない
 - 値は effectLines の value (例 '+2')。効果の種類は ATTR で建物の列に対応づける
-- ゲームの配信前データなので、出力の各項目に unverified: true を付ける(画面に「未確認です」と出す)
+- 5件(兵舎・攻城兵器工房・騎兵養成所・ラクダ牧場・総督のヴィラ)は実機で確認済み(2026-11-06・11-13)なので、unverified は付けない
 実行: python tools/build-skill-bonuses-dlc03.py
 """
 import json
@@ -44,7 +44,7 @@ def main() -> None:
                 sys.exit(f"{skill}: 対応づけの無い効果 {line['text']['english']}")
             effects[key] = int(line['value'].replace('+', ''))
         for building in buildings:
-            rows.append({'building': building, 'skill': skill, 'effects': effects, 'unverified': True})
+            rows.append({'building': building, 'skill': skill, 'effects': effects})
     OUT.write_text(json.dumps({'source': 'ゲーム内データ(アップデート3.0)', 'bonuses': rows}, ensure_ascii=False, indent=2) + '\n',
                    encoding='utf-8', newline='\n')
     for r in rows:
