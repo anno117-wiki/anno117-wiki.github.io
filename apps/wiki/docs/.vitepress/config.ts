@@ -208,7 +208,44 @@ export default defineConfig({
   themeConfig: {
     nav: [
       { text: 'ホーム', link: '/' },
-      { text: '攻略ガイド', link: '/guide/strategy' },
+      {
+        text: '攻略ガイド',
+        activeMatch: '^/guide/',
+        items: [
+          { text: '攻略ガイド一覧', link: '/guide/strategy' },
+          {
+            text: '基本の攻略',
+            items: [
+              { text: '序盤攻略・基本戦略', link: '/guide/early-game-strategy' },
+              { text: '経済・収入最適化', link: '/guide/economy-guide' },
+              { text: '研究・スキルツリー・専門家', link: '/guide/research-guide' },
+              { text: '交易・交易ルート', link: '/guide/trade-guide' },
+              { text: '軍事・戦闘', link: '/guide/military-guide' },
+            ],
+          },
+          {
+            text: 'DLC要素',
+            items: [
+              { text: 'DLC01・灰の予言', link: '/guide/dlc01-ashes-of-prophecy' },
+              { text: 'DLC02・競馬場', link: '/guide/dlc02-hippodrome' },
+              { text: 'DLC03・デルタの夜明け', link: '/guide/dlc03-dawn-of-delta' },
+            ],
+          },
+          {
+            text: 'その他',
+            items: [
+              { text: '操作方法（PS5版）', link: '/guide/controls' },
+              { text: 'アップデート・パッチ情報', link: '/guide/patch-notes' },
+            ],
+          },
+          {
+            text: '小ネタ',
+            items: [
+              { text: '一人称モード（自由散策モード）', link: '/guide/controls#first-person' },
+            ],
+          },
+        ],
+      },
       {
         text: 'データベース',
         activeMatch: '^/wiki/',
