@@ -47,14 +47,17 @@ VALUE_FIX = {  # guid -> [(旧, 新)] 効果文の差し替え(3.0のパッチ�
 BOOST_FIX = {
     '160513': ['生産性: +50%', '追加の品物: 顔料 1/2', '品物の置換: ティリアンパープル → 顔料', '維持費: -35%'],
 }
-# 河川の流れによる悪影響の符号(Item Inspector v3.0.0.1・Planner v1.2.0 で「+」から「-」に修正された。2026-11-09)
+# 符号の修正(Item Inspector v3.0.0.1・Planner v1.2.0 で直った。2026-11-09)
 # 新しい項目は毎回カタログ(v1.0.0)から作り直すため、追加の後に当てる。効果・強化後の効果の両方が対象
-RIVER_LABEL = '河川の流れによる悪影響：: '
-RIVER_FIX = {  # guid -> {旧の値: 新の値}
-    '159509': {'+10%': '-10%'},
-    '181028': {'+20%': '-20%'},
-    '181024': {'+100%': '-100%'},
-    '180888': {'+50%': '-50%', '+100%': '-100%'},
+# 河川の流れ: 「+」から「-」に。71521 は PS5 実機(2026-11-15)で「積荷による減速 +65%」「向かい風による影響 +65%」を確認済み
+RIVER = '河川の流れによる悪影響：: '
+SIGN_FIX = {  # guid -> [(旧の効果文, 新の効果文)]
+    '159509': [(RIVER + '+10%', RIVER + '-10%')],
+    '181028': [(RIVER + '+20%', RIVER + '-20%')],
+    '181024': [(RIVER + '+100%', RIVER + '-100%')],
+    '180888': [(RIVER + '+50%', RIVER + '-50%'), (RIVER + '+100%', RIVER + '-100%')],
+    '71521': [('積荷の重量による減速：-65%', '積荷の重量による減速：+65%'), ('向かい風による影響: -65%', '向かい風による影響: +65%'),
+              ('積荷の重量による減速：-75%', '積荷の重量による減速：+75%'), ('向かい風による影響: -75%', '向かい風による影響: +75%')],
 }
 ALLOCATION_JA = {'Villa': '住居', 'Ship': '船'}
 CONTRACT_TIER_JA = {0: '並', 1: '良', 2: '最高'}
@@ -246,12 +249,12 @@ def main() -> None:
             items[index] = entry
         added.append(entry['nameJa'])
 
-    # 4. 河川の流れの符号を直す(すでに直っていれば何もしない)
+    # 4. 符号を直す(すでに直っていれば何もしない)
     for it in items:
-        for old, new in RIVER_FIX.get(str(it['guid']), {}).items():
+        for old, new in SIGN_FIX.get(str(it['guid']), []):
             for key in ('effects', 'boostEffects'):
                 if key in it:
-                    it[key] = [RIVER_LABEL + new if e == RIVER_LABEL + old else e for e in it[key]]
+                    it[key] = [new if e == old else e for e in it[key]]
 
     ITEMS.write_text(json.dumps(items, ensure_ascii=False, indent=2), encoding='utf-8', newline='\n')
     print(f'削除 {removed}件、追加 {len(added)}件、合計 {len(items)}件')
