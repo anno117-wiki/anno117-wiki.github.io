@@ -20,8 +20,8 @@ LEVEL_KEY = {1499: 'libertus', 1496: 'plebeian', 1497: 'equites', 1498: 'patrici
 LATIUM = {'libertus', 'plebeian', 'equites', 'patrician'}
 # 建物のアイコンが商品のアイコンと名前の違う生産施設（ラティウム）。需要のアイコンに読み替えて層を探す（2026-11-16追加）
 PRODUCTION_ICON_ALIAS = {'production_lounger': 'lounger_goods', 'production_horses': 'horses_goods'}
-# 実機で確認した層（ユーザー確認 2026-11-16）。ワインはプレブスでは輝きでだけ付く需要で、通常の需要はエクィテスから。パンはリベルトゥスでは輝きでだけ付く需要で、通常の需要はプレブスから（需要の画面の「必要な品物が生産できる場所」がプレブス）。データの「最初の層」より優先する
-TIER_OVERRIDE = {'vintner': 'equites', 'bakery': 'plebeian'}
+# 実機で確認した層（ユーザー確認 2026-11-16）。ワインはプレブスでは輝きでだけ付く需要で、通常の需要はエクィテスから。パンはリベルトゥスでは輝きでだけ付く需要で、通常の需要はプレブスから（需要の画面の「必要な品物が生産できる場所」がプレブス）。小像はプレブスでは輝きがあっても需要にならない（データ上は輝きでだけ付く需要になっている）ので、エクィテスから。データの「最初の層」より優先する
+TIER_OVERRIDE = {'vintner': 'equites', 'bakery': 'plebeian', 'caelator': 'equites'}
 
 
 def main() -> None:
