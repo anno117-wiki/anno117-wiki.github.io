@@ -410,7 +410,7 @@
       "id": "bakery",
       "nameEn": "Bakery",
       "nameJa": "パン屋",
-      "tier": "libertus",
+      "tier": "plebeian",
       "maintenance": -14,
       "population": 0,
       "income": 2,
