@@ -9,7 +9,12 @@ import { data } from './patrons.data.ts'
 const wonderThreshold = data.thresholds.wonder
 const dominantThreshold = data.thresholds.dominant
 const byId = Object.fromEntries(data.patrons.map((p: any) => [p.id, p]))
-const sharedMilestones: [number, number][] = data.patrons[0].local[0].milestones
+// 生産アップの段階: 8柱共通（マルスの値）とアイギュプトの3柱（イシス・バステトの値）を、しきい値の和集合で1つの表にする
+const commonSteps = new Map<number, number>(data.patrons[0].local[0].milestones)
+const aegyptusSteps = new Map<number, number>(byId.isis_bastet.local[0].milestones)
+const productivityRows = [...new Set([...commonSteps.keys(), ...aegyptusSteps.keys()])]
+  .sort((a, b) => a - b)
+  .map((devotion) => ({ devotion, common: commonSteps.get(devotion), aegyptus: aegyptusSteps.get(devotion) }))
 </script>
 
 # 信仰神
@@ -49,21 +54,22 @@ const sharedMilestones: [number, number][] = data.patrons[0].local[0].milestones
 </tbody>
 </table>
 
-## 生産アップの効果段階（全神共通）
+## 生産アップの効果段階
 
-各神の局所効果1（生産アップ系）は、島の信仰値が下のしきい値を超えるたびに段階が上がります（全15段階）。
+各神の局所効果1（生産アップ系）は、島の信仰値が下のしきい値を超えるたびに段階が上がります。アイギュプトの3柱（イシス・バステト、セベク、トト・トリスメギストス）は、ほかの8柱と段階が違います。
 
 <table>
-<thead><tr><th>島の信仰値</th><th>生産性の増加</th></tr></thead>
+<thead><tr><th>島の信仰値</th><th>8柱共通</th><th>アイギュプトの3柱</th></tr></thead>
 <tbody>
-<tr v-for="[devotion, scale] in sharedMilestones" :key="devotion">
-<td>{{ devotion.toLocaleString() }}</td>
-<td>+{{ scale }}%</td>
+<tr v-for="row in productivityRows" :key="row.devotion">
+<td>{{ row.devotion.toLocaleString() }}</td>
+<td>{{ row.common === undefined ? '—' : '+' + row.common + '%' }}</td>
+<td>{{ row.aegyptus === undefined ? '—' : '+' + row.aegyptus + '%' }}</td>
 </tr>
 </tbody>
 </table>
 
-生産性は10%刻みで上がり、+10%から最大+150%になります。
+「—」は、その信仰値では段階が上がらないことを表します。どちらも10%刻みで上がり、8柱は全15段階で最大+150%、アイギュプトの3柱は全17段階で最大+170%になります。
 
 ## マルス {#mars}
 
