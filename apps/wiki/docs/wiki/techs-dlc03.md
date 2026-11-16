@@ -12,8 +12,6 @@ import { data } from './techs.data.ts'
 
 DLC03「デルタの夜明け」で解放される追加スキルの一覧です。**ゲート**（太枠）は次フェーズへの解放条件です。<strong>月桂冠の飾り</strong>が付いたスキルは、繰り返し研究できます。セルをクリックすると詳細を確認できます。
 
-アイコンはありません。
-
 <SkillTreeBranch branch="dlc03" :techs="data.byBranch['dlc03'] || []" :meta="data.branchMeta['dlc03']" color="#059669" />
 
 ## 関連ガイド
