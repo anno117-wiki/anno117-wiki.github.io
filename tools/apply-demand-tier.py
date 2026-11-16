@@ -18,6 +18,8 @@ OUT = ROOT / 'apps' / 'wiki' / 'docs' / 'wiki' / 'buildings-effects.json'
 LEVEL_KEY = {1499: 'libertus', 1496: 'plebeian', 1497: 'equites', 1498: 'patrician',
              1500: 'wader', 1501: 'smith', 1502: 'alderman', 1503: 'mercators', 1504: 'nobles'}
 LATIUM = {'libertus', 'plebeian', 'equites', 'patrician'}
+# 建物のアイコンが商品のアイコンと名前の違う生産施設（ラティウム）。需要のアイコンに読み替えて層を探す（2026-11-16追加）
+PRODUCTION_ICON_ALIAS = {'production_lounger': 'lounger_goods', 'production_horses': 'horses_goods'}
 
 
 def main() -> None:
@@ -41,10 +43,11 @@ def main() -> None:
     for b in data['buildings']:
         if (b.get('icon') or '').startswith('base_residence'):
             continue
-        area = 'latium' if b['tier'] in LATIUM else 'albion'
-        if b['tier'] == 'none':
+        alias = PRODUCTION_ICON_ALIAS.get(b.get('icon'))
+        area = 'latium' if (alias or b['tier'] in LATIUM) else 'albion'
+        if b['tier'] == 'none' and not alias:
             continue  # 以前に 'none' にした建物の地域は分からないので、そのまま
-        icon = f"icon_3d_{b.get('icon')}.png"
+        icon = f"icon_3d_{alias or b.get('icon')}.png"
         # アルビオンの市場は、需要側のアイコンがローマ版の名前のまま
         new = first[area].get(icon) or first[area].get(icon.replace('celtic', 'roman'), 'none')
         if new != b['tier']:
