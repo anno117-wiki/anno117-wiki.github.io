@@ -76,6 +76,13 @@ HEROIC_FIX = {
     '185142': ['維持費: -25%', '範囲効果: 幸福度 +1', '範囲効果: 名声 +1', '必要名声: 10000',
                '効果範囲: 祭壇 +20%', '名声: +3%'],  # プラウトゥス
 }
+# レジェンダリーの専門家の表記の直し（アイテム一覧画面のツールチップ、PS5実機、2026-11-16 ユーザー確認）
+# guid -> [(旧の文字列, 新の文字列, 強化後の効果にも当てるか)]。効果文の中の部分文字列を置き換える
+LEGENDARY_TEXT_FIX = {
+    '175089': [('すべての施設: 筆記板の供給が必要 ', '住居の需要を提供する: 筆記板', True)],  # スプリウス・ウェロ
+    '172289': [('品物の移送速度', '積み込み速度', True)],  # ユリア・プブリカ（画面は「積み込み速度」）
+    '166523': [('募集施設: 収入', '範囲効果: 収入', False), ('募集施設: 名声', '範囲効果: 名声', False)],  # 小スコルピオ（画面は範囲効果）
+}
 ALLOCATION_JA = {'Villa': '住居', 'Ship': '船'}
 CONTRACT_TIER_JA = {0: '並', 1: '良', 2: '最高'}
 COMPARE_JA = {'AtLeast': '以上', 'AtMost': '以下', 'LessThan': '未満', 'MoreThan': '超'}
@@ -275,6 +282,11 @@ def main() -> None:
         for key in ('effects', 'boostEffects'):
             if key in it:
                 it[key] = [e.replace(CARGO_OLD, CARGO_NEW) for e in it[key]]
+        for old, new, also_boost in LEGENDARY_TEXT_FIX.get(str(it['guid']), []):
+            keys = ('effects', 'boostEffects') if also_boost else ('effects',)
+            for key in keys:
+                if key in it:
+                    it[key] = [e.replace(old, new) for e in it[key]]
         if str(it['guid']) in HEROIC_FIX:
             it['effects'] = list(HEROIC_FIX[str(it['guid'])])
             it['boostEffects'] = [e.replace('すべての施設: ', '範囲効果: ') for e in it.get('boostEffects', [])]
