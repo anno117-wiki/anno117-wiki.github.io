@@ -112,8 +112,6 @@ DLC01「灰の予言」で追加された神です。
 
 DLC03「デルタの夜明け」で追加された神です。数値は、ゲームのアップデート3.0の実機の画面で確かめています。
 
-崇拝の効果で解放される祭壇は、「レプリカのスフィンクスの祭壇」です（世界の信仰4,000）。範囲効果は人々+1・収入+1・名声+2、維持費26です。
-
 <PatronDetail :patron="byId.isis_bastet" :wonder-threshold="wonderThreshold" :dominant-threshold="dominantThreshold" />
 
 ## セベク {#sobek}
