@@ -20,6 +20,8 @@ LEVEL_KEY = {1499: 'libertus', 1496: 'plebeian', 1497: 'equites', 1498: 'patrici
 LATIUM = {'libertus', 'plebeian', 'equites', 'patrician'}
 # 建物のアイコンが商品のアイコンと名前の違う生産施設（ラティウム）。需要のアイコンに読み替えて層を探す（2026-11-16追加）
 PRODUCTION_ICON_ALIAS = {'production_lounger': 'lounger_goods', 'production_horses': 'horses_goods'}
+# 実機で確認した層（ユーザー確認 2026-11-16）。ワインはプレブスでは輝きでだけ付く需要で、通常の需要はエクィテスから。データの「最初の層」より優先する
+TIER_OVERRIDE = {'vintner': 'equites'}
 
 
 def main() -> None:
@@ -50,6 +52,7 @@ def main() -> None:
         icon = f"icon_3d_{alias or b.get('icon')}.png"
         # アルビオンの市場は、需要側のアイコンがローマ版の名前のまま
         new = first[area].get(icon) or first[area].get(icon.replace('celtic', 'roman'), 'none')
+        new = TIER_OVERRIDE.get(b['id'], new)
         if new != b['tier']:
             print(f"{b['nameJa']}: {b['tier']} -> {new}")
             changed += 1

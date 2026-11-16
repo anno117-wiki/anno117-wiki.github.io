@@ -984,7 +984,7 @@
       "id": "vintner",
       "nameEn": "Vintner",
       "nameJa": "ワイン醸造業者",
-      "tier": "plebeian",
+      "tier": "equites",
       "maintenance": -30,
       "population": 0,
       "income": 1,
