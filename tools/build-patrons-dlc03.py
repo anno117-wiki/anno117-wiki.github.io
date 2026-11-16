@@ -18,6 +18,8 @@ import re
 import sys
 from pathlib import Path
 
+WONDER_OVERRIDE_ISIS_BASTET = '特大の祭壇「レプリカのスフィンクスの祭壇」を建設できるようになる。範囲効果は人々+1・収入+1・名声+2、維持費は26。（ゲーム内の説明文：「お前に爪を立ててやるのが待ちきれない。」）'
+
 ROOT = Path(__file__).resolve().parent.parent
 SRC = ROOT / '_local' / 'anno-official-data' / 'v3.0-planner'
 OUT = ROOT / 'apps' / 'wiki' / 'docs' / 'wiki' / 'patrons.json'
@@ -79,6 +81,8 @@ def main() -> None:
         wonder_text = plain(ja(p['wonderDescription']))
         wonder_name = ja(p['wonderName'])
         s['wonder']['descJa'] = f"{wonder_name}。{wonder_text}" if new and not wonder_text.startswith(wonder_name) else wonder_text
+        if guid == '153578':  # イシス・バステト: 台詞だけでは効果が分からないため、実機で確認した効果を足す（2026-11-16）
+            s['wonder']['descJa'] = WONDER_OVERRIDE_ISIS_BASTET
         dom = p['dominantEffects'][0]
         s['dominant'] = {'titleJa': ja(dom['title']), 'titleEn': en(dom['title']), 'descJa': plain(ja(dom['description']))}
         for i, e in enumerate(p['localEffects']):
