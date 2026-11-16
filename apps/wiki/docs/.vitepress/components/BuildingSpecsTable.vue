@@ -121,7 +121,7 @@ function resetFilters(): void {
 }
 
 function sizeText(b: Building): string {
-  return `${b.width}x${b.height}`
+  return `${b.width}×${b.height}`
 }
 function regionText(b: Building): string {
   return b.regions.length === REGIONS.length ? '全地域' : b.regions.join('・')

@@ -5,8 +5,8 @@ description: Anno 117（PS5/Steam）の日本語攻略Wiki。商品・生産チ�
 
 hero:
   name: Anno 117攻略Wiki
-  text: 日本語情報Wiki + 生産チェーン計算機
-  tagline: Anno 117（PS5 / Steam）の生産チェーンを調べて、計算できます
+  text: 日本語攻略Wiki + 生産チェーン計算機
+  tagline: Anno 117（PS5/Steam）の生産チェーンを調べて、計算できます
   actions:
     - theme: brand
       text: 計算機を開く

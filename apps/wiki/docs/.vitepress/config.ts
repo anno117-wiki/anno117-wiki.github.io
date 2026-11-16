@@ -10,7 +10,7 @@ import { readFileSync } from 'fs'
 
 const SITE_HOSTNAME = 'https://anno117-wiki.github.io/'
 const SITE_NAME = 'Anno 117攻略Wiki'
-const SITE_DESCRIPTION = 'Anno 117（PS5/Steam）の日本語情報Wiki + 生産チェーン計算機'
+const SITE_DESCRIPTION = 'Anno 117（PS5/Steam）の日本語攻略Wiki + 生産チェーン計算機'
 // SNS共有カード用の画像（1200x630）。og:image は絶対URL必須
 const OGP_IMAGE = SITE_HOSTNAME + 'images/ogp.png'
 
@@ -323,7 +323,7 @@ export default defineConfig({
           ],
         },
         {
-          text: 'このWikiについて',
+          text: 'このサイトについて',
           items: [
             {
               text: 'このサイトについて',

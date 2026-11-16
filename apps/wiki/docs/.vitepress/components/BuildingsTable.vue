@@ -113,7 +113,7 @@ const SORT_OPTIONS = [
   { value: 'health', label: '健康度' },
   { value: 'happiness', label: '幸福' },
   { value: 'fireSafety', label: '防火' },
-  { value: 'tier', label: '需要Tier' },
+  { value: 'tier', label: '需要ティア' },
 ]
 
 function setSort(key: string) {
@@ -232,14 +232,14 @@ watch(hash, scrollToHash)
       v-model="selectedCategory"
       style="padding:6px 10px;border:1px solid var(--vp-c-divider);border-radius:6px;font-size:14px;background:var(--vp-c-bg);color:var(--vp-c-text-1);"
     >
-      <option value="">すべてのカテゴリー</option>
+      <option value="">すべてのカテゴリ</option>
       <option v-for="c in categories" :key="c.value" :value="c.value">{{ c.label }}</option>
     </select>
     <select
       v-model="selectedTier"
       style="padding:6px 10px;border:1px solid var(--vp-c-divider);border-radius:6px;font-size:14px;background:var(--vp-c-bg);color:var(--vp-c-text-1);"
     >
-      <option value="">すべてのTier</option>
+      <option value="">すべてのティア</option>
       <option v-for="t in tiers" :key="t.value" :value="t.value">{{ t.label }}</option>
     </select>
     <button @click="resetFilters()" style="padding:6px 12px;border:1px solid var(--vp-c-divider);border-radius:6px;font-size:14px;background:var(--vp-c-bg);color:var(--vp-c-text-1);cursor:pointer;">リセット</button>
@@ -277,7 +277,7 @@ watch(hash, scrollToHash)
           <th @click="toggleSort('health')" style="cursor:pointer;white-space:nowrap;padding:8px 4px;">健康度 {{ sortArrow('health') }}</th>
           <th @click="toggleSort('happiness')" style="cursor:pointer;white-space:nowrap;padding:8px 4px;">幸福 {{ sortArrow('happiness') }}</th>
           <th @click="toggleSort('fireSafety')" style="cursor:pointer;white-space:nowrap;padding:8px 4px;">防火 {{ sortArrow('fireSafety') }}</th>
-          <th @click="toggleSort('tier')" style="cursor:pointer;white-space:nowrap;">需要Tier {{ sortArrow('tier') }}</th>
+          <th @click="toggleSort('tier')" style="cursor:pointer;white-space:nowrap;">需要ティア {{ sortArrow('tier') }}</th>
           <th>維持費</th>
           <th style="white-space:nowrap;padding:8px 4px;">関連アイテム</th>
         </tr>
