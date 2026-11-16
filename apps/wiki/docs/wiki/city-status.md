@@ -139,5 +139,5 @@ const shortAttr = (label: string) => (label === '火災安全度' ? '防火' : l
 
 ## 関連ページ
 
-- [住民層](/wiki/population) — ラティウムの住民層と需要
+- [住民層](/wiki/population) — ラティウム・アルビオン・アイギュプトの住民層と需要
 - [モニュメントの輝き](/wiki/splendor) — 競馬場・円形闘技場による島の属性ボーナス

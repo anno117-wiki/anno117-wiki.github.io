@@ -11,6 +11,8 @@ import ratiosJson from './chain-ratios.json'
 import ratiosAegyptusJson from './chain-ratios-aegyptus.json'
 // アイギュプト専用の新商品の生産チェーン。tools/build-chain-aegyptus.py で生成
 import aegyptusJson from './production-chains-aegyptus.json'
+// 既存の商品のうち、アイギュプトでも作れるもの（商品一覧 goods.data.ts と同じデータ）
+import regionsAegyptusJson from './regions-aegyptus.json'
 
 const __filename = fileURLToPath(import.meta.url)
 const __dirname = dirname(__filename)
@@ -126,6 +128,7 @@ function readProduction(filename: string): any | null {
 export default {
   load(): { byCategory: Record<string, ProductionEntry[]>; categories: string[] } {
     const jaGoods = (jaJson as { goods: Record<string, string> }).goods
+    const alsoEgyptian = new Set<string>(regionsAegyptusJson.shared)
 
     const entries: ProductionEntry[] = []
 
@@ -164,7 +167,7 @@ export default {
         nameEn: good.displayName,
         icon: good.icon ?? '',
         category: wikiCategory(good.id, good.category),
-        regions: good.regions,
+        regions: [...new Set([...(good.regions as string[]), ...(alsoEgyptian.has(good.id) ? ['Egyptian'] : [])])],
         buildingType: prod.type ?? '',
         timeSeconds: prod.time ?? 0,
         needsFuel: prod.needs_fuel ?? false,

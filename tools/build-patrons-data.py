@@ -244,7 +244,7 @@ def main() -> int:
 
     for pid, label in LOCAL1_DISPLAY.items():
         scales = [scale for _, scale in patrons[pid]['local'][0]['milestones']]
-        patrons[pid]['local'][0]['note'] = '%s +%d%%〜+%d%%（信仰値ごとの段階は上の共通表と同じ）' % (label, scales[0], scales[-1])
+        patrons[pid]['local'][0]['note'] = '%s +%d%%〜+%d%%（信仰値ごとの段階は上の表の「8柱共通」の列と同じ）' % (label, scales[0], scales[-1])
 
     ordered = [dict(id=i, **patrons[i]) for i in PATRON_IDS.values()]
     OUT.write_text(json.dumps({'source': 'assets.xml v2.1', 'thresholds': thresholds, 'patrons': ordered},
