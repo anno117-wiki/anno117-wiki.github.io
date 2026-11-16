@@ -34,6 +34,8 @@ POOL_EXCLUDE_SUFFIX = 'の生産チェーン'
 POOL_EXCLUDE_NAMES = {'住居', '生産施設'}
 ZW = '​'
 EGYPT_SUFFIX = '（アイギュプト）'
+# カタログの対象と実機の画面が食い違うアイテム。実機（2026-11-16）の範囲「総督のヴィラ」に直す（ミウト・キャットゥルス）
+TARGET_OVERRIDE = {'159507': ['総督のヴィラ'], '181026': ['総督のヴィラ']}
 
 
 def ja(loca) -> str:
@@ -110,7 +112,7 @@ def main() -> None:
                 names.add(name)
                 if egypt:
                     names.add(name + EGYPT_SUFFIX)
-        result[str(row['guid'])] = sorted(names)
+        result[str(row['guid'])] = TARGET_OVERRIDE.get(str(row['guid'])) or sorted(names)
 
     OUT.write_text(json.dumps(result, ensure_ascii=False, separators=(',', ':')) + '\n', encoding='utf-8', newline='\n')
     size = OUT.stat().st_size

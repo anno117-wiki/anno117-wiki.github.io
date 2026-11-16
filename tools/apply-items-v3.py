@@ -18,6 +18,7 @@
 """
 import csv
 import json
+import re
 import sys
 from pathlib import Path
 
@@ -86,6 +87,10 @@ LEGENDARY_TEXT_FIX = {
     '179659': [('追加生産力：ザクロの生産力: 75%', '追加生産力：ザクロの生産力: +75%', False)],  # 果樹園の監督（画面は+75%）
     '179655': [('追加生産力：ゴマの生産力: 75%', '追加生産力：ゴマの生産力: +75%', False)],  # 油の種に囁く者（画面は+75%）
 }
+# ミウト・キャットゥルス: 実機の画面（アイテム一覧のツールチップ、2026-11-16）は「（総督のヴィラ）: ネズミの危険性を抑える。」で、
+# 範囲は総督のヴィラ、ネズミの危険性の数値は表示されない（ユーザー指示で、数値は「ゲーム内で確認できません」とする）
+NO_NUMBER_NOTE = '（数値はゲーム内で確認できません）'
+VILLA_ITEMS = {'159507', '181026'}  # ミウト、キャットゥルス
 ALLOCATION_JA = {'Villa': '住居', 'Ship': '船'}
 CONTRACT_TIER_JA = {0: '並', 1: '良', 2: '最高'}
 COMPARE_JA = {'AtLeast': '以上', 'AtMost': '以下', 'LessThan': '未満', 'MoreThan': '超'}
@@ -290,6 +295,15 @@ def main() -> None:
             for key in keys:
                 if key in it:
                     it[key] = [e.replace(old, new) for e in it[key]]
+        # 範囲効果の表記: ゲームの画面は「収入 範囲効果 +2」。カタログの「すべての施設: 」を「範囲効果: 」にそろえる（ユーザー指示 2026-11-16）
+        for key in ('effects', 'boostEffects'):
+            if key in it:
+                it[key] = [('範囲効果: ' + e[len('すべての施設: '):]) if e.startswith('すべての施設: ') else e for e in it[key]]
+        if str(it['guid']) in VILLA_ITEMS:
+            it['targets'] = '総督のヴィラ'
+            for key in ('effects', 'boostEffects'):
+                if key in it:
+                    it[key] = [re.sub(r'^(ネズミの危険性を抑える。): -?\d+%$', r'\1' + NO_NUMBER_NOTE, e) for e in it[key]]
         if str(it['guid']) in HEROIC_FIX:
             it['effects'] = list(HEROIC_FIX[str(it['guid'])])
             it['boostEffects'] = [e.replace('すべての施設: ', '範囲効果: ') for e in it.get('boostEffects', [])]
