@@ -110,19 +110,19 @@ DLC01「灰の予言」で追加された神です。
 
 ## イシス・バステト {#isis_bastet}
 
-DLC03「デルタの夜明け」で追加された神です。数値は、ゲームのアップデート3.0の実機の画面で確かめています。
+DLC03「デルタの夜明け」で追加された神です。
 
 <PatronDetail :patron="byId.isis_bastet" :wonder-threshold="wonderThreshold" :dominant-threshold="dominantThreshold" />
 
 ## セベク {#sobek}
 
-DLC03「デルタの夜明け」で追加された神です。数値は、ゲームのアップデート3.0の実機の画面で確かめています。
+DLC03「デルタの夜明け」で追加された神です。
 
 <PatronDetail :patron="byId.sobek" :wonder-threshold="wonderThreshold" :dominant-threshold="dominantThreshold" />
 
 ## トト・トリスメギストス {#thoth}
 
-DLC03「デルタの夜明け」で追加された神です。数値は、ゲームのアップデート3.0の実機の画面で確かめています。
+DLC03「デルタの夜明け」で追加された神です。
 
 崇拝の効果は「トトの書」で、図書館の範囲内の生産が20%上がります。
 
