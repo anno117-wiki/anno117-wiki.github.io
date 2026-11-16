@@ -1,12 +1,12 @@
 # Anno 117攻略Wiki
 
-> Anno 117（PS5/Steam）の日本語情報Wiki。商品・生産チェーン・建物効果・住民層・スキルツリー等のゲームデータを公式データ準拠で整理し、生産チェーン計算機で必要な建物数・原料を計算できる。
+> Anno 117（PS5/Steam）の日本語攻略Wiki。商品・生産チェーン・建物効果・住民層・スキルツリー等のゲームデータを公式データ準拠で整理し、生産チェーン計算機で必要な建物数・原料を計算できる。
 
 Anno 117 は Ubisoft の都市builderシリーズ最新作。本サイトは日本語プレイヤー向けに、攻略ガイドとゲームデータベースを提供する。
 
 ## データベース
 
-- [商品一覧](https://anno117-wiki.github.io/wiki/goods.html): 全商品を食料・建設・ファッション・文化・中間品・原材料の6分類で一覧
+- [商品一覧](https://anno117-wiki.github.io/wiki/goods.html): 全商品を食料・建設資材・ファッション・文化・家庭・中間財・原材料の7分類で一覧
 - [生産チェーン一覧](https://anno117-wiki.github.io/wiki/production-chains.html): 商品ごとの生産チェーンをMermaid図で可視化
 - [建物効果](https://anno117-wiki.github.io/wiki/buildings.html): 各建物が周辺住民に与える効果の一覧
 - [住民層](https://anno117-wiki.github.io/wiki/population.html): ラティウム・アルビオンの住民層と昇格条件
