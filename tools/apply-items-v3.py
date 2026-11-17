@@ -304,6 +304,11 @@ def main() -> None:
             for key in ('effects', 'boostEffects'):
                 if key in it:
                     it[key] = [re.sub(r'^(ネズミの危険性を抑える。): -?\d+%$', r'\1' + NO_NUMBER_NOTE, e) for e in it[key]]
+        # ヒロイック（Mythic）は同じ専門家を1人までしか得られず、得るたびに来訪者の抽選の箱が減って確率が変わる。
+        # そのため来訪者の確率は出さない（ユーザー指示 2026-11-17。2.1由来は1/30、DLC03は1/35で、どちらも一定ではない）
+        if it.get('rarity') == 'Mythic':
+            it['source'] = list(dict.fromkeys(
+                '来訪者イベントの報酬' if s.startswith('来訪者イベントの報酬（') else s for s in it.get('source', [])))
         if str(it['guid']) in HEROIC_FIX:
             it['effects'] = list(HEROIC_FIX[str(it['guid'])])
             it['boostEffects'] = [e.replace('すべての施設: ', '範囲効果: ') for e in it.get('boostEffects', [])]
