@@ -1429,11 +1429,11 @@
       "demands": [
         {
           "region": "Roman",
-          "category": "Boardgames"
+          "category": "Culture"
         },
         {
           "region": "Celtic",
-          "category": "Boardgames"
+          "category": "Household"
         }
       ],
       "tiers": [
