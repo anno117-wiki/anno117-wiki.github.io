@@ -110,6 +110,14 @@ MEASURED_STREET_DISTANCE = {
 }
 
 
+# 元データ(Planner 3.0)の地域が実際と違うとき、地域を直接指定する。
+# ウルカヌスの祭壇(144812): Planner は地域にアルビオン(Celtic)も入れているが、アルビオン専用の 144813 が別にあり、
+# v2.1 のデータでも 144812 はラティウム・アイギュプト(Roman;Egyptian)だけ。2026-11-17 ユーザー指示でアルビオンを外した
+REGION_OVERRIDE = {
+    144812: ["Roman", "Egyptian"],
+}
+
+
 # 実機(PS5)で確かめた建設費の合計。元データの constructionCosts が実際に納める材料と合わないときに使う
 # 円形闘技場: 元データ(デナリウス75,000・木板250・瓦500・コンクリート310・大理石450・モザイク300)は、
 # 工程I〜IVで実際に納める材料と合わない。wiki/splendor.md の工程の表(全フェーズを実機で確認済み)の合計にする
@@ -143,7 +151,7 @@ def radius_text(b):
 
 def build_row(b, names):
     category = b.get("category")
-    regions = [r for r in REGION_ORDER if r in (b.get("regions") or [])]
+    regions = [r for r in REGION_ORDER if r in REGION_OVERRIDE.get(b["guid"], b.get("regions") or [])]
     return {
         "guid": str(b["guid"]),
         "name": ja(b.get("loca")),
