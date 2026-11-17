@@ -176,8 +176,6 @@ Anno 117 には<strong>ラティウム（ローマ）</strong>と<strong>アル�
 ## アイギュプト住民層
 
 > 需要の数量は載せていません。昇格の条件は、各カテゴリの需要を100%以上満たすことです。ただし、陶工の路線を先に進めている場合、書記には奉唱巫女が1人以上いることも条件です。ギムナシアリコスへの昇格条件と、書記を先に進めた場合の陶工の条件は未確認です。上位の層は、下位の層の需要も引き続き消費します（下の表は、1つ下の層から増える需要です）。
->
-> 出典: [Anno Union公式ブログ「Gamescom recap: Dawn of the Delta and Echoes of Kassandra」](https://www.anno-union.com/gamescom-recap-dawn-of-the-delta-and-echoes-of-kassandra/)（2026年9月3日）、[「Population, Floods and the power of knowledge」](https://www.anno-union.com/devblog-population-floods-and-the-power-of-knowledge/)（デブログ第2回、2026年10月22日）
 
 アイギュプトでは、最初の層から<strong>ギリシャ・ローマ文化</strong>と<strong>クマト（伝統）</strong>の2つの路線に分かれます。各路線は3段階で、最初の麦打ち人の上に、路線ごとの第2層と第3層が続きます。
 
