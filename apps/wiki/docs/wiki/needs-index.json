@@ -1486,6 +1486,23 @@
       ]
     },
     {
+      "productGuid": "152719",
+      "productNameEn": "Hippodrome",
+      "productNameJa": "競馬場",
+      "demands": [
+        {
+          "region": "Roman",
+          "category": "Wonder"
+        }
+      ],
+      "tiers": [
+        {
+          "tier": "patrician",
+          "region": "Roman"
+        }
+      ]
+    },
+    {
       "productGuid": "55955",
       "productNameEn": "Barrow",
       "productNameJa": "塚",

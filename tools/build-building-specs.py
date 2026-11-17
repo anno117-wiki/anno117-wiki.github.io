@@ -110,6 +110,23 @@ MEASURED_STREET_DISTANCE = {
 }
 
 
+# 実機(PS5)で確かめた建設費の合計。元データの constructionCosts が実際に納める材料と合わないときに使う
+# 円形闘技場: 元データ(デナリウス75,000・木板250・瓦500・コンクリート310・大理石450・モザイク300)は、
+# 工程I〜IVで実際に納める材料と合わない。wiki/splendor.md の工程の表(全フェーズを実機で確認済み)の合計にする
+MEASURED_CONSTRUCTION = {
+    3621: [
+        ("デナリウス", 75000), ("木板", 250), ("コンクリート", 810), ("瓦", 600),
+        ("大理石", 600), ("縄", 300), ("モザイク", 300), ("金", 60),
+    ],
+}
+
+
+def construction(b, names):
+    if b["guid"] in MEASURED_CONSTRUCTION:
+        return [{"name": n, "amount": a} for n, a in MEASURED_CONSTRUCTION[b["guid"]]]
+    return costs(b.get("constructionCosts"), names)
+
+
 def radius_text(b):
     if b["guid"] in MEASURED_STREET_DISTANCE:
         return f"基本距離{MEASURED_STREET_DISTANCE[b['guid']]}タイル（実機）"
@@ -137,7 +154,7 @@ def build_row(b, names):
         "height": b["height"],
         "radius": radius_text(b),
         "placement": placement(b),
-        "construction": costs(b.get("constructionCosts"), names),
+        "construction": construction(b, names),
         "maintenance": generalize_workforce(costs(b.get("maintenanceCosts"), names)),
     }
 

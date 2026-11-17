@@ -9010,20 +9010,28 @@
      "amount": 250
     },
     {
-     "name": "瓦",
-     "amount": 500
+     "name": "コンクリート",
+     "amount": 810
     },
     {
-     "name": "コンクリート",
-     "amount": 310
+     "name": "瓦",
+     "amount": 600
     },
     {
      "name": "大理石",
-     "amount": 450
+     "amount": 600
+    },
+    {
+     "name": "縄",
+     "amount": 300
     },
     {
      "name": "モザイク",
      "amount": 300
+    },
+    {
+     "name": "金",
+     "amount": 60
     }
    ],
    "maintenance": [
