@@ -881,3 +881,9 @@
   - 調査役の誤り: 「逆引きの劇場・聖域・賭博場にアイギュプトの層が無い」は誤り（`needs-index.data.ts` が `population-aegyptus.json` の needsIndex を合わせて表示している）
 - 調査役 `investigator` のモデルを haiku に（ユーザー指示。`.claude/agents/investigator.md`）
 - 更新履歴に1件（2026-11-17 fix）。check:mobile は iPhone 13・Galaxy S8 ともはみ出し0件
+
+## AZ. 2026-11-17 クラウドで小さな残りを3つ直した（クラウド（Linux）の単独セッション。`6ef9b4d6`・`ecba2c66`。全てpush済み）
+- 起動直後に `git pull`（`d0143d3a` → `06fef8e0`、213コミット）。CLAUDE.md に「作業を始める前に git pull」と「実機の確認では ps5-capture を提案」が増えていた
+- 引き継ぎ書の「残り」を読み、クラウドで確かめられる3項目を実際に調べて直した: (1) `guide/dlc03-dawn-of-delta.md` 46行 魔除けのお守りの材料が、同ページの生産施設の表（ガラス細工工房: 泥・アイギュプトの青、青色顔料工房: 銅鉱石・シリカ）と食い違っていた（本文は「銅と砂」「現地の粘土」）→ 表に合わせた。「シリカ」を「砂」と呼ぶか、実機の表記は未確認のまま表のデータ名に揃えた (2) `guide/calculator-guide.md` 53行 一覧ページのボタンは「開く」なのに「計算」リンクと書いていた (3) `favicon.ico` は無く、`<link rel=icon>`（anno_icon.png）だけだったので、ブラウザが自動で取りに行く `/favicon.ico` が404。Pillow で16・32・48pxの ico を作って `apps/wiki/docs/public/` に置いた
+- 研究メモ（`docs-notes/research-splendor-hippodrome-colosseum.md`）の円形闘技場のコンクリート合計「910」→「810」は、メモが Git 管理外で Windows の開発PCにしか無いため、クラウドでは直せなかった（足し算の確認だけ済み）
+- ビルド: 浅くないクローン（`is-shallow-repository` が false）で `build:site`。検査は問題0件（更新履歴112件・翻訳キー333件）。sitemap の日付が変わったのは直した2ページだけ。ソース→`docs/` の順で2コミット
