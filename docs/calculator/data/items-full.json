@@ -8601,7 +8601,7 @@
     "boostCondition": "建設: 服屋 20以上",
     "targets": "糸紡ぎ師",
     "source": [
-      "来訪者イベントの報酬（3.333%）"
+      "来訪者イベントの報酬"
     ],
     "sourceCaution": false,
     "allocation": "住居"
@@ -8630,7 +8630,7 @@
     "boostCondition": "有効な島の祭神: ケルヌンノス",
     "targets": "鳥使い",
     "source": [
-      "来訪者イベントの報酬（3.333%）"
+      "来訪者イベントの報酬"
     ],
     "sourceCaution": false,
     "allocation": "住居"
@@ -8660,7 +8660,7 @@
     "boostCondition": "有効な島の祭神: ネプトゥーヌス",
     "targets": "漁場",
     "source": [
-      "来訪者イベントの報酬（3.333%）"
+      "来訪者イベントの報酬"
     ],
     "sourceCaution": false,
     "allocation": "住居"
@@ -8687,7 +8687,7 @@
     "boostCondition": "現在の評判 皇帝: 75以上",
     "targets": "鏡職人",
     "source": [
-      "来訪者イベントの報酬（3.333%）"
+      "来訪者イベントの報酬"
     ],
     "sourceCaution": false,
     "allocation": "住居"
@@ -8715,7 +8715,7 @@
     "boostCondition": "アクティブ 祭り: すべて",
     "targets": "耕作可能な農場",
     "source": [
-      "来訪者イベントの報酬（3.333%）"
+      "来訪者イベントの報酬"
     ],
     "sourceCaution": false,
     "allocation": "住居"
@@ -8746,7 +8746,7 @@
     "boostCondition": "外交状態: 同盟、アサール・イオルグウィン",
     "targets": "公共サービス",
     "source": [
-      "来訪者イベントの報酬（3.333%）"
+      "来訪者イベントの報酬"
     ],
     "sourceCaution": false,
     "allocation": "住居"
@@ -8776,7 +8776,7 @@
     "boostCondition": "外交状態: 同盟、ネフェルネル",
     "targets": "蝋版職人",
     "source": [
-      "来訪者イベントの報酬（3.333%）"
+      "来訪者イベントの報酬"
     ],
     "sourceCaution": false,
     "allocation": "住居"
@@ -8804,7 +8804,7 @@
     "boostCondition": "建設: 牧場 25以上",
     "targets": "羊牧場",
     "source": [
-      "来訪者イベントの報酬（3.333%）"
+      "来訪者イベントの報酬"
     ],
     "sourceCaution": false,
     "allocation": "住居"
@@ -8837,7 +8837,7 @@
     "boostCondition": "有効な島の祭神: マルス",
     "targets": "武器庫",
     "source": [
-      "来訪者イベントの報酬（3.333%）"
+      "来訪者イベントの報酬"
     ],
     "sourceCaution": false,
     "allocation": "住居"
@@ -8866,7 +8866,7 @@
     "boostCondition": "外交状態: 同盟、コンコルディア",
     "targets": "宝石商",
     "source": [
-      "来訪者イベントの報酬（3.333%）"
+      "来訪者イベントの報酬"
     ],
     "sourceCaution": false,
     "allocation": "住居"
@@ -8895,7 +8895,7 @@
     "boostCondition": "建設: 住居 1000以下",
     "targets": "ウルカヌスの祭壇",
     "source": [
-      "来訪者イベントの報酬（3.333%）"
+      "来訪者イベントの報酬"
     ],
     "sourceCaution": false,
     "allocation": "住居"
@@ -8921,7 +8921,7 @@
     "boostCondition": "有効な島の祭神: ケレース",
     "targets": "住居",
     "source": [
-      "来訪者イベントの報酬（3.333%）"
+      "来訪者イベントの報酬"
     ],
     "sourceCaution": false,
     "allocation": "住居"
@@ -8949,7 +8949,7 @@
     "boostCondition": "品物 島の貯蔵所: 筆記板 50以上、現在の島",
     "targets": "ラテン語学校",
     "source": [
-      "来訪者イベントの報酬（3.333%）"
+      "来訪者イベントの報酬"
     ],
     "sourceCaution": false,
     "allocation": "住居"
@@ -8977,7 +8977,7 @@
     "boostCondition": "建設: 浴場 3以上",
     "targets": "浴場",
     "source": [
-      "来訪者イベントの報酬（3.333%）"
+      "来訪者イベントの報酬"
     ],
     "sourceCaution": false,
     "allocation": "住居"
@@ -9005,7 +9005,7 @@
     "boostCondition": "外交状態: 同盟、リシア・マー",
     "targets": "金箔工房",
     "source": [
-      "来訪者イベントの報酬（3.333%）"
+      "来訪者イベントの報酬"
     ],
     "sourceCaution": false,
     "allocation": "住居"
@@ -9033,7 +9033,7 @@
     "boostCondition": "現在の評判 皇帝: 50未満",
     "targets": "塔、門",
     "source": [
-      "来訪者イベントの報酬（3.333%）"
+      "来訪者イベントの報酬"
     ],
     "sourceCaution": false,
     "allocation": "住居"
@@ -9064,7 +9064,7 @@
     "boostCondition": "同一の提督のヴィラにアイテム 9以上",
     "targets": "都市警備",
     "source": [
-      "来訪者イベントの報酬（3.333%）"
+      "来訪者イベントの報酬"
     ],
     "sourceCaution": false,
     "allocation": "住居"
@@ -9091,7 +9091,7 @@
     "boostCondition": "有効な島の祭神: メルクリウス・ルグス",
     "targets": "貯蔵所",
     "source": [
-      "来訪者イベントの報酬（3.333%）"
+      "来訪者イベントの報酬"
     ],
     "sourceCaution": false,
     "allocation": "住居"
@@ -9120,7 +9120,7 @@
     "boostCondition": "有効な島の祭神: エポナ",
     "targets": "神聖な森",
     "source": [
-      "来訪者イベントの報酬（3.333%）"
+      "来訪者イベントの報酬"
     ],
     "sourceCaution": false,
     "allocation": "住居"
@@ -9150,7 +9150,7 @@
     "boostCondition": "特性 島の上: 知識 10000以上",
     "targets": "ガラス吹き工",
     "source": [
-      "来訪者イベントの報酬（3.333%）"
+      "来訪者イベントの報酬"
     ],
     "sourceCaution": false,
     "allocation": "住居"
@@ -9181,7 +9181,7 @@
     "boostCondition": "現在の評判 皇帝: 75以上",
     "targets": "聖所",
     "source": [
-      "来訪者イベントの報酬（3.333%）"
+      "来訪者イベントの報酬"
     ],
     "sourceCaution": false,
     "allocation": "住居"
@@ -9211,7 +9211,7 @@
     "boostCondition": "特性 島の上: 健康 5000以上",
     "targets": "市場",
     "source": [
-      "来訪者イベントの報酬（3.333%）"
+      "来訪者イベントの報酬"
     ],
     "sourceCaution": false,
     "allocation": "住居"
@@ -9243,7 +9243,7 @@
     "boostCondition": "取引ルート: 25以上",
     "targets": "織機工",
     "source": [
-      "来訪者イベントの報酬（3.333%）"
+      "来訪者イベントの報酬"
     ],
     "sourceCaution": false,
     "allocation": "住居"
@@ -9272,7 +9272,7 @@
     "boostCondition": "有効な島の祭神: ミネルヴァ",
     "targets": "劇場",
     "source": [
-      "来訪者イベントの報酬（3.333%）"
+      "来訪者イベントの報酬"
     ],
     "sourceCaution": false,
     "allocation": "住居"
@@ -9301,7 +9301,7 @@
     "boostCondition": "品物 島の貯蔵所: ワイン 100以上、現在の島",
     "targets": "酒場",
     "source": [
-      "来訪者イベントの報酬（3.333%）"
+      "来訪者イベントの報酬"
     ],
     "sourceCaution": false,
     "allocation": "住居"
@@ -9333,7 +9333,7 @@
     "boostCondition": "特性 島の上: 人々 50000以上",
     "targets": "パン屋",
     "source": [
-      "来訪者イベントの報酬（3.333%）"
+      "来訪者イベントの報酬"
     ],
     "sourceCaution": false,
     "allocation": "住居"
@@ -9363,7 +9363,7 @@
     "boostCondition": "特性 島の上: 信仰 10000以上",
     "targets": "賭博場",
     "source": [
-      "来訪者イベントの報酬（3.333%）"
+      "来訪者イベントの報酬"
     ],
     "sourceCaution": false,
     "allocation": "住居"
@@ -9394,7 +9394,7 @@
     "boostCondition": "有効な島の祭神: ウルカヌス",
     "targets": "採石場、粘土穴、金選鉱",
     "source": [
-      "来訪者イベントの報酬（3.333%）"
+      "来訪者イベントの報酬"
     ],
     "sourceCaution": false,
     "allocation": "住居"
@@ -9421,7 +9421,7 @@
     "boostCondition": "品物 島の貯蔵所: 黒曜石 50以下、現在の島",
     "targets": "小像工房、ラトルンクリ工房",
     "source": [
-      "来訪者イベントの報酬（3.333%）"
+      "来訪者イベントの報酬"
     ],
     "sourceCaution": false,
     "allocation": "住居"
@@ -9448,7 +9448,7 @@
     "boostCondition": "建設: 調理場 40以上",
     "targets": "酒場",
     "source": [
-      "来訪者イベントの報酬（3.333%）"
+      "来訪者イベントの報酬"
     ],
     "sourceCaution": false,
     "allocation": "住居"
@@ -12793,7 +12793,7 @@
     "boostCondition": "外交状態: 同盟、タラゴン",
     "targets": "公共サービス",
     "source": [
-      "来訪者イベントの報酬（2.857%）"
+      "来訪者イベントの報酬"
     ],
     "sourceCaution": false,
     "allocation": "住居"
@@ -12826,7 +12826,7 @@
     "boostCondition": "ローマ化 50（表記は未確認です）",
     "targets": "宝石商",
     "source": [
-      "来訪者イベントの報酬（2.857%）"
+      "来訪者イベントの報酬"
     ],
     "sourceCaution": false,
     "allocation": "住居"
@@ -12859,7 +12859,7 @@
     "boostCondition": "有効な島の祭神: ケレース",
     "targets": "耕作可能な農場",
     "source": [
-      "来訪者イベントの報酬（2.857%）"
+      "来訪者イベントの報酬"
     ],
     "sourceCaution": false,
     "allocation": "住居"
@@ -12886,7 +12886,7 @@
     "boostCondition": "有効な島の祭神: セベク",
     "targets": "ナイルの造船所",
     "source": [
-      "来訪者イベントの報酬（2.857%）"
+      "来訪者イベントの報酬"
     ],
     "sourceCaution": false,
     "allocation": "住居"
@@ -12914,7 +12914,7 @@
     "boostCondition": "取引ルート: 25以上",
     "targets": "武器庫",
     "source": [
-      "来訪者イベントの報酬（2.857%）"
+      "来訪者イベントの報酬"
     ],
     "sourceCaution": false,
     "allocation": "住居"
