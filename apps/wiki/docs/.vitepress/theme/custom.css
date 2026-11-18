@@ -624,3 +624,29 @@
 .pad-square {
   background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24'%3E%3Crect x='5' y='5' width='14' height='14' rx='1' fill='none' stroke='%23d9569f' stroke-width='2.4' stroke-linejoin='round'/%3E%3C/svg%3E");
 }
+
+/* クエストの流れ図（SVG）。幅に合わせて縮み、色はテーマの変数に合わせる */
+.qsvg {
+  display: block;
+  width: 100%;
+  max-width: 380px;
+  height: auto;
+  margin: 8px auto;
+  font-family: inherit;
+}
+.qsvg .qs-n { fill: var(--vp-c-bg); stroke: var(--vp-c-divider); stroke-width: 1.2; }
+.qsvg .qs-q { fill: var(--vp-c-bg-soft); stroke: var(--vp-c-brand-1); stroke-width: 1.5; }
+.qsvg .qs-r { fill: var(--vp-c-green-soft); stroke: var(--vp-c-green-2); stroke-width: 1.5; }
+.qsvg .qs-m { fill: var(--vp-c-bg-soft); stroke: var(--vp-c-divider); stroke-width: 1; stroke-dasharray: 3 2; }
+.qsvg text { text-anchor: middle; fill: var(--vp-c-text-1); }
+.qsvg text[text-anchor="start"] { text-anchor: start; }
+.qsvg text[text-anchor="end"] { text-anchor: end; }
+.qsvg .qs-t { font-size: 12.5px; }
+.qsvg .qs-tb { font-size: 13px; font-weight: 700; }
+.qsvg .qs-s { font-size: 11px; fill: var(--vp-c-text-2); }
+.qsvg .qs-l { font-size: 11px; fill: var(--vp-c-text-2); }
+.qsvg .qs-e { fill: none; stroke: var(--vp-c-text-3); stroke-width: 1.3; }
+.qsvg .qs-a { fill: var(--vp-c-text-3); }
+.qsvg .qs-h { fill: var(--vp-c-brand-soft); }
+.qsvg .qs-hb { font-size: 13.5px; font-weight: 700; }
+.qsvg .qs-g { fill: none; stroke: var(--vp-c-divider); stroke-width: 1; }
