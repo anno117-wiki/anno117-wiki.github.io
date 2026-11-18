@@ -121,6 +121,7 @@ function isEmpty(r?: Result) {
       </summary>
 
       <div v-if="opened.has(q.guid)" class="ql-body">
+        <p v-if="!q.steps.length" class="ql-note">選択肢の無いクエストです。上の札のアイテムが報酬として手に入ります（入手先の情報から）。</p>
         <p v-if="q.provisional" class="ql-note">このクエストは、ゲームのデータに日本語の文が無い所があり、その部分はこのサイトで仮に訳しています。</p>
         <div v-for="s in q.steps" :key="s.id" class="ql-step">
           <template v-if="s.kind === 'decision'">

@@ -154,9 +154,13 @@ def reward(r):
         return {"t": f"次のクエスト: {name(asset) or asset}", "k": "quest"}
     if kind in ("reputation", "xp"):
         return {"t": f"{KIND_LABEL[kind]}{amt}" + (f"（{nm}）" if nm else ""), "k": kind}
-    if kind == "item":
-        rar = q("select rarity from item where guid=?", asset)
-        return {"t": f"{nm}{amt if amount not in (None, 1) else ''}", "k": "item", "rarity": rar[0][0] if rar else None}
+    rar = q("select rarity from item where guid=?", asset) if kind in ("item", "goods") else []
+    if rar and rar[0][0] != "Quest":
+        # 専門家などのアイテム（「品物」の扱いで渡されるものも含む）
+        return {"t": f"{nm}{amt if amount not in (None, 1) else ''}", "k": "item", "rarity": rar[0][0]}
+    if rar:
+        # クエスト専用の品（証拠品など）。札には出さない
+        return {"t": f"品物: {nm}{amt}", "k": "questitem"}
     return {"t": f"{KIND_LABEL.get(kind, kind)}: {nm}{amt}", "k": kind}
 
 
@@ -175,11 +179,13 @@ def dedupe(rewards):
 
 # Planner の依頼人
 givers = {}
+planner_meta = {}
 if PLANNER.exists():
     def walk(o):
         if isinstance(o, dict):
             if isinstance(o.get("guid"), int) and "giver" in o:
                 givers[o["guid"]] = o.get("giver")
+                planner_meta[o["guid"]] = o
             for v in o.values():
                 walk(v)
         elif isinstance(o, list):
@@ -290,6 +296,12 @@ for g, title, icon, reg, dlc, slug, series, idx in q("select * from questline or
                 all_rewards += [r for r in part.get("rewards", []) if r["k"] == "item"]
                 if part.get("fail"):
                     all_rewards += [r for r in part["fail"].get("rewards", []) if r["k"] == "item"]
+    # アイテムの入手先の表でこのクエストが入手先のもの（抽選で渡され、選択肢の報酬に出ないものを補う）
+    for (ig,) in q("select distinct s.item_guid from item_source s left join quest qq on qq.guid=s.source_guid "
+                   "where (s.kind='storyline' and s.source_guid=?) or (s.kind='quest' and qq.storyline_guid=?)", g, g):
+        it = q("select name_text,rarity from item where guid=?", ig)
+        if it and it[0][1] != "Quest":
+            all_rewards.append({"t": tr(it[0][0]) or str(ig), "k": "item", "rarity": it[0][1]})
     giver = givers.get(g)
     quests.append({
         "guid": g,
@@ -304,6 +316,39 @@ for g, title, icon, reg, dlc, slug, series, idx in q("select * from questline or
     })
     untranslated += [t for t in re.findall(r'"(?:text|title|name|t)": "([^"]*)"', json.dumps(quests[-1], ensure_ascii=False))
                      if re.search(r"[A-Za-z]{3,}", t) and not JP_CHAR.search(t)]
+
+# 選択肢の無いクエストでも、アイテムがもらえるものは一覧に足す（選択肢なしとして）
+PLANNER_REGION = {"Roman": "ラティウム", "Celtic": "アルビオン", "Egyptian": "アイギュプト"}
+PLANNER_DLC = {1: 67902, 2: 67903, 3: 67904}
+listed = {x["guid"] for x in quests}
+extra = {}
+for kind, sg, ig in q("select s.kind,s.source_guid,s.item_guid from item_source s join item i on i.guid=s.item_guid "
+                      "where s.kind in ('storyline','quest') and i.rarity<>'Quest'"):
+    story = sg if kind == "storyline" else (q("select storyline_guid from quest where guid=?", sg) or [[None]])[0][0]
+    if story is None or story in listed:
+        continue
+    extra.setdefault(story, []).append(ig)
+for story, item_ids in extra.items():
+    used_override = False
+    title = q("select title_text from storyline where guid=?", story)
+    qrow = q("select name_text from quest where storyline_guid=? limit 1", story)
+    nm = (tr(title[0][0]) if title else None) or (tr(qrow[0][0]) if qrow else None) or name(story) or str(story)
+    meta = planner_meta.get(story, {})
+    items = []
+    for ig in dict.fromkeys(item_ids):
+        it = q("select name_text,rarity from item where guid=?", ig)
+        items.append({"t": tr(it[0][0]) or str(ig), "k": "item", "rarity": it[0][1]})
+    giver = meta.get("giver")
+    quests.append({
+        "guid": story,
+        "name": nm,
+        "dlc": DLC.get(PLANNER_DLC.get(meta.get("dlc")), "基本ゲーム"),
+        "region": PLANNER_REGION.get(meta.get("region"), ""),
+        "giver": name(giver) if isinstance(giver, int) else None,
+        "series": None,
+        "items": dedupe(items),
+        "steps": [],
+    })
 
 OUT.write_text(json.dumps(quests, ensure_ascii=False, separators=(",", ":")), encoding="utf-8")
 print(f"{len(quests)}件 → {OUT}（{OUT.stat().st_size // 1024}KB）。仮訳を使ったクエスト {sum(1 for x in quests if x.get('provisional'))}件")
