@@ -1,0 +1,268 @@
+"""クエスト一覧ページ（wiki/quests）のデータ quests-list.json を作る。
+
+使い方: python tools/build-quests-data.py   （そのあと bun run build:site）
+元データ:
+  - _local/anno-official-data/v3.0-annohead/anno.sqlite（annohead。クエスト・選択肢・報酬）
+  - _local/anno-official-data/v3.0-planner/quests.json（Planner。依頼人）
+値は全て作者が変換したデータで、実機では未確認。ゲームの内部の変数を見る条件は、読める形にならないので「条件あり」とだけ出す。
+"""
+import json
+import sqlite3
+import sys
+from pathlib import Path
+
+sys.stdout.reconfigure(encoding="utf-8")
+
+ROOT = Path(__file__).resolve().parent.parent
+DB = ROOT / "_local/anno-official-data/v3.0-annohead/anno.sqlite"
+PLANNER = ROOT / "_local/anno-official-data/v3.0-planner/quests.json"
+OUT = ROOT / "apps/wiki/docs/wiki/quests-list.json"
+JA = 6
+DENARII = 1010017
+TEXT_LIMIT = 160
+
+if not DB.exists():
+    sys.exit(f"元データがありません: {DB}")
+c = sqlite3.connect(f"file:{DB}?mode=ro", uri=True)
+
+
+def q(sql, *a):
+    return c.execute(sql, a).fetchall()
+
+
+def tr(line, limit=None):
+    if line is None:
+        return None
+    r = q("select value from translation where line_id=? and lang_id=?", line, JA)
+    if not r or r[0][0] is None:
+        return None
+    s = r[0][0].replace("​", "").replace("\r", "")
+    for tag in ("<b>", "</b>", "<i>", "</i>", "<br>", "<br/>"):
+        s = s.replace(tag, " ")
+    s = " ".join(s.split())
+    if limit and len(s) > limit:
+        s = s[:limit] + "…"
+    return s or None
+
+
+NAME_TABLES = ["product", "item", "building", "effect", "participant", "population_level",
+               "tech", "unit", "ornament", "patron", "festival", "asset_name", "asset_pool"]
+
+
+def name(guid):
+    if guid is None:
+        return None
+    for t in NAME_TABLES:
+        r = q(f"select name_text from {t} where guid=?", guid)
+        if r:
+            return tr(r[0][0])
+    r = q("select title_text from questline where guid=?", guid)
+    return tr(r[0][0]) if r else None
+
+
+def num(v):
+    return f"{v:,.0f}" if float(v).is_integer() else f"{v:g}"
+
+
+def gname(v):
+    return name(int(v)) if v and v.lstrip("-").isdigit() else None
+
+
+def cond_text(cid):
+    """読める条件だけ文にする。内部の変数を見る条件は None（呼ぶ側で「条件あり」）。"""
+    if cid is None:
+        return None
+    parts, hidden = [], False
+    for i, tpl, neg in q("select id,template,negate from condition where id=? or parent_id=? order by sub_order", cid, cid):
+        p = dict(q("select key,value from condition_param where condition_id=?", i))
+        s = None
+        if tpl == "ConditionPlayerCounter":
+            ctr, amt, nm = p.get("PlayerCounter"), p.get("CounterAmount", ""), gname(p.get("Context"))
+            if ctr == "PopulationByLevel" and nm:
+                s = f"{nm}が{amt}人以上"
+            elif ctr == "GoodsInStock" and nm:
+                s = f"{nm}を{amt}t持っている"
+            elif ctr == "ObjectCount" and nm:
+                s = f"{nm}が{amt}以上"
+        elif tpl == "ConditionIsParticipantInGame":
+            nm = gname(p.get("InGameProfile.Value"))
+            s = f"{nm}がゲームにいる" if nm else None
+        elif tpl == "ConditionIsProducible":
+            nm = gname(p.get("Good"))
+            s = f"{nm}を生産できる" if nm else None
+        elif tpl == "ConditionTechResearched":
+            nm = next((gname(v) for k, v in p.items() if gname(v)), None)
+            s = f"研究「{nm}」済み" if nm else None
+        elif tpl == "ConditionIsMaleProtagonist":
+            s = "主人公が男性"
+        elif tpl in ("ConditionAlwaysTrue", "ConditionAlwaysFalse"):
+            continue
+        if s is None:
+            hidden = True
+            continue
+        parts.append(("ではない: " if neg else "") + s)
+    if not parts:
+        return "条件あり" if hidden else None
+    return "・".join(parts) + ("ほか" if hidden else "")
+
+
+KIND_LABEL = {"goods": "品物", "item": "アイテム", "effect": "効果", "reputation": "評判", "power": "影響",
+              "racer": "御者", "unlock": "解放", "storyline": "次のクエスト", "incident": "出来事",
+              "lock": "封鎖", "message_reward": "報酬", "xp": "経験値"}
+
+
+def reward(r):
+    kind, asset, amount, var, name_line, attr = r
+    nm = tr(name_line) or name(asset) or ""
+    amt = f" {num(amount)}" if amount is not None else ""
+    if kind in ("item", "goods") and asset == DENARII:
+        return {"t": f"デナリウス{amt}", "k": "money"}
+    if kind == "storyline":
+        return {"t": f"次のクエスト: {name(asset) or asset}", "k": "quest"}
+    if kind in ("reputation", "xp"):
+        return {"t": f"{KIND_LABEL[kind]}{amt}" + (f"（{nm}）" if nm else ""), "k": kind}
+    if kind == "item":
+        rar = q("select rarity from item where guid=?", asset)
+        return {"t": f"{nm}{amt if amount not in (None, 1) else ''}", "k": "item", "rarity": rar[0][0] if rar else None}
+    return {"t": f"{KIND_LABEL.get(kind, kind)}: {nm}{amt}", "k": kind}
+
+
+def dedupe(rewards):
+    """同じ報酬を1つにし、アイテムとしても出る専門家の「品物: 〇〇 1」は外す。"""
+    items = {x["t"] for x in rewards if x["k"] == "item"}
+    seen, out = set(), []
+    for x in rewards:
+        if x["k"] == "goods" and x["t"].removeprefix("品物: ").removesuffix(" 1") in items:
+            continue
+        if x["t"] not in seen:
+            seen.add(x["t"])
+            out.append(x)
+    return out
+
+
+# Planner の依頼人
+givers = {}
+if PLANNER.exists():
+    def walk(o):
+        if isinstance(o, dict):
+            if isinstance(o.get("guid"), int) and "giver" in o:
+                givers[o["guid"]] = o.get("giver")
+            for v in o.values():
+                walk(v)
+        elif isinstance(o, list):
+            for v in o:
+                walk(v)
+    walk(json.loads(PLANNER.read_text(encoding="utf-8")))
+else:
+    print(f"注意: Planner のデータが無いので依頼人は空にします（{PLANNER}）")
+
+REGION = {None: "", 1: "ラティウム", 2: "アルビオン", 3: "アイギュプト"}
+DLC = {None: "基本ゲーム"}
+for g, key, nt, icon in q("select * from dlc"):
+    DLC[g] = tr(nt) or key
+
+
+def build_story(sl):
+    nodes = q("select node_guid,kind,position,headline_text,text_text,condition_id,speaker_guid "
+              "from quest_choice where storyline_guid=? order by position", sl)
+    kinds = {n[0]: n[1] for n in nodes}
+
+    def rewards_of(node_list):
+        out = []
+        for g in node_list:
+            out += [reward(r) for r in q("select kind,asset_guid,amount,amount_variable,name_text,attribute "
+                                          "from quest_reward where node_guid=?", g)]
+        return out
+
+    def outs(node, idx):
+        return [g for (g,) in q("select node_guid from quest_choice_outcome where choice_guid=? and idx=?", node, idx)]
+
+    # 見せる節: 選択・目標と、報酬が出る分かれ道
+    def has_reward(g):
+        return any(rewards_of([n for n in outs(g, i)]) for i in (0, 1))
+    def shown(n):
+        if n[1] == "decision":
+            return True
+        if n[1] == "objective" and (tr(n[3]) or tr(n[4])):
+            return True
+        return has_reward(n[0])
+    visible = [n for n in nodes if shown(n)]
+    labels, cnt = {}, {}
+    for n in visible:
+        k = {"decision": "選択", "objective": "目標", "check": "分かれ道"}.get(n[1], n[1])
+        cnt[k] = cnt.get(k, 0) + 1
+        labels[n[0]] = f"{k}{cnt[k]}"
+
+    def resolve_next(targets, seen):
+        """見せない分かれ道は、その先の見せる節に置き換える。"""
+        res = []
+        for g in targets:
+            if g in labels:
+                res.append(labels[g])
+            elif kinds.get(g) in ("check", "objective") and g not in seen:
+                seen.add(g)
+                res += resolve_next([t for i in (0, 1) for t in outs(g, i) if t in kinds], seen)
+        return list(dict.fromkeys(res))
+
+    def result(node, idx):
+        targets = outs(node, idx)
+        return {"rewards": dedupe(rewards_of([g for g in targets if g not in kinds])),
+                "next": resolve_next([g for g in targets if g in kinds], set())}
+
+    steps = []
+    for g, kind, pos, head, text, cid, spk in visible:
+        st = {"id": labels[g], "kind": kind}
+        if kind == "decision":
+            st["speaker"] = name(spk) if spk else None
+            st["title"] = tr(head)
+            st["text"] = tr(text, TEXT_LIMIT)
+            st["options"] = []
+            for idx, otext, cost, camt, ocid, chal, chval, chvar in q(
+                    "select idx,text_text,cost_guid,cost_amount,condition_id,challenge,challenge_value,challenge_variable "
+                    "from quest_option where decision_guid=? order by idx", g):
+                o = {"text": tr(otext) or "（文なし）", **result(g, idx)}
+                if cost:
+                    o["cost"] = f"{'デナリウス' if cost == DENARII else (name(cost) or cost)} {num(camt)}"
+                if chal == "chance":
+                    o["chance"] = f"{num(chval * 100)}%" if chval is not None else "確率あり"
+                    o["fail"] = result(g, -(idx + 1))
+                ct = cond_text(ocid)
+                if ct:
+                    o["cond"] = ct
+                st["options"].append(o)
+        elif kind == "objective":
+            st["text"] = tr(head) or tr(text, TEXT_LIMIT) or "（目標）"
+            st["met"] = result(g, 0)
+            st["missed"] = result(g, 1)
+        else:
+            st["cond"] = cond_text(cid) or "条件あり"
+            st["yes"] = result(g, 0)
+            st["no"] = result(g, 1)
+        steps.append(st)
+    return steps
+
+
+quests = []
+for g, title, icon, reg, dlc, slug, series, idx in q("select * from questline order by coalesce(dlc_guid,0),coalesce(region_id,0),series,idx"):
+    steps = build_story(g)
+    all_rewards = []
+    for st in steps:
+        for part in [*(st.get("options") or []), st.get("met"), st.get("missed"), st.get("yes"), st.get("no")]:
+            if part:
+                all_rewards += [r for r in part.get("rewards", []) if r["k"] == "item"]
+                if part.get("fail"):
+                    all_rewards += [r for r in part["fail"].get("rewards", []) if r["k"] == "item"]
+    giver = givers.get(g)
+    quests.append({
+        "guid": g,
+        "name": tr(title) or slug,
+        "dlc": DLC.get(dlc, str(dlc)),
+        "region": REGION.get(reg, ""),
+        "giver": name(giver) if isinstance(giver, int) else None,
+        "series": name(series) if series != g else None,
+        "items": dedupe(all_rewards),
+        "steps": steps,
+    })
+
+OUT.write_text(json.dumps(quests, ensure_ascii=False, separators=(",", ":")), encoding="utf-8")
+print(f"{len(quests)}件 → {OUT}（{OUT.stat().st_size // 1024}KB）")

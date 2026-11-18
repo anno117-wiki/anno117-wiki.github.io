@@ -1,0 +1,271 @@
+<script setup lang="ts">
+// クエスト一覧（wiki/quests）。データは tools/build-quests-data.py が作る quests-list.json。
+// 選択肢はネタバレのため、クエストを開いたときだけ描く（開くまでは DOM に出さない）。
+import { computed, reactive, ref } from 'vue'
+import data from '../../wiki/quests-list.json'
+
+interface Reward { t: string; k: string; rarity?: string | null }
+interface Result { rewards: Reward[]; next: string[] }
+interface Option extends Result { text: string; cost?: string; chance?: string; cond?: string; fail?: Result }
+interface Step {
+  id: string
+  kind: 'decision' | 'objective' | 'check'
+  speaker?: string | null
+  title?: string | null
+  text?: string | null
+  options?: Option[]
+  met?: Result
+  missed?: Result
+  cond?: string
+  yes?: Result
+  no?: Result
+}
+interface Quest {
+  guid: number
+  name: string
+  dlc: string
+  region: string
+  giver: string | null
+  series: string | null
+  items: Reward[]
+  steps: Step[]
+}
+
+const quests = data as Quest[]
+const DLCS = [...new Set(quests.map((q) => q.dlc))]
+const REGIONS = ['ラティウム', 'アルビオン', 'アイギュプト', '地域の指定なし']
+
+const selName = ref('')
+const selDlc = ref('')
+const selRegion = ref('')
+const onlyItems = ref(false)
+const opened = reactive(new Set<number>())
+
+const filtered = computed(() => {
+  const name = selName.value.trim()
+  return quests.filter((q) => {
+    if (name && !q.name.includes(name) && !(q.giver ?? '').includes(name)
+      && !q.items.some((r) => r.t.includes(name))) return false
+    if (selDlc.value && q.dlc !== selDlc.value) return false
+    if (selRegion.value && (q.region || '地域の指定なし') !== selRegion.value) return false
+    if (onlyItems.value && q.items.length === 0) return false
+    return true
+  })
+})
+
+function resetFilters() {
+  selName.value = ''
+  selDlc.value = ''
+  selRegion.value = ''
+  onlyItems.value = false
+}
+
+function onToggle(guid: number, e: Event) {
+  if ((e.target as HTMLDetailsElement).open) opened.add(guid)
+}
+
+/** 目標は達成・未達成、分かれ道は満たす・満たさない。中身の無い側は出さない */
+function branches(s: Step): [string, Result][] {
+  const pairs: [string, Result | undefined][] = s.kind === 'objective'
+    ? [['達成', s.met], ['未達成', s.missed]]
+    : [['満たす', s.yes], ['満たさない', s.no]]
+  return pairs.filter((p): p is [string, Result] => !isEmpty(p[1]))
+}
+
+function isEmpty(r?: Result) {
+  return !r || (r.rewards.length === 0 && r.next.length === 0)
+}
+</script>
+
+<template>
+  <div class="ql">
+    <div class="ql-filters">
+      <label><strong>名前:</strong>
+        <input v-model="selName" type="text" placeholder="クエスト名・依頼人・報酬で検索" />
+      </label>
+      <label><strong>DLC:</strong>
+        <select v-model="selDlc">
+          <option value="">すべて</option>
+          <option v-for="d in DLCS" :key="d" :value="d">{{ d }}</option>
+        </select>
+      </label>
+      <label><strong>地域:</strong>
+        <select v-model="selRegion">
+          <option value="">すべて</option>
+          <option v-for="r in REGIONS" :key="r" :value="r">{{ r }}</option>
+        </select>
+      </label>
+      <label class="ql-check"><input v-model="onlyItems" type="checkbox" /> アイテムがもらえるものだけ</label>
+      <div class="ql-footer">
+        <button type="button" class="ql-reset" @click="resetFilters">リセット</button>
+        <span class="ql-count">{{ filtered.length }} 件</span>
+      </div>
+    </div>
+
+    <details v-for="q in filtered" :key="q.guid" class="ql-quest" @toggle="onToggle(q.guid, $event)">
+      <summary>
+        <span class="ql-name">{{ q.name }}</span>
+        <span class="ql-tags">
+          <span class="ql-tag">{{ q.dlc }}</span>
+          <span v-if="q.region" class="ql-tag">{{ q.region }}</span>
+          <span v-if="q.giver" class="ql-tag">依頼人: {{ q.giver }}</span>
+          <span v-if="q.series" class="ql-tag">続き物: {{ q.series }}</span>
+        </span>
+        <span v-if="q.items.length" class="ql-items">
+          <span v-for="r in q.items" :key="r.t" class="ql-item">{{ r.t }}</span>
+        </span>
+      </summary>
+
+      <div v-if="opened.has(q.guid)" class="ql-body">
+        <div v-for="s in q.steps" :key="s.id" class="ql-step">
+          <template v-if="s.kind === 'decision'">
+            <div class="ql-step-head">
+              <span class="ql-id">{{ s.id }}</span>
+              <span v-if="s.title" class="ql-title">{{ s.title }}</span>
+              <span v-if="s.speaker" class="ql-speaker">（{{ s.speaker }}）</span>
+            </div>
+            <p v-if="s.text" class="ql-text">{{ s.text }}</p>
+            <ul class="ql-opts">
+              <li v-for="(o, i) in s.options" :key="i">
+                <div class="ql-opt-text">「{{ o.text }}」</div>
+                <div v-if="o.cost || o.chance || o.cond" class="ql-meta">
+                  <span v-if="o.cost">費用: {{ o.cost }}</span>
+                  <span v-if="o.chance">成功率 {{ o.chance }}</span>
+                  <span v-if="o.cond">条件: {{ o.cond }}</span>
+                </div>
+                <div class="ql-result">
+                  <span v-if="o.chance" class="ql-label">成功</span>
+                  <span v-for="r in o.rewards" :key="r.t" class="ql-reward" :class="'ql-k-' + r.k">{{ r.t }}</span>
+                  <span v-for="n in o.next" :key="n" class="ql-next">{{ n }}へ</span>
+                  <span v-if="isEmpty(o)" class="ql-none">報酬なし</span>
+                </div>
+                <div v-if="o.fail" class="ql-result">
+                  <span class="ql-label">失敗</span>
+                  <span v-for="r in o.fail.rewards" :key="r.t" class="ql-reward" :class="'ql-k-' + r.k">{{ r.t }}</span>
+                  <span v-for="n in o.fail.next" :key="n" class="ql-next">{{ n }}へ</span>
+                  <span v-if="isEmpty(o.fail)" class="ql-none">報酬なし</span>
+                </div>
+              </li>
+            </ul>
+          </template>
+
+          <template v-else-if="s.kind === 'objective'">
+            <div class="ql-step-head"><span class="ql-id">{{ s.id }}</span> <span class="ql-title">{{ s.text }}</span></div>
+            <div v-for="[label, r] in branches(s)" :key="label" class="ql-result">
+              <template v-if="r">
+                <span class="ql-label">{{ label }}</span>
+                <span v-for="x in r.rewards" :key="x.t" class="ql-reward" :class="'ql-k-' + x.k">{{ x.t }}</span>
+                <span v-for="n in r.next" :key="n" class="ql-next">{{ n }}へ</span>
+              </template>
+            </div>
+          </template>
+
+          <template v-else>
+            <div class="ql-step-head"><span class="ql-id">{{ s.id }}</span> <span class="ql-cond">条件: {{ s.cond }}</span></div>
+            <div v-for="[label, r] in branches(s)" :key="label" class="ql-result">
+              <template v-if="r">
+                <span class="ql-label">{{ label }}</span>
+                <span v-for="x in r.rewards" :key="x.t" class="ql-reward" :class="'ql-k-' + x.k">{{ x.t }}</span>
+                <span v-for="n in r.next" :key="n" class="ql-next">{{ n }}へ</span>
+              </template>
+            </div>
+          </template>
+        </div>
+      </div>
+    </details>
+  </div>
+</template>
+
+<style scoped>
+.ql-filters {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 8px 16px;
+  align-items: center;
+  margin: 16px 0;
+  padding: 12px;
+  border: 1px solid var(--vp-c-divider);
+  border-radius: 8px;
+  background: var(--vp-c-bg-soft);
+}
+.ql-filters label { display: flex; align-items: center; gap: 6px; font-size: 14px; }
+.ql-filters label strong { white-space: nowrap; }
+.ql-filters input[type='text'], .ql-filters select {
+  border: 1px solid var(--vp-c-divider);
+  border-radius: 4px;
+  padding: 2px 6px;
+  background: var(--vp-c-bg);
+  max-width: 100%;
+}
+.ql-filters input[type='text'] { width: 15em; }
+.ql-footer { display: flex; gap: 12px; align-items: center; margin-left: auto; }
+.ql-reset {
+  border: 1px solid var(--vp-c-divider);
+  border-radius: 4px;
+  padding: 2px 10px;
+  background: var(--vp-c-bg);
+}
+.ql-count { color: var(--vp-c-text-2); font-size: 14px; }
+
+.ql-quest {
+  border: 1px solid var(--vp-c-divider);
+  border-radius: 8px;
+  margin: 8px 0;
+  background: var(--vp-c-bg);
+}
+.ql-quest > summary {
+  cursor: pointer;
+  padding: 10px 12px;
+  display: flex;
+  flex-wrap: wrap;
+  gap: 4px 10px;
+  align-items: baseline;
+}
+.ql-quest[open] > summary { border-bottom: 1px solid var(--vp-c-divider); }
+.ql-name { font-weight: 700; }
+.ql-tags { display: flex; flex-wrap: wrap; gap: 4px; }
+.ql-tag {
+  font-size: 12px;
+  color: var(--vp-c-text-2);
+  border: 1px solid var(--vp-c-divider);
+  border-radius: 10px;
+  padding: 0 8px;
+}
+.ql-items { display: flex; flex-wrap: wrap; gap: 4px; width: 100%; }
+.ql-item, .ql-k-item {
+  font-size: 12px;
+  border: 1px solid var(--vp-c-green-2);
+  background: var(--vp-c-green-soft);
+  border-radius: 4px;
+  padding: 0 6px;
+}
+
+.ql-body { padding: 8px 12px 12px; }
+.ql-step { border-left: 3px solid var(--vp-c-divider); padding: 4px 0 4px 10px; margin: 8px 0; }
+.ql-step-head { font-size: 14px; }
+.ql-id { font-weight: 700; color: var(--vp-c-brand-1); margin-right: 4px; }
+.ql-title { font-weight: 600; }
+.ql-speaker, .ql-cond { color: var(--vp-c-text-2); font-size: 13px; }
+.ql-text { font-size: 13px; color: var(--vp-c-text-2); margin: 4px 0 !important; line-height: 1.6; }
+.ql-opts { list-style: none; margin: 4px 0 0 !important; padding: 0 !important; }
+.ql-opts > li { margin: 6px 0 !important; padding: 6px 8px; border-radius: 6px; background: var(--vp-c-bg-soft); }
+.ql-opt-text { font-size: 14px; font-weight: 600; }
+.ql-meta { display: flex; flex-wrap: wrap; gap: 2px 10px; font-size: 12px; color: var(--vp-c-text-2); }
+.ql-result { display: flex; flex-wrap: wrap; gap: 4px; align-items: center; margin-top: 4px; font-size: 13px; }
+.ql-label { font-size: 12px; color: var(--vp-c-text-2); }
+.ql-reward {
+  font-size: 12px;
+  border: 1px solid var(--vp-c-divider);
+  border-radius: 4px;
+  padding: 0 6px;
+  background: var(--vp-c-bg);
+}
+.ql-next { font-size: 12px; color: var(--vp-c-brand-1); }
+.ql-none { font-size: 12px; color: var(--vp-c-text-3); }
+
+@media (max-width: 959px) {
+  .ql-filters input[type='text'] { width: 100%; }
+  .ql-filters label:first-child { width: 100%; }
+  .ql-footer { margin-left: 0; }
+}
+</style>
