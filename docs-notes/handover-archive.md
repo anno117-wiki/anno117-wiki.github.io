@@ -907,3 +907,13 @@
   - 来訪者イベントの確率: Codex Romana（3.0.0版、2026-11-13更新、`https://codex-romana.com/en/` の `items.<hash>.json`・`items_lang_en.<hash>.json`、`viewer.js` から辿る。取得先は `ItemSources` の `SourceKey: Visitor`、`SourceGUID` 173298〜173301 がレア・エピック・レジェンダリー・ヒロイックの箱）と照合。当サイト=1/箱の数（115・107・60・35）、Codex=それ×レア度の確率の幅（ヒロイック上限 1/35×40%=1.14%）で、意味の違いと確認。アイテム一覧に意味の説明を1行足し、ヒロイック（Mythic）の来訪者の確率は外した（`apply-items-v3.py`。同じ専門家は1人までなので確率が一定でない、ユーザー指示）。全540件の前後比較で変化はヒロイック35件の取得先だけ
   - 宣伝は当面しない（ユーザー決定）
   - 氾濫期の名前「アケト」を追記（`6a3731f1`）
+
+
+## BB. 2026-11-18 Planner v1.3.0・Search Console・annohead のデータ・軍事ガイドの表・DLC03のクエストの図（Windows の単独セッション。`cb994184`〜`92803e76`。全てpush済み・デプロイは `0f8ecc4e` まで success）
+- **Planner v1.3.0（11/16）**: ゲームデータの変化は `buffs.json`（ライバル専門家・殿堂の星詠み・デキムスなど19件が％扱いに。サイトは元から％で正しい）／`trade.json`（海賊3人カエソ・ウォアダ・カンディスと交易協定）／`buildings.json`（`terrain` 追加）／`hall_of_fame.json`（注記の文だけ）。サイトの直しは不要。海賊の品揃えはサイトに載せない（ユーザー判断）。データは `_local/anno-official-data/v3.0-planner-v1.3.0/trade.json`
+- **Search Console（11/15まで）**: zip は `_local/search-console/`（`...Performance-on-Search-2026-11-18.zip`・`...Coverage-2026-11-18.zip`。日別ファイルの名前は「平均読み込み時間のチャート.csv」）。クリック率は 10/20〜11/04 18.6%／11/05〜11/08 17.9%／11/09〜11/15 18.7% で横ばい（title 変更の効果はまだ出ていない）。「配信前は30%前後」は8月ごろの値。「anno117」単体 表示463・CTR 4.1%・8.65位、strategy.html 表示2286・11.15%・5.0位、DLC03 表示269・クリック62・23.1%。インデックス登録は34件・未登録2件（`sitemap.xml` と `guide/early-game-strategy.html`。後者は11/18のURL検査で「登録されています」）
+- **annohead（`alizahid/annohead`、MIT）の `packages/db/anno.sqlite`** を `_local/anno-official-data/v3.0-annohead/` に保存（`SOURCE.txt` に commit `6225c389`）。3.0・DLC03入りで、ユニットの能力値・アイテムの入手先・クエストの選択肢と報酬がある。戦闘の数値は無い。完全な `assets.xml` は GitHub に見当たらない（Althandir 氏のリポジトリは PC の MOD）
+- **軍事ガイドに表2つ**（`7de31a6a`・`0da20d2b`）: 地域ごとの維持の労働力（7ユニット x 3地域）と艦船の能力値と費用（6隻）。陸の表13ユニットは annohead と全件一致。アバの建設費は「未確認です」（PS5の記録とデータが食い違う）。アバ軍団型の積荷はPS5の4のまま（データは5）
+- **クエストの一覧と下書き**: `docs-notes/research-quests-annohead.md`（全226件）・`docs-notes/draft-dlc03-quests.md`。「インクの陰謀」は「裁かれる芸術」（154484）と同じ
+- **実機で照合できなかった専門家5件の入手先**（annohead）: 葦切り＝ウァレリアの交易等／ゲメルス＝「裁かれる芸術」＋ウァレリア／徴税請負人＝「賄賂」＋ヘロン／ニュンピウォルス＝海賊カンディスだけ／マルクス・トライウス・ベローナ＝クエストだけ（「パンドラのアンフォラ」「平和を切り開く」）。ミウトも「パンドラのアンフォラ」だけ
+- **DLC03ガイドに選択肢の流れ図（SVG、`::: details` で開いたときだけ表示）**（`11f25a02`・`0f8ecc4e`）: 「キャラクター」の節に「ニュンパイオスの3部作」「パンドラのアンフォラ」の小見出し。CSS は `custom.css` の `.qsvg`（色はテーマの変数、文字寄せは `text-anchor` 属性で指定）。図は `tools/build-quest-flow-nymphaeus.py`・`tools/build-quest-flow-pandora.py` で作り直せる（引数なしでガイドの図を差し替え。`92803e76`）。ミイラの出来は100から始まり（Planner の `quests.json` の開発者注記）、材料・仮面・乾かさない（-80）で下がり、56未満で出来事「病気」。推理の答えは真相の本文からの読み取り。値は全て未確認と本文に記載。更新履歴は計116件
