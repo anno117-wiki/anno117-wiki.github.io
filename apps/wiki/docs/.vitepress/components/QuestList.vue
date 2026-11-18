@@ -31,6 +31,7 @@ interface Quest {
   items: Reward[]
   steps: Step[]
   provisional?: boolean
+  guide?: string
 }
 
 const quests = data as Quest[]
@@ -120,6 +121,7 @@ function isEmpty(r?: Result) {
           <span v-if="q.giver" class="ql-tag">依頼人: {{ q.giver }}</span>
           <span v-if="q.series" class="ql-tag">続き物: {{ q.series }}</span>
           <span v-if="q.provisional" class="ql-tag ql-tag-warn">仮訳あり</span>
+          <a v-if="q.guide" :href="withBase(q.guide)" class="ql-tag ql-tag-guide" @click.stop>詳しい説明（流れ図）</a>
         </span>
         <span v-if="q.items.length" class="ql-items">
           <template v-for="r in q.items" :key="r.t">
@@ -281,6 +283,8 @@ function isEmpty(r?: Result) {
   background: var(--vp-c-bg);
 }
 .ql-next { font-size: 12px; color: var(--vp-c-brand-1); }
+.ql-tag-guide { color: var(--vp-c-brand-1); border-color: var(--vp-c-brand-1); text-decoration: none; }
+.ql-tag-guide:hover { background: var(--vp-c-brand-soft); }
 .ql-tag-warn { color: var(--vp-c-warning-1); border-color: var(--vp-c-warning-2); }
 .ql-note { font-size: 13px; color: var(--vp-c-text-2); margin: 4px 0 8px !important; }
 .ql-none { font-size: 12px; color: var(--vp-c-text-3); }

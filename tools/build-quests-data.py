@@ -10,6 +10,7 @@ import json
 import re
 import sqlite3
 import sys
+import unicodedata
 from pathlib import Path
 
 sys.stdout.reconfigure(encoding="utf-8")
@@ -203,6 +204,14 @@ else:
 
 REGION = {None: "", 1: "ラティウム", 2: "アルビオン", 3: "アイギュプト"}
 PLANNER_REGION = {"Roman": "ラティウム", "Celtic": "アルビオン", "Egyptian": "アイギュプト"}
+
+# 詳しい説明（選択肢の流れ図など）があるガイドの節。クエスト一覧からリンクする
+GUIDE_LINKS = {
+    154535: "/guide/dlc03-dawn-of-delta#ニュンパイオスの3部作",  # ニュンパイオスのミイラ化
+    173095: "/guide/dlc03-dawn-of-delta#ニュンパイオスの3部作",  # 私的な捜査
+    173096: "/guide/dlc03-dawn-of-delta#ニュンパイオスの3部作",  # ニュンパイオスに正義を？
+    152807: "/guide/dlc03-dawn-of-delta#パンドラのアンフォラ",
+}
 DLC = {None: "基本ゲーム"}
 for g, key, nt, icon in q("select * from dlc"):
     DLC[g] = tr(nt) or key
@@ -320,6 +329,8 @@ for g, title, icon, reg, dlc, slug, series, idx in q("select * from questline or
         "series": name(series) if series != g else None,
         "items": dedupe(all_rewards),
         "steps": steps,
+        # VitePress は見出しの id を NFD（濁点・半濁点を分けた形）で作るので、リンクの # 以降もそろえる
+        **({"guide": unicodedata.normalize("NFD", GUIDE_LINKS[g])} if g in GUIDE_LINKS else {}),
         **({"provisional": True} if used_override else {}),
     })
     untranslated += [t for t in re.findall(r'"(?:text|title|name|t)": "([^"]*)"', json.dumps(quests[-1], ensure_ascii=False))
