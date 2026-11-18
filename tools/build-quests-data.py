@@ -18,6 +18,7 @@ sys.stdout.reconfigure(encoding="utf-8")
 ROOT = Path(__file__).resolve().parent.parent
 DB = ROOT / "_local/anno-official-data/v3.0-annohead/anno.sqlite"
 PLANNER = ROOT / "_local/anno-official-data/v3.0-planner/quests.json"
+PLANNER_JA = ROOT / "_local/anno-official-data/v3.0-planner/quest_texts_japanese.json"  # annohead に無いクエストの題名
 OUT = ROOT / "apps/wiki/docs/wiki/quests-list.json"
 OVERRIDES = ROOT / "tools/data/quests-ja-overrides.json"
 SITE_ITEMS = ROOT / "packages/shared/public/data/items-full.json"  # サイトのアイテム一覧（札のリンク先があるかを見る）
@@ -441,6 +442,37 @@ for story, item_ids in extra.items():
     quests.append({
         "guid": story,
         "name": nm,
+        "dlc": DLC.get(PLANNER_DLC.get(meta.get("dlc")), "基本ゲーム"),
+        "region": PLANNER_REGION.get(meta.get("region"), ""),
+        "giver": name(giver) if isinstance(giver, int) else None,
+        "series": None,
+        "items": dedupe(items),
+        "steps": [],
+    })
+
+# annohead に記録が無いが、アイテムがもらえるクエスト（ユーザー判断 2026-11-18）。
+# Planner の題名と、成功の通知に出る報酬（shownRewards）から「選択肢なし」として足す
+PLANNER_ONLY = {
+    109521: "価値ある戦利品（エクィテスの依頼。商人の船を護衛すると周到な大工）",
+    157316: "市場の氾濫（DLC03 の住民の依頼。葦切り。葦切りは実機のアイテム検索に出ない専門家）",
+}
+planner_ja = json.loads(PLANNER_JA.read_text(encoding="utf-8")) if PLANNER_JA.exists() else {}
+for story in PLANNER_ONLY:
+    meta = planner_meta.get(story)
+    if not meta or story in listed:
+        continue
+    title = " ".join(planner_ja.get(str(meta.get("title")), "").replace("​", "").split())
+    item_ids = [r["asset"] for n in meta.get("nodes", []) for nt in n.get("notifications") or []
+                for r in nt.get("shownRewards") or [] if r.get("asset") != DENARII]
+    items = []
+    for ig in dict.fromkeys(item_ids):
+        it = q("select name_text,rarity from item where guid=?", ig)
+        if it and it[0][1] != "Quest":
+            items.append({"t": tr(it[0][0]) or str(ig), "k": "item", "rarity": it[0][1]})
+    giver = meta.get("giver")
+    quests.append({
+        "guid": story,
+        "name": title or meta.get("name") or str(story),
         "dlc": DLC.get(PLANNER_DLC.get(meta.get("dlc")), "基本ゲーム"),
         "region": PLANNER_REGION.get(meta.get("region"), ""),
         "giver": name(giver) if isinstance(giver, int) else None,

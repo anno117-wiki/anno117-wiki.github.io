@@ -10,6 +10,7 @@
 import json
 import re
 import sys
+import unicodedata
 from pathlib import Path
 
 sys.stdout.reconfigure(encoding="utf-8")
@@ -23,6 +24,13 @@ ALIASES = {
     "星の創世記 V：ファルス～燈台": 154655,  # 一覧では VI の題名を足して1件にしている
     "Lifeblood of Kashta": 158458,  # 題名が英語のままなので、一覧は見出しの「財宝の行方」
 }
+
+
+def norm(text):
+    """全角・半角の違い（「第２部」と「第2部」）を無視して比べる。"""
+    return unicodedata.normalize("NFKC", text)
+
+
 QUEST_SOURCE = re.compile(r"^クエスト「(.+)」(?:（日本語名は未確認です）)?$")
 
 for path in (ITEMS, QUESTS):
@@ -44,14 +52,14 @@ def lookup_table():
     for layer in layers:
         found = {}
         for key, guid in layer:
-            found.setdefault(key, set()).add(guid)
+            found.setdefault(norm(key), set()).add(guid)
         for key, guids in found.items():
             if key not in table and len(guids) == 1:
                 table[key] = title_of[next(iter(guids))]
     for key, guid in ALIASES.items():
         if guid not in title_of:
             sys.exit(f"ALIASES の guid がクエスト一覧にありません: {key} → {guid}")
-        table[key] = title_of[guid]
+        table[norm(key)] = title_of[guid]
     return table
 
 
@@ -65,8 +73,8 @@ for item in items:
     out = []
     for s in sources:
         m = QUEST_SOURCE.match(s)
-        if m and m.group(1) in table:
-            s = f"クエスト「{table[m.group(1)]}」"
+        if m and norm(m.group(1)) in table:
+            s = f"クエスト「{table[norm(m.group(1))]}」"
         elif m:
             kept.add(m.group(1))
         if s not in out:
