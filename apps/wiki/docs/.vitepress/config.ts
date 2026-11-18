@@ -36,9 +36,6 @@ function hasPublishedDlc03Techs(): boolean {
 }
 const DLC03_TECHS_READY = hasPublishedDlc03Techs()
 
-// 公開前の隠しページ。サイドバーに載せず、sitemap から外す（ページ側は frontmatter で noindex）
-const HIDDEN_PAGES = ['wiki/quests.html']
-
 // sitemap の URL（例: 'wiki/goods.html'、トップは ''、入口ページは 'wiki/'）→ 元の .md ファイルの絶対パス
 function sourcePathForUrl(url: string): string {
   const rel = url.replace(/^\//, '')
@@ -149,9 +146,7 @@ export default defineConfig({
     // /calculator/ はVitePress外の別SPAビルドのため、自動収集対象に含まれない。手動で追加する
     // lastmod はソースの最終コミット日（VitePress の lastUpdated はページに表示も出るため使わない）
     transformItems: (items) => [
-      ...items
-        .filter((item) => !HIDDEN_PAGES.includes(item.url.replace(/^\//, '')))
-        .map((item) => ({ ...item, lastmod: gitLastModified(sourcePathForUrl(item.url)) })),
+      ...items.map((item) => ({ ...item, lastmod: gitLastModified(sourcePathForUrl(item.url)) })),
       { url: '/calculator/', lastmod: gitLastModified(CALCULATOR_SRC) },
     ],
   },
@@ -286,6 +281,10 @@ export default defineConfig({
             text: 'アイテム',
             items: [{ text: 'アイテム一覧', link: '/wiki/items' }],
           },
+          {
+            text: 'クエスト',
+            items: [{ text: 'クエスト一覧', link: '/wiki/quests' }],
+          },
         ],
       },
       { text: '更新履歴', link: '/updates' },
@@ -382,6 +381,10 @@ export default defineConfig({
         {
           text: 'アイテム',
           items: [{ text: 'アイテム一覧', link: '/wiki/items' }],
+        },
+        {
+          text: 'クエスト',
+          items: [{ text: 'クエスト一覧', link: '/wiki/quests' }],
         },
       ],
     },
