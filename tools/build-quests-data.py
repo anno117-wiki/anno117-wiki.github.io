@@ -7,6 +7,7 @@
 値は全て作者が変換したデータで、実機では未確認。ゲームの内部の変数を見る条件は、読める形にならないので「条件あり」とだけ出す。
 """
 import json
+import re
 import sqlite3
 import sys
 from pathlib import Path
@@ -17,6 +18,7 @@ ROOT = Path(__file__).resolve().parent.parent
 DB = ROOT / "_local/anno-official-data/v3.0-annohead/anno.sqlite"
 PLANNER = ROOT / "_local/anno-official-data/v3.0-planner/quests.json"
 OUT = ROOT / "apps/wiki/docs/wiki/quests-list.json"
+OVERRIDES = ROOT / "tools/data/quests-ja-overrides.json"
 JA = 6
 DENARII = 1010017
 TEXT_LIMIT = 160
@@ -30,13 +32,44 @@ def q(sql, *a):
     return c.execute(sql, a).fetchall()
 
 
+JA_OVERRIDES = {k: v for k, v in json.loads(OVERRIDES.read_text(encoding="utf-8")).items() if not k.startswith("_")}
+JP_CHAR = re.compile(r"[ぁ-んァ-ヶ一-龠]")
+used_override = False  # 今のクエストで仮訳を使ったか（クエストごとに戻す）
+
+# ゲームが実行時に埋め込む差し込み → 読める言葉（上から順に当てる）
+PLACEHOLDERS = [
+    (re.compile(r"<img[^>]*/?>"), ""),
+    (re.compile(r"\{(?:Static\.Tags\.LocationName|GetLocationInfo)\([^{}]*\)(?:\.LocationName)?\}"), "（島の名前）"),
+    (re.compile(r"\{GetCompanyNameForParticipant\(Participants\.ActiveEmperor\)\}"), "（皇帝の名前）"),
+    (re.compile(r"\{GetCompanyNameForParticipant\([^{}]*(?:\([^{}]*\))?[^{}]*\)\}"), "（人物の名前）"),
+    (re.compile(r"\{Conditions:QuestCondition\.CurrentAmount\}"), "（今の数）"),
+    (re.compile(r"\{Conditions:QuestCondition\.Amount\}"), "（必要な数）"),
+    (re.compile(r"\{Conditions:QuestCondition:GetAmount\([^{}]*\)\}"), "（必要な量）"),
+    (re.compile(r"\{AssetData\(Conditions:QuestCondition\.ExecutionObject\)\.Text\}"), "（届け先）"),
+    (re.compile(r"\{AssetData\([^{}]*\)\.Text\}"), "（品物）"),
+    (re.compile(r"\{Variables:[^{}]*\}"), "（数）"),
+    (re.compile(r"\{[^{}]*\}"), "（…）"),
+]
+
+
+def readable(s):
+    for pat, rep in PLACEHOLDERS:
+        s = pat.sub(rep, s)
+    return s
+
+
 def tr(line, limit=None):
+    global used_override
     if line is None:
         return None
     r = q("select value from translation where line_id=? and lang_id=?", line, JA)
     if not r or r[0][0] is None:
         return None
-    s = r[0][0].replace("​", "").replace("\r", "")
+    s = " ".join(r[0][0].replace("​", "").replace("\r", "").split())
+    if not JP_CHAR.search(s) and s in JA_OVERRIDES:
+        s = JA_OVERRIDES[s]
+        used_override = True
+    s = readable(s)
     for tag in ("<b>", "</b>", "<i>", "</i>", "<br>", "<br/>"):
         s = s.replace(tag, " ")
     s = " ".join(s.split())
@@ -189,7 +222,7 @@ def build_story(sl):
     visible = [n for n in nodes if shown(n)]
     labels, cnt = {}, {}
     for n in visible:
-        k = {"decision": "選択", "objective": "目標", "check": "分かれ道"}.get(n[1], n[1])
+        k = {"decision": "選択", "objective": "目標", "check": "分かれ道", "then": "続き"}.get(n[1], n[1])
         cnt[k] = cnt.get(k, 0) + 1
         labels[n[0]] = f"{k}{cnt[k]}"
 
@@ -199,7 +232,7 @@ def build_story(sl):
         for g in targets:
             if g in labels:
                 res.append(labels[g])
-            elif kinds.get(g) in ("check", "objective") and g not in seen:
+            elif kinds.get(g) in ("check", "objective", "then") and g not in seen:
                 seen.add(g)
                 res += resolve_next([t for i in (0, 1) for t in outs(g, i) if t in kinds], seen)
         return list(dict.fromkeys(res))
@@ -234,6 +267,8 @@ def build_story(sl):
             st["text"] = tr(head) or tr(text, TEXT_LIMIT) or "（目標）"
             st["met"] = result(g, 0)
             st["missed"] = result(g, 1)
+        elif kind == "then":
+            st["yes"] = result(g, 0)
         else:
             st["cond"] = cond_text(cid) or "条件あり"
             st["yes"] = result(g, 0)
@@ -243,7 +278,10 @@ def build_story(sl):
 
 
 quests = []
+untranslated = []
 for g, title, icon, reg, dlc, slug, series, idx in q("select * from questline order by coalesce(dlc_guid,0),coalesce(region_id,0),series,idx"):
+    used_override = False
+    qname = tr(title) or slug
     steps = build_story(g)
     all_rewards = []
     for st in steps:
@@ -255,14 +293,21 @@ for g, title, icon, reg, dlc, slug, series, idx in q("select * from questline or
     giver = givers.get(g)
     quests.append({
         "guid": g,
-        "name": tr(title) or slug,
+        "name": qname,
         "dlc": DLC.get(dlc, str(dlc)),
         "region": REGION.get(reg, ""),
         "giver": name(giver) if isinstance(giver, int) else None,
         "series": name(series) if series != g else None,
         "items": dedupe(all_rewards),
         "steps": steps,
+        **({"provisional": True} if used_override else {}),
     })
+    untranslated += [t for t in re.findall(r'"(?:text|title|name|t)": "([^"]*)"', json.dumps(quests[-1], ensure_ascii=False))
+                     if re.search(r"[A-Za-z]{3,}", t) and not JP_CHAR.search(t)]
 
 OUT.write_text(json.dumps(quests, ensure_ascii=False, separators=(",", ":")), encoding="utf-8")
-print(f"{len(quests)}件 → {OUT}（{OUT.stat().st_size // 1024}KB）")
+print(f"{len(quests)}件 → {OUT}（{OUT.stat().st_size // 1024}KB）。仮訳を使ったクエスト {sum(1 for x in quests if x.get('provisional'))}件")
+if untranslated:
+    print(f"注意: 日本語になっていない文が {len(untranslated)}件（tools/data/quests-ja-overrides.json に足す）")
+    for t in sorted(set(untranslated))[:20]:
+        print("  ", t[:80])

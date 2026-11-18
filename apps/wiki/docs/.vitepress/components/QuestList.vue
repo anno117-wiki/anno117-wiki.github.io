@@ -9,7 +9,7 @@ interface Result { rewards: Reward[]; next: string[] }
 interface Option extends Result { text: string; cost?: string; chance?: string; cond?: string; fail?: Result }
 interface Step {
   id: string
-  kind: 'decision' | 'objective' | 'check'
+  kind: 'decision' | 'objective' | 'check' | 'then'
   speaker?: string | null
   title?: string | null
   text?: string | null
@@ -29,6 +29,7 @@ interface Quest {
   series: string | null
   items: Reward[]
   steps: Step[]
+  provisional?: boolean
 }
 
 const quests = data as Quest[]
@@ -68,7 +69,9 @@ function onToggle(guid: number, e: Event) {
 function branches(s: Step): [string, Result][] {
   const pairs: [string, Result | undefined][] = s.kind === 'objective'
     ? [['達成', s.met], ['未達成', s.missed]]
-    : [['満たす', s.yes], ['満たさない', s.no]]
+    : s.kind === 'then'
+      ? [['', s.yes]]
+      : [['満たす', s.yes], ['満たさない', s.no]]
   return pairs.filter((p): p is [string, Result] => !isEmpty(p[1]))
 }
 
@@ -110,6 +113,7 @@ function isEmpty(r?: Result) {
           <span v-if="q.region" class="ql-tag">{{ q.region }}</span>
           <span v-if="q.giver" class="ql-tag">依頼人: {{ q.giver }}</span>
           <span v-if="q.series" class="ql-tag">続き物: {{ q.series }}</span>
+          <span v-if="q.provisional" class="ql-tag ql-tag-warn">仮訳あり</span>
         </span>
         <span v-if="q.items.length" class="ql-items">
           <span v-for="r in q.items" :key="r.t" class="ql-item">{{ r.t }}</span>
@@ -117,6 +121,7 @@ function isEmpty(r?: Result) {
       </summary>
 
       <div v-if="opened.has(q.guid)" class="ql-body">
+        <p v-if="q.provisional" class="ql-note">このクエストは、ゲームのデータに日本語の文が無い所があり、その部分はこのサイトで仮に訳しています。</p>
         <div v-for="s in q.steps" :key="s.id" class="ql-step">
           <template v-if="s.kind === 'decision'">
             <div class="ql-step-head">
@@ -153,7 +158,7 @@ function isEmpty(r?: Result) {
             <div class="ql-step-head"><span class="ql-id">{{ s.id }}</span> <span class="ql-title">{{ s.text }}</span></div>
             <div v-for="[label, r] in branches(s)" :key="label" class="ql-result">
               <template v-if="r">
-                <span class="ql-label">{{ label }}</span>
+                <span v-if="label" class="ql-label">{{ label }}</span>
                 <span v-for="x in r.rewards" :key="x.t" class="ql-reward" :class="'ql-k-' + x.k">{{ x.t }}</span>
                 <span v-for="n in r.next" :key="n" class="ql-next">{{ n }}へ</span>
               </template>
@@ -161,10 +166,13 @@ function isEmpty(r?: Result) {
           </template>
 
           <template v-else>
-            <div class="ql-step-head"><span class="ql-id">{{ s.id }}</span> <span class="ql-cond">条件: {{ s.cond }}</span></div>
+            <div class="ql-step-head">
+              <span class="ql-id">{{ s.id }}</span>
+              <span v-if="s.kind === 'check'" class="ql-cond">条件: {{ s.cond }}</span>
+            </div>
             <div v-for="[label, r] in branches(s)" :key="label" class="ql-result">
               <template v-if="r">
-                <span class="ql-label">{{ label }}</span>
+                <span v-if="label" class="ql-label">{{ label }}</span>
                 <span v-for="x in r.rewards" :key="x.t" class="ql-reward" :class="'ql-k-' + x.k">{{ x.t }}</span>
                 <span v-for="n in r.next" :key="n" class="ql-next">{{ n }}へ</span>
               </template>
@@ -261,6 +269,8 @@ function isEmpty(r?: Result) {
   background: var(--vp-c-bg);
 }
 .ql-next { font-size: 12px; color: var(--vp-c-brand-1); }
+.ql-tag-warn { color: var(--vp-c-warning-1); border-color: var(--vp-c-warning-2); }
+.ql-note { font-size: 13px; color: var(--vp-c-text-2); margin: 4px 0 8px !important; }
 .ql-none { font-size: 12px; color: var(--vp-c-text-3); }
 
 @media (max-width: 959px) {
