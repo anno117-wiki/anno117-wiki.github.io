@@ -217,6 +217,15 @@ for g, key, nt, icon in q("select * from dlc"):
     DLC[g] = tr(nt) or key
 
 
+# クエストから外す報酬（ストーリーライン → アイテムの GUID）。ゲームのデータでは同じストーリーラインに入っているが、
+# 一覧の選択肢を選んでももらえないもの
+EXCLUDED_REWARDS = {
+    # ディアナのコレクション: ミウトは、パンドラのアンフォラで手に入るルキウスの印章指輪をディアナに届けたときの報酬で、
+    # ディアナのクエストの中の別の届け物として作られている。選択肢の報酬ではないので外す（パンドラのアンフォラ側に載る）
+    96954: {159507},
+}
+
+
 def build_story(sl):
     nodes = q("select node_guid,kind,position,headline_text,text_text,condition_id,speaker_guid "
               "from quest_choice where storyline_guid=? order by position", sl)
@@ -226,7 +235,8 @@ def build_story(sl):
         out = []
         for g in node_list:
             out += [reward(r) for r in q("select kind,asset_guid,amount,amount_variable,name_text,attribute "
-                                          "from quest_reward where node_guid=?", g)]
+                                          "from quest_reward where node_guid=?", g)
+                    if r[1] not in EXCLUDED_REWARDS.get(sl, ())]
         return out
 
     def outs(node, idx):
@@ -322,6 +332,8 @@ for g, title, icon, reg, dlc, slug, series, idx in q("select * from questline or
     # アイテムの入手先の表でこのクエストが入手先のもの（抽選で渡され、選択肢の報酬に出ないものを補う）
     for (ig,) in q("select distinct s.item_guid from item_source s left join quest qq on qq.guid=s.source_guid "
                    "where (s.kind='storyline' and s.source_guid=?) or (s.kind='quest' and qq.storyline_guid=?)", g, g):
+        if ig in EXCLUDED_REWARDS.get(g, ()):
+            continue
         it = q("select name_text,rarity from item where guid=?", ig)
         if it and it[0][1] != "Quest":
             all_rewards.append({"t": tr(it[0][0]) or str(ig), "k": "item", "rarity": it[0][1]})
