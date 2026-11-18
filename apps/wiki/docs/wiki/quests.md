@@ -1,6 +1,6 @@
 ---
 title: クエスト一覧
-description: Anno 117のクエスト229件の選択肢と報酬の一覧です。DLC・地域・名前で絞り込めます。
+description: Anno 117のクエスト228件の選択肢と報酬の一覧です。DLC・地域・名前で絞り込めます。
 ---
 
 <script setup>

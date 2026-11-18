@@ -299,9 +299,16 @@ def build_story(sl):
     return steps
 
 
+# 一覧に載せないクエスト（ユーザー判断）
+EXCLUDED = {
+    38363: "善意の運び手。Planner で unused、内部名に OLD（古い版が残っているもの）",
+}
+
 quests = []
 untranslated = []
 for g, title, icon, reg, dlc, slug, series, idx in q("select * from questline order by coalesce(dlc_guid,0),coalesce(region_id,0),series,idx"):
+    if g in EXCLUDED:
+        continue
     used_override = False
     qname = tr(title) or slug
     steps = build_story(g)
@@ -343,7 +350,7 @@ extra = {}
 for kind, sg, ig in q("select s.kind,s.source_guid,s.item_guid from item_source s join item i on i.guid=s.item_guid "
                       "where s.kind in ('storyline','quest') and i.rarity<>'Quest'"):
     story = sg if kind == "storyline" else (q("select storyline_guid from quest where guid=?", sg) or [[None]])[0][0]
-    if story is None or story in listed:
+    if story is None or story in listed or story in EXCLUDED:
         continue
     extra.setdefault(story, []).append(ig)
 for story, item_ids in extra.items():
