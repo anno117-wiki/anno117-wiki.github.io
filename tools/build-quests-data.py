@@ -19,6 +19,7 @@ DB = ROOT / "_local/anno-official-data/v3.0-annohead/anno.sqlite"
 PLANNER = ROOT / "_local/anno-official-data/v3.0-planner/quests.json"
 OUT = ROOT / "apps/wiki/docs/wiki/quests-list.json"
 OVERRIDES = ROOT / "tools/data/quests-ja-overrides.json"
+SITE_ITEMS = ROOT / "packages/shared/public/data/items-full.json"  # サイトのアイテム一覧（札のリンク先があるかを見る）
 JA = 6
 DENARII = 1010017
 TEXT_LIMIT = 160
@@ -161,6 +162,11 @@ def reward(r):
     if rar:
         # クエスト専用の品（証拠品など）。札には出さない
         return {"t": f"品物: {nm}{amt}", "k": "questitem"}
+    if kind == "item":
+        # アイテムの扱いで渡されるが、アイテムの表に無いもの: 商品（武器など）か、クエストの中で運ぶ品（届け物・ミイラなど）
+        if q("select 1 from product where guid=?", asset):
+            return {"t": f"品物: {nm}{amt}", "k": "goods"}
+        return {"t": f"品物: {nm}{amt}" if nm else "クエストの品", "k": "questitem"}
     return {"t": f"{KIND_LABEL.get(kind, kind)}: {nm}{amt}", "k": kind}
 
 
@@ -350,8 +356,22 @@ for story, item_ids in extra.items():
         "steps": [],
     })
 
+# 札のうち、サイトのアイテム一覧に同じ名前があるものにリンクの印を付ける
+site_items = json.loads(SITE_ITEMS.read_text(encoding="utf-8"))
+site_items = site_items if isinstance(site_items, list) else site_items.get("items", [])
+site_names = {i.get("nameJa") for i in site_items if i.get("nameJa")}
+unlinked = set()
+for x in quests:
+    for r in x["items"]:
+        if r["t"] in site_names:
+            r["link"] = True
+        else:
+            unlinked.add(r["t"])
+
 OUT.write_text(json.dumps(quests, ensure_ascii=False, separators=(",", ":")), encoding="utf-8")
 print(f"{len(quests)}件 → {OUT}（{OUT.stat().st_size // 1024}KB）。仮訳を使ったクエスト {sum(1 for x in quests if x.get('provisional'))}件")
+if unlinked:
+    print(f"札のうち、サイトのアイテム一覧に無いもの（リンクなし）: {'、'.join(sorted(unlinked))}")
 if untranslated:
     print(f"注意: 日本語になっていない文が {len(untranslated)}件（tools/data/quests-ja-overrides.json に足す）")
     for t in sorted(set(untranslated))[:20]:

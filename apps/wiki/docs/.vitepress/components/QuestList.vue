@@ -2,9 +2,10 @@
 // クエスト一覧（wiki/quests）。データは tools/build-quests-data.py が作る quests-list.json。
 // 選択肢はネタバレのため、クエストを開いたときだけ描く（開くまでは DOM に出さない）。
 import { computed, reactive, ref } from 'vue'
+import { withBase } from 'vitepress'
 import data from '../../wiki/quests-list.json'
 
-interface Reward { t: string; k: string; rarity?: string | null }
+interface Reward { t: string; k: string; rarity?: string | null; link?: boolean }
 interface Result { rewards: Reward[]; next: string[] }
 interface Option extends Result { text: string; cost?: string; chance?: string; cond?: string; fail?: Result }
 interface Step {
@@ -59,6 +60,11 @@ function resetFilters() {
   selDlc.value = ''
   selRegion.value = ''
   onlyItems.value = false
+}
+
+/** アイテム一覧を、そのアイテム名で絞った状態で開く */
+function itemHref(name: string) {
+  return withBase(`/wiki/items.html?name=${encodeURIComponent(name)}`)
 }
 
 function onToggle(guid: number, e: Event) {
@@ -116,7 +122,10 @@ function isEmpty(r?: Result) {
           <span v-if="q.provisional" class="ql-tag ql-tag-warn">仮訳あり</span>
         </span>
         <span v-if="q.items.length" class="ql-items">
-          <span v-for="r in q.items" :key="r.t" class="ql-item">{{ r.t }}</span>
+          <template v-for="r in q.items" :key="r.t">
+            <a v-if="r.link" :href="itemHref(r.t)" class="ql-item ql-item-link" @click.stop>{{ r.t }}</a>
+            <span v-else class="ql-item">{{ r.t }}</span>
+          </template>
         </span>
       </summary>
 
@@ -241,6 +250,8 @@ function isEmpty(r?: Result) {
   padding: 0 8px;
 }
 .ql-items { display: flex; flex-wrap: wrap; gap: 4px; width: 100%; }
+.ql-item-link { color: inherit; text-decoration: underline; text-underline-offset: 2px; }
+.ql-item-link:hover { color: var(--vp-c-brand-1); }
 .ql-item, .ql-k-item {
   font-size: 12px;
   border: 1px solid var(--vp-c-green-2);

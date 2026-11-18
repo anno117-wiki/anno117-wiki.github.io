@@ -32,6 +32,9 @@ const filtered = computed(() => data.items.filter(i =>
 
 onMounted(() => {
   const params = new URLSearchParams(window.location.search)
+  // クエスト一覧の札など、アイテム名で絞った状態で開くためのリンク（?name=アイテム名）
+  const name = params.get('name')
+  if (name) selName.value = name
   const target = params.get('target')
   if (target) {
     selTarget.value = target
