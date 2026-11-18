@@ -202,6 +202,7 @@ else:
     print(f"注意: Planner のデータが無いので依頼人は空にします（{PLANNER}）")
 
 REGION = {None: "", 1: "ラティウム", 2: "アルビオン", 3: "アイギュプト"}
+PLANNER_REGION = {"Roman": "ラティウム", "Celtic": "アルビオン", "Egyptian": "アイギュプト"}
 DLC = {None: "基本ゲーム"}
 for g, key, nt, icon in q("select * from dlc"):
     DLC[g] = tr(nt) or key
@@ -313,7 +314,8 @@ for g, title, icon, reg, dlc, slug, series, idx in q("select * from questline or
         "guid": g,
         "name": qname,
         "dlc": DLC.get(dlc, str(dlc)),
-        "region": REGION.get(reg, ""),
+        # annohead に地域が無いもの（DLC03 の決定の依頼など）は Planner の地域で埋める
+        "region": REGION.get(reg) or PLANNER_REGION.get(planner_meta.get(g, {}).get("region"), ""),
         "giver": name(giver) if isinstance(giver, int) else None,
         "series": name(series) if series != g else None,
         "items": dedupe(all_rewards),
@@ -324,7 +326,6 @@ for g, title, icon, reg, dlc, slug, series, idx in q("select * from questline or
                      if re.search(r"[A-Za-z]{3,}", t) and not JP_CHAR.search(t)]
 
 # 選択肢の無いクエストでも、アイテムがもらえるものは一覧に足す（選択肢なしとして）
-PLANNER_REGION = {"Roman": "ラティウム", "Celtic": "アルビオン", "Egyptian": "アイギュプト"}
 PLANNER_DLC = {1: 67902, 2: 67903, 3: 67904}
 listed = {x["guid"] for x in quests}
 extra = {}
