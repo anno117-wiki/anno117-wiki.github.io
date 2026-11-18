@@ -539,7 +539,7 @@
     "boostCondition": "",
     "targets": "船",
     "source": [
-      "クエスト「謎のムルミロ戦士 第２部、第１幕」"
+      "クエスト「謎のムルミロ戦士 第2部、第1幕」"
     ],
     "sourceCaution": false,
     "allocation": "船"
@@ -562,7 +562,7 @@
     "boostCondition": "",
     "targets": "都市警備",
     "source": [
-      "クエスト「謎のムルミロ戦士 第２部、第２幕」"
+      "クエスト「謎のムルミロ戦士 第2部、第2幕」"
     ],
     "sourceCaution": false,
     "allocation": "住居"
