@@ -451,7 +451,7 @@
     "boostCondition": "",
     "targets": "耕作可能な農場",
     "source": [
-      "クエスト「おとぎ話の怪物」"
+      "クエスト「伝説の獣」"
     ],
     "sourceCaution": false,
     "allocation": "住居"
@@ -494,7 +494,7 @@
     "boostCondition": "",
     "targets": "監視塔",
     "source": [
-      "クエスト「横領者の裁判」"
+      "クエスト「IV. 窮地」"
     ],
     "sourceCaution": false,
     "allocation": "住居"
@@ -3060,7 +3060,7 @@
     "boostCondition": "",
     "targets": "サンダル職人",
     "source": [
-      "クエスト「自由の賞金」",
+      "クエスト「自由の再現」",
       "多数の交易商・祭りからランダム入手（低確率）"
     ],
     "sourceCaution": false,
@@ -8229,7 +8229,7 @@
     "boostCondition": "",
     "targets": "船",
     "source": [
-      "クエスト「横領者の裁判」",
+      "クエスト「IV. 窮地」",
       "多数の交易商・祭りからランダム入手（低確率）"
     ],
     "sourceCaution": false,
@@ -11236,9 +11236,7 @@
     "boostCondition": "",
     "targets": "競馬場",
     "source": [
-      "クエスト「勝利の甘い味」",
-      "クエスト「星の創世記」",
-      "クエスト「敗北の苦い後味」"
+      "クエスト「星の創世記：星の誕生」"
     ],
     "sourceCaution": false,
     "allocation": "住居"
@@ -11260,10 +11258,7 @@
     "boostCondition": "",
     "targets": "競馬場",
     "source": [
-      "クエスト「勝利の甘い味」",
-      "クエスト「敗北の苦い後味」",
-      "クエスト「名は体を表す」",
-      "クエスト「チャンピオンの素質」",
+      "クエスト「星の創世記：星の誕生」",
       "クエスト「星の創世記 II：フランマ～烈火」"
     ],
     "sourceCaution": false,
@@ -11287,8 +11282,7 @@
     "boostCondition": "",
     "targets": "競馬場",
     "source": [
-      "クエスト「名は体を表す」",
-      "クエスト「大競技祭」",
+      "クエスト「星の創世記 II：フランマ～烈火」",
       "クエスト「星の創世記 III：ファクス～火種」"
     ],
     "sourceCaution": false,
@@ -11320,7 +11314,7 @@
     "boostCondition": "人気度が上限に達する。ストーリーのレースを進めるか、ヴィラ・オフィキウムに配置して使うと貯まる（未確認です）",
     "targets": "競馬場",
     "source": [
-      "クエスト「星の創世記 VI：ルクス～薄光」"
+      "クエスト「星の創世記 V：ファルス～燈台／VI：ルクス～薄光」"
     ],
     "sourceCaution": false,
     "allocation": "住居"
@@ -11342,7 +11336,7 @@
     "targets": "競馬場",
     "source": [
       "クエスト「星の創世記 IV：ピュラ～灰燼」",
-      "クエスト「星の創世記 V：ファルス～燈台」"
+      "クエスト「星の創世記 V：ファルス～燈台／VI：ルクス～薄光」"
     ],
     "sourceCaution": false,
     "allocation": "住居"
@@ -11364,8 +11358,7 @@
     "boostCondition": "",
     "targets": "競馬場",
     "source": [
-      "クエスト「星に向かって」",
-      "クエスト「星の創世記 V：ファルス～燈台」"
+      "クエスト「星の創世記 V：ファルス～燈台／VI：ルクス～薄光」"
     ],
     "sourceCaution": false,
     "allocation": "住居"
@@ -11388,9 +11381,7 @@
     "boostCondition": "",
     "targets": "競馬場",
     "source": [
-      "クエスト「星に向かって」",
-      "クエスト「星の創世記 VI：ルクス～薄光」",
-      "クエスト「星の創世記 V：ファルス～燈台」"
+      "クエスト「星の創世記 V：ファルス～燈台／VI：ルクス～薄光」"
     ],
     "sourceCaution": false,
     "allocation": "住居"
@@ -12156,7 +12147,7 @@
     ],
     "targets": "すべての川の船",
     "source": [
-      "クエスト「Lifeblood of Kashta」（日本語名は未確認です）",
+      "クエスト「財宝の行方」",
       "ウァレリアとの取引（1.018%）",
       "カシュタのカンディスとの取引（0.909%）",
       "カシュタのカンディスとの契約（並）（1.455%）",
