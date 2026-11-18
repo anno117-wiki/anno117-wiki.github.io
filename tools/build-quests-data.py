@@ -464,6 +464,20 @@ for x in quests:
     if x["series"] is None:
         x["series"] = name(sr)
 
+# 続き物は、先頭の段の場所にまとめて段の順に並べる（地域をまたぐもの（ルキウスの奇妙な要求）が割れないように）
+ordered, placed = [], set()
+for x in quests:
+    if x["guid"] in placed:
+        continue
+    sr = series_of.get(x["guid"], (None, None))[0]
+    group = [g for _, g in sorted(members.get(sr, []))] if sr is not None else []
+    if len(group) < 2:
+        group = [x["guid"]]
+    for g in group:
+        ordered.append(next(y for y in quests if y["guid"] == g))
+        placed.add(g)
+quests = ordered
+
 # 札のうち、サイトのアイテム一覧に同じ名前があるものにリンクの印を付ける
 site_items = json.loads(SITE_ITEMS.read_text(encoding="utf-8"))
 site_items = site_items if isinstance(site_items, list) else site_items.get("items", [])
