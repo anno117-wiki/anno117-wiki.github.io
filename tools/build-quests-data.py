@@ -217,21 +217,26 @@ for g, key, nt, icon in q("select * from dlc"):
     DLC[g] = tr(nt) or key
 
 
-# 題名を Planner の題名（「星の創世記 II：フランマ～烈火」など）に置き換える続き物（ユーザー判断 2026-11-18）。
-# アイテム一覧の入手先はこの題名で載っている
-PLANNER_TITLE_SERIES = {154059}
+# 名前は Planner の題名（実機のクエストブックに出る名前。2026-11-18 に PS5 で確認）にする。
+# annohead の questline の題名は、受けるかどうかを選ぶ画面の見出しなので、違うときは "alt" として添える。
+# 題名が日本語になっていないもの（英語のまま）は、今までどおり見出しの名前を使う
 # 1つのクエストの中で題名が変わるもの（後半の題名を足す）
 TITLE_SUFFIX = {154655: "／VI：ルクス～薄光"}
 
 
-def quest_title(g):
-    """一覧に出すクエストの名前。"""
-    r = q("select title_text,series from questline where guid=?", g)
-    if r and r[0][1] in PLANNER_TITLE_SERIES:
-        title = planner_meta.get(g, {}).get("title")
-        if title is not None and tr(title):
-            return tr(title) + TITLE_SUFFIX.get(g, "")
+def headline_title(g):
+    """受けるかどうかを選ぶ画面の見出し（annohead の questline の題名）。"""
+    r = q("select title_text from questline where guid=?", g)
     return (tr(r[0][0]) if r else None) or name(g)
+
+
+def quest_title(g):
+    """一覧に出すクエストの名前（実機のクエストブックの題名）。"""
+    title = planner_meta.get(g, {}).get("title")
+    text = " ".join((tr(title) or "").split()) if title is not None else ""
+    if text and JP_CHAR.search(text):
+        return text + TITLE_SUFFIX.get(g, "")
+    return headline_title(g)
 
 
 # 元データのつなぎ方がずれている所を直す（ストーリーライン → 節の名前 → 直す中身）
@@ -397,11 +402,12 @@ for g, title, icon, reg, dlc, slug, series, idx in q("select * from questline or
     quests.append({
         "guid": g,
         "name": qname,
+        **({"alt": headline_title(g)} if headline_title(g) not in (None, qname) else {}),
         "dlc": DLC.get(dlc, str(dlc)),
         # annohead に地域が無いもの（DLC03 の決定の依頼など）は Planner の地域で埋める
         "region": REGION.get(reg) or PLANNER_REGION.get(planner_meta.get(g, {}).get("region"), ""),
         "giver": name(giver) if isinstance(giver, int) else None,
-        "series": name(series) if series != g else None,
+        "series": quest_title(series) if series != g else None,
         "items": dedupe(all_rewards),
         "steps": steps,
         # VitePress は見出しの id を NFD（濁点・半濁点を分けた形）で作るので、リンクの # 以降もそろえる
@@ -462,7 +468,7 @@ for x in quests:
     if pos < len(chain) - 1:
         x["nextQuest"] = chain[pos + 1]
     if x["series"] is None:
-        x["series"] = name(sr)
+        x["series"] = quest_title(sr)
 
 # 続き物は、先頭の段の場所にまとめて段の順に並べる（地域をまたぐもの（ルキウスの奇妙な要求）が割れないように）
 ordered, placed = [], set()

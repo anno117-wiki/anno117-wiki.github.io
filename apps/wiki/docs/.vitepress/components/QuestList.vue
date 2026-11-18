@@ -23,7 +23,10 @@ interface Step {
 }
 interface Quest {
   guid: number
+  /** 実機のクエストブックの題名 */
   name: string
+  /** 受けるかどうかを選ぶ画面の見出し（題名と違うときだけ） */
+  alt?: string
   dlc: string
   region: string
   giver: string | null
@@ -51,7 +54,7 @@ const opened = reactive(new Set<number>())
 const filtered = computed(() => {
   const name = selName.value.trim()
   return quests.filter((q) => {
-    if (name && !q.name.includes(name) && !(q.giver ?? '').includes(name)
+    if (name && !q.name.includes(name) && !(q.alt ?? '').includes(name) && !(q.giver ?? '').includes(name)
       && !q.items.some((r) => r.t.includes(name))) return false
     if (selDlc.value && q.dlc !== selDlc.value) return false
     if (selRegion.value && (q.region || '地域の指定なし') !== selRegion.value) return false
@@ -132,6 +135,7 @@ function isEmpty(r?: Result) {
     <details v-for="q in filtered" :id="`quest-${q.guid}`" :key="q.guid" class="ql-quest" @toggle="onToggle(q.guid, $event)">
       <summary>
         <span class="ql-name">{{ q.name }}</span>
+        <span v-if="q.alt" class="ql-alt">受ける画面の見出し: {{ q.alt }}</span>
         <span class="ql-tags">
           <span class="ql-tag">{{ q.dlc }}</span>
           <span v-if="q.region" class="ql-tag">{{ q.region }}</span>
@@ -309,6 +313,7 @@ function isEmpty(r?: Result) {
 .ql-tag-warn { color: var(--vp-c-warning-1); border-color: var(--vp-c-warning-2); }
 .ql-note { font-size: 13px; color: var(--vp-c-text-2); margin: 4px 0 8px !important; }
 .ql-none { font-size: 12px; color: var(--vp-c-text-3); }
+.ql-alt { display: block; font-size: 12px; color: var(--vp-c-text-2); }
 .ql-chain { display: flex; flex-wrap: wrap; gap: 8px; margin: 4px 0 8px; }
 .ql-chain-btn {
   border: 1px solid var(--vp-c-brand-1);
