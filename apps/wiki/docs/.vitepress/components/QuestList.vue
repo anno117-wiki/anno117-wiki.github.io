@@ -1,7 +1,7 @@
 <script setup lang="ts">
 // クエスト一覧（wiki/quests）。データは tools/build-quests-data.py が作る quests-list.json。
 // 選択肢はネタバレのため、クエストを開いたときだけ描く（開くまでは DOM に出さない）。
-import { computed, reactive, ref } from 'vue'
+import { computed, nextTick, reactive, ref } from 'vue'
 import { withBase } from 'vitepress'
 import data from '../../wiki/quests-list.json'
 
@@ -32,6 +32,10 @@ interface Quest {
   steps: Step[]
   provisional?: boolean
   guide?: string
+  /** 続き物の何番目か（例 "2/5"）と、前後のクエストの guid */
+  stage?: string
+  prev?: number
+  nextQuest?: number
 }
 
 const quests = data as Quest[]
@@ -66,6 +70,19 @@ function resetFilters() {
 /** アイテム一覧を、そのアイテム名で絞った状態で開く */
 function itemHref(name: string) {
   return withBase(`/wiki/items.html?name=${encodeURIComponent(name)}`)
+}
+
+const byGuid = new Map(quests.map((q) => [q.guid, q]))
+
+/** 続き物の前後のクエストへ移る。絞り込みで隠れていても出るように、絞り込みを外してから開く */
+async function goQuest(guid: number) {
+  resetFilters()
+  opened.add(guid)
+  await nextTick()
+  const el = document.getElementById(`quest-${guid}`) as HTMLDetailsElement | null
+  if (!el) return
+  el.open = true
+  el.scrollIntoView({ behavior: 'smooth', block: 'start' })
 }
 
 function onToggle(guid: number, e: Event) {
@@ -112,14 +129,14 @@ function isEmpty(r?: Result) {
       </div>
     </div>
 
-    <details v-for="q in filtered" :key="q.guid" class="ql-quest" @toggle="onToggle(q.guid, $event)">
+    <details v-for="q in filtered" :id="`quest-${q.guid}`" :key="q.guid" class="ql-quest" @toggle="onToggle(q.guid, $event)">
       <summary>
         <span class="ql-name">{{ q.name }}</span>
         <span class="ql-tags">
           <span class="ql-tag">{{ q.dlc }}</span>
           <span v-if="q.region" class="ql-tag">{{ q.region }}</span>
           <span v-if="q.giver" class="ql-tag">依頼人: {{ q.giver }}</span>
-          <span v-if="q.series" class="ql-tag">続き物: {{ q.series }}</span>
+          <span v-if="q.series" class="ql-tag">続き物: {{ q.series }}<template v-if="q.stage">（{{ q.stage }}）</template></span>
           <span v-if="q.provisional" class="ql-tag ql-tag-warn">仮訳あり</span>
           <a v-if="q.guide" :href="withBase(q.guide)" class="ql-tag ql-tag-guide" @click.stop>詳しい説明（流れ図）</a>
         </span>
@@ -133,6 +150,10 @@ function isEmpty(r?: Result) {
 
       <div v-if="opened.has(q.guid)" class="ql-body">
         <p v-if="!q.steps.length" class="ql-note">選択肢の無いクエストです。上の札のアイテムが報酬として手に入ります（入手先の情報から）。</p>
+        <div v-if="q.prev || q.nextQuest" class="ql-chain">
+          <button v-if="q.prev" type="button" class="ql-chain-btn" @click="goQuest(q.prev)">前: {{ byGuid.get(q.prev)?.name }}</button>
+          <button v-if="q.nextQuest" type="button" class="ql-chain-btn" @click="goQuest(q.nextQuest)">次: {{ byGuid.get(q.nextQuest)?.name }}</button>
+        </div>
         <p v-if="q.provisional" class="ql-note">このクエストは、ゲームのデータに日本語の文が無い所があり、その部分はこのサイトで仮に訳しています。</p>
         <div v-for="s in q.steps" :key="s.id" class="ql-step">
           <template v-if="s.kind === 'decision'">
@@ -288,6 +309,18 @@ function isEmpty(r?: Result) {
 .ql-tag-warn { color: var(--vp-c-warning-1); border-color: var(--vp-c-warning-2); }
 .ql-note { font-size: 13px; color: var(--vp-c-text-2); margin: 4px 0 8px !important; }
 .ql-none { font-size: 12px; color: var(--vp-c-text-3); }
+.ql-chain { display: flex; flex-wrap: wrap; gap: 8px; margin: 4px 0 8px; }
+.ql-chain-btn {
+  border: 1px solid var(--vp-c-brand-1);
+  border-radius: 4px;
+  padding: 2px 10px;
+  font-size: 13px;
+  color: var(--vp-c-brand-1);
+  background: var(--vp-c-bg);
+  text-align: left;
+  overflow-wrap: anywhere;
+}
+.ql-chain-btn:hover { background: var(--vp-c-brand-soft); }
 
 @media (max-width: 959px) {
   .ql-filters input[type='text'] { width: 100%; }

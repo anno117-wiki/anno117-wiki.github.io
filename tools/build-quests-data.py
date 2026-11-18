@@ -153,7 +153,7 @@ def reward(r):
     if kind in ("item", "goods") and asset == DENARII:
         return {"t": f"デナリウス{amt}", "k": "money"}
     if kind == "storyline":
-        return {"t": f"次のクエスト: {name(asset) or asset}", "k": "quest"}
+        return {"t": f"次のクエスト: {quest_title(asset) or asset}", "k": "quest"}
     if kind in ("reputation", "xp"):
         return {"t": f"{KIND_LABEL[kind]}{amt}" + (f"（{nm}）" if nm else ""), "k": kind}
     rar = q("select rarity from item where guid=?", asset) if kind in ("item", "goods") else []
@@ -215,6 +215,58 @@ GUIDE_LINKS = {
 DLC = {None: "基本ゲーム"}
 for g, key, nt, icon in q("select * from dlc"):
     DLC[g] = tr(nt) or key
+
+
+# 題名を Planner の題名（「星の創世記 II：フランマ～烈火」など）に置き換える続き物（ユーザー判断 2026-11-18）。
+# アイテム一覧の入手先はこの題名で載っている
+PLANNER_TITLE_SERIES = {154059}
+# 1つのクエストの中で題名が変わるもの（後半の題名を足す）
+TITLE_SUFFIX = {154655: "／VI：ルクス～薄光"}
+
+
+def quest_title(g):
+    """一覧に出すクエストの名前。"""
+    r = q("select title_text,series from questline where guid=?", g)
+    if r and r[0][1] in PLANNER_TITLE_SERIES:
+        title = planner_meta.get(g, {}).get("title")
+        if title is not None and tr(title):
+            return tr(title) + TITLE_SUFFIX.get(g, "")
+    return (tr(r[0][0]) if r else None) or name(g)
+
+
+# 元データのつなぎ方がずれている所を直す（ストーリーライン → 節の名前 → 直す中身）
+# 星の創世記: 受け入れるとレースに出し、断ると終わる（元データでは断る側にレースがつながっている）
+STEP_FIXES = {
+    154059: {
+        "選択1": {"options": {0: {"next": ["目標1"]}, 2: {"next": []}}},
+        "目標1": {"text": "レースに出す（達成＝勝ち／未達成＝負け）"},
+    },
+}
+
+
+def fix_steps(sl, steps):
+    for st in steps:
+        fix = STEP_FIXES.get(sl, {}).get(st["id"])
+        if not fix:
+            continue
+        for i, part in fix.get("options", {}).items():
+            st["options"][i].update(part)
+        st.update({k: v for k, v in fix.items() if k != "options"})
+    return steps
+
+
+def replaced_items(sl):
+    """Planner で、持っている御者などを別のアイテムに替える処理（ActionReplaceItem）の新しいアイテム。
+    annohead の報酬には出ないので、札に足す。"""
+    out = []
+    for n in planner_meta.get(sl, {}).get("nodes", []):
+        for a in n.get("actions", []):
+            if a.get("type") == "ActionReplaceItem":
+                for x in a["props"]["ActionReplaceItem"].get("ReplaceItemList", []):
+                    ref = (x.get("NewItem") or {}).get("$ref")
+                    if isinstance(ref, int):
+                        out.append(ref)
+    return out
 
 
 # クエストから外す報酬（ストーリーライン → アイテムの GUID）。ゲームのデータでは同じストーリーラインに入っているが、
@@ -320,8 +372,8 @@ for g, title, icon, reg, dlc, slug, series, idx in q("select * from questline or
     if g in EXCLUDED:
         continue
     used_override = False
-    qname = tr(title) or slug
-    steps = build_story(g)
+    qname = quest_title(g) or slug
+    steps = fix_steps(g, build_story(g))
     all_rewards = []
     for st in steps:
         for part in [*(st.get("options") or []), st.get("met"), st.get("missed"), st.get("yes"), st.get("no")]:
@@ -334,6 +386,10 @@ for g, title, icon, reg, dlc, slug, series, idx in q("select * from questline or
                    "where (s.kind='storyline' and s.source_guid=?) or (s.kind='quest' and qq.storyline_guid=?)", g, g):
         if ig in EXCLUDED_REWARDS.get(g, ()):
             continue
+        it = q("select name_text,rarity from item where guid=?", ig)
+        if it and it[0][1] != "Quest":
+            all_rewards.append({"t": tr(it[0][0]) or str(ig), "k": "item", "rarity": it[0][1]})
+    for ig in replaced_items(g):
         it = q("select name_text,rarity from item where guid=?", ig)
         if it and it[0][1] != "Quest":
             all_rewards.append({"t": tr(it[0][0]) or str(ig), "k": "item", "rarity": it[0][1]})
@@ -386,6 +442,27 @@ for story, item_ids in extra.items():
         "items": dedupe(items),
         "steps": [],
     })
+
+# 続き物の何番目か（questline の idx 順）と、前後のクエスト
+series_of = {g: (sr, ix) for g, sr, ix in q("select guid,series,idx from questline")}
+listed_guids = {x["guid"] for x in quests}
+members = {}
+for g, (sr, ix) in series_of.items():
+    if sr is not None and g in listed_guids:
+        members.setdefault(sr, []).append((ix, g))
+for x in quests:
+    sr = series_of.get(x["guid"], (None, None))[0]
+    chain = [g for _, g in sorted(members.get(sr, []))]
+    if len(chain) < 2:
+        continue
+    pos = chain.index(x["guid"])
+    x["stage"] = f"{pos + 1}/{len(chain)}"
+    if pos > 0:
+        x["prev"] = chain[pos - 1]
+    if pos < len(chain) - 1:
+        x["nextQuest"] = chain[pos + 1]
+    if x["series"] is None:
+        x["series"] = name(sr)
 
 # 札のうち、サイトのアイテム一覧に同じ名前があるものにリンクの印を付ける
 site_items = json.loads(SITE_ITEMS.read_text(encoding="utf-8"))
