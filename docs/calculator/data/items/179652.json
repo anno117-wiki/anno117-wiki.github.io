@@ -1,0 +1,24 @@
+{
+  "displayName": "首飾り職人",
+  "guid": "179652",
+  "description": "ビーズを連ねてあらゆる首飾りを作る。",
+  "iconFilename": "",
+  "rarity": "Common",
+  "niche": "Economy",
+  "targets": [
+    {
+      "producedGoods": [
+        {
+          "name": "Wesekh Collars"
+        }
+      ]
+    }
+  ],
+  "buffs": [
+    {
+      "FactoryUpgrade": {
+        "ProductivityUpgrade": 10.0
+      }
+    }
+  ]
+}

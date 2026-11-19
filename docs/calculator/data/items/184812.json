@@ -1,0 +1,24 @@
+{
+  "displayName": "レンガ職人",
+  "guid": "184812",
+  "description": "常に正しい角度で的確に捉える。",
+  "iconFilename": "",
+  "rarity": "Common",
+  "niche": "Agriculture",
+  "targets": [
+    {
+      "producedGoods": [
+        {
+          "name": "Mud Bricks"
+        }
+      ]
+    }
+  ],
+  "buffs": [
+    {
+      "FactoryUpgrade": {
+        "ProductivityUpgrade": 10.0
+      }
+    }
+  ]
+}

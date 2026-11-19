@@ -1,0 +1,24 @@
+{
+  "displayName": "イセト・ハムト・ネテル、イシスの崇拝者",
+  "guid": "181017",
+  "description": "彼女にとって象牙とは、自分の声の振動に同調させられる新たな骨だ。",
+  "iconFilename": "",
+  "rarity": "Legendary",
+  "niche": "Religion",
+  "targets": [
+    {
+      "producedGoods": [
+        {
+          "name": "Ivory Caskets"
+        }
+      ]
+    }
+  ],
+  "buffs": [
+    {
+      "FactoryUpgrade": {
+        "ProductivityUpgrade": 50.0
+      }
+    }
+  ]
+}

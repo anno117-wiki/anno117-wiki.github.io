@@ -1,0 +1,36 @@
+{
+  "displayName": "小スコルピオ・アフリカヌス、法的に別人の将軍",
+  "guid": "166523",
+  "description": "彼を敵に回せば、手痛く刺される。",
+  "iconFilename": "",
+  "rarity": "Legendary",
+  "niche": "Military",
+  "targets": [
+    {
+      "producedGoods": [
+        {
+          "name": "Rope"
+        },
+        {
+          "name": "Horses"
+        },
+        {
+          "name": "Weapons"
+        },
+        {
+          "name": "Armour"
+        },
+        {
+          "name": "Sails"
+        }
+      ]
+    }
+  ],
+  "buffs": [
+    {
+      "FactoryUpgrade": {
+        "ProductivityUpgrade": 50.0
+      }
+    }
+  ]
+}

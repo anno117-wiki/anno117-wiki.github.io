@@ -1,0 +1,24 @@
+{
+  "displayName": "カフク職人",
+  "guid": "173061",
+  "description": "彼女は奴隷も生地も決して酷使しない。",
+  "iconFilename": "",
+  "rarity": "Common",
+  "niche": "Economy",
+  "targets": [
+    {
+      "producedGoods": [
+        {
+          "name": "Kayk"
+        }
+      ]
+    }
+  ],
+  "buffs": [
+    {
+      "FactoryUpgrade": {
+        "ProductivityUpgrade": 10.0
+      }
+    }
+  ]
+}

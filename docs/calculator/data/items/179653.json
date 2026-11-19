@@ -1,0 +1,27 @@
+{
+  "displayName": "ケペシュの剣職人",
+  "guid": "179653",
+  "description": "征服の費用を一瞬で切り刻む。",
+  "iconFilename": "",
+  "rarity": "Rare",
+  "niche": "Military",
+  "targets": [
+    {
+      "producedGoods": [
+        {
+          "name": "Weapons"
+        },
+        {
+          "name": "Armour"
+        }
+      ]
+    }
+  ],
+  "buffs": [
+    {
+      "FactoryUpgrade": {
+        "ProductivityUpgrade": 20.0
+      }
+    }
+  ]
+}

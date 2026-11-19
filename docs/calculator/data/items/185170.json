@@ -1,0 +1,27 @@
+{
+  "displayName": "燃える眼のタウセルト",
+  "guid": "185170",
+  "description": "「イベリア産の辰砂に、パルタヴァ産の天藍石に、ビアウ産の孔雀石。実に色とりどりだ。この楽しみをティルス人だけに独占させてよいものだろうか？」――多色宣言",
+  "iconFilename": "",
+  "rarity": "Mythic",
+  "niche": "Military",
+  "targets": [
+    {
+      "producedGoods": [
+        {
+          "name": "Weapons"
+        },
+        {
+          "name": "Armour"
+        }
+      ]
+    }
+  ],
+  "buffs": [
+    {
+      "FactoryUpgrade": {
+        "ProductivityUpgrade": 35.0
+      }
+    }
+  ]
+}

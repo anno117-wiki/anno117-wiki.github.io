@@ -1,0 +1,24 @@
+{
+  "displayName": "セシェン、花摘み",
+  "guid": "179649",
+  "description": "彼の香しい煎じ茶は、夜明けのネクタルの甘さを見事にとらえている。",
+  "iconFilename": "",
+  "rarity": "Epic",
+  "niche": "Economy",
+  "targets": [
+    {
+      "producedGoods": [
+        {
+          "name": "Blue Lotus Tea"
+        }
+      ]
+    }
+  ],
+  "buffs": [
+    {
+      "FactoryUpgrade": {
+        "ProductivityUpgrade": 35.0
+      }
+    }
+  ]
+}

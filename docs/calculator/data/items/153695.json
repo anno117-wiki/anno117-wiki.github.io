@@ -1,0 +1,24 @@
+{
+  "displayName": "雁叩き",
+  "guid": "153695",
+  "description": "彼女は雁に棍棒を「ガン」とくれる。",
+  "iconFilename": "",
+  "rarity": "Common",
+  "niche": "Agriculture",
+  "targets": [
+    {
+      "producedGoods": [
+        {
+          "name": "Stuffed Goose"
+        }
+      ]
+    }
+  ],
+  "buffs": [
+    {
+      "FactoryUpgrade": {
+        "ProductivityUpgrade": 10.0
+      }
+    }
+  ]
+}

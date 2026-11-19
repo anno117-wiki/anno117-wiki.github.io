@@ -1,0 +1,24 @@
+{
+  "displayName": "デーツを投げる者",
+  "guid": "173071",
+  "description": "恐れることなくヤシの木に登り、一番熟した果実を採る。",
+  "iconFilename": "",
+  "rarity": "Common",
+  "niche": "Agriculture",
+  "targets": [
+    {
+      "producedGoods": [
+        {
+          "name": "Dates"
+        }
+      ]
+    }
+  ],
+  "buffs": [
+    {
+      "FactoryUpgrade": {
+        "ProductivityUpgrade": 10.0
+      }
+    }
+  ]
+}

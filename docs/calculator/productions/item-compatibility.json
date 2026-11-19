@@ -1,7 +1,7 @@
 {
   "README": "This file maps each production chain to compatible items from Anno 117: Pax Romana.",
-  "generated": "2026-09-11T05:19:26.724Z",
-  "count": 113,
+  "generated": "2026-11-19T12:58:44.257Z",
+  "count": 133,
   "chains": [
     {
       "id": "amphorae",
@@ -29,18 +29,43 @@
       ]
     },
     {
+      "id": "aegyptus_apotropaic_talismans",
+      "displayName": "Apotropaic Talismans",
+      "icon": "aegyptus_apotropaic_talismans",
+      "regions": [
+        "Egyptian"
+      ],
+      "files": {
+        "egyptian": "aegyptus_apotropaic_talismans"
+      },
+      "items": [
+        {
+          "guid": "80221",
+          "displayName": "小宇宙学者-マクロビウス・ミヌキアヌス",
+          "iconFilename": ""
+        }
+      ]
+    },
+    {
       "id": "armour",
       "displayName": "Armour",
       "icon": "armour",
       "regions": [
         "Roman",
-        "Celtic"
+        "Celtic",
+        "Egyptian"
       ],
       "files": {
         "roman": "armour",
-        "celtic": "armour_albion"
+        "celtic": "armour_albion",
+        "egyptian": "aegyptus_armour"
       },
       "items": [
+        {
+          "guid": "179653",
+          "displayName": "ケペシュの剣職人",
+          "iconFilename": ""
+        },
         {
           "guid": "80510",
           "displayName": "サルマティアの剣匠-ゾルシネス",
@@ -62,6 +87,11 @@
           "iconFilename": ""
         },
         {
+          "guid": "166523",
+          "displayName": "小スコルピオ・アフリカヌス、法的に別人の将軍",
+          "iconFilename": ""
+        },
+        {
           "guid": "80221",
           "displayName": "小宇宙学者-マクロビウス・ミヌキアヌス",
           "iconFilename": ""
@@ -70,6 +100,11 @@
           "guid": "50291",
           "displayName": "層重ねの鎧職人",
           "iconFilename": "50291.png"
+        },
+        {
+          "guid": "185170",
+          "displayName": "燃える眼のタウセルト",
+          "iconFilename": ""
         }
       ]
     },
@@ -121,7 +156,7 @@
       "displayName": "Bird Tongues",
       "icon": "bird_tongues",
       "regions": [
-        "Roman"
+        "Celtic"
       ],
       "files": {},
       "items": []
@@ -131,10 +166,10 @@
       "displayName": "Bird Tongues in Aspic",
       "icon": "bird_tongues_in_aspic",
       "regions": [
-        "Roman"
+        "Celtic"
       ],
       "files": {
-        "roman": "bird_tongues_in_aspic"
+        "celtic": "bird_tongues_in_aspic"
       },
       "items": [
         {
@@ -155,16 +190,41 @@
       ]
     },
     {
+      "id": "aegyptus_blue_lotus_tea",
+      "displayName": "Blue Lotus Tea",
+      "icon": "aegyptus_blue_lotus_tea",
+      "regions": [
+        "Egyptian"
+      ],
+      "files": {
+        "egyptian": "aegyptus_blue_lotus_tea"
+      },
+      "items": [
+        {
+          "guid": "179649",
+          "displayName": "セシェン、花摘み",
+          "iconFilename": ""
+        },
+        {
+          "guid": "80221",
+          "displayName": "小宇宙学者-マクロビウス・ミヌキアヌス",
+          "iconFilename": ""
+        }
+      ]
+    },
+    {
       "id": "bread",
       "displayName": "Bread",
       "icon": "bread",
       "regions": [
         "Roman",
-        "Celtic"
+        "Celtic",
+        "Egyptian"
       ],
       "files": {
         "roman": "bread",
-        "celtic": "bread_albion"
+        "celtic": "bread_albion",
+        "egyptian": "aegyptus_bread"
       },
       "items": [
         {
@@ -204,10 +264,10 @@
       "displayName": "Brooches",
       "icon": "brooches",
       "regions": [
-        "Roman"
+        "Celtic"
       ],
       "files": {
-        "roman": "brooches"
+        "celtic": "brooches"
       },
       "items": [
         {
@@ -237,7 +297,7 @@
       "displayName": "Celtic Green",
       "icon": "celtic_green",
       "regions": [
-        "Roman"
+        "Celtic"
       ],
       "files": {},
       "items": []
@@ -270,7 +330,6 @@
       "displayName": "Charcoal",
       "icon": "charcoal",
       "regions": [
-        "Celtic",
         "Roman"
       ],
       "files": {},
@@ -281,10 +340,10 @@
       "displayName": "Chariots",
       "icon": "chariots",
       "regions": [
-        "Roman"
+        "Celtic"
       ],
       "files": {
-        "roman": "chariots"
+        "celtic": "chariots"
       },
       "items": [
         {
@@ -314,7 +373,7 @@
       "displayName": "Chassis",
       "icon": "chassis",
       "regions": [
-        "Roman"
+        "Celtic"
       ],
       "files": {},
       "items": []
@@ -324,16 +383,23 @@
       "displayName": "Cheese",
       "icon": "cheese",
       "regions": [
-        "Roman"
+        "Celtic",
+        "Egyptian"
       ],
       "files": {
-        "roman": "cheese"
+        "celtic": "cheese",
+        "egyptian": "aegyptus_cheese"
       },
       "items": [
         {
           "guid": "44082",
           "displayName": "ホエイの学徒",
           "iconFilename": "44082.png"
+        },
+        {
+          "guid": "173077",
+          "displayName": "ミルクをかき回す者",
+          "iconFilename": ""
         },
         {
           "guid": "96817",
@@ -362,10 +428,10 @@
       "displayName": "Cloaks",
       "icon": "cloaks",
       "regions": [
-        "Roman"
+        "Celtic"
       ],
       "files": {
-        "roman": "cloaks"
+        "celtic": "cloaks"
       },
       "items": [
         {
@@ -448,8 +514,7 @@
       "displayName": "Copper Ore",
       "icon": "copper_ore",
       "regions": [
-        "Celtic",
-        "Roman"
+        "Celtic"
       ],
       "files": {},
       "items": []
@@ -463,6 +528,34 @@
       ],
       "files": {},
       "items": []
+    },
+    {
+      "id": "aegyptus_dates",
+      "displayName": "Dates",
+      "icon": "aegyptus_dates",
+      "regions": [
+        "Egyptian"
+      ],
+      "files": {
+        "egyptian": "aegyptus_dates"
+      },
+      "items": [
+        {
+          "guid": "173071",
+          "displayName": "デーツを投げる者",
+          "iconFilename": ""
+        },
+        {
+          "guid": "106974",
+          "displayName": "隠遁する還元主義者-スケルグ",
+          "iconFilename": ""
+        },
+        {
+          "guid": "80221",
+          "displayName": "小宇宙学者-マクロビウス・ミヌキアヌス",
+          "iconFilename": ""
+        }
+      ]
     },
     {
       "id": "drinking_horns",
@@ -487,8 +580,7 @@
       "displayName": "Dye Plants",
       "icon": "dye_plants",
       "regions": [
-        "Celtic",
-        "Roman"
+        "Celtic"
       ],
       "files": {},
       "items": []
@@ -554,8 +646,8 @@
       "displayName": "Flax",
       "icon": "flax",
       "regions": [
-        "Celtic",
-        "Roman"
+        "Roman",
+        "Celtic"
       ],
       "files": {},
       "items": []
@@ -565,8 +657,8 @@
       "displayName": "Flour",
       "icon": "flour",
       "regions": [
-        "Celtic",
-        "Roman"
+        "Roman",
+        "Celtic"
       ],
       "files": {},
       "items": []
@@ -690,8 +782,8 @@
       "displayName": "Grapes",
       "icon": "grapes",
       "regions": [
-        "Celtic",
-        "Roman"
+        "Roman",
+        "Celtic"
       ],
       "files": {},
       "items": []
@@ -701,10 +793,10 @@
       "displayName": "Handmirrors",
       "icon": "handmirrors",
       "regions": [
-        "Roman"
+        "Celtic"
       ],
       "files": {
-        "roman": "handmirrors"
+        "celtic": "handmirrors"
       },
       "items": [
         {
@@ -729,8 +821,7 @@
       "displayName": "Head Piece",
       "icon": "head_piece",
       "regions": [
-        "Celtic",
-        "Roman"
+        "Celtic"
       ],
       "files": {},
       "items": []
@@ -740,8 +831,8 @@
       "displayName": "Hemp",
       "icon": "hemp",
       "regions": [
-        "Celtic",
-        "Roman"
+        "Roman",
+        "Celtic"
       ],
       "files": {},
       "items": []
@@ -751,8 +842,7 @@
       "displayName": "Herbs",
       "icon": "herbs",
       "regions": [
-        "Celtic",
-        "Roman"
+        "Celtic"
       ],
       "files": {},
       "items": []
@@ -762,8 +852,8 @@
       "displayName": "Honeycombs",
       "icon": "honeycombs",
       "regions": [
-        "Celtic",
-        "Roman"
+        "Roman",
+        "Celtic"
       ],
       "files": {},
       "items": []
@@ -784,6 +874,11 @@
         {
           "guid": "80225",
           "displayName": "リアンノンのかつての御者-ピル・ファブ・マナウィダン",
+          "iconFilename": ""
+        },
+        {
+          "guid": "166523",
+          "displayName": "小スコルピオ・アフリカヌス、法的に別人の将軍",
           "iconFilename": ""
         },
         {
@@ -813,8 +908,8 @@
       "displayName": "Iron",
       "icon": "iron",
       "regions": [
-        "Celtic",
-        "Roman"
+        "Roman",
+        "Celtic"
       ],
       "files": {},
       "items": []
@@ -824,17 +919,141 @@
       "displayName": "Iron Ore",
       "icon": "iron_ore",
       "regions": [
-        "Celtic",
-        "Roman"
+        "Roman",
+        "Celtic"
       ],
       "files": {},
       "items": []
+    },
+    {
+      "id": "aegyptus_ivory_caskets_gold_mine",
+      "displayName": "Ivory Caskets (Gold Mine)",
+      "icon": "aegyptus_ivory_caskets",
+      "regions": [
+        "Egyptian"
+      ],
+      "files": {
+        "egyptian": "aegyptus_ivory_caskets_gold_mine"
+      },
+      "items": [
+        {
+          "guid": "181017",
+          "displayName": "イセト・ハムト・ネテル、イシスの崇拝者",
+          "iconFilename": ""
+        }
+      ]
+    },
+    {
+      "id": "aegyptus_ivory_caskets_gold_washer",
+      "displayName": "Ivory Caskets (Gold Washer)",
+      "icon": "aegyptus_ivory_caskets",
+      "regions": [
+        "Egyptian"
+      ],
+      "files": {
+        "egyptian": "aegyptus_ivory_caskets_gold_washer"
+      },
+      "items": [
+        {
+          "guid": "181017",
+          "displayName": "イセト・ハムト・ネテル、イシスの崇拝者",
+          "iconFilename": ""
+        }
+      ]
+    },
+    {
+      "id": "aegyptus_kalasirises",
+      "displayName": "Kalasirises",
+      "icon": "aegyptus_kalasirises",
+      "regions": [
+        "Egyptian"
+      ],
+      "files": {
+        "egyptian": "aegyptus_kalasirises"
+      },
+      "items": [
+        {
+          "guid": "181070",
+          "displayName": "イシドラ、カラシリスの仕立屋",
+          "iconFilename": ""
+        },
+        {
+          "guid": "80221",
+          "displayName": "小宇宙学者-マクロビウス・ミヌキアヌス",
+          "iconFilename": ""
+        }
+      ]
+    },
+    {
+      "id": "aegyptus_kayk",
+      "displayName": "Kayk",
+      "icon": "aegyptus_kayk",
+      "regions": [
+        "Egyptian"
+      ],
+      "files": {
+        "egyptian": "aegyptus_kayk"
+      },
+      "items": [
+        {
+          "guid": "173061",
+          "displayName": "カフク職人",
+          "iconFilename": ""
+        },
+        {
+          "guid": "96817",
+          "displayName": "限りなき食欲の主-アピオン・モクトス・アピキウス",
+          "iconFilename": "96817.png"
+        },
+        {
+          "guid": "80221",
+          "displayName": "小宇宙学者-マクロビウス・ミヌキアヌス",
+          "iconFilename": ""
+        }
+      ]
+    },
+    {
+      "id": "aegyptus_kollurion_charcoal_burner",
+      "displayName": "Kollurion (Charcoal Burner)",
+      "icon": "aegyptus_kollurion",
+      "regions": [
+        "Egyptian"
+      ],
+      "files": {
+        "egyptian": "aegyptus_kollurion_charcoal_burner"
+      },
+      "items": [
+        {
+          "guid": "80221",
+          "displayName": "小宇宙学者-マクロビウス・ミヌキアヌス",
+          "iconFilename": ""
+        }
+      ]
+    },
+    {
+      "id": "aegyptus_kollurion_coal_mine",
+      "displayName": "Kollurion (Coal Mine)",
+      "icon": "aegyptus_kollurion",
+      "regions": [
+        "Egyptian"
+      ],
+      "files": {
+        "egyptian": "aegyptus_kollurion_coal_mine"
+      },
+      "items": [
+        {
+          "guid": "80221",
+          "displayName": "小宇宙学者-マクロビウス・ミヌキアヌス",
+          "iconFilename": ""
+        }
+      ]
     },
     {
       "id": "lard",
       "displayName": "Lard",
       "icon": "lard",
       "regions": [
+        "Celtic",
         "Roman"
       ],
       "files": {},
@@ -888,8 +1107,8 @@
       "displayName": "Leather",
       "icon": "leather",
       "regions": [
-        "Celtic",
-        "Roman"
+        "Roman",
+        "Celtic"
       ],
       "files": {},
       "items": []
@@ -899,11 +1118,34 @@
       "displayName": "Limestone",
       "icon": "limestone",
       "regions": [
-        "Celtic",
-        "Roman"
+        "Roman",
+        "Celtic"
       ],
       "files": {},
       "items": []
+    },
+    {
+      "id": "aegyptus_limestone_bricks",
+      "displayName": "Limestone Bricks",
+      "icon": "aegyptus_limestone_bricks",
+      "regions": [
+        "Egyptian"
+      ],
+      "files": {
+        "egyptian": "aegyptus_limestone_bricks"
+      },
+      "items": [
+        {
+          "guid": "96819",
+          "displayName": "高潔な志願兵",
+          "iconFilename": "96819.png"
+        },
+        {
+          "guid": "80221",
+          "displayName": "小宇宙学者-マクロビウス・ミヌキアヌス",
+          "iconFilename": ""
+        }
+      ]
     },
     {
       "id": "loungers",
@@ -983,20 +1225,28 @@
       },
       "items": [
         {
-          "guid": "156688",
-          "displayName": "近視の石工",
-          "iconFilename": ""
-        },
-        {
           "guid": "96819",
           "displayName": "高潔な志願兵",
           "iconFilename": "96819.png"
         },
         {
-          "guid": "145271",
-          "displayName": "従者の彫刻家",
+          "guid": "80221",
+          "displayName": "小宇宙学者-マクロビウス・ミヌキアヌス",
           "iconFilename": ""
-        },
+        }
+      ]
+    },
+    {
+      "id": "aegyptus_milk_of_poppea",
+      "displayName": "Milk of Poppea",
+      "icon": "aegyptus_milk_of_poppea",
+      "regions": [
+        "Egyptian"
+      ],
+      "files": {
+        "egyptian": "aegyptus_milk_of_poppea"
+      },
+      "items": [
         {
           "guid": "80221",
           "displayName": "小宇宙学者-マクロビウス・ミヌキアヌス",
@@ -1019,10 +1269,12 @@
       "displayName": "Mosaics",
       "icon": "mosaics",
       "regions": [
-        "Roman"
+        "Roman",
+        "Egyptian"
       ],
       "files": {
-        "roman": "mosaics"
+        "roman": "mosaics",
+        "egyptian": "aegyptus_mosaics"
       },
       "items": [
         {
@@ -1042,11 +1294,38 @@
       "displayName": "Mud",
       "icon": "mud",
       "regions": [
-        "Celtic",
-        "Roman"
+        "Celtic"
       ],
       "files": {},
       "items": []
+    },
+    {
+      "id": "aegyptus_mud_bricks",
+      "displayName": "Mud Bricks",
+      "icon": "aegyptus_mud_bricks",
+      "regions": [
+        "Egyptian"
+      ],
+      "files": {
+        "egyptian": "aegyptus_mud_bricks"
+      },
+      "items": [
+        {
+          "guid": "184812",
+          "displayName": "レンガ職人",
+          "iconFilename": ""
+        },
+        {
+          "guid": "96819",
+          "displayName": "高潔な志願兵",
+          "iconFilename": "96819.png"
+        },
+        {
+          "guid": "80221",
+          "displayName": "小宇宙学者-マクロビウス・ミヌキアヌス",
+          "iconFilename": ""
+        }
+      ]
     },
     {
       "id": "murex_snails",
@@ -1106,11 +1385,28 @@
       "displayName": "Ochs",
       "icon": "ochs",
       "regions": [
-        "Celtic",
-        "Roman"
+        "Celtic"
       ],
       "files": {},
       "items": []
+    },
+    {
+      "id": "aegyptus_oil_lamps",
+      "displayName": "Oil Lamps",
+      "icon": "aegyptus_oil_lamps",
+      "regions": [
+        "Egyptian"
+      ],
+      "files": {
+        "egyptian": "aegyptus_oil_lamps"
+      },
+      "items": [
+        {
+          "guid": "80221",
+          "displayName": "小宇宙学者-マクロビウス・ミヌキアヌス",
+          "iconFilename": ""
+        }
+      ]
     },
     {
       "id": "olive_oil",
@@ -1194,6 +1490,24 @@
       ]
     },
     {
+      "id": "aegyptus_perfumed_oils",
+      "displayName": "Perfumed Oils",
+      "icon": "aegyptus_perfumed_oils",
+      "regions": [
+        "Egyptian"
+      ],
+      "files": {
+        "egyptian": "aegyptus_perfumed_oils"
+      },
+      "items": [
+        {
+          "guid": "80221",
+          "displayName": "小宇宙学者-マクロビウス・ミヌキアヌス",
+          "iconFilename": ""
+        }
+      ]
+    },
+    {
       "id": "pigments",
       "displayName": "Pigments",
       "icon": "pigments",
@@ -1208,8 +1522,8 @@
       "displayName": "Pigs",
       "icon": "pigs",
       "regions": [
-        "Celtic",
-        "Roman"
+        "Roman",
+        "Celtic"
       ],
       "files": {},
       "items": []
@@ -1242,7 +1556,7 @@
       "displayName": "Ponies",
       "icon": "ponies",
       "regions": [
-        "Roman"
+        "Celtic"
       ],
       "files": {},
       "items": []
@@ -1276,6 +1590,34 @@
       ]
     },
     {
+      "id": "aegyptus_rare_meat_platters",
+      "displayName": "Rare Meat Platters",
+      "icon": "aegyptus_rare_meat_platters",
+      "regions": [
+        "Egyptian"
+      ],
+      "files": {
+        "egyptian": "aegyptus_rare_meat_platters"
+      },
+      "items": [
+        {
+          "guid": "184824",
+          "displayName": "アシュキス、食欲の占者",
+          "iconFilename": ""
+        },
+        {
+          "guid": "96817",
+          "displayName": "限りなき食欲の主-アピオン・モクトス・アピキウス",
+          "iconFilename": "96817.png"
+        },
+        {
+          "guid": "80221",
+          "displayName": "小宇宙学者-マクロビウス・ミヌキアヌス",
+          "iconFilename": ""
+        }
+      ]
+    },
+    {
       "id": "reed_shoes",
       "displayName": "Reed Shoes",
       "icon": "reed_shoes",
@@ -1303,8 +1645,7 @@
       "displayName": "Reeds",
       "icon": "reeds",
       "regions": [
-        "Celtic",
-        "Roman"
+        "Celtic"
       ],
       "files": {},
       "items": []
@@ -1314,8 +1655,8 @@
       "displayName": "Resin",
       "icon": "resin",
       "regions": [
-        "Celtic",
-        "Roman"
+        "Roman",
+        "Celtic"
       ],
       "files": {},
       "items": []
@@ -1367,6 +1708,11 @@
           "iconFilename": "44079.png"
         },
         {
+          "guid": "166523",
+          "displayName": "小スコルピオ・アフリカヌス、法的に別人の将軍",
+          "iconFilename": ""
+        },
+        {
           "guid": "80221",
           "displayName": "小宇宙学者-マクロビウス・ミヌキアヌス",
           "iconFilename": ""
@@ -1386,6 +1732,11 @@
         "celtic": "sails_albion"
       },
       "items": [
+        {
+          "guid": "166523",
+          "displayName": "小スコルピオ・アフリカヌス、法的に別人の将軍",
+          "iconFilename": ""
+        },
         {
           "guid": "80221",
           "displayName": "小宇宙学者-マクロビウス・ミヌキアヌス",
@@ -1433,10 +1784,12 @@
       "displayName": "Sandals",
       "icon": "sandals",
       "regions": [
-        "Roman"
+        "Roman",
+        "Egyptian"
       ],
       "files": {
-        "roman": "sandals"
+        "roman": "sandals",
+        "egyptian": "aegyptus_sandals"
       },
       "items": [
         {
@@ -1528,11 +1881,23 @@
       ]
     },
     {
+      "id": "aegyptus_scribing_sets",
+      "displayName": "Scribing Sets",
+      "icon": "aegyptus_scribing_sets",
+      "regions": [
+        "Egyptian"
+      ],
+      "files": {
+        "egyptian": "aegyptus_scribing_sets"
+      },
+      "items": []
+    },
+    {
       "id": "seashells",
       "displayName": "Seashells",
       "icon": "seashells",
       "regions": [
-        "Roman"
+        "Celtic"
       ],
       "files": {},
       "items": []
@@ -1549,12 +1914,35 @@
       "items": []
     },
     {
+      "id": "aegyptus_shentis",
+      "displayName": "Shentis",
+      "icon": "aegyptus_shentis",
+      "regions": [
+        "Egyptian"
+      ],
+      "files": {
+        "egyptian": "aegyptus_shentis"
+      },
+      "items": [
+        {
+          "guid": "181055",
+          "displayName": "シェンティ職人",
+          "iconFilename": ""
+        },
+        {
+          "guid": "80221",
+          "displayName": "小宇宙学者-マクロビウス・ミヌキアヌス",
+          "iconFilename": ""
+        }
+      ]
+    },
+    {
       "id": "silica",
       "displayName": "Silica",
       "icon": "silica",
       "regions": [
-        "Celtic",
-        "Roman"
+        "Roman",
+        "Celtic"
       ],
       "files": {},
       "items": []
@@ -1564,7 +1952,7 @@
       "displayName": "Silver",
       "icon": "silver",
       "regions": [
-        "Roman"
+        "Celtic"
       ],
       "files": {},
       "items": []
@@ -1574,17 +1962,35 @@
       "displayName": "Silver Ore",
       "icon": "silver_ore",
       "regions": [
-        "Roman"
+        "Celtic"
       ],
       "files": {},
       "items": []
+    },
+    {
+      "id": "aegyptus_sistrums",
+      "displayName": "Sistrums",
+      "icon": "aegyptus_sistrums",
+      "regions": [
+        "Egyptian"
+      ],
+      "files": {
+        "egyptian": "aegyptus_sistrums"
+      },
+      "items": [
+        {
+          "guid": "80221",
+          "displayName": "小宇宙学者-マクロビウス・ミヌキアヌス",
+          "iconFilename": ""
+        }
+      ]
     },
     {
       "id": "small_birds",
       "displayName": "Small Birds",
       "icon": "small_birds",
       "regions": [
-        "Roman"
+        "Celtic"
       ],
       "files": {},
       "items": []
@@ -1594,10 +2000,12 @@
       "displayName": "Soap",
       "icon": "soap",
       "regions": [
-        "Roman"
+        "Roman",
+        "Egyptian"
       ],
       "files": {
-        "roman": "soap"
+        "roman": "soap",
+        "egyptian": "aegyptus_soap"
       },
       "items": [
         {
@@ -1656,6 +2064,34 @@
       "items": []
     },
     {
+      "id": "aegyptus_stuffed_goose",
+      "displayName": "Stuffed Goose",
+      "icon": "aegyptus_stuffed_goose",
+      "regions": [
+        "Egyptian"
+      ],
+      "files": {
+        "egyptian": "aegyptus_stuffed_goose"
+      },
+      "items": [
+        {
+          "guid": "153695",
+          "displayName": "雁叩き",
+          "iconFilename": ""
+        },
+        {
+          "guid": "96817",
+          "displayName": "限りなき食欲の主-アピオン・モクトス・アピキウス",
+          "iconFilename": "96817.png"
+        },
+        {
+          "guid": "80221",
+          "displayName": "小宇宙学者-マクロビウス・ミヌキアヌス",
+          "iconFilename": ""
+        }
+      ]
+    },
+    {
       "id": "sturgeon",
       "displayName": "Sturgeon",
       "icon": "sturgeon",
@@ -1671,11 +2107,13 @@
       "icon": "tiles",
       "regions": [
         "Roman",
-        "Celtic"
+        "Celtic",
+        "Egyptian"
       ],
       "files": {
         "roman": "tiles",
-        "celtic": "tiles_albion"
+        "celtic": "tiles_albion",
+        "egyptian": "aegyptus_tiles"
       },
       "items": [
         {
@@ -1886,6 +2324,11 @@
       },
       "items": [
         {
+          "guid": "179653",
+          "displayName": "ケペシュの剣職人",
+          "iconFilename": ""
+        },
+        {
           "guid": "80510",
           "displayName": "サルマティアの剣匠-ゾルシネス",
           "iconFilename": ""
@@ -1911,6 +2354,39 @@
           "iconFilename": ""
         },
         {
+          "guid": "166523",
+          "displayName": "小スコルピオ・アフリカヌス、法的に別人の将軍",
+          "iconFilename": ""
+        },
+        {
+          "guid": "80221",
+          "displayName": "小宇宙学者-マクロビウス・ミヌキアヌス",
+          "iconFilename": ""
+        },
+        {
+          "guid": "185170",
+          "displayName": "燃える眼のタウセルト",
+          "iconFilename": ""
+        }
+      ]
+    },
+    {
+      "id": "aegyptus_wesekh_collars",
+      "displayName": "Wesekh Collars",
+      "icon": "aegyptus_wesekh_collars",
+      "regions": [
+        "Egyptian"
+      ],
+      "files": {
+        "egyptian": "aegyptus_wesekh_collars"
+      },
+      "items": [
+        {
+          "guid": "179652",
+          "displayName": "首飾り職人",
+          "iconFilename": ""
+        },
+        {
           "guid": "80221",
           "displayName": "小宇宙学者-マクロビウス・ミヌキアヌス",
           "iconFilename": ""
@@ -1922,8 +2398,8 @@
       "displayName": "Wheat",
       "icon": "wheat",
       "regions": [
-        "Celtic",
-        "Roman"
+        "Roman",
+        "Celtic"
       ],
       "files": {},
       "items": []
@@ -1942,6 +2418,11 @@
         {
           "guid": "80225",
           "displayName": "リアンノンのかつての御者-ピル・ファブ・マナウィダン",
+          "iconFilename": ""
+        },
+        {
+          "guid": "166523",
+          "displayName": "小スコルピオ・アフリカヌス、法的に別人の将軍",
           "iconFilename": ""
         },
         {

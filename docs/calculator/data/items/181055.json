@@ -1,0 +1,24 @@
+{
+  "displayName": "シェンティ職人",
+  "guid": "181055",
+  "description": "きれいなひだを作る。",
+  "iconFilename": "",
+  "rarity": "Common",
+  "niche": "Diplomacy",
+  "targets": [
+    {
+      "producedGoods": [
+        {
+          "name": "Shentis"
+        }
+      ]
+    }
+  ],
+  "buffs": [
+    {
+      "FactoryUpgrade": {
+        "ProductivityUpgrade": 10.0
+      }
+    }
+  ]
+}

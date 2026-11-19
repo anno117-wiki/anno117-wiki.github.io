@@ -1,0 +1,24 @@
+{
+  "displayName": "ミルクをかき回す者",
+  "guid": "173077",
+  "description": "ヤギの皮を使ってチーズの塊を次々と作り出す。",
+  "iconFilename": "",
+  "rarity": "Common",
+  "niche": "Agriculture",
+  "targets": [
+    {
+      "producedGoods": [
+        {
+          "name": "Cheese"
+        }
+      ]
+    }
+  ],
+  "buffs": [
+    {
+      "FactoryUpgrade": {
+        "ProductivityUpgrade": 10.0
+      }
+    }
+  ]
+}
