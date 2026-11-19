@@ -1,0 +1,24 @@
+{
+  "displayName": "イシドラ、カラシリスの仕立屋",
+  "guid": "181070",
+  "description": "どんな地味な服にも、またとない彩りを少しばかり添える。",
+  "iconFilename": "",
+  "rarity": "Epic",
+  "niche": "Culture",
+  "targets": [
+    {
+      "producedGoods": [
+        {
+          "name": "Kalasirises"
+        }
+      ]
+    }
+  ],
+  "buffs": [
+    {
+      "FactoryUpgrade": {
+        "ProductivityUpgrade": 35.0
+      }
+    }
+  ]
+}

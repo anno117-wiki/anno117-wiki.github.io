@@ -19,7 +19,7 @@ import re
 from pathlib import Path
 
 ROOT = Path(__file__).resolve().parent.parent
-CSV = ROOT / "_local/anno-official-data/v2.0.0.1/items_export_with_effects.csv"
+CSV = ROOT / "_local/anno-official-data/v3.0.1-item-inspector/items.csv"
 ITEMS_FULL = ROOT / "packages/shared/public/data/items-full.json"
 PRODUCTIONS_DIR = ROOT / "packages/shared/public/productions"
 ITEMS_OUT_DIR = ROOT / "packages/shared/public/data/items"

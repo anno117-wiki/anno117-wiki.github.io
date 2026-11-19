@@ -7,14 +7,15 @@
     "needs_fuel": false,
     "building_cost": {
         "money": 0,
-        "timber": 0,
-        "tiles": 0,
-        "concrete": 0,
-        "marble": 0,
+        "timber": 3,
+        "tiles": 4,
+        "concrete": 3,
+        "marble": 2,
         "mosaics": 0
     },
     "maintanance_cost": {
-        "money": 28
+        "money": 28,
+        "equites": 12
     },
     "input": [
         {
