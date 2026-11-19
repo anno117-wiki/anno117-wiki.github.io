@@ -1,7 +1,7 @@
 #!/usr/bin/env python3
 """繰り返し研究できるスキルに、techs.json の `repeatable: true` を付ける(月桂冠風の飾り枠の表示用)。
 
-入力 : _local/anno-official-data/v3.0-planner/techs.json (各スキルの repeatable。245件中14件が true)
+入力 : _local/anno-official-data/v3.0.1-planner/techs.json (各スキルの repeatable。245件中14件が true)
 出力 : apps/wiki/docs/wiki/techs.json (guid が一致するスキルに repeatable: true を付ける。false は項目を持たせない)
 
 - techs.json は CRLF・インデント2で書かれているので、同じ書式で書き戻す
@@ -13,7 +13,7 @@ import sys
 from pathlib import Path
 
 ROOT = Path(__file__).resolve().parent.parent
-SRC = ROOT / '_local' / 'anno-official-data' / 'v3.0-planner' / 'techs.json'
+SRC = ROOT / '_local' / 'anno-official-data' / 'v3.0.1-planner' / 'techs.json'
 OUT = ROOT / 'apps' / 'wiki' / 'docs' / 'wiki' / 'techs.json'
 
 

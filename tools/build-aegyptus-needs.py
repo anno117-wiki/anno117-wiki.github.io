@@ -1,7 +1,7 @@
 #!/usr/bin/env python3
 """アイギュプトの住民層ごとの需要を、Anno 117 Planner のゲーム3.0データから生成する。
 
-入力 : _local/anno-official-data/v3.0-planner/{population,needs,products}.json
+入力 : _local/anno-official-data/v3.0.1-planner/{population,needs,products}.json
 出力 : apps/wiki/docs/wiki/population-aegyptus.json
          tiers      : 層ごとの全需要と、1つ下の層から増える需要(住民層ページ用)
          needsIndex : 商品ごとの需要住民層(商品需要逆引き用。needs-index.json と同じ形)
@@ -15,7 +15,7 @@ import sys
 from pathlib import Path
 
 ROOT = Path(__file__).resolve().parent.parent
-SRC = ROOT / '_local' / 'anno-official-data' / 'v3.0-planner'
+SRC = ROOT / '_local' / 'anno-official-data' / 'v3.0.1-planner'
 OUT = ROOT / 'apps' / 'wiki' / 'docs' / 'wiki' / 'population-aegyptus.json'
 ZW = '​'
 CATEGORY_JA = {'Food': '食料', 'Fashion': 'ファッション', 'Household': '家庭', 'Public': '公共サービス', 'Culture': '文化', 'Wonders': '驚異'}

@@ -1,7 +1,7 @@
 #!/usr/bin/env python3
 """建物効果(buildings-effects.json)の tier を、「その建物を必要とする最初の住民層」に書き換える。
 
-入力 : _local/anno-official-data/v3.0-planner/{population,needs}.json
+入力 : _local/anno-official-data/v3.0.1-planner/{population,needs}.json
 出力 : apps/wiki/docs/wiki/buildings-effects.json の tier（他の項目は変えない）
 
 - 同じアイコンの需要(公共サービス・商品)を持つ住民層のうち、いちばん低い層を入れる。
@@ -13,7 +13,7 @@ import json
 from pathlib import Path
 
 ROOT = Path(__file__).resolve().parent.parent
-SRC = ROOT / '_local' / 'anno-official-data' / 'v3.0-planner'
+SRC = ROOT / '_local' / 'anno-official-data' / 'v3.0.1-planner'
 OUT = ROOT / 'apps' / 'wiki' / 'docs' / 'wiki' / 'buildings-effects.json'
 LEVEL_KEY = {1499: 'libertus', 1496: 'plebeian', 1497: 'equites', 1498: 'patrician',
              1500: 'wader', 1501: 'smith', 1502: 'alderman', 1503: 'mercators', 1504: 'nobles'}

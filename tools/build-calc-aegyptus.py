@@ -1,7 +1,7 @@
 #!/usr/bin/env python3
 """計算機用のアイギュプト(DLC03)生産チェーンを、Anno 117 Planner のゲーム3.0データから生成する。
 
-入力 : _local/anno-official-data/v3.0-planner/{production,products,population}.json
+入力 : _local/anno-official-data/v3.0.1-planner/{production,products,population}.json
        apps/wiki/docs/wiki/regions-aegyptus.json (商品id・日本語名。tools/build-regions-aegyptus.py が生成)
 出力 : packages/shared/public/productions/aegyptus_*.json (チェーンJSON、各ファイルは入れ子を全て展開済み)
        apps/wiki/docs/wiki/chain-ratios-aegyptus.json (共通商品のアイギュプト版の建物数の比率。wikiの生産チェーン一覧が読む)
@@ -30,7 +30,7 @@ from pathlib import Path
 from PIL import Image
 
 ROOT = Path(__file__).resolve().parent.parent
-SRC = ROOT / '_local' / 'anno-official-data' / 'v3.0-planner'
+SRC = ROOT / '_local' / 'anno-official-data' / 'v3.0.1-planner'
 ARCHIVE = ROOT / '_local' / 'anno-official-data' / 'icons-archive' / 'layout-tool-data-ui' / 'fhd' / 'dlc03' / 'icon_content'
 SHARED = ROOT / 'packages' / 'shared' / 'public'
 PRODUCTIONS = SHARED / 'productions'

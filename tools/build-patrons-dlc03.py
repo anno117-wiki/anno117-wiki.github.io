@@ -1,7 +1,7 @@
 #!/usr/bin/env python3
 """信仰神(Patron)と祭りのデータを、Anno 117 Planner のゲーム3.0データで更新する。
 
-入力 : _local/anno-official-data/v3.0-planner/{religion,effects,buildings,festivals}.json
+入力 : _local/anno-official-data/v3.0.1-planner/{religion,effects,buildings,festivals}.json
 出力 : apps/wiki/docs/wiki/patrons.json (既存の8柱は手で確認した表示定義を残して更新し、新祭神3柱と祭りを足す)
 
 既存の8柱:
@@ -21,7 +21,7 @@ from pathlib import Path
 WONDER_OVERRIDE_ISIS_BASTET = '特大の祭壇「レプリカのスフィンクスの祭壇」を建設できるようになる。範囲効果は人々+1・収入+1・名声+2、維持費は26。（ゲーム内の説明文：「お前に爪を立ててやるのが待ちきれない。」）'
 
 ROOT = Path(__file__).resolve().parent.parent
-SRC = ROOT / '_local' / 'anno-official-data' / 'v3.0-planner'
+SRC = ROOT / '_local' / 'anno-official-data' / 'v3.0.1-planner'
 OUT = ROOT / 'apps' / 'wiki' / 'docs' / 'wiki' / 'patrons.json'
 ZW = '​'
 RENAME = {'牛牧場': 'オーロックス牧場'}

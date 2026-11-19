@@ -1,7 +1,7 @@
 #!/usr/bin/env python3
 """アイギュプト(DLC03)で作れる商品の一覧を、Anno 117 Planner のゲーム3.0データから生成する。
 
-入力 : _local/anno-official-data/v3.0-planner/{production,products,needs}.json
+入力 : _local/anno-official-data/v3.0.1-planner/{production,products,needs}.json
        packages/shared/public/productions/list.json と各チェーンJSON(既存の商品の対応づけに使う)
 出力 : apps/wiki/docs/wiki/regions-aegyptus.json (regions.data.ts 他が読む)
 
@@ -21,7 +21,7 @@ sys.path.insert(0, str(Path(__file__).resolve().parent))
 from aegyptus_icons import icon_name  # noqa: E402
 
 ROOT = Path(__file__).resolve().parent.parent
-SRC = ROOT / '_local' / 'anno-official-data' / 'v3.0-planner'
+SRC = ROOT / '_local' / 'anno-official-data' / 'v3.0.1-planner'
 PRODUCTIONS = ROOT / 'packages' / 'shared' / 'public' / 'productions'
 OUT = ROOT / 'apps' / 'wiki' / 'docs' / 'wiki' / 'regions-aegyptus.json'
 ZW = '​'

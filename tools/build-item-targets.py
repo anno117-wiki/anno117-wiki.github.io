@@ -1,7 +1,7 @@
 #!/usr/bin/env python3
 """アイテムごとの「効果が掛かる建物の名前」を、ゲーム3.0データから生成する。
 
-入力 : _local/anno-official-data/v3.0-planner/{item_catalog,buildings,production}.json
+入力 : _local/anno-official-data/v3.0.1-planner/{item_catalog,buildings,production}.json
        packages/shared/public/data/items-full.json（アイテムの一覧。guid の突き合わせ先）
 出力 : apps/wiki/docs/wiki/item-target-buildings.json  {アイテムguid: ['建物名', ...]}
        （items.data.ts と buildings.data.ts が読む。建物効果の「関連アイテム」と、アイテム一覧の対象の絞り込みに使う）
@@ -24,7 +24,7 @@ from collections import Counter
 from pathlib import Path
 
 ROOT = Path(__file__).resolve().parent.parent
-SRC = ROOT / '_local' / 'anno-official-data' / 'v3.0-planner'
+SRC = ROOT / '_local' / 'anno-official-data' / 'v3.0.1-planner'
 ITEMS = ROOT / 'packages' / 'shared' / 'public' / 'data' / 'items-full.json'
 OUT = ROOT / 'apps' / 'wiki' / 'docs' / 'wiki' / 'item-target-buildings.json'
 OUT_POOLS = ROOT / 'apps' / 'wiki' / 'docs' / 'wiki' / 'item-target-pools.json'

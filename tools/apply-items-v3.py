@@ -1,7 +1,7 @@
 #!/usr/bin/env python3
 """アイテムの items-full.json に、ゲーム3.0の変更を当てる。
 
-入力 : _local/anno-official-data/v3.0-planner/item_catalog.json (Anno 117 Planner v1.0.0。効果文・取得先つき)
+入力 : _local/anno-official-data/v3.0.1-planner/item_catalog.json (Anno 117 Planner v1.0.0。効果文・取得先つき)
 出力 : packages/shared/public/data/items-full.json (既存の項目は直接直し、新しい項目を足す)
 
 注意: tools/build-items-ja.py は2.1のゲームデータ(assets.xml)から全件を作り直すスクリプトで、3.0のデータでは動かない。
@@ -24,18 +24,18 @@ import sys
 from pathlib import Path
 
 ROOT = Path(__file__).resolve().parent.parent
-PLANNER = ROOT / '_local' / 'anno-official-data' / 'v3.0-planner'
+PLANNER = ROOT / '_local' / 'anno-official-data' / 'v3.0.1-planner'
 CATALOG = PLANNER / 'item_catalog.json'
 # クエストの名前: 取得先のクエスト(GUID) -> 題名の文字ID(quests.json) -> 日本語(quest_texts_japanese.json)
 QUESTS = PLANNER / 'quests.json'
 QUEST_TEXTS = PLANNER / 'quest_texts_japanese.json'
 # 日本語の題名が空のクエストは、英語の題名を出す(Item Inspector の英語テキストに入っている)
-EN_TEXTS = ROOT / '_local' / 'anno-official-data' / 'v3.0-item-inspector' / 'loca' / 'english.json'
+EN_TEXTS = ROOT / '_local' / 'anno-official-data' / 'v3.0.1-item-inspector' / 'loca' / 'english.json'
 # 2.1にあった項目(これ以外が3.0の新しい項目で、毎回作り直す)
-ITEMS_V21 = ROOT / '_local' / 'anno-official-data' / 'v3.0-item-inspector' / 'items-2.1.csv'
+ITEMS_V21 = ROOT / '_local' / 'anno-official-data' / 'v3.0.1-item-inspector' / 'items-2.1.csv'
 # 強化条件の元の文字列(Item Inspector 3.0)と日本語テキスト
-ITEMS_V30 = ROOT / '_local' / 'anno-official-data' / 'v3.0-item-inspector' / 'items.csv'
-JA_TEXTS = ROOT / '_local' / 'anno-official-data' / 'v3.0-item-inspector' / 'loca' / 'japanese.json'
+ITEMS_V30 = ROOT / '_local' / 'anno-official-data' / 'v3.0.1-item-inspector' / 'items.csv'
+JA_TEXTS = ROOT / '_local' / 'anno-official-data' / 'v3.0.1-item-inspector' / 'loca' / 'japanese.json'
 ITEMS = ROOT / 'packages' / 'shared' / 'public' / 'data' / 'items-full.json'
 ZW = '​'
 # 90573: 3.0で消えた「花形の潜り手」。157067: 「厄介な監査」はクエストで付く負の効果で、専門家ではない(分類なし・Quest)
@@ -70,7 +70,9 @@ SIGN_FIX = {  # guid -> [(旧の効果文, 新の効果文)]
 HEROIC_FIX = {
     '185129': ['生産性: +35%', '維持費: -50%', '必要な労働力: +35%', '範囲効果: 人々 +1', '範囲効果: 健康 +1',
                '必要名声: 16000', 'ナツメヤシ農場: 追加の品物: ビール 1/7'],  # フーイ
-    '185162': ['生産性: +35%', '維持費: -50%', '必要な労働力: +35%', '範囲効果: 人々 +1', '範囲効果: 健康 +1',
+    # コンセンティア: 3.0.1でフーイと別の効果になった（Planner v1.4.0・Item Inspector 3.0.1.0 の Buff 185163）。
+    # 3.0.1の値はPS5の実機では未確認。ヒロイック効果と名声コスト（MythicEffect・NeededPrestige）は3.0から変わっていない
+    '185162': ['生産性: +50%', '必要な労働力: +50%',
                '必要名声: 12000', 'ナツメヤシ農場: 追加の品物: ビール 1/7'],  # コンセンティア
     '185136': ['船の建造速度: +75%', '船の建造費: -40%', '範囲効果: 知識 +3', '必要名声: 14000', '交易収益: +25%'],  # セベクホテプ
     '185170': ['生産性: +35%', '維持費: -15%', '必要名声: 16000',
@@ -87,6 +89,21 @@ LEGENDARY_TEXT_FIX = {
     '179657': [('追加生産力：スイレンの生産力: 75%', '追加生産力：スイレンの生産力: +75%', False)],  # スイレン採集者（画面は+75%。レア）
     '179659': [('追加生産力：ザクロの生産力: 75%', '追加生産力：ザクロの生産力: +75%', False)],  # 果樹園の監督（画面は+75%）
     '179655': [('追加生産力：ゴマの生産力: 75%', '追加生産力：ゴマの生産力: +75%', False)],  # 油の種に囁く者（画面は+75%）
+}
+# 2.1から在るアイテムは「対象」の文字列を作り直さないので、3.0.1で変わった対象をここで直す（guid -> [(旧, 新)]）
+# 近視の石工: 3.0.1で小像のチェーンの対象が大理石工房から大理石の採石場に（Item Inspector 3.0.1.0 の Targets 3138→2954）
+TARGET_FIX = {
+    '156688': [('大理石工房', '大理石の採石場')],
+}
+# 3.0.1で効果・対象が変わり、PS5の実機ではまだ確かめていないもの。アイテム一覧で名前の横に「未確認」の札を出す
+CAUTION_301 = '3.0.1で変わった値です。実機では未確認です'
+CHANGED_301 = {
+    '160148',  # タンティエマニ（対象: 公共サービス→驚異）
+    '185162',  # コンセンティア・ストラータ（効果がフーイと別に）
+    '155327',  # デキムス（範囲効果の収入・名声→割合の収入・名声）
+    '166523',  # 小スコルピオ（範囲効果の収入・名声→兵士の募集速度。パッチノートに無い変更）
+    '183250',  # ガイウス・ロマーヌス・ガイソス（対象: 野営地→部隊）
+    '156688',  # 近視の石工（対象: 大理石工房→大理石の採石場）
 }
 # ミウト・キャットゥルス: 実機の画面（アイテム一覧のツールチップ、2026-11-16）は「（総督のヴィラ）: ネズミの危険性を抑える。」で、
 # 範囲は総督のヴィラ、ネズミの危険性の数値は表示されない（ユーザー指示で、数値は「ゲーム内で確認できません」とする）
@@ -243,6 +260,12 @@ def main() -> None:
                 sys.exit(f"{it['nameJa']}: 直す文が見つからない: {old} / {it['effects']}")
             it['effects'] = [new if e == old else e for e in it['effects']]
     for it in items:
+        for old, new in TARGET_FIX.get(str(it['guid']), []):
+            if new not in it['targets']:
+                if old not in it['targets']:
+                    sys.exit(f"{it['nameJa']}: 直す対象が見つからない: {old} / {it['targets']}")
+                it['targets'] = it['targets'].replace(old, new)
+    for it in items:
         if str(it['guid']) in BOOST_FIX:
             it['boostEffects'] = BOOST_FIX[str(it['guid'])]
     before = len(items)
@@ -310,6 +333,8 @@ def main() -> None:
         if it.get('rarity') == 'Mythic':
             it['source'] = list(dict.fromkeys(
                 '来訪者イベントの報酬' if s.startswith('来訪者イベントの報酬（') else s for s in it.get('source', [])))
+        if str(it['guid']) in CHANGED_301:
+            it['caution'] = CAUTION_301
         if str(it['guid']) in HEROIC_FIX:
             it['effects'] = list(HEROIC_FIX[str(it['guid'])])
             it['boostEffects'] = [e.replace('すべての施設: ', '範囲効果: ') for e in it.get('boostEffects', [])]

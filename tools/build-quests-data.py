@@ -3,7 +3,7 @@
 使い方: python tools/build-quests-data.py   （そのあと bun run build:site）
 元データ:
   - _local/anno-official-data/v3.0-annohead/anno.sqlite（annohead。クエスト・選択肢・報酬）
-  - _local/anno-official-data/v3.0-planner/quests.json（Planner。依頼人）
+  - _local/anno-official-data/v3.0.1-planner/quests.json（Planner。依頼人）
 値は全て作者が変換したデータで、実機では未確認。ゲームの内部の変数を見る条件は、読める形にならないので「条件あり」とだけ出す。
 """
 import json
@@ -17,8 +17,8 @@ sys.stdout.reconfigure(encoding="utf-8")
 
 ROOT = Path(__file__).resolve().parent.parent
 DB = ROOT / "_local/anno-official-data/v3.0-annohead/anno.sqlite"
-PLANNER = ROOT / "_local/anno-official-data/v3.0-planner/quests.json"
-PLANNER_JA = ROOT / "_local/anno-official-data/v3.0-planner/quest_texts_japanese.json"  # annohead に無いクエストの題名
+PLANNER = ROOT / "_local/anno-official-data/v3.0.1-planner/quests.json"
+PLANNER_JA = ROOT / "_local/anno-official-data/v3.0.1-planner/quest_texts_japanese.json"  # annohead に無いクエストの題名
 OUT = ROOT / "apps/wiki/docs/wiki/quests-list.json"
 OVERRIDES = ROOT / "tools/data/quests-ja-overrides.json"
 SITE_ITEMS = ROOT / "packages/shared/public/data/items-full.json"  # サイトのアイテム一覧（札のリンク先があるかを見る）
@@ -515,6 +515,24 @@ for x in quests:
         ordered.append(next(y for y in quests if y["guid"] == g))
         placed.add(g)
 quests = ordered
+
+# 3.0.1で名前が変わったアイテム（annohead は3.0のままなので旧名で来る。Planner v1.4.0・Item Inspector 3.0.1.0 の名前に置き換える）
+ITEM_RENAMES = {
+    "ハナ・レクター、視点の提唱者": "ハヌス・レクター、視点の提唱者",
+}
+def rename_items(node):
+    """札（"k" が item のもの）の名前を、段や選択肢の中まで含めて置き換える"""
+    if isinstance(node, dict):
+        if node.get("k") == "item" and node.get("t") in ITEM_RENAMES:
+            node["t"] = ITEM_RENAMES[node["t"]]
+        for v in node.values():
+            rename_items(v)
+    elif isinstance(node, list):
+        for v in node:
+            rename_items(v)
+
+
+rename_items(quests)
 
 # 札のうち、サイトのアイテム一覧に同じ名前があるものにリンクの印を付ける
 site_items = json.loads(SITE_ITEMS.read_text(encoding="utf-8"))

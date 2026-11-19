@@ -1,7 +1,7 @@
 #!/usr/bin/env python3
 """アイギュプト専用の建物の効果を、Anno 117 Planner のゲーム3.0データから生成する。
 
-入力 : _local/anno-official-data/v3.0-planner/{buildings,effects,buffs,population,needs}.json
+入力 : _local/anno-official-data/v3.0.1-planner/{buildings,effects,buffs,population,needs}.json
 出力 : apps/wiki/docs/wiki/buildings-aegyptus.json (buildings.data.ts が buildings-effects.json に足して読む)
 
 - 対象は、アイギュプトだけにある建物(regions が ['Egyptian'])のうち、tools/build-buildings-data.py と同じ種類(template)のもの
@@ -18,7 +18,7 @@ import sys
 from pathlib import Path
 
 ROOT = Path(__file__).resolve().parent.parent
-SRC = ROOT / '_local' / 'anno-official-data' / 'v3.0-planner'
+SRC = ROOT / '_local' / 'anno-official-data' / 'v3.0.1-planner'
 OUT = ROOT / 'apps' / 'wiki' / 'docs' / 'wiki' / 'buildings-aegyptus.json'
 ZW = '​'
 COIN = 1010017

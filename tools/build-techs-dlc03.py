@@ -1,7 +1,7 @@
 #!/usr/bin/env python3
 """DLC03(デルタの夜明け)のスキルツリーを、Anno 117 Planner のゲーム3.0データから techs.json に入れる。
 
-入力 : _local/anno-official-data/v3.0-planner/techs.json
+入力 : _local/anno-official-data/v3.0.1-planner/techs.json
 出力 : apps/wiki/docs/wiki/techs.json (DLC03の項目だけを入れ替える。他のブランチには触れない)
 
 - DLC03 は category 151465 の41項目(ゲート7、スキル34)
@@ -19,7 +19,7 @@ import sys
 from pathlib import Path
 
 ROOT = Path(__file__).resolve().parent.parent
-SRC = ROOT / '_local' / 'anno-official-data' / 'v3.0-planner' / 'techs.json'
+SRC = ROOT / '_local' / 'anno-official-data' / 'v3.0.1-planner' / 'techs.json'
 OUT = ROOT / 'apps' / 'wiki' / 'docs' / 'wiki' / 'techs.json'
 DLC03_CATEGORY = 151465
 ZW = '​'
@@ -31,6 +31,8 @@ EFFECT_FIX_JA = {
     153950: '兵舎、攻城兵器工房、騎兵養成所 幸福度 範囲効果 +2',
     # 実機(2026-11-06)では対象が2つ。Plannerのデータは「石灰岩レンガ」だけ
     154504: '石灰岩レンガの生産チェーン、コンクリートの生産チェーン 生産性 +25%',
+    # 外人部隊: 実機(2026-11-08)の表記に合わせて手で直していた文（3845b408）。Plannerのデータは「解放: 外人部隊」だけ
+    153951: '解放: ローマ軍団兵の徴兵（ラティウム以外でも可能）',
 }
 
 

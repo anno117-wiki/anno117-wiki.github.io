@@ -1,6 +1,6 @@
 """建物データページ(wiki/building-specs)用のJSONを作る。
 
-元データ: _local/anno-official-data/v3.0-planner/buildings.json と products.json (Planner 3.0)、
+元データ: _local/anno-official-data/v3.0.1-planner/buildings.json と products.json (Planner 3.0)、
 労働力の名前だけ official_master.csv と population.json
 出力: apps/wiki/docs/wiki/building-specs-list.json
 
@@ -13,7 +13,7 @@ import sys
 from pathlib import Path
 
 ROOT = Path(__file__).resolve().parent.parent
-SRC = ROOT / "_local" / "anno-official-data" / "v3.0-planner"
+SRC = ROOT / "_local" / "anno-official-data" / "v3.0.1-planner"
 MASTER_CSV = ROOT / "_local" / "anno-official-data" / "official_master.csv"
 OUT = ROOT / "apps" / "wiki" / "docs" / "wiki" / "building-specs-list.json"
 

@@ -1,7 +1,7 @@
 #!/usr/bin/env python3
 """アイギュプト専用の新商品の生産チェーンを、Anno 117 Planner のゲーム3.0データから生成する。
 
-入力 : _local/anno-official-data/v3.0-planner/{production,products,needs}.json
+入力 : _local/anno-official-data/v3.0.1-planner/{production,products,needs}.json
 出力 : apps/wiki/docs/wiki/production-chains-aegyptus.json (production-chains.data.ts が読む)
 
 - 対象は、アイギュプトで作る商品のうち番号(GUID)が151000以上の最終商品(需要品と建材)
@@ -21,7 +21,7 @@ sys.path.insert(0, str(Path(__file__).resolve().parent))
 from aegyptus_icons import icon_name  # noqa: E402
 
 ROOT = Path(__file__).resolve().parent.parent
-SRC = ROOT / '_local' / 'anno-official-data' / 'v3.0-planner'
+SRC = ROOT / '_local' / 'anno-official-data' / 'v3.0.1-planner'
 OUT = ROOT / 'apps' / 'wiki' / 'docs' / 'wiki' / 'production-chains-aegyptus.json'
 ZW = '​'
 MAX_SCALE = 60

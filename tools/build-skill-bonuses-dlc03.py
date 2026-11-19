@@ -1,7 +1,7 @@
 #!/usr/bin/env python3
 """デルタの夜明け(DLC03)のスキルが、建物に追加で付ける効果を、Anno 117 Planner のゲーム3.0データから生成する。
 
-入力 : _local/anno-official-data/v3.0-planner/techs.json (スキルの effectLines)
+入力 : _local/anno-official-data/v3.0.1-planner/techs.json (スキルの effectLines)
 出力 : apps/wiki/docs/wiki/skill-bonuses-dlc03.json (buildings.data.ts が、建物名で既存の行に足す)
 
 - 対象は、対象の建物が1つに決まる3スキル(下の SKILLS)。「すべての施設」が対象のスキル
@@ -15,7 +15,7 @@ import sys
 from pathlib import Path
 
 ROOT = Path(__file__).resolve().parent.parent
-SRC = ROOT / '_local' / 'anno-official-data' / 'v3.0-planner' / 'techs.json'
+SRC = ROOT / '_local' / 'anno-official-data' / 'v3.0.1-planner' / 'techs.json'
 OUT = ROOT / 'apps' / 'wiki' / 'docs' / 'wiki' / 'skill-bonuses-dlc03.json'
 ZW = '​'
 # スキルの日本語名 -> 効果を付ける建物の日本語名のリスト(サイトの建物効果の表の名前)

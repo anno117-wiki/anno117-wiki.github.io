@@ -1,7 +1,7 @@
 #!/usr/bin/env python3
 """アイテムごとの「使える地域」を、ゲーム3.0データから生成する。
 
-入力 : _local/anno-official-data/v3.0-planner/{item_catalog,buildings}.json
+入力 : _local/anno-official-data/v3.0.1-planner/{item_catalog,buildings}.json
        packages/shared/public/data/items-full.json（アイテムの一覧。guid の突き合わせ先）
 出力 : apps/wiki/docs/wiki/item-regions.json  {guid: ['latium', 'albion', 'aegyptus']}（items.data.ts が読む）
 
@@ -14,7 +14,7 @@ import json
 from pathlib import Path
 
 ROOT = Path(__file__).resolve().parent.parent
-SRC = ROOT / '_local' / 'anno-official-data' / 'v3.0-planner'
+SRC = ROOT / '_local' / 'anno-official-data' / 'v3.0.1-planner'
 ITEMS = ROOT / 'packages' / 'shared' / 'public' / 'data' / 'items-full.json'
 OUT = ROOT / 'apps' / 'wiki' / 'docs' / 'wiki' / 'item-regions.json'
 REGION_KEY = {'Roman': 'latium', 'Celtic': 'albion', 'Egyptian': 'aegyptus'}
