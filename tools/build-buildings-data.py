@@ -9,6 +9,9 @@ Anno 117 公式データ（assets.xml + official_master.csv）から
 使い方:
   python tools/build-buildings-data.py [--dry-run]
   --dry-run: 出力2を書き込まず、差分をstdoutに表示するだけ
+
+注意: 読むのは v2.1 の assets.xml。3.0.1 で変わった行・足りない行は tools/apply-buildings-v301.py が直すので、
+      出力2を書き換えたあとは必ず python tools/apply-buildings-v301.py も走らせる。
 """
 import json, csv, re, sys
 from pathlib import Path

@@ -54,6 +54,12 @@ const TEMPLATE_CATEGORY: Record<string, string> = {
   MiniInstitutionBuilding: 'institution',
   CityInstitutionBuilding: 'institution',
   ResidenceBuilding: 'base',
+  // アイギュプトにだけある種類
+  PublicServiceMountainBuilding: 'public',
+  PublicServiceRitualBuilding: 'public',
+  Warehouse: 'institution',
+  IrrigationConsumer: 'institution',
+  AqueductDistributorWithIrrigationSource: 'institution',
 }
 
 // 層の名前。ja.json に無いアイギュプトの層と、層が決まらない建物
@@ -85,8 +91,12 @@ export default {
   load(): { buildings: BuildingEffect[] } {
     const tierNames = (jaJson as { populationTiers: Record<string, string> }).populationTiers
     const itemCounts = countItemsByTarget()
+    // ラティウムと名前も層も同じアルビオンの建物（見張り・井戸など）は、表で見分けられるよう名前に「（アルビオン）」を付ける。
+    // アイテムはどちらの地域の建物も対象にするので、件数は元の名前で数える
+    const romanKeys = new Set(effectsJson.buildings.filter((b) => !b.id.startsWith('albion_')).map((b) => `${b.nameJa}|${b.tier}`))
     const buildings = effectsJson.buildings.map((b) => ({
       ...b,
+      nameJa: b.id.startsWith('albion_') && romanKeys.has(`${b.nameJa}|${b.tier}`) ? `${b.nameJa}（アルビオン）` : b.nameJa,
       tierJa: tierNames[b.tier] ?? EXTRA_TIER_NAMES[b.tier] ?? b.tier,
       category: getCategory(b.icon),
       itemCount: b.nameJa ? (itemCounts[b.nameJa] ?? 0) : 0,

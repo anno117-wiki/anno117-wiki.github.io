@@ -2,6 +2,7 @@
 """アイギュプトの建物(wiki 建物効果ページ)のアイコンを、表示用の96px WebPにして buildings-thumb/ に置く。
 
 入力 : apps/wiki/docs/wiki/buildings-aegyptus.json の icon (tools/build-buildings-aegyptus.py が出力)
+       apps/wiki/docs/wiki/buildings-effects.json の icon (DLC03 の祭壇など、tools/apply-buildings-v301.py で足した行)
        _local/anno-official-data/icons-archive/ のゲームのアイコン(icon_3d_<icon>.png)
 出力 : apps/wiki/docs/public/icons/buildings-thumb/icon_3d_<icon>.webp (既にあるものは作り直さない)
 
@@ -16,7 +17,7 @@ from pathlib import Path
 from PIL import Image
 
 ROOT = Path(__file__).resolve().parent.parent
-BUILDINGS = ROOT / 'apps' / 'wiki' / 'docs' / 'wiki' / 'buildings-aegyptus.json'
+BUILDINGS = [ROOT / 'apps' / 'wiki' / 'docs' / 'wiki' / name for name in ('buildings-aegyptus.json', 'buildings-effects.json')]
 ARCHIVE = ROOT / '_local' / 'anno-official-data' / 'icons-archive'
 OUT = ROOT / 'apps' / 'wiki' / 'docs' / 'public' / 'icons' / 'buildings-thumb'
 THUMB_SIZE = 96
@@ -32,7 +33,7 @@ def index_archive() -> dict[str, Path]:
 
 
 def main() -> None:
-    icons = sorted({b['icon'] for b in json.loads(BUILDINGS.read_text(encoding='utf-8'))['buildings'] if b.get('icon')})
+    icons = sorted({b['icon'] for path in BUILDINGS for b in json.loads(path.read_text(encoding='utf-8'))['buildings'] if b.get('icon')})
     sources = index_archive()
     OUT.mkdir(parents=True, exist_ok=True)
     made, missing = 0, []

@@ -4,7 +4,8 @@
 入力 : _local/anno-official-data/v3.0.1-planner/{buildings,effects,buffs,population,needs}.json
 出力 : apps/wiki/docs/wiki/buildings-aegyptus.json (buildings.data.ts が buildings-effects.json に足して読む)
 
-- 対象は、アイギュプトだけにある建物(regions が ['Egyptian'])のうち、tools/build-buildings-data.py と同じ種類(template)のもの
+- 対象は、アイギュプトだけにある建物(regions が ['Egyptian'])のうち、tools/build-buildings-data.py と同じ種類(template)と、
+  アイギュプトにだけある種類(TEMPLATES の後半)のもの
 - 維持費 = 維持費のうちコイン(1010017)の量にマイナスを付けた値
 - 効果 = 建物の functionalEffects の各効果が持つバフの属性値の合計(既存と同じく FunctionalEffects だけを数える)。
   属性: 人口(Population)・収入(Money)・信仰(Belief)・知識(Knowledge)・名声(Prestige)・健康(Health)・幸福(Happiness)・火災安全度(FireSafety)
@@ -28,6 +29,9 @@ TEMPLATES = {
     'CityInstitutionBuilding_Marsh', 'RecruitmentBuilding', 'SlotFactoryBuilding7',
     'HarborWarehouse', 'HarborDepot', 'TradeBuilding', 'RepairCrane', 'AqueductConnector', 'VillaUrban', 'GuestHouse',
     'Canal', 'MonumentEventBuilding',
+    # アイギュプトにだけある種類（穀物庫・堤防の生産施設・岩窟墓・神殿・水路の水溜め・貯水池）。2026-11-19 追加
+    'Warehouse', 'ProductionEmbankmentArea', 'PublicServiceMountainBuilding', 'PublicServiceRitualBuilding',
+    'IrrigationConsumer', 'AqueductDistributorWithIrrigationSource',
 }
 ATTR = {'Population': 'population', 'Money': 'income', 'Belief': 'faith', 'Knowledge': 'knowledge',
         'Prestige': 'prestige', 'Health': 'health', 'Happiness': 'happiness', 'FireSafety': 'fireSafety'}
