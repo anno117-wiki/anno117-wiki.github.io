@@ -76,15 +76,29 @@ function resetFilters(): void {
   selName.value = ''
 }
 
+/** 1000以上の数を k・M で短く書く（1500→1.5k、1000000→1M）。値は丸めない */
+function fmtNum(n: number): string {
+  if (n >= 1_000_000) return `${n / 1_000_000}M`
+  if (n >= 1_000) return `${n / 1_000}k`
+  return String(n)
+}
+
+/** 効果や覚醒の条件の文の中の、4桁以上の整数を k・M の書き方にする（小数・分数の分母はそのまま） */
+function fmtText(text: string): string {
+  return text.replace(/(?<![\d.])\d{4,}(?![\d.])/g, (m) => fmtNum(Number(m)))
+}
+
+function fmtList(list: string[]): string {
+  return list.map(fmtText).join('、')
+}
+
 function fmtPrice(item: { price: string; obsidianPrice: number | null }): string {
   if (item.obsidianPrice !== null) return `黒曜石 ${item.obsidianPrice}`
   const p = item.price
   if (!p) return '—'
   const n = Number(p)
   if (!Number.isFinite(n) || n === 0) return p || '—'
-  if (n >= 1_000_000) return (n / 1_000_000).toString().replace(/\.0$/, '') + 'M'
-  if (n >= 1_000) return (n / 1_000).toString().replace(/\.0$/, '') + 'k'
-  return String(n)
+  return fmtNum(n)
 }
 </script>
 
@@ -401,10 +415,10 @@ Anno 117 の専門家が装着できる全アイテムの一覧です。地域�
   <template v-else>—</template>
 </td>
 <td style="white-space:normal;">
-  {{ item.effects.length ? item.effects.join('、') : '—' }}
+  {{ item.effects.length ? fmtList(item.effects) : '—' }}
   <div v-if="item.boostEffects.length || item.boostHint || item.boostCondition" class="item-boost-block">
-    <div class="item-boost-label">覚醒<template v-if="item.boostHint">: {{ item.boostHint }}</template><template v-if="item.boostCondition">（条件: {{ item.boostCondition }}）</template></div>
-    <div>{{ item.boostEffects.length ? item.boostEffects.join('、') : '覚醒後の効果は未確認です' }}</div>
+    <div class="item-boost-label">覚醒<template v-if="item.boostHint">: {{ item.boostHint }}</template><template v-if="item.boostCondition">（条件: {{ fmtText(item.boostCondition) }}）</template></div>
+    <div>{{ item.boostEffects.length ? fmtList(item.boostEffects) : '覚醒後の効果は未確認です' }}</div>
   </div>
 </td>
 <td>{{ fmtPrice(item) }}</td>
@@ -445,11 +459,11 @@ Anno 117 の専門家が装着できる全アイテムの一覧です。地域�
     </div>
     <div class="item-card-row">
       <span class="item-card-label">効果:</span>
-      <span>{{ item.effects.length ? item.effects.join('、') : '—' }}</span>
+      <span>{{ item.effects.length ? fmtList(item.effects) : '—' }}</span>
     </div>
     <div v-if="item.boostEffects.length || item.boostHint || item.boostCondition" class="item-card-row item-boost-block">
-      <div class="item-boost-label">覚醒<template v-if="item.boostHint">: {{ item.boostHint }}</template><template v-if="item.boostCondition">（条件: {{ item.boostCondition }}）</template></div>
-      <div>{{ item.boostEffects.length ? item.boostEffects.join('、') : '覚醒後の効果は未確認です' }}</div>
+      <div class="item-boost-label">覚醒<template v-if="item.boostHint">: {{ item.boostHint }}</template><template v-if="item.boostCondition">（条件: {{ fmtText(item.boostCondition) }}）</template></div>
+      <div>{{ item.boostEffects.length ? fmtList(item.boostEffects) : '覚醒後の効果は未確認です' }}</div>
     </div>
     <div class="item-card-row">
       <span class="item-card-label">価格:</span>
