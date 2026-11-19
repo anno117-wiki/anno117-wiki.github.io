@@ -35,6 +35,8 @@ def q(sql, *a):
     return c.execute(sql, a).fetchall()
 
 
+# 3.0.1 のクエストの日本語の文（キーは文の番号）
+planner_ja = json.loads(PLANNER_JA.read_text(encoding="utf-8")) if PLANNER_JA.exists() else {}
 JA_OVERRIDES = {k: v for k, v in json.loads(OVERRIDES.read_text(encoding="utf-8")).items() if not k.startswith("_")}
 JP_CHAR = re.compile(r"[ぁ-んァ-ヶ一-龠]")
 used_override = False  # 今のクエストで仮訳を使ったか（クエストごとに戻す）
@@ -69,6 +71,11 @@ def tr(line, limit=None):
     if not r or r[0][0] is None:
         return None
     s = " ".join(r[0][0].replace("​", "").replace("\r", "").split())
+    # 3.0 では英語のままでも、3.0.1 で公式の日本語が付いた文は、そちらを使う
+    if not JP_CHAR.search(s):
+        s301 = " ".join(planner_ja.get(str(line), "").replace("​", "").replace("\r", "").split())
+        if JP_CHAR.search(s301):
+            s = s301
     if not JP_CHAR.search(s) and s in JA_OVERRIDES:
         s = JA_OVERRIDES[s]
         used_override = True
@@ -456,7 +463,6 @@ PLANNER_ONLY = {
     109521: "価値ある戦利品（エクィテスの依頼。商人の船を護衛すると周到な大工）",
     157316: "市場の氾濫（DLC03 の住民の依頼。葦切り。葦切りは実機のアイテム検索に出ない専門家）",
 }
-planner_ja = json.loads(PLANNER_JA.read_text(encoding="utf-8")) if PLANNER_JA.exists() else {}
 for story in PLANNER_ONLY:
     meta = planner_meta.get(story)
     if not meta or story in listed:

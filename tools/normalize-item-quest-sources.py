@@ -22,7 +22,6 @@ QUESTS = ROOT / "apps/wiki/docs/wiki/quests-list.json"
 # クエスト一覧の名前・見出しから引けない名前（一覧の guid を直接指す）
 ALIASES = {
     "星の創世記 V：ファルス～燈台": 154655,  # 一覧では VI の題名を足して1件にしている
-    "Lifeblood of Kashta": 158458,  # 題名が英語のままなので、一覧は見出しの「財宝の行方」
 }
 
 
