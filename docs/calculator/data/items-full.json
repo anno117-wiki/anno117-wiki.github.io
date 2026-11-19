@@ -10796,8 +10796,7 @@
       "多数の交易商・祭りからランダム入手（低確率）"
     ],
     "sourceCaution": false,
-    "allocation": "住居",
-    "caution": "3.0.1で変わった値です。実機では未確認です"
+    "allocation": "住居"
   },
   {
     "guid": "156690",
@@ -12369,12 +12368,12 @@
     "description": "彼を敵に回せば、手痛く刺される。",
     "effects": [
       "生産性: +50%",
-      "範囲効果: 兵士の募集速度 +75%"
+      "地域における募集スピード: +75%"
     ],
     "boostHint": "反乱で真価を発揮する",
     "boostEffects": [
       "生産性: +100%",
-      "範囲効果: 兵士の募集速度 +100%"
+      "地域における募集スピード: +100%"
     ],
     "boostCondition": "現在の評判 皇帝: 反乱;反乱寸前",
     "targets": "軍用品生産",
@@ -12382,8 +12381,7 @@
       "栄誉の殿堂"
     ],
     "sourceCaution": false,
-    "allocation": "住居",
-    "caution": "3.0.1で変わった値です。実機では未確認です"
+    "allocation": "住居"
   },
   {
     "guid": "172289",
@@ -12546,8 +12544,7 @@
       "デキムスを撃破"
     ],
     "sourceCaution": false,
-    "allocation": "住居",
-    "caution": "3.0.1で変わった値です。実機では未確認です"
+    "allocation": "住居"
   },
   {
     "guid": "175089",
@@ -12632,8 +12629,7 @@
       "クエスト「女王の建築家」"
     ],
     "sourceCaution": false,
-    "allocation": "住居",
-    "caution": "3.0.1で変わった値です。実機では未確認です"
+    "allocation": "住居"
   },
   {
     "guid": "183250",
@@ -12656,8 +12652,7 @@
       "クエスト「ローマ的新時代」"
     ],
     "sourceCaution": false,
-    "allocation": "住居",
-    "caution": "3.0.1で変わった値です。実機では未確認です"
+    "allocation": "住居"
   },
   {
     "guid": "183253",
@@ -12822,8 +12817,7 @@
       "来訪者イベントの報酬"
     ],
     "sourceCaution": false,
-    "allocation": "住居",
-    "caution": "3.0.1で変わった値です。実機では未確認です"
+    "allocation": "住居"
   },
   {
     "guid": "185129",
