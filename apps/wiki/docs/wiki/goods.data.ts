@@ -2,6 +2,7 @@ import listJson from '../../../../packages/shared/public/productions/list.json'
 import jaJson from '../../../../packages/shared/public/i18n/locales/ja.json'
 import producersJson from './goods-producers.json'
 import { wikiCategory } from './goods-category'
+import { wikiRegions } from './goods-regions'
 import { calcLinksFor, assertAegyptusCalcLinked, type CalcLink } from './calc-links'
 // アイギュプト(DLC03)で作れる商品。tools/build-regions-aegyptus.py で生成
 import aegyptusJson from './regions-aegyptus.json'
@@ -35,7 +36,7 @@ export default {
       nameEn: g.displayName,
       icon: g.icon ?? '',
       category: wikiCategory(g.id, g.category),
-      regions: [...new Set([...(g.regions as string[]), ...(alsoEgyptian.has(g.id) ? ['Egyptian'] : [])])],
+      regions: wikiRegions(g.id, g.regions, alsoEgyptian),
       producers: (producersJson as { goods: Record<string, unknown[]> }).goods[g.id],
       calcLinks: calcLinksFor(g.id),
     }))
