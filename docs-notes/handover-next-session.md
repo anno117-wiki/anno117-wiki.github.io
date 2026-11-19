@@ -27,6 +27,11 @@
 ## 未コミット作業
 なし（2026-11-19・第65版の時点。`git status` はクリーン、`git log origin/master..HEAD` も空。この引き継ぎ書の更新コミットも push する）。ただし `docs-notes/research-*.md` 3本はGit管理外
 
+## 住民層の路線（2026-11-19 夕・`717f9f8f`〜`8d8f02c5`。push 済み・デプロイ success）
+- アルビオン・アイギュプトとも、先に進めた路線の第3層が1人以上いると、もう一方の路線に上がれる（アルビオンはアルダー／ノビレス、アイギュプトは奉唱巫女／ギムナシアリコス。アルビオンは両向きともユーザーが実機で確認）。**この条件は2.1の assets.xml の住民層の解放の仕掛け（Trigger Intermediate Level Celtic など）にも、Planner の population.json にも無い**（データではウェーダー50人で両路線が同時に開くように見える）。データだけで「無い」と決めないこと
+- 進化図（`public/diagrams/albion-tiers.svg`・`aegyptus-tiers.svg`）を、どちらを先に進めるかの2列（5層ずつ）に描き直した。住民層のページのアルビオンの説明・スミス・メルカトルの節に条件を足した。更新履歴に1件（計125件）
+- アイテム一覧の効果・覚醒の条件・価格の1000以上の数字は、表示のときに k・M で書く（`wiki/items.md` の `fmtText`。データはそのまま）
+
 ## 3.0.1の公式データでの作り直し（2026-11-19 午後・Windows の単独セッション。`0903f759`・`435d33b8`。push 済み・デプロイ success）
 - **保存した一次データ**: `_local/anno-official-data/v3.0.1-item-inspector/`（Item Inspector `b3eb5e7`・タグ v3.0.1.0 の `data/versions/3.0.1/`。`items-2.1.csv` と `loca/*-2.1.json` は v3.0 のフォルダからの写し）・`v3.0.1-planner/`（Planner `86aa2e8`・v1.4.0、`gameVersion` 3.0.1。v3.0-planner と同じファイル＋ achievements.json）。各 `SOURCE.txt` に出どころ。**v3.0 のフォルダはそのまま**
 - **生成スクリプト16本の読み先を v3.0.1 に替えた**（`tools/` で `v3.0-planner`・`v3.0-item-inspector` を読んでいたもの全部）。全部流して差分を確かめた。サイトで変わったのは、アイテム（下）・研究（アイギュプトの最初の関門に「麦打ち人10人」、「地下のピトス」→「節水施策」と説明文）・信仰（鳩小屋の説明に「アイギュプトの」）・クエスト一覧（改名）・DLC03ガイドの流れ図（改名）だけ
