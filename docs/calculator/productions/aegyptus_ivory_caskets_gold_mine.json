@@ -44,7 +44,10 @@
                     "time": 150,
                     "needs_fuel": false,
                     "building_cost": {
-                        "money": 0
+                        "money": 0,
+                        "aegyptus_mud_bricks": 2,
+                        "tiles": 1,
+                        "concrete": 1
                     },
                     "maintanance_cost": {
                         "money": 20,
