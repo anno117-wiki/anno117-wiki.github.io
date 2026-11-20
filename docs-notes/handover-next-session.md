@@ -61,7 +61,7 @@
 - **生成スクリプトの置き換え（街の状況。2026-11-20 夕）**: `tools/assets_city_status.py`（assets.xml から Planner の city_status.json と同じ形のデータを作る。段階の並びと必要人口は EconomyFeature の CityStatusFeature）を作り、`build-city-status-data-v3.py` の読み先を替えた。ローマ40・ケルト25・エジプト35段階が全項目一致、出力も基準と同一
 - **生成スクリプトの置き換え（効果・バフ。2026-11-20 夕）**: `tools/assets_effects.py`（assets.xml から Planner の effects.json / buffs.json と同じ形のデータを作る）を作り、読み先を替えたのは `apply-buildings-v301.py`・`build-buildings-aegyptus.py` の2本。効果1,243件（スコープ・バフ・対象・時間）とバフ1,950件（`calc` のうち属性の加算 `attributes` と `attributesPercent`）が Planner と全項目一致。2本とも出力は基準・コミット済みと同一。建物モジュールに `icon` を足した
   - バフの `calc` は属性の加算だけ作る（生産性・範囲の属性・必要品などの集計は未対応。使うスクリプトが無いため）。XML の効果は Planner より約740件多い（Planner は使われるものだけ）
-  - **要判断**: `build-buildings-aegyptus.py` は、assets.xml にあるが Planner の一覧に無かった3件を `NOT_LISTED` で除いて出力を変えていない。**アイギュプトの金鉱（152249）**は実在の建物なので、サイトの建物効果の表に足すかを決める（足すなら除外から外して層を決める）。水路（153009）・水道（149793）は同じ名前の別の資産で、既に載せている行と重複する
+  - **アイギュプトの金鉱（152249）を建物効果の表に足した**（ユーザー指示 2026-11-20。層なし・維持費 -20・健康 -2。`build-buildings-aegyptus.py` の除外から外した）。assets.xml にあって Planner の一覧に無い水路（153009）・水道（149793）は、同じ名前の別の資産で既存の行と重複するので `NOT_LISTED` で除いたまま
 - **置き換えの全体像（2026-11-20 夕。Planner 読みの残りを、ファイル別にまとめた）**
   - **済み（assets.xml 読み。モジュールは `tools/assets_*.py`）**: 工場（factories）／建物をGUIDで引く（buildings）／商品・需要・人口層・住居（economy）／研究のうち効果文以外（techs）／街の状況（city_status）／効果・バフ（effects）。読み先を替えた生成スクリプトは計 14本
   - **残り1（効果文）**: `effectLines`（「対象 効果名 値」の文）を使う `build-techs-dlc03.py`・`build-skill-bonuses-dlc03.py`・`build-dlc03-verify-sheet.py`。XML の `ItemInfotipTextFeature`（GUID 142928）に効果の種類別の文言の表がある。効果の種類ごとの書式を実装する必要がある
