@@ -19,6 +19,8 @@ const CATEGORY_OVERRIDE: Record<string, string> = {
   drinking_horns: 'household',
   handmirrors: 'household',
   soap: 'fashion',
+  lyres: 'culture',
+  ceremonial_shields: 'household',
 }
 
 /** 商品IDに上書きがあればそれを、なければ元の分類を返す */
