@@ -155,8 +155,9 @@ class Resolver:
         """解決済みの資産 {'template', 'name', 'v'}。GUID が無ければ None"""
         if guid not in self.raw:
             return None
+        v = flat(self._values(guid))
         return {
             'template': self.template_of(guid),
-            'name': self.raw[guid].findtext('Values/Standard/Name'),
-            'v': flat(self._values(guid)),
+            'name': v.get('/Standard/Name') or None,  # BaseAssetGUID から継承した名前も含む
+            'v': v,
         }

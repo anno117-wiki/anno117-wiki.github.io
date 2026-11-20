@@ -10,8 +10,11 @@
 比較する範囲(数値と参照関係のみ。名前などの文言は texts_*.xml 側の話なので見ない):
   工場 / 商品 / 需要 / 人口層 / 住居 / 建物(コスト・維持費・効果・地形ほか) / 研究 / 都市ステータス
   効果 / バフ / アイテム / 信仰(守護神・信仰度) / 祭り(長さ・開始条件・費用) / 貿易(商人の品物と予算・総督の予算)
+  クエスト(ストーリーライン449・部品ノード16,911の種類・名前・接続先、ノード内の数値と参照、プール)
   Planner全ファイルのGUIDがXMLにあるか
-比較しない範囲(XMLに無い、または未調査): 建物の幅と高さ(.ifo由来)、クエスト、貿易の受動取引・建設資材・艦隊
+比較しない範囲(XMLに無い、または未調査): 建物の幅と高さ(.ifo由来)、貿易の受動取引・建設資材・艦隊
+クエストの注意: Planner は省略値(properties.xml の既定値。HP100%・保留120秒など)や参照先の資産の中身を埋め込む。
+  ノードごとに XML の値と、参照先1段の値を探し、20ノード以上で欠ける値は『共通の省略値』として別集計にする
 既知の「差異に見えるだけ」: Planner が null や空にしている値を XML は省略(=既定値)している。
 効果の対象は ExcludeFromTargets を引き、存在しない資産への参照は落とす。バフの事故の種類は XML では 'A;B' の1値。
 """
@@ -443,6 +446,123 @@ def compare_trade(R: Resolver) -> None:
                     add('trade', g, gv['name'], f'activeTrade:{phase}/{diff}', bs, xb)
 
 
+def leaves(o, out: set) -> None:
+    """Planner のダンプから葉の値を集める(数値は文字列に揃える)。$ref は GUID として集める"""
+    if isinstance(o, dict):
+        for k, v in o.items():
+            if k == '$ref':
+                out.add(str(int(v)))
+            else:
+                leaves(v, out)
+    elif isinstance(o, list):
+        for v in o:
+            leaves(v, out)
+    elif isinstance(o, bool):
+        pass
+    elif isinstance(o, (int, float)):
+        if abs(o) >= 2 or not float(o).is_integer():
+            out.add(str(int(o)) if float(o).is_integer() else str(o))
+
+
+def xml_values(v: dict) -> set[str]:
+    """XML の値を比較用に集める(数値は 2.0 -> 2 のように揃える)"""
+    out = set()
+    for val in v.values():
+        out.add(val)
+        f = num(val, None)
+        if f is not None:
+            out.add(str(int(f)) if f.is_integer() else str(f))
+    return out
+
+
+QUEST_PAYLOAD_KEYS = ('actions', 'objective', 'rewards', 'condition', 'decision', 'request', 'special', 'input',
+                      'states', 'links', 'immediate', 'starter', 'dialogue', 'ui')
+
+
+def compare_quests(R: Resolver) -> None:
+    q = pj('quests')
+    seen_nodes: set[int] = set()
+    for quest in q['quests']:
+        qg = int(quest['guid'])
+        qr = R.get(qg)
+        if qr is None:
+            add('quests', qg, quest['name'], 'XMLに無い', '', '')
+            continue
+        if qr['template'] != 'StoryLine':
+            add('quests', qg, quest['name'], 'template', 'StoryLine', qr['template'])
+        for n in quest['nodes']:
+            nid = int(n['id'])
+            if nid in seen_nodes:
+                continue
+            seen_nodes.add(nid)
+            r = R.get(nid)
+            if r is None:
+                add('questNodes', nid, n['name'], 'XMLに無い', '', '')
+                continue
+            if r['template'] != n['kind']:
+                add('questNodes', nid, n['name'], 'kind', n['kind'], r['template'])
+            if (r['name'] or '').strip() != (n['name'] or '').strip():
+                add('questNodes', nid, n['name'], 'name', n['name'], r['name'])
+            xv = r['v']
+            vals = xml_values(xv)
+            # Planner は参照先の資産(対話ウィンドウなど)の中身も埋め込むので、1段先の値も使う
+            for val in list(xv.values()):
+                if val.isdigit() and int(val) in R.raw and int(val) != nid:
+                    vals |= xml_values(R.get(int(val))['v'])
+            # 接続先: Planner の辺の行き先が、XML の値に全部あるか
+            missing = [e['to'] for e in n.get('edges', []) if str(e['to']) not in vals]
+            if missing:
+                add('questNodes', nid, n['name'], 'edges', [e['to'] for e in n['edges']][:6], missing[:6])
+            # 中身: Planner の各葉の値が、XML のどこかに同じ値であるか
+            for key in QUEST_PAYLOAD_KEYS:
+                if n.get(key) in (None, [], {}):
+                    continue
+                pl: set = set()
+                leaves(n[key], pl)
+                # 秒はXMLではミリ秒。41 は組み込みのプレイヤー参照(XMLに資産が無い)
+                absent = sorted(x for x in pl if x not in vals and x != '41' and not (num(x, None) and str(int(num(x) * 1000)) in vals))
+                if absent:
+                    add('questNodes', nid, n['name'], 'payload:' + key, len(absent), absent[:5])
+    # 多数のノードで同じ値が欠けるものは、省略値(properties.xml の既定値)とみなして別集計にする
+    cnt = collections.Counter(v for d in diffs['questNodes'] if d[2].startswith('payload:') for v in d[4])
+    common = {v for v, c in cnt.items() if c >= 20}
+    kept = []
+    for d in diffs['questNodes']:
+        if d[2].startswith('payload:'):
+            rest = [v for v in d[4] if v not in common]
+            if not rest:
+                continue
+            d = (d[0], d[1], d[2], d[3], rest)
+        kept.append(d)
+    diffs['questNodes'] = kept
+    print(f'クエスト {len(q["quests"])}件 / ノード {len(seen_nodes)}件を比較。共通の省略値とみなした値: {sorted(common)[:12]} ほか計{len(common)}種')
+
+    for g, e in q['entries'].items():
+        r = R.get(int(g))
+        if r is None:
+            add('questEntries', int(g), e['name'], 'XMLに無い', '', '')
+            continue
+        vals = xml_values(r['v'])
+        for fld in ('title', 'summary'):
+            if e.get(fld) is not None and str(e[fld]) not in vals:
+                add('questEntries', int(g), e['name'], fld, e[fld], None)
+
+    for p in q['pools']:
+        r = R.get(int(p['guid']))
+        if r is None:
+            add('questPools', int(p['guid']), p['name'], 'XMLに無い', '', '')
+            continue
+        vals = xml_values(r['v'])
+        for fld in ('questLimit', 'cooldown', 'resetThreshold'):
+            pv = p.get(fld)
+            ms = str(int(pv * 1000)) if pv else None
+            if pv and str(int(pv) if float(pv).is_integer() else pv) not in vals and ms not in vals:
+                add('questPools', int(p['guid']), p['name'], fld, pv, None)
+        for s in p['storylines']:
+            if str(s['storyline']) not in vals:
+                add('questPools', int(p['guid']), p['name'], 'storyline', s, None)
+
+
 def check_guid_coverage(R: Resolver) -> None:
     """Planner の各ファイルに出てくる guid が、XML に全部あるか"""
     def collect(o, out: set) -> None:
@@ -473,7 +593,7 @@ def main() -> None:
     R = Resolver()
     steps = (compare_factories, compare_economy, compare_buildings, compare_techs_and_status,
              compare_effects_buffs_items, compare_religion, compare_festivals, compare_trade,
-             check_guid_coverage)
+             compare_quests, check_guid_coverage)
     for step in steps:
         step(R)
     print('=== 差異 ===')
