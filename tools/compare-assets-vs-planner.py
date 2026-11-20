@@ -12,6 +12,7 @@
   効果 / バフ / アイテム / Planner全ファイルのGUIDがXMLにあるか
 比較しない範囲(XMLに無い、または未調査): 建物の幅と高さ(.ifo由来)、祭り・信仰・貿易・クエストの数値
 既知の「差異に見えるだけ」: Planner が null や空にしている値を XML は省略(=既定値)している。
+効果の対象は ExcludeFromTargets を引き、存在しない資産への参照は落とす。バフの事故の種類は XML では 'A;B' の1値。
 """
 import collections
 import glob
@@ -239,6 +240,10 @@ def compare_effects_buffs_items(R: Resolver) -> None:
             return [m for x in ids(r['v'], '/AssetPool/AssetList', 'Asset') for m in expand(x, seen + (guid,))]
         return [guid]
 
+    def real(guids: list[int]) -> set[int]:
+        # 参照先の資産が無いもの(消えた資産への参照)は Planner も落とす
+        return {m for t in guids for m in expand(t) if m in R.raw}
+
     for gs, e in pj('effects').items():
         g = int(gs)
         r = R.get(g)
@@ -246,12 +251,13 @@ def compare_effects_buffs_items(R: Resolver) -> None:
             add('effects', g, e['name'], 'XMLに無い', '', '')
             continue
         v = r['v']
-        if (v.get('/Effect/EffectScope') or None) != (e['scope'] or None):
+        if (v.get('/Effect/EffectScope') or 'Local') != (e['scope'] or 'Local'):  # スコープ省略 = Local
             add('effects', g, e['name'], 'scope', e['scope'], v.get('/Effect/EffectScope'))
         if sorted(e['buffs'] or []) != ids(v, '/Effect/Buffs', 'GUID'):
             add('effects', g, e['name'], 'buffs', e['buffs'], ids(v, '/Effect/Buffs', 'GUID'))
         pools = ids(v, '/Effect/Targets', 'GUID')
-        targets = sorted({m for t in pools for m in expand(t)})
+        # ExcludeFromTargets(除外プール)を引いたものが Planner の targets
+        targets = sorted(real(pools) - real(ids(v, '/Effect/ExcludeFromTargets', 'GUID')))
         if sorted(set(e['targets'] or [])) != targets:
             add('effects', g, e['name'], 'targets', e['targets'], targets)
         if sorted(e['targetPools'] or []) != pools:
@@ -280,6 +286,9 @@ def compare_effects_buffs_items(R: Resolver) -> None:
             if pl + '/value' in lower and same(pv, lower[pl + '/value']):
                 continue
             if pl.endswith('/percental') and pv is False and pl not in lower:
+                continue
+            m = re.fullmatch(r'(.*)/item\[\d+\]', pl)  # 事故の種類などは XML では 'A;B' の1値
+            if m and m.group(1) in lower and str(pv) in lower[m.group(1)].split(';'):
                 continue
             bad.append((path, pv, lower.get(pl, lower.get(pl + '/value'))))
         if bad:
