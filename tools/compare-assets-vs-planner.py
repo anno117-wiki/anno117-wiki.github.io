@@ -15,6 +15,7 @@
   生産建物モジュール(tools/assets_factories.py)が Planner の production.json と同じ値・並びか
   建物モジュール(tools/assets_buildings.py)が Planner の buildings.json と同じ値か(Planner にある建物のみ)
   商品・需要・人口層・住居のモジュール(tools/assets_economy.py)が Planner の products / needs / population と同じ値・並びか
+  研究のモジュール(tools/assets_techs.py)が Planner の techs.json と同じ値・並びか(effectLines などの文は対象外)
   Planner全ファイルのGUIDがXMLにあるか
 比較しない範囲(XMLに無い、または未調査): 建物の幅と高さ(.ifo由来)、貿易の受動取引・建設資材・艦隊、
   研究どうしの接続線(XMLに接続の情報が無い。画面の升目と TechConnectionLength だけある)
@@ -726,6 +727,42 @@ def compare_economy_module(R: Resolver) -> None:
           {'name': base['name'], 'region': lambda x: x['region'], 'populationLevels': lambda x: x['populationLevels']})
     check('workforce2', mine['workforce'], PP['workforce'], {**base, 'regions': lambda x: sorted(x['regions'])})
 
+def compare_tech_module(R: Resolver) -> None:
+    """tools/assets_techs.py(研究)が、Planner の techs.json と同じ値・並びか(effectLines などの文は対象外)"""
+    from assets_techs import load_techs
+
+    mine = load_techs(R)['techs']
+    planner = pj('techs')['techs']
+    if [t['guid'] for t in mine] != [t['guid'] for t in planner]:
+        extra = [t['guid'] for t in mine if t['guid'] not in {p['guid'] for p in planner}]
+        add('techModule', 0, 'techs', '並び・件数', len(planner), f'{len(mine)} (XMLだけ {extra})')
+    by_guid = {t['guid']: t for t in mine}
+
+    def loca(x, lang):
+        return (x or {}).get(lang) if x else None
+
+    for p in planner:
+        m = by_guid.get(p['guid'])
+        if m is None:
+            add('techModule', p['guid'], p['name'], 'XMLに無い', '', '')
+            continue
+        pairs = {
+            'name': (p['name'], m['name']),
+            'locaEn': (loca(p['loca'], 'english'), loca(m['loca'], 'english')), 'locaJa': (loca(p['loca'], 'japanese'), loca(m['loca'], 'japanese')),
+            'descEn': (loca(p['description'], 'english'), loca(m['description'], 'english')),
+            'descJa': (loca(p['description'], 'japanese'), loca(m['description'], 'japanese')),
+            'flavourEn': (loca(p['flavour'], 'english'), loca(m['flavour'], 'english')),
+            'category': (p['category'], m['category']), 'x': (p['x'], m['x']), 'y': (p['y'], m['y']),
+            'gate': (p['gate'], m['gate']), 'entry': (p['entry'], m['entry']), 'toCategory': (p['toCategory'], m['toCategory']),
+            'knowledge': (p['knowledge'], m['knowledge']), 'repeatable': (p['repeatable'], m['repeatable']),
+            'repeatFactor': (p['repeatFactor'], m['repeatFactor']), 'effects': (p['effects'], m['effects']),
+            'unlocks': ([loca(u, 'english') for u in p['unlocks']], [loca(u, 'english') for u in m['unlocks']]),
+            'culture': (p['culture'], m['culture']),
+        }
+        for k, (a, b) in pairs.items():
+            if a != b:
+                add('techModule', p['guid'], p['name'], k, a, b)
+
 
 def check_guid_coverage(R: Resolver) -> None:
     """Planner の各ファイルに出てくる guid が、XML に全部あるか"""
@@ -758,7 +795,7 @@ def main() -> None:
     steps = (compare_factories, compare_economy, compare_buildings, compare_techs_and_status,
              compare_effects_buffs_items, compare_religion, compare_festivals, compare_trade,
              compare_quests, compare_tech_details, compare_factory_module, compare_building_module,
-             compare_economy_module, check_guid_coverage)
+             compare_economy_module, compare_tech_module, check_guid_coverage)
     for step in steps:
         step(R)
     print('=== 差異 ===')
