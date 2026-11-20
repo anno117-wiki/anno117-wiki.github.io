@@ -13,6 +13,7 @@
   研究の残り(分類・ゲート・繰り返し・報酬数・バッジ数・分野の位置と順・画面の升目)
   クエスト(ストーリーライン449・部品ノード16,911の種類・名前・接続先、ノード内の数値と参照、プール)
   生産建物モジュール(tools/assets_factories.py)が Planner の production.json と同じ値・並びか
+  建物モジュール(tools/assets_buildings.py)が Planner の buildings.json と同じ値か(Planner にある建物のみ)
   Planner全ファイルのGUIDがXMLにあるか
 比較しない範囲(XMLに無い、または未調査): 建物の幅と高さ(.ifo由来)、貿易の受動取引・建設資材・艦隊、
   研究どうしの接続線(XMLに接続の情報が無い。画面の升目と TechConnectionLength だけある)
@@ -645,6 +646,41 @@ def compare_factory_module(R: Resolver) -> None:
             if a != b:
                 add('factoryModule', p['guid'], p['loca']['english'], k, a, b)
 
+def compare_building_module(R: Resolver) -> None:
+    """tools/assets_buildings.py(assets.xml から作る建物データ)が、Planner の buildings.json と同じ値か。
+    建物の選び方は再現できない(Planner に無い建物がXMLに約120件ある)ので、Planner にある建物だけを比べ、XMLだけの件数を数える"""
+    from assets_buildings import EXCLUDED_TEMPLATES, load_buildings
+
+    mine = load_buildings(R)
+    planner = pj('buildings')
+
+    def rows(lst):
+        return [(r['product'], float(r['amount'])) for r in (lst or [])]
+
+    for gs, p in planner.items():
+        b = mine.get(gs)
+        if b is None:
+            add('buildingModule', int(gs), p['name'], 'XMLの建物に無い', p['template'], '')
+            continue
+        pl, bl = p.get('loca') or {}, b.get('loca') or {}
+        pc, bc = p.get('category') or {}, b.get('category') or {}
+        pairs = {
+            'template': (p['template'], b['template']),
+            'locaEn': (pl.get('english'), bl.get('english')), 'locaJa': (pl.get('japanese'), bl.get('japanese')),
+            'categoryEn': (pc.get('english'), bc.get('english')),
+            'regions': (p['regions'] or [], b['regions']),
+            'constructionCosts': (rows(p['constructionCosts']), rows(b['constructionCosts'])),
+            'maintenanceCosts': (rows(p['maintenanceCosts']), rows(b['maintenanceCosts'])),
+            'functionalEffects': (sorted(p['functionalEffects'] or []), sorted(b['functionalEffects'])),
+            'publicServiceEffect': (p['publicServiceEffect'], b['publicServiceEffect']),
+            'populationLevel': (p['populationLevel'], b['populationLevel']),
+        }
+        for k, (x, y) in pairs.items():
+            if x != y:
+                add('buildingModule', int(gs), p['name'], k, x, y)
+    extra = [g for g in mine if g not in planner]
+    print(f'建物モジュール: Planner {len(planner)}件 / XML {len(mine)}件（XMLだけ {len(extra)}件。除外した種類: {sorted(EXCLUDED_TEMPLATES)}）')
+
 
 def check_guid_coverage(R: Resolver) -> None:
     """Planner の各ファイルに出てくる guid が、XML に全部あるか"""
@@ -676,7 +712,8 @@ def main() -> None:
     R = Resolver()
     steps = (compare_factories, compare_economy, compare_buildings, compare_techs_and_status,
              compare_effects_buffs_items, compare_religion, compare_festivals, compare_trade,
-             compare_quests, compare_tech_details, compare_factory_module, check_guid_coverage)
+             compare_quests, compare_tech_details, compare_factory_module, compare_building_module,
+             check_guid_coverage)
     for step in steps:
         step(R)
     print('=== 差異 ===')

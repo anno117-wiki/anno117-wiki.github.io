@@ -11,7 +11,11 @@
 - 対象から地域が決まらないアイテム(船のアイテム75件、野営地を対象にする2件)は空の配列にする。画面では「地域の指定なし」
 """
 import json
+import sys
 from pathlib import Path
+
+sys.path.insert(0, str(Path(__file__).resolve().parent))
+from assets_buildings import load_buildings  # noqa: E402
 
 ROOT = Path(__file__).resolve().parent.parent
 SRC = ROOT / '_local' / 'anno-official-data' / 'v3.0.1-planner'
@@ -26,7 +30,7 @@ MANUAL = {'179649': ['aegyptus']}
 
 def main() -> None:
     catalog = json.loads((SRC / 'item_catalog.json').read_text(encoding='utf-8'))
-    buildings = json.loads((SRC / 'buildings.json').read_text(encoding='utf-8'))
+    buildings = load_buildings()  # assets.xml から作る(Planner の buildings.json と同じ形)
     pools = catalog['assets']
     by_guid = {str(i['guid']): i for i in catalog['items']}
 

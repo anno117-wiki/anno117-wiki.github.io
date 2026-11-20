@@ -18,6 +18,9 @@ import re
 import sys
 from pathlib import Path
 
+sys.path.insert(0, str(Path(__file__).resolve().parent))
+from assets_buildings import load_buildings  # noqa: E402
+
 WONDER_OVERRIDE_ISIS_BASTET = '特大の祭壇「レプリカのスフィンクスの祭壇」を建設できるようになる。範囲効果は人々+1・収入+1・名声+2、維持費は26。（ゲーム内の説明文：「お前に爪を立ててやるのが待ちきれない。」）'
 
 ROOT = Path(__file__).resolve().parent.parent
@@ -53,7 +56,7 @@ def num(v: float):
 def main() -> None:
     religion = json.loads((SRC / 'religion.json').read_text(encoding='utf-8'))
     effects = json.loads((SRC / 'effects.json').read_text(encoding='utf-8'))
-    buildings = json.loads((SRC / 'buildings.json').read_text(encoding='utf-8'))
+    buildings = load_buildings()  # assets.xml から作る(Planner の buildings.json と同じ形)
     festivals = json.loads((SRC / 'festivals.json').read_text(encoding='utf-8'))
     data = json.loads(OUT.read_text(encoding='utf-8'))
     site = {p['guid']: p for p in data['patrons']}

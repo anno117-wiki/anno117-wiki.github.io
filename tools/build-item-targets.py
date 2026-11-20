@@ -24,6 +24,7 @@ from collections import Counter
 from pathlib import Path
 
 sys.path.insert(0, str(Path(__file__).resolve().parent))
+from assets_buildings import load_buildings  # noqa: E402
 from assets_factories import load_production  # noqa: E402
 
 ROOT = Path(__file__).resolve().parent.parent
@@ -48,7 +49,7 @@ def ja(loca) -> str:
 
 def main() -> None:
     catalog = json.loads((SRC / 'item_catalog.json').read_text(encoding='utf-8'))
-    buildings = json.loads((SRC / 'buildings.json').read_text(encoding='utf-8'))
+    buildings = load_buildings()  # assets.xml から作る(Planner の buildings.json と同じ形)
     factories = load_production()['factories']  # assets.xml から作る
     pools = catalog['assets']
     by_guid = {str(i['guid']): i for i in catalog['items']}
