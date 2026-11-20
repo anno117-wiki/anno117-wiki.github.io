@@ -12,6 +12,7 @@
   効果 / バフ / アイテム / 信仰(守護神・信仰度) / 祭り(長さ・開始条件・費用) / 貿易(商人の品物と予算・総督の予算)
   研究の残り(分類・ゲート・繰り返し・報酬数・バッジ数・分野の位置と順・画面の升目)
   クエスト(ストーリーライン449・部品ノード16,911の種類・名前・接続先、ノード内の数値と参照、プール)
+  生産建物モジュール(tools/assets_factories.py)が Planner の production.json と同じ値・並びか
   Planner全ファイルのGUIDがXMLにあるか
 比較しない範囲(XMLに無い、または未調査): 建物の幅と高さ(.ifo由来)、貿易の受動取引・建設資材・艦隊、
   研究どうしの接続線(XMLに接続の情報が無い。画面の升目と TechConnectionLength だけある)
@@ -609,6 +610,41 @@ def ids_in_order(v: dict, base: str, key: str) -> list[int]:
             found.append((int(m.group(1)), int(val)))
     return [g for _, g in sorted(found)]
 
+def compare_factory_module(R: Resolver) -> None:
+    """tools/assets_factories.py(assets.xml から作る生産建物データ)が、Planner の production.json と同じ値・同じ並びか"""
+    from assets_factories import load_production
+
+    prod = load_production(R)
+    planner = pj('production')
+    if prod['fuel'] != planner['fuel']:
+        add('factoryModule', 0, 'fuel', 'fuel', planner['fuel'], prod['fuel'])
+    if [f['guid'] for f in prod['factories']] != [f['guid'] for f in planner['factories']]:
+        add('factoryModule', 0, 'factories', '並び・件数', len(planner['factories']), len(prod['factories']))
+    mine = {f['guid']: f for f in prod['factories']}
+
+    def rows(lst):
+        return [(r['product'], float(r['amount'])) for r in lst]
+
+    for p in planner['factories']:
+        f = mine.get(p['guid'])
+        if f is None:
+            add('factoryModule', p['guid'], p['loca']['english'], 'XMLに無い', '', '')
+            continue
+        pairs = {
+            'loca': (p['loca']['english'], f['loca']['english']), 'locaJa': (p['loca']['japanese'], f['loca']['japanese']),
+            'category': (p['category']['english'], f['category']['english']), 'categoryJa': (p['category']['japanese'], f['category']['japanese']),
+            'regions': (sorted(p['regions']), f['regions']), 'cycleTime': (p['cycleTime'], f['cycleTime']),
+            'inputs': (rows(p['inputs']), rows(f['inputs'])), 'outputs': (rows(p['outputs']), rows(f['outputs'])),
+            'maintenance': (rows(p['maintenance']), rows(f['maintenance'])), 'money': (p['money'], f['money']),
+            'workforce': (p['workforce'], f['workforce']), 'workforceAmount': (p['workforceAmount'], f['workforceAmount']),
+            'needsFuel': (p['needsFuel'], f['needsFuel']), 'template': (p['template'], f['template']),
+            'constructionCosts': (rows(p['constructionCosts']), rows(f['constructionCosts'])),
+            'inBuildMenu': (p['inBuildMenu'], f['inBuildMenu']),
+        }
+        for k, (a, b) in pairs.items():
+            if a != b:
+                add('factoryModule', p['guid'], p['loca']['english'], k, a, b)
+
 
 def check_guid_coverage(R: Resolver) -> None:
     """Planner の各ファイルに出てくる guid が、XML に全部あるか"""
@@ -640,7 +676,7 @@ def main() -> None:
     R = Resolver()
     steps = (compare_factories, compare_economy, compare_buildings, compare_techs_and_status,
              compare_effects_buffs_items, compare_religion, compare_festivals, compare_trade,
-             compare_quests, compare_tech_details, check_guid_coverage)
+             compare_quests, compare_tech_details, compare_factory_module, check_guid_coverage)
     for step in steps:
         step(R)
     print('=== 差異 ===')

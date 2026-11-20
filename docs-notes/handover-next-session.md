@@ -43,7 +43,12 @@
 - **スキルツリーの接続線は XML に無い**: 研究どうしの前提・接続を示す項目は無く、画面の升目（`GridPosition`）と描画設定（`TechConnectionLength`）だけ。サイトの接続線は引き続き既存のデータ（`apply-skilltree-connections.py`）を使う。開放条件（`TechResearchableTrigger`）は 81 件の研究にあり、文は Planner の condition と対応する
 - **resolver の既定値**: 4層（properties.xml の既定値・templates.xml・BaseAssetGUID・自身）に加え、入れ子の自動生成部分（`<Template>` 付きと、`IsBaseAutoCreateAsset` だけの部分は properties-meta.xml の AllowedTemplates から）にも既定値を重ねる。グループごとの `DefaultValues` も使う。全比較は約3分20秒かかる
 - **asset-extractor 4.0**（anno-mods/asset-extractor。4.0 は 2026-08-20、master は 11/18 まで更新・DLC03 対応）: 型付きの資産クラスと抽出器（守護神・装飾・生産チェーン・専門家・肥沃度セット）がある。既定値をプロパティ階層ごとに解決する作りで、resolver の参考になる。建物の占有マス（`docs/building_sizes.md` はメモ書きのみ）の取り方の手がかりはここ
-- **未実施（次にやるなら）**: 生成スクリプトを resolver 読みに置き換えるための、建物の占有マス（.ifo）の取得／祭りの開始条件のうち記念碑・神・戦争型／商人の好みの品物・総督の受動取引・建設資材・艦隊／生成スクリプトを1本ずつ Planner 読みから resolver 読みに置き換える（種別ごとに、置き換え前後の出力を機械的に比べてから採用する）
+- **生成スクリプトの置き換え（工場から開始。2026-11-20 夕）**: `tools/assets_factories.py`（assets.xml から Planner の production.json と同じ形の生産建物データを作る。名前は `tools/assets_texts.py` で texts_*.xml から引く）を作り、読み先を替えたのは `build-calc-aegyptus.py`・`build-chain-aegyptus.py`・`build-item-targets.py`・`build-regions-aegyptus.py` の4本。工場233件は集合・並び・名前・分類・サイクル・入出力・維持費・燃料まで Planner と一致。
+  - 出力の確かめ方: **同じ順序（calc → chain → item-targets → regions）で、Planner 読みと assets.xml 読みの2回を流して比べる**（現行スクリプトはコミット済みの出力と完全には一致しない: `build-calc` が list.json の並びを変え、`build-regions` が regions-aegyptus.json から共通商品7件を落とす。引き継ぎ書の既知の件）。結果、違いは1か所だけ
+  - **差: エジプトの金鉱（152249）の建設費**。Planner は建設メニューに無い建物（氾濫原の農場6件と、この金鉱）の建設費を空にするが、assets.xml には値がある（泥レンガ2・タイル1・コンクリート1）。`aegyptus_ivory_caskets_gold_mine.json` の金鉱の建設費が「金0のみ」から「泥レンガ2・タイル1・コンクリート1」に変わる。**実機で確かめて採用するか未決**。再生成した出力はコミットしていない（スクリプトの変更だけ）
+  - 金鉱 152249 の「建設メニューに無い」は XML から導けない（`inBuildMenu` は True になる）。氾濫原の農場は「地形が氾濫原 かつ 通常農場への置き換え先を持つ」で判定
+  - 作業のあとは `git checkout -- apps packages` で出力を戻す（スクリプトは LF で書くので、CRLF の作業ツリーでは内容が同じでも変更扱いになる）
+- **未実施（次にやるなら）**: 建物の占有マス（.ifo）の取得／置き換えの続き（建物のコスト関連・需要・研究など。1本ずつ、上の方法で出力を比べる）／祭りの開始条件のうち記念碑・神・戦争型／商人の好みの品物・総督の受動取引・建設資材・艦隊／生成スクリプトを1本ずつ Planner 読みから resolver 読みに置き換える（種別ごとに、置き換え前後の出力を機械的に比べてから採用する）
 - **古くなった記述**: 「完全な assets.xml は PC版が無いと取れない」「PC版のRDA展開は見送り」は、PC版が入ったので成立しない（下の該当箇所は直した）。`docs-notes/rda-extraction-plan.md` は旧計画
 
 ## 2026-11-19 夜の作業（第68版。サイト全体の点検と直し。Windows の単独セッション。全てpush済み）

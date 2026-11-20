@@ -11,7 +11,7 @@
 
 - アイテムの効果の対象(effect.targets)は、建物か「建物のまとまり(AssetPool。生産チェーン・市場・住居・塔など)」
   まとまりは、メンバーを再帰的にたどって建物にする（tools/build-item-regions.py と同じやり方）
-- 建物名は、buildings.json の日本語名。氾濫原の農場は buildings.json に無いので production.json から取る
+- 建物名は、buildings.json の日本語名。氾濫原の農場は buildings.json に無いので、assets.xml の生産建物(tools/assets_factories.py)から取る
   どちらにも無いもの(水源など)は、カタログの名前を使う。例: 総称「貯水池」(42568)の中身は、実は「水源」とノリア
 - アイギュプトの建物は、同じ名前の建物と区別できるよう「名前（アイギュプト）」の名前も足す
   （建物効果ページが、既存の建物と同じ名前のアイギュプトの建物に「（アイギュプト）」を付けるのに合わせる）
@@ -22,6 +22,9 @@ import json
 import sys
 from collections import Counter
 from pathlib import Path
+
+sys.path.insert(0, str(Path(__file__).resolve().parent))
+from assets_factories import load_production  # noqa: E402
 
 ROOT = Path(__file__).resolve().parent.parent
 SRC = ROOT / '_local' / 'anno-official-data' / 'v3.0.1-planner'
@@ -46,7 +49,7 @@ def ja(loca) -> str:
 def main() -> None:
     catalog = json.loads((SRC / 'item_catalog.json').read_text(encoding='utf-8'))
     buildings = json.loads((SRC / 'buildings.json').read_text(encoding='utf-8'))
-    factories = json.loads((SRC / 'production.json').read_text(encoding='utf-8'))['factories']
+    factories = load_production()['factories']  # assets.xml から作る
     pools = catalog['assets']
     by_guid = {str(i['guid']): i for i in catalog['items']}
 

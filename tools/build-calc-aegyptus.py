@@ -1,7 +1,7 @@
 #!/usr/bin/env python3
 """計算機用のアイギュプト(DLC03)生産チェーンを、Anno 117 Planner のゲーム3.0データから生成する。
 
-入力 : _local/anno-official-data/v3.0.1-planner/{production,products,population}.json
+入力 : _local/anno-official-data/v3.0.1-planner/{products,population}.json と、生産建物は assets.xml(tools/assets_factories.py)
        apps/wiki/docs/wiki/regions-aegyptus.json (商品id・日本語名。tools/build-regions-aegyptus.py が生成)
 出力 : packages/shared/public/productions/aegyptus_*.json (チェーンJSON、各ファイルは入れ子を全て展開済み)
        apps/wiki/docs/wiki/chain-ratios-aegyptus.json (共通商品のアイギュプト版の建物数の比率。wikiの生産チェーン一覧が読む)
@@ -66,6 +66,7 @@ WORKFORCE_ICON_SIZE = 60
 
 sys.path.insert(0, str(Path(__file__).resolve().parent))
 from aegyptus_icons import icon_name  # noqa: E402
+from assets_factories import load_production  # noqa: E402
 
 
 def ja(x: dict) -> str:
@@ -89,7 +90,7 @@ class Planner:
     """Planner のデータと、商品guid -> 計算機の商品id の対応。"""
 
     def __init__(self) -> None:
-        prod = read_json(SRC / 'production.json')
+        prod = load_production()  # assets.xml から作る(Planner の production.json と同じ形)
         self.fuel_seconds = prod['fuel']['duration']
         self.products = {x['guid']: x for x in read_json(SRC / 'products.json')['products']}
         self.makers: dict[int, list[dict]] = {}
