@@ -486,35 +486,107 @@ for story, item_ids in extra.items():
         "steps": [],
     })
 
-# annohead に記録が無いが、アイテムがもらえるクエスト（ユーザー判断 2026-11-18）。
-# Planner の題名と、成功の通知に出る報酬（shownRewards）から「選択肢なし」として足す
-PLANNER_ONLY = {
+# annohead に記録が無いクエスト（皇帝の依頼・住民の依頼・総督の決定など）。
+# Planner 3.0.1 のノードから節（選択肢・目標・報酬）を作って足す（tools/planner_quest_steps.py）。
+# 対象は、題名があり、使われていて（unused でない）、始まり方が読めるもの（orphan でない）。
+# 節の中身は Planner のノードから機械的に読んだもので、報酬の割り当ては実機では未確認
+PLANNER_GROUP = {"emperor": "皇帝の依頼", "residents": "住民の依頼", "decisions": "総督の決定", "tutorials": "チュートリアル",
+                 "incidents": "出来事", "diplomacy": "外交", "traders": "商人", "dlcStory": "DLCの物語", "campaign": "キャンペーン",
+                 "other": "その他"}
+PLANNER_ONLY = {  # 一覧に載せる理由を残すもの（このほかは条件に合えば自動で載る）
     109521: "価値ある戦利品（エクィテスの依頼。商人の船を護衛すると周到な大工）",
     50951: "行方不明の商品（住民の依頼。annohead に無い。アイテムは報酬の通知から）",
     157316: "市場の氾濫（DLC03 の住民の依頼。葦切り。葦切りは実機のアイテム検索に出ない専門家）",
 }
-for story in PLANNER_ONLY:
-    meta = planner_meta.get(story)
-    if not meta or story in listed:
+PLANNER_ASSETS = {}
+if PLANNER.exists():
+    PLANNER_ASSETS = json.loads(PLANNER.read_text(encoding="utf-8")).get("assets", {})
+
+
+def planner_text(ref):
+    """文の番号 -> 日本語。annohead に無い文は Planner 3.0.1 の日本語"""
+    s = tr(ref)
+    if s and JP_CHAR.search(s):
+        return s
+    return planner_ja.get(str(ref), "") or s or ""
+
+
+def asset_name(guid):
+    nm = name(guid)
+    if nm:
+        return nm
+    loca = (PLANNER_ASSETS.get(str(guid)) or {}).get("loca") or {}
+    return _clean_name(loca.get("japanese") or loca.get("english"))
+
+
+def _clean_name(s):
+    return " ".join((s or "").replace("​", "").split()) or None
+
+
+def planner_reward(kind, asset, amount):
+    """Planner の報酬 -> 札。annohead の表に名前が無いものは Planner の資産表の名前を使う。名前が全く無ければ None"""
+    r = reward((kind, asset, amount, None, None, None))
+    if asset is not None and name(asset) is None:
+        nm = asset_name(asset)
+        if not nm:
+            return None
+        amt = f" {num(amount)}" if amount is not None else ""
+        r = {"t": f"{KIND_LABEL.get(kind, kind)}: {nm}{amt}", "k": "goods" if kind in ("item", "goods") else kind}
+    return r
+
+
+def _planner_result_items(steps):
+    out = []
+    def part(p):
+        if p:
+            out.extend(r for r in p.get("rewards", []) if r["k"] == "item")
+    for st in steps:
+        for o in st.get("options") or []:
+            part(o)
+        for k in ("met", "missed", "timeout"):
+            part(st.get(k))
+    return out
+
+
+from planner_quest_steps import PlannerSteps  # noqa: E402
+
+for meta in (json.loads(PLANNER.read_text(encoding="utf-8"))["quests"] if PLANNER.exists() else []):
+    story = int(meta["guid"])
+    if story in {x["guid"] for x in quests} or story in EXCLUDED or meta.get("unused") or meta.get("orphan") or not meta.get("title"):
         continue
-    title = " ".join(planner_ja.get(str(meta.get("title")), "").replace("​", "").split())
-    item_ids = [r["asset"] for n in meta.get("nodes", []) for nt in n.get("notifications") or []
-                for r in nt.get("shownRewards") or [] if r.get("asset") != DENARII] + EXTRA_REWARD_ITEMS.get(story, [])
-    items = []
-    for ig in dict.fromkeys(item_ids):
+    if meta.get("system") not in ("Quests", "GovernorDecisions"):
+        continue
+    title = _clean_name(planner_ja.get(str(meta.get("title")), ""))
+    if not title or not JP_CHAR.search(title):
+        title = " ".join((tr(meta.get("title")) or "").split())
+    if not JP_CHAR.search(title):
+        continue  # 日本語の題名が無いものは、内部の追跡用のクエスト（ピラミッド事業の追跡など）
+    used_override = False
+    steps = PlannerSteps(meta, planner_text, asset_name, planner_reward, readable, TEXT_LIMIT).build()
+    items = _planner_result_items(steps)
+    for n in meta.get("nodes", []):
+        for nt in n.get("notifications") or []:
+            for r in nt.get("shownRewards") or []:
+                if r.get("asset") and r.get("asset") != DENARII:
+                    rr = planner_reward("goods", r["asset"], None)
+                    if rr and rr["k"] == "item":
+                        items.append(rr)
+    for ig in EXTRA_REWARD_ITEMS.get(story, []):
         it = q("select name_text,rarity from item where guid=?", ig)
         if it and it[0][1] != "Quest":
             items.append({"t": tr(it[0][0]) or str(ig), "k": "item", "rarity": it[0][1]})
     giver = meta.get("giver")
     quests.append({
         "guid": story,
-        "name": title or meta.get("name") or str(story),
+        "name": title,
         "dlc": DLC.get(PLANNER_DLC.get(meta.get("dlc")), "基本ゲーム"),
         "region": PLANNER_REGION.get(meta.get("region"), ""),
-        "giver": name(giver) if isinstance(giver, int) else None,
+        "giver": asset_name(giver) if isinstance(giver, int) else None,
         "series": None,
+        "cat": PLANNER_GROUP.get(meta.get("group")),
         "items": dedupe(items),
-        "steps": [],
+        "steps": steps,
+        "auto": True,
     })
 
 # 続き物の何番目か（questline の idx 順）と、前後のクエスト

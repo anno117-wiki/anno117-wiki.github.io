@@ -139,9 +139,11 @@ function isEmpty(r?: Result) {
         <span class="ql-tags">
           <span class="ql-tag">{{ q.dlc }}</span>
           <span v-if="q.region" class="ql-tag">{{ q.region }}</span>
+          <span v-if="q.cat" class="ql-tag">{{ q.cat }}</span>
           <span v-if="q.giver" class="ql-tag">依頼人: {{ q.giver }}</span>
           <span v-if="q.series" class="ql-tag">続き物: {{ q.series }}<template v-if="q.stage">（{{ q.stage }}）</template></span>
           <span v-if="q.provisional" class="ql-tag ql-tag-warn">仮訳あり</span>
+          <span v-if="q.auto" class="ql-tag ql-tag-warn">自動読み取り</span>
           <a v-if="q.guide" :href="withBase(q.guide)" class="ql-tag ql-tag-guide" @click.stop>詳しい説明（流れ図）</a>
         </span>
         <span v-if="q.items.length" class="ql-items">
