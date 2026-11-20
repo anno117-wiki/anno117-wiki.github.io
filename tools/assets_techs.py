@@ -5,9 +5,9 @@
 作る項目(Planner の techs と同じ名前):
   guid / name / loca / description / flavour / category / x / y / gate / entry / toCategory /
   knowledge / repeatable / repeatFactor / effects / unlocks / culture
-作らない項目: effectLines(効果の説明文。対象名・効果名・値を組み立てた文)、relevantEffects、rewards、badges、condition
-  -> 効果文には ItemInfotipTextFeature(GUID 142928)の対応表を使う実装が必要で、まだ無い。
-     effectLines を使うスクリプト(build-techs-dlc03.py・build-skill-bonuses-dlc03.py)は、まだ置き換えられない。
+effectLines（効果の説明文。対象名・効果名・値の行）は tools/assets_effect_lines.py で作る。対応している効果の種類だけで、
+  対応していない種類を含む研究は effectLines が None（DLC03 の全研究と、経済・都民の多くは対応済み。軍事の研究などは未対応）。
+作らない項目: relevantEffects、rewards、badges、condition
 
 XML での探し方:
   - 名前 /Tech/TechName、説明 /Tech/ResearchableTechDescription、フレーバー文 /Tech/TechDescription(texts_*.xml で引く)
@@ -26,6 +26,7 @@ import sys
 from pathlib import Path
 
 sys.path.insert(0, str(Path(__file__).resolve().parent))
+from assets_effect_lines import EffectLines, UnsupportedProperty  # noqa: E402
 from assets_resolver import Resolver  # noqa: E402
 from assets_texts import load_texts  # noqa: E402
 
@@ -67,6 +68,7 @@ def load_techs(resolver: Resolver | None = None) -> dict:
         for t in _ids(v, '/TechCategory/Techs', 'Tech'):
             membership.setdefault(t, c)
 
+    lines = EffectLines(R)
     techs = []
     for guid in R.raw:
         if R.template_of(guid) != 'Tech':
@@ -84,6 +86,10 @@ def load_techs(resolver: Resolver | None = None) -> dict:
         unlocks = []
         for u in _ids(v, '/Tech/Rewards/Unlocks', 'UnlockReward'):
             unlocks.append(_loca(en, ja, R.get(u)['v'].get('/Text/OasisId')))
+        try:
+            effect_lines = lines.for_tech(guid)
+        except UnsupportedProperty:
+            effect_lines = None  # まだ文にできない効果の種類を含む
         techs.append({
             'guid': guid,
             'name': r['name'],
@@ -100,6 +106,7 @@ def load_techs(resolver: Resolver | None = None) -> dict:
             'repeatable': v.get('/Tech/IsRepeatable') == '1',
             'repeatFactor': _num(v.get('/Tech/RepeatableCostFactor'), 1.1),
             'effects': _ids(v, '/Tech/Rewards/Effects', 'EffectAsset'),
+            'effectLines': effect_lines,
             'unlocks': unlocks,
             'culture': v.get('/Tech/Culture') or 'None',
         })

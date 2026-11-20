@@ -1,7 +1,7 @@
 #!/usr/bin/env python3
 """デルタの夜明け(DLC03)のスキルが、建物に追加で付ける効果を、Anno 117 Planner のゲーム3.0データから生成する。
 
-入力 : _local/anno-official-data/v3.0.1-planner/techs.json (スキルの effectLines)
+入力 : assets.xml から作った研究の効果文（tools/assets_techs.py・assets_effect_lines.py）
 出力 : apps/wiki/docs/wiki/skill-bonuses-dlc03.json (buildings.data.ts が、建物名で既存の行に足す)
 
 - 対象は、対象の建物が1つに決まる3スキル(下の SKILLS)。「すべての施設」が対象のスキル
@@ -14,8 +14,10 @@ import json
 import sys
 from pathlib import Path
 
+sys.path.insert(0, str(Path(__file__).resolve().parent))
+from assets_techs import load_techs  # noqa: E402
+
 ROOT = Path(__file__).resolve().parent.parent
-SRC = ROOT / '_local' / 'anno-official-data' / 'v3.0.1-planner' / 'techs.json'
 OUT = ROOT / 'apps' / 'wiki' / 'docs' / 'wiki' / 'skill-bonuses-dlc03.json'
 ZW = '​'
 # スキルの日本語名 -> 効果を付ける建物の日本語名のリスト(サイトの建物効果の表の名前)
@@ -30,7 +32,7 @@ ATTR = {'Income': 'income', 'Income Area Effect': 'income', 'Population Area Eff
 
 
 def main() -> None:
-    techs = json.loads(SRC.read_text(encoding='utf-8'))['techs']
+    techs = load_techs()['techs']  # assets.xml から作る(Planner の techs.json と同じ形)
     by_name = {t['loca']['japanese'].replace(ZW, ''): t for t in techs if t.get('loca') and t['name'].startswith('Tech DLC03')}
     rows = []
     for skill, buildings in SKILLS.items():

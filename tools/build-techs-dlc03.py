@@ -1,7 +1,7 @@
 #!/usr/bin/env python3
 """DLC03(デルタの夜明け)のスキルツリーを、Anno 117 Planner のゲーム3.0データから techs.json に入れる。
 
-入力 : _local/anno-official-data/v3.0.1-planner/techs.json
+入力 : assets.xml から作った研究（tools/assets_techs.py。効果文は tools/assets_effect_lines.py）
 出力 : apps/wiki/docs/wiki/techs.json (DLC03の項目だけを入れ替える。他のブランチには触れない)
 
 - DLC03 は category 151465 の41項目(ゲート7、スキル34)
@@ -18,8 +18,10 @@ import json
 import sys
 from pathlib import Path
 
+sys.path.insert(0, str(Path(__file__).resolve().parent))
+from assets_techs import load_techs  # noqa: E402
+
 ROOT = Path(__file__).resolve().parent.parent
-SRC = ROOT / '_local' / 'anno-official-data' / 'v3.0.1-planner' / 'techs.json'
 OUT = ROOT / 'apps' / 'wiki' / 'docs' / 'wiki' / 'techs.json'
 DLC03_CATEGORY = 151465
 ZW = '​'
@@ -49,8 +51,11 @@ def effect_text(t: dict, lang: str) -> str:
 
 
 def main() -> None:
-    src = json.loads(SRC.read_text(encoding='utf-8'))['techs']
+    src = load_techs()['techs']  # assets.xml から作る(Planner の techs.json と同じ形)
     dlc03 = [t for t in src if t['category'] == DLC03_CATEGORY]
+    unsupported = [t['name'] for t in dlc03 if t['effectLines'] is None]
+    if unsupported:
+        sys.exit(f'効果文を作れない研究がある(assets_effect_lines.py が未対応の効果の種類): {unsupported}')
     if len(dlc03) != 41:
         sys.exit(f'DLC03の項目数が想定(41)と違う: {len(dlc03)}')
 

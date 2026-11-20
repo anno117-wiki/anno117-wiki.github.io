@@ -68,9 +68,13 @@
 - **生成スクリプトの置き換え（アイテムのカタログ。2026-11-20 夕）**: `tools/assets_items.py`（assets.xml から Planner の item_catalog.json と同じ形のアイテムと資産の名前表を作る）を作り、読み先を替えたのは `build-item-regions.py`・`build-item-targets.py` の2本。アイテム541件（名前・レア度・ニッチ・取引価格・効果の範囲と対象）と、資産の名前表1,353件（名前・種類・アイコン・総称の中身）が Planner と全項目一致。2本とも出力は基準・コミット済みと同一
   - 総称（AssetPool）の中身は、入れ子を平らに展開して重複を除き昇順に並べたもの（Planner と同じ）。名前表は GUID を引いた時にその場で作る（全資産を引ける。Planner はアイテムから参照されるものだけ）。アイテムは `Item`・`ItemWithBoost` テンプレートの資産から開発用の `TestItem`・偽のアイテムを除いた541件で、並びはテンプレートの定義順
   - **まだ作っていない（`apply-items-v3.py` が使う）**: アイテムの説明文・入手先（sources）・効果の説明行（buffs の lines）・強化の条件。効果文は研究と同じ壁（`ItemInfotipTextFeature` の書式）。入手先はクエスト・取引・祭りなどの参照元をたどる必要がある
+- **生成スクリプトの置き換え（研究の効果文。2026-11-20 夕）**: `tools/assets_effect_lines.py`（研究の効果を「対象 効果名 値」の行にする。日英とも XML から）を作り、研究モジュール（`assets_techs.py`）の `effectLines` に組み込んだ。読み先を替えたのは `build-techs-dlc03.py`・`build-skill-bonuses-dlc03.py` の2本。`build-dlc03-verify-sheet.py` はサイト自身の techs.json を読むので置き換え不要。2本とも出力は基準・コミット済みと同一
+  - 規則（Planner の出力と全研究で照合して決めた）: 対象は効果の対象の最初の資産の名前／効果名は `ItemInfotipTextFeature`（GUID 142928）の対応表の文言（`{}` に属性名・建物名・商品名を日英それぞれで差し込む。「`{}` エリア効果」「`{}` から `{}`、供給されていれば」などもこの表）／値は符号つきの数で単位は項目ごと（生産性・維持費などは %、水路の容量などは単位なし）／向きが「減る」意味の項目（積荷による減速など）は符号を逆／バフから行ができない効果は、効果自身の説明（`/Standard/InfoDescription`）が行になる
+  - 作れた研究は 205件 / 245件で、日英とも Planner と全行一致（DLC03 の効果文あり21件は全件）。**未対応の40件**（軍事25・都市施設10・経済3・DLC01 1・DLC02 1）は、未対応の効果の種類（部隊の防御・命中・射程・攻撃速度、都市施設の巡回数・対応時間、燃料効率、倉庫の荷役速度、修理クレーンなど）を含み、`effectLines` が None になる（黙って落とさない）。続けるなら `assets_effect_lines.py` に種類を足し、`compare-assets-vs-planner.py` の「作れた/作れない」の件数を見る
+  - **アイテムの効果文**（`apply-items-v3.py` が使う buffs の lines）は、この仕組みを使えるが、アイテムのバフの種類は別に対応表を作る必要がある
 - **置き換えの全体像（2026-11-20 夕。Planner 読みの残りを、ファイル別にまとめた）**
-  - **済み（assets.xml 読み。モジュールは `tools/assets_*.py`）**: 工場（factories）／建物をGUIDで引く（buildings）／商品・需要・人口層・住居（economy）／研究のうち効果文以外（techs）／街の状況（city_status）／効果・バフ（effects）／信仰・祭り（religion）／アイテムのカタログ（items）。読み先を替えた生成スクリプトは計 17本
-  - **残り1（効果文）**: `effectLines`（「対象 効果名 値」の文）を使う `build-techs-dlc03.py`・`build-skill-bonuses-dlc03.py`・`build-dlc03-verify-sheet.py`。XML の `ItemInfotipTextFeature`（GUID 142928）に効果の種類別の文言の表がある。効果の種類ごとの書式を実装する必要がある
+  - **済み（assets.xml 読み。モジュールは `tools/assets_*.py`）**: 工場（factories）／建物をGUIDで引く（buildings）／商品・需要・人口層・住居（economy）／研究のうち効果文以外（techs）／街の状況（city_status）／効果・バフ（effects）／信仰・祭り（religion）／アイテムのカタログ（items）／研究の効果文。読み先を替えた生成スクリプトは計 19本
+  - **残り1（効果文）**: 研究の分は済み（上の「研究の効果文」の項。未対応の40研究を除く）。アイテムの効果文だけが残る（`apply-items-v3.py`）
   - **残り2（祭り・信仰）**: 済み（上の「信仰・祭り」の項）。残るのは `apply-items-v3.py` の `item_catalog`・`quests`
   - **残り3（建物一覧と占有マス）**: `build-building-specs.py`（幅・高さ・範囲）。占有マスは `.ifo`（保管済み）から 72% 一致、建物の選び方（Planner 724件 / XML 約830件）は未解決
   - **残り4（アイテムのカタログ）**: 対象と総称の中身は済み（上の「アイテムのカタログ」の項）。`apply-items-v3.py` だけが、説明文・入手先・効果の説明行のために `item_catalog` を読み続ける

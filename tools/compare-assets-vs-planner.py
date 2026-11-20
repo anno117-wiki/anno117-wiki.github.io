@@ -15,7 +15,7 @@
   生産建物モジュール(tools/assets_factories.py)が Planner の production.json と同じ値・並びか
   建物モジュール(tools/assets_buildings.py)が Planner の buildings.json と同じ値か(Planner にある建物のみ)
   商品・需要・人口層・住居のモジュール(tools/assets_economy.py)が Planner の products / needs / population と同じ値・並びか
-  研究のモジュール(tools/assets_techs.py)が Planner の techs.json と同じ値・並びか(effectLines などの文は対象外)
+  研究のモジュール(tools/assets_techs.py)が Planner の techs.json と同じ値・並びか(効果文は作れた研究だけ日英で比べる)
   街の状況のモジュール(tools/assets_city_status.py)が Planner の city_status.json と同じ値・並びか
   効果・バフのモジュール(tools/assets_effects.py)が Planner の effects.json / buffs.json と同じ値か(バフは属性の加算のみ)
   信仰・祭りのモジュール(tools/assets_religion.py)が Planner の religion.json / festivals.json と同じ値・並びか
@@ -741,6 +741,7 @@ def compare_tech_module(R: Resolver) -> None:
         extra = [t['guid'] for t in mine if t['guid'] not in {p['guid'] for p in planner}]
         add('techModule', 0, 'techs', '並び・件数', len(planner), f'{len(mine)} (XMLだけ {extra})')
     by_guid = {t['guid']: t for t in mine}
+    unsupported: list[int] = []
 
     def loca(x, lang):
         return (x or {}).get(lang) if x else None
@@ -766,6 +767,16 @@ def compare_tech_module(R: Resolver) -> None:
         for k, (a, b) in pairs.items():
             if a != b:
                 add('techModule', p['guid'], p['name'], k, a, b)
+        # 効果文: 作れた研究(None でないもの)は日英とも一致すること。作れなかった研究の件数は最後に数える
+        if m['effectLines'] is None:
+            unsupported.append(p['guid'])
+            continue
+        for lang in ('english', 'japanese'):
+            def lines(rows):
+                return [((loca(e.get('target'), lang)), loca(e['text'], lang), e['value']) for e in rows]
+            if lines(p['effectLines']) != lines(m['effectLines']):
+                add('techModule', p['guid'], p['name'], 'effectLines:' + lang, lines(p['effectLines']), lines(m['effectLines']))
+    print(f'研究の効果文: 作れた {len(planner) - len(unsupported)}件 / 未対応の種類を含み作れない {len(unsupported)}件')
 
 def compare_city_status_module(R: Resolver) -> None:
     """tools/assets_city_status.py(街の状況)が、Planner の city_status.json と同じ値・並びか"""
