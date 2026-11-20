@@ -1,7 +1,7 @@
 #!/usr/bin/env python3
 """信仰神(Patron)と祭りのデータを、Anno 117 Planner のゲーム3.0データで更新する。
 
-入力 : _local/anno-official-data/v3.0.1-planner/{religion,effects,buildings,festivals}.json
+入力 : assets.xml から作った守護神・祭り・効果・建物(tools/assets_religion.py・assets_effects.py・assets_buildings.py)
 出力 : apps/wiki/docs/wiki/patrons.json (既存の8柱は手で確認した表示定義を残して更新し、新祭神3柱と祭りを足す)
 
 既存の8柱:
@@ -20,6 +20,8 @@ from pathlib import Path
 
 sys.path.insert(0, str(Path(__file__).resolve().parent))
 from assets_buildings import load_buildings  # noqa: E402
+from assets_effects import load_effects  # noqa: E402
+from assets_religion import load_festivals, load_religion  # noqa: E402
 
 WONDER_OVERRIDE_ISIS_BASTET = '特大の祭壇「レプリカのスフィンクスの祭壇」を建設できるようになる。範囲効果は人々+1・収入+1・名声+2、維持費は26。（ゲーム内の説明文：「お前に爪を立ててやるのが待ちきれない。」）'
 
@@ -54,10 +56,10 @@ def num(v: float):
 
 
 def main() -> None:
-    religion = json.loads((SRC / 'religion.json').read_text(encoding='utf-8'))
-    effects = json.loads((SRC / 'effects.json').read_text(encoding='utf-8'))
+    religion = load_religion()  # assets.xml から作る(Planner の religion.json と同じ形)
+    effects = load_effects()
     buildings = load_buildings()  # assets.xml から作る(Planner の buildings.json と同じ形)
-    festivals = json.loads((SRC / 'festivals.json').read_text(encoding='utf-8'))
+    festivals = load_festivals()
     data = json.loads(OUT.read_text(encoding='utf-8'))
     site = {p['guid']: p for p in data['patrons']}
     residences = {ja(b['loca']) for b in buildings.values() if b.get('template') == 'ResidenceBuilding'}

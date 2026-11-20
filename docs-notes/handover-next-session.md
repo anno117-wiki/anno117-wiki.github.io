@@ -62,10 +62,13 @@
 - **生成スクリプトの置き換え（効果・バフ。2026-11-20 夕）**: `tools/assets_effects.py`（assets.xml から Planner の effects.json / buffs.json と同じ形のデータを作る）を作り、読み先を替えたのは `apply-buildings-v301.py`・`build-buildings-aegyptus.py` の2本。効果1,243件（スコープ・バフ・対象・時間）とバフ1,950件（`calc` のうち属性の加算 `attributes` と `attributesPercent`）が Planner と全項目一致。2本とも出力は基準・コミット済みと同一。建物モジュールに `icon` を足した
   - バフの `calc` は属性の加算だけ作る（生産性・範囲の属性・必要品などの集計は未対応。使うスクリプトが無いため）。XML の効果は Planner より約740件多い（Planner は使われるものだけ）
   - **アイギュプトの金鉱（152249）を建物効果の表に足した**（ユーザー指示 2026-11-20。層なし・維持費 -20・健康 -2。`build-buildings-aegyptus.py` の除外から外した）。assets.xml にあって Planner の一覧に無い水路（153009）・水道（149793）は、同じ名前の別の資産で既存の行と重複するので `NOT_LISTED` で除いたまま
+- **生成スクリプトの置き換え（信仰・祭り。2026-11-20 夕）**: `tools/assets_religion.py`（assets.xml から Planner の religion.json / festivals.json と同じ形の守護神・祭りのデータを作る）を作り、読み先を替えたのは `build-patrons-dlc03.py`・`apply-items-v3.py`（守護神の名前だけ）の2本。守護神11柱（名前・説明・不思議の名前と説明・局所効果と支配効果の題名/説明/段階表・順序）と祭り20件（名前・説明・長さ・開始条件・選択肢の商品/費用）が Planner と全項目・並びまで一致。出力は基準・コミット済みと同一
+  - 祭りの開始条件は FestivalFeature（GUID 98210）: 神型は DeityFestivals（信仰値は共通の DevotionThreshold）、属性型は Region/<地域>/Attributes、戦争は SuccessfulWarFestival、記念碑は MonumentEventStartedFestival。開始条件が無い祭りは使われていないので除く。並びは属性・神・戦争・記念碑の順
+  - 作っていない項目: 祭りの効果の説明行・報酬・選択肢の文言、信仰の balancing/祭壇の効果行
 - **置き換えの全体像（2026-11-20 夕。Planner 読みの残りを、ファイル別にまとめた）**
-  - **済み（assets.xml 読み。モジュールは `tools/assets_*.py`）**: 工場（factories）／建物をGUIDで引く（buildings）／商品・需要・人口層・住居（economy）／研究のうち効果文以外（techs）／街の状況（city_status）／効果・バフ（effects）。読み先を替えた生成スクリプトは計 14本
+  - **済み（assets.xml 読み。モジュールは `tools/assets_*.py`）**: 工場（factories）／建物をGUIDで引く（buildings）／商品・需要・人口層・住居（economy）／研究のうち効果文以外（techs）／街の状況（city_status）／効果・バフ（effects）／信仰・祭り（religion）。読み先を替えた生成スクリプトは計 15本
   - **残り1（効果文）**: `effectLines`（「対象 効果名 値」の文）を使う `build-techs-dlc03.py`・`build-skill-bonuses-dlc03.py`・`build-dlc03-verify-sheet.py`。XML の `ItemInfotipTextFeature`（GUID 142928）に効果の種類別の文言の表がある。効果の種類ごとの書式を実装する必要がある
-  - **残り2（祭り・信仰）**: `build-patrons-dlc03.py`（effects は済み。festivals・religion が残り）。信仰（守護神11）・祭り（20）の数値は Planner と一致済み。読み込みモジュールに、守護神の効果の題名・説明文、祭りの題名・説明・商品名と開始条件の種類（属性・神・戦争・記念碑）を Planner と同じ形で作る作業がある
+  - **残り2（祭り・信仰）**: 済み（上の「信仰・祭り」の項）。残るのは `apply-items-v3.py` の `item_catalog`・`quests`
   - **残り3（建物一覧と占有マス）**: `build-building-specs.py`（幅・高さ・範囲）。占有マスは `.ifo`（保管済み）から 72% 一致、建物の選び方（Planner 724件 / XML 約830件）は未解決
   - **残り4（アイテムのカタログ）**: `item_catalog`（アイテム541・総称の資産1,353）を読む `apply-items-v3.py`・`build-item-regions.py`・`build-item-targets.py`。アイテムの効果・入手先・総称の中身を持つ大きなファイル
   - **残り5（クエスト）**: `quests`・`quest_texts_japanese` を読む `build-quests-data.py`・`apply-items-v3.py`。ストーリーライン449・部品16,911の接続は XML と一致済み。クエストの選択肢と報酬は annohead（sqlite）も読んでいる

@@ -25,6 +25,7 @@ from pathlib import Path
 
 sys.path.insert(0, str(Path(__file__).resolve().parent))
 from assets_buildings import load_buildings  # noqa: E402
+from assets_religion import load_religion  # noqa: E402
 
 ROOT = Path(__file__).resolve().parent.parent
 PLANNER = ROOT / '_local' / 'anno-official-data' / 'v3.0.1-planner'
@@ -193,7 +194,7 @@ def main() -> None:
     ja_texts = json.loads(JA_TEXTS.read_text(encoding='utf-8'))
     raw_conditions = {r['GUID']: r['Boost Condition'] for r in csv.DictReader(ITEMS_V30.open(encoding='utf-8'))}
     buildings = load_buildings()  # assets.xml から作る(Planner の buildings.json と同じ形)
-    religion = {str(p['guid']): tx(p['loca']) for p in json.loads((PLANNER / 'religion.json').read_text(encoding='utf-8'))['patrons']}
+    religion = {str(p['guid']): tx(p['loca']) for p in load_religion()['patrons']}  # assets.xml から作る
 
     # 日本語テキストのJSONに無い言葉(2.1のサイトで使っている「反乱寸前」)
     word_fallback = {ZONE_IDS['RebellionPending']: '反乱寸前'}

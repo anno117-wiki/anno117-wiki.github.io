@@ -18,6 +18,7 @@
   研究のモジュール(tools/assets_techs.py)が Planner の techs.json と同じ値・並びか(effectLines などの文は対象外)
   街の状況のモジュール(tools/assets_city_status.py)が Planner の city_status.json と同じ値・並びか
   効果・バフのモジュール(tools/assets_effects.py)が Planner の effects.json / buffs.json と同じ値か(バフは属性の加算のみ)
+  信仰・祭りのモジュール(tools/assets_religion.py)が Planner の religion.json / festivals.json と同じ値・並びか
   Planner全ファイルのGUIDがXMLにあるか
 比較しない範囲(XMLに無い、または未調査): 建物の幅と高さ(.ifo由来)、貿易の受動取引・建設資材・艦隊、
   研究どうしの接続線(XMLに接続の情報が無い。画面の升目と TechConnectionLength だけある)
@@ -827,6 +828,65 @@ def compare_effects_module(R: Resolver) -> None:
             if a != b:
                 add('buffModule', int(g), p['name'], key, a, b)
 
+def compare_religion_module(R: Resolver) -> None:
+    """tools/assets_religion.py(守護神と祭り)が、Planner の religion.json / festivals.json と同じ値・並びか(祭りの効果の説明行・報酬は対象外)"""
+    from assets_religion import load_festivals, load_religion
+
+    def loca(x, lang):
+        return (x or {}).get(lang) if x else None
+
+    mine = load_religion(R)['patrons']
+    planner = pj('religion')['patrons']
+    if [p['guid'] for p in mine] != [p['guid'] for p in planner]:
+        add('religionModule', 0, 'patrons', '並び・件数', len(planner), len(mine))
+    by_guid = {p['guid']: p for p in mine}
+    for p in planner:
+        m = by_guid.get(p['guid'])
+        if m is None:
+            add('religionModule', p['guid'], p['name'], 'XMLに無い', '', '')
+            continue
+        pairs = {
+            'locaEn': (loca(p['loca'], 'english'), loca(m['loca'], 'english')), 'locaJa': (loca(p['loca'], 'japanese'), loca(m['loca'], 'japanese')),
+            'descJa': (loca(p['description'], 'japanese'), loca(m['description'], 'japanese')),
+            'order': (p['order'], m['order']), 'wonder': (p['wonder'], m['wonder']),
+            'wonderNameJa': (loca(p['wonderName'], 'japanese'), loca(m['wonderName'], 'japanese')),
+            'wonderDescJa': (loca(p['wonderDescription'], 'japanese'), loca(m['wonderDescription'], 'japanese')),
+            'shrine': (p['shrine'], m['shrine']), 'romanization': (p['romanization'], m['romanization']),
+            'romanizationPerDevotion': (p['romanizationPerDevotion'], m['romanizationPerDevotion']),
+            'local': ([(e['effect'], loca(e['title'], 'japanese'), loca(e['description'], 'japanese'),
+                        [(x['devotion'], x['buffScaling']) for x in e['milestones']]) for e in p['localEffects']],
+                      [(e['effect'], loca(e['title'], 'japanese'), loca(e['description'], 'japanese'),
+                        [(x['devotion'], x['buffScaling']) for x in e['milestones']]) for e in m['localEffects']]),
+            'dominant': ([(e['effect'], loca(e['title'], 'japanese'), loca(e['description'], 'japanese')) for e in p['dominantEffects']],
+                         [(e['effect'], loca(e['title'], 'japanese'), loca(e['description'], 'japanese')) for e in m['dominantEffects']]),
+        }
+        for k, (a, b) in pairs.items():
+            if a != b:
+                add('religionModule', p['guid'], p['name'], k, a, b)
+
+    mine_list = load_festivals(R)['festivals']
+    if [f['guid'] for f in mine_list] != [f['guid'] for f in pj('festivals')['festivals']]:
+        add('festivalModule', 0, 'festivals', '並び・件数', len(pj('festivals')['festivals']), len(mine_list))
+    mine_f = {f['guid']: f for f in mine_list}
+    for p in pj('festivals')['festivals']:
+        m = mine_f.get(p['guid'])
+        if m is None:
+            add('festivalModule', p['guid'], p['name'], 'XMLに無い', '', '')
+            continue
+        trig_keys = ('kind', 'deity', 'devotion', 'monument', 'attribute')
+        pt = {k: p['trigger'].get(k) for k in trig_keys if k in p['trigger']}
+        mt = {k: (m['trigger'] or {}).get(k) for k in trig_keys if k in p['trigger']}
+        pairs = {
+            'locaEn': (loca(p['loca'], 'english'), loca(m['loca'], 'english')), 'locaJa': (loca(p['loca'], 'japanese'), loca(m['loca'], 'japanese')),
+            'descJa': (loca(p['description'], 'japanese'), loca(m['description'], 'japanese')),
+            'seconds': (p['seconds'], m['seconds']), 'trigger': (pt, mt),
+            'options': ([([(g['guid'], loca(g['loca'], 'japanese')) for g in o['goods']], o['amount'], o['scaling'], o['perPrice']) for o in p['options']],
+                        [([(g['guid'], loca(g['loca'], 'japanese')) for g in o['goods']], o['amount'], o['scaling'], o['perPrice']) for o in m['options']]),
+        }
+        for k, (a, b) in pairs.items():
+            if a != b:
+                add('festivalModule', p['guid'], p['name'], k, a, b)
+
 
 def check_guid_coverage(R: Resolver) -> None:
     """Planner の各ファイルに出てくる guid が、XML に全部あるか"""
@@ -860,7 +920,7 @@ def main() -> None:
              compare_effects_buffs_items, compare_religion, compare_festivals, compare_trade,
              compare_quests, compare_tech_details, compare_factory_module, compare_building_module,
              compare_economy_module, compare_tech_module, compare_city_status_module,
-             compare_effects_module, check_guid_coverage)
+             compare_effects_module, compare_religion_module, check_guid_coverage)
     for step in steps:
         step(R)
     print('=== 差異 ===')
