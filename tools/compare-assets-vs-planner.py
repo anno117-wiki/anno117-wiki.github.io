@@ -17,6 +17,7 @@
   商品・需要・人口層・住居のモジュール(tools/assets_economy.py)が Planner の products / needs / population と同じ値・並びか
   研究のモジュール(tools/assets_techs.py)が Planner の techs.json と同じ値・並びか(effectLines などの文は対象外)
   街の状況のモジュール(tools/assets_city_status.py)が Planner の city_status.json と同じ値・並びか
+  効果・バフのモジュール(tools/assets_effects.py)が Planner の effects.json / buffs.json と同じ値か(バフは属性の加算のみ)
   Planner全ファイルのGUIDがXMLにあるか
 比較しない範囲(XMLに無い、または未調査): 建物の幅と高さ(.ifo由来)、貿易の受動取引・建設資材・艦隊、
   研究どうしの接続線(XMLに接続の情報が無い。画面の升目と TechConnectionLength だけある)
@@ -791,6 +792,41 @@ def compare_city_status_module(R: Resolver) -> None:
                 if a != b:
                     add('cityStatusModule', p['guid'], region, k, a, b)
 
+def compare_effects_module(R: Resolver) -> None:
+    """tools/assets_effects.py(効果・バフ)が、Planner の effects.json / buffs.json と同じ値か。
+    バフの calc は attributes / attributesPercent だけを比べる(他の集計は未対応)"""
+    from assets_effects import load_buffs, load_effects
+
+    mine_e, planner_e = load_effects(R), pj('effects')
+    missing = [g for g in planner_e if g not in mine_e]
+    print(f'効果モジュール: Planner {len(planner_e)}件 / XML {len(mine_e)}件（XMLだけ {len([g for g in mine_e if g not in planner_e])}件）')
+    for g in missing:
+        add('effectModule', int(g), planner_e[g]['name'], 'XMLに無い', '', '')
+    for g, p in planner_e.items():
+        m = mine_e.get(g)
+        if m is None:
+            continue
+        pairs = {'scope': (p['scope'] or 'Local', m['scope']), 'buffs': (sorted(p['buffs'] or []), sorted(m['buffs'])),
+                 'targetPools': (sorted(p['targetPools'] or []), sorted(m['targetPools'])),
+                 'targets': (sorted(set(p['targets'] or [])), m['targets']), 'duration': (p['duration'] or 0.0, m['duration'])}
+        for k, (a, b) in pairs.items():
+            if a != b:
+                add('effectModule', int(g), p['name'], k, a, b)
+
+    mine_b, planner_b = load_buffs(R), pj('buffs')
+    for g in planner_b:
+        if g not in mine_b:
+            add('buffModule', int(g), planner_b[g]['name'], 'XMLに無い', '', '')
+    for g, p in planner_b.items():
+        m = mine_b.get(g)
+        if m is None:
+            continue
+        pc, mc = p.get('calc') or {}, m.get('calc') or {}
+        for key in ('attributes', 'attributesPercent'):
+            a, b = {k: float(x) for k, x in (pc.get(key) or {}).items()}, mc.get(key) or {}
+            if a != b:
+                add('buffModule', int(g), p['name'], key, a, b)
+
 
 def check_guid_coverage(R: Resolver) -> None:
     """Planner の各ファイルに出てくる guid が、XML に全部あるか"""
@@ -824,7 +860,7 @@ def main() -> None:
              compare_effects_buffs_items, compare_religion, compare_festivals, compare_trade,
              compare_quests, compare_tech_details, compare_factory_module, compare_building_module,
              compare_economy_module, compare_tech_module, compare_city_status_module,
-             check_guid_coverage)
+             compare_effects_module, check_guid_coverage)
     for step in steps:
         step(R)
     print('=== 差異 ===')

@@ -5,7 +5,7 @@ buildings-effects.json は tools/build-buildings-data.py が v2.1 の assets.xml
 3.0 以降は完全な assets.xml が無いので、3.0.1 で変わった行・足りない行だけをここで直す。
 build-buildings-data.py を走らせたあとは、必ずこのスクリプトも走らせる(走らせないと下の直しが消える)。
 
-入力 : _local/anno-official-data/v3.0.1-planner/{buildings,effects,buffs}.json
+入力 : assets.xml から作った建物・効果・バフ(tools/assets_buildings.py・assets_effects.py)
 出力 : apps/wiki/docs/wiki/buildings-effects.json (上書き。何度走らせても同じ結果になる)
 
 - 値の出し方は tools/build-buildings-aegyptus.py と同じ(維持費はコインの量、効果は functionalEffects のバフの属性の合計)
@@ -18,6 +18,10 @@ build-buildings-data.py を走らせたあとは、必ずこのスクリプト�
 import json
 import sys
 from pathlib import Path
+
+sys.path.insert(0, str(Path(__file__).resolve().parent))
+from assets_buildings import load_buildings  # noqa: E402
+from assets_effects import load_buffs, load_effects  # noqa: E402
 
 ROOT = Path(__file__).resolve().parent.parent
 SRC = ROOT / '_local' / 'anno-official-data' / 'v3.0.1-planner'
@@ -74,16 +78,16 @@ def values(b: dict, effects: dict, buffs: dict) -> dict:
 
 
 def main() -> None:
-    buildings = load('buildings.json')
-    effects = load('effects.json')
-    buffs = load('buffs.json')
+    buildings = load_buildings()  # assets.xml から作る(Planner の buildings.json と同じ形)
+    effects = load_effects()
+    buffs = load_buffs()
     data = json.loads(TARGET.read_text(encoding='utf-8'))
     rows: list[dict] = data['buildings']
 
     def building(guid: int) -> dict:
         b = buildings.get(str(guid))
         if not b:
-            sys.exit(f'Planner 3.0.1 に GUID {guid} の建物が無い')
+            sys.exit(f'assets.xml に GUID {guid} の建物が無い')
         return b
 
     def index_of(row_id: str) -> int:

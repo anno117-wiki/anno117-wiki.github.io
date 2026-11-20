@@ -4,7 +4,7 @@
       スクリプト側は読み先を load_buildings() に替えるだけで済むよう、使う項目は Planner と同じ名前・形にしてある。
 
 作る項目(Planner の buildings と同じ名前):
-  guid / name / template / loca{english, japanese} / category{english, japanese} / regions /
+  guid / name / template / icon / loca{english, japanese} / category{english, japanese} / regions /
   constructionCosts / maintenanceCosts / functionalEffects / publicServiceEffect / populationLevel
 作らない項目: width / height(占有マス。.ifo が必要で未対応)、radius(範囲の種類)など。
               これらを使うスクリプト(build-building-specs.py など)はまだ置き換えられない。
@@ -92,6 +92,7 @@ def load_buildings(resolver: Resolver | None = None) -> dict[str, dict]:
             'guid': guid,
             'name': r['name'],
             'template': r['template'],
+            'icon': v.get('/Standard/IconFilename') or None,
             'loca': _loca(en, ja, v.get('/Text/OasisId')),
             'category': _loca(en, ja, v.get('/Building/BuildingCategoryName')),
             'regions': regions.split(';') if regions else list(ALL_REGIONS),  # XML に書かれた順のまま

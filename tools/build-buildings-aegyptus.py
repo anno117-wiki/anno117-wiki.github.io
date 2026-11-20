@@ -1,7 +1,7 @@
 #!/usr/bin/env python3
 """アイギュプト専用の建物の効果を、Anno 117 Planner のゲーム3.0データから生成する。
 
-入力 : _local/anno-official-data/v3.0.1-planner/{buildings,effects,buffs,population,needs}.json
+入力 : assets.xml から作った建物・効果・バフ・人口層・需要(tools/assets_buildings.py・assets_effects.py・assets_economy.py)
 出力 : apps/wiki/docs/wiki/buildings-aegyptus.json (buildings.data.ts が buildings-effects.json に足して読む)
 
 - 対象は、アイギュプトだけにある建物(regions が ['Egyptian'])のうち、tools/build-buildings-data.py と同じ種類(template)と、
@@ -17,6 +17,11 @@
 import json
 import sys
 from pathlib import Path
+
+sys.path.insert(0, str(Path(__file__).resolve().parent))
+from assets_buildings import load_buildings  # noqa: E402
+from assets_economy import load_needs, load_population  # noqa: E402
+from assets_effects import load_buffs, load_effects  # noqa: E402
 
 ROOT = Path(__file__).resolve().parent.parent
 SRC = ROOT / '_local' / 'anno-official-data' / 'v3.0.1-planner'
@@ -62,12 +67,17 @@ def icon_key(b: dict) -> str | None:
     return None
 
 
+# assets.xml にはあるが、Planner の建物一覧に無く、サイトにも載せていなかった建物。これまでの出力を変えないため除く（載せるかは未決）
+#   152249 アイギュプトの金鉱（建設メニューに無い扱い）／153009 水路・149793 水道（同じ名前の別の資産。載せている行と重複する）
+NOT_LISTED = {152249, 153009, 149793}
+
+
 def main() -> None:
-    buildings = json.loads((SRC / 'buildings.json').read_text(encoding='utf-8'))
-    effects = json.loads((SRC / 'effects.json').read_text(encoding='utf-8'))
-    buffs = json.loads((SRC / 'buffs.json').read_text(encoding='utf-8'))
-    pop = json.loads((SRC / 'population.json').read_text(encoding='utf-8'))
-    needs = {n['guid']: n for n in json.loads((SRC / 'needs.json').read_text(encoding='utf-8'))['needs']}
+    buildings = load_buildings()  # assets.xml から作る(Planner の buildings.json と同じ形)
+    effects = load_effects()
+    buffs = load_buffs()
+    pop = load_population()
+    needs = {n['guid']: n for n in load_needs()['needs']}
 
     levels = {x['guid']: x for x in pop['populationLevels']}
     workforce_tier = {levels[g]['workforce']: TIER_KEY[g] for g in TIER_KEY}
@@ -86,7 +96,7 @@ def main() -> None:
 
     rows = []
     for b in buildings.values():
-        if b['regions'] != ['Egyptian'] or b['template'] not in TEMPLATES or not b.get('loca'):
+        if b['regions'] != ['Egyptian'] or b['template'] not in TEMPLATES or not b.get('loca') or b['guid'] in NOT_LISTED:
             continue
         maint = {m['product']: m['amount'] for m in (b['maintenanceCosts'] or [])}
         attrs = {v: 0.0 for v in ATTR.values()}
