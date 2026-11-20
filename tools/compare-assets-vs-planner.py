@@ -10,13 +10,13 @@
 比較する範囲(数値と参照関係のみ。名前などの文言は texts_*.xml 側の話なので見ない):
   工場 / 商品 / 需要 / 人口層 / 住居 / 建物(コスト・維持費・効果・地形ほか) / 研究 / 都市ステータス
   効果 / バフ / アイテム / 信仰(守護神・信仰度) / 祭り(長さ・開始条件・費用) / 貿易(商人の品物と予算・総督の予算)
+  研究の残り(分類・ゲート・繰り返し・報酬数・バッジ数・分野の位置と順・画面の升目)
   クエスト(ストーリーライン449・部品ノード16,911の種類・名前・接続先、ノード内の数値と参照、プール)
   Planner全ファイルのGUIDがXMLにあるか
-比較しない範囲(XMLに無い、または未調査): 建物の幅と高さ(.ifo由来)、貿易の受動取引・建設資材・艦隊
-クエストの注意: Planner は省略値(properties.xml の既定値。HP100%・保留120秒など)や参照先の資産の中身を埋め込む。
-  ノードごとに XML の値と、参照先1段の値を探し、20ノード以上で欠ける値は『共通の省略値』として別集計にする
-既知の「差異に見えるだけ」: Planner が null や空にしている値を XML は省略(=既定値)している。
-効果の対象は ExcludeFromTargets を引き、存在しない資産への参照は落とす。バフの事故の種類は XML では 'A;B' の1値。
+比較しない範囲(XMLに無い、または未調査): 建物の幅と高さ(.ifo由来)、貿易の受動取引・建設資材・艦隊、
+  研究どうしの接続線(XMLに接続の情報が無い。画面の升目と TechConnectionLength だけある)
+クエストの注意: Planner は参照先の資産(対話ウィンドウなど)の中身も埋め込むので、ノードごとに参照先1段の値も探す。
+  XML で 0(未設定)と書かれた値を Planner が既定の資産で埋める例(移動目的の範囲表示 500886 など)が約50ノード残る。
 """
 import collections
 import glob
@@ -523,19 +523,7 @@ def compare_quests(R: Resolver) -> None:
                 absent = sorted(x for x in pl if x not in vals and x != '41' and not (num(x, None) and str(int(num(x) * 1000)) in vals))
                 if absent:
                     add('questNodes', nid, n['name'], 'payload:' + key, len(absent), absent[:5])
-    # 多数のノードで同じ値が欠けるものは、省略値(properties.xml の既定値)とみなして別集計にする
-    cnt = collections.Counter(v for d in diffs['questNodes'] if d[2].startswith('payload:') for v in d[4])
-    common = {v for v, c in cnt.items() if c >= 20}
-    kept = []
-    for d in diffs['questNodes']:
-        if d[2].startswith('payload:'):
-            rest = [v for v in d[4] if v not in common]
-            if not rest:
-                continue
-            d = (d[0], d[1], d[2], d[3], rest)
-        kept.append(d)
-    diffs['questNodes'] = kept
-    print(f'クエスト {len(q["quests"])}件 / ノード {len(seen_nodes)}件を比較。共通の省略値とみなした値: {sorted(common)[:12]} ほか計{len(common)}種')
+    print(f'クエスト {len(q["quests"])}件 / ノード {len(seen_nodes)}件を比較')
 
     for g, e in q['entries'].items():
         r = R.get(int(g))
@@ -561,6 +549,65 @@ def compare_quests(R: Resolver) -> None:
         for s in p['storylines']:
             if str(s['storyline']) not in vals:
                 add('questPools', int(p['guid']), p['name'], 'storyline', s, None)
+
+
+def compare_tech_details(R: Resolver) -> None:
+    """研究(スキルツリー)の、知識コスト・効果以外の項目: ゲート・繰り返し・分類・配置・報酬・バッジ・開放条件の有無"""
+    T = pj('techs')
+    lay, scene = T['layout'], R.get(24003)['v']
+    for fld, path in (('tileWidth', '/TechTreeScene/GridTileWidth'), ('tileHeight', '/TechTreeScene/GridTileHeight')):
+        if num(scene.get(path)) != lay[fld]:
+            add('techLayout', 24003, 'layout', fld, lay[fld], scene.get(path))
+
+    order = ids_in_order(R.get(21643)['v'], '/TechFeature/CategoryOrder', 'Category')
+    membership: dict[int, int] = {}
+    for c in T['techCategories']:
+        v = R.get(c['guid'])['v']
+        if (num(v.get('/TechCategory/Position/X')), num(v.get('/TechCategory/Position/Y'))) != (c['x'], c['y']):
+            add('techCategories', c['guid'], c['guid'], 'position', (c['x'], c['y']), (v.get('/TechCategory/Position/X'), v.get('/TechCategory/Position/Y')))
+        if order.index(c['guid']) != c['order']:
+            add('techCategories', c['guid'], c['guid'], 'order', c['order'], order.index(c['guid']))
+        for t in ids(v, '/TechCategory/Techs', 'Tech'):
+            membership.setdefault(t, c['guid'])
+
+    for t in T['techs']:
+        g = t['guid']
+        v = R.get(g)['v']
+        name = t['name']
+        # 各分野の最初のゲート(entry)は XML の分類リストに入っておらず、Planner が名前(Gate Economy Early など)から補う
+        if membership.get(g) != t['category'] and not (t['entry'] and t['gate'] and g not in membership):
+            add('techs', g, name, 'category', t['category'], membership.get(g))
+        if (v.get('/Tech/IsGate') == '1') != bool(t['gate']):
+            add('techs', g, name, 'gate', t['gate'], v.get('/Tech/IsGate'))
+        if (v.get('/Tech/IsRepeatable') == '1') != bool(t['repeatable']):
+            add('techs', g, name, 'repeatable', t['repeatable'], v.get('/Tech/IsRepeatable'))
+        if abs(num(v.get('/Tech/RepeatableCostFactor'), 1.1) - t['repeatFactor']) > 1e-9:
+            add('techs', g, name, 'repeatFactor', t['repeatFactor'], v.get('/Tech/RepeatableCostFactor'))
+        if (v.get('/Tech/ShowConnectionToCategory') == '1') != bool(t['toCategory']):
+            add('techs', g, name, 'toCategory', t['toCategory'], v.get('/Tech/ShowConnectionToCategory'))
+        if (v.get('/Tech/Culture') or 'None') != (t['culture'] or 'None'):
+            add('techs', g, name, 'culture', t['culture'], v.get('/Tech/Culture'))
+        n_unlock = len(ids(v, '/Tech/Rewards/Unlocks', 'UnlockReward'))
+        if n_unlock != len(t['unlocks']):
+            add('techs', g, name, 'unlocks', len(t['unlocks']), n_unlock)
+        n_reward = len(ids(v, '/Tech/Rewards/Resources', 'Resource')) + len(ids(v, '/Tech/Rewards/Items', 'ItemAsset'))
+        if n_reward != len(t['rewards']):
+            add('techs', g, name, 'rewards', len(t['rewards']), n_reward)
+        n_badge = len([1 for k in v if re.fullmatch(r'/Tech/AdditionalBadges/Item\[\d+\]/Icon', k)])
+        if n_badge != len(t['badges']):
+            add('techs', g, name, 'badges', len(t['badges']), n_badge)
+        if bool(v.get('/Tech/TechResearchableTrigger')) < bool(t['condition']):
+            add('techs', g, name, 'condition', 'あり', '開放条件の資産が無い')
+
+
+def ids_in_order(v: dict, base: str, key: str) -> list[int]:
+    """Item の並びを書かれた順のまま GUID のリストにする"""
+    found = []
+    for k, val in v.items():
+        m = re.fullmatch(re.escape(base) + r'/Item\[(\d+)\]/' + key, k)
+        if m:
+            found.append((int(m.group(1)), int(val)))
+    return [g for _, g in sorted(found)]
 
 
 def check_guid_coverage(R: Resolver) -> None:
@@ -593,7 +640,7 @@ def main() -> None:
     R = Resolver()
     steps = (compare_factories, compare_economy, compare_buildings, compare_techs_and_status,
              compare_effects_buffs_items, compare_religion, compare_festivals, compare_trade,
-             compare_quests, check_guid_coverage)
+             compare_quests, compare_tech_details, check_guid_coverage)
     for step in steps:
         step(R)
     print('=== 差異 ===')
