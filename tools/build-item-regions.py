@@ -1,7 +1,7 @@
 #!/usr/bin/env python3
 """アイテムごとの「使える地域」を、ゲーム3.0データから生成する。
 
-入力 : _local/anno-official-data/v3.0.1-planner/{item_catalog,buildings}.json
+入力 : assets.xml から作ったアイテム・資産の名前表・建物(tools/assets_items.py・assets_buildings.py)
        packages/shared/public/data/items-full.json（アイテムの一覧。guid の突き合わせ先）
 出力 : apps/wiki/docs/wiki/item-regions.json  {guid: ['latium', 'albion', 'aegyptus']}（items.data.ts が読む）
 
@@ -16,6 +16,7 @@ from pathlib import Path
 
 sys.path.insert(0, str(Path(__file__).resolve().parent))
 from assets_buildings import load_buildings  # noqa: E402
+from assets_items import load_item_catalog  # noqa: E402
 
 ROOT = Path(__file__).resolve().parent.parent
 SRC = ROOT / '_local' / 'anno-official-data' / 'v3.0.1-planner'
@@ -29,7 +30,7 @@ MANUAL = {'179649': ['aegyptus']}
 
 
 def main() -> None:
-    catalog = json.loads((SRC / 'item_catalog.json').read_text(encoding='utf-8'))
+    catalog = load_item_catalog()  # assets.xml から作る(Planner の item_catalog.json と同じ形。説明・入手先は除く)
     buildings = load_buildings()  # assets.xml から作る(Planner の buildings.json と同じ形)
     pools = catalog['assets']
     by_guid = {str(i['guid']): i for i in catalog['items']}

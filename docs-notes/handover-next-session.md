@@ -65,12 +65,15 @@
 - **生成スクリプトの置き換え（信仰・祭り。2026-11-20 夕）**: `tools/assets_religion.py`（assets.xml から Planner の religion.json / festivals.json と同じ形の守護神・祭りのデータを作る）を作り、読み先を替えたのは `build-patrons-dlc03.py`・`apply-items-v3.py`（守護神の名前だけ）の2本。守護神11柱（名前・説明・不思議の名前と説明・局所効果と支配効果の題名/説明/段階表・順序）と祭り20件（名前・説明・長さ・開始条件・選択肢の商品/費用）が Planner と全項目・並びまで一致。出力は基準・コミット済みと同一
   - 祭りの開始条件は FestivalFeature（GUID 98210）: 神型は DeityFestivals（信仰値は共通の DevotionThreshold）、属性型は Region/<地域>/Attributes、戦争は SuccessfulWarFestival、記念碑は MonumentEventStartedFestival。開始条件が無い祭りは使われていないので除く。並びは属性・神・戦争・記念碑の順
   - 作っていない項目: 祭りの効果の説明行・報酬・選択肢の文言、信仰の balancing/祭壇の効果行
+- **生成スクリプトの置き換え（アイテムのカタログ。2026-11-20 夕）**: `tools/assets_items.py`（assets.xml から Planner の item_catalog.json と同じ形のアイテムと資産の名前表を作る）を作り、読み先を替えたのは `build-item-regions.py`・`build-item-targets.py` の2本。アイテム541件（名前・レア度・ニッチ・取引価格・効果の範囲と対象）と、資産の名前表1,353件（名前・種類・アイコン・総称の中身）が Planner と全項目一致。2本とも出力は基準・コミット済みと同一
+  - 総称（AssetPool）の中身は、入れ子を平らに展開して重複を除き昇順に並べたもの（Planner と同じ）。名前表は GUID を引いた時にその場で作る（全資産を引ける。Planner はアイテムから参照されるものだけ）。アイテムは `Item`・`ItemWithBoost` テンプレートの資産から開発用の `TestItem`・偽のアイテムを除いた541件で、並びはテンプレートの定義順
+  - **まだ作っていない（`apply-items-v3.py` が使う）**: アイテムの説明文・入手先（sources）・効果の説明行（buffs の lines）・強化の条件。効果文は研究と同じ壁（`ItemInfotipTextFeature` の書式）。入手先はクエスト・取引・祭りなどの参照元をたどる必要がある
 - **置き換えの全体像（2026-11-20 夕。Planner 読みの残りを、ファイル別にまとめた）**
-  - **済み（assets.xml 読み。モジュールは `tools/assets_*.py`）**: 工場（factories）／建物をGUIDで引く（buildings）／商品・需要・人口層・住居（economy）／研究のうち効果文以外（techs）／街の状況（city_status）／効果・バフ（effects）／信仰・祭り（religion）。読み先を替えた生成スクリプトは計 15本
+  - **済み（assets.xml 読み。モジュールは `tools/assets_*.py`）**: 工場（factories）／建物をGUIDで引く（buildings）／商品・需要・人口層・住居（economy）／研究のうち効果文以外（techs）／街の状況（city_status）／効果・バフ（effects）／信仰・祭り（religion）／アイテムのカタログ（items）。読み先を替えた生成スクリプトは計 17本
   - **残り1（効果文）**: `effectLines`（「対象 効果名 値」の文）を使う `build-techs-dlc03.py`・`build-skill-bonuses-dlc03.py`・`build-dlc03-verify-sheet.py`。XML の `ItemInfotipTextFeature`（GUID 142928）に効果の種類別の文言の表がある。効果の種類ごとの書式を実装する必要がある
   - **残り2（祭り・信仰）**: 済み（上の「信仰・祭り」の項）。残るのは `apply-items-v3.py` の `item_catalog`・`quests`
   - **残り3（建物一覧と占有マス）**: `build-building-specs.py`（幅・高さ・範囲）。占有マスは `.ifo`（保管済み）から 72% 一致、建物の選び方（Planner 724件 / XML 約830件）は未解決
-  - **残り4（アイテムのカタログ）**: `item_catalog`（アイテム541・総称の資産1,353）を読む `apply-items-v3.py`・`build-item-regions.py`・`build-item-targets.py`。アイテムの効果・入手先・総称の中身を持つ大きなファイル
+  - **残り4（アイテムのカタログ）**: 対象と総称の中身は済み（上の「アイテムのカタログ」の項）。`apply-items-v3.py` だけが、説明文・入手先・効果の説明行のために `item_catalog` を読み続ける
   - **残り5（クエスト）**: `quests`・`quest_texts_japanese` を読む `build-quests-data.py`・`apply-items-v3.py`。ストーリーライン449・部品16,911の接続は XML と一致済み。クエストの選択肢と報酬は annohead（sqlite）も読んでいる
   - **Planner 以外の読み元**: Item Inspector（`apply-items-v3.py`・`build-calculator-items.py`・`build-items-ja.py` の items.csv）／annohead（`build-quests-data.py`・`build-quest-flow-*.py` ×2）／古い v2.1 の XML と公式マスターCSV（`build-buildings-data.py`・`build-game-data.py`・`build-chain-ratios.py`・`build-city-status-data.py`・`build-patrons-data.py`・`build-splendor-data.py`・`build-goods-producers.py`）。古い版を読む方は、手で直した値があるので流さない既存の方針のまま
   - **置き換えの対象外（ゲームデータを読まない）**: アイコン・サムネイル・流れ図・正規化・照合シート・研究の接続線

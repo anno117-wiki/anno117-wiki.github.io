@@ -19,6 +19,7 @@
   街の状況のモジュール(tools/assets_city_status.py)が Planner の city_status.json と同じ値・並びか
   効果・バフのモジュール(tools/assets_effects.py)が Planner の effects.json / buffs.json と同じ値か(バフは属性の加算のみ)
   信仰・祭りのモジュール(tools/assets_religion.py)が Planner の religion.json / festivals.json と同じ値・並びか
+  アイテム・資産の名前表のモジュール(tools/assets_items.py)が Planner の item_catalog.json と同じ値か(説明文・入手先・効果の説明行は対象外)
   Planner全ファイルのGUIDがXMLにあるか
 比較しない範囲(XMLに無い、または未調査): 建物の幅と高さ(.ifo由来)、貿易の受動取引・建設資材・艦隊、
   研究どうしの接続線(XMLに接続の情報が無い。画面の升目と TechConnectionLength だけある)
@@ -887,6 +888,55 @@ def compare_religion_module(R: Resolver) -> None:
             if a != b:
                 add('festivalModule', p['guid'], p['name'], k, a, b)
 
+def compare_item_catalog_module(R: Resolver) -> None:
+    """tools/assets_items.py(アイテムと資産の名前表)が、Planner の item_catalog.json と同じ値か。
+    items は件数・並び・主な項目、assets は Planner の全キーについて 名前・種類・アイコン・総称の中身 を比べる
+    （名前の末尾の空白は比べない）"""
+    from assets_items import load_item_catalog
+
+    cat = load_item_catalog(R)
+    planner = pj('item_catalog')
+    if [i['guid'] for i in cat['items']] != [i['guid'] for i in planner['items']]:
+        add('itemCatalog', 0, 'items', '並び・件数', len(planner['items']), len(cat['items']))
+    mine = {i['guid']: i for i in cat['items']}
+
+    def loca(x, lang):
+        return (x or {}).get(lang) if x else None
+
+    for p in planner['items']:
+        m = mine.get(p['guid'])
+        if m is None:
+            add('itemCatalog', p['guid'], p['name'], 'XMLに無い', '', '')
+            continue
+        e, me = p.get('effect') or {}, m['effect']
+        pairs = {
+            'locaEn': (loca(p['loca'], 'english'), loca(m['loca'], 'english')), 'locaJa': (loca(p['loca'], 'japanese'), loca(m['loca'], 'japanese')),
+            'template': (p['template'], m['template']),
+            'rarity': (p['rarity'], m['rarity']), 'niche': (p['niche'], m['niche']),
+            'tradePrice': (float(p['tradePrice'] or 0), m['tradePrice']),
+            'scope': (e.get('scope') or 'Local', me['scope']),
+            'targets': (e.get('targets') or [], me['targets']),
+        }
+        for k, (a, b) in pairs.items():
+            if a != b:
+                add('itemCatalog', p['guid'], p['name'], k, a, b)
+
+    for g, a in planner['assets'].items():
+        m = cat['assets'].get(g)
+        if m is None:
+            add('itemAssets', int(g), a.get('name'), 'XMLに無い', '', '')
+            continue
+        pairs = {
+            'name': ((a.get('name') or '').strip(), (m['name'] or '').strip()), 'template': (a.get('template'), m['template']),
+            'locaEn': (loca(a.get('loca'), 'english'), loca(m['loca'], 'english')), 'locaJa': (loca(a.get('loca'), 'japanese'), loca(m['loca'], 'japanese')),
+            'icon': (a.get('icon') or None, m['icon']),
+        }
+        if a.get('members') is not None and a.get('name') != 'AssetPool All Items':  # 全アイテムの総称は、カタログに無いアイテムを含むので比べない
+            pairs['members'] = ([int(x) for x in a['members']], m.get('members', []))
+        for k, (x, y) in pairs.items():
+            if x != y:
+                add('itemAssets', int(g), a.get('name'), k, x, y)
+
 
 def check_guid_coverage(R: Resolver) -> None:
     """Planner の各ファイルに出てくる guid が、XML に全部あるか"""
@@ -920,7 +970,8 @@ def main() -> None:
              compare_effects_buffs_items, compare_religion, compare_festivals, compare_trade,
              compare_quests, compare_tech_details, compare_factory_module, compare_building_module,
              compare_economy_module, compare_tech_module, compare_city_status_module,
-             compare_effects_module, compare_religion_module, check_guid_coverage)
+             compare_effects_module, compare_religion_module,
+             compare_item_catalog_module, check_guid_coverage)
     for step in steps:
         step(R)
     print('=== 差異 ===')

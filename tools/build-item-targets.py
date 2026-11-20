@@ -1,7 +1,7 @@
 #!/usr/bin/env python3
 """アイテムごとの「効果が掛かる建物の名前」を、ゲーム3.0データから生成する。
 
-入力 : _local/anno-official-data/v3.0.1-planner/{item_catalog,buildings,production}.json
+入力 : assets.xml から作ったアイテム・資産の名前表・建物・生産建物(tools/assets_items.py・assets_buildings.py・assets_factories.py)
        packages/shared/public/data/items-full.json（アイテムの一覧。guid の突き合わせ先）
 出力 : apps/wiki/docs/wiki/item-target-buildings.json  {アイテムguid: ['建物名', ...]}
        （items.data.ts と buildings.data.ts が読む。建物効果の「関連アイテム」と、アイテム一覧の対象の絞り込みに使う）
@@ -26,6 +26,7 @@ from pathlib import Path
 sys.path.insert(0, str(Path(__file__).resolve().parent))
 from assets_buildings import load_buildings  # noqa: E402
 from assets_factories import load_production  # noqa: E402
+from assets_items import load_item_catalog  # noqa: E402
 
 ROOT = Path(__file__).resolve().parent.parent
 SRC = ROOT / '_local' / 'anno-official-data' / 'v3.0.1-planner'
@@ -48,7 +49,7 @@ def ja(loca) -> str:
 
 
 def main() -> None:
-    catalog = json.loads((SRC / 'item_catalog.json').read_text(encoding='utf-8'))
+    catalog = load_item_catalog()  # assets.xml から作る(Planner の item_catalog.json と同じ形。説明・入手先は除く)
     buildings = load_buildings()  # assets.xml から作る(Planner の buildings.json と同じ形)
     factories = load_production()['factories']  # assets.xml から作る
     pools = catalog['assets']
