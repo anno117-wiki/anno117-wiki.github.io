@@ -9,8 +9,9 @@
 
 比較する範囲(数値と参照関係のみ。名前などの文言は texts_*.xml 側の話なので見ない):
   工場 / 商品 / 需要 / 人口層 / 住居 / 建物(コスト・維持費・効果・地形ほか) / 研究 / 都市ステータス
-  効果 / バフ / アイテム / Planner全ファイルのGUIDがXMLにあるか
-比較しない範囲(XMLに無い、または未調査): 建物の幅と高さ(.ifo由来)、祭り・信仰・貿易・クエストの数値
+  効果 / バフ / アイテム / 信仰(守護神・信仰度) / 祭り(長さ・開始条件・費用) / 貿易(商人の品物と予算・総督の予算)
+  Planner全ファイルのGUIDがXMLにあるか
+比較しない範囲(XMLに無い、または未調査): 建物の幅と高さ(.ifo由来)、クエスト、貿易の受動取引・建設資材・艦隊
 既知の「差異に見えるだけ」: Planner が null や空にしている値を XML は省略(=既定値)している。
 効果の対象は ExcludeFromTargets を引き、存在しない資産への参照は落とす。バフの事故の種類は XML では 'A;B' の1値。
 """
@@ -311,6 +312,137 @@ def compare_effects_buffs_items(R: Resolver) -> None:
             add('items', g, it['name'], 'tradePrice', it['tradePrice'], v.get('/Item[0]/TradePrice'))
 
 
+def indexed(v: dict, base: str) -> dict[int, dict[str, str]]:
+    """base/Item[i]/残りのパス の値を {i: {残りのパス: 値}} に分ける"""
+    out: dict[int, dict[str, str]] = collections.defaultdict(dict)
+    for k, val in v.items():
+        m = re.fullmatch(re.escape(base) + r'/Item\[(\d+)\](/.*)?', k)
+        if m:
+            out[int(m.group(1))][m.group(2) or ''] = val
+    return out
+
+
+def sub_items(it: dict, base: str) -> list[dict[str, str]]:
+    """indexed() の1要素の中の base/Item[j]/名前 を、j順の辞書のリストにする"""
+    sub: dict[int, dict[str, str]] = collections.defaultdict(dict)
+    for k, val in it.items():
+        m = re.fullmatch(re.escape(base) + r'/Item\[(\d+)\]/(\w+)', k)
+        if m:
+            sub[int(m.group(1))][m.group(2)] = val
+    return [x for _, x in sorted(sub.items())]
+
+
+def compare_religion(R: Resolver) -> None:
+    rel = pj('religion')
+    b, bal = rel['balancing'], R.get(30743)['v']
+    # 注意: 祠のしきい値は XML 側の綴りが Treshold
+    for fld, path in (('dominantPatronThreshold', '/ReligionBalancing/DominantPatronThreshold'),
+                      ('wonderThreshold', '/ReligionBalancing/WonderThreshold'),
+                      ('shrineThreshold', '/ReligionBalancing/ShrineTreshold')):
+        if num(bal.get(path)) != b[fld]:
+            add('religion', 30743, 'balancing', fld, b[fld], bal.get(path))
+    xr = [(num(r.get('/StartDevotion')), num(r.get('/RatePerSecond')))
+          for _, r in sorted(indexed(bal, '/ReligionBalancing/DevotionRateScaling').items())]
+    pr = [(float(d['devotion']), float(d['ratePerSecond'])) for d in b['devotionRates']]
+    if xr != pr:
+        add('religion', 30743, 'balancing', 'devotionRates', pr[:3], xr[:3])
+
+    for p in rel['patrons']:
+        g = p['guid']
+        v = R.get(g)['v']
+        local = []
+        for _, it in sorted(indexed(v, '/Patron/LocalEffects').items()):
+            ms = sub_items(it, '/Milestones')
+            local.append((int(it['/GUID']), [(num(x.get('Devotion')), num(x.get('BuffScaling'))) for x in ms]))
+        plocal = [(e['effect'], [(float(m['devotion']), float(m['buffScaling'])) for m in e['milestones']]) for e in p['localEffects']]
+        if local != plocal:
+            add('religion', g, p['name'], 'localEffects', plocal[:1], local[:1])
+        pdom = sorted(e['effect'] for e in p['dominantEffects'])
+        if ids(v, '/Patron/DominantEffects', 'GUID') != pdom:
+            add('religion', g, p['name'], 'dominantEffects', pdom, ids(v, '/Patron/DominantEffects', 'GUID'))
+        for fld, path in (('wonder', '/Patron/Wonder'), ('shrine', '/Patron/Shrine')):
+            if int_or_none(v.get(path)) != p[fld]:
+                add('religion', g, p['name'], fld, p[fld], v.get(path))
+        if (v.get('/Patron/RomanizationType') or 'None') != (p['romanization'] or 'None'):
+            add('religion', g, p['name'], 'romanization', p['romanization'], v.get('/Patron/RomanizationType'))
+        if num(v.get('/Patron/RomanizationValuePerDevotion')) != (p['romanizationPerDevotion'] or 0):
+            add('religion', g, p['name'], 'romanizationPerDevotion', p['romanizationPerDevotion'], v.get('/Patron/RomanizationValuePerDevotion'))
+
+
+def compare_festivals(R: Resolver) -> None:
+    cfg = R.get(98210)['v']
+    for f in pj('festivals')['festivals']:
+        g = f['guid']
+        v = R.get(g)['v']
+        if num(v.get('/Festival/FestivalDuration')) / 1000 != f['seconds']:
+            add('festivals', g, f['name'], 'seconds', f['seconds'], v.get('/Festival/FestivalDuration'))
+        pe = sorted(e['guid'] for e in f['effects'])
+        if ids(v, '/Festival/FestivalEffects', 'Effect') != pe:
+            add('festivals', g, f['name'], 'effects', pe, ids(v, '/Festival/FestivalEffects', 'Effect'))
+        # 開始条件(地域ごとのしきい値)
+        tr = f['trigger']
+        if tr and tr.get('kind') == 'attribute':
+            for region, thresholds in tr['thresholds'].items():
+                xs = []
+                pattern = rf'/FestivalFeature/Region/{region}/Attributes/{tr["attribute"]}/Festivals/Item\[\d+\]/Festival'
+                for k, val in cfg.items():
+                    if re.fullmatch(pattern, k) and int(val) == g:
+                        xs.append(num(cfg.get(k[: -len('/Festival')] + '/FestivalTriggerAttributeValue')))
+                if sorted(xs) != sorted(float(t) for t in thresholds):
+                    add('festivals', g, f['name'], 'trigger:' + region, thresholds, xs)
+        # 選択肢の費用: 決定アセットの DecisionOptions を順に見る
+        dv = R.get(int_or_none(v.get('/Festival/FestivalDecision')) or 0)
+        if dv is None:
+            add('festivals', g, f['name'], 'decision', '', 'XMLに無い')
+            continue
+        xo = []
+        for _, it in sorted(indexed(dv['v'], '/Decision/DecisionOptions').items()):
+            if it.get('/HasCost') == '1':
+                prods = sorted(int(x) for k, x in it.items() if re.fullmatch(r'/CostData/Products/Item\[\d+\]/GUID', k))
+                xo.append((prods, num(it.get('/CostData/Amount/Value')), num(it.get('/CostData/AdditionalAmountScaling')),
+                           it.get('/CostData/DivideAmountByProductPrice') == '1'))
+        po = [(sorted(x['guid'] for x in o['goods']), float(o['amount']), float(o['scaling']), bool(o['perPrice']))
+              for o in f['options'] if o['goods'] or o['amount']]
+        if xo != po:
+            add('festivals', g, f['name'], 'options', po, xo)
+
+
+def compare_trade(R: Resolver) -> None:
+    tr = pj('trade')
+    for t in tr['traders']:
+        g = t['guid']
+        v = R.get(g)['v']
+        if (v.get('/Trader/GoodsTrader') == '1') != bool(t['goodsTrader']):
+            add('trade', g, t['name'], 'goodsTrader', t['goodsTrader'], v.get('/Trader/GoodsTrader'))
+        xg = []
+        for _, it in sorted(indexed(v, '/Trader/OfferedGoods').items()):
+            goods = [(int(x['Good']), num(x.get('ProductionPerMinute')), num(x.get('Limit')))
+                     for x in sub_items(it, '/Goods') if 'Good' in x]
+            xg.append((int_or_none(it.get('/UnlockCondition')), goods))
+        pg = [((o['unlock'] or {}).get('guid'), [(x['product'], float(x['perMinute']), float(x['limit'])) for x in o['goods']])
+              for o in t['offeredGoods']]
+        if xg != pg:
+            add('trade', g, t['name'], 'offeredGoods', pg[:2], xg[:2])
+        for diff, rows in t['budgets'].items():
+            xb = [(int_or_none(it.get('/UnlockCondition')), num(it.get('/BuyBudget')), num(it.get('/SellBudget')))
+                  for _, it in sorted(indexed(v, f'/Trader/TradeBudgetsPerDifficulty/{diff}/TradeBudgets').items())]
+            pb = [((r['unlock'] or {}).get('guid'), float(r['buy']), float(r['sell'])) for r in rows]
+            if xb != pb:
+                add('trade', g, t['name'], 'budgets:' + diff, pb[:2], xb[:2])
+
+    for gv in tr['governors']:
+        g = gv['guid']
+        v = R.get(g)['v']
+        if int_or_none(v.get('/Diplomacy/AllianceEffect')) != gv['allianceEffect']:
+            add('trade', g, gv['name'], 'allianceEffect', gv['allianceEffect'], v.get('/Diplomacy/AllianceEffect'))
+        for phase, by_diff in gv['activeTradeBudgets'].items():
+            for diff, bs in by_diff.items():
+                base = f'/ConstructionAI/EconomyRules/TradeRules/ActiveTrade/{phase}/Difficulty/{diff}'
+                xb = (num(v.get(base + '/BuyBudget')), num(v.get(base + '/SellBudget')))
+                if xb != (bs['buy'], bs['sell']):
+                    add('trade', g, gv['name'], f'activeTrade:{phase}/{diff}', bs, xb)
+
+
 def check_guid_coverage(R: Resolver) -> None:
     """Planner の各ファイルに出てくる guid が、XML に全部あるか"""
     def collect(o, out: set) -> None:
@@ -340,7 +472,8 @@ def main() -> None:
     sys.stdout.reconfigure(encoding='utf-8')
     R = Resolver()
     steps = (compare_factories, compare_economy, compare_buildings, compare_techs_and_status,
-             compare_effects_buffs_items, check_guid_coverage)
+             compare_effects_buffs_items, compare_religion, compare_festivals, compare_trade,
+             check_guid_coverage)
     for step in steps:
         step(R)
     print('=== 差異 ===')
