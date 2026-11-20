@@ -49,6 +49,10 @@
   - 金鉱 152249 の「建設メニューに無い」は XML から導けない（`inBuildMenu` は True になる）。氾濫原の農場は「地形が氾濫原 かつ 通常農場への置き換え先を持つ」で判定
   - 作業のあとは `git checkout -- apps packages` で出力を戻す（スクリプトは LF で書くので、CRLF の作業ツリーでは内容が同じでも変更扱いになる）
 - **更新履歴（ユーザー決定 2026-11-20）**: assets.xml への置き換えを終えた最後に、サイトの内容への影響が小さければ、更新履歴 `updates.json` の先頭に**一行だけ**「実機3.0.1データと照合しなおしました」を足す（途中の段階では足さない。足す前にユーザーに確かめる）
+- **建物の占有マス（.ifo）の調査（2026-11-20 夕）**: `.ifo` は graphics 系の RDA から数秒で取れる。`RdaConsole.exe extract -f <maindata/graphics_*.rda> -o <出力先> --filter "\.ifo$" -y -n` を graphics_roman・celtic・roman_celtic・library・misc・engine・skins・ui・portrait、dlc01_graphics・dlc02_graphics・dlc03_graphics_01/02、cdlc01〜03_graphics に流し、12,408件・239MB を `_local/anno-official-data/v3.0.1-steam/ifo/` に保存した。建物の `.cfg`（`/Object/Variations/Item[0]/Filename`）の拡張子を `.ifo` に替えると対応するファイルになる
+  - 占有マスは `.ifo` の `BuildBlocker/Position`（4角）の x 幅と z 幅（例: 漁師小屋は x -1〜7、z -1.5〜1.5 で 8×3）。Planner の建物724件のうち 521件がこの方法で一致。残りは `.cfg` が無い115件・`.ifo` が無い57件・`BuildBlocker` が無い11件・壊れたXML8件（`nan(ind)` が混じる。recover 付きで読む）・装飾の不一致11件ほか
+  - asset-extractor 4.0 の `assetextractor/conversion/calculator/building-sizes.py` は、`BuildBlocker`（複数あれば小さい方）→外形（BoundingBox）→ファイル名の `04x04` →資産名の `Ornament 1x1` の順で決め、`.ifo` の探し方にも優先順位（hitbox 参照・`Polygon.Path` の glob など）がある。完全に合わせるにはこれを再現する必要がある
+  - **Planner の建物724件の選び方は、XML からは再現できない**（`Constructable` を持つ建物は842件。XML だけ約120件多く、Planner だけ5件）。建物を一覧で回すスクリプト（`build-building-specs.py` など）の置き換えは、占有マスと合わせて未着手。GUID で引くだけのスクリプトは、建物を1件ずつ作る読み込み方なら置き換えられる見込み
 - **未実施（次にやるなら）**: 建物の占有マス（.ifo）の取得／置き換えの続き（建物のコスト関連・需要・研究など。1本ずつ、上の方法で出力を比べる）／祭りの開始条件のうち記念碑・神・戦争型／商人の好みの品物・総督の受動取引・建設資材・艦隊／生成スクリプトを1本ずつ Planner 読みから resolver 読みに置き換える（種別ごとに、置き換え前後の出力を機械的に比べてから採用する）
 - **古くなった記述**: 「完全な assets.xml は PC版が無いと取れない」「PC版のRDA展開は見送り」は、PC版が入ったので成立しない（下の該当箇所は直した）。`docs-notes/rda-extraction-plan.md` は旧計画
 
