@@ -242,6 +242,9 @@ def quest_title(g):
     """一覧に出すクエストの名前（実機のクエストブックの題名）。"""
     title = planner_meta.get(g, {}).get("title")
     text = " ".join((tr(title) or "").split()) if title is not None else ""
+    if title is not None and not JP_CHAR.search(text):
+        # annohead の文に無い題名は、Planner 3.0.1 の日本語（ゼロ幅スペースを除く）を使う
+        text = " ".join(planner_ja.get(str(title), "").replace("​", "").split())
     if text and JP_CHAR.search(text):
         return text + TITLE_SUFFIX.get(g, "")
     return headline_title(g)
@@ -255,6 +258,25 @@ STEP_FIXES = {
         "目標1": {"text": "レースに出す（達成＝勝ち／未達成＝負け）"},
     },
 }
+
+
+# 十分の一刑（3.0.1 で追加。annohead は3.0のままなので選択肢の報酬が空）。Planner 3.0.1 の報酬の節から足す。
+# 選択肢との対応（返す・剣闘士・解放）は、決定の枝の順と節の名前からの推定で、実機では未確認
+def _item_reward(guid):
+    r = q("select name_text,rarity from item where guid=?", guid)[0]
+    return {"t": tr(r[0]), "k": "item", "rarity": r[1]}
+
+
+def _goods_reward(guid, amount):
+    r = q("select name_text from product where guid=?", guid)[0]
+    return {"t": f"品物: {tr(r[0])} {amount}", "k": "goods"}
+
+
+STEP_FIXES[153669] = {"選択1": {"options": {
+    0: {"rewards": [_item_reward(181024)]},
+    1: {"rewards": [{"t": "デナリウス 15,000", "k": "money"}, _item_reward(181024)]},
+    2: {"rewards": [{"t": "デナリウス 3,000", "k": "money"}, _goods_reward(2173, 25), _goods_reward(151691, 25)]},
+}}}
 
 
 def fix_steps(sl, steps):
@@ -288,6 +310,13 @@ EXCLUDED_REWARDS = {
     # ディアナのコレクション: ミウトは、パンドラのアンフォラで手に入るルキウスの印章指輪をディアナに届けたときの報酬で、
     # ディアナのクエストの中の別の届け物として作られている。選択肢の報酬ではないので外す（パンドラのアンフォラ側に載る）
     96954: {159507},
+}
+
+
+# annohead の報酬に出ないが、Planner 3.0.1 では専門家が報酬になるクエスト（ストーリーライン → アイテムの GUID）
+EXTRA_REWARD_ITEMS = {
+    154858: [155788],  # 純粋理論: 「専門家を追加」の節（Add specialist）
+    50951: [44112],    # 行方不明の商品: ブドウ潰し（「商人を追加」の節。通知には出ない）
 }
 
 
@@ -402,7 +431,7 @@ for g, title, icon, reg, dlc, slug, series, idx in q("select * from questline or
         it = q("select name_text,rarity from item where guid=?", ig)
         if it and it[0][1] != "Quest":
             all_rewards.append({"t": tr(it[0][0]) or str(ig), "k": "item", "rarity": it[0][1]})
-    for ig in replaced_items(g):
+    for ig in replaced_items(g) + EXTRA_REWARD_ITEMS.get(g, []):
         it = q("select name_text,rarity from item where guid=?", ig)
         if it and it[0][1] != "Quest":
             all_rewards.append({"t": tr(it[0][0]) or str(ig), "k": "item", "rarity": it[0][1]})
@@ -439,7 +468,7 @@ for story, item_ids in extra.items():
     used_override = False
     title = q("select title_text from storyline where guid=?", story)
     qrow = q("select name_text from quest where storyline_guid=? limit 1", story)
-    nm = (tr(title[0][0]) if title else None) or (tr(qrow[0][0]) if qrow else None) or name(story) or str(story)
+    nm = quest_title(story) or (tr(title[0][0]) if title else None) or (tr(qrow[0][0]) if qrow else None) or name(story) or str(story)
     meta = planner_meta.get(story, {})
     items = []
     for ig in dict.fromkeys(item_ids):
@@ -461,6 +490,7 @@ for story, item_ids in extra.items():
 # Planner の題名と、成功の通知に出る報酬（shownRewards）から「選択肢なし」として足す
 PLANNER_ONLY = {
     109521: "価値ある戦利品（エクィテスの依頼。商人の船を護衛すると周到な大工）",
+    50951: "行方不明の商品（住民の依頼。annohead に無い。アイテムは報酬の通知から）",
     157316: "市場の氾濫（DLC03 の住民の依頼。葦切り。葦切りは実機のアイテム検索に出ない専門家）",
 }
 for story in PLANNER_ONLY:
@@ -469,7 +499,7 @@ for story in PLANNER_ONLY:
         continue
     title = " ".join(planner_ja.get(str(meta.get("title")), "").replace("​", "").split())
     item_ids = [r["asset"] for n in meta.get("nodes", []) for nt in n.get("notifications") or []
-                for r in nt.get("shownRewards") or [] if r.get("asset") != DENARII]
+                for r in nt.get("shownRewards") or [] if r.get("asset") != DENARII] + EXTRA_REWARD_ITEMS.get(story, [])
     items = []
     for ig in dict.fromkeys(item_ids):
         it = q("select name_text,rarity from item where guid=?", ig)

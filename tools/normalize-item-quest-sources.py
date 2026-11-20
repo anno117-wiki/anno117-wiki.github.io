@@ -25,6 +25,18 @@ ALIASES = {
 }
 
 
+# アイテム側の入手先にクエストが載っていないものを足す（アイテムの GUID → クエスト一覧の guid）。
+# クエスト一覧の札には出るのに、元の入手先データが交易・祭りだけ（または空）のもの（2026-11-20 確認）
+EXTRA_QUEST_SOURCES = {
+    "51332": [41830],    # 人気の組み立て職人-エクスペラタ ← アルビオンの成果
+    "51829": [154859],   # 魚捌き ← 追放者
+    "51885": [106858],   # 内省の知性-メレサムン ← 運動シンポジウム
+    "166421": [153567],  # 泥ふるい ← 平和を切り開く
+    "179657": [153150],  # スイレン採集者 ← 騒乱の声
+    "184794": [152807, 153567],  # マルクス・トライウス・ベローナ ← パンドラのアンフォラ・平和を切り開く
+}
+
+
 def norm(text):
     """全角・半角の違い（「第２部」と「第2部」）を無視して比べる。"""
     return unicodedata.normalize("NFKC", text)
@@ -66,7 +78,12 @@ table = lookup_table()
 items = json.loads(ITEMS.read_text(encoding="utf-8"))
 changed, kept = 0, set()
 for item in items:
-    sources = item.get("source")
+    sources = item.get("source") or []
+    for guid in EXTRA_QUEST_SOURCES.get(str(item["guid"]), []):
+        if guid not in title_of:
+            sys.exit(f"EXTRA_QUEST_SOURCES の guid がクエスト一覧にありません: {item['nameJa']} → {guid}")
+        sources = [f"クエスト「{title_of[guid]}」"] + [x for x in sources if x != f"クエスト「{title_of[guid]}」"]
+        item["source"] = sources
     if not sources:
         continue
     out = []
