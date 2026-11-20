@@ -16,6 +16,7 @@
   建物モジュール(tools/assets_buildings.py)が Planner の buildings.json と同じ値か(Planner にある建物のみ)
   商品・需要・人口層・住居のモジュール(tools/assets_economy.py)が Planner の products / needs / population と同じ値・並びか
   研究のモジュール(tools/assets_techs.py)が Planner の techs.json と同じ値・並びか(effectLines などの文は対象外)
+  街の状況のモジュール(tools/assets_city_status.py)が Planner の city_status.json と同じ値・並びか
   Planner全ファイルのGUIDがXMLにあるか
 比較しない範囲(XMLに無い、または未調査): 建物の幅と高さ(.ifo由来)、貿易の受動取引・建設資材・艦隊、
   研究どうしの接続線(XMLに接続の情報が無い。画面の升目と TechConnectionLength だけある)
@@ -763,6 +764,33 @@ def compare_tech_module(R: Resolver) -> None:
             if a != b:
                 add('techModule', p['guid'], p['name'], k, a, b)
 
+def compare_city_status_module(R: Resolver) -> None:
+    """tools/assets_city_status.py(街の状況)が、Planner の city_status.json と同じ値・並びか"""
+    from assets_city_status import load_city_status
+
+    mine = load_city_status(R)
+    for region, planner in pj('city_status').items():
+        stages = mine.get(region, [])
+        if [s['guid'] for s in stages] != [p['guid'] for p in planner]:
+            add('cityStatusModule', 0, region, '並び・件数', len(planner), len(stages))
+        by_guid = {s['guid']: s for s in stages}
+        for p in planner:
+            m = by_guid.get(p['guid'])
+            if m is None:
+                add('cityStatusModule', p['guid'], region, 'XMLに無い', '', '')
+                continue
+            pairs = {
+                'locaEn': ((p.get('loca') or {}).get('english'), (m['loca'] or {}).get('english')),
+                'locaJa': ((p.get('loca') or {}).get('japanese'), (m['loca'] or {}).get('japanese')),
+                'icon': (p['icon'], m['icon']),
+                'required': ([(r['populationGroup'], float(r['population'])) for r in p['required']],
+                             [(r['populationGroup'], r['population']) for r in m['required']]),
+                'attributes': ({k: {a: float(x) for a, x in d.items()} for k, d in p['attributes'].items()}, m['attributes']),
+            }
+            for k, (a, b) in pairs.items():
+                if a != b:
+                    add('cityStatusModule', p['guid'], region, k, a, b)
+
 
 def check_guid_coverage(R: Resolver) -> None:
     """Planner の各ファイルに出てくる guid が、XML に全部あるか"""
@@ -795,7 +823,8 @@ def main() -> None:
     steps = (compare_factories, compare_economy, compare_buildings, compare_techs_and_status,
              compare_effects_buffs_items, compare_religion, compare_festivals, compare_trade,
              compare_quests, compare_tech_details, compare_factory_module, compare_building_module,
-             compare_economy_module, compare_tech_module, check_guid_coverage)
+             compare_economy_module, compare_tech_module, compare_city_status_module,
+             check_guid_coverage)
     for step in steps:
         step(R)
     print('=== 差異 ===')

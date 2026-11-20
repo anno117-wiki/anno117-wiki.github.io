@@ -1,7 +1,7 @@
 #!/usr/bin/env python3
 """3.0 の「街の状況」データで city-status.json を更新する。
 
-入力 : _local/anno-official-data/v3.0.1-planner/city_status.json (Anno 117 Planner v1.0.0, ゲーム3.0)
+入力 : assets.xml から作った街の状況(tools/assets_city_status.py。ゲーム3.0.1)
        apps/wiki/docs/wiki/city-status.json (既存。41〜45段階の引き継ぎに使う)
 出力 : apps/wiki/docs/wiki/city-status.json
 
@@ -15,8 +15,10 @@ import json
 import sys
 from pathlib import Path
 
+sys.path.insert(0, str(Path(__file__).resolve().parent))
+from assets_city_status import load_city_status  # noqa: E402
+
 ROOT = Path(__file__).resolve().parent.parent
-SRC = ROOT / '_local' / 'anno-official-data' / 'v3.0.1-planner' / 'city_status.json'
 OUT = ROOT / 'apps' / 'wiki' / 'docs' / 'wiki' / 'city-status.json'
 ZW = '​'
 ATTR_KEYS = ['Happiness', 'Health', 'FireSafety', 'Belief', 'Knowledge', 'Prestige']
@@ -54,9 +56,7 @@ def stage(level: int, s: dict, with_attrs: bool) -> dict:
 
 
 def main() -> None:
-    if not SRC.exists():
-        sys.exit(f'入力が無い: {SRC}')
-    src = json.loads(SRC.read_text(encoding='utf-8'))
+    src = load_city_status()  # assets.xml から作る(Planner の city_status.json と同じ形)
     old = json.loads(OUT.read_text(encoding='utf-8'))
     roman = [stage(i + 1, s, True) for i, s in enumerate(src['Roman'])]
     kept = [s for s in old['stages'] if s['level'] > len(roman)]
