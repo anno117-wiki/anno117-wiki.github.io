@@ -1,7 +1,7 @@
 #!/usr/bin/env python3
 """アイギュプトの住民層ごとの需要を、Anno 117 Planner のゲーム3.0データから生成する。
 
-入力 : _local/anno-official-data/v3.0.1-planner/{population,needs,products}.json
+入力 : assets.xml から作った人口層・住居・需要・商品（tools/assets_economy.py）
 出力 : apps/wiki/docs/wiki/population-aegyptus.json
          tiers      : 層ごとの全需要と、1つ下の層から増える需要(住民層ページ用)
          needsIndex : 商品ごとの需要住民層(商品需要逆引き用。needs-index.json と同じ形)
@@ -13,6 +13,9 @@
 import json
 import sys
 from pathlib import Path
+
+sys.path.insert(0, str(Path(__file__).resolve().parent))
+from assets_economy import load_needs, load_population, load_products  # noqa: E402
 
 ROOT = Path(__file__).resolve().parent.parent
 SRC = ROOT / '_local' / 'anno-official-data' / 'v3.0.1-planner'
@@ -42,9 +45,9 @@ def ja(x: dict) -> str:
 
 
 def main() -> None:
-    pop = json.loads((SRC / 'population.json').read_text(encoding='utf-8'))
-    needs = {n['guid']: n for n in json.loads((SRC / 'needs.json').read_text(encoding='utf-8'))['needs']}
-    products = {p['guid']: p for p in json.loads((SRC / 'products.json').read_text(encoding='utf-8'))['products']}
+    pop = load_population()  # assets.xml から作る(Planner の population.json と同じ形)
+    needs = {n['guid']: n for n in load_needs()['needs']}
+    products = {p['guid']: p for p in load_products()['products']}
     levels = {x['guid']: x for x in pop['populationLevels']}
     residences = {r['guid']: r for r in pop['residences'] if 'Egyptian' in r['regions']}
     by_level = {r['populationLevel']: r for r in residences.values()}

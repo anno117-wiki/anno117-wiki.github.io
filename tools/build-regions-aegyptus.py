@@ -1,7 +1,7 @@
 #!/usr/bin/env python3
 """アイギュプト(DLC03)で作れる商品の一覧を、Anno 117 Planner のゲーム3.0データから生成する。
 
-入力 : _local/anno-official-data/v3.0.1-planner/{products,needs}.json と、生産建物は assets.xml(tools/assets_factories.py)
+入力 : _local/anno-official-data/v3.0.1-planner/生産建物・商品・需要は assets.xml(tools/assets_factories.py・assets_economy.py)
        packages/shared/public/productions/list.json と各チェーンJSON(既存の商品の対応づけに使う)
 出力 : apps/wiki/docs/wiki/regions-aegyptus.json (regions.data.ts 他が読む)
 
@@ -19,6 +19,7 @@ from pathlib import Path
 
 sys.path.insert(0, str(Path(__file__).resolve().parent))
 from aegyptus_icons import icon_name  # noqa: E402
+from assets_economy import load_needs, load_products  # noqa: E402
 from assets_factories import load_production  # noqa: E402
 
 ROOT = Path(__file__).resolve().parent.parent
@@ -39,8 +40,8 @@ PRODUCT_CATEGORY = {
 
 def main() -> None:
     prod = load_production()  # assets.xml から作る(Planner の production.json と同じ形)
-    products = {x['guid']: x for x in json.loads((SRC / 'products.json').read_text(encoding='utf-8'))['products']}
-    needs = json.loads((SRC / 'needs.json').read_text(encoding='utf-8'))['needs']
+    products = {x['guid']: x for x in load_products()['products']}  # assets.xml から作る
+    needs = load_needs()['needs']  # assets.xml から作る
     factories = {str(f['guid']): f for f in prod['factories']}
     makes = {o['product'] for f in prod['factories'] if 'Egyptian' in f['regions'] for o in f['outputs']}
 

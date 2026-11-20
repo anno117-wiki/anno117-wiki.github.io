@@ -14,6 +14,7 @@
   クエスト(ストーリーライン449・部品ノード16,911の種類・名前・接続先、ノード内の数値と参照、プール)
   生産建物モジュール(tools/assets_factories.py)が Planner の production.json と同じ値・並びか
   建物モジュール(tools/assets_buildings.py)が Planner の buildings.json と同じ値か(Planner にある建物のみ)
+  商品・需要・人口層・住居のモジュール(tools/assets_economy.py)が Planner の products / needs / population と同じ値・並びか
   Planner全ファイルのGUIDがXMLにあるか
 比較しない範囲(XMLに無い、または未調査): 建物の幅と高さ(.ifo由来)、貿易の受動取引・建設資材・艦隊、
   研究どうしの接続線(XMLに接続の情報が無い。画面の升目と TechConnectionLength だけある)
@@ -681,6 +682,50 @@ def compare_building_module(R: Resolver) -> None:
     extra = [g for g in mine if g not in planner]
     print(f'建物モジュール: Planner {len(planner)}件 / XML {len(mine)}件（XMLだけ {len(extra)}件。除外した種類: {sorted(EXCLUDED_TEMPLATES)}）')
 
+def compare_economy_module(R: Resolver) -> None:
+    """tools/assets_economy.py(商品・需要・人口層・住居)が、Planner の products / needs / population と同じ値・並びか"""
+    from assets_economy import load_needs, load_population, load_products
+
+    def check(cat: str, mine: list[dict], planner: list[dict], fields: dict) -> None:
+        if [m['guid'] for m in mine] != [p['guid'] for p in planner]:
+            add(cat, 0, cat, '並び・件数', len(planner), len(mine))
+        by_guid = {m['guid']: m for m in mine}
+        for p in planner:
+            m = by_guid.get(p['guid'])
+            if m is None:
+                add(cat, p['guid'], p.get('name', ''), 'XMLに無い', '', '')
+                continue
+            for k, fn in fields.items():
+                a, b = fn(p), fn(m)
+                if a != b:
+                    add(cat, p['guid'], p.get('name', ''), k, a, b)
+
+    def loca(x, lang):
+        return (x.get('loca') or {}).get(lang)
+
+    base = {'name': lambda x: x.get('name'), 'locaEn': lambda x: loca(x, 'english'), 'locaJa': lambda x: loca(x, 'japanese'),
+            'icon': lambda x: x.get('icon')}
+    P = pj('products')
+    check('products2', load_products(R)['products'], P['products'],
+          {**base, 'regions': lambda x: x['regions'], 'productionRegions': lambda x: sorted(set(x['productionRegions'])),
+           'category': lambda x: x['category'], 'basePrice': lambda x: x['basePrice'], 'storageLevel': lambda x: x['storageLevel']})
+    N = pj('needs')
+    check('needs2', load_needs(R)['needs'], N['needs'],
+          {**base, 'product': lambda x: x['product'], 'category': lambda x: x['category'],
+           'supplyWeight': lambda x: x['supplyWeight'], 'attributes': lambda x: x['attributes']})
+    PP = pj('population')
+    mine = load_population(R)
+    check('populationLevels2', mine['populationLevels'], PP['populationLevels'],
+          {**base, 'workforce': lambda x: x['workforce'], 'factor': lambda x: x['populationToWorkforceFactor'],
+           'regions': lambda x: x['regions'], 'residence': lambda x: x['residence'], 'group': lambda x: x['group'], 'tier': lambda x: x['tier']})
+    check('residences2', mine['residences'], PP['residences'],
+          {'name': base['name'], 'locaEn': base['locaEn'], 'locaJa': base['locaJa'], 'populationLevel': lambda x: x['populationLevel'],
+           'regions': lambda x: x['regions'], 'upgrades': lambda x: sorted(x['upgrades']),
+           'needs': lambda x: [(n['need'], n['consumptionRate'], n['onlyThroughBuff']) for n in x['needs']]})
+    check('populationGroups2', mine['populationGroups'], PP['populationGroups'],
+          {'name': base['name'], 'region': lambda x: x['region'], 'populationLevels': lambda x: x['populationLevels']})
+    check('workforce2', mine['workforce'], PP['workforce'], {**base, 'regions': lambda x: sorted(x['regions'])})
+
 
 def check_guid_coverage(R: Resolver) -> None:
     """Planner の各ファイルに出てくる guid が、XML に全部あるか"""
@@ -713,7 +758,7 @@ def main() -> None:
     steps = (compare_factories, compare_economy, compare_buildings, compare_techs_and_status,
              compare_effects_buffs_items, compare_religion, compare_festivals, compare_trade,
              compare_quests, compare_tech_details, compare_factory_module, compare_building_module,
-             check_guid_coverage)
+             compare_economy_module, check_guid_coverage)
     for step in steps:
         step(R)
     print('=== 差異 ===')

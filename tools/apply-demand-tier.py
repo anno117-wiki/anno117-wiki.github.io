@@ -1,7 +1,7 @@
 #!/usr/bin/env python3
 """建物効果(buildings-effects.json)の tier を、「その建物を必要とする最初の住民層」に書き換える。
 
-入力 : _local/anno-official-data/v3.0.1-planner/{population,needs}.json
+入力 : assets.xml から作った人口層・住居・需要（tools/assets_economy.py）
 出力 : apps/wiki/docs/wiki/buildings-effects.json の tier（他の項目は変えない）
 
 - 同じアイコンの需要(公共サービス・商品)を持つ住民層のうち、いちばん低い層を入れる。
@@ -10,7 +10,11 @@
 - 何度実行しても同じ結果になる（今の層は地域の判定にしか使わない）
 """
 import json
+import sys
 from pathlib import Path
+
+sys.path.insert(0, str(Path(__file__).resolve().parent))
+from assets_economy import load_needs, load_population  # noqa: E402
 
 ROOT = Path(__file__).resolve().parent.parent
 SRC = ROOT / '_local' / 'anno-official-data' / 'v3.0.1-planner'
@@ -25,8 +29,8 @@ TIER_OVERRIDE = {'vintner': 'equites', 'bakery': 'plebeian', 'caelator': 'equite
 
 
 def main() -> None:
-    pop = json.loads((SRC / 'population.json').read_text(encoding='utf-8'))
-    needs = {n['guid']: n for n in json.loads((SRC / 'needs.json').read_text(encoding='utf-8'))['needs']}
+    pop = load_population()  # assets.xml から作る(Planner の population.json と同じ形)
+    needs = {n['guid']: n for n in load_needs()['needs']}
     tier_no = {x['guid']: x['tier'] for x in pop['populationLevels']}
     # 地域(latium/albion) -> アイコン -> 最初の層
     first: dict[str, dict[str, str]] = {'latium': {}, 'albion': {}}

@@ -1,7 +1,7 @@
 #!/usr/bin/env python3
 """アイギュプト専用の新商品の生産チェーンを、Anno 117 Planner のゲーム3.0データから生成する。
 
-入力 : _local/anno-official-data/v3.0.1-planner/{products,needs}.json と、生産建物は assets.xml(tools/assets_factories.py)
+入力 : _local/anno-official-data/v3.0.1-planner/生産建物・商品・需要は assets.xml(tools/assets_factories.py・assets_economy.py)
 出力 : apps/wiki/docs/wiki/production-chains-aegyptus.json (production-chains.data.ts が読む)
 
 - 対象は、アイギュプトで作る商品のうち番号(GUID)が151000以上の最終商品(需要品と建材)
@@ -19,6 +19,7 @@ from pathlib import Path
 
 sys.path.insert(0, str(Path(__file__).resolve().parent))
 from aegyptus_icons import icon_name  # noqa: E402
+from assets_economy import load_needs, load_products  # noqa: E402
 from assets_factories import load_production  # noqa: E402
 
 ROOT = Path(__file__).resolve().parent.parent
@@ -41,8 +42,8 @@ def fmt_count(fr: Fraction):
 
 def main() -> None:
     prod = load_production()  # assets.xml から作る(Planner の production.json と同じ形)
-    products = {x['guid']: x for x in json.loads((SRC / 'products.json').read_text(encoding='utf-8'))['products']}
-    needs = json.loads((SRC / 'needs.json').read_text(encoding='utf-8'))['needs']
+    products = {x['guid']: x for x in load_products()['products']}  # assets.xml から作る
+    needs = load_needs()['needs']  # assets.xml から作る
     fuel_seconds = Fraction(int(prod['fuel']['duration']))
 
     # 商品 -> アイギュプトでその商品を作る建物(建物名で重複を除く。農場の水位違いなど)
