@@ -2277,7 +2277,7 @@
       "id": "albion_winery",
       "nameEn": "Winery (Albion)",
       "nameJa": "ワイン醸造業者",
-      "tier": "alderman",
+      "tier": "nobles",
       "maintenance": -30,
       "population": 0,
       "income": 1,
