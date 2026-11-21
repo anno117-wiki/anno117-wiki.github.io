@@ -94,6 +94,43 @@ function onToggle(guid: number, e: Event) {
   if ((e.target as HTMLDetailsElement).open) opened.add(guid)
 }
 
+/** 選択肢の「次へ」が1つだけで、その先の目標がほかから参照されていないとき、目標を選択肢の下に入れ込む。
+ *  byOption: `${選択の節id}:${選択肢の番号}` -> 入れ込む目標の節 / ids: 入れ込んだ目標の節id（単独の節としては出さない） */
+interface Inlined { byOption: Map<string, Step>; ids: Set<string> }
+const inlinedCache = new Map<number, Inlined>()
+function inlined(q: Quest): Inlined {
+  const hit = inlinedCache.get(q.guid)
+  if (hit) return hit
+  const steps = new Map(q.steps.map((s) => [s.id, s]))
+  const refs = new Map<string, number>()
+  const count = (r?: Result) => r?.next.forEach((n) => refs.set(n, (refs.get(n) ?? 0) + 1))
+  for (const s of q.steps) {
+    s.options?.forEach((o) => { count(o); count(o.fail) })
+    count(s.met); count(s.missed); count(s.yes); count(s.no); count(s.result)
+  }
+  const byOption = new Map<string, Step>()
+  const ids = new Set<string>()
+  for (const s of q.steps) {
+    s.options?.forEach((o, i) => {
+      if (o.next.length !== 1 || o.fail) return
+      const t = steps.get(o.next[0])
+      if (t && t.kind === 'objective' && refs.get(t.id) === 1 && !ids.has(t.id)) {
+        byOption.set(`${s.id}:${i}`, t)
+        ids.add(t.id)
+      }
+    })
+  }
+  const out = { byOption, ids }
+  inlinedCache.set(q.guid, out)
+  return out
+}
+
+/** 単独の節として出す節（選択肢の下に入れ込んだ目標を除く） */
+function visibleSteps(q: Quest): Step[] {
+  const ids = inlined(q).ids
+  return q.steps.filter((s) => !ids.has(s.id))
+}
+
 /** 目標は達成・未達成、分かれ道は満たす・満たさない。中身の無い側は出さない */
 function branches(s: Step): [string, Result][] {
   const pairs: [string, Result | undefined][] = s.kind === 'objective'
@@ -163,7 +200,7 @@ function isEmpty(r?: Result) {
           <button v-if="q.nextQuest" type="button" class="ql-chain-btn" @click="goQuest(q.nextQuest)">次: {{ byGuid.get(q.nextQuest)?.name }}</button>
         </div>
         <p v-if="q.provisional" class="ql-note">このクエストは、ゲームのデータに日本語の文が無い所があり、その部分はこのサイトで仮に訳しています。</p>
-        <div v-for="s in q.steps" :key="s.id" class="ql-step">
+        <div v-for="s in visibleSteps(q)" :key="s.id" class="ql-step">
           <template v-if="s.kind === 'decision'">
             <div class="ql-step-head">
               <span class="ql-id">{{ s.id }}</span>
@@ -182,8 +219,21 @@ function isEmpty(r?: Result) {
                 <div class="ql-result">
                   <span v-if="o.chance" class="ql-label">成功</span>
                   <span v-for="r in o.rewards" :key="r.t" class="ql-reward" :class="'ql-k-' + r.k">{{ r.t }}</span>
-                  <span v-for="n in o.next" :key="n" class="ql-next">{{ n }}へ</span>
+                  <template v-if="!inlined(q).byOption.has(s.id + ':' + i)">
+                    <span v-for="n in o.next" :key="n" class="ql-next">{{ n }}へ</span>
+                  </template>
                   <span v-if="isEmpty(o)" class="ql-none">報酬なし</span>
+                </div>
+                <div v-if="inlined(q).byOption.get(s.id + ':' + i)" class="ql-inline">
+                  <div class="ql-step-head">
+                    <span class="ql-id">{{ inlined(q).byOption.get(s.id + ':' + i)!.id }}</span>
+                    <span class="ql-title">{{ inlined(q).byOption.get(s.id + ':' + i)!.text }}</span>
+                  </div>
+                  <div v-for="[label, r] in branches(inlined(q).byOption.get(s.id + ':' + i)!)" :key="label" class="ql-result">
+                    <span v-if="label" class="ql-label">{{ label }}</span>
+                    <span v-for="x in r.rewards" :key="x.t" class="ql-reward" :class="'ql-k-' + x.k">{{ x.t }}</span>
+                    <span v-for="n in r.next" :key="n" class="ql-next">{{ n }}へ</span>
+                  </div>
                 </div>
                 <div v-if="o.fail" class="ql-result">
                   <span class="ql-label">失敗</span>
@@ -314,6 +364,7 @@ function isEmpty(r?: Result) {
 .ql-opts { list-style: none; margin: 4px 0 0 !important; padding: 0 !important; }
 .ql-opts > li { margin: 6px 0 !important; padding: 6px 8px; border-radius: 6px; background: var(--vp-c-bg-soft); }
 .ql-opt-text { font-size: 14px; font-weight: 600; }
+.ql-inline { margin: 6px 0 0 8px; padding: 2px 0 2px 10px; border-left: 2px solid var(--vp-c-divider); }
 .ql-meta { display: flex; flex-wrap: wrap; gap: 2px 10px; font-size: 12px; color: var(--vp-c-text-2); }
 .ql-result { display: flex; flex-wrap: wrap; gap: 4px; align-items: center; margin-top: 4px; font-size: 13px; }
 .ql-label { font-size: 12px; color: var(--vp-c-text-2); }
