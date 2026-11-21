@@ -29,6 +29,57 @@ class PlannerSteps:
         self.limit = text_limit
 
     # ---- 文 ----
+    @staticmethod
+    def _find(obj, key):
+        """入れ子の中から、最初に見つかった key の値（辞書）を返す"""
+        if isinstance(obj, dict):
+            if isinstance(obj.get(key), dict):
+                return obj[key]
+            for v in obj.values():
+                r = PlannerSteps._find(v, key)
+                if r is not None:
+                    return r
+        elif isinstance(obj, list):
+            for v in obj:
+                r = PlannerSteps._find(v, key)
+                if r is not None:
+                    return r
+        return None
+
+    def _obj_vars(self, o):
+        """目標の vars に、目標の条件（props）から読める値を足す。vars にある値が優先。
+        読めるのは、建設・装備・選択・救出・需要の目標の「対象」と「数」。場所や護衛の相手はマップ固有なので読まない"""
+        out = {}
+        props = o.get("props") or {}
+        c = self._find(props, "ConditionPlayerCounter")
+        if c:
+            if c.get("Context") is not None:
+                out["AssetData(Conditions:QuestCondition.Context).Text"] = c["Context"]
+            if c.get("CounterAmount") is not None:
+                out["Conditions:QuestCondition.Amount"] = c["CounterAmount"]
+        sel = self._find(props, "ConditionQuestSelectObject")
+        if sel:
+            guid = next((((x.get("Object") or {}).get("ObjectFilter") or {}).get("ObjectGUID") for x in sel.get("SelectObjects") or []), None)
+            if guid is not None:
+                out["AssetData(Conditions:QuestCondition.Object).Text"] = guid
+        use = self._find(props, "ConditionQuestItemUsed")
+        if use and use.get("UseItems"):
+            out["AssetData(Conditions:QuestCondition.Context).Text"] = use["UseItems"][0].get("Item")
+        pick = self._find(props, "ConditionQuestPickup")
+        if pick:
+            guid = next((((x.get("PickupObject") or {}).get("ObjectList") or {}).get("Object") for x in pick.get("PickupObjects") or []), None)
+            if guid is not None:
+                out["AssetData(Conditions:QuestCondition.Context).Text"] = guid
+        need = self._find(props, "ConditionNeedCategoryFulfillment")
+        if need:
+            if need.get("PopulationLevels") is not None:
+                out["AssetData(Conditions:QuestCondition.PopulationLevel).Text"] = need["PopulationLevels"]
+            out["Conditions:QuestCondition.CurrentValue"] = 0  # 達成前の値は意味がないので 0 で埋めて消す
+            if need.get("TargetValue") is not None:
+                out["Conditions:QuestCondition.TargetValue"] = need["TargetValue"]
+        out.update(o.get("vars") or {})
+        return out
+
     def _fill(self, s, obj_vars):
         """目標の文の差し込みを、目標が持つ値で埋める（埋められない分は readable に任せる）"""
         def sub(m):
@@ -50,13 +101,15 @@ class PlannerSteps:
         if obj_vars:
             s = self._fill(s, obj_vars)
         s = re.sub(r"<[^>]+>", "", s)  # <i> <b> などの装飾は外す
-        s = re.sub(r"(?<!\d)0/(\d)", r"\g<1>", s)  # 「0/30」は「30」に（達成前の値は意味がない）
+        s = re.sub(r"(?<!\d)0\s*/\s*(\d)", r"\g<1>", s)  # 「0/30」は「30」に（達成前の値は意味がない）
         s = self.readable(s)
         # 埋められなかった差し込みは、読める言葉にする。数が付く目標は「：」より前の説明だけにする
         if re.search("（(?:必要な数|必要な量|今の数|数)）", s):
             head = re.split("[:：]", s, maxsplit=1)[0].strip()
             if head:
                 s = head
+        # 需要の目標の欄（食料・公共・ファッション）は、日本語名を確かめられないので外す
+        s = re.sub(r"^（…）を", "", s)
         for ph, word in (("（届け先）", "指定の場所"), ("（品物）", "指定の品物")):
             s = s.replace(ph, word)
         s = " ".join(s.split()).rstrip(":：").rstrip()
@@ -91,6 +144,17 @@ class PlannerSteps:
         return n["kind"] == "DecisionRoot" or (n["kind"] == "Decision" and len((n.get("decision") or {}).get("options") or []) >= 2
                                                and not self._screen_owner(n["id"]))
 
+    def _screen_of(self, n):
+        """決定の画面のノード（DecisionRoot なら、その画面。なければ自身）"""
+        if n["kind"] == "DecisionRoot":
+            sid = next((e["to"] for e in n["edges"] if e["kind"] == "screen"), None)
+            return self.nodes.get(sid, n)
+        return n
+
+    def _is_notice(self, n):
+        """選択肢が1つ以下の画面は、選ぶ場面ではなく通知（承諾・確認・運命の受け入れなど）"""
+        return len((self._screen_of(n).get("decision") or {}).get("options") or []) <= 1
+
     def _screen_owner(self, nid):
         """この決定が、DecisionRoot の画面として使われているなら、その DecisionRoot の id"""
         for n in self.nodes.values():
@@ -101,7 +165,7 @@ class PlannerSteps:
     def _is_objective(self, n):
         o = n.get("objective")
         return bool(o) and n["kind"] != "SelectObjectiveComponent" and (o.get("text") is not None or o.get("headline") is not None) \
-            and bool(self._t(o.get("headline") if o.get("headline") is not None else o.get("text"), o.get("vars")))
+            and bool(self._t(o.get("headline") if o.get("headline") is not None else o.get("text"), self._obj_vars(o)))
 
     def _visible_ids(self):
         # 開始から幅優先で、見つけた順に並べる
@@ -154,17 +218,17 @@ class PlannerSteps:
         visible = set(order)
         labels, cnt = {}, {}
         for g in order:
-            k = "選択" if self.nodes[g]["kind"] in ("DecisionRoot", "Decision") else "目標"
+            k = "目標" if not self._is_choice(self.nodes[g]) else "通知" if self._is_notice(self.nodes[g]) else "選択"
             cnt[k] = cnt.get(k, 0) + 1
             labels[g] = f"{k}{cnt[k]}"
         steps = []
         for g in order:
             n = self.nodes[g]
-            if n["kind"] in ("DecisionRoot", "Decision"):
+            if self._is_choice(n):
                 steps.append(self._choice_step(n, visible, labels))
             else:
                 o = n["objective"]
-                ov = o.get("vars") or {}
+                ov = self._obj_vars(o)
                 st = {"id": labels[g], "kind": "objective",
                       "text": self._t(o.get("headline") if o.get("headline") is not None else o.get("text"), ov) or "（目標）"}
                 by = {}
@@ -182,7 +246,8 @@ class PlannerSteps:
             screen = self.nodes.get(sid, n)
         dec = screen.get("decision") or {}
         speaker = dec.get("character")
-        st = {"id": labels[n["id"]], "kind": "decision",
+        notice = self._is_notice(n)
+        st = {"id": labels[n["id"]], "kind": "notice" if notice else "decision",
               "speaker": self.name(speaker) if speaker else None,
               "title": self._t(dec.get("headline")), "text": self._t(dec.get("text")), "options": []}
         for i, opt in enumerate(dec.get("options") or []):
@@ -192,6 +257,10 @@ class PlannerSteps:
                 targets += [e["to"] for e in screen["edges"] if e["kind"] == "option" and e.get("index") == i]
             res = self._outcome(targets, visible, labels, {n["id"], screen["id"]})
             st["options"].append({"text": self._t(opt.get("text")) or "（文なし）", **res})
+        if notice:
+            # 通知: 選択肢の枠は使わず、結果（報酬・次の節）だけを持つ。選択肢の文（確認・承諾する）は捨てる
+            opt = st.pop("options")
+            st["result"] = {"rewards": opt[0]["rewards"], "next": opt[0]["next"]} if opt else {"rewards": [], "next": []}
         if n["kind"] == "DecisionRoot":
             to = [e["to"] for e in n["edges"] if e["kind"] == "timeout"]
             if to:

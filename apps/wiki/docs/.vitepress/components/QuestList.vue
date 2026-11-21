@@ -10,11 +10,13 @@ interface Result { rewards: Reward[]; next: string[] }
 interface Option extends Result { text: string; cost?: string; chance?: string; cond?: string; fail?: Result }
 interface Step {
   id: string
-  kind: 'decision' | 'objective' | 'check' | 'then'
+  kind: 'decision' | 'notice' | 'objective' | 'check' | 'then'
   speaker?: string | null
   title?: string | null
   text?: string | null
   options?: Option[]
+  /** 通知（選択肢が1つの画面）の結果 */
+  result?: Result
   met?: Result
   missed?: Result
   cond?: string
@@ -191,6 +193,19 @@ function isEmpty(r?: Result) {
                 </div>
               </li>
             </ul>
+          </template>
+
+          <template v-else-if="s.kind === 'notice'">
+            <div class="ql-step-head">
+              <span class="ql-id">{{ s.id }}</span>
+              <span v-if="s.title" class="ql-title">{{ s.title }}</span>
+              <span v-if="s.speaker" class="ql-speaker">（{{ s.speaker }}）</span>
+            </div>
+            <p v-if="s.text" class="ql-text">{{ s.text }}</p>
+            <div v-if="s.result && !isEmpty(s.result)" class="ql-result">
+              <span v-for="r in s.result.rewards" :key="r.t" class="ql-reward" :class="'ql-k-' + r.k">{{ r.t }}</span>
+              <span v-for="n in s.result.next" :key="n" class="ql-next">{{ n }}へ</span>
+            </div>
           </template>
 
           <template v-else-if="s.kind === 'objective'">

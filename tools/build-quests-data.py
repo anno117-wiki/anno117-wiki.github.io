@@ -163,6 +163,8 @@ def reward(r):
     if kind == "storyline":
         return {"t": f"次のクエスト: {quest_title(asset) or asset}", "k": "quest"}
     if kind in ("reputation", "xp"):
+        if kind == "reputation" and amount is not None:
+            amt = f" {amount:+,.0f}" if float(amount).is_integer() else f" {amount:+g}"  # 評判は増減が分かるよう符号を付ける
         return {"t": f"{KIND_LABEL[kind]}{amt}" + (f"（{nm}）" if nm else ""), "k": kind}
     rar = q("select rarity from item where guid=?", asset) if kind in ("item", "goods") else []
     if rar and rar[0][0] != "Quest":
@@ -543,7 +545,7 @@ def _planner_result_items(steps):
     for st in steps:
         for o in st.get("options") or []:
             part(o)
-        for k in ("met", "missed", "timeout"):
+        for k in ("met", "missed", "timeout", "result"):
             part(st.get(k))
     return out
 
