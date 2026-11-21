@@ -322,6 +322,61 @@ EXTRA_REWARD_ITEMS = {
 }
 
 
+def order_by_flow(visible, kinds):
+    """見せる節を、流れの順に並べ替える。前の節（その節に進む選択・目標）が先に来るようにし、
+    それ以外は元の並び（annohead の position 順）をできるだけ保つ。
+    例: 目標が元の並びで選択より前にあっても、その選択から進む先なら、選択の後ろに置く。
+    ぐるぐる回る流れ（戻る選択肢）で、前の節がまだ置かれていないだけの節は、元の並びで先に置く"""
+    guids = [n[0] for n in visible]
+    index = {g: i for i, g in enumerate(guids)}
+    vis = set(guids)
+
+    def reach(start_targets):
+        """見せない分かれ道・目標をたどって、先にある見せる節を集める"""
+        found, seen, stack = [], set(), list(start_targets)
+        while stack:
+            g = stack.pop()
+            if g in seen or g not in kinds:
+                continue
+            seen.add(g)
+            if g in vis:
+                found.append(g)
+            else:
+                stack += [t for (_, t) in q("select idx,node_guid from quest_choice_outcome where choice_guid=?", g)]
+        return found
+
+    preds = {g: set() for g in guids}
+    for g in guids:
+        for t in reach([t for (_, t) in q("select idx,node_guid from quest_choice_outcome where choice_guid=?", g)]):
+            if t != g:
+                preds[t].add(g)
+
+    # 自分から先に進める節（循環）は、前の節とは数えない
+    def descendants(g):
+        out, stack = set(), [g]
+        while stack:
+            x = stack.pop()
+            for t in reach([t for (_, t) in q("select idx,node_guid from quest_choice_outcome where choice_guid=?", x)]):
+                if t not in out:
+                    out.add(t)
+                    stack.append(t)
+        return out
+    for g in guids:
+        if preds[g]:
+            desc = descendants(g)
+            preds[g] = {p for p in preds[g] if p not in desc}
+
+    placed, order, remaining = set(), [], list(guids)
+    while remaining:
+        ready = [g for g in remaining if preds[g] <= placed]
+        pick = min(ready or remaining, key=lambda g: index[g])
+        order.append(pick)
+        placed.add(pick)
+        remaining.remove(pick)
+    by = {n[0]: n for n in visible}
+    return [by[g] for g in order]
+
+
 def build_story(sl):
     nodes = q("select node_guid,kind,position,headline_text,text_text,condition_id,speaker_guid "
               "from quest_choice where storyline_guid=? order by position", sl)
@@ -347,7 +402,7 @@ def build_story(sl):
         if n[1] == "objective" and (tr(n[3]) or tr(n[4])):
             return True
         return has_reward(n[0])
-    visible = [n for n in nodes if shown(n)]
+    visible = order_by_flow([n for n in nodes if shown(n)], kinds)
     labels, cnt = {}, {}
     for n in visible:
         k = {"decision": "選択", "objective": "目標", "check": "分かれ道", "then": "続き"}.get(n[1], n[1])
