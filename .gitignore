@@ -72,3 +72,7 @@ docs-notes/*
 # packages/shared/public/icons にアイコンを足したら、こちらにも同じファイルを `git add -f` で追加すること
 apps/wiki/docs/public/icons/goods
 apps/wiki/docs/public/icons/goods/
+
+# Python のバイトコード（自動生成）
+__pycache__/
+*.pyc
