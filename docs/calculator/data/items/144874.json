@@ -1,0 +1,24 @@
+{
+  "displayName": "傑出した探鉱者-カデリナ",
+  "guid": "144874",
+  "description": "完璧な正確さで、掘るべき場所を探り当てる。",
+  "iconFilename": "144874.png",
+  "rarity": "Legendary",
+  "niche": "Agriculture",
+  "targets": [
+    {
+      "producedGoods": [
+        {
+          "name": "Silver Ore"
+        }
+      ]
+    }
+  ],
+  "buffs": [
+    {
+      "FactoryUpgrade": {
+        "ProductivityUpgrade": 25.0
+      }
+    }
+  ]
+}

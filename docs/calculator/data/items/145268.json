@@ -1,0 +1,63 @@
+{
+  "displayName": "長き闇の弁論家-オルフェリア",
+  "guid": "145268",
+  "description": "彼女は長年、オッカススの地下に広がるトンネルをさまよい歩いている。彼女はあらゆる岩石の名前と、その音を知り尽くしている。それ以外にも彼女が見つけたものはあるのだろうか？",
+  "iconFilename": "145268.png",
+  "rarity": "Legendary",
+  "niche": "Agriculture",
+  "targets": [
+    {
+      "producedGoods": [
+        {
+          "name": "Limestone"
+        },
+        {
+          "name": "Granite Block"
+        },
+        {
+          "name": "Uncut Marble"
+        },
+        {
+          "name": "Minerals"
+        },
+        {
+          "name": "Gold Ore"
+        },
+        {
+          "name": "Silica"
+        },
+        {
+          "name": "Clay"
+        },
+        {
+          "name": "Mud"
+        },
+        {
+          "name": "Beads"
+        },
+        {
+          "name": "Copper Ore"
+        },
+        {
+          "name": "Silver Ore"
+        },
+        {
+          "name": "Tin Ore"
+        },
+        {
+          "name": "Iron Ore"
+        },
+        {
+          "name": "Coal"
+        }
+      ]
+    }
+  ],
+  "buffs": [
+    {
+      "FactoryUpgrade": {
+        "ProductivityUpgrade": 50.0
+      }
+    }
+  ]
+}

@@ -10,6 +10,12 @@
       "producedGoods": [
         {
           "name": "Garum"
+        },
+        {
+          "name": "Mackerel"
+        },
+        {
+          "name": "Salt"
         }
       ]
     }

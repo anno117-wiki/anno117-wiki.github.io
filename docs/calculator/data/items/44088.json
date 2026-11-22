@@ -10,6 +10,18 @@
       "producedGoods": [
         {
           "name": "Chariots"
+        },
+        {
+          "name": "Ponies"
+        },
+        {
+          "name": "Chassis"
+        },
+        {
+          "name": "Wood"
+        },
+        {
+          "name": "Reeds"
         }
       ]
     }

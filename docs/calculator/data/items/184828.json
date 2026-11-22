@@ -1,0 +1,30 @@
+{
+  "displayName": "ランプ職人",
+  "guid": "184828",
+  "description": "レンペトラは香油、粘土、そして仲間といることを好む。彼女がいると部屋が明るくなる。",
+  "iconFilename": "184828.png",
+  "rarity": "Rare",
+  "niche": "Economy",
+  "targets": [
+    {
+      "producedGoods": [
+        {
+          "name": "Mud"
+        },
+        {
+          "name": "Sesame Oil"
+        },
+        {
+          "name": "Sesame Pods"
+        }
+      ]
+    }
+  ],
+  "buffs": [
+    {
+      "FactoryUpgrade": {
+        "ProductivityUpgrade": 20.0
+      }
+    }
+  ]
+}

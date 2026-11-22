@@ -1,0 +1,33 @@
+{
+  "displayName": "写本書記",
+  "guid": "181067",
+  "description": "あらゆる巻物を見事に並べる。",
+  "iconFilename": "181067.png",
+  "rarity": "Common",
+  "niche": "Culture",
+  "targets": [
+    {
+      "producedGoods": [
+        {
+          "name": "Minerals"
+        },
+        {
+          "name": "Pigments"
+        },
+        {
+          "name": "Papyrus"
+        },
+        {
+          "name": "Reeds"
+        }
+      ]
+    }
+  ],
+  "buffs": [
+    {
+      "FactoryUpgrade": {
+        "ProductivityUpgrade": 10.0
+      }
+    }
+  ]
+}

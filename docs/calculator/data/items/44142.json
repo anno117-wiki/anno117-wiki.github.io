@@ -10,6 +10,18 @@
       "producedGoods": [
         {
           "name": "Soap"
+        },
+        {
+          "name": "Lavender"
+        },
+        {
+          "name": "Lard"
+        },
+        {
+          "name": "Pigs"
+        },
+        {
+          "name": "Wild Geese"
         }
       ]
     }

@@ -1,0 +1,24 @@
+{
+  "displayName": "ポニーの血統の守り人-コルムカパイル",
+  "guid": "145265",
+  "description": "噂によれば、彼の先祖が育てた馬は執政官の地位にまで上りつめたという。",
+  "iconFilename": "145265.png",
+  "rarity": "Legendary",
+  "niche": "Agriculture",
+  "targets": [
+    {
+      "producedGoods": [
+        {
+          "name": "Ponies"
+        }
+      ]
+    }
+  ],
+  "buffs": [
+    {
+      "FactoryUpgrade": {
+        "ProductivityUpgrade": 25.0
+      }
+    }
+  ]
+}

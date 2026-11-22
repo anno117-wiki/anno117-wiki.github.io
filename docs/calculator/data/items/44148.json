@@ -10,6 +10,15 @@
       "producedGoods": [
         {
           "name": "Fur Hats"
+        },
+        {
+          "name": "Beavers"
+        },
+        {
+          "name": "Saltwash"
+        },
+        {
+          "name": "Saltwort"
         }
       ]
     }

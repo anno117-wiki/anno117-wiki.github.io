@@ -10,6 +10,24 @@
       "producedGoods": [
         {
           "name": "Lyres"
+        },
+        {
+          "name": "String"
+        },
+        {
+          "name": "Ornate Wood"
+        },
+        {
+          "name": "Sheep"
+        },
+        {
+          "name": "Sandarac Wood"
+        },
+        {
+          "name": "Gold Ore"
+        },
+        {
+          "name": "Gold"
         }
       ]
     }

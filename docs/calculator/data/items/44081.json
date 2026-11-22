@@ -10,6 +10,12 @@
       "producedGoods": [
         {
           "name": "Roast Beef"
+        },
+        {
+          "name": "Aurochs"
+        },
+        {
+          "name": "Saltwort"
         }
       ]
     }

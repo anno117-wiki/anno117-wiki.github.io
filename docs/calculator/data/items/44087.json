@@ -10,6 +10,12 @@
       "producedGoods": [
         {
           "name": "Trousers"
+        },
+        {
+          "name": "Sheep"
+        },
+        {
+          "name": "Dye Plants"
         }
       ]
     }

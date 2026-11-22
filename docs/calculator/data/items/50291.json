@@ -9,7 +9,28 @@
     {
       "producedGoods": [
         {
+          "name": "Iron Ore"
+        },
+        {
+          "name": "Iron"
+        },
+        {
           "name": "Armour"
+        },
+        {
+          "name": "Pigs"
+        },
+        {
+          "name": "Leather"
+        },
+        {
+          "name": "Salt"
+        },
+        {
+          "name": "Wood"
+        },
+        {
+          "name": "Sanga Cattle"
         }
       ]
     }

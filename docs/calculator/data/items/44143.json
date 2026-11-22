@@ -10,6 +10,15 @@
       "producedGoods": [
         {
           "name": "Oysters with Caviar"
+        },
+        {
+          "name": "Oysters"
+        },
+        {
+          "name": "Caviar"
+        },
+        {
+          "name": "Sturgeon"
         }
       ]
     }

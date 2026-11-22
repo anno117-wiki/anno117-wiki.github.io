@@ -10,6 +10,18 @@
       "producedGoods": [
         {
           "name": "Togas"
+        },
+        {
+          "name": "Cloth"
+        },
+        {
+          "name": "Tyrian Purple"
+        },
+        {
+          "name": "Flax"
+        },
+        {
+          "name": "Murex Snails"
         }
       ]
     }

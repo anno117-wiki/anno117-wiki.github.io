@@ -1,0 +1,39 @@
+{
+  "displayName": "ケレースの神官-カスポニア・カスタ",
+  "guid": "51282",
+  "description": "「ケレースはすべての種の中に住み、すべての畑を歩む。来なさい。一握りの草の中に神がいることをあなたに示そう」",
+  "iconFilename": "51282.png",
+  "rarity": "Legendary",
+  "niche": "Religion",
+  "targets": [
+    {
+      "producedGoods": [
+        {
+          "name": "Wheat"
+        },
+        {
+          "name": "Flax"
+        },
+        {
+          "name": "Hemp"
+        },
+        {
+          "name": "Oats"
+        },
+        {
+          "name": "Barley"
+        },
+        {
+          "name": "Sesame Pods"
+        }
+      ]
+    }
+  ],
+  "buffs": [
+    {
+      "FactoryUpgrade": {
+        "ProductivityUpgrade": 25.0
+      }
+    }
+  ]
+}

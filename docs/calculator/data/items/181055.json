@@ -9,6 +9,12 @@
     {
       "producedGoods": [
         {
+          "name": "Flax"
+        },
+        {
+          "name": "Cloth"
+        },
+        {
           "name": "Shentis"
         }
       ]

@@ -1,0 +1,24 @@
+{
+  "displayName": "伝説の薬草採り-ロラーナ",
+  "guid": "144842",
+  "description": "どんな怪我をしても、彼女なら薬草を持っている。",
+  "iconFilename": "144842.png",
+  "rarity": "Legendary",
+  "niche": "Agriculture",
+  "targets": [
+    {
+      "producedGoods": [
+        {
+          "name": "Herbs"
+        }
+      ]
+    }
+  ],
+  "buffs": [
+    {
+      "FactoryUpgrade": {
+        "ProductivityUpgrade": 25.0
+      }
+    }
+  ]
+}

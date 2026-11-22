@@ -1,0 +1,24 @@
+{
+  "displayName": "泥ふるい",
+  "guid": "166421",
+  "description": "川は豊かだが、彼は豊かではない。",
+  "iconFilename": "166421.png",
+  "rarity": "Rare",
+  "niche": "Economy",
+  "targets": [
+    {
+      "producedGoods": [
+        {
+          "name": "Gold Ore"
+        }
+      ]
+    }
+  ],
+  "buffs": [
+    {
+      "FactoryUpgrade": {
+        "ProductivityUpgrade": 10.0
+      }
+    }
+  ]
+}

@@ -1,0 +1,24 @@
+{
+  "displayName": "黄金の醸造酒-ナンナ",
+  "guid": "144846",
+  "description": "ナンナ・ナ・ナ、ナンナ・ナ・ナ、ヘイ、ヘイ。",
+  "iconFilename": "144846.png",
+  "rarity": "Legendary",
+  "niche": "Agriculture",
+  "targets": [
+    {
+      "producedGoods": [
+        {
+          "name": "Barley"
+        }
+      ]
+    }
+  ],
+  "buffs": [
+    {
+      "FactoryUpgrade": {
+        "ProductivityUpgrade": 25.0
+      }
+    }
+  ]
+}

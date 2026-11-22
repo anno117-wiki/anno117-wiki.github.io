@@ -10,6 +10,12 @@
       "producedGoods": [
         {
           "name": "Wine"
+        },
+        {
+          "name": "Grapes"
+        },
+        {
+          "name": "Honeycombs"
         }
       ]
     }

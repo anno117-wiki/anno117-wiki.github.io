@@ -10,6 +10,9 @@
       "producedGoods": [
         {
           "name": "Horses"
+        },
+        {
+          "name": "Ponies"
         }
       ]
     }

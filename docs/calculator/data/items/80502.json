@@ -1,0 +1,45 @@
+{
+  "displayName": "警句の薬剤師-カティン",
+  "guid": "80502",
+  "description": "彼女の言葉は、その治療法と同じように適切に選ばれている。",
+  "iconFilename": "80502.png",
+  "rarity": "Legendary",
+  "niche": "Agriculture",
+  "targets": [
+    {
+      "producedGoods": [
+        {
+          "name": "Herbs"
+        },
+        {
+          "name": "Lavender"
+        },
+        {
+          "name": "Dye Plants"
+        },
+        {
+          "name": "Grapes"
+        },
+        {
+          "name": "Olives"
+        },
+        {
+          "name": "Sandarac Wood"
+        },
+        {
+          "name": "Pomegranates"
+        },
+        {
+          "name": "Blue Lotus"
+        }
+      ]
+    }
+  ],
+  "buffs": [
+    {
+      "FactoryUpgrade": {
+        "ProductivityUpgrade": 25.0
+      }
+    }
+  ]
+}

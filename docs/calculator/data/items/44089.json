@@ -10,6 +10,15 @@
       "producedGoods": [
         {
           "name": "Necklaces"
+        },
+        {
+          "name": "Minerals"
+        },
+        {
+          "name": "Gold"
+        },
+        {
+          "name": "Gold Ore"
         }
       ]
     }

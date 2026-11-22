@@ -10,6 +10,21 @@
       "producedGoods": [
         {
           "name": "Sandals"
+        },
+        {
+          "name": "Leather"
+        },
+        {
+          "name": "Pigs"
+        },
+        {
+          "name": "Salt"
+        },
+        {
+          "name": "Wood"
+        },
+        {
+          "name": "Sanga Cattle"
         }
       ]
     }

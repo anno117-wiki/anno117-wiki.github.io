@@ -10,6 +10,12 @@
       "producedGoods": [
         {
           "name": "Brooches"
+        },
+        {
+          "name": "Silver"
+        },
+        {
+          "name": "Silver Ore"
         }
       ]
     }

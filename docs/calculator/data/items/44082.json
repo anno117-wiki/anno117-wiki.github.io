@@ -10,6 +10,12 @@
       "producedGoods": [
         {
           "name": "Cheese"
+        },
+        {
+          "name": "Aurochs"
+        },
+        {
+          "name": "Sanga Cattle"
         }
       ]
     }

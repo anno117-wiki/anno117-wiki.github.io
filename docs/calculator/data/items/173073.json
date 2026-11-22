@@ -1,0 +1,24 @@
+{
+  "displayName": "カバ使い",
+  "guid": "173073",
+  "description": "彼女が新鮮な果物を与えた獣たちは、少しおとなしくなるようだ。",
+  "iconFilename": "173073.png",
+  "rarity": "Common",
+  "niche": "Agriculture",
+  "targets": [
+    {
+      "producedGoods": [
+        {
+          "name": "Hippopotami"
+        }
+      ]
+    }
+  ],
+  "buffs": [
+    {
+      "FactoryUpgrade": {
+        "ProductivityUpgrade": 10.0
+      }
+    }
+  ]
+}

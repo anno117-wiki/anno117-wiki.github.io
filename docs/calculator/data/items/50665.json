@@ -10,6 +10,18 @@
       "producedGoods": [
         {
           "name": "Cloaks"
+        },
+        {
+          "name": "Sheep"
+        },
+        {
+          "name": "Celtic Green"
+        },
+        {
+          "name": "Dye Plants"
+        },
+        {
+          "name": "Copper Ore"
         }
       ]
     }

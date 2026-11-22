@@ -10,6 +10,18 @@
       "producedGoods": [
         {
           "name": "Ceremonial Shields"
+        },
+        {
+          "name": "Dye Plants"
+        },
+        {
+          "name": "Bronze"
+        },
+        {
+          "name": "Tin Ore"
+        },
+        {
+          "name": "Copper Ore"
         }
       ]
     }

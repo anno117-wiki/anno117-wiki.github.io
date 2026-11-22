@@ -1,0 +1,24 @@
+{
+  "displayName": "森の番人-ガイウス・クリトニウス・リグネウス",
+  "guid": "144848",
+  "description": "噂によると、彼は木の仮面のような笑顔を浮かべており、歩いた後には苗木が芽吹く。そして彼は薪を貸した後に取り戻せるという。",
+  "iconFilename": "144848.png",
+  "rarity": "Legendary",
+  "niche": "Agriculture",
+  "targets": [
+    {
+      "producedGoods": [
+        {
+          "name": "Sandarac Wood"
+        }
+      ]
+    }
+  ],
+  "buffs": [
+    {
+      "FactoryUpgrade": {
+        "ProductivityUpgrade": 25.0
+      }
+    }
+  ]
+}
