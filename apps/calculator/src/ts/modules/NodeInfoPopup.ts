@@ -1,6 +1,6 @@
 import type { I18nManager } from '@anno/shared';
 import { ASSETS_ICONS_PATH } from '../constants';
-import { formatBuildingCount, attachCostTooltip, toTitleCase } from './Utils';
+import { formatBuildingCount, attachCostTooltip, toTitleCase, costIconToneClass } from './Utils';
 import type { NodeData } from './GraphTypes';
 import { SettingsManager } from './SettingsManager';
 import { NodeBonus } from './modifier/NodeBonus';
@@ -198,7 +198,7 @@ export class NodeInfoPopup {
             item.className = 'cost-resource';
             const translatedName = i18n.t(`goods.${resource}`);
             const label = translatedName !== resource ? translatedName : toTitleCase(resource);
-            item.innerHTML = `<img src="${ASSETS_ICONS_PATH}${resource}.png" alt="${label}" class="cost-icon-small" onerror="this.style.display='none';"/><span>${amount}</span>`;
+            item.innerHTML = `<img src="${ASSETS_ICONS_PATH}${resource}.png" alt="${label}" class="cost-icon-small ${costIconToneClass(resource)}" onerror="this.style.display='none';"/><span>${amount}</span>`;
             attachCostTooltip(item, label);
             list.appendChild(item);
         });

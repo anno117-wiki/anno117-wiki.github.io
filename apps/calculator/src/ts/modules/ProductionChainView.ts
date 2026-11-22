@@ -5,7 +5,7 @@ import { ModifierRegistry } from './ModifierRegistry';
 import { Item } from './modifier/Item';
 import { SettingsManager } from './SettingsManager';
 import { I18nManager } from '@anno/shared';
-import { formatDuration, formatBuildingCount, attachCostTooltip, toTitleCase } from './Utils';
+import { formatDuration, formatBuildingCount, attachCostTooltip, toTitleCase, costIconToneClass } from './Utils';
 import type { BuildingsMap } from './ProductionCalculator';
 import { ASSETS_ICONS_PATH } from '../constants';
 
@@ -483,7 +483,7 @@ class ProductionChainView {
     private buildCostElement(resource: string, amountText: string, label: string): HTMLElement {
         const item = document.createElement('span');
         item.className = 'cost-resource';
-        item.innerHTML = `<img src="${ASSETS_ICONS_PATH}${resource}.png" alt="${label}" class="cost-icon" onerror="this.style.display='none';"/><span class="cost-amount">${amountText}</span>`;
+        item.innerHTML = `<img src="${ASSETS_ICONS_PATH}${resource}.png" alt="${label}" class="cost-icon ${costIconToneClass(resource)}" onerror="this.style.display='none';"/><span class="cost-amount">${amountText}</span>`;
 
         attachCostTooltip(item, label);
 

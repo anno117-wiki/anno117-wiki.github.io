@@ -1937,6 +1937,15 @@ input.metadata-bonus-input {
 }
 
 
+/* 真っ黒/真っ白のアイコンは、背景の明暗で見えなくなる。ダークでは黒を白に、ライトでは白を黒に反転する */
+.dark .icon-tone-dark {
+  filter: invert(1);
+}
+
+body:not(.dark) .icon-tone-light {
+  filter: invert(1);
+}
+
 .cost-icon-small {
   width: 16px;
   height: 16px;

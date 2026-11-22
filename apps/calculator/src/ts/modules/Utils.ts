@@ -57,6 +57,20 @@ export function attachCostTooltip(item: HTMLElement, label: string): void {
 }
 
 /** snake_case または kebab-case の文字列を Title Case に変換する */
+/**
+ * 費用・維持費のアイコンのうち、真っ黒（デナリウスのコイン・ローマ側の住民層）と真っ白（アイギュプトの職種）の画像。
+ * 背景の明暗によっては見えなくなるので、CSS でネガポジ反転するための印を付ける（wiki のコインと同じ考え方）。
+ * 画像の平均の明るさ（0〜255）が約15のものを dark、255のものを light とした
+ */
+const DARK_COST_ICONS = new Set(['money', 'alderman', 'equites', 'libertus', 'mercators', 'nobles', 'patrician', 'plebeian', 'smith', 'wader']);
+const LIGHT_COST_ICONS = new Set(['chanter', 'gymnasiarch', 'potter', 'scribe', 'thresher']);
+
+export function costIconToneClass(resource: string): string {
+    if (DARK_COST_ICONS.has(resource)) return 'icon-tone-dark';
+    if (LIGHT_COST_ICONS.has(resource)) return 'icon-tone-light';
+    return '';
+}
+
 export function toTitleCase(s: string): string {
     return s.replace(/_/g, ' ').replace(/\b\w/g, c => c.toUpperCase());
 }
