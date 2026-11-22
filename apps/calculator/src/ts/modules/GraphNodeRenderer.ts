@@ -12,6 +12,8 @@ const NODE_X_SPACING = 180;
 const NODE_Y_SPACING = 120;
 const NODE_ICON_SIZE = 64;
 const NODE_CORNER_ICON_RATIO = 0.56;
+const ITEM_ICONS_MAX = 2; // ノードの角に並べるアイテムのアイコンの数。超えた分は「+N」
+const ITEM_ICON_STEP_RATIO = 0.7; // 並べるときのずらし幅（アイコン幅に対する割合）
 
 export class GraphNodeRenderer {
     private svgElement: SVGSVGElement;
@@ -165,9 +167,16 @@ export class GraphNodeRenderer {
         if (hasFuel) {
             this.addCornerImage(group, x, y, size, `${ASSETS_ICONS_PATH}charcoal.png`);
         }
+        const side = hasFuel ? 'left' : 'right';
+        const itemIcons: string[] = [];
         for (const icon of this.calculator.getActiveVisualModifiersForNode(prodNode)) {
-            this.addCornerImage(group, x, y, size, `${ASSETS_ICONS_PATH}${icon}`, true, hasFuel ? 'left' : 'right');
+            if (icon.startsWith('items/')) {
+                itemIcons.push(icon);
+            } else {
+                this.addCornerImage(group, x, y, size, `${ASSETS_ICONS_PATH}${icon}`, true, side);
+            }
         }
+        this.addItemIcons(group, x, y, size, itemIcons, side);
 
         const { labelX, labelAnchor, labelY, buildingsY } = this.resolveLabelGeometry({
             x,
@@ -239,6 +248,50 @@ export class GraphNodeRenderer {
             buildingsY: y - 37,
             labelAnchor: 'middle'
         };
+    }
+
+    /**
+     * 適用中のアイテムのアイコンを角に並べる。最大2個まで並べ、3個以上は残りの数を「+N」で出す。
+     * 角から内側へ少しずつずらす。先頭（一覧で上のもの）が一番手前
+     */
+    private addItemIcons(group: SVGGElement, x: number, y: number, size: number, icons: string[], side: 'left' | 'right'): void {
+        if (!icons.length) return;
+        const shown = icons.slice(0, ITEM_ICONS_MAX);
+        const step = Math.round(size * NODE_CORNER_ICON_RATIO * ITEM_ICON_STEP_RATIO);
+        // 奥（最後）から先に描いて、先頭を手前に重ねる
+        for (let i = shown.length - 1; i >= 0; i--) {
+            const shift = side === 'right' ? -step * i : step * i;
+            this.addCornerImage(group, x + shift, y, size, `${ASSETS_ICONS_PATH}${shown[i]}`, true, side);
+        }
+        const rest = icons.length - shown.length;
+        if (rest > 0) this.addCountBadge(group, x, y, size, rest, side);
+    }
+
+    /** 「+N」の小さな札。角のアイコンの上端に重ねる */
+    private addCountBadge(group: SVGGElement, x: number, y: number, size: number, count: number, side: 'left' | 'right'): void {
+        const iconSize = Math.round(size * NODE_CORNER_ICON_RATIO);
+        const w = 26;
+        const h = 16;
+        const cornerX = side === 'right' ? x + size / 2 + 6 - w : x - size / 2 - 6;
+        const cornerY = y + size / 2 - iconSize + 6 - h + 4;
+        const bg = document.createElementNS(SVG_NS, 'rect');
+        bg.setAttribute('x', String(cornerX));
+        bg.setAttribute('y', String(cornerY));
+        bg.setAttribute('width', String(w));
+        bg.setAttribute('height', String(h));
+        bg.setAttribute('rx', '6');
+        bg.setAttribute('ry', '6');
+        bg.setAttribute('fill', '#5f032e');
+        group.appendChild(bg);
+        const label = document.createElementNS(SVG_NS, 'text');
+        label.setAttribute('x', String(cornerX + w / 2));
+        label.setAttribute('y', String(cornerY + h / 2 + 4));
+        label.setAttribute('text-anchor', 'middle');
+        label.setAttribute('font-size', '11');
+        label.setAttribute('font-weight', '700');
+        label.setAttribute('fill', '#ffffff');
+        label.textContent = `+${count}`;
+        group.appendChild(label);
     }
 
     private addCornerImage(group: SVGGElement, x: number, y: number, size: number, href: string, filled: boolean = false, side: 'left' | 'right' = 'right'): void {

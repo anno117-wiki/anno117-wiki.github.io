@@ -72,6 +72,15 @@ abstract class AbstractProductionModifier {
     getVisualModifierForNode(good: Goods): string | null {
         return this.getVisualModifier();
     }
+
+    /**
+     * Returns every icon path to display on a specific graph node (an empty list if none).
+     * Default wraps getVisualModifierForNode(); override when one modifier can show several icons.
+     */
+    getVisualModifiersForNode(good: Goods): string[] {
+        const icon = this.getVisualModifierForNode(good);
+        return icon ? [icon] : [];
+    }
     getProductivity(good: Goods): ProductionModifier {
         const value = this.getValue(good);
         return {

@@ -62,9 +62,9 @@ export class ProductionCalculator {
     /** Returns icon filenames for all modifiers that visually affect a specific production node. */
     getActiveVisualModifiersForNode(node: Goods): string[] {
         return this.productionModifiers.flatMap(m => {
-            const icon = m.getVisualModifierForNode(node);
-            if (!icon) return [];
-            return m.getProductivity(node).isAffected ? [icon] : [];
+            const icons = m.getVisualModifiersForNode(node);
+            if (!icons.length) return [];
+            return m.getProductivity(node).isAffected ? icons : [];
         });
     }
 

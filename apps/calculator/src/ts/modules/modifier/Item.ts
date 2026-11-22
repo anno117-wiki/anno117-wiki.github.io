@@ -125,27 +125,33 @@ class Item extends AbstractProductionModifier {
 	}
 
 	override getVisualModifierForNode(good: Goods): string | null {
+		return this.getVisualModifiersForNode(good)[0] ?? null;
+	}
+
+	/** オンにしたアイテムのうち、このノードの商品に効くものの全てのアイコン（一覧の並び順） */
+	override getVisualModifiersForNode(good: Goods): string[] {
 		const activeChainId = Item.activeChainId;
-		if (!activeChainId) return null;
+		if (!activeChainId) return [];
 
 		const goodName = normalizeGoodName(good.name ?? '');
-		if (!goodName) return null;
+		if (!goodName) return [];
 
 		const chain = this.repository
 			.getCompatibleItemChains()
 			.find((c) => c.id === activeChainId);
-		if (!chain) return null;
+		if (!chain) return [];
 
+		const icons: string[] = [];
 		for (const item of chain.items) {
 			if (!this.readBool(this.getItemKey(activeChainId, item.guid))) continue;
 			if (!item.iconFilename) continue;
 			const targets = this.repository.getItemTargetGoodNames(item.guid);
 			if (targets.has(goodName)) {
-				return `items/${item.iconFilename}`;
+				icons.push(`items/${item.iconFilename}`);
 			}
 		}
 
-		return null;
+		return icons;
 	}
 
 	override getValue(good: Goods): number {
