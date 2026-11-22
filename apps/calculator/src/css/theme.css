@@ -2266,6 +2266,18 @@ footer.site-disclaimer {
   color: var(--text-secondary);
 }
 
+/* ヘルプの「計算機の使い方（ガイド）」リンク。ブラウザ既定の青だと、ダークモードの暗い背景で読めない */
+.help-guide-link a {
+  color: var(--theme-color);
+  font-weight: 600;
+  text-decoration: underline;
+  text-underline-offset: 2px;
+}
+
+.help-guide-link a:hover {
+  color: var(--theme-color-hover);
+}
+
 .help-disclaimer {
   margin-top: 1rem;
   font-size: 12px;
