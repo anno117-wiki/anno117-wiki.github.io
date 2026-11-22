@@ -458,10 +458,41 @@ def build_story(sl):
                 res += resolve_next([t for i in (0, 1) for t in outs(g, i) if t in kinds], seen)
         return list(dict.fromkeys(res))
 
+    cond_of = {n[0]: n[5] for n in nodes}
+
+    def split_next(targets, seen):
+        """次に進む先を、同時に始まるもの(direct)と、見せない分かれ道で条件によって分かれるもの(alts)に分ける。
+        ゲームは、ある場面から線がつながった先を全て同時に始める。条件で分かれるのは、間に分かれ道がある場合だけ。"""
+        direct, alts = [], []
+        for g in targets:
+            if g in labels:
+                direct.append(labels[g])
+            elif kinds.get(g) in ("check", "objective", "then") and g not in seen:
+                seen.add(g)
+                if kinds[g] == "then":
+                    d, a = split_next([t for t in outs(g, 0) if t in kinds], seen)
+                    direct += d
+                    alts += a
+                    continue
+                yes = resolve_next([t for t in outs(g, 0) if t in kinds], set())
+                no = resolve_next([t for t in outs(g, 1) if t in kinds], set())
+                if yes == no:
+                    direct += yes
+                elif yes or no:
+                    cond = (cond_text(cond_of[g]) or "条件あり") if kinds[g] == "check" else "目標を達成"
+                    alts.append({"cond": cond, "yes": yes, "no": no})
+        return list(dict.fromkeys(direct)), alts
+
     def result(node, idx):
         targets = outs(node, idx)
-        return {"rewards": dedupe(rewards_of([g for g in targets if g not in kinds])),
-                "next": resolve_next([g for g in targets if g in kinds], set())}
+        r = {"rewards": dedupe(rewards_of([g for g in targets if g not in kinds])),
+             "next": resolve_next([g for g in targets if g in kinds], set())}
+        direct, alts = split_next([g for g in targets if g in kinds], set())
+        if alts:
+            r["alt"] = alts
+        if len(direct) + len(alts) >= 2:
+            r["par"] = direct  # 同時に始まる先（条件で分かれる組があれば、それも同時に始まる）
+        return r
 
     steps = []
     for g, kind, pos, head, text, cid, spk in visible:

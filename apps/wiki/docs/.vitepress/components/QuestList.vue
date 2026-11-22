@@ -6,7 +6,9 @@ import { withBase } from 'vitepress'
 import data from '../../wiki/quests-list.json'
 
 interface Reward { t: string; k: string; rarity?: string | null; link?: boolean }
-interface Result { rewards: Reward[]; next: string[] }
+interface Alt { cond: string; yes: string[]; no: string[] }
+/** next は進む先すべて。par は同時に始まる先、alt は間の分かれ道の条件で分かれる先（どちらもあれば表示に使う） */
+interface Result { rewards: Reward[]; next: string[]; par?: string[]; alt?: Alt[] }
 interface Option extends Result { text: string; cost?: string; chance?: string; cond?: string; fail?: Result }
 interface Step {
   id: string
@@ -131,9 +133,20 @@ function visibleSteps(q: Quest): Step[] {
   return q.steps.filter((s) => !ids.has(s.id))
 }
 
+/** 進む先の表示。同時に始まる先と、条件で分かれる先があれば、それが分かる言い方にする */
+function nextLines(r: Result): string[] {
+  if (!r.par && !r.alt) return r.next.map((n) => `${n}へ`)
+  const side = (names: string[]) => (names.length ? `${names.join('・')}へ` : 'そこで終わり')
+  const lines: string[] = []
+  if (r.par?.length) lines.push(`同時に始まる: ${r.par.join('・')}`)
+  for (const a of r.alt ?? []) lines.push(`条件（${a.cond}）なら ${side(a.yes)}、そうでなければ ${side(a.no)}`)
+  return lines
+}
+
 /** 満たす場合と満たさない場合の結果（報酬と進む先）が同じか */
 function sameResult(a?: Result, b?: Result) {
-  return JSON.stringify([a?.rewards ?? [], a?.next ?? []]) === JSON.stringify([b?.rewards ?? [], b?.next ?? []])
+  const key = (r?: Result) => JSON.stringify([r?.rewards ?? [], r?.next ?? [], r?.par ?? [], r?.alt ?? []])
+  return key(a) === key(b)
 }
 
 /** 目標は達成・未達成、分かれ道は満たす・満たさない。中身の無い側は出さない。分かれ道で両方が同じなら、1つにまとめる */
@@ -228,7 +241,7 @@ function isEmpty(r?: Result) {
                   <span v-if="o.chance" class="ql-label">成功</span>
                   <span v-for="r in o.rewards" :key="r.t" class="ql-reward" :class="'ql-k-' + r.k">{{ r.t }}</span>
                   <template v-if="!inlined(q).byOption.has(s.id + ':' + i)">
-                    <span v-for="n in o.next" :key="n" class="ql-next">{{ n }}へ</span>
+                    <span v-for="t in nextLines(o)" :key="t" class="ql-next">{{ t }}</span>
                   </template>
                   <span v-if="isEmpty(o)" class="ql-none">報酬なし</span>
                 </div>
@@ -240,13 +253,13 @@ function isEmpty(r?: Result) {
                   <div v-for="[label, r] in branches(inlined(q).byOption.get(s.id + ':' + i)!)" :key="label" class="ql-result">
                     <span v-if="label" class="ql-label">{{ label }}</span>
                     <span v-for="x in r.rewards" :key="x.t" class="ql-reward" :class="'ql-k-' + x.k">{{ x.t }}</span>
-                    <span v-for="n in r.next" :key="n" class="ql-next">{{ n }}へ</span>
+                    <span v-for="t in nextLines(r)" :key="t" class="ql-next">{{ t }}</span>
                   </div>
                 </div>
                 <div v-if="o.fail" class="ql-result">
                   <span class="ql-label">失敗</span>
                   <span v-for="r in o.fail.rewards" :key="r.t" class="ql-reward" :class="'ql-k-' + r.k">{{ r.t }}</span>
-                  <span v-for="n in o.fail.next" :key="n" class="ql-next">{{ n }}へ</span>
+                  <span v-for="t in nextLines(o.fail)" :key="t" class="ql-next">{{ t }}</span>
                   <span v-if="isEmpty(o.fail)" class="ql-none">報酬なし</span>
                 </div>
               </li>
@@ -262,7 +275,7 @@ function isEmpty(r?: Result) {
             <p v-if="s.text" class="ql-text">{{ s.text }}</p>
             <div v-if="s.result && !isEmpty(s.result)" class="ql-result">
               <span v-for="r in s.result.rewards" :key="r.t" class="ql-reward" :class="'ql-k-' + r.k">{{ r.t }}</span>
-              <span v-for="n in s.result.next" :key="n" class="ql-next">{{ n }}へ</span>
+              <span v-for="t in nextLines(s.result)" :key="t" class="ql-next">{{ t }}</span>
             </div>
           </template>
 
@@ -272,7 +285,7 @@ function isEmpty(r?: Result) {
               <template v-if="r">
                 <span v-if="label" class="ql-label">{{ label }}</span>
                 <span v-for="x in r.rewards" :key="x.t" class="ql-reward" :class="'ql-k-' + x.k">{{ x.t }}</span>
-                <span v-for="n in r.next" :key="n" class="ql-next">{{ n }}へ</span>
+                <span v-for="t in nextLines(r)" :key="t" class="ql-next">{{ t }}</span>
               </template>
             </div>
           </template>
@@ -286,7 +299,7 @@ function isEmpty(r?: Result) {
               <template v-if="r">
                 <span v-if="label" class="ql-label">{{ label }}</span>
                 <span v-for="x in r.rewards" :key="x.t" class="ql-reward" :class="'ql-k-' + x.k">{{ x.t }}</span>
-                <span v-for="n in r.next" :key="n" class="ql-next">{{ n }}へ</span>
+                <span v-for="t in nextLines(r)" :key="t" class="ql-next">{{ t }}</span>
               </template>
             </div>
           </template>
