@@ -12,7 +12,7 @@ const NODE_X_SPACING = 180;
 const NODE_Y_SPACING = 120;
 const NODE_ICON_SIZE = 64;
 const NODE_CORNER_ICON_RATIO = 0.56;
-const ITEM_ICONS_MAX = 2; // ノードの角に並べるアイテムのアイコンの数。超えた分は「+N」
+const ITEM_ICONS_MAX = 2; // ノードの角に並べる補正のアイコンの数。超えた分は「+N」
 const ITEM_ICON_STEP_RATIO = 0.7; // 並べるときのずらし幅（アイコン幅に対する割合）
 
 export class GraphNodeRenderer {
@@ -167,16 +167,11 @@ export class GraphNodeRenderer {
         if (hasFuel) {
             this.addCornerImage(group, x, y, size, `${ASSETS_ICONS_PATH}charcoal.png`);
         }
+        // 水道橋・穀物庫など（アイテム以外）を先に、アイテムを後に並べる。同じ角に重なっても、最大2個＋「+N」に収まる
         const side = hasFuel ? 'left' : 'right';
-        const itemIcons: string[] = [];
-        for (const icon of this.calculator.getActiveVisualModifiersForNode(prodNode)) {
-            if (icon.startsWith('items/')) {
-                itemIcons.push(icon);
-            } else {
-                this.addCornerImage(group, x, y, size, `${ASSETS_ICONS_PATH}${icon}`, true, side);
-            }
-        }
-        this.addItemIcons(group, x, y, size, itemIcons, side);
+        const icons = this.calculator.getActiveVisualModifiersForNode(prodNode);
+        const sorted = [...icons.filter((i) => !i.startsWith('items/')), ...icons.filter((i) => i.startsWith('items/'))];
+        this.addCornerIcons(group, x, y, size, sorted, side);
 
         const { labelX, labelAnchor, labelY, buildingsY } = this.resolveLabelGeometry({
             x,
@@ -251,10 +246,10 @@ export class GraphNodeRenderer {
     }
 
     /**
-     * 適用中のアイテムのアイコンを角に並べる。最大2個まで並べ、3個以上は残りの数を「+N」で出す。
-     * 角から内側へ少しずつずらす。先頭（一覧で上のもの）が一番手前
+     * 適用中の補正（水道橋・穀物庫・アイテム）のアイコンを角に並べる。最大2個まで並べ、3個以上は残りの数を「+N」で出す。
+     * 角から内側へ少しずつずらす。先頭が一番手前
      */
-    private addItemIcons(group: SVGGElement, x: number, y: number, size: number, icons: string[], side: 'left' | 'right'): void {
+    private addCornerIcons(group: SVGGElement, x: number, y: number, size: number, icons: string[], side: 'left' | 'right'): void {
         if (!icons.length) return;
         const shown = icons.slice(0, ITEM_ICONS_MAX);
         const step = Math.round(size * NODE_CORNER_ICON_RATIO * ITEM_ICON_STEP_RATIO);

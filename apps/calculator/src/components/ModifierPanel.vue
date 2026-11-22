@@ -74,7 +74,7 @@ const activeToggles = ref<Set<string>>(new Set());
 
 const loadModifiers = () => {
   try {
-    modifiers.value = modifierRegistry.getDefinitions();
+    modifiers.value = modifierRegistry.getDefinitions().filter((m) => !m.hidden);
 
     // アクティブな設定を読み込み
     const allToggles = modifiers.value.flatMap((m) => m.toggles ?? []);

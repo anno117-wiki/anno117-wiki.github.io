@@ -1,6 +1,7 @@
 import { App } from "./modules/App";
 import { registerAqueductModifier } from "./modules/modifier/Aqueduct";
 import { registerItemModifier } from "./modules/modifier/Item";
+import { registerNodeBonusModifier } from "./modules/modifier/NodeBonus";
 import { initVueComponents } from "./vue-app";
 import { PanelResizer } from "./modules/PanelResizer";
 
@@ -37,6 +38,7 @@ function initMobileSheets() {
 document.addEventListener("DOMContentLoaded", async () => {
     registerAqueductModifier();
     registerItemModifier();
+    registerNodeBonusModifier();
     const app = App.getInstance();
     await app.initialize();
 

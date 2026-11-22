@@ -2,6 +2,8 @@ import type { I18nManager } from '@anno/shared';
 import { ASSETS_ICONS_PATH } from '../constants';
 import { formatBuildingCount, attachCostTooltip, toTitleCase } from './Utils';
 import type { NodeData } from './GraphTypes';
+import { SettingsManager } from './SettingsManager';
+import { NodeBonus } from './modifier/NodeBonus';
 
 export class NodeInfoPopup {
     private activeCloseMenu: (() => void) | null = null;
@@ -17,7 +19,7 @@ export class NodeInfoPopup {
         event.preventDefault();
         event.stopPropagation();
 
-        const { buildingCost, maintenanceCost, buildings, good, productivity } = nodeData;
+        const { buildingCost, maintenanceCost, buildings, good, productivity, prodNode } = nodeData;
 
         const infoContainer = document.createElement('div');
         infoContainer.classList.add('metadata-container');
@@ -62,6 +64,8 @@ export class NodeInfoPopup {
         const maintenanceCostEl = this.renderCostList('ui.maintenance', maintenanceCost, i18n);
         if (maintenanceCostEl) content.appendChild(maintenanceCostEl);
 
+        content.appendChild(this.renderBonusSection(prodNode, i18n, () => this.close()));
+
         infoContainer.appendChild(content);
         document.body.appendChild(infoContainer);
 
@@ -102,6 +106,63 @@ export class NodeInfoPopup {
 
     public close(): void {
         this.activeCloseMenu?.();
+    }
+
+    /** このノードの補正を選ぶ欄。穀物庫（対象の農場など）と、生産性の手入力。変えたら計算に反映して、ポップアップを閉じる */
+    private renderBonusSection(good: NodeData['prodNode'], i18n: I18nManager, onChanged: () => void): HTMLElement {
+        const settings = SettingsManager.getInstance();
+        const guid = String(good.guid);
+        const section = document.createElement('div');
+        section.className = 'metadata-section metadata-bonus';
+        const title = document.createElement('h5');
+        title.textContent = i18n.t('ui.nodeBonus');
+        section.appendChild(title);
+
+        if (NodeBonus.isGranaryTarget(good)) {
+            const row = document.createElement('label');
+            row.className = 'metadata-bonus-row';
+            const label = document.createElement('span');
+            label.textContent = i18n.t('ui.nodeBonusGranary');
+            const select = document.createElement('select');
+            select.className = 'metadata-bonus-input';
+            const current = Number(settings.getSettingRaw(NodeBonus.granaryKey(guid))) || 0;
+            for (const lv of NodeBonus.granaryLevels) {
+                const option = document.createElement('option');
+                option.value = String(lv.level);
+                option.textContent = i18n.t(lv.labelKey);
+                option.selected = lv.level === current;
+                select.appendChild(option);
+            }
+            select.addEventListener('change', () => {
+                settings.setSettingValue(NodeBonus.granaryKey(guid), Number(select.value));
+                onChanged();
+            });
+            row.append(label, select);
+            section.appendChild(row);
+        }
+
+        const manualRow = document.createElement('label');
+        manualRow.className = 'metadata-bonus-row';
+        const manualLabel = document.createElement('span');
+        manualLabel.textContent = i18n.t('ui.nodeBonusManual');
+        const input = document.createElement('input');
+        input.type = 'number';
+        input.step = '1';
+        input.inputMode = 'numeric';
+        input.className = 'metadata-bonus-input';
+        input.placeholder = '0';
+        const saved = Number(settings.getSettingRaw(NodeBonus.manualKey(guid)));
+        if (Number.isFinite(saved) && saved !== 0) input.value = String(saved);
+        // 入力中は反映せず、確定（Enter・フォーカスを外す）したときに反映する
+        input.addEventListener('change', () => {
+            const parsed = parseFloat(input.value);
+            const value = Number.isFinite(parsed) ? NodeBonus.clampManual(parsed) : 0;
+            settings.setSettingValue(NodeBonus.manualKey(guid), value);
+            onChanged();
+        });
+        manualRow.append(manualLabel, input);
+        section.appendChild(manualRow);
+        return section;
     }
 
     private renderCostList(titleKey: string, costs: Record<string, number> | undefined, i18n: I18nManager): HTMLElement | null {

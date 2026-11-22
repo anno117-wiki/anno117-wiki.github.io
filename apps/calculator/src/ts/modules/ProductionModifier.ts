@@ -41,6 +41,8 @@ interface ModifierDefinition {
     toggles?: ModifierToggleDefinition[];
     numInputs?: ModifierNumInputDefinition[];
     selects?: ModifierSelectDefinition[];
+    /** true なら補正パネルに並べない（ノードのポップアップなど、別の場所で設定するもの） */
+    hidden?: boolean;
 }
 
 /**
