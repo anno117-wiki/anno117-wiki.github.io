@@ -127,6 +127,17 @@ def common(v):
     }
 
 
+# 実機（PS5）で確かめた表示（2026-11-22。ナイルの造船所のメニュー）。換算式がデータに無く、速度は実機の表示をそのまま載せる。
+# 航行速度は [最小, 最大]（ペース/秒）。条件（風・積荷・損傷）で幅が出る。川の速度も同じ。
+# 参考: 海の航行速度は 最大 = 基本速度 x 4.8 x 1.4(追い風)、最小 = 基本速度 x 4.8 x 0.7 x 0.7 x 0.5(向かい風・満載・大破) で、
+#       エポルキオン(4.77)・アバ(4.3)の実機の4つの値と一致した（海の船3種の実機確認はまだ）。川の速度の式は分からない
+MEASURED = {
+    "epholkion": {"sail": [6, 32], "river": [45, 90], "slots": 3},
+    "aba-civil": {"sail": [5, 29], "river": [40, 81], "slots": 5},
+    # 軍団 II は、設置済みのモジュール(クマトの弓兵)が1枠を使うので、積荷スロットが4
+    "aba-military": {"sail": [5, 29], "river": [40, 81], "slots": 4, "fitted": ["クマトの弓兵"]},
+}
+
 REGION_JA = {"latium": "ラティウム", "albion": "アルビオン", "aegyptus": "アイギュプト"}
 
 # --- 海の船（地域ごとの船体。数値は共通で、労働力の種類だけが違う） ---
@@ -147,6 +158,7 @@ for key, lat, alb, aeg, unlock in SEA:
     rec["unlock"] = tech_unlocking(unlock) if unlock else None
     wf = {REGION_JA["latium"]: workforce_of(base), REGION_JA["albion"]: workforce_of(R.get(alb)["v"]), REGION_JA["aegyptus"]: workforce_of(R.get(aeg)["v"])}
     rec["workforce"] = wf
+    rec["sail"], rec["river"], rec["fitted"] = None, None, []  # 海の船の速度は、実機の確認がまだ
     # 地域間で、数値が本当に同じかを確かめる（違えば、このスクリプトの前提が崩れている）
     for other in (alb, aeg):
         o = common(R.get(other)["v"])
@@ -176,6 +188,8 @@ for key, guid, unlock in RIVER:
     rec["unlock"] = tech_unlocking(unlock) if unlock else None
     rec["workforce"] = {REGION_JA["aegyptus"]: workforce_of(v)}
     rec["regions"] = [REGION_JA["aegyptus"]]
+    m = MEASURED[key]
+    rec["sail"], rec["river"], rec["slots"], rec["fitted"] = m["sail"], m["river"], m["slots"], m.get("fitted", [])
     ships.append(rec)
 
 # --- 海の船のモジュール ---
@@ -209,6 +223,22 @@ for key, lat, alb, aeg, unlock in MODULES:
         if items(o, "/Cost/Costs", "Ingredient") != items(v, "/Cost/Costs", "Ingredient") or num(o.get("/MilitaryScoreRating/MilitaryShipPoints")) != num(v.get("/MilitaryScoreRating/MilitaryShipPoints")):
             sys.exit(f"地域でモジュールの数値が違います: {name} {other}")
     modules.append(rec)
+
+# アイギュプト専用の弓兵（アイギュプトの軍団 II の編成に設置済み。費用は武器5だけ。実機で確認）
+kv = R.get(166548)["v"]
+modules.append({
+    "id": "kumato-archers",
+    "name": name_of(166548),
+    "desc": ja(kv.get("/Standard/InfoDescription")),
+    "buildMinutes": None,
+    "cost": cost_list(items(kv, "/Cost/Costs", "Ingredient")),
+    "upkeep": [],
+    "war": clean(num(kv.get("/MilitaryScoreRating/MilitaryShipPoints"))),
+    "sell": clean(num(kv.get("/Sellable/Baseprice/Item[0]/Amount"))),
+    "unlock": None,
+    "workforce": {REGION_JA["aegyptus"]: None},
+    "regions": [REGION_JA["aegyptus"]],
+})
 
 OUT.write_text(json.dumps({"ships": ships, "modules": modules}, ensure_ascii=False, indent=2) + "\n", encoding="utf-8")
 print(f"船 {len(ships)}種・モジュール {len(modules)}種 → {OUT}")
