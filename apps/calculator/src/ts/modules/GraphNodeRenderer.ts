@@ -160,7 +160,9 @@ export class GraphNodeRenderer {
         img.dataset.goodId = good.id;
 
         this.nodeDataMap.set(img, nodeData);
-        img.addEventListener('mousedown', (e) => this.popup.show(e, this.nodeDataMap.get(img), this.i18n));
+        // スマホ（特に iOS）は、押せる見た目（cursor:pointer）の無い要素に mousedown を送らないので、click で開く
+        img.style.cursor = 'pointer';
+        img.addEventListener('click', (e) => this.popup.show(e, this.nodeDataMap.get(img), this.i18n));
         group.appendChild(img);
 
         // 燃料を使う施設は右下に木炭。適用中のアイテムは、燃料の有無によらず重ねる（燃料ありのときは木炭と重ならない左下）

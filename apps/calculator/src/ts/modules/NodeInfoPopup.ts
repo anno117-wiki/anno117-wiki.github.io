@@ -68,6 +68,7 @@ export class NodeInfoPopup {
 
         infoContainer.appendChild(content);
         document.body.appendChild(infoContainer);
+        this.keepInViewport(infoContainer);
 
         let closed = false;
         const closeMenu = () => {
@@ -75,12 +76,12 @@ export class NodeInfoPopup {
             closed = true;
             if (this.activeCloseMenu === closeMenu) this.activeCloseMenu = null;
             infoContainer.remove();
-            document.removeEventListener('mousedown', outsideClickListener);
+            document.removeEventListener('pointerdown', outsideClickListener);
         };
 
         this.activeCloseMenu = closeMenu;
 
-        const outsideClickListener = (e: MouseEvent) => {
+        const outsideClickListener = (e: Event) => {
             if (!infoContainer.contains(e.target as Node)) {
                 closeMenu();
             }
@@ -90,7 +91,8 @@ export class NodeInfoPopup {
         // 10ms: DOM レンダリング完了待ち + 現在の mousedown イベント伝播を外す
         setTimeout(() => {
             infoContainer.focus();
-            document.addEventListener('mousedown', outsideClickListener);
+            // タッチでも反応するよう、mousedown ではなく pointerdown で外側のタップを見る
+            document.addEventListener('pointerdown', outsideClickListener);
         }, 10);
 
         infoContainer.addEventListener('focusout', (e: FocusEvent) => {
@@ -106,6 +108,20 @@ export class NodeInfoPopup {
 
     public close(): void {
         this.activeCloseMenu?.();
+    }
+
+    /** 画面からはみ出さない位置に直す（スマホでは、押した位置が右端や下端に近いことが多い） */
+    private keepInViewport(el: HTMLElement): void {
+        const margin = 8;
+        const rect = el.getBoundingClientRect();
+        let shiftX = 0;
+        let shiftY = 0;
+        if (rect.right > window.innerWidth - margin) shiftX = window.innerWidth - margin - rect.right;
+        if (rect.left + shiftX < margin) shiftX = margin - rect.left;
+        if (rect.bottom > window.innerHeight - margin) shiftY = window.innerHeight - margin - rect.bottom;
+        if (rect.top + shiftY < margin) shiftY = margin - rect.top;
+        el.style.left = `${parseFloat(el.style.left) + shiftX}px`;
+        el.style.top = `${parseFloat(el.style.top) + shiftY}px`;
     }
 
     /** このノードの補正を選ぶ欄。穀物庫（対象の農場など）と、生産性の手入力。変えたら計算に反映して、ポップアップを閉じる */
