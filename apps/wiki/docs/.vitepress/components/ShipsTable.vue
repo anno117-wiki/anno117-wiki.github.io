@@ -1,56 +1,49 @@
 <template>
   <div class="sh-root">
-    <h2 id="sea-ships">海の船（ラティウム・アルビオン・アイギュプト共通）</h2>
+    <h2 id="sea-ships">海の船（編成ごと）</h2>
+    <p class="sh-lead">造船所の建造メニューに並ぶ、民間と軍団の6つの編成です。数値は、ラティウムの造船所で実機を確認した値です。</p>
     <div class="sh-table-wrap">
       <table>
         <thead>
           <tr>
-            <th>船</th>
+            <th>編成</th>
             <th>ヒットポイント</th>
-            <th>航行速度</th>
-            <th>川の速度</th>
             <th>積荷スロット</th>
+            <th>航行速度</th>
+            <th>設置済みのモジュール</th>
             <th>建設時間</th>
             <th>建設費</th>
             <th>維持費</th>
-            <th>改造スロット</th>
-            <th>解放</th>
           </tr>
         </thead>
         <tbody>
-          <tr v-for="s in seaShips" :key="s.id">
-            <td><strong>{{ s.name }}</strong><br /><span class="sh-sub">{{ s.desc }}</span><template v-if="s.kind === 'sea'"><br /><span class="sh-sub">編成: {{ s.configs.join('・') }}</span></template><template v-if="s.fitted.length"><br /><span class="sh-sub">設置済みのモジュール: {{ s.fitted.join('・') }}</span></template></td>
-            <td class="sh-num">{{ s.health }}</td>
-            <td class="sh-nowrap">{{ speedText(s.sail) }}</td>
-            <td class="sh-nowrap">{{ speedText(s.river) }}</td>
-            <td class="sh-nowrap">{{ loadText(s) }}</td>
-            <td class="sh-nowrap">{{ s.buildMinutes }}分</td>
-            <td class="sh-cost"><BuildingCostList :costs="s.cost" /></td>
-            <td class="sh-cost"><BuildingCostList :costs="s.upkeep" /></td>
-            <td class="sh-num">{{ s.modSlots }}</td>
-            <td>{{ s.unlock ? `研究「${s.unlock}」` : '最初から' }}</td>
+          <tr v-for="c in configs" :key="c.label">
+            <td><strong>{{ c.label }}</strong><br /><span class="sh-sub">{{ c.ship }}</span></td>
+            <td class="sh-num">{{ c.health }}</td>
+            <td class="sh-num">{{ c.slots }}</td>
+            <td class="sh-nowrap">{{ speedText(c.sail) }}</td>
+            <td>{{ moduleText(c) }}</td>
+            <td class="sh-nowrap">{{ c.buildMinutes }}分</td>
+            <td class="sh-cost"><BuildingCostList :costs="c.cost" /></td>
+            <td class="sh-cost"><BuildingCostList :costs="c.upkeep" /></td>
           </tr>
         </tbody>
       </table>
     </div>
     <div class="sh-cards">
-      <div v-for="s in seaShips" :key="s.id" class="sh-card">
+      <div v-for="c in configs" :key="c.label" class="sh-card">
         <div class="sh-card-header">
-          <strong>{{ s.name }}</strong>
-          <span class="sh-sub">{{ s.desc }}</span>
-          <span v-if="s.kind === 'sea'" class="sh-sub">編成: {{ s.configs.join('・') }}</span>
-          <span v-if="s.fitted.length" class="sh-sub">設置済みのモジュール: {{ s.fitted.join('・') }}</span>
+          <strong>{{ c.label }}</strong>
+          <span class="sh-sub">{{ c.ship }}</span>
         </div>
         <dl class="sh-card-body">
-          <div><dt>ヒットポイント</dt><dd>{{ s.health }}</dd></div>
-          <div><dt>航行速度</dt><dd>{{ speedText(s.sail) }}</dd></div>
-          <div><dt>川の速度</dt><dd>{{ speedText(s.river) }}</dd></div>
-          <div><dt>積荷スロット</dt><dd>{{ loadText(s) }}</dd></div>
-          <div><dt>建設時間</dt><dd>{{ s.buildMinutes }}分</dd></div>
-          <div><dt>建設費</dt><dd><BuildingCostList :costs="s.cost" /></dd></div>
-          <div><dt>維持費</dt><dd><BuildingCostList :costs="s.upkeep" /></dd></div>
-          <div><dt>改造スロット</dt><dd>{{ s.modSlots }}</dd></div>
-          <div><dt>解放</dt><dd>{{ s.unlock ? `研究「${s.unlock}」` : '最初から' }}</dd></div>
+          <div><dt>ヒットポイント</dt><dd>{{ c.health }}</dd></div>
+          <div><dt>積荷スロット</dt><dd>{{ c.slots }}</dd></div>
+          <div><dt>航行速度</dt><dd>{{ speedText(c.sail) }}</dd></div>
+          <div><dt>設置済みのモジュール</dt><dd>{{ moduleText(c) }}</dd></div>
+          <div><dt>建設時間</dt><dd>{{ c.buildMinutes }}分</dd></div>
+          <div><dt>建設費</dt><dd><BuildingCostList :costs="c.cost" /></dd></div>
+          <div><dt>維持費</dt><dd><BuildingCostList :costs="c.upkeep" /></dd></div>
         </dl>
       </div>
     </div>
@@ -206,6 +199,18 @@ interface Ship {
   river: [number, number] | null
   fitted: string[]
 }
+interface SeaConfig {
+  label: string
+  kind: 'civil' | 'military'
+  ship: string
+  health: number
+  slots: number
+  sail: [number, number]
+  modules: { name: string; count: number }[]
+  buildMinutes: number
+  cost: Cost[]
+  upkeep: Cost[]
+}
 interface ShipModule {
   id: string
   name: string
@@ -224,7 +229,12 @@ const REGIONS = ['ラティウム', 'アルビオン', 'アイギュプト']
 const ships = data.ships as Ship[]
 const modules = data.modules as ShipModule[]
 const seaShips = computed(() => ships.filter(s => s.kind === 'sea'))
+const configs = data.configs as SeaConfig[]
 const riverShips = computed(() => ships.filter(s => s.kind === 'river'))
+
+function moduleText(c: SeaConfig): string {
+  return c.modules.length ? c.modules.map(m => (m.count > 1 ? `${m.name}×${m.count}` : m.name)).join('、') : 'なし'
+}
 
 function loadText(s: Ship): string {
   return String(s.slots)
@@ -252,6 +262,11 @@ const workforceRows = computed(() => {
 </script>
 
 <style scoped>
+.sh-lead {
+  margin: 8px 0;
+  font-size: 14px;
+  color: var(--vp-c-text-2);
+}
 .sh-sub {
   font-size: 12px;
   color: var(--vp-c-text-2);

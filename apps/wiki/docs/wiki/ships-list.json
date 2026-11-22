@@ -370,6 +370,323 @@
       ]
     }
   ],
+  "configs": [
+    {
+      "label": "民間 I",
+      "kind": "civil",
+      "ship": "ペンテコンター",
+      "health": 500,
+      "slots": 3,
+      "sail": [
+        45,
+        90
+      ],
+      "modules": [],
+      "buildMinutes": 5,
+      "cost": [
+        {
+          "name": "デナリウス",
+          "amount": 1500
+        },
+        {
+          "name": "木板",
+          "amount": 15
+        },
+        {
+          "name": "縄",
+          "amount": 10
+        },
+        {
+          "name": "帆布",
+          "amount": 10
+        }
+      ],
+      "upkeep": [
+        {
+          "name": "デナリウス",
+          "amount": 15
+        },
+        {
+          "name": "労働力",
+          "amount": 3
+        }
+      ]
+    },
+    {
+      "label": "軍団 I",
+      "kind": "military",
+      "ship": "ペンテコンター",
+      "health": 500,
+      "slots": 1,
+      "sail": [
+        45,
+        90
+      ],
+      "modules": [
+        {
+          "name": "船上弓兵",
+          "count": 1
+        },
+        {
+          "name": "船上バリスタ",
+          "count": 1
+        }
+      ],
+      "buildMinutes": 7,
+      "cost": [
+        {
+          "name": "デナリウス",
+          "amount": 4000
+        },
+        {
+          "name": "木板",
+          "amount": 30
+        },
+        {
+          "name": "縄",
+          "amount": 15
+        },
+        {
+          "name": "帆布",
+          "amount": 10
+        },
+        {
+          "name": "武器",
+          "amount": 11
+        }
+      ],
+      "upkeep": [
+        {
+          "name": "デナリウス",
+          "amount": 55
+        },
+        {
+          "name": "労働力",
+          "amount": 23
+        },
+        {
+          "name": "労働力",
+          "amount": 8
+        }
+      ]
+    },
+    {
+      "label": "民間 II",
+      "kind": "civil",
+      "ship": "トライリーメ",
+      "health": 1250,
+      "slots": 4,
+      "sail": [
+        40,
+        98
+      ],
+      "modules": [
+        {
+          "name": "マスト",
+          "count": 1
+        }
+      ],
+      "buildMinutes": 9,
+      "cost": [
+        {
+          "name": "デナリウス",
+          "amount": 4500
+        },
+        {
+          "name": "木板",
+          "amount": 30
+        },
+        {
+          "name": "縄",
+          "amount": 25
+        },
+        {
+          "name": "帆布",
+          "amount": 25
+        }
+      ],
+      "upkeep": [
+        {
+          "name": "デナリウス",
+          "amount": 60
+        },
+        {
+          "name": "労働力",
+          "amount": 9
+        }
+      ]
+    },
+    {
+      "label": "軍団 II",
+      "kind": "military",
+      "ship": "トライリーメ",
+      "health": 1250,
+      "slots": 2,
+      "sail": [
+        58,
+        81
+      ],
+      "modules": [
+        {
+          "name": "オール",
+          "count": 1
+        },
+        {
+          "name": "船上弓兵",
+          "count": 1
+        },
+        {
+          "name": "船上カタパルト",
+          "count": 1
+        }
+      ],
+      "buildMinutes": 11,
+      "cost": [
+        {
+          "name": "デナリウス",
+          "amount": 6700
+        },
+        {
+          "name": "木板",
+          "amount": 55
+        },
+        {
+          "name": "縄",
+          "amount": 20
+        },
+        {
+          "name": "帆布",
+          "amount": 15
+        },
+        {
+          "name": "武器",
+          "amount": 8
+        }
+      ],
+      "upkeep": [
+        {
+          "name": "デナリウス",
+          "amount": 90
+        },
+        {
+          "name": "労働力",
+          "amount": 35
+        },
+        {
+          "name": "労働力",
+          "amount": 8
+        }
+      ]
+    },
+    {
+      "label": "民間 III",
+      "kind": "civil",
+      "ship": "クィンクェレメ",
+      "health": 2000,
+      "slots": 6,
+      "sail": [
+        36,
+        87
+      ],
+      "modules": [
+        {
+          "name": "マスト",
+          "count": 1
+        }
+      ],
+      "buildMinutes": 11,
+      "cost": [
+        {
+          "name": "デナリウス",
+          "amount": 8500
+        },
+        {
+          "name": "木板",
+          "amount": 45
+        },
+        {
+          "name": "縄",
+          "amount": 30
+        },
+        {
+          "name": "帆布",
+          "amount": 30
+        }
+      ],
+      "upkeep": [
+        {
+          "name": "デナリウス",
+          "amount": 110
+        },
+        {
+          "name": "労働力",
+          "amount": 17
+        }
+      ]
+    },
+    {
+      "label": "軍団 III",
+      "kind": "military",
+      "ship": "クィンクェレメ",
+      "health": 2000,
+      "slots": 3,
+      "sail": [
+        51,
+        72
+      ],
+      "modules": [
+        {
+          "name": "オール",
+          "count": 1
+        },
+        {
+          "name": "船上弓兵",
+          "count": 2
+        },
+        {
+          "name": "船上バリスタ",
+          "count": 1
+        }
+      ],
+      "buildMinutes": 14,
+      "cost": [
+        {
+          "name": "デナリウス",
+          "amount": 12000
+        },
+        {
+          "name": "木板",
+          "amount": 75
+        },
+        {
+          "name": "縄",
+          "amount": 25
+        },
+        {
+          "name": "帆布",
+          "amount": 20
+        },
+        {
+          "name": "武器",
+          "amount": 14
+        }
+      ],
+      "upkeep": [
+        {
+          "name": "デナリウス",
+          "amount": 160
+        },
+        {
+          "name": "労働力",
+          "amount": 63
+        },
+        {
+          "name": "労働力",
+          "amount": 8
+        }
+      ]
+    }
+  ],
   "modules": [
     {
       "id": "mast",

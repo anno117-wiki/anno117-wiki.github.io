@@ -224,6 +224,69 @@ for key, lat, alb, aeg, unlock in MODULES:
             sys.exit(f"地域でモジュールの数値が違います: {name} {other}")
     modules.append(rec)
 
+# --- 海の船の編成（造船所の建造メニューに並ぶ6つ: 民間 I〜III・軍団 I〜III） ---
+# 編成 = 船体 + 設置済みのモジュール。費用・建設時間・維持費は足し算、積荷スロットは「船体の枠 - モジュールの数」
+# （実機のラティウムの造船所の6編成で、建設費・建設時間・積荷スロットが一致することを確かめた。2026-11-22）
+MODULE_BY_TYPE = {"Mast": 31647, "Rows": 31648, "AdditionalHull": 31649, "Archers": 31651, "Scorpion": 31652, "Catapult": 31653}
+# 実機（PS5・ラティウムの造船所）の表示。航行速度は [最小, 最大]（ペース/秒）。維持費は難易度などでデータの約1.2倍
+MEASURED_SEA = {
+    "民間 I": {"hull": 37222, "slots": 3, "min": 5, "sail": [45, 90], "cost": {1010017: 1500, 2174: 15, 2171: 10, 2172: 10}},
+    "民間 II": {"hull": 37223, "slots": 4, "min": 9, "sail": [40, 98], "cost": {1010017: 4500, 2174: 30, 2171: 25, 2172: 25}},
+    "民間 III": {"hull": 37224, "slots": 6, "min": 11, "sail": [36, 87], "cost": {1010017: 8500, 2174: 45, 2171: 30, 2172: 30}},
+    "軍団 I": {"hull": 37222, "slots": 1, "min": 7, "sail": [45, 90], "cost": {1010017: 4000, 2174: 30, 2171: 15, 2172: 10, 2173: 11}},
+    "軍団 II": {"hull": 37223, "slots": 2, "min": 11, "sail": [58, 81], "cost": {1010017: 6700, 2174: 55, 2171: 20, 2172: 15, 2173: 8}},
+    "軍団 III": {"hull": 37224, "slots": 3, "min": 14, "sail": [51, 72], "cost": {1010017: 12000, 2174: 75, 2171: 25, 2172: 20, 2173: 14}},
+}
+
+
+def sum_items(parts):
+    total = {}
+    for pairs in parts:
+        for pid, amt in pairs:
+            total[pid] = total.get(pid, 0) + amt
+    return list(total.items())
+
+
+configs = []
+for opt in range(16):
+    cfg_id = R.get(YARD_LATIUM)["v"].get(f"/Recruitment/AssemblyOptions/Item[{opt}]/Vehicle")
+    if not cfg_id:
+        continue
+    cv = R.get(int(cfg_id))["v"]
+    label = ja(cv.get("/ShipConfiguration/DefaultConfigurationName"))
+    hull_id = int(cv["/ShipConfiguration/ShipHullGUID"])
+    counts = {k.split("/")[3]: int(val) for k, val in cv.items() if k.startswith("/ShipConfiguration/ShipModules/") and k.endswith("ModuleCount")}
+    hv = R.get(hull_id)["v"]
+    parts_cost, parts_upkeep, minutes_total, mods = [items(hv, "/Cost/Costs", "Ingredient")], [items(hv, "/Maintenance/Maintenances", "Product")], num(hv.get("/Craftable/CraftingTime")), []
+    for mtype, cnt in counts.items():
+        mv = R.get(MODULE_BY_TYPE[mtype])["v"]
+        for _ in range(cnt):
+            parts_cost.append(items(mv, "/Cost/Costs", "Ingredient"))
+            parts_upkeep.append(items(mv, "/Maintenance/Maintenances", "Product"))
+            minutes_total += num(mv.get("/Craftable/CraftingTime"))
+        mods.append({"name": name_of(MODULE_BY_TYPE[mtype]), "count": cnt})
+    cost = sum_items(parts_cost)
+    slots = int(num(hv.get("/ItemContainer/SlotCount"))) - sum(counts.values())
+    meas = MEASURED_SEA[label]
+    # 実機の表示との突き合わせ（食い違えば、前提が崩れているので止める）
+    if meas["hull"] != hull_id or meas["slots"] != slots or meas["min"] != minutes(minutes_total) or {p: clean(a) for p, a in cost} != meas["cost"]:
+        sys.exit(f"実機と合いません: {label} 計算 {slots} {minutes(minutes_total)} {dict(cost)} 実機 {meas}")
+    upkeep = []
+    for pid, amt in sum_items(parts_upkeep):
+        upkeep.append({"name": "デナリウス" if pid == DENARII else "労働力", "amount": clean(amt)})
+    configs.append({
+        "label": label,
+        "kind": "military" if label.startswith("軍団") else "civil",
+        "ship": name_of(hull_id),
+        "health": clean(num(hv.get("/Health/BaseHealth"))),
+        "slots": slots,
+        "sail": meas["sail"],
+        "modules": mods,
+        "buildMinutes": minutes(minutes_total),
+        "cost": cost_list(cost),
+        "upkeep": upkeep,
+    })
+
 # アイギュプト専用の弓兵（アイギュプトの軍団 II の編成に設置済み。費用は武器5だけ。実機で確認）
 kv = R.get(166548)["v"]
 modules.append({
@@ -240,7 +303,7 @@ modules.append({
     "regions": [REGION_JA["aegyptus"]],
 })
 
-OUT.write_text(json.dumps({"ships": ships, "modules": modules}, ensure_ascii=False, indent=2) + "\n", encoding="utf-8")
+OUT.write_text(json.dumps({"ships": ships, "configs": configs, "modules": modules}, ensure_ascii=False, indent=2) + "\n", encoding="utf-8")
 print(f"船 {len(ships)}種・モジュール {len(modules)}種 → {OUT}")
 for s in ships:
     print(s["name"], s["health"], s["speed"], s["slots"], s["buildMinutes"], s["cost"], s["upkeep"], s["war"], s["trade"], s["unlock"], s["workforce"])
