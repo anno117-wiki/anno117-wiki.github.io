@@ -887,6 +887,11 @@ input[type="number"]:focus,
   color: var(--theme-color-dark);
 }
 
+/* ダークモード: 選んだ(active)ボタンは背景が金色なので、文字は暗い色にする（明るい金色の文字だと読めない） */
+.dark .modifier-toggle-btn.active span {
+  color: var(--background);
+}
+
 .modifier-toggle-btn.locked {
   opacity: 0.45;
   cursor: not-allowed;
