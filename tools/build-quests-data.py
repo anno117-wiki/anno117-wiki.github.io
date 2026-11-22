@@ -182,10 +182,14 @@ def reward(r):
 
 
 def dedupe(rewards):
-    """同じ報酬を1つにし、アイテムとしても出る専門家の「品物: 〇〇 1」は外す。"""
+    """同じ報酬を1つにし、アイテムとしても出る専門家の「品物: 〇〇 1」は外す。
+    ゲームの報酬メッセージ（「報酬: 評判 10」）と同じ値の「評判 +10」は、メッセージの方を残す。"""
     items = {x["t"] for x in rewards if x["k"] == "item"}
+    msg_rep = {x["t"].removeprefix("報酬: 評判 ").replace(",", "") for x in rewards if x["t"].startswith("報酬: 評判 ")}
     seen, out = set(), []
     for x in rewards:
+        if x["k"] == "reputation" and x["t"].startswith("評判 ") and x["t"][3:].lstrip("+").replace(",", "") in msg_rep:
+            continue
         if x["k"] == "goods" and x["t"].removeprefix("品物: ").removesuffix(" 1") in items:
             continue
         if x["t"] not in seen:

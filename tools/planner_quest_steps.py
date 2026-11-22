@@ -205,8 +205,12 @@ class PlannerSteps:
         def core(r):
             t = r["t"].split(": ", 1)[-1]
             return re.sub(r" [\d,.]+$", "", t)
+        # ゲームの報酬メッセージ（「報酬: 評判 10」）と同じ値の「評判 +10」は、メッセージの方を残す
+        msg_rep = {r["t"].removeprefix("報酬: 評判 ").replace(",", "") for r in rewards if r["t"].startswith("報酬: 評判 ")}
         seen, out = set(), []
         for r in rewards:
+            if r["k"] == "reputation" and r["t"].startswith("評判 ") and r["t"][3:].lstrip("+").replace(",", "") in msg_rep:
+                continue
             if r["t"] in seen or (r["k"] in ("goods", "questitem") and core(r) in {core(x) for x in out if x["k"] not in ("goods", "questitem")}):
                 continue
             seen.add(r["t"])
