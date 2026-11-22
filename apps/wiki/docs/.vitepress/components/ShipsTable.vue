@@ -49,12 +49,12 @@
         <dl class="sh-card-body">
           <div><dt>ヒットポイント</dt><dd>{{ c.health }}</dd></div>
           <div><dt>積荷スロット</dt><dd>{{ c.slots }}</dd></div>
-          <div><dt>航行速度</dt><dd>{{ speedText(c.sail) }}</dd></div>
-          <div v-if="hasRiver"><dt>川の速度</dt><dd>{{ speedText(c.river) }}</dd></div>
-          <div><dt>設置済みのモジュール</dt><dd>{{ moduleText(c) }}</dd></div>
+          <div class="sh-wide"><dt>航行速度</dt><dd>{{ speedText(c.sail) }}</dd></div>
+          <div class="sh-wide" v-if="hasRiver"><dt>川の速度</dt><dd>{{ speedText(c.river) }}</dd></div>
+          <div class="sh-wide"><dt>設置済みのモジュール</dt><dd>{{ moduleText(c) }}</dd></div>
           <div><dt>建設時間</dt><dd>{{ c.buildMinutes }}分</dd></div>
-          <div><dt>建設費</dt><dd><BuildingCostList :costs="c.cost" /></dd></div>
-          <div><dt>維持費</dt><dd><BuildingCostList :costs="c.upkeep" /></dd></div>
+          <div class="sh-wide"><dt>建設費</dt><dd><BuildingCostList :costs="c.cost" /></dd></div>
+          <div class="sh-wide"><dt>維持費</dt><dd><BuildingCostList :costs="c.upkeep" /></dd></div>
         </dl>
       </div>
     </div>
@@ -77,7 +77,7 @@
         </thead>
         <tbody>
           <tr v-for="s in riverShips" :key="s.id">
-            <td><strong>{{ s.name }}</strong><br /><span class="sh-sub">{{ s.desc }}</span><template v-if="s.kind === 'sea'"><br /><span class="sh-sub">編成: {{ s.configs.join('・') }}</span></template><template v-if="s.fitted.length"><br /><span class="sh-sub">設置済みのモジュール: {{ s.fitted.join('・') }}</span></template></td>
+            <td><strong>{{ s.name }}</strong><template v-if="s.kind === 'sea'"><br /><span class="sh-sub">編成: {{ s.configs.join('・') }}</span></template><template v-if="s.fitted.length"><br /><span class="sh-sub">設置済みのモジュール: {{ s.fitted.join('・') }}</span></template></td>
             <td class="sh-num">{{ s.health }}</td>
             <td class="sh-nowrap">{{ speedText(s.sail) }}</td>
             <td class="sh-nowrap">{{ speedText(s.river) }}</td>
@@ -100,12 +100,12 @@
         </div>
         <dl class="sh-card-body">
           <div><dt>ヒットポイント</dt><dd>{{ s.health }}</dd></div>
-          <div><dt>航行速度</dt><dd>{{ speedText(s.sail) }}</dd></div>
-          <div><dt>川の速度</dt><dd>{{ speedText(s.river) }}</dd></div>
+          <div class="sh-wide"><dt>航行速度</dt><dd>{{ speedText(s.sail) }}</dd></div>
+          <div class="sh-wide"><dt>川の速度</dt><dd>{{ speedText(s.river) }}</dd></div>
           <div><dt>積荷スロット</dt><dd>{{ loadText(s) }}</dd></div>
           <div><dt>建設時間</dt><dd>{{ s.buildMinutes }}分</dd></div>
-          <div><dt>建設費</dt><dd><BuildingCostList :costs="s.cost" /></dd></div>
-          <div><dt>維持費</dt><dd><BuildingCostList :costs="s.upkeep" /></dd></div>
+          <div class="sh-wide"><dt>建設費</dt><dd><BuildingCostList :costs="s.cost" /></dd></div>
+          <div class="sh-wide"><dt>維持費</dt><dd><BuildingCostList :costs="s.upkeep" /></dd></div>
           <div><dt>解放</dt><dd>{{ s.unlock ? `研究「${s.unlock}」` : '最初から' }}</dd></div>
         </dl>
       </div>
@@ -144,9 +144,9 @@
           <span class="sh-sub">{{ m.desc }}</span>
         </div>
         <dl class="sh-card-body">
-          <div><dt>建設費</dt><dd><BuildingCostList :costs="m.cost" /></dd></div>
+          <div class="sh-wide"><dt>建設費</dt><dd><BuildingCostList :costs="m.cost" /></dd></div>
           <div><dt>建設時間</dt><dd>{{ m.buildMinutes ? `${m.buildMinutes}分` : '—' }}</dd></div>
-          <div><dt>維持費</dt><dd><BuildingCostList :costs="m.upkeep" /></dd></div>
+          <div class="sh-wide"><dt>維持費</dt><dd><BuildingCostList :costs="m.upkeep" /></dd></div>
           <div><dt>売却価格</dt><dd>{{ m.sell.toLocaleString() }}</dd></div>
           <div><dt>解放</dt><dd>{{ m.unlock ? `研究「${m.unlock}」` : '最初から' }}</dd></div>
         </dl>
@@ -318,8 +318,7 @@ const workforceRows = computed(() => {
   white-space: nowrap;
 }
 .sh-cost {
-  min-width: 9em;
-  max-width: 15em;
+  min-width: 12em;
 }
 
 .sh-cards {
@@ -351,19 +350,30 @@ const workforceRows = computed(() => {
   .sh-card-body {
     margin: 0;
     padding: 8px 12px;
-    display: flex;
-    flex-direction: column;
-    gap: 4px;
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 4px 12px;
     font-size: 0.9rem;
   }
   .sh-card-body div {
     display: flex;
+    flex-direction: column;
+    gap: 0;
+  }
+  /* 費用・モジュール・速度など長いものは全幅で、ラベルと並べる */
+  .sh-card-body div.sh-wide {
+    grid-column: 1 / -1;
+    flex-direction: row;
     gap: 8px;
   }
   .sh-card-body dt {
     flex: none;
     min-width: 4.5em;
+    font-size: 0.8rem;
     color: var(--vp-c-text-2);
+  }
+  .sh-card-body div.sh-wide dt {
+    font-size: 0.9rem;
   }
   .sh-card-body dd {
     margin: 0;
