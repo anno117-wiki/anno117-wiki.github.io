@@ -85,11 +85,16 @@ def cost_list(pairs):
     return [{"name": PRODUCT.get(pid, str(pid)), "amount": clean(amt)} for pid, amt in pairs]
 
 
-def upkeep_list(pairs):
-    """維持費。デナリウスと労働力（種類は地域で違うので「労働力」とまとめる）"""
+def upkeep_list(pairs, named=False):
+    """維持費。デナリウスと労働力。named=True なら労働力を種類の名前（リベルトゥスの労働力など）で出す。
+    モジュールは地域をまたぐので、「労働力」とまとめる（種類は別の表）"""
     out = []
     for pid, amt in pairs:
-        out.append({"name": "デナリウス" if pid == DENARII else "労働力", "amount": clean(amt)})
+        if pid == DENARII:
+            name = "デナリウス"
+        else:
+            name = WORKFORCE.get(pid, str(pid)) if named else "労働力"
+        out.append({"name": name, "amount": clean(amt)})
     return out
 
 
@@ -132,10 +137,10 @@ def common(v):
 # 参考: 海の航行速度は 最大 = 基本速度 x 4.8 x 1.4(追い風)、最小 = 基本速度 x 4.8 x 0.7 x 0.7 x 0.5(向かい風・満載・大破) で、
 #       エポルキオン(4.77)・アバ(4.3)の実機の4つの値と一致した（海の船3種の実機確認はまだ）。川の速度の式は分からない
 MEASURED = {
-    "epholkion": {"sail": [6, 32], "river": [45, 90], "slots": 3},
-    "aba-civil": {"sail": [5, 29], "river": [40, 81], "slots": 5},
+    "epholkion": {"money": 12, "sail": [6, 32], "river": [45, 90], "slots": 3},
+    "aba-civil": {"money": 42, "sail": [5, 29], "river": [40, 81], "slots": 5},
     # 軍団 II は、設置済みのモジュール(クマトの弓兵)が1枠を使うので、積荷スロットが4
-    "aba-military": {"sail": [5, 29], "river": [40, 81], "slots": 4, "fitted": ["クマトの弓兵"]},
+    "aba-military": {"money": 85, "sail": [5, 29], "river": [40, 81], "slots": 4, "fitted": ["クマトの弓兵"]},
 }
 
 REGION_JA = {"latium": "ラティウム", "albion": "アルビオン", "aegyptus": "アイギュプト"}
@@ -186,9 +191,13 @@ for key, guid, unlock in RIVER:
     rec = {"id": key, "name": name, "kind": "river", "configs": [RIVER_CFG[key]], "desc": ja(v.get("/Standard/InfoDescription")), **common(v)}
     rec["modSlots"] = 0  # ナイルの船にはモジュール改造を行えない（ゲーム内の文言）
     rec["unlock"] = tech_unlocking(unlock) if unlock else None
+    rec["upkeep"] = upkeep_list(items(v, "/Maintenance/Maintenances", "Product"), named=True)
     rec["workforce"] = {REGION_JA["aegyptus"]: workforce_of(v)}
     rec["regions"] = [REGION_JA["aegyptus"]]
     m = MEASURED[key]
+    base_money = next(u["amount"] for u in rec["upkeep"] if u["name"] == "デナリウス")
+    if int(base_money * 1.22) != m["money"]:
+        sys.exit(f"維持費が合いません: {name} 基本 {base_money} x1.22 実機 {m['money']}")
     rec["sail"], rec["river"], rec["slots"], rec["fitted"] = m["sail"], m["river"], m["slots"], m.get("fitted", [])
     ships.append(rec)
 
@@ -241,20 +250,20 @@ REGIONS_SEA = [
 # 実機の表示: 編成 -> 積荷スロット・建設時間（分）・航行速度・川の速度（アイギュプトのみ表示）・建設費（アイギュプトは効果込み）
 MEASURED_SEA = {
     "lat": {
-        "民間 I": {"slots": 3, "min": 5, "sail": [45, 90], "cost": {1010017: 1500, 2174: 15, 2171: 10, 2172: 10}},
-        "民間 II": {"slots": 4, "min": 9, "sail": [40, 98], "cost": {1010017: 4500, 2174: 30, 2171: 25, 2172: 25}},
-        "民間 III": {"slots": 6, "min": 11, "sail": [36, 87], "cost": {1010017: 8500, 2174: 45, 2171: 30, 2172: 30}},
-        "軍団 I": {"slots": 1, "min": 7, "sail": [45, 90], "cost": {1010017: 4000, 2174: 30, 2171: 15, 2172: 10, 2173: 11}},
-        "軍団 II": {"slots": 2, "min": 11, "sail": [58, 81], "cost": {1010017: 6700, 2174: 55, 2171: 20, 2172: 15, 2173: 8}},
-        "軍団 III": {"slots": 3, "min": 14, "sail": [51, 72], "cost": {1010017: 12000, 2174: 75, 2171: 25, 2172: 20, 2173: 14}},
+        "民間 I": {"money": 18, "slots": 3, "min": 5, "sail": [45, 90], "cost": {1010017: 1500, 2174: 15, 2171: 10, 2172: 10}},
+        "民間 II": {"money": 73, "slots": 4, "min": 9, "sail": [40, 98], "cost": {1010017: 4500, 2174: 30, 2171: 25, 2172: 25}},
+        "民間 III": {"money": 134, "slots": 6, "min": 11, "sail": [36, 87], "cost": {1010017: 8500, 2174: 45, 2171: 30, 2172: 30}},
+        "軍団 I": {"money": 67, "slots": 1, "min": 7, "sail": [45, 90], "cost": {1010017: 4000, 2174: 30, 2171: 15, 2172: 10, 2173: 11}},
+        "軍団 II": {"money": 109, "slots": 2, "min": 11, "sail": [58, 81], "cost": {1010017: 6700, 2174: 55, 2171: 20, 2172: 15, 2173: 8}},
+        "軍団 III": {"money": 195, "slots": 3, "min": 14, "sail": [51, 72], "cost": {1010017: 12000, 2174: 75, 2171: 25, 2172: 20, 2173: 14}},
     },
     "aeg": {
-        "民間 I": {"slots": 2, "min": 6, "sail": [64, 90], "river": [38, 48], "cost": {1010017: 1000, 2174: 13, 2171: 5, 2172: 5}},
-        "民間 II": {"slots": 4, "min": 9, "sail": [58, 81], "river": [34, 43], "cost": {1010017: 2250, 2174: 18, 2171: 8, 2172: 8}},
-        "民間 III": {"slots": 6, "min": 11, "sail": [51, 72], "river": [30, 38], "cost": {1010017: 4250, 2174: 25, 2171: 10, 2172: 10}},
-        "軍団 I": {"slots": 1, "min": 7, "sail": [64, 90], "river": [38, 48], "cost": {1010017: 1500, 2174: 18, 2171: 5, 2172: 5, 2173: 2}},
-        "軍団 II": {"slots": 2, "min": 11, "sail": [58, 81], "river": [34, 43], "cost": {1010017: 3350, 2174: 28, 2171: 10, 2172: 8, 2173: 4}},
-        "軍団 III": {"slots": 3, "min": 14, "sail": [51, 72], "river": [30, 38], "cost": {1010017: 6000, 2174: 38, 2171: 13, 2172: 10, 2173: 7}},
+        "民間 I": {"money": 24, "slots": 2, "min": 6, "sail": [64, 90], "river": [38, 48], "cost": {1010017: 1000, 2174: 13, 2171: 5, 2172: 5}},
+        "民間 II": {"money": 67, "slots": 4, "min": 9, "sail": [58, 81], "river": [34, 43], "cost": {1010017: 2250, 2174: 18, 2171: 8, 2172: 8}},
+        "民間 III": {"money": 128, "slots": 6, "min": 11, "sail": [51, 72], "river": [30, 38], "cost": {1010017: 4250, 2174: 25, 2171: 10, 2172: 10}},
+        "軍団 I": {"money": 42, "slots": 1, "min": 7, "sail": [64, 90], "river": [38, 48], "cost": {1010017: 1500, 2174: 18, 2171: 5, 2172: 5, 2173: 2}},
+        "軍団 II": {"money": 109, "slots": 2, "min": 11, "sail": [58, 81], "river": [34, 43], "cost": {1010017: 3350, 2174: 28, 2171: 10, 2172: 8, 2173: 4}},
+        "軍団 III": {"money": 195, "slots": 3, "min": 14, "sail": [51, 72], "river": [30, 38], "cost": {1010017: 6000, 2174: 38, 2171: 13, 2172: 10, 2173: 7}},
     },
 }
 
@@ -302,7 +311,13 @@ for region, yard, mod_ids, mkey in REGIONS_SEA:
             if meas["slots"] != slots or meas["min"] != minutes(minutes_total) or expect_cost != meas["cost"]:
                 sys.exit(f"実機と合いません: {region} {label} 計算 {slots} {minutes(minutes_total)} {expect_cost} 実機 {meas}")
             sail, river = meas["sail"], meas.get("river")
-        upkeep = [{"name": "デナリウス" if pid == DENARII else "労働力", "amount": clean(amt)} for pid, amt in sum_items(parts_upkeep)]
+        upkeep = upkeep_list(sum_items(parts_upkeep), named=True)
+        # 維持費のデナリウスは、難易度の倍率（assets.xml の DifficultySettings。ノーマル100%・ハード122%・ベテラン140%）が掛かる。
+        # 実機（ハード相当の122%）の値は、切り捨て(基本値 x 1.22)と一致する。労働力は難易度の影響を受けない
+        if meas and "money" in meas:
+            base_money = next(u["amount"] for u in upkeep if u["name"] == "デナリウス")
+            if int(base_money * 1.22) != meas["money"]:
+                sys.exit(f"維持費が合いません: {region} {label} 基本 {base_money} x1.22 実機 {meas['money']}")
         configs.append({
             "region": region,
             "label": label,

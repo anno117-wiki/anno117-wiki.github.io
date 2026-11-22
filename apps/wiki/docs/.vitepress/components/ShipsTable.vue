@@ -1,5 +1,13 @@
 <template>
   <div class="sh-root">
+    <div class="sh-filter">
+      <label><strong>維持費の難易度:</strong>
+        <select v-model="difficulty">
+          <option v-for="d in DIFFICULTIES" :key="d.percent" :value="d.percent">{{ d.label }}（{{ d.percent }}%）</option>
+        </select>
+      </label>
+      <span class="sh-sub">維持費のデナリウスに掛かる倍率です。労働力は変わりません。</span>
+    </div>
     <h2 id="sea-ships">海の船（編成ごと）</h2>
     <p class="sh-lead">造船所の建造メニューに並ぶ、民間と軍団の6つの編成です。付いているモジュールは、地域で違います。</p>
     <div class="sh-filter">
@@ -35,7 +43,7 @@
             <td>{{ moduleText(c) }}</td>
             <td class="sh-nowrap">{{ c.buildMinutes }}分</td>
             <td class="sh-cost"><BuildingCostList :costs="c.cost" /></td>
-            <td class="sh-cost"><BuildingCostList :costs="c.upkeep" /></td>
+            <td class="sh-cost"><BuildingCostList :costs="upkeepOf(c.upkeep)" /></td>
           </tr>
         </tbody>
       </table>
@@ -54,7 +62,7 @@
           <div class="sh-wide"><dt>設置済みのモジュール</dt><dd>{{ moduleText(c) }}</dd></div>
           <div><dt>建設時間</dt><dd>{{ c.buildMinutes }}分</dd></div>
           <div class="sh-wide"><dt>建設費</dt><dd><BuildingCostList :costs="c.cost" /></dd></div>
-          <div class="sh-wide"><dt>維持費</dt><dd><BuildingCostList :costs="c.upkeep" /></dd></div>
+          <div class="sh-wide"><dt>維持費</dt><dd><BuildingCostList :costs="upkeepOf(c.upkeep)" /></dd></div>
         </dl>
       </div>
     </div>
@@ -84,7 +92,7 @@
             <td class="sh-nowrap">{{ loadText(s) }}</td>
             <td class="sh-nowrap">{{ s.buildMinutes }}分</td>
             <td class="sh-cost"><BuildingCostList :costs="s.cost" /></td>
-            <td class="sh-cost"><BuildingCostList :costs="s.upkeep" /></td>
+            <td class="sh-cost"><BuildingCostList :costs="upkeepOf(s.upkeep)" /></td>
             <td>{{ s.unlock ? `研究「${s.unlock}」` : '最初から' }}</td>
           </tr>
         </tbody>
@@ -105,7 +113,7 @@
           <div><dt>積荷スロット</dt><dd>{{ loadText(s) }}</dd></div>
           <div><dt>建設時間</dt><dd>{{ s.buildMinutes }}分</dd></div>
           <div class="sh-wide"><dt>建設費</dt><dd><BuildingCostList :costs="s.cost" /></dd></div>
-          <div class="sh-wide"><dt>維持費</dt><dd><BuildingCostList :costs="s.upkeep" /></dd></div>
+          <div class="sh-wide"><dt>維持費</dt><dd><BuildingCostList :costs="upkeepOf(s.upkeep)" /></dd></div>
           <div><dt>解放</dt><dd>{{ s.unlock ? `研究「${s.unlock}」` : '最初から' }}</dd></div>
         </dl>
       </div>
@@ -129,7 +137,7 @@
             <td><strong>{{ m.name }}</strong><template v-if="m.regions"><br /><span class="sh-sub">{{ m.regions.join('・') }}専用</span></template><br /><span class="sh-sub">{{ m.desc }}</span></td>
             <td class="sh-cost"><BuildingCostList :costs="m.cost" /></td>
             <td class="sh-nowrap">{{ m.buildMinutes ? `${m.buildMinutes}分` : '—' }}</td>
-            <td class="sh-cost"><BuildingCostList :costs="m.upkeep" /></td>
+            <td class="sh-cost"><BuildingCostList :costs="upkeepOf(m.upkeep)" /></td>
             <td class="sh-num">{{ m.sell.toLocaleString() }}</td>
             <td>{{ m.unlock ? `研究「${m.unlock}」` : '最初から' }}</td>
           </tr>
@@ -146,7 +154,7 @@
         <dl class="sh-card-body">
           <div class="sh-wide"><dt>建設費</dt><dd><BuildingCostList :costs="m.cost" /></dd></div>
           <div><dt>建設時間</dt><dd>{{ m.buildMinutes ? `${m.buildMinutes}分` : '—' }}</dd></div>
-          <div class="sh-wide"><dt>維持費</dt><dd><BuildingCostList :costs="m.upkeep" /></dd></div>
+          <div class="sh-wide"><dt>維持費</dt><dd><BuildingCostList :costs="upkeepOf(m.upkeep)" /></dd></div>
           <div><dt>売却価格</dt><dd>{{ m.sell.toLocaleString() }}</dd></div>
           <div><dt>解放</dt><dd>{{ m.unlock ? `研究「${m.unlock}」` : '最初から' }}</dd></div>
         </dl>
@@ -239,6 +247,19 @@ interface ShipModule {
 }
 
 const REGIONS = ['ラティウム', 'アルビオン', 'アイギュプト']
+
+// 難易度ごとの維持費の倍率（ゲームのデータ。ノーマル=低、ハード=中、ベテラン=高）
+const DIFFICULTIES = [
+  { label: 'ノーマル', percent: 100 },
+  { label: 'ハード', percent: 122 },
+  { label: 'ベテラン', percent: 140 },
+]
+const difficulty = ref(100)
+
+// 維持費のデナリウスに倍率を掛ける（切り捨て）。労働力は難易度の影響を受けない
+function upkeepOf(list: Cost[]): Cost[] {
+  return list.map(c => (c.name === 'デナリウス' ? { ...c, amount: Math.floor((c.amount * difficulty.value) / 100) } : c))
+}
 const ships = data.ships as Ship[]
 const modules = data.modules as ShipModule[]
 const seaShips = computed(() => ships.filter(s => s.kind === 'sea'))
