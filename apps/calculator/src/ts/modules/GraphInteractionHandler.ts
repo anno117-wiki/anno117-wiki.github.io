@@ -11,6 +11,11 @@ export class GraphInteractionHandler {
     private activeTouches = new Map<number, Point>();
     private initialPinchDistance: number | null = null;
     private initialViewBox: ViewBox | null = null;
+    /** タップ（指を動かさず短く触れる）かどうかの判定用。touchstart で preventDefault しているため、ブラウザが click を送らない */
+    private tap: { id: number; x: number; y: number; time: number; moved: boolean } | null = null;
+
+    private static readonly TAP_MAX_MOVE_PX = 10;
+    private static readonly TAP_MAX_MS = 600;
 
     constructor(svgElement: SVGSVGElement, onViewBoxChange: (vb: ViewBox) => void) {
         this.svgElement = svgElement;
@@ -84,6 +89,29 @@ export class GraphInteractionHandler {
         this.svgElement.style.cursor = 'default';
     };
 
+    /**
+     * 指を動かさずに離したら、触れた場所の要素に click を送る。
+     * touchstart で preventDefault（画面のドラッグ・ピンチのため）しているので、タップでは click が出ない。
+     * これが無いと、スマホでノードを押してもポップアップが開かない
+     */
+    private dispatchTapAsClick(e: TouchEvent): void {
+        const tap = this.tap;
+        this.tap = null;
+        const touch = e.changedTouches.item(0);
+        if (!tap || !touch || touch.identifier !== tap.id || tap.moved) return;
+        if (Date.now() - tap.time > GraphInteractionHandler.TAP_MAX_MS) return;
+        const target = document.elementFromPoint(touch.clientX, touch.clientY);
+        if (!target || !this.svgElement.contains(target)) return;
+        target.dispatchEvent(new MouseEvent('click', {
+            bubbles: true,
+            cancelable: true,
+            view: window,
+            button: 0,
+            clientX: touch.clientX,
+            clientY: touch.clientY,
+        }));
+    }
+
     private bindMouseEvents(): void {
         this.svgElement.addEventListener('mousedown', (e: MouseEvent) => {
             if (e.button === 0 && (e.target as HTMLElement).tagName !== 'image') {
@@ -147,6 +175,11 @@ export class GraphInteractionHandler {
                 if (!touch) continue;
                 this.activeTouches.set(touch.identifier, this.clientToSvgPoint(touch));
             }
+            // 1本指で触れ始めたらタップの候補にする。2本目の指が来たらピンチなので候補を外す
+            const first = e.changedTouches.item(0);
+            this.tap = e.touches.length === 1 && first
+                ? { id: first.identifier, x: first.clientX, y: first.clientY, time: Date.now(), moved: false }
+                : null;
             if (this.activeTouches.size === 1) {
                 const point = this.firstActiveTouch();
                 this.isDragging = true;
@@ -167,6 +200,10 @@ export class GraphInteractionHandler {
                 const touch = e.changedTouches.item(i);
                 if (!touch) continue;
                 this.activeTouches.set(touch.identifier, this.clientToSvgPoint(touch));
+                if (this.tap && touch.identifier === this.tap.id
+                    && Math.hypot(touch.clientX - this.tap.x, touch.clientY - this.tap.y) > GraphInteractionHandler.TAP_MAX_MOVE_PX) {
+                    this.tap.moved = true;
+                }
             }
             if (this.activeTouches.size === 1 && this.isDragging) {
                 const point = this.firstActiveTouch();
@@ -207,6 +244,7 @@ export class GraphInteractionHandler {
                 if (!touch) continue;
                 this.activeTouches.delete(touch.identifier);
             }
+            this.dispatchTapAsClick(e);
             if (this.activeTouches.size === 0) {
                 this.resetTouches();
             } else if (this.activeTouches.size === 1) {
