@@ -164,12 +164,17 @@ function handleImageError(event: Event) {
   padding: 2px 6px;
   border-radius: 3px;
   background-color: rgba(95, 3, 46, 0.1);
+  color: #4a5f7f; /* --text-secondary (#5a7092) だと小さい文字で比が3.9:1しかない */
+}
+
+.dark .tag {
   color: var(--text-secondary);
 }
 
+/* 選んだ項目の背景は紺のグラデーション。文字は両モードで明るい固定色にする */
 .tree-item.selected .tag {
   background-color: rgba(255, 255, 255, 0.2);
-  color: var(--background);
+  color: #f8f8f6;
 }
 
 /* タッチデバイス対応 */
