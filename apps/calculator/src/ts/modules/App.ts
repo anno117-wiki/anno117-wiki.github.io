@@ -243,7 +243,12 @@ export class App {
         const text = toggleBtn?.querySelector<HTMLElement>('.region-text');
         if (icon) {
             icon.hidden = !def.icon;
-            if (def.icon) icon.src = `${ASSETS_ICONS_PATH}${def.icon}`;
+            // アイコンは形だけをマスクにして、文字色(currentColor)で塗る。画像の色のままだと、ダークモードで黒い絵柄が背景に埋もれる
+            if (def.icon) {
+                const url = `url(${ASSETS_ICONS_PATH}${def.icon})`;
+                icon.style.setProperty('-webkit-mask-image', url);
+                icon.style.setProperty('mask-image', url);
+            }
         }
         if (text) text.textContent = def.label;
     }
