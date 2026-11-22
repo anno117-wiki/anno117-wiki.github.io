@@ -883,12 +883,8 @@ input[type="number"]:focus,
   border: 1px solid rgba(255, 233, 222, 0.96);
 }
 
+/* 選んだ(active)ボタンの背景はテーマ色（ライト: 紺、ダーク: 金）。文字は背景色（明るい/暗い）にして、どちらのモードでも読めるようにする */
 .modifier-toggle-btn.active span {
-  color: var(--theme-color-dark);
-}
-
-/* ダークモード: 選んだ(active)ボタンは背景が金色なので、文字は暗い色にする（明るい金色の文字だと読めない） */
-.dark .modifier-toggle-btn.active span {
   color: var(--background);
 }
 
