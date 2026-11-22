@@ -1,0 +1,544 @@
+{
+  "ships": [
+    {
+      "id": "penteconter",
+      "name": "ペンテコンター",
+      "kind": "sea",
+      "desc": "小さなガレー船。改造に使えるスロットは少ない。",
+      "health": 500,
+      "speed": 4.77,
+      "slots": 3,
+      "stack": 50,
+      "buildMinutes": 5,
+      "cost": [
+        {
+          "name": "デナリウス",
+          "amount": 1500
+        },
+        {
+          "name": "木板",
+          "amount": 15
+        },
+        {
+          "name": "縄",
+          "amount": 10
+        },
+        {
+          "name": "帆布",
+          "amount": 10
+        }
+      ],
+      "upkeep": [
+        {
+          "name": "デナリウス",
+          "amount": 15
+        },
+        {
+          "name": "労働力",
+          "amount": 3
+        }
+      ],
+      "war": 20,
+      "trade": 2,
+      "modSlots": 2,
+      "unlock": null,
+      "workforce": {
+        "ラティウム": "リベルトゥスの労働力",
+        "アルビオン": "ウェーダーの労働力",
+        "アイギュプト": "麦打ち人の労働力"
+      },
+      "regions": [
+        "ラティウム",
+        "アルビオン",
+        "アイギュプト"
+      ]
+    },
+    {
+      "id": "trireme",
+      "name": "トライリーメ",
+      "kind": "sea",
+      "desc": "信頼性の高い三段櫂船。改造に使えるスロットが多い。",
+      "health": 1250,
+      "speed": 4.3,
+      "slots": 5,
+      "stack": 50,
+      "buildMinutes": 8,
+      "cost": [
+        {
+          "name": "デナリウス",
+          "amount": 4000
+        },
+        {
+          "name": "木板",
+          "amount": 25
+        },
+        {
+          "name": "縄",
+          "amount": 15
+        },
+        {
+          "name": "帆布",
+          "amount": 15
+        }
+      ],
+      "upkeep": [
+        {
+          "name": "デナリウス",
+          "amount": 50
+        },
+        {
+          "name": "労働力",
+          "amount": 7
+        }
+      ],
+      "war": 40,
+      "trade": 4,
+      "modSlots": 3,
+      "unlock": "トライリーメ",
+      "workforce": {
+        "ラティウム": "リベルトゥスの労働力",
+        "アルビオン": "ウェーダーの労働力",
+        "アイギュプト": "麦打ち人の労働力"
+      },
+      "regions": [
+        "ラティウム",
+        "アルビオン",
+        "アイギュプト"
+      ]
+    },
+    {
+      "id": "quinquireme",
+      "name": "クィンクェレメ",
+      "kind": "sea",
+      "desc": "耐久性の高い五段櫂船。改造に使えるスロットが非常に多い。",
+      "health": 2000,
+      "speed": 3.82,
+      "slots": 7,
+      "stack": 50,
+      "buildMinutes": 10,
+      "cost": [
+        {
+          "name": "デナリウス",
+          "amount": 8000
+        },
+        {
+          "name": "木板",
+          "amount": 40
+        },
+        {
+          "name": "縄",
+          "amount": 20
+        },
+        {
+          "name": "帆布",
+          "amount": 20
+        }
+      ],
+      "upkeep": [
+        {
+          "name": "デナリウス",
+          "amount": 100
+        },
+        {
+          "name": "労働力",
+          "amount": 15
+        }
+      ],
+      "war": 60,
+      "trade": 6,
+      "modSlots": 4,
+      "unlock": "五段櫂船",
+      "workforce": {
+        "ラティウム": "リベルトゥスの労働力",
+        "アルビオン": "ウェーダーの労働力",
+        "アイギュプト": "麦打ち人の労働力"
+      },
+      "regions": [
+        "ラティウム",
+        "アルビオン",
+        "アイギュプト"
+      ]
+    },
+    {
+      "id": "epholkion",
+      "name": "エポルキオン（ナイルの小舟）",
+      "kind": "river",
+      "desc": "アイギュプト特有の小型の川船",
+      "health": 500,
+      "speed": 4.77,
+      "slots": 3,
+      "stack": 50,
+      "buildMinutes": 5,
+      "cost": [
+        {
+          "name": "デナリウス",
+          "amount": 1500
+        },
+        {
+          "name": "葦",
+          "amount": 15
+        },
+        {
+          "name": "縄",
+          "amount": 10
+        },
+        {
+          "name": "帆布",
+          "amount": 10
+        }
+      ],
+      "upkeep": [
+        {
+          "name": "デナリウス",
+          "amount": 10
+        },
+        {
+          "name": "労働力",
+          "amount": 1
+        }
+      ],
+      "war": 20,
+      "trade": 2,
+      "modSlots": 0,
+      "unlock": null,
+      "workforce": {
+        "アイギュプト": "麦打ち人の労働力"
+      },
+      "regions": [
+        "アイギュプト"
+      ]
+    },
+    {
+      "id": "aba-civil",
+      "name": "アバ（ナイルのガレー船）・民間",
+      "kind": "river",
+      "desc": "中型の川船。改造に使えるスロットが多い。",
+      "health": 1000,
+      "speed": 4.3,
+      "slots": 5,
+      "stack": 50,
+      "buildMinutes": 8,
+      "cost": [
+        {
+          "name": "デナリウス",
+          "amount": 3000
+        },
+        {
+          "name": "葦",
+          "amount": 30
+        },
+        {
+          "name": "縄",
+          "amount": 20
+        },
+        {
+          "name": "帆布",
+          "amount": 20
+        }
+      ],
+      "upkeep": [
+        {
+          "name": "デナリウス",
+          "amount": 35
+        },
+        {
+          "name": "労働力",
+          "amount": 3
+        }
+      ],
+      "war": 140,
+      "trade": 4,
+      "modSlots": 0,
+      "unlock": "アバ（ナイルのガレー船）",
+      "workforce": {
+        "アイギュプト": "麦打ち人の労働力"
+      },
+      "regions": [
+        "アイギュプト"
+      ]
+    },
+    {
+      "id": "aba-military",
+      "name": "アバ（ナイルのガレー船）・軍用",
+      "kind": "river",
+      "desc": "中型の川船。改造に使えるスロットが多い。",
+      "health": 1000,
+      "speed": 4.3,
+      "slots": 5,
+      "stack": 50,
+      "buildMinutes": 8,
+      "cost": [
+        {
+          "name": "デナリウス",
+          "amount": 3000
+        },
+        {
+          "name": "葦",
+          "amount": 30
+        },
+        {
+          "name": "縄",
+          "amount": 20
+        },
+        {
+          "name": "帆布",
+          "amount": 20
+        },
+        {
+          "name": "武器",
+          "amount": 5
+        }
+      ],
+      "upkeep": [
+        {
+          "name": "デナリウス",
+          "amount": 70
+        },
+        {
+          "name": "労働力",
+          "amount": 6
+        }
+      ],
+      "war": 140,
+      "trade": 4,
+      "modSlots": 0,
+      "unlock": "アバ（ナイルのガレー船）",
+      "workforce": {
+        "アイギュプト": "麦打ち人の労働力"
+      },
+      "regions": [
+        "アイギュプト"
+      ]
+    }
+  ],
+  "modules": [
+    {
+      "id": "mast",
+      "name": "帆柱",
+      "desc": "マストを増設することで、風を受けて航行する際の最大速度が向上する。長い距離を航行する船に最適。",
+      "buildMinutes": 1,
+      "cost": [
+        {
+          "name": "デナリウス",
+          "amount": 500
+        },
+        {
+          "name": "木板",
+          "amount": 5
+        },
+        {
+          "name": "縄",
+          "amount": 10
+        },
+        {
+          "name": "帆布",
+          "amount": 10
+        }
+      ],
+      "upkeep": [
+        {
+          "name": "デナリウス",
+          "amount": 10
+        },
+        {
+          "name": "労働力",
+          "amount": 2
+        }
+      ],
+      "war": 0,
+      "sell": 2300,
+      "unlock": null,
+      "workforce": {
+        "ラティウム": "リベルトゥスの労働力",
+        "アルビオン": "ウェーダーの労働力",
+        "アイギュプト": "麦打ち人の労働力"
+      }
+    },
+    {
+      "id": "rows",
+      "name": "櫂",
+      "desc": "扱うには専門の漕ぎ手が必要になるが、船の操縦性が高まり風への依存が減る。",
+      "buildMinutes": 1,
+      "cost": [
+        {
+          "name": "デナリウス",
+          "amount": 500
+        },
+        {
+          "name": "木板",
+          "amount": 10
+        }
+      ],
+      "upkeep": [
+        {
+          "name": "デナリウス",
+          "amount": 5
+        },
+        {
+          "name": "労働力",
+          "amount": 8
+        }
+      ],
+      "war": 20,
+      "sell": 1550,
+      "unlock": null,
+      "workforce": {
+        "ラティウム": "リベルトゥスの労働力",
+        "アルビオン": "ウェーダーの労働力",
+        "アイギュプト": "麦打ち人の労働力"
+      }
+    },
+    {
+      "id": "hull",
+      "name": "追加の船体（装甲）",
+      "desc": "船体外部に取りつける装甲。船の耐久力を高める。",
+      "buildMinutes": 1,
+      "cost": [
+        {
+          "name": "デナリウス",
+          "amount": 500
+        },
+        {
+          "name": "防具",
+          "amount": 15
+        }
+      ],
+      "upkeep": [
+        {
+          "name": "デナリウス",
+          "amount": 10
+        }
+      ],
+      "war": 120,
+      "sell": 3900,
+      "unlock": "装甲艦",
+      "workforce": {
+        "ラティウム": null,
+        "アルビオン": null,
+        "アイギュプト": null
+      }
+    },
+    {
+      "id": "archers",
+      "name": "弓兵",
+      "desc": "射程は短いものの攻撃速度が早い。船同士の戦闘で非常に強力。",
+      "buildMinutes": 1,
+      "cost": [
+        {
+          "name": "デナリウス",
+          "amount": 1000
+        },
+        {
+          "name": "木板",
+          "amount": 10
+        },
+        {
+          "name": "武器",
+          "amount": 3
+        }
+      ],
+      "upkeep": [
+        {
+          "name": "デナリウス",
+          "amount": 15
+        },
+        {
+          "name": "労働力",
+          "amount": 20
+        }
+      ],
+      "war": 300,
+      "sell": 3200,
+      "unlock": null,
+      "workforce": {
+        "ラティウム": "リベルトゥスの労働力",
+        "アルビオン": "ウェーダーの労働力",
+        "アイギュプト": "麦打ち人の労働力"
+      }
+    },
+    {
+      "id": "scorpion",
+      "name": "サソリ（船上バリスタ）",
+      "desc": "中距離戦闘で無類の強さを誇り、海上戦と対陸戦のどちらでも活躍できる万能な兵器。",
+      "buildMinutes": 1,
+      "cost": [
+        {
+          "name": "デナリウス",
+          "amount": 1500
+        },
+        {
+          "name": "木板",
+          "amount": 5
+        },
+        {
+          "name": "縄",
+          "amount": 5
+        },
+        {
+          "name": "武器",
+          "amount": 8
+        }
+      ],
+      "upkeep": [
+        {
+          "name": "デナリウス",
+          "amount": 25
+        },
+        {
+          "name": "労働力",
+          "amount": 8
+        }
+      ],
+      "war": 290,
+      "sell": 5200,
+      "unlock": "船上バリスタ",
+      "workforce": {
+        "ラティウム": "プレブスの労働力",
+        "アルビオン": "メルカトルの労働力",
+        "アイギュプト": "書記の労働力"
+      }
+    },
+    {
+      "id": "catapult",
+      "name": "カタパルト",
+      "desc": "射程は長いが攻撃速度は遅い。動かない標的に対してはこれ以上ない破壊力を誇る。",
+      "buildMinutes": 1,
+      "cost": [
+        {
+          "name": "デナリウス",
+          "amount": 1200
+        },
+        {
+          "name": "木板",
+          "amount": 10
+        },
+        {
+          "name": "縄",
+          "amount": 5
+        },
+        {
+          "name": "武器",
+          "amount": 5
+        }
+      ],
+      "upkeep": [
+        {
+          "name": "デナリウス",
+          "amount": 20
+        },
+        {
+          "name": "労働力",
+          "amount": 8
+        }
+      ],
+      "war": 280,
+      "sell": 4150,
+      "unlock": "カタパルト搭載船",
+      "workforce": {
+        "ラティウム": "プレブスの労働力",
+        "アルビオン": "メルカトルの労働力",
+        "アイギュプト": "書記の労働力"
+      }
+    }
+  ]
+}

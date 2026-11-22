@@ -265,6 +265,8 @@ export default defineConfig({
             items: [
               { text: '建物効果', link: '/wiki/buildings' },
               { text: '建物データ', link: '/wiki/building-specs' },
+            { text: '船データ', link: '/wiki/ships' },
+              { text: '船データ', link: '/wiki/ships' },
               { text: '住民層', link: '/wiki/population' },
             ],
           },
