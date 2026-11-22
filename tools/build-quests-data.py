@@ -13,6 +13,9 @@ import sys
 import unicodedata
 from pathlib import Path
 
+sys.path.insert(0, str(Path(__file__).resolve().parent))
+from quest_conditions import variable_condition  # noqa: E402  内部の変数を比べる条件を読める文にする
+
 sys.stdout.reconfigure(encoding="utf-8")
 
 ROOT = Path(__file__).resolve().parent.parent
@@ -111,6 +114,17 @@ def gname(v):
     return name(int(v)) if v and v.lstrip("-").isdigit() else None
 
 
+COMPARE_SUFFIX = {"AtMost": "以下", "AtLeast": "以上", "LessThan": "未満", "MoreThan": "より多い", "Equals": ""}
+
+
+def goods_text(nm, guid, op, amt):
+    """持っている品物の条件。デナリウスは通貨なので単位をtにしない。比べ方が無ければ「以上」"""
+    suffix = COMPARE_SUFFIX.get(op, "以上")
+    if guid and guid.lstrip("-").isdigit() and int(guid) == DENARII:
+        return f"{nm}が{int(amt):,}" + suffix
+    return f"{nm}が{amt}t" + suffix
+
+
 def cond_text(cid):
     """読める条件だけ文にする。内部の変数を見る条件は None（呼ぶ側で「条件あり」）。"""
     if cid is None:
@@ -124,7 +138,7 @@ def cond_text(cid):
             if ctr == "PopulationByLevel" and nm:
                 s = f"{nm}が{amt}人以上"
             elif ctr == "GoodsInStock" and nm:
-                s = f"{nm}を{amt}t持っている"
+                s = goods_text(nm, p.get("Context"), p.get("ComparisonOp"), amt)
             elif ctr == "ObjectCount" and nm:
                 s = f"{nm}が{amt}以上"
         elif tpl == "ConditionIsParticipantInGame":
@@ -138,6 +152,24 @@ def cond_text(cid):
             s = f"研究「{nm}」済み" if nm else None
         elif tpl == "ConditionIsMaleProtagonist":
             s = "主人公が男性"
+        elif tpl == "ConditionCompareVariable":
+            s = variable_condition(p)
+        elif tpl == "ConditionActiveEmperor":
+            nm = gname(p.get("EmperorParticipant"))
+            s = f"皇帝が{nm}" if nm else None
+        elif tpl == "ConditionIsCampaign":
+            s = "キャンペーンで遊んでいる"
+        elif tpl == "ConditionUnlocked":
+            nm = gname(p.get("UnlockNeeded"))
+            s = f"{nm}が解放済み" if nm else None
+        elif tpl == "ConditionIsDiscovered":
+            nm = gname(p.get("ParticipantRelation.TargetProfile"))
+            s = f"{nm}を発見済み" if nm else None
+        elif tpl == "ConditionInStorage":
+            nm = gname(p.get("InStorageGoods[0].Product"))
+            amt = p.get("InStorageGoods[0].Amount")
+            if nm and amt:
+                s = f"貯蔵庫の{nm}が{amt}t" + COMPARE_SUFFIX.get(p.get("InStorageCompareOp"), "以上")
         elif tpl in ("ConditionAlwaysTrue", "ConditionAlwaysFalse"):
             continue
         if s is None:
