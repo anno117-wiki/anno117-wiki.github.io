@@ -131,8 +131,16 @@ function visibleSteps(q: Quest): Step[] {
   return q.steps.filter((s) => !ids.has(s.id))
 }
 
-/** 目標は達成・未達成、分かれ道は満たす・満たさない。中身の無い側は出さない */
+/** 満たす場合と満たさない場合の結果（報酬と進む先）が同じか */
+function sameResult(a?: Result, b?: Result) {
+  return JSON.stringify([a?.rewards ?? [], a?.next ?? []]) === JSON.stringify([b?.rewards ?? [], b?.next ?? []])
+}
+
+/** 目標は達成・未達成、分かれ道は満たす・満たさない。中身の無い側は出さない。分かれ道で両方が同じなら、1つにまとめる */
 function branches(s: Step): [string, Result][] {
+  if (s.kind === 'check' && s.yes && s.no && sameResult(s.yes, s.no)) {
+    return isEmpty(s.yes) ? [] : [['どちらでも', s.yes]]
+  }
   const pairs: [string, Result | undefined][] = s.kind === 'objective'
     ? [['達成', s.met], ['未達成', s.missed]]
     : s.kind === 'then'
