@@ -1,0 +1,24 @@
+{
+  "displayName": "葦切り",
+  "guid": "159505",
+  "description": "また生えてくる。",
+  "iconFilename": "159505.png",
+  "rarity": "Common",
+  "niche": "Agriculture",
+  "targets": [
+    {
+      "producedGoods": [
+        {
+          "name": "Reeds"
+        }
+      ]
+    }
+  ],
+  "buffs": [
+    {
+      "FactoryUpgrade": {
+        "ProductivityUpgrade": 10.0
+      }
+    }
+  ]
+}

@@ -9,6 +9,18 @@
     {
       "producedGoods": [
         {
+          "name": "Wood"
+        },
+        {
+          "name": "Resin"
+        },
+        {
+          "name": "Charcoal"
+        },
+        {
+          "name": "Coal"
+        },
+        {
           "name": "Dates"
         }
       ]

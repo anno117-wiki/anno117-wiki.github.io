@@ -10,6 +10,15 @@
       "producedGoods": [
         {
           "name": "Ivory Caskets"
+        },
+        {
+          "name": "Hippopotami"
+        },
+        {
+          "name": "Gold"
+        },
+        {
+          "name": "Gold Ore"
         }
       ]
     }

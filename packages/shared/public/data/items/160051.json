@@ -1,0 +1,24 @@
+{
+  "displayName": "アダル・ルック・グウェン、優れた鳥呼び",
+  "guid": "160051",
+  "description": "「アダルの言葉で、群れは舞い降りる。爪と嘴で、戦いを終わらせる」――ある吟遊詩人の物語",
+  "iconFilename": "160051.png",
+  "rarity": "Mythic",
+  "niche": "Economy",
+  "targets": [
+    {
+      "producedGoods": [
+        {
+          "name": "Small Birds"
+        }
+      ]
+    }
+  ],
+  "buffs": [
+    {
+      "FactoryUpgrade": {
+        "ProductivityUpgrade": 40.0
+      }
+    }
+  ]
+}

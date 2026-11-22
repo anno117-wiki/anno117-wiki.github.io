@@ -38,10 +38,16 @@ def build_guid_to_good_name() -> dict[str, str]:
             data = json.loads(path.read_text(encoding="utf-8"))
         except (json.JSONDecodeError, OSError):
             continue
-        guid = data.get("guid")
-        name = data.get("name")
-        if guid and name:
-            mapping[str(guid)] = name
+        # 途中の工程（農場・鉱山など）も、アイテムの対象になる。入れ子の中も全部たどる
+        stack = [data]
+        while stack:
+            node = stack.pop()
+            if not isinstance(node, dict):
+                continue
+            guid, name = node.get("guid"), node.get("name")
+            if guid and name:
+                mapping.setdefault(str(guid), name)
+            stack.extend(node.get("input") or [])
     return mapping
 
 

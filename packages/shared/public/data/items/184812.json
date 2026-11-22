@@ -9,6 +9,12 @@
     {
       "producedGoods": [
         {
+          "name": "Mud"
+        },
+        {
+          "name": "Reeds"
+        },
+        {
           "name": "Mud Bricks"
         }
       ]

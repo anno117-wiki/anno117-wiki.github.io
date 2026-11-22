@@ -1,0 +1,24 @@
+{
+  "displayName": "ローマ最速の刃を振るう者-クトレラ",
+  "guid": "145262",
+  "description": "ナイフが刺し込まれ、はらわたがあふれだす。離れていなければ、あなたも同じ運命をたどるだろう。",
+  "iconFilename": "145262.png",
+  "rarity": "Legendary",
+  "niche": "Agriculture",
+  "targets": [
+    {
+      "producedGoods": [
+        {
+          "name": "Sturgeon"
+        }
+      ]
+    }
+  ],
+  "buffs": [
+    {
+      "FactoryUpgrade": {
+        "ProductivityUpgrade": 25.0
+      }
+    }
+  ]
+}

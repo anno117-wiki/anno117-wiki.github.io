@@ -10,6 +10,15 @@
       "producedGoods": [
         {
           "name": "Kayk"
+        },
+        {
+          "name": "Honeycombs"
+        },
+        {
+          "name": "Wheat"
+        },
+        {
+          "name": "Flour"
         }
       ]
     }

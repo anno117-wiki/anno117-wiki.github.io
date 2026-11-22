@@ -9,6 +9,21 @@
     {
       "producedGoods": [
         {
+          "name": "Bronze"
+        },
+        {
+          "name": "Gold"
+        },
+        {
+          "name": "Silver"
+        },
+        {
+          "name": "Iron"
+        },
+        {
+          "name": "Glass"
+        },
+        {
           "name": "Weapons"
         },
         {

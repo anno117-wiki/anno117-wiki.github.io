@@ -9,7 +9,22 @@
     {
       "producedGoods": [
         {
+          "name": "Flax"
+        },
+        {
+          "name": "Cloth"
+        },
+        {
           "name": "Kalasirises"
+        },
+        {
+          "name": "Copper Ore"
+        },
+        {
+          "name": "Aegyptian Blue"
+        },
+        {
+          "name": "Silica"
         }
       ]
     }

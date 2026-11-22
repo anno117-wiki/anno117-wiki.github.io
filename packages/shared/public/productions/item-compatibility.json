@@ -1,6 +1,6 @@
 {
   "README": "This file maps each production chain to compatible items from Anno 117: Pax Romana.",
-  "generated": "2026-11-22T05:44:45.000Z",
+  "generated": "2026-11-22T05:56:44.415Z",
   "count": 133,
   "chains": [
     {
@@ -22,9 +22,39 @@
           "iconFilename": "44139.png"
         },
         {
+          "guid": "160528",
+          "displayName": "ラエウィヌス、ウルカヌスのつるはし",
+          "iconFilename": "160528.png"
+        },
+        {
+          "guid": "184828",
+          "displayName": "ランプ職人",
+          "iconFilename": "184828.png"
+        },
+        {
+          "guid": "184812",
+          "displayName": "レンガ職人",
+          "iconFilename": "184812.png"
+        },
+        {
+          "guid": "106974",
+          "displayName": "隠遁する還元主義者-スケルグ",
+          "iconFilename": "106974.png"
+        },
+        {
           "guid": "80221",
           "displayName": "小宇宙学者-マクロビウス・ミヌキアヌス",
           "iconFilename": "80221.png"
+        },
+        {
+          "guid": "145268",
+          "displayName": "長き闇の弁論家-オルフェリア",
+          "iconFilename": "145268.png"
+        },
+        {
+          "guid": "44119",
+          "displayName": "頭髪の芸術家",
+          "iconFilename": "44119.png"
         }
       ]
     },
@@ -40,9 +70,64 @@
       },
       "items": [
         {
+          "guid": "181070",
+          "displayName": "イシドラ、カラシリスの仕立屋",
+          "iconFilename": "181070.png"
+        },
+        {
+          "guid": "44117",
+          "displayName": "オブトルキスト",
+          "iconFilename": "44117.png"
+        },
+        {
+          "guid": "44139",
+          "displayName": "ハンドラー",
+          "iconFilename": "44139.png"
+        },
+        {
+          "guid": "184828",
+          "displayName": "ランプ職人",
+          "iconFilename": "184828.png"
+        },
+        {
+          "guid": "184812",
+          "displayName": "レンガ職人",
+          "iconFilename": "184812.png"
+        },
+        {
+          "guid": "79947",
+          "displayName": "黄金の手-ミナス・オルラム",
+          "iconFilename": "79947.png"
+        },
+        {
+          "guid": "95403",
+          "displayName": "海岸の百合-セルヴィア・ベリア",
+          "iconFilename": "95403.png"
+        },
+        {
+          "guid": "44121",
+          "displayName": "護りの実用主義者",
+          "iconFilename": "44121.png"
+        },
+        {
+          "guid": "50665",
+          "displayName": "至高のマント職人",
+          "iconFilename": "50665.png"
+        },
+        {
           "guid": "80221",
           "displayName": "小宇宙学者-マクロビウス・ミヌキアヌス",
           "iconFilename": "80221.png"
+        },
+        {
+          "guid": "145268",
+          "displayName": "長き闇の弁論家-オルフェリア",
+          "iconFilename": "145268.png"
+        },
+        {
+          "guid": "44120",
+          "displayName": "溶解炉の職人",
+          "iconFilename": "44120.png"
         }
       ]
     },
@@ -72,6 +157,11 @@
           "iconFilename": "80510.png"
         },
         {
+          "guid": "44082",
+          "displayName": "ホエイの学徒",
+          "iconFilename": "44082.png"
+        },
+        {
           "guid": "160075",
           "displayName": "ボリオラヌス、包囲戦で鍛えられた勇者",
           "iconFilename": "160075.png"
@@ -82,9 +172,59 @@
           "iconFilename": "107339.png"
         },
         {
+          "guid": "80225",
+          "displayName": "リアンノンのかつての御者-ピル・ファブ・マナウィダン",
+          "iconFilename": "80225.png"
+        },
+        {
+          "guid": "106974",
+          "displayName": "隠遁する還元主義者-スケルグ",
+          "iconFilename": "106974.png"
+        },
+        {
+          "guid": "79947",
+          "displayName": "黄金の手-ミナス・オルラム",
+          "iconFilename": "79947.png"
+        },
+        {
+          "guid": "44122",
+          "displayName": "歌を消す者-ホスタ・ヴルピウス",
+          "iconFilename": "44122.png"
+        },
+        {
+          "guid": "95403",
+          "displayName": "海岸の百合-セルヴィア・ベリア",
+          "iconFilename": "95403.png"
+        },
+        {
+          "guid": "44086",
+          "displayName": "革ひも職人",
+          "iconFilename": "44086.png"
+        },
+        {
+          "guid": "80189",
+          "displayName": "奇妙な鍛冶師-アネイリン・グワードリッド",
+          "iconFilename": "80189.png"
+        },
+        {
+          "guid": "44085",
+          "displayName": "魚の導き手",
+          "iconFilename": "44085.png"
+        },
+        {
+          "guid": "50289",
+          "displayName": "言葉少ない刀工",
+          "iconFilename": "50289.png"
+        },
+        {
           "guid": "50890",
           "displayName": "砂とサンダルの生存者-ファビルス",
           "iconFilename": "50890.png"
+        },
+        {
+          "guid": "44088",
+          "displayName": "車輪技師",
+          "iconFilename": "44088.png"
         },
         {
           "guid": "166523",
@@ -97,9 +237,24 @@
           "iconFilename": "80221.png"
         },
         {
+          "guid": "44142",
+          "displayName": "辛辣な石鹸職人",
+          "iconFilename": "44142.png"
+        },
+        {
           "guid": "50291",
           "displayName": "層重ねの鎧職人",
           "iconFilename": "50291.png"
+        },
+        {
+          "guid": "44147",
+          "displayName": "猪に囁く者",
+          "iconFilename": "44147.png"
+        },
+        {
+          "guid": "145268",
+          "displayName": "長き闇の弁論家-オルフェリア",
+          "iconFilename": "145268.png"
         },
         {
           "guid": "185170",
@@ -116,7 +271,28 @@
         "Celtic"
       ],
       "files": {},
-      "items": []
+      "items": [
+        {
+          "guid": "44081",
+          "displayName": "オーロックス長官",
+          "iconFilename": "44081.png"
+        },
+        {
+          "guid": "44082",
+          "displayName": "ホエイの学徒",
+          "iconFilename": "44082.png"
+        },
+        {
+          "guid": "80225",
+          "displayName": "リアンノンのかつての御者-ピル・ファブ・マナウィダン",
+          "iconFilename": "80225.png"
+        },
+        {
+          "guid": "80221",
+          "displayName": "小宇宙学者-マクロビウス・ミヌキアヌス",
+          "iconFilename": "80221.png"
+        }
+      ]
     },
     {
       "id": "barley",
@@ -126,7 +302,38 @@
         "Celtic"
       ],
       "files": {},
-      "items": []
+      "items": [
+        {
+          "guid": "51282",
+          "displayName": "ケレースの神官-カスポニア・カスタ",
+          "iconFilename": "51282.png"
+        },
+        {
+          "guid": "144846",
+          "displayName": "黄金の醸造酒-ナンナ",
+          "iconFilename": "144846.png"
+        },
+        {
+          "guid": "185129",
+          "displayName": "収穫の声を聴く者フーイ",
+          "iconFilename": "185129.png"
+        },
+        {
+          "guid": "80221",
+          "displayName": "小宇宙学者-マクロビウス・ミヌキアヌス",
+          "iconFilename": "80221.png"
+        },
+        {
+          "guid": "44431",
+          "displayName": "象使い",
+          "iconFilename": "44431.png"
+        },
+        {
+          "guid": "44146",
+          "displayName": "賑わいの芽",
+          "iconFilename": "44146.png"
+        }
+      ]
     },
     {
       "id": "beavers",
@@ -136,7 +343,18 @@
         "Celtic"
       ],
       "files": {},
-      "items": []
+      "items": [
+        {
+          "guid": "44148",
+          "displayName": "巧妙な罠師",
+          "iconFilename": "44148.png"
+        },
+        {
+          "guid": "80221",
+          "displayName": "小宇宙学者-マクロビウス・ミヌキアヌス",
+          "iconFilename": "80221.png"
+        }
+      ]
     },
     {
       "id": "beer",
@@ -150,9 +368,29 @@
       },
       "items": [
         {
+          "guid": "51282",
+          "displayName": "ケレースの神官-カスポニア・カスタ",
+          "iconFilename": "51282.png"
+        },
+        {
+          "guid": "144846",
+          "displayName": "黄金の醸造酒-ナンナ",
+          "iconFilename": "144846.png"
+        },
+        {
+          "guid": "185129",
+          "displayName": "収穫の声を聴く者フーイ",
+          "iconFilename": "185129.png"
+        },
+        {
           "guid": "80221",
           "displayName": "小宇宙学者-マクロビウス・ミヌキアヌス",
           "iconFilename": "80221.png"
+        },
+        {
+          "guid": "44431",
+          "displayName": "象使い",
+          "iconFilename": "44431.png"
         },
         {
           "guid": "44146",
@@ -169,7 +407,18 @@
         "Celtic"
       ],
       "files": {},
-      "items": []
+      "items": [
+        {
+          "guid": "44122",
+          "displayName": "歌を消す者-ホスタ・ヴルピウス",
+          "iconFilename": "44122.png"
+        },
+        {
+          "guid": "80221",
+          "displayName": "小宇宙学者-マクロビウス・ミヌキアヌス",
+          "iconFilename": "80221.png"
+        }
+      ]
     },
     {
       "id": "bird_tongues_in_aspic",
@@ -183,9 +432,24 @@
       },
       "items": [
         {
+          "guid": "160051",
+          "displayName": "アダル・ルック・グウェン、優れた鳥呼び",
+          "iconFilename": "160051.png"
+        },
+        {
+          "guid": "80225",
+          "displayName": "リアンノンのかつての御者-ピル・ファブ・マナウィダン",
+          "iconFilename": "80225.png"
+        },
+        {
           "guid": "44122",
           "displayName": "歌を消す者-ホスタ・ヴルピウス",
           "iconFilename": "44122.png"
+        },
+        {
+          "guid": "44086",
+          "displayName": "革ひも職人",
+          "iconFilename": "44086.png"
         },
         {
           "guid": "96817",
@@ -193,9 +457,29 @@
           "iconFilename": "96817.png"
         },
         {
+          "guid": "166523",
+          "displayName": "小スコルピオ・アフリカヌス、法的に別人の将軍",
+          "iconFilename": "166523.png"
+        },
+        {
           "guid": "80221",
           "displayName": "小宇宙学者-マクロビウス・ミヌキアヌス",
           "iconFilename": "80221.png"
+        },
+        {
+          "guid": "44142",
+          "displayName": "辛辣な石鹸職人",
+          "iconFilename": "44142.png"
+        },
+        {
+          "guid": "50291",
+          "displayName": "層重ねの鎧職人",
+          "iconFilename": "50291.png"
+        },
+        {
+          "guid": "44147",
+          "displayName": "猪に囁く者",
+          "iconFilename": "44147.png"
         }
       ]
     },
@@ -211,14 +495,44 @@
       },
       "items": [
         {
+          "guid": "173061",
+          "displayName": "カフク職人",
+          "iconFilename": "173061.png"
+        },
+        {
+          "guid": "156696",
+          "displayName": "すてきな自然体主義者",
+          "iconFilename": "156696.png"
+        },
+        {
           "guid": "179649",
           "displayName": "セシェン、花摘み",
           "iconFilename": "179649.png"
         },
         {
+          "guid": "44112",
+          "displayName": "ブドウ潰し",
+          "iconFilename": "44112.png"
+        },
+        {
+          "guid": "44115",
+          "displayName": "メラリウス",
+          "iconFilename": "44115.png"
+        },
+        {
+          "guid": "80502",
+          "displayName": "警句の薬剤師-カティン",
+          "iconFilename": "80502.png"
+        },
+        {
           "guid": "80221",
           "displayName": "小宇宙学者-マクロビウス・ミヌキアヌス",
           "iconFilename": "80221.png"
+        },
+        {
+          "guid": "156685",
+          "displayName": "台帳係",
+          "iconFilename": "156685.png"
         }
       ]
     },
@@ -238,9 +552,24 @@
       },
       "items": [
         {
+          "guid": "173061",
+          "displayName": "カフク職人",
+          "iconFilename": "173061.png"
+        },
+        {
+          "guid": "51282",
+          "displayName": "ケレースの神官-カスポニア・カスタ",
+          "iconFilename": "51282.png"
+        },
+        {
           "guid": "160522",
           "displayName": "ブラウダ兄弟、パンの達人",
           "iconFilename": "160522.png"
+        },
+        {
+          "guid": "153695",
+          "displayName": "雁叩き",
+          "iconFilename": "153695.png"
         },
         {
           "guid": "96817",
@@ -248,9 +577,19 @@
           "iconFilename": "96817.png"
         },
         {
+          "guid": "185129",
+          "displayName": "収穫の声を聴く者フーイ",
+          "iconFilename": "185129.png"
+        },
+        {
           "guid": "80221",
           "displayName": "小宇宙学者-マクロビウス・ミヌキアヌス",
           "iconFilename": "80221.png"
+        },
+        {
+          "guid": "44431",
+          "displayName": "象使い",
+          "iconFilename": "44431.png"
         },
         {
           "guid": "44080",
@@ -267,7 +606,28 @@
         "Celtic"
       ],
       "files": {},
-      "items": []
+      "items": [
+        {
+          "guid": "80189",
+          "displayName": "奇妙な鍛冶師-アネイリン・グワードリッド",
+          "iconFilename": "80189.png"
+        },
+        {
+          "guid": "44121",
+          "displayName": "護りの実用主義者",
+          "iconFilename": "44121.png"
+        },
+        {
+          "guid": "50890",
+          "displayName": "砂とサンダルの生存者-ファビルス",
+          "iconFilename": "50890.png"
+        },
+        {
+          "guid": "80221",
+          "displayName": "小宇宙学者-マクロビウス・ミヌキアヌス",
+          "iconFilename": "80221.png"
+        }
+      ]
     },
     {
       "id": "brooches",
@@ -286,9 +646,39 @@
           "iconFilename": "44113.png"
         },
         {
+          "guid": "44116",
+          "displayName": "マリックス、人魚を知る者",
+          "iconFilename": "44116.png"
+        },
+        {
+          "guid": "79947",
+          "displayName": "黄金の手-ミナス・オルラム",
+          "iconFilename": "79947.png"
+        },
+        {
+          "guid": "80189",
+          "displayName": "奇妙な鍛冶師-アネイリン・グワードリッド",
+          "iconFilename": "80189.png"
+        },
+        {
+          "guid": "144874",
+          "displayName": "傑出した探鉱者-カデリナ",
+          "iconFilename": "144874.png"
+        },
+        {
+          "guid": "50890",
+          "displayName": "砂とサンダルの生存者-ファビルス",
+          "iconFilename": "50890.png"
+        },
+        {
           "guid": "80221",
           "displayName": "小宇宙学者-マクロビウス・ミヌキアヌス",
           "iconFilename": "80221.png"
+        },
+        {
+          "guid": "145268",
+          "displayName": "長き闇の弁論家-オルフェリア",
+          "iconFilename": "145268.png"
         }
       ]
     },
@@ -300,7 +690,18 @@
         "Roman"
       ],
       "files": {},
-      "items": []
+      "items": [
+        {
+          "guid": "80221",
+          "displayName": "小宇宙学者-マクロビウス・ミヌキアヌス",
+          "iconFilename": "80221.png"
+        },
+        {
+          "guid": "44143",
+          "displayName": "水際の学徒",
+          "iconFilename": "44143.png"
+        }
+      ]
     },
     {
       "id": "celtic_green",
@@ -310,7 +711,18 @@
         "Celtic"
       ],
       "files": {},
-      "items": []
+      "items": [
+        {
+          "guid": "50665",
+          "displayName": "至高のマント職人",
+          "iconFilename": "50665.png"
+        },
+        {
+          "guid": "80221",
+          "displayName": "小宇宙学者-マクロビウス・ミヌキアヌス",
+          "iconFilename": "80221.png"
+        }
+      ]
     },
     {
       "id": "ceremonial_shields",
@@ -324,14 +736,69 @@
       },
       "items": [
         {
+          "guid": "181070",
+          "displayName": "イシドラ、カラシリスの仕立屋",
+          "iconFilename": "181070.png"
+        },
+        {
+          "guid": "44117",
+          "displayName": "オブトルキスト",
+          "iconFilename": "44117.png"
+        },
+        {
+          "guid": "156696",
+          "displayName": "すてきな自然体主義者",
+          "iconFilename": "156696.png"
+        },
+        {
+          "guid": "44087",
+          "displayName": "ズボン専門家",
+          "iconFilename": "44087.png"
+        },
+        {
+          "guid": "79947",
+          "displayName": "黄金の手-ミナス・オルラム",
+          "iconFilename": "79947.png"
+        },
+        {
+          "guid": "80189",
+          "displayName": "奇妙な鍛冶師-アネイリン・グワードリッド",
+          "iconFilename": "80189.png"
+        },
+        {
+          "guid": "80502",
+          "displayName": "警句の薬剤師-カティン",
+          "iconFilename": "80502.png"
+        },
+        {
           "guid": "44121",
           "displayName": "護りの実用主義者",
           "iconFilename": "44121.png"
         },
         {
+          "guid": "50890",
+          "displayName": "砂とサンダルの生存者-ファビルス",
+          "iconFilename": "50890.png"
+        },
+        {
+          "guid": "50665",
+          "displayName": "至高のマント職人",
+          "iconFilename": "50665.png"
+        },
+        {
           "guid": "80221",
           "displayName": "小宇宙学者-マクロビウス・ミヌキアヌス",
           "iconFilename": "80221.png"
+        },
+        {
+          "guid": "145268",
+          "displayName": "長き闇の弁論家-オルフェリア",
+          "iconFilename": "145268.png"
+        },
+        {
+          "guid": "144844",
+          "displayName": "虹を捕まえる者-コイラン・ペオカグ",
+          "iconFilename": "144844.png"
         }
       ]
     },
@@ -343,7 +810,18 @@
         "Roman"
       ],
       "files": {},
-      "items": []
+      "items": [
+        {
+          "guid": "106974",
+          "displayName": "隠遁する還元主義者-スケルグ",
+          "iconFilename": "106974.png"
+        },
+        {
+          "guid": "80221",
+          "displayName": "小宇宙学者-マクロビウス・ミヌキアヌス",
+          "iconFilename": "80221.png"
+        }
+      ]
     },
     {
       "id": "chariots",
@@ -362,9 +840,39 @@
           "iconFilename": "156706.png"
         },
         {
+          "guid": "145265",
+          "displayName": "ポニーの血統の守り人-コルムカパイル",
+          "iconFilename": "145265.png"
+        },
+        {
+          "guid": "184812",
+          "displayName": "レンガ職人",
+          "iconFilename": "184812.png"
+        },
+        {
           "guid": "156714",
           "displayName": "ワロネリ・ハルトバイン、加速と酒の魔術師",
           "iconFilename": "156714.png"
+        },
+        {
+          "guid": "159505",
+          "displayName": "葦切り",
+          "iconFilename": "159505.png"
+        },
+        {
+          "guid": "106974",
+          "displayName": "隠遁する還元主義者-スケルグ",
+          "iconFilename": "106974.png"
+        },
+        {
+          "guid": "44086",
+          "displayName": "革ひも職人",
+          "iconFilename": "44086.png"
+        },
+        {
+          "guid": "181067",
+          "displayName": "写本書記",
+          "iconFilename": "181067.png"
         },
         {
           "guid": "44088",
@@ -372,9 +880,29 @@
           "iconFilename": "44088.png"
         },
         {
+          "guid": "166523",
+          "displayName": "小スコルピオ・アフリカヌス、法的に別人の将軍",
+          "iconFilename": "166523.png"
+        },
+        {
           "guid": "80221",
           "displayName": "小宇宙学者-マクロビウス・ミヌキアヌス",
           "iconFilename": "80221.png"
+        },
+        {
+          "guid": "50291",
+          "displayName": "層重ねの鎧職人",
+          "iconFilename": "50291.png"
+        },
+        {
+          "guid": "156679",
+          "displayName": "馬丁",
+          "iconFilename": "156679.png"
+        },
+        {
+          "guid": "44140",
+          "displayName": "編み師",
+          "iconFilename": "44140.png"
         }
       ]
     },
@@ -386,7 +914,18 @@
         "Celtic"
       ],
       "files": {},
-      "items": []
+      "items": [
+        {
+          "guid": "44088",
+          "displayName": "車輪技師",
+          "iconFilename": "44088.png"
+        },
+        {
+          "guid": "80221",
+          "displayName": "小宇宙学者-マクロビウス・ミヌキアヌス",
+          "iconFilename": "80221.png"
+        }
+      ]
     },
     {
       "id": "cheese",
@@ -402,6 +941,11 @@
       },
       "items": [
         {
+          "guid": "44081",
+          "displayName": "オーロックス長官",
+          "iconFilename": "44081.png"
+        },
+        {
           "guid": "44082",
           "displayName": "ホエイの学徒",
           "iconFilename": "44082.png"
@@ -412,14 +956,34 @@
           "iconFilename": "173077.png"
         },
         {
+          "guid": "80225",
+          "displayName": "リアンノンのかつての御者-ピル・ファブ・マナウィダン",
+          "iconFilename": "80225.png"
+        },
+        {
+          "guid": "44086",
+          "displayName": "革ひも職人",
+          "iconFilename": "44086.png"
+        },
+        {
           "guid": "96817",
           "displayName": "限りなき食欲の主-アピオン・モクトス・アピキウス",
           "iconFilename": "96817.png"
         },
         {
+          "guid": "166523",
+          "displayName": "小スコルピオ・アフリカヌス、法的に別人の将軍",
+          "iconFilename": "166523.png"
+        },
+        {
           "guid": "80221",
           "displayName": "小宇宙学者-マクロビウス・ミヌキアヌス",
           "iconFilename": "80221.png"
+        },
+        {
+          "guid": "50291",
+          "displayName": "層重ねの鎧職人",
+          "iconFilename": "50291.png"
         }
       ]
     },
@@ -431,7 +995,28 @@
         "Roman"
       ],
       "files": {},
-      "items": []
+      "items": [
+        {
+          "guid": "44139",
+          "displayName": "ハンドラー",
+          "iconFilename": "44139.png"
+        },
+        {
+          "guid": "160528",
+          "displayName": "ラエウィヌス、ウルカヌスのつるはし",
+          "iconFilename": "160528.png"
+        },
+        {
+          "guid": "80221",
+          "displayName": "小宇宙学者-マクロビウス・ミヌキアヌス",
+          "iconFilename": "80221.png"
+        },
+        {
+          "guid": "145268",
+          "displayName": "長き闇の弁論家-オルフェリア",
+          "iconFilename": "145268.png"
+        }
+      ]
     },
     {
       "id": "cloaks",
@@ -445,14 +1030,84 @@
       },
       "items": [
         {
+          "guid": "181070",
+          "displayName": "イシドラ、カラシリスの仕立屋",
+          "iconFilename": "181070.png"
+        },
+        {
+          "guid": "44117",
+          "displayName": "オブトルキスト",
+          "iconFilename": "44117.png"
+        },
+        {
+          "guid": "156696",
+          "displayName": "すてきな自然体主義者",
+          "iconFilename": "156696.png"
+        },
+        {
+          "guid": "44087",
+          "displayName": "ズボン専門家",
+          "iconFilename": "44087.png"
+        },
+        {
+          "guid": "80225",
+          "displayName": "リアンノンのかつての御者-ピル・ファブ・マナウィダン",
+          "iconFilename": "80225.png"
+        },
+        {
+          "guid": "79947",
+          "displayName": "黄金の手-ミナス・オルラム",
+          "iconFilename": "79947.png"
+        },
+        {
+          "guid": "80502",
+          "displayName": "警句の薬剤師-カティン",
+          "iconFilename": "80502.png"
+        },
+        {
+          "guid": "44121",
+          "displayName": "護りの実用主義者",
+          "iconFilename": "44121.png"
+        },
+        {
+          "guid": "44114",
+          "displayName": "仕立て屋のイオリア人",
+          "iconFilename": "44114.png"
+        },
+        {
           "guid": "50665",
           "displayName": "至高のマント職人",
           "iconFilename": "50665.png"
         },
         {
+          "guid": "166523",
+          "displayName": "小スコルピオ・アフリカヌス、法的に別人の将軍",
+          "iconFilename": "166523.png"
+        },
+        {
           "guid": "80221",
           "displayName": "小宇宙学者-マクロビウス・ミヌキアヌス",
           "iconFilename": "80221.png"
+        },
+        {
+          "guid": "145268",
+          "displayName": "長き闇の弁論家-オルフェリア",
+          "iconFilename": "145268.png"
+        },
+        {
+          "guid": "144844",
+          "displayName": "虹を捕まえる者-コイラン・ペオカグ",
+          "iconFilename": "144844.png"
+        },
+        {
+          "guid": "44078",
+          "displayName": "帆職人",
+          "iconFilename": "44078.png"
+        },
+        {
+          "guid": "44144",
+          "displayName": "婦人帽子職人",
+          "iconFilename": "44144.png"
         }
       ]
     },
@@ -464,7 +1119,28 @@
         "Roman"
       ],
       "files": {},
-      "items": []
+      "items": [
+        {
+          "guid": "181070",
+          "displayName": "イシドラ、カラシリスの仕立屋",
+          "iconFilename": "181070.png"
+        },
+        {
+          "guid": "181055",
+          "displayName": "シェンティ職人",
+          "iconFilename": "181055.png"
+        },
+        {
+          "guid": "80221",
+          "displayName": "小宇宙学者-マクロビウス・ミヌキアヌス",
+          "iconFilename": "80221.png"
+        },
+        {
+          "guid": "44118",
+          "displayName": "斑岩の第一人者",
+          "iconFilename": "44118.png"
+        }
+      ]
     },
     {
       "id": "cockles",
@@ -508,6 +1184,21 @@
       },
       "items": [
         {
+          "guid": "181070",
+          "displayName": "イシドラ、カラシリスの仕立屋",
+          "iconFilename": "181070.png"
+        },
+        {
+          "guid": "160528",
+          "displayName": "ラエウィヌス、ウルカヌスのつるはし",
+          "iconFilename": "160528.png"
+        },
+        {
+          "guid": "95403",
+          "displayName": "海岸の百合-セルヴィア・ベリア",
+          "iconFilename": "95403.png"
+        },
+        {
           "guid": "96819",
           "displayName": "高潔な志願兵",
           "iconFilename": "96819.png"
@@ -516,6 +1207,16 @@
           "guid": "80221",
           "displayName": "小宇宙学者-マクロビウス・ミヌキアヌス",
           "iconFilename": "80221.png"
+        },
+        {
+          "guid": "145268",
+          "displayName": "長き闇の弁論家-オルフェリア",
+          "iconFilename": "145268.png"
+        },
+        {
+          "guid": "44120",
+          "displayName": "溶解炉の職人",
+          "iconFilename": "44120.png"
         }
       ]
     },
@@ -527,7 +1228,43 @@
         "Celtic"
       ],
       "files": {},
-      "items": []
+      "items": [
+        {
+          "guid": "181070",
+          "displayName": "イシドラ、カラシリスの仕立屋",
+          "iconFilename": "181070.png"
+        },
+        {
+          "guid": "44117",
+          "displayName": "オブトルキスト",
+          "iconFilename": "44117.png"
+        },
+        {
+          "guid": "79947",
+          "displayName": "黄金の手-ミナス・オルラム",
+          "iconFilename": "79947.png"
+        },
+        {
+          "guid": "44121",
+          "displayName": "護りの実用主義者",
+          "iconFilename": "44121.png"
+        },
+        {
+          "guid": "50665",
+          "displayName": "至高のマント職人",
+          "iconFilename": "50665.png"
+        },
+        {
+          "guid": "80221",
+          "displayName": "小宇宙学者-マクロビウス・ミヌキアヌス",
+          "iconFilename": "80221.png"
+        },
+        {
+          "guid": "145268",
+          "displayName": "長き闇の弁論家-オルフェリア",
+          "iconFilename": "145268.png"
+        }
+      ]
     },
     {
       "id": "cushions",
@@ -537,7 +1274,18 @@
         "Roman"
       ],
       "files": {},
-      "items": []
+      "items": [
+        {
+          "guid": "44149",
+          "displayName": "アトラスの家具職人-マキシマ・コティウス",
+          "iconFilename": "44149.png"
+        },
+        {
+          "guid": "80221",
+          "displayName": "小宇宙学者-マクロビウス・ミヌキアヌス",
+          "iconFilename": "80221.png"
+        }
+      ]
     },
     {
       "id": "aegyptus_dates",
@@ -579,9 +1327,39 @@
       },
       "items": [
         {
+          "guid": "44081",
+          "displayName": "オーロックス長官",
+          "iconFilename": "44081.png"
+        },
+        {
+          "guid": "44082",
+          "displayName": "ホエイの学徒",
+          "iconFilename": "44082.png"
+        },
+        {
+          "guid": "80225",
+          "displayName": "リアンノンのかつての御者-ピル・ファブ・マナウィダン",
+          "iconFilename": "80225.png"
+        },
+        {
+          "guid": "79947",
+          "displayName": "黄金の手-ミナス・オルラム",
+          "iconFilename": "79947.png"
+        },
+        {
+          "guid": "44121",
+          "displayName": "護りの実用主義者",
+          "iconFilename": "44121.png"
+        },
+        {
           "guid": "80221",
           "displayName": "小宇宙学者-マクロビウス・ミヌキアヌス",
           "iconFilename": "80221.png"
+        },
+        {
+          "guid": "145268",
+          "displayName": "長き闇の弁論家-オルフェリア",
+          "iconFilename": "145268.png"
         }
       ]
     },
@@ -593,7 +1371,43 @@
         "Celtic"
       ],
       "files": {},
-      "items": []
+      "items": [
+        {
+          "guid": "156696",
+          "displayName": "すてきな自然体主義者",
+          "iconFilename": "156696.png"
+        },
+        {
+          "guid": "44087",
+          "displayName": "ズボン専門家",
+          "iconFilename": "44087.png"
+        },
+        {
+          "guid": "80502",
+          "displayName": "警句の薬剤師-カティン",
+          "iconFilename": "80502.png"
+        },
+        {
+          "guid": "44121",
+          "displayName": "護りの実用主義者",
+          "iconFilename": "44121.png"
+        },
+        {
+          "guid": "50665",
+          "displayName": "至高のマント職人",
+          "iconFilename": "50665.png"
+        },
+        {
+          "guid": "80221",
+          "displayName": "小宇宙学者-マクロビウス・ミヌキアヌス",
+          "iconFilename": "80221.png"
+        },
+        {
+          "guid": "144844",
+          "displayName": "虹を捕まえる者-コイラン・ペオカグ",
+          "iconFilename": "144844.png"
+        }
+      ]
     },
     {
       "id": "eels",
@@ -640,9 +1454,49 @@
       },
       "items": [
         {
+          "guid": "181070",
+          "displayName": "イシドラ、カラシリスの仕立屋",
+          "iconFilename": "181070.png"
+        },
+        {
+          "guid": "160528",
+          "displayName": "ラエウィヌス、ウルカヌスのつるはし",
+          "iconFilename": "160528.png"
+        },
+        {
+          "guid": "95403",
+          "displayName": "海岸の百合-セルヴィア・ベリア",
+          "iconFilename": "95403.png"
+        },
+        {
+          "guid": "80189",
+          "displayName": "奇妙な鍛冶師-アネイリン・グワードリッド",
+          "iconFilename": "80189.png"
+        },
+        {
+          "guid": "44089",
+          "displayName": "金の石工",
+          "iconFilename": "44089.png"
+        },
+        {
+          "guid": "50890",
+          "displayName": "砂とサンダルの生存者-ファビルス",
+          "iconFilename": "50890.png"
+        },
+        {
+          "guid": "181067",
+          "displayName": "写本書記",
+          "iconFilename": "181067.png"
+        },
+        {
           "guid": "80221",
           "displayName": "小宇宙学者-マクロビウス・ミヌキアヌス",
           "iconFilename": "80221.png"
+        },
+        {
+          "guid": "145268",
+          "displayName": "長き闇の弁論家-オルフェリア",
+          "iconFilename": "145268.png"
         },
         {
           "guid": "44120",
@@ -660,7 +1514,53 @@
         "Celtic"
       ],
       "files": {},
-      "items": []
+      "items": [
+        {
+          "guid": "44149",
+          "displayName": "アトラスの家具職人-マキシマ・コティウス",
+          "iconFilename": "44149.png"
+        },
+        {
+          "guid": "181070",
+          "displayName": "イシドラ、カラシリスの仕立屋",
+          "iconFilename": "181070.png"
+        },
+        {
+          "guid": "51282",
+          "displayName": "ケレースの神官-カスポニア・カスタ",
+          "iconFilename": "51282.png"
+        },
+        {
+          "guid": "181055",
+          "displayName": "シェンティ職人",
+          "iconFilename": "181055.png"
+        },
+        {
+          "guid": "185129",
+          "displayName": "収穫の声を聴く者フーイ",
+          "iconFilename": "185129.png"
+        },
+        {
+          "guid": "80221",
+          "displayName": "小宇宙学者-マクロビウス・ミヌキアヌス",
+          "iconFilename": "80221.png"
+        },
+        {
+          "guid": "44431",
+          "displayName": "象使い",
+          "iconFilename": "44431.png"
+        },
+        {
+          "guid": "44119",
+          "displayName": "頭髪の芸術家",
+          "iconFilename": "44119.png"
+        },
+        {
+          "guid": "44118",
+          "displayName": "斑岩の第一人者",
+          "iconFilename": "44118.png"
+        }
+      ]
     },
     {
       "id": "flour",
@@ -671,7 +1571,23 @@
         "Celtic"
       ],
       "files": {},
-      "items": []
+      "items": [
+        {
+          "guid": "173061",
+          "displayName": "カフク職人",
+          "iconFilename": "173061.png"
+        },
+        {
+          "guid": "80221",
+          "displayName": "小宇宙学者-マクロビウス・ミヌキアヌス",
+          "iconFilename": "80221.png"
+        },
+        {
+          "guid": "44080",
+          "displayName": "生地の占い手",
+          "iconFilename": "44080.png"
+        }
+      ]
     },
     {
       "id": "fur_hats",
@@ -684,6 +1600,16 @@
         "celtic": "fur_hats_albion"
       },
       "items": [
+        {
+          "guid": "44081",
+          "displayName": "オーロックス長官",
+          "iconFilename": "44081.png"
+        },
+        {
+          "guid": "95403",
+          "displayName": "海岸の百合-セルヴィア・ベリア",
+          "iconFilename": "95403.png"
+        },
         {
           "guid": "44148",
           "displayName": "巧妙な罠師",
@@ -708,14 +1634,44 @@
       },
       "items": [
         {
+          "guid": "160054",
+          "displayName": "エルクマルの子フィネケス、全知の鮭漁師",
+          "iconFilename": "160054.png"
+        },
+        {
+          "guid": "156710",
+          "displayName": "スペアー・ニク・レアルタ、策士の釣り人",
+          "iconFilename": "156710.png"
+        },
+        {
+          "guid": "95403",
+          "displayName": "海岸の百合-セルヴィア・ベリア",
+          "iconFilename": "95403.png"
+        },
+        {
+          "guid": "44086",
+          "displayName": "革ひも職人",
+          "iconFilename": "44086.png"
+        },
+        {
           "guid": "44085",
           "displayName": "魚の導き手",
           "iconFilename": "44085.png"
         },
         {
+          "guid": "166523",
+          "displayName": "小スコルピオ・アフリカヌス、法的に別人の将軍",
+          "iconFilename": "166523.png"
+        },
+        {
           "guid": "80221",
           "displayName": "小宇宙学者-マクロビウス・ミヌキアヌス",
           "iconFilename": "80221.png"
+        },
+        {
+          "guid": "50291",
+          "displayName": "層重ねの鎧職人",
+          "iconFilename": "50291.png"
         }
       ]
     },
@@ -727,7 +1683,28 @@
         "Roman"
       ],
       "files": {},
-      "items": []
+      "items": [
+        {
+          "guid": "80189",
+          "displayName": "奇妙な鍛冶師-アネイリン・グワードリッド",
+          "iconFilename": "80189.png"
+        },
+        {
+          "guid": "50890",
+          "displayName": "砂とサンダルの生存者-ファビルス",
+          "iconFilename": "50890.png"
+        },
+        {
+          "guid": "80221",
+          "displayName": "小宇宙学者-マクロビウス・ミヌキアヌス",
+          "iconFilename": "80221.png"
+        },
+        {
+          "guid": "44120",
+          "displayName": "溶解炉の職人",
+          "iconFilename": "44120.png"
+        }
+      ]
     },
     {
       "id": "gold",
@@ -737,7 +1714,48 @@
         "Roman"
       ],
       "files": {},
-      "items": []
+      "items": [
+        {
+          "guid": "181017",
+          "displayName": "イセト・ハムト・ネテル、イシスの崇拝者",
+          "iconFilename": "181017.png"
+        },
+        {
+          "guid": "80189",
+          "displayName": "奇妙な鍛冶師-アネイリン・グワードリッド",
+          "iconFilename": "80189.png"
+        },
+        {
+          "guid": "156688",
+          "displayName": "近視の石工",
+          "iconFilename": "156688.png"
+        },
+        {
+          "guid": "44089",
+          "displayName": "金の石工",
+          "iconFilename": "44089.png"
+        },
+        {
+          "guid": "50890",
+          "displayName": "砂とサンダルの生存者-ファビルス",
+          "iconFilename": "50890.png"
+        },
+        {
+          "guid": "44114",
+          "displayName": "仕立て屋のイオリア人",
+          "iconFilename": "44114.png"
+        },
+        {
+          "guid": "80221",
+          "displayName": "小宇宙学者-マクロビウス・ミヌキアヌス",
+          "iconFilename": "80221.png"
+        },
+        {
+          "guid": "147974",
+          "displayName": "独学のゲーム学者",
+          "iconFilename": "147974.png"
+        }
+      ]
     },
     {
       "id": "gold_ore",
@@ -747,7 +1765,63 @@
         "Roman"
       ],
       "files": {},
-      "items": []
+      "items": [
+        {
+          "guid": "181017",
+          "displayName": "イセト・ハムト・ネテル、イシスの崇拝者",
+          "iconFilename": "181017.png"
+        },
+        {
+          "guid": "160528",
+          "displayName": "ラエウィヌス、ウルカヌスのつるはし",
+          "iconFilename": "160528.png"
+        },
+        {
+          "guid": "79947",
+          "displayName": "黄金の手-ミナス・オルラム",
+          "iconFilename": "79947.png"
+        },
+        {
+          "guid": "95403",
+          "displayName": "海岸の百合-セルヴィア・ベリア",
+          "iconFilename": "95403.png"
+        },
+        {
+          "guid": "156688",
+          "displayName": "近視の石工",
+          "iconFilename": "156688.png"
+        },
+        {
+          "guid": "44089",
+          "displayName": "金の石工",
+          "iconFilename": "44089.png"
+        },
+        {
+          "guid": "44114",
+          "displayName": "仕立て屋のイオリア人",
+          "iconFilename": "44114.png"
+        },
+        {
+          "guid": "80221",
+          "displayName": "小宇宙学者-マクロビウス・ミヌキアヌス",
+          "iconFilename": "80221.png"
+        },
+        {
+          "guid": "145268",
+          "displayName": "長き闇の弁論家-オルフェリア",
+          "iconFilename": "145268.png"
+        },
+        {
+          "guid": "166421",
+          "displayName": "泥ふるい",
+          "iconFilename": "166421.png"
+        },
+        {
+          "guid": "147974",
+          "displayName": "独学のゲーム学者",
+          "iconFilename": "147974.png"
+        }
+      ]
     },
     {
       "id": "granite",
@@ -766,6 +1840,11 @@
           "iconFilename": "156704.png"
         },
         {
+          "guid": "160528",
+          "displayName": "ラエウィヌス、ウルカヌスのつるはし",
+          "iconFilename": "160528.png"
+        },
+        {
           "guid": "96819",
           "displayName": "高潔な志願兵",
           "iconFilename": "96819.png"
@@ -774,6 +1853,11 @@
           "guid": "80221",
           "displayName": "小宇宙学者-マクロビウス・ミヌキアヌス",
           "iconFilename": "80221.png"
+        },
+        {
+          "guid": "145268",
+          "displayName": "長き闇の弁論家-オルフェリア",
+          "iconFilename": "145268.png"
         }
       ]
     },
@@ -785,7 +1869,23 @@
         "Celtic"
       ],
       "files": {},
-      "items": []
+      "items": [
+        {
+          "guid": "160528",
+          "displayName": "ラエウィヌス、ウルカヌスのつるはし",
+          "iconFilename": "160528.png"
+        },
+        {
+          "guid": "80221",
+          "displayName": "小宇宙学者-マクロビウス・ミヌキアヌス",
+          "iconFilename": "80221.png"
+        },
+        {
+          "guid": "145268",
+          "displayName": "長き闇の弁論家-オルフェリア",
+          "iconFilename": "145268.png"
+        }
+      ]
     },
     {
       "id": "grapes",
@@ -796,7 +1896,28 @@
         "Celtic"
       ],
       "files": {},
-      "items": []
+      "items": [
+        {
+          "guid": "156696",
+          "displayName": "すてきな自然体主義者",
+          "iconFilename": "156696.png"
+        },
+        {
+          "guid": "44112",
+          "displayName": "ブドウ潰し",
+          "iconFilename": "44112.png"
+        },
+        {
+          "guid": "80502",
+          "displayName": "警句の薬剤師-カティン",
+          "iconFilename": "80502.png"
+        },
+        {
+          "guid": "80221",
+          "displayName": "小宇宙学者-マクロビウス・ミヌキアヌス",
+          "iconFilename": "80221.png"
+        }
+      ]
     },
     {
       "id": "handmirrors",
@@ -810,6 +1931,11 @@
       },
       "items": [
         {
+          "guid": "44113",
+          "displayName": "サトゥルヌスの製錬工",
+          "iconFilename": "44113.png"
+        },
+        {
           "guid": "160057",
           "displayName": "セリフォスのプトリポルトス、磨き上げられた鏡占術師",
           "iconFilename": "160057.png"
@@ -820,9 +1946,39 @@
           "iconFilename": "44116.png"
         },
         {
+          "guid": "79947",
+          "displayName": "黄金の手-ミナス・オルラム",
+          "iconFilename": "79947.png"
+        },
+        {
+          "guid": "95403",
+          "displayName": "海岸の百合-セルヴィア・ベリア",
+          "iconFilename": "95403.png"
+        },
+        {
+          "guid": "80189",
+          "displayName": "奇妙な鍛冶師-アネイリン・グワードリッド",
+          "iconFilename": "80189.png"
+        },
+        {
+          "guid": "144874",
+          "displayName": "傑出した探鉱者-カデリナ",
+          "iconFilename": "144874.png"
+        },
+        {
+          "guid": "50890",
+          "displayName": "砂とサンダルの生存者-ファビルス",
+          "iconFilename": "50890.png"
+        },
+        {
           "guid": "80221",
           "displayName": "小宇宙学者-マクロビウス・ミヌキアヌス",
           "iconFilename": "80221.png"
+        },
+        {
+          "guid": "145268",
+          "displayName": "長き闇の弁論家-オルフェリア",
+          "iconFilename": "145268.png"
         }
       ]
     },
@@ -834,7 +1990,18 @@
         "Celtic"
       ],
       "files": {},
-      "items": []
+      "items": [
+        {
+          "guid": "80221",
+          "displayName": "小宇宙学者-マクロビウス・ミヌキアヌス",
+          "iconFilename": "80221.png"
+        },
+        {
+          "guid": "44119",
+          "displayName": "頭髪の芸術家",
+          "iconFilename": "44119.png"
+        }
+      ]
     },
     {
       "id": "hemp",
@@ -845,7 +2012,43 @@
         "Celtic"
       ],
       "files": {},
-      "items": []
+      "items": [
+        {
+          "guid": "51282",
+          "displayName": "ケレースの神官-カスポニア・カスタ",
+          "iconFilename": "51282.png"
+        },
+        {
+          "guid": "44079",
+          "displayName": "ロープ職人",
+          "iconFilename": "44079.png"
+        },
+        {
+          "guid": "44083",
+          "displayName": "仕立屋",
+          "iconFilename": "44083.png"
+        },
+        {
+          "guid": "185129",
+          "displayName": "収穫の声を聴く者フーイ",
+          "iconFilename": "185129.png"
+        },
+        {
+          "guid": "166523",
+          "displayName": "小スコルピオ・アフリカヌス、法的に別人の将軍",
+          "iconFilename": "166523.png"
+        },
+        {
+          "guid": "80221",
+          "displayName": "小宇宙学者-マクロビウス・ミヌキアヌス",
+          "iconFilename": "80221.png"
+        },
+        {
+          "guid": "44431",
+          "displayName": "象使い",
+          "iconFilename": "44431.png"
+        }
+      ]
     },
     {
       "id": "herbs",
@@ -855,7 +2058,33 @@
         "Celtic"
       ],
       "files": {},
-      "items": []
+      "items": [
+        {
+          "guid": "156696",
+          "displayName": "すてきな自然体主義者",
+          "iconFilename": "156696.png"
+        },
+        {
+          "guid": "80502",
+          "displayName": "警句の薬剤師-カティン",
+          "iconFilename": "80502.png"
+        },
+        {
+          "guid": "80221",
+          "displayName": "小宇宙学者-マクロビウス・ミヌキアヌス",
+          "iconFilename": "80221.png"
+        },
+        {
+          "guid": "44147",
+          "displayName": "猪に囁く者",
+          "iconFilename": "44147.png"
+        },
+        {
+          "guid": "144842",
+          "displayName": "伝説の薬草採り-ロラーナ",
+          "iconFilename": "144842.png"
+        }
+      ]
     },
     {
       "id": "honeycombs",
@@ -866,7 +2095,38 @@
         "Celtic"
       ],
       "files": {},
-      "items": []
+      "items": [
+        {
+          "guid": "173061",
+          "displayName": "カフク職人",
+          "iconFilename": "173061.png"
+        },
+        {
+          "guid": "179649",
+          "displayName": "セシェン、花摘み",
+          "iconFilename": "179649.png"
+        },
+        {
+          "guid": "44112",
+          "displayName": "ブドウ潰し",
+          "iconFilename": "44112.png"
+        },
+        {
+          "guid": "44115",
+          "displayName": "メラリウス",
+          "iconFilename": "44115.png"
+        },
+        {
+          "guid": "80221",
+          "displayName": "小宇宙学者-マクロビウス・ミヌキアヌス",
+          "iconFilename": "80221.png"
+        },
+        {
+          "guid": "156685",
+          "displayName": "台帳係",
+          "iconFilename": "156685.png"
+        }
+      ]
     },
     {
       "id": "horses",
@@ -922,7 +2182,38 @@
         "Celtic"
       ],
       "files": {},
-      "items": []
+      "items": [
+        {
+          "guid": "80189",
+          "displayName": "奇妙な鍛冶師-アネイリン・グワードリッド",
+          "iconFilename": "80189.png"
+        },
+        {
+          "guid": "50289",
+          "displayName": "言葉少ない刀工",
+          "iconFilename": "50289.png"
+        },
+        {
+          "guid": "50890",
+          "displayName": "砂とサンダルの生存者-ファビルス",
+          "iconFilename": "50890.png"
+        },
+        {
+          "guid": "166523",
+          "displayName": "小スコルピオ・アフリカヌス、法的に別人の将軍",
+          "iconFilename": "166523.png"
+        },
+        {
+          "guid": "80221",
+          "displayName": "小宇宙学者-マクロビウス・ミヌキアヌス",
+          "iconFilename": "80221.png"
+        },
+        {
+          "guid": "50291",
+          "displayName": "層重ねの鎧職人",
+          "iconFilename": "50291.png"
+        }
+      ]
     },
     {
       "id": "iron_ore",
@@ -933,7 +2224,38 @@
         "Celtic"
       ],
       "files": {},
-      "items": []
+      "items": [
+        {
+          "guid": "79947",
+          "displayName": "黄金の手-ミナス・オルラム",
+          "iconFilename": "79947.png"
+        },
+        {
+          "guid": "50289",
+          "displayName": "言葉少ない刀工",
+          "iconFilename": "50289.png"
+        },
+        {
+          "guid": "166523",
+          "displayName": "小スコルピオ・アフリカヌス、法的に別人の将軍",
+          "iconFilename": "166523.png"
+        },
+        {
+          "guid": "80221",
+          "displayName": "小宇宙学者-マクロビウス・ミヌキアヌス",
+          "iconFilename": "80221.png"
+        },
+        {
+          "guid": "50291",
+          "displayName": "層重ねの鎧職人",
+          "iconFilename": "50291.png"
+        },
+        {
+          "guid": "145268",
+          "displayName": "長き闇の弁論家-オルフェリア",
+          "iconFilename": "145268.png"
+        }
+      ]
     },
     {
       "id": "aegyptus_ivory_caskets_gold_mine",
@@ -947,9 +2269,79 @@
       },
       "items": [
         {
+          "guid": "184824",
+          "displayName": "アシュキス、食欲の占者",
+          "iconFilename": "184824.png"
+        },
+        {
           "guid": "181017",
           "displayName": "イセト・ハムト・ネテル、イシスの崇拝者",
           "iconFilename": "181017.png"
+        },
+        {
+          "guid": "173073",
+          "displayName": "カバ使い",
+          "iconFilename": "173073.png"
+        },
+        {
+          "guid": "160528",
+          "displayName": "ラエウィヌス、ウルカヌスのつるはし",
+          "iconFilename": "160528.png"
+        },
+        {
+          "guid": "79947",
+          "displayName": "黄金の手-ミナス・オルラム",
+          "iconFilename": "79947.png"
+        },
+        {
+          "guid": "95403",
+          "displayName": "海岸の百合-セルヴィア・ベリア",
+          "iconFilename": "95403.png"
+        },
+        {
+          "guid": "80189",
+          "displayName": "奇妙な鍛冶師-アネイリン・グワードリッド",
+          "iconFilename": "80189.png"
+        },
+        {
+          "guid": "156688",
+          "displayName": "近視の石工",
+          "iconFilename": "156688.png"
+        },
+        {
+          "guid": "44089",
+          "displayName": "金の石工",
+          "iconFilename": "44089.png"
+        },
+        {
+          "guid": "50890",
+          "displayName": "砂とサンダルの生存者-ファビルス",
+          "iconFilename": "50890.png"
+        },
+        {
+          "guid": "44114",
+          "displayName": "仕立て屋のイオリア人",
+          "iconFilename": "44114.png"
+        },
+        {
+          "guid": "80221",
+          "displayName": "小宇宙学者-マクロビウス・ミヌキアヌス",
+          "iconFilename": "80221.png"
+        },
+        {
+          "guid": "145268",
+          "displayName": "長き闇の弁論家-オルフェリア",
+          "iconFilename": "145268.png"
+        },
+        {
+          "guid": "166421",
+          "displayName": "泥ふるい",
+          "iconFilename": "166421.png"
+        },
+        {
+          "guid": "147974",
+          "displayName": "独学のゲーム学者",
+          "iconFilename": "147974.png"
         }
       ]
     },
@@ -965,9 +2357,79 @@
       },
       "items": [
         {
+          "guid": "184824",
+          "displayName": "アシュキス、食欲の占者",
+          "iconFilename": "184824.png"
+        },
+        {
           "guid": "181017",
           "displayName": "イセト・ハムト・ネテル、イシスの崇拝者",
           "iconFilename": "181017.png"
+        },
+        {
+          "guid": "173073",
+          "displayName": "カバ使い",
+          "iconFilename": "173073.png"
+        },
+        {
+          "guid": "160528",
+          "displayName": "ラエウィヌス、ウルカヌスのつるはし",
+          "iconFilename": "160528.png"
+        },
+        {
+          "guid": "79947",
+          "displayName": "黄金の手-ミナス・オルラム",
+          "iconFilename": "79947.png"
+        },
+        {
+          "guid": "95403",
+          "displayName": "海岸の百合-セルヴィア・ベリア",
+          "iconFilename": "95403.png"
+        },
+        {
+          "guid": "80189",
+          "displayName": "奇妙な鍛冶師-アネイリン・グワードリッド",
+          "iconFilename": "80189.png"
+        },
+        {
+          "guid": "156688",
+          "displayName": "近視の石工",
+          "iconFilename": "156688.png"
+        },
+        {
+          "guid": "44089",
+          "displayName": "金の石工",
+          "iconFilename": "44089.png"
+        },
+        {
+          "guid": "50890",
+          "displayName": "砂とサンダルの生存者-ファビルス",
+          "iconFilename": "50890.png"
+        },
+        {
+          "guid": "44114",
+          "displayName": "仕立て屋のイオリア人",
+          "iconFilename": "44114.png"
+        },
+        {
+          "guid": "80221",
+          "displayName": "小宇宙学者-マクロビウス・ミヌキアヌス",
+          "iconFilename": "80221.png"
+        },
+        {
+          "guid": "145268",
+          "displayName": "長き闇の弁論家-オルフェリア",
+          "iconFilename": "145268.png"
+        },
+        {
+          "guid": "166421",
+          "displayName": "泥ふるい",
+          "iconFilename": "166421.png"
+        },
+        {
+          "guid": "147974",
+          "displayName": "独学のゲーム学者",
+          "iconFilename": "147974.png"
         }
       ]
     },
@@ -983,14 +2445,84 @@
       },
       "items": [
         {
+          "guid": "44149",
+          "displayName": "アトラスの家具職人-マキシマ・コティウス",
+          "iconFilename": "44149.png"
+        },
+        {
           "guid": "181070",
           "displayName": "イシドラ、カラシリスの仕立屋",
           "iconFilename": "181070.png"
         },
         {
+          "guid": "44117",
+          "displayName": "オブトルキスト",
+          "iconFilename": "44117.png"
+        },
+        {
+          "guid": "51282",
+          "displayName": "ケレースの神官-カスポニア・カスタ",
+          "iconFilename": "51282.png"
+        },
+        {
+          "guid": "181055",
+          "displayName": "シェンティ職人",
+          "iconFilename": "181055.png"
+        },
+        {
+          "guid": "79947",
+          "displayName": "黄金の手-ミナス・オルラム",
+          "iconFilename": "79947.png"
+        },
+        {
+          "guid": "95403",
+          "displayName": "海岸の百合-セルヴィア・ベリア",
+          "iconFilename": "95403.png"
+        },
+        {
+          "guid": "44121",
+          "displayName": "護りの実用主義者",
+          "iconFilename": "44121.png"
+        },
+        {
+          "guid": "50665",
+          "displayName": "至高のマント職人",
+          "iconFilename": "50665.png"
+        },
+        {
+          "guid": "185129",
+          "displayName": "収穫の声を聴く者フーイ",
+          "iconFilename": "185129.png"
+        },
+        {
           "guid": "80221",
           "displayName": "小宇宙学者-マクロビウス・ミヌキアヌス",
           "iconFilename": "80221.png"
+        },
+        {
+          "guid": "44431",
+          "displayName": "象使い",
+          "iconFilename": "44431.png"
+        },
+        {
+          "guid": "145268",
+          "displayName": "長き闇の弁論家-オルフェリア",
+          "iconFilename": "145268.png"
+        },
+        {
+          "guid": "44119",
+          "displayName": "頭髪の芸術家",
+          "iconFilename": "44119.png"
+        },
+        {
+          "guid": "44118",
+          "displayName": "斑岩の第一人者",
+          "iconFilename": "44118.png"
+        },
+        {
+          "guid": "44120",
+          "displayName": "溶解炉の職人",
+          "iconFilename": "44120.png"
         }
       ]
     },
@@ -1011,14 +2543,59 @@
           "iconFilename": "173061.png"
         },
         {
+          "guid": "51282",
+          "displayName": "ケレースの神官-カスポニア・カスタ",
+          "iconFilename": "51282.png"
+        },
+        {
+          "guid": "179649",
+          "displayName": "セシェン、花摘み",
+          "iconFilename": "179649.png"
+        },
+        {
+          "guid": "44112",
+          "displayName": "ブドウ潰し",
+          "iconFilename": "44112.png"
+        },
+        {
+          "guid": "44115",
+          "displayName": "メラリウス",
+          "iconFilename": "44115.png"
+        },
+        {
+          "guid": "153695",
+          "displayName": "雁叩き",
+          "iconFilename": "153695.png"
+        },
+        {
           "guid": "96817",
           "displayName": "限りなき食欲の主-アピオン・モクトス・アピキウス",
           "iconFilename": "96817.png"
         },
         {
+          "guid": "185129",
+          "displayName": "収穫の声を聴く者フーイ",
+          "iconFilename": "185129.png"
+        },
+        {
           "guid": "80221",
           "displayName": "小宇宙学者-マクロビウス・ミヌキアヌス",
           "iconFilename": "80221.png"
+        },
+        {
+          "guid": "44431",
+          "displayName": "象使い",
+          "iconFilename": "44431.png"
+        },
+        {
+          "guid": "44080",
+          "displayName": "生地の占い手",
+          "iconFilename": "44080.png"
+        },
+        {
+          "guid": "156685",
+          "displayName": "台帳係",
+          "iconFilename": "156685.png"
         }
       ]
     },
@@ -1034,9 +2611,44 @@
       },
       "items": [
         {
+          "guid": "156717",
+          "displayName": "クララ・トゲイル、裂け目に祝福されし虹の大地の職人",
+          "iconFilename": "156717.png"
+        },
+        {
+          "guid": "106974",
+          "displayName": "隠遁する還元主義者-スケルグ",
+          "iconFilename": "106974.png"
+        },
+        {
+          "guid": "79947",
+          "displayName": "黄金の手-ミナス・オルラム",
+          "iconFilename": "79947.png"
+        },
+        {
+          "guid": "44122",
+          "displayName": "歌を消す者-ホスタ・ヴルピウス",
+          "iconFilename": "44122.png"
+        },
+        {
+          "guid": "153695",
+          "displayName": "雁叩き",
+          "iconFilename": "153695.png"
+        },
+        {
           "guid": "80221",
           "displayName": "小宇宙学者-マクロビウス・ミヌキアヌス",
           "iconFilename": "80221.png"
+        },
+        {
+          "guid": "44142",
+          "displayName": "辛辣な石鹸職人",
+          "iconFilename": "44142.png"
+        },
+        {
+          "guid": "145268",
+          "displayName": "長き闇の弁論家-オルフェリア",
+          "iconFilename": "145268.png"
         }
       ]
     },
@@ -1052,9 +2664,44 @@
       },
       "items": [
         {
+          "guid": "156717",
+          "displayName": "クララ・トゲイル、裂け目に祝福されし虹の大地の職人",
+          "iconFilename": "156717.png"
+        },
+        {
+          "guid": "106974",
+          "displayName": "隠遁する還元主義者-スケルグ",
+          "iconFilename": "106974.png"
+        },
+        {
+          "guid": "79947",
+          "displayName": "黄金の手-ミナス・オルラム",
+          "iconFilename": "79947.png"
+        },
+        {
+          "guid": "44122",
+          "displayName": "歌を消す者-ホスタ・ヴルピウス",
+          "iconFilename": "44122.png"
+        },
+        {
+          "guid": "153695",
+          "displayName": "雁叩き",
+          "iconFilename": "153695.png"
+        },
+        {
           "guid": "80221",
           "displayName": "小宇宙学者-マクロビウス・ミヌキアヌス",
           "iconFilename": "80221.png"
+        },
+        {
+          "guid": "44142",
+          "displayName": "辛辣な石鹸職人",
+          "iconFilename": "44142.png"
+        },
+        {
+          "guid": "145268",
+          "displayName": "長き闇の弁論家-オルフェリア",
+          "iconFilename": "145268.png"
         }
       ]
     },
@@ -1067,7 +2714,23 @@
         "Roman"
       ],
       "files": {},
-      "items": []
+      "items": [
+        {
+          "guid": "44122",
+          "displayName": "歌を消す者-ホスタ・ヴルピウス",
+          "iconFilename": "44122.png"
+        },
+        {
+          "guid": "80221",
+          "displayName": "小宇宙学者-マクロビウス・ミヌキアヌス",
+          "iconFilename": "80221.png"
+        },
+        {
+          "guid": "44142",
+          "displayName": "辛辣な石鹸職人",
+          "iconFilename": "44142.png"
+        }
+      ]
     },
     {
       "id": "latrunculi_sets",
@@ -1081,9 +2744,49 @@
       },
       "items": [
         {
+          "guid": "44149",
+          "displayName": "アトラスの家具職人-マキシマ・コティウス",
+          "iconFilename": "44149.png"
+        },
+        {
+          "guid": "181017",
+          "displayName": "イセト・ハムト・ネテル、イシスの崇拝者",
+          "iconFilename": "181017.png"
+        },
+        {
+          "guid": "156696",
+          "displayName": "すてきな自然体主義者",
+          "iconFilename": "156696.png"
+        },
+        {
           "guid": "160531",
           "displayName": "プロクレス、異質なクソアノン彫刻家",
           "iconFilename": "160531.png"
+        },
+        {
+          "guid": "44115",
+          "displayName": "メラリウス",
+          "iconFilename": "44115.png"
+        },
+        {
+          "guid": "160528",
+          "displayName": "ラエウィヌス、ウルカヌスのつるはし",
+          "iconFilename": "160528.png"
+        },
+        {
+          "guid": "79947",
+          "displayName": "黄金の手-ミナス・オルラム",
+          "iconFilename": "79947.png"
+        },
+        {
+          "guid": "95403",
+          "displayName": "海岸の百合-セルヴィア・ベリア",
+          "iconFilename": "95403.png"
+        },
+        {
+          "guid": "80189",
+          "displayName": "奇妙な鍛冶師-アネイリン・グワードリッド",
+          "iconFilename": "80189.png"
         },
         {
           "guid": "156688",
@@ -1091,9 +2794,49 @@
           "iconFilename": "156688.png"
         },
         {
+          "guid": "44089",
+          "displayName": "金の石工",
+          "iconFilename": "44089.png"
+        },
+        {
+          "guid": "80502",
+          "displayName": "警句の薬剤師-カティン",
+          "iconFilename": "80502.png"
+        },
+        {
+          "guid": "50890",
+          "displayName": "砂とサンダルの生存者-ファビルス",
+          "iconFilename": "50890.png"
+        },
+        {
+          "guid": "44114",
+          "displayName": "仕立て屋のイオリア人",
+          "iconFilename": "44114.png"
+        },
+        {
           "guid": "80221",
           "displayName": "小宇宙学者-マクロビウス・ミヌキアヌス",
           "iconFilename": "80221.png"
+        },
+        {
+          "guid": "144848",
+          "displayName": "森の番人-ガイウス・クリトニウス・リグネウス",
+          "iconFilename": "144848.png"
+        },
+        {
+          "guid": "156685",
+          "displayName": "台帳係",
+          "iconFilename": "156685.png"
+        },
+        {
+          "guid": "145268",
+          "displayName": "長き闇の弁論家-オルフェリア",
+          "iconFilename": "145268.png"
+        },
+        {
+          "guid": "166421",
+          "displayName": "泥ふるい",
+          "iconFilename": "166421.png"
         },
         {
           "guid": "147974",
@@ -1110,7 +2853,28 @@
         "Roman"
       ],
       "files": {},
-      "items": []
+      "items": [
+        {
+          "guid": "156696",
+          "displayName": "すてきな自然体主義者",
+          "iconFilename": "156696.png"
+        },
+        {
+          "guid": "80502",
+          "displayName": "警句の薬剤師-カティン",
+          "iconFilename": "80502.png"
+        },
+        {
+          "guid": "80221",
+          "displayName": "小宇宙学者-マクロビウス・ミヌキアヌス",
+          "iconFilename": "80221.png"
+        },
+        {
+          "guid": "44142",
+          "displayName": "辛辣な石鹸職人",
+          "iconFilename": "44142.png"
+        }
+      ]
     },
     {
       "id": "leather",
@@ -1121,7 +2885,28 @@
         "Celtic"
       ],
       "files": {},
-      "items": []
+      "items": [
+        {
+          "guid": "44086",
+          "displayName": "革ひも職人",
+          "iconFilename": "44086.png"
+        },
+        {
+          "guid": "166523",
+          "displayName": "小スコルピオ・アフリカヌス、法的に別人の将軍",
+          "iconFilename": "166523.png"
+        },
+        {
+          "guid": "80221",
+          "displayName": "小宇宙学者-マクロビウス・ミヌキアヌス",
+          "iconFilename": "80221.png"
+        },
+        {
+          "guid": "50291",
+          "displayName": "層重ねの鎧職人",
+          "iconFilename": "50291.png"
+        }
+      ]
     },
     {
       "id": "limestone",
@@ -1132,7 +2917,23 @@
         "Celtic"
       ],
       "files": {},
-      "items": []
+      "items": [
+        {
+          "guid": "160528",
+          "displayName": "ラエウィヌス、ウルカヌスのつるはし",
+          "iconFilename": "160528.png"
+        },
+        {
+          "guid": "80221",
+          "displayName": "小宇宙学者-マクロビウス・ミヌキアヌス",
+          "iconFilename": "80221.png"
+        },
+        {
+          "guid": "145268",
+          "displayName": "長き闇の弁論家-オルフェリア",
+          "iconFilename": "145268.png"
+        }
+      ]
     },
     {
       "id": "aegyptus_limestone_bricks",
@@ -1146,6 +2947,11 @@
       },
       "items": [
         {
+          "guid": "160528",
+          "displayName": "ラエウィヌス、ウルカヌスのつるはし",
+          "iconFilename": "160528.png"
+        },
+        {
           "guid": "96819",
           "displayName": "高潔な志願兵",
           "iconFilename": "96819.png"
@@ -1154,6 +2960,11 @@
           "guid": "80221",
           "displayName": "小宇宙学者-マクロビウス・ミヌキアヌス",
           "iconFilename": "80221.png"
+        },
+        {
+          "guid": "145268",
+          "displayName": "長き闇の弁論家-オルフェリア",
+          "iconFilename": "145268.png"
         }
       ]
     },
@@ -1174,9 +2985,94 @@
           "iconFilename": "44149.png"
         },
         {
+          "guid": "181070",
+          "displayName": "イシドラ、カラシリスの仕立屋",
+          "iconFilename": "181070.png"
+        },
+        {
+          "guid": "51282",
+          "displayName": "ケレースの神官-カスポニア・カスタ",
+          "iconFilename": "51282.png"
+        },
+        {
+          "guid": "181055",
+          "displayName": "シェンティ職人",
+          "iconFilename": "181055.png"
+        },
+        {
+          "guid": "156696",
+          "displayName": "すてきな自然体主義者",
+          "iconFilename": "156696.png"
+        },
+        {
+          "guid": "44115",
+          "displayName": "メラリウス",
+          "iconFilename": "44115.png"
+        },
+        {
+          "guid": "80225",
+          "displayName": "リアンノンのかつての御者-ピル・ファブ・マナウィダン",
+          "iconFilename": "80225.png"
+        },
+        {
+          "guid": "95403",
+          "displayName": "海岸の百合-セルヴィア・ベリア",
+          "iconFilename": "95403.png"
+        },
+        {
+          "guid": "156688",
+          "displayName": "近視の石工",
+          "iconFilename": "156688.png"
+        },
+        {
+          "guid": "80502",
+          "displayName": "警句の薬剤師-カティン",
+          "iconFilename": "80502.png"
+        },
+        {
+          "guid": "44114",
+          "displayName": "仕立て屋のイオリア人",
+          "iconFilename": "44114.png"
+        },
+        {
+          "guid": "185129",
+          "displayName": "収穫の声を聴く者フーイ",
+          "iconFilename": "185129.png"
+        },
+        {
           "guid": "80221",
           "displayName": "小宇宙学者-マクロビウス・ミヌキアヌス",
           "iconFilename": "80221.png"
+        },
+        {
+          "guid": "44431",
+          "displayName": "象使い",
+          "iconFilename": "44431.png"
+        },
+        {
+          "guid": "144848",
+          "displayName": "森の番人-ガイウス・クリトニウス・リグネウス",
+          "iconFilename": "144848.png"
+        },
+        {
+          "guid": "156685",
+          "displayName": "台帳係",
+          "iconFilename": "156685.png"
+        },
+        {
+          "guid": "44119",
+          "displayName": "頭髪の芸術家",
+          "iconFilename": "44119.png"
+        },
+        {
+          "guid": "147974",
+          "displayName": "独学のゲーム学者",
+          "iconFilename": "147974.png"
+        },
+        {
+          "guid": "44118",
+          "displayName": "斑岩の第一人者",
+          "iconFilename": "44118.png"
         }
       ]
     },
@@ -1192,14 +3088,129 @@
       },
       "items": [
         {
+          "guid": "44149",
+          "displayName": "アトラスの家具職人-マキシマ・コティウス",
+          "iconFilename": "44149.png"
+        },
+        {
+          "guid": "181017",
+          "displayName": "イセト・ハムト・ネテル、イシスの崇拝者",
+          "iconFilename": "181017.png"
+        },
+        {
+          "guid": "156696",
+          "displayName": "すてきな自然体主義者",
+          "iconFilename": "156696.png"
+        },
+        {
+          "guid": "44087",
+          "displayName": "ズボン専門家",
+          "iconFilename": "44087.png"
+        },
+        {
+          "guid": "44115",
+          "displayName": "メラリウス",
+          "iconFilename": "44115.png"
+        },
+        {
+          "guid": "160528",
+          "displayName": "ラエウィヌス、ウルカヌスのつるはし",
+          "iconFilename": "160528.png"
+        },
+        {
+          "guid": "80225",
+          "displayName": "リアンノンのかつての御者-ピル・ファブ・マナウィダン",
+          "iconFilename": "80225.png"
+        },
+        {
+          "guid": "79947",
+          "displayName": "黄金の手-ミナス・オルラム",
+          "iconFilename": "79947.png"
+        },
+        {
+          "guid": "95403",
+          "displayName": "海岸の百合-セルヴィア・ベリア",
+          "iconFilename": "95403.png"
+        },
+        {
+          "guid": "80189",
+          "displayName": "奇妙な鍛冶師-アネイリン・グワードリッド",
+          "iconFilename": "80189.png"
+        },
+        {
+          "guid": "156688",
+          "displayName": "近視の石工",
+          "iconFilename": "156688.png"
+        },
+        {
+          "guid": "44089",
+          "displayName": "金の石工",
+          "iconFilename": "44089.png"
+        },
+        {
+          "guid": "80502",
+          "displayName": "警句の薬剤師-カティン",
+          "iconFilename": "80502.png"
+        },
+        {
+          "guid": "50890",
+          "displayName": "砂とサンダルの生存者-ファビルス",
+          "iconFilename": "50890.png"
+        },
+        {
           "guid": "44114",
           "displayName": "仕立て屋のイオリア人",
           "iconFilename": "44114.png"
         },
         {
+          "guid": "50665",
+          "displayName": "至高のマント職人",
+          "iconFilename": "50665.png"
+        },
+        {
+          "guid": "166523",
+          "displayName": "小スコルピオ・アフリカヌス、法的に別人の将軍",
+          "iconFilename": "166523.png"
+        },
+        {
           "guid": "80221",
           "displayName": "小宇宙学者-マクロビウス・ミヌキアヌス",
           "iconFilename": "80221.png"
+        },
+        {
+          "guid": "144848",
+          "displayName": "森の番人-ガイウス・クリトニウス・リグネウス",
+          "iconFilename": "144848.png"
+        },
+        {
+          "guid": "156685",
+          "displayName": "台帳係",
+          "iconFilename": "156685.png"
+        },
+        {
+          "guid": "145268",
+          "displayName": "長き闇の弁論家-オルフェリア",
+          "iconFilename": "145268.png"
+        },
+        {
+          "guid": "166421",
+          "displayName": "泥ふるい",
+          "iconFilename": "166421.png"
+        },
+        {
+          "guid": "147974",
+          "displayName": "独学のゲーム学者",
+          "iconFilename": "147974.png"
+        },
+        {
+          "guid": "44078",
+          "displayName": "帆職人",
+          "iconFilename": "44078.png"
+        },
+        {
+          "guid": "44144",
+          "displayName": "婦人帽子職人",
+          "iconFilename": "44144.png"
         }
       ]
     },
@@ -1211,7 +3222,33 @@
         "Roman"
       ],
       "files": {},
-      "items": []
+      "items": [
+        {
+          "guid": "160054",
+          "displayName": "エルクマルの子フィネケス、全知の鮭漁師",
+          "iconFilename": "160054.png"
+        },
+        {
+          "guid": "156710",
+          "displayName": "スペアー・ニク・レアルタ、策士の釣り人",
+          "iconFilename": "156710.png"
+        },
+        {
+          "guid": "95403",
+          "displayName": "海岸の百合-セルヴィア・ベリア",
+          "iconFilename": "95403.png"
+        },
+        {
+          "guid": "44085",
+          "displayName": "魚の導き手",
+          "iconFilename": "44085.png"
+        },
+        {
+          "guid": "80221",
+          "displayName": "小宇宙学者-マクロビウス・ミヌキアヌス",
+          "iconFilename": "80221.png"
+        }
+      ]
     },
     {
       "id": "malt",
@@ -1221,7 +3258,18 @@
         "Celtic"
       ],
       "files": {},
-      "items": []
+      "items": [
+        {
+          "guid": "80221",
+          "displayName": "小宇宙学者-マクロビウス・ミヌキアヌス",
+          "iconFilename": "80221.png"
+        },
+        {
+          "guid": "44146",
+          "displayName": "賑わいの芽",
+          "iconFilename": "44146.png"
+        }
+      ]
     },
     {
       "id": "marble",
@@ -1235,14 +3283,34 @@
       },
       "items": [
         {
+          "guid": "160528",
+          "displayName": "ラエウィヌス、ウルカヌスのつるはし",
+          "iconFilename": "160528.png"
+        },
+        {
+          "guid": "156688",
+          "displayName": "近視の石工",
+          "iconFilename": "156688.png"
+        },
+        {
           "guid": "96819",
           "displayName": "高潔な志願兵",
           "iconFilename": "96819.png"
         },
         {
+          "guid": "145271",
+          "displayName": "従者の彫刻家",
+          "iconFilename": "145271.png"
+        },
+        {
           "guid": "80221",
           "displayName": "小宇宙学者-マクロビウス・ミヌキアヌス",
           "iconFilename": "80221.png"
+        },
+        {
+          "guid": "145268",
+          "displayName": "長き闇の弁論家-オルフェリア",
+          "iconFilename": "145268.png"
         }
       ]
     },
@@ -1258,9 +3326,74 @@
       },
       "items": [
         {
+          "guid": "184824",
+          "displayName": "アシュキス、食欲の占者",
+          "iconFilename": "184824.png"
+        },
+        {
+          "guid": "173061",
+          "displayName": "カフク職人",
+          "iconFilename": "173061.png"
+        },
+        {
+          "guid": "156696",
+          "displayName": "すてきな自然体主義者",
+          "iconFilename": "156696.png"
+        },
+        {
+          "guid": "179649",
+          "displayName": "セシェン、花摘み",
+          "iconFilename": "179649.png"
+        },
+        {
+          "guid": "44112",
+          "displayName": "ブドウ潰し",
+          "iconFilename": "44112.png"
+        },
+        {
+          "guid": "44082",
+          "displayName": "ホエイの学徒",
+          "iconFilename": "44082.png"
+        },
+        {
+          "guid": "44115",
+          "displayName": "メラリウス",
+          "iconFilename": "44115.png"
+        },
+        {
+          "guid": "80225",
+          "displayName": "リアンノンのかつての御者-ピル・ファブ・マナウィダン",
+          "iconFilename": "80225.png"
+        },
+        {
+          "guid": "44086",
+          "displayName": "革ひも職人",
+          "iconFilename": "44086.png"
+        },
+        {
+          "guid": "80502",
+          "displayName": "警句の薬剤師-カティン",
+          "iconFilename": "80502.png"
+        },
+        {
+          "guid": "166523",
+          "displayName": "小スコルピオ・アフリカヌス、法的に別人の将軍",
+          "iconFilename": "166523.png"
+        },
+        {
           "guid": "80221",
           "displayName": "小宇宙学者-マクロビウス・ミヌキアヌス",
           "iconFilename": "80221.png"
+        },
+        {
+          "guid": "50291",
+          "displayName": "層重ねの鎧職人",
+          "iconFilename": "50291.png"
+        },
+        {
+          "guid": "156685",
+          "displayName": "台帳係",
+          "iconFilename": "156685.png"
         }
       ]
     },
@@ -1272,7 +3405,38 @@
         "Roman"
       ],
       "files": {},
-      "items": []
+      "items": [
+        {
+          "guid": "160528",
+          "displayName": "ラエウィヌス、ウルカヌスのつるはし",
+          "iconFilename": "160528.png"
+        },
+        {
+          "guid": "44089",
+          "displayName": "金の石工",
+          "iconFilename": "44089.png"
+        },
+        {
+          "guid": "181067",
+          "displayName": "写本書記",
+          "iconFilename": "181067.png"
+        },
+        {
+          "guid": "80221",
+          "displayName": "小宇宙学者-マクロビウス・ミヌキアヌス",
+          "iconFilename": "80221.png"
+        },
+        {
+          "guid": "145268",
+          "displayName": "長き闇の弁論家-オルフェリア",
+          "iconFilename": "145268.png"
+        },
+        {
+          "guid": "44120",
+          "displayName": "溶解炉の職人",
+          "iconFilename": "44120.png"
+        }
+      ]
     },
     {
       "id": "mosaics",
@@ -1288,14 +3452,59 @@
       },
       "items": [
         {
+          "guid": "44139",
+          "displayName": "ハンドラー",
+          "iconFilename": "44139.png"
+        },
+        {
+          "guid": "160528",
+          "displayName": "ラエウィヌス、ウルカヌスのつるはし",
+          "iconFilename": "160528.png"
+        },
+        {
+          "guid": "184828",
+          "displayName": "ランプ職人",
+          "iconFilename": "184828.png"
+        },
+        {
+          "guid": "184812",
+          "displayName": "レンガ職人",
+          "iconFilename": "184812.png"
+        },
+        {
+          "guid": "106974",
+          "displayName": "隠遁する還元主義者-スケルグ",
+          "iconFilename": "106974.png"
+        },
+        {
+          "guid": "44089",
+          "displayName": "金の石工",
+          "iconFilename": "44089.png"
+        },
+        {
           "guid": "96819",
           "displayName": "高潔な志願兵",
           "iconFilename": "96819.png"
         },
         {
+          "guid": "181067",
+          "displayName": "写本書記",
+          "iconFilename": "181067.png"
+        },
+        {
           "guid": "80221",
           "displayName": "小宇宙学者-マクロビウス・ミヌキアヌス",
           "iconFilename": "80221.png"
+        },
+        {
+          "guid": "145268",
+          "displayName": "長き闇の弁論家-オルフェリア",
+          "iconFilename": "145268.png"
+        },
+        {
+          "guid": "44120",
+          "displayName": "溶解炉の職人",
+          "iconFilename": "44120.png"
         }
       ]
     },
@@ -1307,7 +3516,33 @@
         "Celtic"
       ],
       "files": {},
-      "items": []
+      "items": [
+        {
+          "guid": "44139",
+          "displayName": "ハンドラー",
+          "iconFilename": "44139.png"
+        },
+        {
+          "guid": "184828",
+          "displayName": "ランプ職人",
+          "iconFilename": "184828.png"
+        },
+        {
+          "guid": "184812",
+          "displayName": "レンガ職人",
+          "iconFilename": "184812.png"
+        },
+        {
+          "guid": "80221",
+          "displayName": "小宇宙学者-マクロビウス・ミヌキアヌス",
+          "iconFilename": "80221.png"
+        },
+        {
+          "guid": "145268",
+          "displayName": "長き闇の弁論家-オルフェリア",
+          "iconFilename": "145268.png"
+        }
+      ]
     },
     {
       "id": "aegyptus_mud_bricks",
@@ -1321,9 +3556,24 @@
       },
       "items": [
         {
+          "guid": "44139",
+          "displayName": "ハンドラー",
+          "iconFilename": "44139.png"
+        },
+        {
+          "guid": "184828",
+          "displayName": "ランプ職人",
+          "iconFilename": "184828.png"
+        },
+        {
           "guid": "184812",
           "displayName": "レンガ職人",
           "iconFilename": "184812.png"
+        },
+        {
+          "guid": "159505",
+          "displayName": "葦切り",
+          "iconFilename": "159505.png"
         },
         {
           "guid": "96819",
@@ -1331,9 +3581,29 @@
           "iconFilename": "96819.png"
         },
         {
+          "guid": "181067",
+          "displayName": "写本書記",
+          "iconFilename": "181067.png"
+        },
+        {
+          "guid": "44088",
+          "displayName": "車輪技師",
+          "iconFilename": "44088.png"
+        },
+        {
           "guid": "80221",
           "displayName": "小宇宙学者-マクロビウス・ミヌキアヌス",
           "iconFilename": "80221.png"
+        },
+        {
+          "guid": "145268",
+          "displayName": "長き闇の弁論家-オルフェリア",
+          "iconFilename": "145268.png"
+        },
+        {
+          "guid": "44140",
+          "displayName": "編み師",
+          "iconFilename": "44140.png"
         }
       ]
     },
@@ -1345,7 +3615,33 @@
         "Roman"
       ],
       "files": {},
-      "items": []
+      "items": [
+        {
+          "guid": "44149",
+          "displayName": "アトラスの家具職人-マキシマ・コティウス",
+          "iconFilename": "44149.png"
+        },
+        {
+          "guid": "80225",
+          "displayName": "リアンノンのかつての御者-ピル・ファブ・マナウィダン",
+          "iconFilename": "80225.png"
+        },
+        {
+          "guid": "95403",
+          "displayName": "海岸の百合-セルヴィア・ベリア",
+          "iconFilename": "95403.png"
+        },
+        {
+          "guid": "80221",
+          "displayName": "小宇宙学者-マクロビウス・ミヌキアヌス",
+          "iconFilename": "80221.png"
+        },
+        {
+          "guid": "44118",
+          "displayName": "斑岩の第一人者",
+          "iconFilename": "44118.png"
+        }
+      ]
     },
     {
       "id": "necklaces",
@@ -1359,14 +3655,79 @@
       },
       "items": [
         {
+          "guid": "181017",
+          "displayName": "イセト・ハムト・ネテル、イシスの崇拝者",
+          "iconFilename": "181017.png"
+        },
+        {
+          "guid": "160528",
+          "displayName": "ラエウィヌス、ウルカヌスのつるはし",
+          "iconFilename": "160528.png"
+        },
+        {
+          "guid": "79947",
+          "displayName": "黄金の手-ミナス・オルラム",
+          "iconFilename": "79947.png"
+        },
+        {
+          "guid": "95403",
+          "displayName": "海岸の百合-セルヴィア・ベリア",
+          "iconFilename": "95403.png"
+        },
+        {
+          "guid": "80189",
+          "displayName": "奇妙な鍛冶師-アネイリン・グワードリッド",
+          "iconFilename": "80189.png"
+        },
+        {
+          "guid": "156688",
+          "displayName": "近視の石工",
+          "iconFilename": "156688.png"
+        },
+        {
           "guid": "44089",
           "displayName": "金の石工",
           "iconFilename": "44089.png"
         },
         {
+          "guid": "50890",
+          "displayName": "砂とサンダルの生存者-ファビルス",
+          "iconFilename": "50890.png"
+        },
+        {
+          "guid": "44114",
+          "displayName": "仕立て屋のイオリア人",
+          "iconFilename": "44114.png"
+        },
+        {
+          "guid": "181067",
+          "displayName": "写本書記",
+          "iconFilename": "181067.png"
+        },
+        {
           "guid": "80221",
           "displayName": "小宇宙学者-マクロビウス・ミヌキアヌス",
           "iconFilename": "80221.png"
+        },
+        {
+          "guid": "145268",
+          "displayName": "長き闇の弁論家-オルフェリア",
+          "iconFilename": "145268.png"
+        },
+        {
+          "guid": "166421",
+          "displayName": "泥ふるい",
+          "iconFilename": "166421.png"
+        },
+        {
+          "guid": "147974",
+          "displayName": "独学のゲーム学者",
+          "iconFilename": "147974.png"
+        },
+        {
+          "guid": "44120",
+          "displayName": "溶解炉の職人",
+          "iconFilename": "44120.png"
         }
       ]
     },
@@ -1378,7 +3739,33 @@
         "Roman"
       ],
       "files": {},
-      "items": []
+      "items": [
+        {
+          "guid": "51282",
+          "displayName": "ケレースの神官-カスポニア・カスタ",
+          "iconFilename": "51282.png"
+        },
+        {
+          "guid": "185129",
+          "displayName": "収穫の声を聴く者フーイ",
+          "iconFilename": "185129.png"
+        },
+        {
+          "guid": "80221",
+          "displayName": "小宇宙学者-マクロビウス・ミヌキアヌス",
+          "iconFilename": "80221.png"
+        },
+        {
+          "guid": "44431",
+          "displayName": "象使い",
+          "iconFilename": "44431.png"
+        },
+        {
+          "guid": "44076",
+          "displayName": "麦転がし",
+          "iconFilename": "44076.png"
+        }
+      ]
     },
     {
       "id": "obsidian",
@@ -1402,9 +3789,44 @@
       },
       "items": [
         {
+          "guid": "51282",
+          "displayName": "ケレースの神官-カスポニア・カスタ",
+          "iconFilename": "51282.png"
+        },
+        {
+          "guid": "44139",
+          "displayName": "ハンドラー",
+          "iconFilename": "44139.png"
+        },
+        {
+          "guid": "184828",
+          "displayName": "ランプ職人",
+          "iconFilename": "184828.png"
+        },
+        {
+          "guid": "184812",
+          "displayName": "レンガ職人",
+          "iconFilename": "184812.png"
+        },
+        {
+          "guid": "185129",
+          "displayName": "収穫の声を聴く者フーイ",
+          "iconFilename": "185129.png"
+        },
+        {
           "guid": "80221",
           "displayName": "小宇宙学者-マクロビウス・ミヌキアヌス",
           "iconFilename": "80221.png"
+        },
+        {
+          "guid": "44431",
+          "displayName": "象使い",
+          "iconFilename": "44431.png"
+        },
+        {
+          "guid": "145268",
+          "displayName": "長き闇の弁論家-オルフェリア",
+          "iconFilename": "145268.png"
         }
       ]
     },
@@ -1425,6 +3847,16 @@
           "iconFilename": "44141.png"
         },
         {
+          "guid": "156696",
+          "displayName": "すてきな自然体主義者",
+          "iconFilename": "156696.png"
+        },
+        {
+          "guid": "80502",
+          "displayName": "警句の薬剤師-カティン",
+          "iconFilename": "80502.png"
+        },
+        {
           "guid": "80221",
           "displayName": "小宇宙学者-マクロビウス・ミヌキアヌス",
           "iconFilename": "80221.png"
@@ -1439,7 +3871,28 @@
         "Roman"
       ],
       "files": {},
-      "items": []
+      "items": [
+        {
+          "guid": "44141",
+          "displayName": "コールドプレッサー",
+          "iconFilename": "44141.png"
+        },
+        {
+          "guid": "156696",
+          "displayName": "すてきな自然体主義者",
+          "iconFilename": "156696.png"
+        },
+        {
+          "guid": "80502",
+          "displayName": "警句の薬剤師-カティン",
+          "iconFilename": "80502.png"
+        },
+        {
+          "guid": "80221",
+          "displayName": "小宇宙学者-マクロビウス・ミヌキアヌス",
+          "iconFilename": "80221.png"
+        }
+      ]
     },
     {
       "id": "ornate_wood",
@@ -1449,7 +3902,28 @@
         "Roman"
       ],
       "files": {},
-      "items": []
+      "items": [
+        {
+          "guid": "156688",
+          "displayName": "近視の石工",
+          "iconFilename": "156688.png"
+        },
+        {
+          "guid": "44114",
+          "displayName": "仕立て屋のイオリア人",
+          "iconFilename": "44114.png"
+        },
+        {
+          "guid": "80221",
+          "displayName": "小宇宙学者-マクロビウス・ミヌキアヌス",
+          "iconFilename": "80221.png"
+        },
+        {
+          "guid": "147974",
+          "displayName": "独学のゲーム学者",
+          "iconFilename": "147974.png"
+        }
+      ]
     },
     {
       "id": "oysters",
@@ -1459,7 +3933,33 @@
         "Roman"
       ],
       "files": {},
-      "items": []
+      "items": [
+        {
+          "guid": "160054",
+          "displayName": "エルクマルの子フィネケス、全知の鮭漁師",
+          "iconFilename": "160054.png"
+        },
+        {
+          "guid": "156710",
+          "displayName": "スペアー・ニク・レアルタ、策士の釣り人",
+          "iconFilename": "156710.png"
+        },
+        {
+          "guid": "95403",
+          "displayName": "海岸の百合-セルヴィア・ベリア",
+          "iconFilename": "95403.png"
+        },
+        {
+          "guid": "80221",
+          "displayName": "小宇宙学者-マクロビウス・ミヌキアヌス",
+          "iconFilename": "80221.png"
+        },
+        {
+          "guid": "44143",
+          "displayName": "水際の学徒",
+          "iconFilename": "44143.png"
+        }
+      ]
     },
     {
       "id": "oysters_with_caviar",
@@ -1472,6 +3972,26 @@
         "roman": "oysters_with_caviar"
       },
       "items": [
+        {
+          "guid": "160054",
+          "displayName": "エルクマルの子フィネケス、全知の鮭漁師",
+          "iconFilename": "160054.png"
+        },
+        {
+          "guid": "156710",
+          "displayName": "スペアー・ニク・レアルタ、策士の釣り人",
+          "iconFilename": "156710.png"
+        },
+        {
+          "guid": "145262",
+          "displayName": "ローマ最速の刃を振るう者-クトレラ",
+          "iconFilename": "145262.png"
+        },
+        {
+          "guid": "95403",
+          "displayName": "海岸の百合-セルヴィア・ベリア",
+          "iconFilename": "95403.png"
+        },
         {
           "guid": "96817",
           "displayName": "限りなき食欲の主-アピオン・モクトス・アピキウス",
@@ -1501,9 +4021,44 @@
       },
       "items": [
         {
+          "guid": "51282",
+          "displayName": "ケレースの神官-カスポニア・カスタ",
+          "iconFilename": "51282.png"
+        },
+        {
+          "guid": "156696",
+          "displayName": "すてきな自然体主義者",
+          "iconFilename": "156696.png"
+        },
+        {
+          "guid": "179649",
+          "displayName": "セシェン、花摘み",
+          "iconFilename": "179649.png"
+        },
+        {
+          "guid": "184828",
+          "displayName": "ランプ職人",
+          "iconFilename": "184828.png"
+        },
+        {
+          "guid": "80502",
+          "displayName": "警句の薬剤師-カティン",
+          "iconFilename": "80502.png"
+        },
+        {
+          "guid": "185129",
+          "displayName": "収穫の声を聴く者フーイ",
+          "iconFilename": "185129.png"
+        },
+        {
           "guid": "80221",
           "displayName": "小宇宙学者-マクロビウス・ミヌキアヌス",
           "iconFilename": "80221.png"
+        },
+        {
+          "guid": "44431",
+          "displayName": "象使い",
+          "iconFilename": "44431.png"
         }
       ]
     },
@@ -1515,7 +4070,23 @@
         "Roman"
       ],
       "files": {},
-      "items": []
+      "items": [
+        {
+          "guid": "181067",
+          "displayName": "写本書記",
+          "iconFilename": "181067.png"
+        },
+        {
+          "guid": "80221",
+          "displayName": "小宇宙学者-マクロビウス・ミヌキアヌス",
+          "iconFilename": "80221.png"
+        },
+        {
+          "guid": "44120",
+          "displayName": "溶解炉の職人",
+          "iconFilename": "44120.png"
+        }
+      ]
     },
     {
       "id": "pigs",
@@ -1526,7 +4097,48 @@
         "Celtic"
       ],
       "files": {},
-      "items": []
+      "items": [
+        {
+          "guid": "80225",
+          "displayName": "リアンノンのかつての御者-ピル・ファブ・マナウィダン",
+          "iconFilename": "80225.png"
+        },
+        {
+          "guid": "44122",
+          "displayName": "歌を消す者-ホスタ・ヴルピウス",
+          "iconFilename": "44122.png"
+        },
+        {
+          "guid": "44086",
+          "displayName": "革ひも職人",
+          "iconFilename": "44086.png"
+        },
+        {
+          "guid": "166523",
+          "displayName": "小スコルピオ・アフリカヌス、法的に別人の将軍",
+          "iconFilename": "166523.png"
+        },
+        {
+          "guid": "80221",
+          "displayName": "小宇宙学者-マクロビウス・ミヌキアヌス",
+          "iconFilename": "80221.png"
+        },
+        {
+          "guid": "44142",
+          "displayName": "辛辣な石鹸職人",
+          "iconFilename": "44142.png"
+        },
+        {
+          "guid": "50291",
+          "displayName": "層重ねの鎧職人",
+          "iconFilename": "50291.png"
+        },
+        {
+          "guid": "44147",
+          "displayName": "猪に囁く者",
+          "iconFilename": "44147.png"
+        }
+      ]
     },
     {
       "id": "pileus",
@@ -1540,9 +4152,39 @@
       },
       "items": [
         {
+          "guid": "44087",
+          "displayName": "ズボン専門家",
+          "iconFilename": "44087.png"
+        },
+        {
+          "guid": "80225",
+          "displayName": "リアンノンのかつての御者-ピル・ファブ・マナウィダン",
+          "iconFilename": "80225.png"
+        },
+        {
+          "guid": "44114",
+          "displayName": "仕立て屋のイオリア人",
+          "iconFilename": "44114.png"
+        },
+        {
+          "guid": "50665",
+          "displayName": "至高のマント職人",
+          "iconFilename": "50665.png"
+        },
+        {
+          "guid": "166523",
+          "displayName": "小スコルピオ・アフリカヌス、法的に別人の将軍",
+          "iconFilename": "166523.png"
+        },
+        {
           "guid": "80221",
           "displayName": "小宇宙学者-マクロビウス・ミヌキアヌス",
           "iconFilename": "80221.png"
+        },
+        {
+          "guid": "44078",
+          "displayName": "帆職人",
+          "iconFilename": "44078.png"
         },
         {
           "guid": "44144",
@@ -1559,7 +4201,28 @@
         "Celtic"
       ],
       "files": {},
-      "items": []
+      "items": [
+        {
+          "guid": "145265",
+          "displayName": "ポニーの血統の守り人-コルムカパイル",
+          "iconFilename": "145265.png"
+        },
+        {
+          "guid": "44088",
+          "displayName": "車輪技師",
+          "iconFilename": "44088.png"
+        },
+        {
+          "guid": "80221",
+          "displayName": "小宇宙学者-マクロビウス・ミヌキアヌス",
+          "iconFilename": "80221.png"
+        },
+        {
+          "guid": "156679",
+          "displayName": "馬丁",
+          "iconFilename": "156679.png"
+        }
+      ]
     },
     {
       "id": "porridge",
@@ -1573,14 +4236,29 @@
       },
       "items": [
         {
+          "guid": "51282",
+          "displayName": "ケレースの神官-カスポニア・カスタ",
+          "iconFilename": "51282.png"
+        },
+        {
           "guid": "96817",
           "displayName": "限りなき食欲の主-アピオン・モクトス・アピキウス",
           "iconFilename": "96817.png"
         },
         {
+          "guid": "185129",
+          "displayName": "収穫の声を聴く者フーイ",
+          "iconFilename": "185129.png"
+        },
+        {
           "guid": "80221",
           "displayName": "小宇宙学者-マクロビウス・ミヌキアヌス",
           "iconFilename": "80221.png"
+        },
+        {
+          "guid": "44431",
+          "displayName": "象使い",
+          "iconFilename": "44431.png"
         },
         {
           "guid": "44076",
@@ -1606,6 +4284,26 @@
           "iconFilename": "184824.png"
         },
         {
+          "guid": "181017",
+          "displayName": "イセト・ハムト・ネテル、イシスの崇拝者",
+          "iconFilename": "181017.png"
+        },
+        {
+          "guid": "173073",
+          "displayName": "カバ使い",
+          "iconFilename": "173073.png"
+        },
+        {
+          "guid": "156696",
+          "displayName": "すてきな自然体主義者",
+          "iconFilename": "156696.png"
+        },
+        {
+          "guid": "80502",
+          "displayName": "警句の薬剤師-カティン",
+          "iconFilename": "80502.png"
+        },
+        {
           "guid": "96817",
           "displayName": "限りなき食欲の主-アピオン・モクトス・アピキウス",
           "iconFilename": "96817.png"
@@ -1629,6 +4327,26 @@
       },
       "items": [
         {
+          "guid": "184812",
+          "displayName": "レンガ職人",
+          "iconFilename": "184812.png"
+        },
+        {
+          "guid": "159505",
+          "displayName": "葦切り",
+          "iconFilename": "159505.png"
+        },
+        {
+          "guid": "181067",
+          "displayName": "写本書記",
+          "iconFilename": "181067.png"
+        },
+        {
+          "guid": "44088",
+          "displayName": "車輪技師",
+          "iconFilename": "44088.png"
+        },
+        {
           "guid": "80221",
           "displayName": "小宇宙学者-マクロビウス・ミヌキアヌス",
           "iconFilename": "80221.png"
@@ -1648,7 +4366,38 @@
         "Celtic"
       ],
       "files": {},
-      "items": []
+      "items": [
+        {
+          "guid": "184812",
+          "displayName": "レンガ職人",
+          "iconFilename": "184812.png"
+        },
+        {
+          "guid": "159505",
+          "displayName": "葦切り",
+          "iconFilename": "159505.png"
+        },
+        {
+          "guid": "181067",
+          "displayName": "写本書記",
+          "iconFilename": "181067.png"
+        },
+        {
+          "guid": "44088",
+          "displayName": "車輪技師",
+          "iconFilename": "44088.png"
+        },
+        {
+          "guid": "80221",
+          "displayName": "小宇宙学者-マクロビウス・ミヌキアヌス",
+          "iconFilename": "80221.png"
+        },
+        {
+          "guid": "44140",
+          "displayName": "編み師",
+          "iconFilename": "44140.png"
+        }
+      ]
     },
     {
       "id": "resin",
@@ -1659,7 +4408,28 @@
         "Celtic"
       ],
       "files": {},
-      "items": []
+      "items": [
+        {
+          "guid": "44139",
+          "displayName": "ハンドラー",
+          "iconFilename": "44139.png"
+        },
+        {
+          "guid": "106974",
+          "displayName": "隠遁する還元主義者-スケルグ",
+          "iconFilename": "106974.png"
+        },
+        {
+          "guid": "80221",
+          "displayName": "小宇宙学者-マクロビウス・ミヌキアヌス",
+          "iconFilename": "80221.png"
+        },
+        {
+          "guid": "44119",
+          "displayName": "頭髪の芸術家",
+          "iconFilename": "44119.png"
+        }
+      ]
     },
     {
       "id": "roast_beef",
@@ -1678,9 +4448,29 @@
           "iconFilename": "44081.png"
         },
         {
+          "guid": "44082",
+          "displayName": "ホエイの学徒",
+          "iconFilename": "44082.png"
+        },
+        {
+          "guid": "80225",
+          "displayName": "リアンノンのかつての御者-ピル・ファブ・マナウィダン",
+          "iconFilename": "80225.png"
+        },
+        {
+          "guid": "95403",
+          "displayName": "海岸の百合-セルヴィア・ベリア",
+          "iconFilename": "95403.png"
+        },
+        {
           "guid": "96817",
           "displayName": "限りなき食欲の主-アピオン・モクトス・アピキウス",
           "iconFilename": "96817.png"
+        },
+        {
+          "guid": "44148",
+          "displayName": "巧妙な罠師",
+          "iconFilename": "44148.png"
         },
         {
           "guid": "80221",
@@ -1703,9 +4493,24 @@
       },
       "items": [
         {
+          "guid": "51282",
+          "displayName": "ケレースの神官-カスポニア・カスタ",
+          "iconFilename": "51282.png"
+        },
+        {
           "guid": "44079",
           "displayName": "ロープ職人",
           "iconFilename": "44079.png"
+        },
+        {
+          "guid": "44083",
+          "displayName": "仕立屋",
+          "iconFilename": "44083.png"
+        },
+        {
+          "guid": "185129",
+          "displayName": "収穫の声を聴く者フーイ",
+          "iconFilename": "185129.png"
         },
         {
           "guid": "166523",
@@ -1716,6 +4521,11 @@
           "guid": "80221",
           "displayName": "小宇宙学者-マクロビウス・ミヌキアヌス",
           "iconFilename": "80221.png"
+        },
+        {
+          "guid": "44431",
+          "displayName": "象使い",
+          "iconFilename": "44431.png"
         }
       ]
     },
@@ -1733,6 +4543,26 @@
       },
       "items": [
         {
+          "guid": "44087",
+          "displayName": "ズボン専門家",
+          "iconFilename": "44087.png"
+        },
+        {
+          "guid": "80225",
+          "displayName": "リアンノンのかつての御者-ピル・ファブ・マナウィダン",
+          "iconFilename": "80225.png"
+        },
+        {
+          "guid": "44114",
+          "displayName": "仕立て屋のイオリア人",
+          "iconFilename": "44114.png"
+        },
+        {
+          "guid": "50665",
+          "displayName": "至高のマント職人",
+          "iconFilename": "50665.png"
+        },
+        {
           "guid": "166523",
           "displayName": "小スコルピオ・アフリカヌス、法的に別人の将軍",
           "iconFilename": "166523.png"
@@ -1746,6 +4576,11 @@
           "guid": "44078",
           "displayName": "帆職人",
           "iconFilename": "44078.png"
+        },
+        {
+          "guid": "44144",
+          "displayName": "婦人帽子職人",
+          "iconFilename": "44144.png"
         }
       ]
     },
@@ -1757,7 +4592,38 @@
         "Roman"
       ],
       "files": {},
-      "items": []
+      "items": [
+        {
+          "guid": "95403",
+          "displayName": "海岸の百合-セルヴィア・ベリア",
+          "iconFilename": "95403.png"
+        },
+        {
+          "guid": "44086",
+          "displayName": "革ひも職人",
+          "iconFilename": "44086.png"
+        },
+        {
+          "guid": "44085",
+          "displayName": "魚の導き手",
+          "iconFilename": "44085.png"
+        },
+        {
+          "guid": "166523",
+          "displayName": "小スコルピオ・アフリカヌス、法的に別人の将軍",
+          "iconFilename": "166523.png"
+        },
+        {
+          "guid": "80221",
+          "displayName": "小宇宙学者-マクロビウス・ミヌキアヌス",
+          "iconFilename": "80221.png"
+        },
+        {
+          "guid": "50291",
+          "displayName": "層重ねの鎧職人",
+          "iconFilename": "50291.png"
+        }
+      ]
     },
     {
       "id": "saltwash",
@@ -1767,7 +4633,18 @@
         "Celtic"
       ],
       "files": {},
-      "items": []
+      "items": [
+        {
+          "guid": "44148",
+          "displayName": "巧妙な罠師",
+          "iconFilename": "44148.png"
+        },
+        {
+          "guid": "80221",
+          "displayName": "小宇宙学者-マクロビウス・ミヌキアヌス",
+          "iconFilename": "80221.png"
+        }
+      ]
     },
     {
       "id": "saltwort",
@@ -1777,7 +4654,28 @@
         "Celtic"
       ],
       "files": {},
-      "items": []
+      "items": [
+        {
+          "guid": "44081",
+          "displayName": "オーロックス長官",
+          "iconFilename": "44081.png"
+        },
+        {
+          "guid": "95403",
+          "displayName": "海岸の百合-セルヴィア・ベリア",
+          "iconFilename": "95403.png"
+        },
+        {
+          "guid": "44148",
+          "displayName": "巧妙な罠師",
+          "iconFilename": "44148.png"
+        },
+        {
+          "guid": "80221",
+          "displayName": "小宇宙学者-マクロビウス・ミヌキアヌス",
+          "iconFilename": "80221.png"
+        }
+      ]
     },
     {
       "id": "sandals",
@@ -1793,14 +4691,69 @@
       },
       "items": [
         {
+          "guid": "44082",
+          "displayName": "ホエイの学徒",
+          "iconFilename": "44082.png"
+        },
+        {
+          "guid": "80225",
+          "displayName": "リアンノンのかつての御者-ピル・ファブ・マナウィダン",
+          "iconFilename": "80225.png"
+        },
+        {
+          "guid": "106974",
+          "displayName": "隠遁する還元主義者-スケルグ",
+          "iconFilename": "106974.png"
+        },
+        {
+          "guid": "44122",
+          "displayName": "歌を消す者-ホスタ・ヴルピウス",
+          "iconFilename": "44122.png"
+        },
+        {
+          "guid": "95403",
+          "displayName": "海岸の百合-セルヴィア・ベリア",
+          "iconFilename": "95403.png"
+        },
+        {
           "guid": "44086",
           "displayName": "革ひも職人",
           "iconFilename": "44086.png"
         },
         {
+          "guid": "44085",
+          "displayName": "魚の導き手",
+          "iconFilename": "44085.png"
+        },
+        {
+          "guid": "44088",
+          "displayName": "車輪技師",
+          "iconFilename": "44088.png"
+        },
+        {
+          "guid": "166523",
+          "displayName": "小スコルピオ・アフリカヌス、法的に別人の将軍",
+          "iconFilename": "166523.png"
+        },
+        {
           "guid": "80221",
           "displayName": "小宇宙学者-マクロビウス・ミヌキアヌス",
           "iconFilename": "80221.png"
+        },
+        {
+          "guid": "44142",
+          "displayName": "辛辣な石鹸職人",
+          "iconFilename": "44142.png"
+        },
+        {
+          "guid": "50291",
+          "displayName": "層重ねの鎧職人",
+          "iconFilename": "50291.png"
+        },
+        {
+          "guid": "44147",
+          "displayName": "猪に囁く者",
+          "iconFilename": "44147.png"
         }
       ]
     },
@@ -1812,7 +4765,58 @@
         "Roman"
       ],
       "files": {},
-      "items": []
+      "items": [
+        {
+          "guid": "44149",
+          "displayName": "アトラスの家具職人-マキシマ・コティウス",
+          "iconFilename": "44149.png"
+        },
+        {
+          "guid": "156696",
+          "displayName": "すてきな自然体主義者",
+          "iconFilename": "156696.png"
+        },
+        {
+          "guid": "44115",
+          "displayName": "メラリウス",
+          "iconFilename": "44115.png"
+        },
+        {
+          "guid": "156688",
+          "displayName": "近視の石工",
+          "iconFilename": "156688.png"
+        },
+        {
+          "guid": "80502",
+          "displayName": "警句の薬剤師-カティン",
+          "iconFilename": "80502.png"
+        },
+        {
+          "guid": "44114",
+          "displayName": "仕立て屋のイオリア人",
+          "iconFilename": "44114.png"
+        },
+        {
+          "guid": "80221",
+          "displayName": "小宇宙学者-マクロビウス・ミヌキアヌス",
+          "iconFilename": "80221.png"
+        },
+        {
+          "guid": "144848",
+          "displayName": "森の番人-ガイウス・クリトニウス・リグネウス",
+          "iconFilename": "144848.png"
+        },
+        {
+          "guid": "156685",
+          "displayName": "台帳係",
+          "iconFilename": "156685.png"
+        },
+        {
+          "guid": "147974",
+          "displayName": "独学のゲーム学者",
+          "iconFilename": "147974.png"
+        }
+      ]
     },
     {
       "id": "sardines",
@@ -1864,9 +4868,39 @@
       },
       "items": [
         {
+          "guid": "156696",
+          "displayName": "すてきな自然体主義者",
+          "iconFilename": "156696.png"
+        },
+        {
+          "guid": "80225",
+          "displayName": "リアンノンのかつての御者-ピル・ファブ・マナウィダン",
+          "iconFilename": "80225.png"
+        },
+        {
+          "guid": "44122",
+          "displayName": "歌を消す者-ホスタ・ヴルピウス",
+          "iconFilename": "44122.png"
+        },
+        {
+          "guid": "44086",
+          "displayName": "革ひも職人",
+          "iconFilename": "44086.png"
+        },
+        {
+          "guid": "80502",
+          "displayName": "警句の薬剤師-カティン",
+          "iconFilename": "80502.png"
+        },
+        {
           "guid": "96817",
           "displayName": "限りなき食欲の主-アピオン・モクトス・アピキウス",
           "iconFilename": "96817.png"
+        },
+        {
+          "guid": "166523",
+          "displayName": "小スコルピオ・アフリカヌス、法的に別人の将軍",
+          "iconFilename": "166523.png"
         },
         {
           "guid": "80221",
@@ -1874,9 +4908,24 @@
           "iconFilename": "80221.png"
         },
         {
+          "guid": "44142",
+          "displayName": "辛辣な石鹸職人",
+          "iconFilename": "44142.png"
+        },
+        {
+          "guid": "50291",
+          "displayName": "層重ねの鎧職人",
+          "iconFilename": "50291.png"
+        },
+        {
           "guid": "44147",
           "displayName": "猪に囁く者",
           "iconFilename": "44147.png"
+        },
+        {
+          "guid": "144842",
+          "displayName": "伝説の薬草採り-ロラーナ",
+          "iconFilename": "144842.png"
         }
       ]
     },
@@ -1890,7 +4939,63 @@
       "files": {
         "egyptian": "aegyptus_scribing_sets"
       },
-      "items": []
+      "items": [
+        {
+          "guid": "160528",
+          "displayName": "ラエウィヌス、ウルカヌスのつるはし",
+          "iconFilename": "160528.png"
+        },
+        {
+          "guid": "184812",
+          "displayName": "レンガ職人",
+          "iconFilename": "184812.png"
+        },
+        {
+          "guid": "159505",
+          "displayName": "葦切り",
+          "iconFilename": "159505.png"
+        },
+        {
+          "guid": "44089",
+          "displayName": "金の石工",
+          "iconFilename": "44089.png"
+        },
+        {
+          "guid": "96819",
+          "displayName": "高潔な志願兵",
+          "iconFilename": "96819.png"
+        },
+        {
+          "guid": "181067",
+          "displayName": "写本書記",
+          "iconFilename": "181067.png"
+        },
+        {
+          "guid": "44088",
+          "displayName": "車輪技師",
+          "iconFilename": "44088.png"
+        },
+        {
+          "guid": "80221",
+          "displayName": "小宇宙学者-マクロビウス・ミヌキアヌス",
+          "iconFilename": "80221.png"
+        },
+        {
+          "guid": "145268",
+          "displayName": "長き闇の弁論家-オルフェリア",
+          "iconFilename": "145268.png"
+        },
+        {
+          "guid": "44140",
+          "displayName": "編み師",
+          "iconFilename": "44140.png"
+        },
+        {
+          "guid": "44120",
+          "displayName": "溶解炉の職人",
+          "iconFilename": "44120.png"
+        }
+      ]
     },
     {
       "id": "seashells",
@@ -1900,7 +5005,23 @@
         "Celtic"
       ],
       "files": {},
-      "items": []
+      "items": [
+        {
+          "guid": "44116",
+          "displayName": "マリックス、人魚を知る者",
+          "iconFilename": "44116.png"
+        },
+        {
+          "guid": "95403",
+          "displayName": "海岸の百合-セルヴィア・ベリア",
+          "iconFilename": "95403.png"
+        },
+        {
+          "guid": "80221",
+          "displayName": "小宇宙学者-マクロビウス・ミヌキアヌス",
+          "iconFilename": "80221.png"
+        }
+      ]
     },
     {
       "id": "sheep",
@@ -1911,7 +5032,48 @@
         "Roman"
       ],
       "files": {},
-      "items": []
+      "items": [
+        {
+          "guid": "44087",
+          "displayName": "ズボン専門家",
+          "iconFilename": "44087.png"
+        },
+        {
+          "guid": "80225",
+          "displayName": "リアンノンのかつての御者-ピル・ファブ・マナウィダン",
+          "iconFilename": "80225.png"
+        },
+        {
+          "guid": "44114",
+          "displayName": "仕立て屋のイオリア人",
+          "iconFilename": "44114.png"
+        },
+        {
+          "guid": "50665",
+          "displayName": "至高のマント職人",
+          "iconFilename": "50665.png"
+        },
+        {
+          "guid": "166523",
+          "displayName": "小スコルピオ・アフリカヌス、法的に別人の将軍",
+          "iconFilename": "166523.png"
+        },
+        {
+          "guid": "80221",
+          "displayName": "小宇宙学者-マクロビウス・ミヌキアヌス",
+          "iconFilename": "80221.png"
+        },
+        {
+          "guid": "44078",
+          "displayName": "帆職人",
+          "iconFilename": "44078.png"
+        },
+        {
+          "guid": "44144",
+          "displayName": "婦人帽子職人",
+          "iconFilename": "44144.png"
+        }
+      ]
     },
     {
       "id": "aegyptus_shentis",
@@ -1925,14 +5087,49 @@
       },
       "items": [
         {
+          "guid": "44149",
+          "displayName": "アトラスの家具職人-マキシマ・コティウス",
+          "iconFilename": "44149.png"
+        },
+        {
+          "guid": "181070",
+          "displayName": "イシドラ、カラシリスの仕立屋",
+          "iconFilename": "181070.png"
+        },
+        {
+          "guid": "51282",
+          "displayName": "ケレースの神官-カスポニア・カスタ",
+          "iconFilename": "51282.png"
+        },
+        {
           "guid": "181055",
           "displayName": "シェンティ職人",
           "iconFilename": "181055.png"
         },
         {
+          "guid": "185129",
+          "displayName": "収穫の声を聴く者フーイ",
+          "iconFilename": "185129.png"
+        },
+        {
           "guid": "80221",
           "displayName": "小宇宙学者-マクロビウス・ミヌキアヌス",
           "iconFilename": "80221.png"
+        },
+        {
+          "guid": "44431",
+          "displayName": "象使い",
+          "iconFilename": "44431.png"
+        },
+        {
+          "guid": "44119",
+          "displayName": "頭髪の芸術家",
+          "iconFilename": "44119.png"
+        },
+        {
+          "guid": "44118",
+          "displayName": "斑岩の第一人者",
+          "iconFilename": "44118.png"
         }
       ]
     },
@@ -1945,7 +5142,33 @@
         "Celtic"
       ],
       "files": {},
-      "items": []
+      "items": [
+        {
+          "guid": "181070",
+          "displayName": "イシドラ、カラシリスの仕立屋",
+          "iconFilename": "181070.png"
+        },
+        {
+          "guid": "95403",
+          "displayName": "海岸の百合-セルヴィア・ベリア",
+          "iconFilename": "95403.png"
+        },
+        {
+          "guid": "80221",
+          "displayName": "小宇宙学者-マクロビウス・ミヌキアヌス",
+          "iconFilename": "80221.png"
+        },
+        {
+          "guid": "145268",
+          "displayName": "長き闇の弁論家-オルフェリア",
+          "iconFilename": "145268.png"
+        },
+        {
+          "guid": "44120",
+          "displayName": "溶解炉の職人",
+          "iconFilename": "44120.png"
+        }
+      ]
     },
     {
       "id": "silver",
@@ -1955,7 +5178,33 @@
         "Celtic"
       ],
       "files": {},
-      "items": []
+      "items": [
+        {
+          "guid": "44113",
+          "displayName": "サトゥルヌスの製錬工",
+          "iconFilename": "44113.png"
+        },
+        {
+          "guid": "44116",
+          "displayName": "マリックス、人魚を知る者",
+          "iconFilename": "44116.png"
+        },
+        {
+          "guid": "80189",
+          "displayName": "奇妙な鍛冶師-アネイリン・グワードリッド",
+          "iconFilename": "80189.png"
+        },
+        {
+          "guid": "50890",
+          "displayName": "砂とサンダルの生存者-ファビルス",
+          "iconFilename": "50890.png"
+        },
+        {
+          "guid": "80221",
+          "displayName": "小宇宙学者-マクロビウス・ミヌキアヌス",
+          "iconFilename": "80221.png"
+        }
+      ]
     },
     {
       "id": "silver_ore",
@@ -1965,7 +5214,38 @@
         "Celtic"
       ],
       "files": {},
-      "items": []
+      "items": [
+        {
+          "guid": "44113",
+          "displayName": "サトゥルヌスの製錬工",
+          "iconFilename": "44113.png"
+        },
+        {
+          "guid": "44116",
+          "displayName": "マリックス、人魚を知る者",
+          "iconFilename": "44116.png"
+        },
+        {
+          "guid": "79947",
+          "displayName": "黄金の手-ミナス・オルラム",
+          "iconFilename": "79947.png"
+        },
+        {
+          "guid": "144874",
+          "displayName": "傑出した探鉱者-カデリナ",
+          "iconFilename": "144874.png"
+        },
+        {
+          "guid": "80221",
+          "displayName": "小宇宙学者-マクロビウス・ミヌキアヌス",
+          "iconFilename": "80221.png"
+        },
+        {
+          "guid": "145268",
+          "displayName": "長き闇の弁論家-オルフェリア",
+          "iconFilename": "145268.png"
+        }
+      ]
     },
     {
       "id": "aegyptus_sistrums",
@@ -1979,9 +5259,54 @@
       },
       "items": [
         {
+          "guid": "181070",
+          "displayName": "イシドラ、カラシリスの仕立屋",
+          "iconFilename": "181070.png"
+        },
+        {
+          "guid": "44117",
+          "displayName": "オブトルキスト",
+          "iconFilename": "44117.png"
+        },
+        {
+          "guid": "79947",
+          "displayName": "黄金の手-ミナス・オルラム",
+          "iconFilename": "79947.png"
+        },
+        {
+          "guid": "80189",
+          "displayName": "奇妙な鍛冶師-アネイリン・グワードリッド",
+          "iconFilename": "80189.png"
+        },
+        {
+          "guid": "44121",
+          "displayName": "護りの実用主義者",
+          "iconFilename": "44121.png"
+        },
+        {
+          "guid": "50890",
+          "displayName": "砂とサンダルの生存者-ファビルス",
+          "iconFilename": "50890.png"
+        },
+        {
+          "guid": "50665",
+          "displayName": "至高のマント職人",
+          "iconFilename": "50665.png"
+        },
+        {
+          "guid": "179652",
+          "displayName": "首飾り職人",
+          "iconFilename": "179652.png"
+        },
+        {
           "guid": "80221",
           "displayName": "小宇宙学者-マクロビウス・ミヌキアヌス",
           "iconFilename": "80221.png"
+        },
+        {
+          "guid": "145268",
+          "displayName": "長き闇の弁論家-オルフェリア",
+          "iconFilename": "145268.png"
         }
       ]
     },
@@ -1993,7 +5318,23 @@
         "Celtic"
       ],
       "files": {},
-      "items": []
+      "items": [
+        {
+          "guid": "160051",
+          "displayName": "アダル・ルック・グウェン、優れた鳥呼び",
+          "iconFilename": "160051.png"
+        },
+        {
+          "guid": "44122",
+          "displayName": "歌を消す者-ホスタ・ヴルピウス",
+          "iconFilename": "44122.png"
+        },
+        {
+          "guid": "80221",
+          "displayName": "小宇宙学者-マクロビウス・ミヌキアヌス",
+          "iconFilename": "80221.png"
+        }
+      ]
     },
     {
       "id": "soap",
@@ -2009,6 +5350,41 @@
       },
       "items": [
         {
+          "guid": "156696",
+          "displayName": "すてきな自然体主義者",
+          "iconFilename": "156696.png"
+        },
+        {
+          "guid": "80225",
+          "displayName": "リアンノンのかつての御者-ピル・ファブ・マナウィダン",
+          "iconFilename": "80225.png"
+        },
+        {
+          "guid": "44122",
+          "displayName": "歌を消す者-ホスタ・ヴルピウス",
+          "iconFilename": "44122.png"
+        },
+        {
+          "guid": "44086",
+          "displayName": "革ひも職人",
+          "iconFilename": "44086.png"
+        },
+        {
+          "guid": "153695",
+          "displayName": "雁叩き",
+          "iconFilename": "153695.png"
+        },
+        {
+          "guid": "80502",
+          "displayName": "警句の薬剤師-カティン",
+          "iconFilename": "80502.png"
+        },
+        {
+          "guid": "166523",
+          "displayName": "小スコルピオ・アフリカヌス、法的に別人の将軍",
+          "iconFilename": "166523.png"
+        },
+        {
           "guid": "80221",
           "displayName": "小宇宙学者-マクロビウス・ミヌキアヌス",
           "iconFilename": "80221.png"
@@ -2017,6 +5393,16 @@
           "guid": "44142",
           "displayName": "辛辣な石鹸職人",
           "iconFilename": "44142.png"
+        },
+        {
+          "guid": "50291",
+          "displayName": "層重ねの鎧職人",
+          "iconFilename": "50291.png"
+        },
+        {
+          "guid": "44147",
+          "displayName": "猪に囁く者",
+          "iconFilename": "44147.png"
         }
       ]
     },
@@ -2037,6 +5423,11 @@
           "iconFilename": "160531.png"
         },
         {
+          "guid": "160528",
+          "displayName": "ラエウィヌス、ウルカヌスのつるはし",
+          "iconFilename": "160528.png"
+        },
+        {
           "guid": "156688",
           "displayName": "近視の石工",
           "iconFilename": "156688.png"
@@ -2050,6 +5441,11 @@
           "guid": "80221",
           "displayName": "小宇宙学者-マクロビウス・ミヌキアヌス",
           "iconFilename": "80221.png"
+        },
+        {
+          "guid": "145268",
+          "displayName": "長き闇の弁論家-オルフェリア",
+          "iconFilename": "145268.png"
         }
       ]
     },
@@ -2061,7 +5457,18 @@
         "Roman"
       ],
       "files": {},
-      "items": []
+      "items": [
+        {
+          "guid": "44114",
+          "displayName": "仕立て屋のイオリア人",
+          "iconFilename": "44114.png"
+        },
+        {
+          "guid": "80221",
+          "displayName": "小宇宙学者-マクロビウス・ミヌキアヌス",
+          "iconFilename": "80221.png"
+        }
+      ]
     },
     {
       "id": "aegyptus_stuffed_goose",
@@ -2075,6 +5482,16 @@
       },
       "items": [
         {
+          "guid": "173061",
+          "displayName": "カフク職人",
+          "iconFilename": "173061.png"
+        },
+        {
+          "guid": "51282",
+          "displayName": "ケレースの神官-カスポニア・カスタ",
+          "iconFilename": "51282.png"
+        },
+        {
           "guid": "153695",
           "displayName": "雁叩き",
           "iconFilename": "153695.png"
@@ -2085,9 +5502,29 @@
           "iconFilename": "96817.png"
         },
         {
+          "guid": "185129",
+          "displayName": "収穫の声を聴く者フーイ",
+          "iconFilename": "185129.png"
+        },
+        {
           "guid": "80221",
           "displayName": "小宇宙学者-マクロビウス・ミヌキアヌス",
           "iconFilename": "80221.png"
+        },
+        {
+          "guid": "44431",
+          "displayName": "象使い",
+          "iconFilename": "44431.png"
+        },
+        {
+          "guid": "44142",
+          "displayName": "辛辣な石鹸職人",
+          "iconFilename": "44142.png"
+        },
+        {
+          "guid": "44080",
+          "displayName": "生地の占い手",
+          "iconFilename": "44080.png"
         }
       ]
     },
@@ -2099,7 +5536,33 @@
         "Roman"
       ],
       "files": {},
-      "items": []
+      "items": [
+        {
+          "guid": "160054",
+          "displayName": "エルクマルの子フィネケス、全知の鮭漁師",
+          "iconFilename": "160054.png"
+        },
+        {
+          "guid": "156710",
+          "displayName": "スペアー・ニク・レアルタ、策士の釣り人",
+          "iconFilename": "156710.png"
+        },
+        {
+          "guid": "145262",
+          "displayName": "ローマ最速の刃を振るう者-クトレラ",
+          "iconFilename": "145262.png"
+        },
+        {
+          "guid": "80221",
+          "displayName": "小宇宙学者-マクロビウス・ミヌキアヌス",
+          "iconFilename": "80221.png"
+        },
+        {
+          "guid": "44143",
+          "displayName": "水際の学徒",
+          "iconFilename": "44143.png"
+        }
+      ]
     },
     {
       "id": "tiles",
@@ -2117,6 +5580,26 @@
       },
       "items": [
         {
+          "guid": "44139",
+          "displayName": "ハンドラー",
+          "iconFilename": "44139.png"
+        },
+        {
+          "guid": "160528",
+          "displayName": "ラエウィヌス、ウルカヌスのつるはし",
+          "iconFilename": "160528.png"
+        },
+        {
+          "guid": "184828",
+          "displayName": "ランプ職人",
+          "iconFilename": "184828.png"
+        },
+        {
+          "guid": "184812",
+          "displayName": "レンガ職人",
+          "iconFilename": "184812.png"
+        },
+        {
           "guid": "156690",
           "displayName": "具象的な粘土職人",
           "iconFilename": "156690.png"
@@ -2130,6 +5613,11 @@
           "guid": "80221",
           "displayName": "小宇宙学者-マクロビウス・ミヌキアヌス",
           "iconFilename": "80221.png"
+        },
+        {
+          "guid": "145268",
+          "displayName": "長き闇の弁論家-オルフェリア",
+          "iconFilename": "145268.png"
         }
       ]
     },
@@ -2147,14 +5635,39 @@
       },
       "items": [
         {
+          "guid": "106974",
+          "displayName": "隠遁する還元主義者-スケルグ",
+          "iconFilename": "106974.png"
+        },
+        {
+          "guid": "44086",
+          "displayName": "革ひも職人",
+          "iconFilename": "44086.png"
+        },
+        {
           "guid": "96819",
           "displayName": "高潔な志願兵",
           "iconFilename": "96819.png"
         },
         {
+          "guid": "44088",
+          "displayName": "車輪技師",
+          "iconFilename": "44088.png"
+        },
+        {
+          "guid": "166523",
+          "displayName": "小スコルピオ・アフリカヌス、法的に別人の将軍",
+          "iconFilename": "166523.png"
+        },
+        {
           "guid": "80221",
           "displayName": "小宇宙学者-マクロビウス・ミヌキアヌス",
           "iconFilename": "80221.png"
+        },
+        {
+          "guid": "50291",
+          "displayName": "層重ねの鎧職人",
+          "iconFilename": "50291.png"
         }
       ]
     },
@@ -2166,7 +5679,28 @@
         "Celtic"
       ],
       "files": {},
-      "items": []
+      "items": [
+        {
+          "guid": "79947",
+          "displayName": "黄金の手-ミナス・オルラム",
+          "iconFilename": "79947.png"
+        },
+        {
+          "guid": "44121",
+          "displayName": "護りの実用主義者",
+          "iconFilename": "44121.png"
+        },
+        {
+          "guid": "80221",
+          "displayName": "小宇宙学者-マクロビウス・ミヌキアヌス",
+          "iconFilename": "80221.png"
+        },
+        {
+          "guid": "145268",
+          "displayName": "長き闇の弁論家-オルフェリア",
+          "iconFilename": "145268.png"
+        }
+      ]
     },
     {
       "id": "togas",
@@ -2180,14 +5714,59 @@
       },
       "items": [
         {
+          "guid": "44149",
+          "displayName": "アトラスの家具職人-マキシマ・コティウス",
+          "iconFilename": "44149.png"
+        },
+        {
+          "guid": "181070",
+          "displayName": "イシドラ、カラシリスの仕立屋",
+          "iconFilename": "181070.png"
+        },
+        {
+          "guid": "51282",
+          "displayName": "ケレースの神官-カスポニア・カスタ",
+          "iconFilename": "51282.png"
+        },
+        {
+          "guid": "181055",
+          "displayName": "シェンティ職人",
+          "iconFilename": "181055.png"
+        },
+        {
           "guid": "160513",
           "displayName": "ティランナ、生粋の多色主義者",
           "iconFilename": "160513.png"
         },
         {
+          "guid": "80225",
+          "displayName": "リアンノンのかつての御者-ピル・ファブ・マナウィダン",
+          "iconFilename": "80225.png"
+        },
+        {
+          "guid": "95403",
+          "displayName": "海岸の百合-セルヴィア・ベリア",
+          "iconFilename": "95403.png"
+        },
+        {
+          "guid": "185129",
+          "displayName": "収穫の声を聴く者フーイ",
+          "iconFilename": "185129.png"
+        },
+        {
           "guid": "80221",
           "displayName": "小宇宙学者-マクロビウス・ミヌキアヌス",
           "iconFilename": "80221.png"
+        },
+        {
+          "guid": "44431",
+          "displayName": "象使い",
+          "iconFilename": "44431.png"
+        },
+        {
+          "guid": "44119",
+          "displayName": "頭髪の芸術家",
+          "iconFilename": "44119.png"
         },
         {
           "guid": "44118",
@@ -2208,14 +5787,39 @@
       },
       "items": [
         {
+          "guid": "181070",
+          "displayName": "イシドラ、カラシリスの仕立屋",
+          "iconFilename": "181070.png"
+        },
+        {
           "guid": "44117",
           "displayName": "オブトルキスト",
           "iconFilename": "44117.png"
         },
         {
+          "guid": "79947",
+          "displayName": "黄金の手-ミナス・オルラム",
+          "iconFilename": "79947.png"
+        },
+        {
+          "guid": "44121",
+          "displayName": "護りの実用主義者",
+          "iconFilename": "44121.png"
+        },
+        {
+          "guid": "50665",
+          "displayName": "至高のマント職人",
+          "iconFilename": "50665.png"
+        },
+        {
           "guid": "80221",
           "displayName": "小宇宙学者-マクロビウス・ミヌキアヌス",
           "iconFilename": "80221.png"
+        },
+        {
+          "guid": "145268",
+          "displayName": "長き闇の弁論家-オルフェリア",
+          "iconFilename": "145268.png"
         }
       ]
     },
@@ -2231,14 +5835,64 @@
       },
       "items": [
         {
+          "guid": "156696",
+          "displayName": "すてきな自然体主義者",
+          "iconFilename": "156696.png"
+        },
+        {
           "guid": "44087",
           "displayName": "ズボン専門家",
           "iconFilename": "44087.png"
         },
         {
+          "guid": "80225",
+          "displayName": "リアンノンのかつての御者-ピル・ファブ・マナウィダン",
+          "iconFilename": "80225.png"
+        },
+        {
+          "guid": "80502",
+          "displayName": "警句の薬剤師-カティン",
+          "iconFilename": "80502.png"
+        },
+        {
+          "guid": "44121",
+          "displayName": "護りの実用主義者",
+          "iconFilename": "44121.png"
+        },
+        {
+          "guid": "44114",
+          "displayName": "仕立て屋のイオリア人",
+          "iconFilename": "44114.png"
+        },
+        {
+          "guid": "50665",
+          "displayName": "至高のマント職人",
+          "iconFilename": "50665.png"
+        },
+        {
+          "guid": "166523",
+          "displayName": "小スコルピオ・アフリカヌス、法的に別人の将軍",
+          "iconFilename": "166523.png"
+        },
+        {
           "guid": "80221",
           "displayName": "小宇宙学者-マクロビウス・ミヌキアヌス",
           "iconFilename": "80221.png"
+        },
+        {
+          "guid": "144844",
+          "displayName": "虹を捕まえる者-コイラン・ペオカグ",
+          "iconFilename": "144844.png"
+        },
+        {
+          "guid": "44078",
+          "displayName": "帆職人",
+          "iconFilename": "44078.png"
+        },
+        {
+          "guid": "44144",
+          "displayName": "婦人帽子職人",
+          "iconFilename": "44144.png"
         }
       ]
     },
@@ -2256,14 +5910,39 @@
       },
       "items": [
         {
+          "guid": "51282",
+          "displayName": "ケレースの神官-カスポニア・カスタ",
+          "iconFilename": "51282.png"
+        },
+        {
+          "guid": "44079",
+          "displayName": "ロープ職人",
+          "iconFilename": "44079.png"
+        },
+        {
           "guid": "44083",
           "displayName": "仕立屋",
           "iconFilename": "44083.png"
         },
         {
+          "guid": "185129",
+          "displayName": "収穫の声を聴く者フーイ",
+          "iconFilename": "185129.png"
+        },
+        {
+          "guid": "166523",
+          "displayName": "小スコルピオ・アフリカヌス、法的に別人の将軍",
+          "iconFilename": "166523.png"
+        },
+        {
           "guid": "80221",
           "displayName": "小宇宙学者-マクロビウス・ミヌキアヌス",
           "iconFilename": "80221.png"
+        },
+        {
+          "guid": "44431",
+          "displayName": "象使い",
+          "iconFilename": "44431.png"
         }
       ]
     },
@@ -2275,7 +5954,23 @@
         "Roman"
       ],
       "files": {},
-      "items": []
+      "items": [
+        {
+          "guid": "44149",
+          "displayName": "アトラスの家具職人-マキシマ・コティウス",
+          "iconFilename": "44149.png"
+        },
+        {
+          "guid": "80221",
+          "displayName": "小宇宙学者-マクロビウス・ミヌキアヌス",
+          "iconFilename": "80221.png"
+        },
+        {
+          "guid": "44118",
+          "displayName": "斑岩の第一人者",
+          "iconFilename": "44118.png"
+        }
+      ]
     },
     {
       "id": "uncut_marble",
@@ -2285,7 +5980,33 @@
         "Roman"
       ],
       "files": {},
-      "items": []
+      "items": [
+        {
+          "guid": "160528",
+          "displayName": "ラエウィヌス、ウルカヌスのつるはし",
+          "iconFilename": "160528.png"
+        },
+        {
+          "guid": "156688",
+          "displayName": "近視の石工",
+          "iconFilename": "156688.png"
+        },
+        {
+          "guid": "145271",
+          "displayName": "従者の彫刻家",
+          "iconFilename": "145271.png"
+        },
+        {
+          "guid": "80221",
+          "displayName": "小宇宙学者-マクロビウス・ミヌキアヌス",
+          "iconFilename": "80221.png"
+        },
+        {
+          "guid": "145268",
+          "displayName": "長き闇の弁論家-オルフェリア",
+          "iconFilename": "145268.png"
+        }
+      ]
     },
     {
       "id": "wattle_&_daub",
@@ -2299,14 +6020,54 @@
       },
       "items": [
         {
+          "guid": "44139",
+          "displayName": "ハンドラー",
+          "iconFilename": "44139.png"
+        },
+        {
+          "guid": "184828",
+          "displayName": "ランプ職人",
+          "iconFilename": "184828.png"
+        },
+        {
+          "guid": "184812",
+          "displayName": "レンガ職人",
+          "iconFilename": "184812.png"
+        },
+        {
+          "guid": "159505",
+          "displayName": "葦切り",
+          "iconFilename": "159505.png"
+        },
+        {
           "guid": "96819",
           "displayName": "高潔な志願兵",
           "iconFilename": "96819.png"
         },
         {
+          "guid": "181067",
+          "displayName": "写本書記",
+          "iconFilename": "181067.png"
+        },
+        {
+          "guid": "44088",
+          "displayName": "車輪技師",
+          "iconFilename": "44088.png"
+        },
+        {
           "guid": "80221",
           "displayName": "小宇宙学者-マクロビウス・ミヌキアヌス",
           "iconFilename": "80221.png"
+        },
+        {
+          "guid": "145268",
+          "displayName": "長き闇の弁論家-オルフェリア",
+          "iconFilename": "145268.png"
+        },
+        {
+          "guid": "44140",
+          "displayName": "編み師",
+          "iconFilename": "44140.png"
         }
       ]
     },
@@ -2344,6 +6105,16 @@
           "iconFilename": "107339.png"
         },
         {
+          "guid": "79947",
+          "displayName": "黄金の手-ミナス・オルラム",
+          "iconFilename": "79947.png"
+        },
+        {
+          "guid": "80189",
+          "displayName": "奇妙な鍛冶師-アネイリン・グワードリッド",
+          "iconFilename": "80189.png"
+        },
+        {
           "guid": "50289",
           "displayName": "言葉少ない刀工",
           "iconFilename": "50289.png"
@@ -2362,6 +6133,16 @@
           "guid": "80221",
           "displayName": "小宇宙学者-マクロビウス・ミヌキアヌス",
           "iconFilename": "80221.png"
+        },
+        {
+          "guid": "50291",
+          "displayName": "層重ねの鎧職人",
+          "iconFilename": "50291.png"
+        },
+        {
+          "guid": "145268",
+          "displayName": "長き闇の弁論家-オルフェリア",
+          "iconFilename": "145268.png"
         },
         {
           "guid": "185170",
@@ -2390,6 +6171,11 @@
           "guid": "80221",
           "displayName": "小宇宙学者-マクロビウス・ミヌキアヌス",
           "iconFilename": "80221.png"
+        },
+        {
+          "guid": "145268",
+          "displayName": "長き闇の弁論家-オルフェリア",
+          "iconFilename": "145268.png"
         }
       ]
     },
@@ -2402,7 +6188,43 @@
         "Celtic"
       ],
       "files": {},
-      "items": []
+      "items": [
+        {
+          "guid": "173061",
+          "displayName": "カフク職人",
+          "iconFilename": "173061.png"
+        },
+        {
+          "guid": "51282",
+          "displayName": "ケレースの神官-カスポニア・カスタ",
+          "iconFilename": "51282.png"
+        },
+        {
+          "guid": "153695",
+          "displayName": "雁叩き",
+          "iconFilename": "153695.png"
+        },
+        {
+          "guid": "185129",
+          "displayName": "収穫の声を聴く者フーイ",
+          "iconFilename": "185129.png"
+        },
+        {
+          "guid": "80221",
+          "displayName": "小宇宙学者-マクロビウス・ミヌキアヌス",
+          "iconFilename": "80221.png"
+        },
+        {
+          "guid": "44431",
+          "displayName": "象使い",
+          "iconFilename": "44431.png"
+        },
+        {
+          "guid": "44080",
+          "displayName": "生地の占い手",
+          "iconFilename": "44080.png"
+        }
+      ]
     },
     {
       "id": "wigs",
@@ -2416,9 +6238,44 @@
       },
       "items": [
         {
+          "guid": "44149",
+          "displayName": "アトラスの家具職人-マキシマ・コティウス",
+          "iconFilename": "44149.png"
+        },
+        {
+          "guid": "181070",
+          "displayName": "イシドラ、カラシリスの仕立屋",
+          "iconFilename": "181070.png"
+        },
+        {
+          "guid": "51282",
+          "displayName": "ケレースの神官-カスポニア・カスタ",
+          "iconFilename": "51282.png"
+        },
+        {
+          "guid": "181055",
+          "displayName": "シェンティ職人",
+          "iconFilename": "181055.png"
+        },
+        {
+          "guid": "44139",
+          "displayName": "ハンドラー",
+          "iconFilename": "44139.png"
+        },
+        {
           "guid": "80225",
           "displayName": "リアンノンのかつての御者-ピル・ファブ・マナウィダン",
           "iconFilename": "80225.png"
+        },
+        {
+          "guid": "106974",
+          "displayName": "隠遁する還元主義者-スケルグ",
+          "iconFilename": "106974.png"
+        },
+        {
+          "guid": "185129",
+          "displayName": "収穫の声を聴く者フーイ",
+          "iconFilename": "185129.png"
         },
         {
           "guid": "166523",
@@ -2429,6 +6286,11 @@
           "guid": "80221",
           "displayName": "小宇宙学者-マクロビウス・ミヌキアヌス",
           "iconFilename": "80221.png"
+        },
+        {
+          "guid": "44431",
+          "displayName": "象使い",
+          "iconFilename": "44431.png"
         },
         {
           "guid": "44119",
@@ -2444,6 +6306,11 @@
           "guid": "156679",
           "displayName": "馬丁",
           "iconFilename": "156679.png"
+        },
+        {
+          "guid": "44118",
+          "displayName": "斑岩の第一人者",
+          "iconFilename": "44118.png"
         }
       ]
     },
@@ -2461,14 +6328,44 @@
       },
       "items": [
         {
+          "guid": "173061",
+          "displayName": "カフク職人",
+          "iconFilename": "173061.png"
+        },
+        {
+          "guid": "156696",
+          "displayName": "すてきな自然体主義者",
+          "iconFilename": "156696.png"
+        },
+        {
+          "guid": "179649",
+          "displayName": "セシェン、花摘み",
+          "iconFilename": "179649.png"
+        },
+        {
           "guid": "44112",
           "displayName": "ブドウ潰し",
           "iconFilename": "44112.png"
         },
         {
+          "guid": "44115",
+          "displayName": "メラリウス",
+          "iconFilename": "44115.png"
+        },
+        {
+          "guid": "80502",
+          "displayName": "警句の薬剤師-カティン",
+          "iconFilename": "80502.png"
+        },
+        {
           "guid": "80221",
           "displayName": "小宇宙学者-マクロビウス・ミヌキアヌス",
           "iconFilename": "80221.png"
+        },
+        {
+          "guid": "156685",
+          "displayName": "台帳係",
+          "iconFilename": "156685.png"
         }
       ]
     },
@@ -2481,7 +6378,38 @@
         "Roman"
       ],
       "files": {},
-      "items": []
+      "items": [
+        {
+          "guid": "106974",
+          "displayName": "隠遁する還元主義者-スケルグ",
+          "iconFilename": "106974.png"
+        },
+        {
+          "guid": "44086",
+          "displayName": "革ひも職人",
+          "iconFilename": "44086.png"
+        },
+        {
+          "guid": "44088",
+          "displayName": "車輪技師",
+          "iconFilename": "44088.png"
+        },
+        {
+          "guid": "166523",
+          "displayName": "小スコルピオ・アフリカヌス、法的に別人の将軍",
+          "iconFilename": "166523.png"
+        },
+        {
+          "guid": "80221",
+          "displayName": "小宇宙学者-マクロビウス・ミヌキアヌス",
+          "iconFilename": "80221.png"
+        },
+        {
+          "guid": "50291",
+          "displayName": "層重ねの鎧職人",
+          "iconFilename": "50291.png"
+        }
+      ]
     },
     {
       "id": "writing_tablets",
@@ -2495,9 +6423,49 @@
       },
       "items": [
         {
+          "guid": "44149",
+          "displayName": "アトラスの家具職人-マキシマ・コティウス",
+          "iconFilename": "44149.png"
+        },
+        {
+          "guid": "173061",
+          "displayName": "カフク職人",
+          "iconFilename": "173061.png"
+        },
+        {
+          "guid": "156696",
+          "displayName": "すてきな自然体主義者",
+          "iconFilename": "156696.png"
+        },
+        {
+          "guid": "179649",
+          "displayName": "セシェン、花摘み",
+          "iconFilename": "179649.png"
+        },
+        {
+          "guid": "44112",
+          "displayName": "ブドウ潰し",
+          "iconFilename": "44112.png"
+        },
+        {
           "guid": "44115",
           "displayName": "メラリウス",
           "iconFilename": "44115.png"
+        },
+        {
+          "guid": "156688",
+          "displayName": "近視の石工",
+          "iconFilename": "156688.png"
+        },
+        {
+          "guid": "80502",
+          "displayName": "警句の薬剤師-カティン",
+          "iconFilename": "80502.png"
+        },
+        {
+          "guid": "44114",
+          "displayName": "仕立て屋のイオリア人",
+          "iconFilename": "44114.png"
         },
         {
           "guid": "80221",
@@ -2505,9 +6473,19 @@
           "iconFilename": "80221.png"
         },
         {
+          "guid": "144848",
+          "displayName": "森の番人-ガイウス・クリトニウス・リグネウス",
+          "iconFilename": "144848.png"
+        },
+        {
           "guid": "156685",
           "displayName": "台帳係",
           "iconFilename": "156685.png"
+        },
+        {
+          "guid": "147974",
+          "displayName": "独学のゲーム学者",
+          "iconFilename": "147974.png"
         }
       ]
     }

@@ -1,0 +1,39 @@
+{
+  "displayName": "ラエウィヌス、ウルカヌスのつるはし",
+  "guid": "160528",
+  "description": "「世界を変えるには、神でさえも道具を使わなければならない。神の手にぴったり合うように形作られた道具だけが、神の手に触れられたことを感じられるのだ」――『シビュラの書』の一節",
+  "iconFilename": "160528.png",
+  "rarity": "Mythic",
+  "niche": "Economy",
+  "targets": [
+    {
+      "producedGoods": [
+        {
+          "name": "Limestone"
+        },
+        {
+          "name": "Granite Block"
+        },
+        {
+          "name": "Uncut Marble"
+        },
+        {
+          "name": "Minerals"
+        },
+        {
+          "name": "Clay"
+        },
+        {
+          "name": "Gold Ore"
+        }
+      ]
+    }
+  ],
+  "buffs": [
+    {
+      "FactoryUpgrade": {
+        "ProductivityUpgrade": 100.0
+      }
+    }
+  ]
+}

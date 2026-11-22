@@ -1,0 +1,39 @@
+{
+  "displayName": "象使い",
+  "guid": "44431",
+  "description": "トリポリタニアの経験豊富な象使いがいれば、行政官がこれ以上苛立つこともなくなるだろう。",
+  "iconFilename": "44431.png",
+  "rarity": "Rare",
+  "niche": "Diplomacy",
+  "targets": [
+    {
+      "producedGoods": [
+        {
+          "name": "Wheat"
+        },
+        {
+          "name": "Flax"
+        },
+        {
+          "name": "Hemp"
+        },
+        {
+          "name": "Oats"
+        },
+        {
+          "name": "Barley"
+        },
+        {
+          "name": "Sesame Pods"
+        }
+      ]
+    }
+  ],
+  "buffs": [
+    {
+      "FactoryUpgrade": {
+        "ProductivityUpgrade": 20.0
+      }
+    }
+  ]
+}

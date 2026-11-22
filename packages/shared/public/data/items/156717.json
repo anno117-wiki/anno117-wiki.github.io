@@ -1,0 +1,24 @@
+{
+  "displayName": "クララ・トゲイル、裂け目に祝福されし虹の大地の職人",
+  "guid": "156717",
+  "description": "「あらゆる雲が銀色の希望の光を投げかけるなら、あらゆる金はその中心に闇を秘めているはずだ」。由緒ある職人の家系の出身。",
+  "iconFilename": "156717.png",
+  "rarity": "Legendary",
+  "niche": "Economy",
+  "targets": [
+    {
+      "producedGoods": [
+        {
+          "name": "Coal"
+        }
+      ]
+    }
+  ],
+  "buffs": [
+    {
+      "FactoryUpgrade": {
+        "ProductivityUpgrade": 15.0
+      }
+    }
+  ]
+}

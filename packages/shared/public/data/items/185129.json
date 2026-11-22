@@ -1,0 +1,39 @@
+{
+  "displayName": "収穫の声を聴く者フーイ",
+  "guid": "185129",
+  "description": "「彼女のデーツとヘマタイトのビールのおかげで、全人類は救われました。ハトホルの女司祭はとてつもなく機嫌が悪かったので」 - 合唱団の女性",
+  "iconFilename": "185129.png",
+  "rarity": "Mythic",
+  "niche": "Agriculture",
+  "targets": [
+    {
+      "producedGoods": [
+        {
+          "name": "Wheat"
+        },
+        {
+          "name": "Flax"
+        },
+        {
+          "name": "Hemp"
+        },
+        {
+          "name": "Oats"
+        },
+        {
+          "name": "Barley"
+        },
+        {
+          "name": "Sesame Pods"
+        }
+      ]
+    }
+  ],
+  "buffs": [
+    {
+      "FactoryUpgrade": {
+        "ProductivityUpgrade": 35.0
+      }
+    }
+  ]
+}

@@ -1,0 +1,24 @@
+{
+  "displayName": "虹を捕まえる者-コイラン・ペオカグ",
+  "guid": "144844",
+  "description": "冗談抜きで、良い染料を手に入れるためなら命さえ投げ出すだろう。",
+  "iconFilename": "144844.png",
+  "rarity": "Legendary",
+  "niche": "Agriculture",
+  "targets": [
+    {
+      "producedGoods": [
+        {
+          "name": "Dye Plants"
+        }
+      ]
+    }
+  ],
+  "buffs": [
+    {
+      "FactoryUpgrade": {
+        "ProductivityUpgrade": 25.0
+      }
+    }
+  ]
+}

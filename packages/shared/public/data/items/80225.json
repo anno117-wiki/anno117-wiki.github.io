@@ -9,7 +9,22 @@
     {
       "producedGoods": [
         {
+          "name": "Aurochs"
+        },
+        {
+          "name": "Sheep"
+        },
+        {
           "name": "Horses"
+        },
+        {
+          "name": "Pigs"
+        },
+        {
+          "name": "Murex Snails"
+        },
+        {
+          "name": "Sanga Cattle"
         }
       ]
     }

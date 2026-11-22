@@ -1,0 +1,36 @@
+{
+  "displayName": "奇妙な鍛冶師-アネイリン・グワードリッド",
+  "guid": "80189",
+  "description": "人によっては不自然だと思える能力を究めんと歩む。",
+  "iconFilename": "80189.png",
+  "rarity": "Legendary",
+  "niche": "Economy",
+  "targets": [
+    {
+      "producedGoods": [
+        {
+          "name": "Bronze"
+        },
+        {
+          "name": "Gold"
+        },
+        {
+          "name": "Silver"
+        },
+        {
+          "name": "Iron"
+        },
+        {
+          "name": "Glass"
+        }
+      ]
+    }
+  ],
+  "buffs": [
+    {
+      "FactoryUpgrade": {
+        "ProductivityUpgrade": 25.0
+      }
+    }
+  ]
+}

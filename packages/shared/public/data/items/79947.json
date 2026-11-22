@@ -1,0 +1,39 @@
+{
+  "displayName": "黄金の手-ミナス・オルラム",
+  "guid": "79947",
+  "description": "彼女の金への嗅覚は、深淵を旅する者たちに吉兆をもたらす。",
+  "iconFilename": "79947.png",
+  "rarity": "Legendary",
+  "niche": "Finance",
+  "targets": [
+    {
+      "producedGoods": [
+        {
+          "name": "Copper Ore"
+        },
+        {
+          "name": "Silver Ore"
+        },
+        {
+          "name": "Tin Ore"
+        },
+        {
+          "name": "Iron Ore"
+        },
+        {
+          "name": "Gold Ore"
+        },
+        {
+          "name": "Coal"
+        }
+      ]
+    }
+  ],
+  "buffs": [
+    {
+      "FactoryUpgrade": {
+        "ProductivityUpgrade": 25.0
+      }
+    }
+  ]
+}

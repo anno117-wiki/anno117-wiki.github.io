@@ -12,16 +12,43 @@
           "name": "Rope"
         },
         {
+          "name": "Hemp"
+        },
+        {
           "name": "Horses"
         },
         {
           "name": "Weapons"
         },
         {
+          "name": "Iron"
+        },
+        {
+          "name": "Iron Ore"
+        },
+        {
           "name": "Armour"
         },
         {
+          "name": "Pigs"
+        },
+        {
+          "name": "Leather"
+        },
+        {
+          "name": "Salt"
+        },
+        {
+          "name": "Wood"
+        },
+        {
+          "name": "Sanga Cattle"
+        },
+        {
           "name": "Sails"
+        },
+        {
+          "name": "Sheep"
         }
       ]
     }

@@ -1,0 +1,45 @@
+{
+  "displayName": "すてきな自然体主義者",
+  "guid": "156696",
+  "description": "彼女は今度勝ちたがっているが、それでよいだろうか？",
+  "iconFilename": "156696.png",
+  "rarity": "Rare",
+  "niche": "Agriculture",
+  "targets": [
+    {
+      "producedGoods": [
+        {
+          "name": "Herbs"
+        },
+        {
+          "name": "Lavender"
+        },
+        {
+          "name": "Dye Plants"
+        },
+        {
+          "name": "Grapes"
+        },
+        {
+          "name": "Olives"
+        },
+        {
+          "name": "Sandarac Wood"
+        },
+        {
+          "name": "Pomegranates"
+        },
+        {
+          "name": "Blue Lotus"
+        }
+      ]
+    }
+  ],
+  "buffs": [
+    {
+      "FactoryUpgrade": {
+        "ProductivityUpgrade": 20.0
+      }
+    }
+  ]
+}
