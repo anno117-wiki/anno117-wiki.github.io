@@ -161,12 +161,12 @@ export class GraphNodeRenderer {
         img.addEventListener('mousedown', (e) => this.popup.show(e, this.nodeDataMap.get(img), this.i18n));
         group.appendChild(img);
 
+        // 燃料を使う施設は右下に木炭。適用中のアイテムは、燃料の有無によらず重ねる（燃料ありのときは木炭と重ならない左下）
         if (hasFuel) {
             this.addCornerImage(group, x, y, size, `${ASSETS_ICONS_PATH}charcoal.png`);
-        } else {
-            for (const icon of this.calculator.getActiveVisualModifiersForNode(prodNode)) {
-                this.addCornerImage(group, x, y, size, `${ASSETS_ICONS_PATH}${icon}`, true);
-            }
+        }
+        for (const icon of this.calculator.getActiveVisualModifiersForNode(prodNode)) {
+            this.addCornerImage(group, x, y, size, `${ASSETS_ICONS_PATH}${icon}`, true, hasFuel ? 'left' : 'right');
         }
 
         const { labelX, labelAnchor, labelY, buildingsY } = this.resolveLabelGeometry({
@@ -241,10 +241,10 @@ export class GraphNodeRenderer {
         };
     }
 
-    private addCornerImage(group: SVGGElement, x: number, y: number, size: number, href: string, filled: boolean = false): void {
+    private addCornerImage(group: SVGGElement, x: number, y: number, size: number, href: string, filled: boolean = false, side: 'left' | 'right' = 'right'): void {
         const icon = document.createElementNS(SVG_NS, 'image');
         const iconSize = Math.round(size * NODE_CORNER_ICON_RATIO);
-        const cornerX = x + size / 2 - iconSize + 6;
+        const cornerX = side === 'right' ? x + size / 2 - iconSize + 6 : x - size / 2 - 6;
         const cornerY = y + size / 2 - iconSize + 6;
         icon.setAttributeNS(XLINK_NS, 'href', href);
         icon.setAttribute('x', String(cornerX));
