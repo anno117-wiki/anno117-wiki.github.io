@@ -51,7 +51,7 @@
   - **アイテムのアイコンの複数表示（ユーザー指定の案 2026-11-22。見た目は未確認）**: 以前はオンのアイテムが複数でも、一覧で一番上の1つ（`Item.ts` の最初の一致で `return`）しか出なかった。`getVisualModifiersForNode()`（`ProductionModifier.ts` に既定実装、`Item.ts` が全件返す。`ProductionCalculator` が使う）で全件取り、`GraphNodeRenderer.ts` の `addItemIcons()` が**最大2個**（`ITEM_ICONS_MAX`）を角から内側へ25pxずつずらして並べ（先頭が手前）、3個以上は「+N」の札（`addCountBadge()`）を角のアイコンの上端に重ねる。水道橋などアイテム以外の補正は従来どおり1個ずつ。生産性の数値は以前から全アイテムの合計で、今回も変えていない
   - **アイテムの対象に途中工程の商品を含めた**（`build-calculator-items.py` の `build_guid_to_good_name`）: 以前は生産チェーンの最終品のファイルの `guid` しか引かず、農場・鉱山などが対象のアイテムは対象が欠けるか除外されていた。入れ子の `input` もたどるようにして、計算機のアイテムは79件から102件、チェーンとアイテムの組は183から966になった
   - **アイテム一覧と計算機の判定の違い（ユーザーに説明済み・決定）**: アイテム一覧は効果の種類を問わず、効果が掛かる建物から引く。計算機は生産性アップ（ProductivityUpgrade）のアイテムだけで、対象の商品がチェーンに含まれるもの。ユーザー決定: **計算機は生産性アップのものだけでよい**（維持費・労働力・範囲効果などは出さない）。差の約540組はこの種類の違い。逆に計算機にあって建物の対応から外れる約300組の原因は未調査
-  - `build-calculator-items.py` は `ja.json`・`en.json` の `specialists` も書く（行末がCRLFに変わるだけなので、流したら `git checkout -- packages/shared/public/i18n` で戻す）
+  - `build-calculator-items.py` は `ja.json`・`en.json` の `specialists`（計算機のアイテムの名前表）も書く。**流したら必ず差分を見てコミットする。戻してはいけない**（2026-11-22 に「行末が変わるだけ」と誤解して戻し、新しい22件の名前が消えて、計算機の一覧にGUID（51282など）がそのまま出た。`b2277433` で直した。内容の差だけ見るなら `git diff --ignore-cr-at-eol`）。アイテムを増やしたあとは、互換表の全アイテムが `specialists` に日英とも入っているか確かめる
 - **作り直しの手順**: 第72版と同じ（`build-quests-data.py` → `normalize-item-quest-sources.py` → `bun run build:site`）
 - **次の候補**: 読めない1件の条件／Planner 由来の自動読み取り分にも条件・同時表示を入れるか／選択の言い違い（条件で出る側が分かれる）の扱い／公開後の見た目の確認で出た直し
 
