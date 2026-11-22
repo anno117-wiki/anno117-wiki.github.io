@@ -12,7 +12,7 @@ interface AqueductConfig {
 
 class Aqueduct extends AbstractProductionModifier {
     static readonly KEYS = {
-        enabled: 'aqueduct.enabled',
+        enabled: 'aqueduct.enabled', // 旧版の親スイッチ。今は無い（保存済みの設定・プリセットの読み替えにだけ使う）
         fieldIrrigation: 'aqueduct.fieldIrrigation',
         aquaArborica: 'aqueduct.aquaArborica',
         hushing: 'aqueduct.hushing',
@@ -62,31 +62,22 @@ class Aqueduct extends AbstractProductionModifier {
             icon: 'aquaduct.png',
             toggles: [
                 {
-                    key: Aqueduct.KEYS.enabled,
-                    label: this.i18n.t('modifiers.aqueduct.enabled'),
-                    description: 'Master switch for all aqueduct boosts.',
-                    icon: 'aquaduct.png',
-                },
-                {
                     key: Aqueduct.KEYS.fieldIrrigation,
                     label: this.i18n.t('modifiers.aqueduct.fieldIrrigation'),
                     description: 'Arable Farms get +50% productivity.',
                     icon: 'skill-feldbewaesserung.png',
-                    requires: Aqueduct.KEYS.enabled,
                 },
                 {
                     key: Aqueduct.KEYS.aquaArborica,
                     label: this.i18n.t('modifiers.aqueduct.aquaArborica'),
                     description: 'Plantations get +50% productivity.',
                     icon: 'skill-aqua-arborica.png',
-                    requires: Aqueduct.KEYS.enabled,
                 },
                 {
                     key: Aqueduct.KEYS.hushing,
                     label: this.i18n.t('modifiers.aqueduct.hushing'),
                     description: 'Mines get +50% productivity.',
                     icon: 'skill-hydraulischer-bergbau.png',
-                    requires: Aqueduct.KEYS.enabled,
                 },
             ],
         };
@@ -107,7 +98,8 @@ class Aqueduct extends AbstractProductionModifier {
 
     /** Sync config from SettingsManager and persist to URL. */
     override applySettings(config: SettingsSnapshot): void {
-        const enabled = this.readSetting(config, Aqueduct.KEYS.enabled, 'aqueductsEnabled');
+        // 親スイッチは廃止した。古いプリセットなどが「オフ」と明記しているときだけ、3つの効果を無効にする
+        const enabled = config[Aqueduct.KEYS.enabled] !== false && config['aqueductsEnabled'] !== false;
         this.config = {
             field_irrigation: enabled && this.readSetting(config, Aqueduct.KEYS.fieldIrrigation, 'fieldIrrigation'),
             aqua_arborica: enabled && this.readSetting(config, Aqueduct.KEYS.aquaArborica, 'aquaArborica'),

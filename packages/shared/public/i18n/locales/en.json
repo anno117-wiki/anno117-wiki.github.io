@@ -259,10 +259,9 @@
   },
   "modifiers": {
     "aqueduct": "Aqueducts",
-    "aqueduct.enabled": "Aqueduct Network",
-    "aqueduct.fieldIrrigation": "Field Irrigation",
-    "aqueduct.aquaArborica": "Aqua Arborica",
-    "aqueduct.hushing": "Hushing",
+    "aqueduct.fieldIrrigation": "Field Irrigation (Farms)",
+    "aqueduct.aquaArborica": "Aqua Arborica (Plantations)",
+    "aqueduct.hushing": "Hushing (Mines)",
     "item": "Items",
     "items": "Items"
   },

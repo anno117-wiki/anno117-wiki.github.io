@@ -259,10 +259,9 @@
   },
   "modifiers": {
     "aqueduct": "水道橋",
-    "aqueduct.enabled": "水道橋ネットワーク",
-    "aqueduct.fieldIrrigation": "水路灌漑",
-    "aqueduct.aquaArborica": "森の飲み水",
-    "aqueduct.hushing": "水力採鉱法",
+    "aqueduct.fieldIrrigation": "水路灌漑（農場）",
+    "aqueduct.aquaArborica": "森の飲み水（農園）",
+    "aqueduct.hushing": "水力採鉱法（鉱山）",
     "item": "アイテム",
     "items": "アイテム"
   },

@@ -341,10 +341,14 @@ export class SettingsManager {
         const arborica = this.readBoolean(raw, 'aqueduct.aquaArborica', 'aquaArborica');
         const hushing = this.readBoolean(raw, 'aqueduct.hushing', 'hushing');
 
-        normalized['aqueduct.enabled'] = enabled;
-        normalized['aqueduct.fieldIrrigation'] = field;
-        normalized['aqueduct.aquaArborica'] = arborica;
-        normalized['aqueduct.hushing'] = hushing;
+        // 親スイッチ「水道橋ネットワーク」は廃止した。親がオフだった人の3つは、効いていなかったのでオフにして読み替える
+        // （親の設定が保存されていない人は、3つの値をそのまま使う）
+        const parentOn = (typeof raw['aqueduct.enabled'] === 'boolean' || typeof raw['aqueductsEnabled'] === 'boolean') ? enabled : true;
+        delete normalized['aqueduct.enabled'];
+        delete normalized['aqueductsEnabled'];
+        normalized['aqueduct.fieldIrrigation'] = field && parentOn;
+        normalized['aqueduct.aquaArborica'] = arborica && parentOn;
+        normalized['aqueduct.hushing'] = hushing && parentOn;
 
         return normalized;
     }
