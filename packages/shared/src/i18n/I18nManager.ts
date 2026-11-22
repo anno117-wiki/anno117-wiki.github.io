@@ -182,7 +182,9 @@ export class I18nManager {
      */
     private async fetchTranslationData(locale: Locale): Promise<void> {
         try {
-            const response = await fetch(`${import.meta.env.BASE_URL}i18n/locales/${locale}.json`);
+            // GitHub Pages の配信は max-age=600（10分）。更新直後に、スマホが古い翻訳を使い続けて
+            // キー名（nodeBonus など）がそのまま出ることがあった。毎回、更新の有無を確かめる（変更が無ければ 304 で軽い）
+            const response = await fetch(`${import.meta.env.BASE_URL}i18n/locales/${locale}.json`, { cache: 'no-cache' });
             if (!response.ok) {
                 throw new Error(`Failed to load locale: ${locale} (${response.status})`);
             }
