@@ -6,19 +6,19 @@
         <thead>
           <tr>
             <th>船</th>
-            <th>体力</th>
+            <th>耐久力</th>
             <th>速度</th>
-            <th>積載</th>
+            <th>積載能力</th>
             <th>建造時間</th>
             <th>建造費</th>
             <th>維持費</th>
-            <th>改造枠</th>
+            <th>改造スロット</th>
             <th>解放</th>
           </tr>
         </thead>
         <tbody>
           <tr v-for="s in seaShips" :key="s.id">
-            <td><strong>{{ s.name }}</strong><br /><span class="sh-sub">{{ s.desc }}</span></td>
+            <td><strong>{{ s.name }}</strong><br /><span class="sh-sub">{{ s.desc }}</span><template v-if="s.kind === 'sea'"><br /><span class="sh-sub">編成: {{ s.configs.join('・') }}</span></template></td>
             <td class="sh-num">{{ s.health }}</td>
             <td class="sh-num">{{ s.speed }}</td>
             <td class="sh-nowrap">{{ loadText(s) }}</td>
@@ -36,15 +36,16 @@
         <div class="sh-card-header">
           <strong>{{ s.name }}</strong>
           <span class="sh-sub">{{ s.desc }}</span>
+          <span v-if="s.kind === 'sea'" class="sh-sub">編成: {{ s.configs.join('・') }}</span>
         </div>
         <dl class="sh-card-body">
-          <div><dt>体力</dt><dd>{{ s.health }}</dd></div>
+          <div><dt>耐久力</dt><dd>{{ s.health }}</dd></div>
           <div><dt>速度</dt><dd>{{ s.speed }}</dd></div>
-          <div><dt>積載</dt><dd>{{ loadText(s) }}</dd></div>
+          <div><dt>積載能力</dt><dd>{{ loadText(s) }}</dd></div>
           <div><dt>建造時間</dt><dd>{{ s.buildMinutes }}分</dd></div>
           <div><dt>建造費</dt><dd><BuildingCostList :costs="s.cost" /></dd></div>
           <div><dt>維持費</dt><dd><BuildingCostList :costs="s.upkeep" /></dd></div>
-          <div><dt>改造枠</dt><dd>{{ s.modSlots }}</dd></div>
+          <div><dt>改造スロット</dt><dd>{{ s.modSlots }}</dd></div>
           <div><dt>解放</dt><dd>{{ s.unlock ? `研究「${s.unlock}」` : '最初から' }}</dd></div>
         </dl>
       </div>
@@ -56,9 +57,9 @@
         <thead>
           <tr>
             <th>船</th>
-            <th>体力</th>
+            <th>耐久力</th>
             <th>速度</th>
-            <th>積載</th>
+            <th>積載能力</th>
             <th>建造時間</th>
             <th>建造費</th>
             <th>維持費</th>
@@ -67,7 +68,7 @@
         </thead>
         <tbody>
           <tr v-for="s in riverShips" :key="s.id">
-            <td><strong>{{ s.name }}</strong><br /><span class="sh-sub">{{ s.desc }}</span></td>
+            <td><strong>{{ s.name }}</strong><br /><span class="sh-sub">{{ s.desc }}</span><template v-if="s.kind === 'sea'"><br /><span class="sh-sub">編成: {{ s.configs.join('・') }}</span></template></td>
             <td class="sh-num">{{ s.health }}</td>
             <td class="sh-num">{{ s.speed }}</td>
             <td class="sh-nowrap">{{ loadText(s) }}</td>
@@ -84,11 +85,12 @@
         <div class="sh-card-header">
           <strong>{{ s.name }}</strong>
           <span class="sh-sub">{{ s.desc }}</span>
+          <span v-if="s.kind === 'sea'" class="sh-sub">編成: {{ s.configs.join('・') }}</span>
         </div>
         <dl class="sh-card-body">
-          <div><dt>体力</dt><dd>{{ s.health }}</dd></div>
+          <div><dt>耐久力</dt><dd>{{ s.health }}</dd></div>
           <div><dt>速度</dt><dd>{{ s.speed }}</dd></div>
-          <div><dt>積載</dt><dd>{{ loadText(s) }}</dd></div>
+          <div><dt>積載能力</dt><dd>{{ loadText(s) }}</dd></div>
           <div><dt>建造時間</dt><dd>{{ s.buildMinutes }}分</dd></div>
           <div><dt>建造費</dt><dd><BuildingCostList :costs="s.cost" /></dd></div>
           <div><dt>維持費</dt><dd><BuildingCostList :costs="s.upkeep" /></dd></div>
@@ -106,7 +108,6 @@
             <th>建造費</th>
             <th>建造時間</th>
             <th>維持費</th>
-            <th>戦力点</th>
             <th>売却価格</th>
             <th>解放</th>
           </tr>
@@ -117,7 +118,6 @@
             <td class="sh-cost"><BuildingCostList :costs="m.cost" /></td>
             <td class="sh-nowrap">{{ m.buildMinutes }}分</td>
             <td class="sh-cost"><BuildingCostList :costs="m.upkeep" /></td>
-            <td class="sh-num">{{ m.war || '—' }}</td>
             <td class="sh-num">{{ m.sell.toLocaleString() }}</td>
             <td>{{ m.unlock ? `研究「${m.unlock}」` : '最初から' }}</td>
           </tr>
@@ -134,7 +134,6 @@
           <div><dt>建造費</dt><dd><BuildingCostList :costs="m.cost" /></dd></div>
           <div><dt>建造時間</dt><dd>{{ m.buildMinutes }}分</dd></div>
           <div><dt>維持費</dt><dd><BuildingCostList :costs="m.upkeep" /></dd></div>
-          <div><dt>戦力点</dt><dd>{{ m.war || '—' }}</dd></div>
           <div><dt>売却価格</dt><dd>{{ m.sell.toLocaleString() }}</dd></div>
           <div><dt>解放</dt><dd>{{ m.unlock ? `研究「${m.unlock}」` : '最初から' }}</dd></div>
         </dl>
@@ -180,6 +179,7 @@ interface Ship {
   id: string
   name: string
   kind: 'sea' | 'river'
+  configs: string[]
   desc: string
   health: number
   speed: number

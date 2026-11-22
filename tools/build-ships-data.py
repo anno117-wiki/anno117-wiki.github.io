@@ -41,6 +41,25 @@ def ja(text_id):
     return at.strip_zw(JA.get(int(text_id), "")) if text_id else ""
 
 
+def name_of(guid):
+    """資産の表示名（ゲーム内の日本語。/Text/OasisId）。名前を自分で付けず、ゲームの表記をそのまま使う"""
+    return ja(R.get(guid)["v"].get("/Text/OasisId"))
+
+
+def shipyard_configs(yard_guid):
+    """造船所の建造メニューにある編成を {船体GUID: [編成名(民間 I など)]} で返す"""
+    out = {}
+    v = R.get(yard_guid)["v"]
+    for i in range(16):
+        cfg = v.get(f"/Recruitment/AssemblyOptions/Item[{i}]/Vehicle")
+        if not cfg:
+            continue
+        cv = R.get(int(cfg))["v"]
+        hull = int(cv["/ShipConfiguration/ShipHullGUID"])
+        out.setdefault(hull, []).append(ja(cv.get("/ShipConfiguration/DefaultConfigurationName")))
+    return out
+
+
 def num(s, default=0.0):
     try:
         return float(s)
@@ -112,15 +131,18 @@ REGION_JA = {"latium": "ラティウム", "albion": "アルビオン", "aegyptus
 
 # --- 海の船（地域ごとの船体。数値は共通で、労働力の種類だけが違う） ---
 SEA = [
-    # key, 名前, ラティウム, アルビオン, アイギュプト, 解放する研究の英語名
-    ("penteconter", "ペンテコンター", 37222, 39572, 150441, None),
-    ("trireme", "トライリーメ", 37223, 39571, 150442, "Trireme"),
-    ("quinquireme", "クィンクェレメ", 37224, 39570, 150443, "Quinquireme"),
+    # key, ラティウム, アルビオン, アイギュプト, 解放する研究の英語名
+    ("penteconter", 37222, 39572, 150441, None),
+    ("trireme", 37223, 39571, 150442, "Trireme"),
+    ("quinquireme", 37224, 39570, 150443, "Quinquireme"),
 ]
+YARD_LATIUM = 6054  # ラティウムの造船所（アルビオン・アイギュプトの造船所も、編成の名前は同じ並び）
+sea_configs = shipyard_configs(YARD_LATIUM)
 ships = []
-for key, name, lat, alb, aeg, unlock in SEA:
+for key, lat, alb, aeg, unlock in SEA:
     base = R.get(lat)["v"]
-    rec = {"id": key, "name": name, "kind": "sea", "desc": ja(base.get("/Standard/InfoDescription")), **common(base)}
+    name = name_of(lat)
+    rec = {"id": key, "name": name, "kind": "sea", "configs": sea_configs[lat], "desc": ja(base.get("/Standard/InfoDescription")), **common(base)}
     rec["modSlots"] = clean(num(base.get("/ShipModuleOwner/MaximumModificationCount")))
     rec["unlock"] = tech_unlocking(unlock) if unlock else None
     wf = {REGION_JA["latium"]: workforce_of(base), REGION_JA["albion"]: workforce_of(R.get(alb)["v"]), REGION_JA["aegyptus"]: workforce_of(R.get(aeg)["v"])}
@@ -137,13 +159,19 @@ for key, name, lat, alb, aeg, unlock in SEA:
 
 # --- ナイルの川船（アイギュプトのナイルの造船所の建造メニュー） ---
 RIVER = [
-    ("epholkion", "エポルキオン（ナイルの小舟）", 154038, "小型の川船。民間", None),
-    ("aba-civil", "アバ（ナイルのガレー船）・民間", 178644, "中型の川船。民間", "Aba (Nile Galley)"),
-    ("aba-military", "アバ（ナイルのガレー船）・軍用", 157051, "中型の川船。軍用", "Aba (Nile Galley)"),
+    # key, 船体GUID, 解放する研究の英語名。編成名（民間 I・民間 II・軍団 II）は、造船所の建造メニューの順に対応させる
+    ("epholkion", 154038, None),
+    ("aba-civil", 178644, "Aba (Nile Galley)"),
+    ("aba-military", 157051, "Aba (Nile Galley)"),
 ]
-for key, name, guid, kind, unlock in RIVER:
+YARD_NILE = 154720
+river_configs = shipyard_configs(YARD_NILE)
+# 建造メニューの編成の船体: 小型=154038、中型民間=178644、中型軍用=157051
+RIVER_CFG = {"epholkion": river_configs[154038][0], "aba-civil": river_configs[178644][0], "aba-military": river_configs[157051][0]}
+for key, guid, unlock in RIVER:
     v = R.get(guid)["v"]
-    rec = {"id": key, "name": name, "kind": "river", "desc": ja(v.get("/Standard/InfoDescription")), **common(v)}
+    name = f"{name_of(guid)} {RIVER_CFG[key]}"
+    rec = {"id": key, "name": name, "kind": "river", "configs": [RIVER_CFG[key]], "desc": ja(v.get("/Standard/InfoDescription")), **common(v)}
     rec["modSlots"] = 0  # ナイルの船にはモジュール改造を行えない（ゲーム内の文言）
     rec["unlock"] = tech_unlocking(unlock) if unlock else None
     rec["workforce"] = {REGION_JA["aegyptus"]: workforce_of(v)}
@@ -152,17 +180,18 @@ for key, name, guid, kind, unlock in RIVER:
 
 # --- 海の船のモジュール ---
 MODULES = [
-    # key, 名前, ラティウム, アルビオン, アイギュプト, 解放する研究の英語名
-    ("mast", "帆柱", 31647, 39574, 157318, None),
-    ("rows", "櫂", 31648, 39575, 157319, None),
-    ("hull", "追加の船体（装甲）", 31649, 39576, 157320, "Plated Hulls"),
-    ("archers", "弓兵", 31651, 39577, 157321, None),
-    ("scorpion", "サソリ（船上バリスタ）", 31652, 39578, 157322, "Shipboard Scorpiones"),
-    ("catapult", "カタパルト", 31653, 39579, 157323, "Ship Catapults"),
+    # key, ラティウム, アルビオン, アイギュプト, 解放する研究の英語名
+    ("mast", 31647, 39574, 157318, None),
+    ("rows", 31648, 39575, 157319, None),
+    ("hull", 31649, 39576, 157320, "Plated Hulls"),
+    ("archers", 31651, 39577, 157321, None),
+    ("scorpion", 31652, 39578, 157322, "Shipboard Scorpiones"),
+    ("catapult", 31653, 39579, 157323, "Ship Catapults"),
 ]
 modules = []
-for key, name, lat, alb, aeg, unlock in MODULES:
+for key, lat, alb, aeg, unlock in MODULES:
     v = R.get(lat)["v"]
+    name = name_of(lat)
     rec = {
         "id": key,
         "name": name,
