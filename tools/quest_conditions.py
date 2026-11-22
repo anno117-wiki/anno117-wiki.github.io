@@ -174,3 +174,74 @@ def variable_condition(p):
             return meanings[n]
         return f"{label}が{n:,}" + suffix if op != "Equals" else f"{label}が{n:,}"
     return f"{_label(var)}が{n:,}" + (suffix if op != "Equals" else "")
+
+
+# ---- 変数以外の条件 ----
+# 内部の部品の番号（クエストの別の場面など）は名前が引けない。分かる範囲だけを文にする。
+
+_TAG_NAMES = {
+    "Decimus_Ship1": "デキムスの船1",
+    "Decimus_Ship2": "デキムスの船2",
+    "MainStoryIsland": "メインストーリーの島",
+    "RaceShip042": "レースの船",
+}
+
+
+def _tag(v):
+    return _TAG_NAMES.get(v, "指定の島" if v and v.endswith("Island") else "指定のもの")
+
+
+def _place(p, gname):
+    """数える範囲（島の目印やセッション）。無ければ空"""
+    tagged = p.get("ReadTaggedLocation")
+    if tagged:
+        return _tag(tagged) + "に"
+    if p.get("CounterScope") == "Session":
+        nm = gname(p.get("CounterScopeContext"))
+        return f"{nm}に" if nm else ""
+    return ""
+
+
+def game_condition(tpl, p, gname):
+    """変数以外の条件を文にする。読めなければ None。gname(guid) は名前を引く関数。"""
+    if tpl == "ConditionPlayerCounter":
+        ctr, amt = p.get("PlayerCounter"), p.get("CounterAmount", "1")
+        less = p.get("ComparisonOp") == "LessThan"
+        if ctr is None and gname(p.get("Context")):
+            # 数える種類の指定が無く、対象が建物のもの = 建物の数
+            return f"{_place(p, gname)}{gname(p.get('Context'))}が{amt}" + ("未満" if less else "以上")
+        if ctr == "QuestComponentCreated":
+            return "クエストの別の場面がまだ始まっていない" if less else "クエストの別の場面が始まっている"
+        if ctr == "QuestComponentEnded":
+            return "クエストの別の場面が終わっている"
+        if ctr == "QuestObjectiveComponentSolved":
+            return "別の目標を達成している"
+        if ctr == "PatronDevotion":
+            return f"指定の神の信仰度が{amt}以上"
+        return None
+    if tpl == "ConditionDoesQuestComponentExist":
+        return "クエストの別の場面が進行中"
+    if tpl == "ConditionDiplomacyState":
+        nm = gname(p.get("Profile2"))
+        return f"{nm}との外交の状態による" if nm else None
+    if tpl == "ConditionAreaOwnedByHuman":
+        return "指定の島をプレイヤーが所有している"
+    if tpl == "ConditionObjectCount":
+        tag, n = p.get("ObjectFilter.ReadObjectLabelOrTag"), p.get("Amount", "1")
+        return f"{_tag(tag)}の数が{n}" if tag else None
+    if tpl == "ConditionObjectPosition":
+        target = gname(p.get("TargetPositionObjects.Values.ObjectFilter.ObjectGUID"))
+        who = _tag(p.get("CheckedObjects.Values.ObjectFilter.ReadObjectLabelOrTag"))
+        if not target:
+            return None
+        near = f"{target}の半径{p.get('Radius')}以内に"
+        return near + (f"{who}がいる" if p.get("ExpectObjectExists", "1") != "0" else "自分の所有物がない")
+    if tpl == "ConditionVolcanoPhaseActive":
+        nm = gname(p.get("VolcanoPhase"))
+        return f"火山が{nm}の段階" if nm else None
+    if tpl == "ConditionSectorProjectPhaseActive":
+        nm = gname(p.get("SectorProjectTrader"))
+        return f"{nm}の事業が完了している" if nm and p.get("CheckForFinishedSectorProject") else None
+    if tpl == "ConditionReligion":
+        return "指定の島で、指定の神が信仰されている"
+    return None

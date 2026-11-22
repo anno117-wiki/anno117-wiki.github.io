@@ -14,7 +14,7 @@ import unicodedata
 from pathlib import Path
 
 sys.path.insert(0, str(Path(__file__).resolve().parent))
-from quest_conditions import variable_condition  # noqa: E402  内部の変数を比べる条件を読める文にする
+from quest_conditions import game_condition, variable_condition  # noqa: E402  内部の変数を比べる条件を読める文にする
 
 sys.stdout.reconfigure(encoding="utf-8")
 
@@ -172,6 +172,8 @@ def cond_text(cid):
                 s = f"貯蔵庫の{nm}が{amt}t" + COMPARE_SUFFIX.get(p.get("InStorageCompareOp"), "以上")
         elif tpl in ("ConditionAlwaysTrue", "ConditionAlwaysFalse"):
             continue
+        if s is None:
+            s = game_condition(tpl, p, gname)
         if s is None:
             hidden = True
             continue
