@@ -1,6 +1,6 @@
 {
   "README": "This file maps each production chain to compatible items from Anno 117: Pax Romana.",
-  "generated": "2026-11-19T12:58:44.257Z",
+  "generated": "2026-11-22T05:44:45.000Z",
   "count": 133,
   "chains": [
     {
@@ -24,7 +24,7 @@
         {
           "guid": "80221",
           "displayName": "小宇宙学者-マクロビウス・ミヌキアヌス",
-          "iconFilename": ""
+          "iconFilename": "80221.png"
         }
       ]
     },
@@ -42,7 +42,7 @@
         {
           "guid": "80221",
           "displayName": "小宇宙学者-マクロビウス・ミヌキアヌス",
-          "iconFilename": ""
+          "iconFilename": "80221.png"
         }
       ]
     },
@@ -64,37 +64,37 @@
         {
           "guid": "179653",
           "displayName": "ケペシュの剣職人",
-          "iconFilename": ""
+          "iconFilename": "179653.png"
         },
         {
           "guid": "80510",
           "displayName": "サルマティアの剣匠-ゾルシネス",
-          "iconFilename": ""
+          "iconFilename": "80510.png"
         },
         {
           "guid": "160075",
           "displayName": "ボリオラヌス、包囲戦で鍛えられた勇者",
-          "iconFilename": ""
+          "iconFilename": "160075.png"
         },
         {
           "guid": "107339",
           "displayName": "マルス・ルーケティウスへの改宗者-アウン",
-          "iconFilename": ""
+          "iconFilename": "107339.png"
         },
         {
           "guid": "50890",
           "displayName": "砂とサンダルの生存者-ファビルス",
-          "iconFilename": ""
+          "iconFilename": "50890.png"
         },
         {
           "guid": "166523",
           "displayName": "小スコルピオ・アフリカヌス、法的に別人の将軍",
-          "iconFilename": ""
+          "iconFilename": "166523.png"
         },
         {
           "guid": "80221",
           "displayName": "小宇宙学者-マクロビウス・ミヌキアヌス",
-          "iconFilename": ""
+          "iconFilename": "80221.png"
         },
         {
           "guid": "50291",
@@ -104,9 +104,19 @@
         {
           "guid": "185170",
           "displayName": "燃える眼のタウセルト",
-          "iconFilename": ""
+          "iconFilename": "185170.png"
         }
       ]
+    },
+    {
+      "id": "ochs",
+      "displayName": "Aurochs",
+      "icon": "ochs",
+      "regions": [
+        "Celtic"
+      ],
+      "files": {},
+      "items": []
     },
     {
       "id": "barley",
@@ -142,7 +152,7 @@
         {
           "guid": "80221",
           "displayName": "小宇宙学者-マクロビウス・ミヌキアヌス",
-          "iconFilename": ""
+          "iconFilename": "80221.png"
         },
         {
           "guid": "44146",
@@ -185,7 +195,7 @@
         {
           "guid": "80221",
           "displayName": "小宇宙学者-マクロビウス・ミヌキアヌス",
-          "iconFilename": ""
+          "iconFilename": "80221.png"
         }
       ]
     },
@@ -203,12 +213,12 @@
         {
           "guid": "179649",
           "displayName": "セシェン、花摘み",
-          "iconFilename": ""
+          "iconFilename": "179649.png"
         },
         {
           "guid": "80221",
           "displayName": "小宇宙学者-マクロビウス・ミヌキアヌス",
-          "iconFilename": ""
+          "iconFilename": "80221.png"
         }
       ]
     },
@@ -230,7 +240,7 @@
         {
           "guid": "160522",
           "displayName": "ブラウダ兄弟、パンの達人",
-          "iconFilename": ""
+          "iconFilename": "160522.png"
         },
         {
           "guid": "96817",
@@ -240,7 +250,7 @@
         {
           "guid": "80221",
           "displayName": "小宇宙学者-マクロビウス・ミヌキアヌス",
-          "iconFilename": ""
+          "iconFilename": "80221.png"
         },
         {
           "guid": "44080",
@@ -278,7 +288,7 @@
         {
           "guid": "80221",
           "displayName": "小宇宙学者-マクロビウス・ミヌキアヌス",
-          "iconFilename": ""
+          "iconFilename": "80221.png"
         }
       ]
     },
@@ -321,7 +331,7 @@
         {
           "guid": "80221",
           "displayName": "小宇宙学者-マクロビウス・ミヌキアヌス",
-          "iconFilename": ""
+          "iconFilename": "80221.png"
         }
       ]
     },
@@ -349,12 +359,12 @@
         {
           "guid": "156706",
           "displayName": "コムナル・ティン、炎の戦車乗り",
-          "iconFilename": ""
+          "iconFilename": "156706.png"
         },
         {
           "guid": "156714",
           "displayName": "ワロネリ・ハルトバイン、加速と酒の魔術師",
-          "iconFilename": ""
+          "iconFilename": "156714.png"
         },
         {
           "guid": "44088",
@@ -364,7 +374,7 @@
         {
           "guid": "80221",
           "displayName": "小宇宙学者-マクロビウス・ミヌキアヌス",
-          "iconFilename": ""
+          "iconFilename": "80221.png"
         }
       ]
     },
@@ -399,7 +409,7 @@
         {
           "guid": "173077",
           "displayName": "ミルクをかき回す者",
-          "iconFilename": ""
+          "iconFilename": "173077.png"
         },
         {
           "guid": "96817",
@@ -409,7 +419,7 @@
         {
           "guid": "80221",
           "displayName": "小宇宙学者-マクロビウス・ミヌキアヌス",
-          "iconFilename": ""
+          "iconFilename": "80221.png"
         }
       ]
     },
@@ -442,7 +452,7 @@
         {
           "guid": "80221",
           "displayName": "小宇宙学者-マクロビウス・ミヌキアヌス",
-          "iconFilename": ""
+          "iconFilename": "80221.png"
         }
       ]
     },
@@ -480,7 +490,7 @@
         {
           "guid": "80221",
           "displayName": "小宇宙学者-マクロビウス・ミヌキアヌス",
-          "iconFilename": ""
+          "iconFilename": "80221.png"
         }
       ]
     },
@@ -505,7 +515,7 @@
         {
           "guid": "80221",
           "displayName": "小宇宙学者-マクロビウス・ミヌキアヌス",
-          "iconFilename": ""
+          "iconFilename": "80221.png"
         }
       ]
     },
@@ -543,17 +553,17 @@
         {
           "guid": "173071",
           "displayName": "デーツを投げる者",
-          "iconFilename": ""
+          "iconFilename": "173071.png"
         },
         {
           "guid": "106974",
           "displayName": "隠遁する還元主義者-スケルグ",
-          "iconFilename": ""
+          "iconFilename": "106974.png"
         },
         {
           "guid": "80221",
           "displayName": "小宇宙学者-マクロビウス・ミヌキアヌス",
-          "iconFilename": ""
+          "iconFilename": "80221.png"
         }
       ]
     },
@@ -571,7 +581,7 @@
         {
           "guid": "80221",
           "displayName": "小宇宙学者-マクロビウス・ミヌキアヌス",
-          "iconFilename": ""
+          "iconFilename": "80221.png"
         }
       ]
     },
@@ -599,12 +609,12 @@
         {
           "guid": "160054",
           "displayName": "エルクマルの子フィネケス、全知の鮭漁師",
-          "iconFilename": ""
+          "iconFilename": "160054.png"
         },
         {
           "guid": "156710",
           "displayName": "スペアー・ニク・レアルタ、策士の釣り人",
-          "iconFilename": ""
+          "iconFilename": "156710.png"
         },
         {
           "guid": "44077",
@@ -614,7 +624,7 @@
         {
           "guid": "80221",
           "displayName": "小宇宙学者-マクロビウス・ミヌキアヌス",
-          "iconFilename": ""
+          "iconFilename": "80221.png"
         }
       ]
     },
@@ -632,7 +642,7 @@
         {
           "guid": "80221",
           "displayName": "小宇宙学者-マクロビウス・ミヌキアヌス",
-          "iconFilename": ""
+          "iconFilename": "80221.png"
         },
         {
           "guid": "44120",
@@ -682,7 +692,7 @@
         {
           "guid": "80221",
           "displayName": "小宇宙学者-マクロビウス・ミヌキアヌス",
-          "iconFilename": ""
+          "iconFilename": "80221.png"
         }
       ]
     },
@@ -705,7 +715,7 @@
         {
           "guid": "80221",
           "displayName": "小宇宙学者-マクロビウス・ミヌキアヌス",
-          "iconFilename": ""
+          "iconFilename": "80221.png"
         }
       ]
     },
@@ -753,7 +763,7 @@
         {
           "guid": "156704",
           "displayName": "ディアラ・トゲイル、彫刻家の才ある石工",
-          "iconFilename": ""
+          "iconFilename": "156704.png"
         },
         {
           "guid": "96819",
@@ -763,7 +773,7 @@
         {
           "guid": "80221",
           "displayName": "小宇宙学者-マクロビウス・ミヌキアヌス",
-          "iconFilename": ""
+          "iconFilename": "80221.png"
         }
       ]
     },
@@ -802,7 +812,7 @@
         {
           "guid": "160057",
           "displayName": "セリフォスのプトリポルトス、磨き上げられた鏡占術師",
-          "iconFilename": ""
+          "iconFilename": "160057.png"
         },
         {
           "guid": "44116",
@@ -812,7 +822,7 @@
         {
           "guid": "80221",
           "displayName": "小宇宙学者-マクロビウス・ミヌキアヌス",
-          "iconFilename": ""
+          "iconFilename": "80221.png"
         }
       ]
     },
@@ -874,17 +884,17 @@
         {
           "guid": "80225",
           "displayName": "リアンノンのかつての御者-ピル・ファブ・マナウィダン",
-          "iconFilename": ""
+          "iconFilename": "80225.png"
         },
         {
           "guid": "166523",
           "displayName": "小スコルピオ・アフリカヌス、法的に別人の将軍",
-          "iconFilename": ""
+          "iconFilename": "166523.png"
         },
         {
           "guid": "80221",
           "displayName": "小宇宙学者-マクロビウス・ミヌキアヌス",
-          "iconFilename": ""
+          "iconFilename": "80221.png"
         },
         {
           "guid": "44119",
@@ -899,7 +909,7 @@
         {
           "guid": "156679",
           "displayName": "馬丁",
-          "iconFilename": ""
+          "iconFilename": "156679.png"
         }
       ]
     },
@@ -939,7 +949,7 @@
         {
           "guid": "181017",
           "displayName": "イセト・ハムト・ネテル、イシスの崇拝者",
-          "iconFilename": ""
+          "iconFilename": "181017.png"
         }
       ]
     },
@@ -957,7 +967,7 @@
         {
           "guid": "181017",
           "displayName": "イセト・ハムト・ネテル、イシスの崇拝者",
-          "iconFilename": ""
+          "iconFilename": "181017.png"
         }
       ]
     },
@@ -975,12 +985,12 @@
         {
           "guid": "181070",
           "displayName": "イシドラ、カラシリスの仕立屋",
-          "iconFilename": ""
+          "iconFilename": "181070.png"
         },
         {
           "guid": "80221",
           "displayName": "小宇宙学者-マクロビウス・ミヌキアヌス",
-          "iconFilename": ""
+          "iconFilename": "80221.png"
         }
       ]
     },
@@ -998,7 +1008,7 @@
         {
           "guid": "173061",
           "displayName": "カフク職人",
-          "iconFilename": ""
+          "iconFilename": "173061.png"
         },
         {
           "guid": "96817",
@@ -1008,7 +1018,7 @@
         {
           "guid": "80221",
           "displayName": "小宇宙学者-マクロビウス・ミヌキアヌス",
-          "iconFilename": ""
+          "iconFilename": "80221.png"
         }
       ]
     },
@@ -1026,7 +1036,7 @@
         {
           "guid": "80221",
           "displayName": "小宇宙学者-マクロビウス・ミヌキアヌス",
-          "iconFilename": ""
+          "iconFilename": "80221.png"
         }
       ]
     },
@@ -1044,7 +1054,7 @@
         {
           "guid": "80221",
           "displayName": "小宇宙学者-マクロビウス・ミヌキアヌス",
-          "iconFilename": ""
+          "iconFilename": "80221.png"
         }
       ]
     },
@@ -1073,22 +1083,22 @@
         {
           "guid": "160531",
           "displayName": "プロクレス、異質なクソアノン彫刻家",
-          "iconFilename": ""
+          "iconFilename": "160531.png"
         },
         {
           "guid": "156688",
           "displayName": "近視の石工",
-          "iconFilename": ""
+          "iconFilename": "156688.png"
         },
         {
           "guid": "80221",
           "displayName": "小宇宙学者-マクロビウス・ミヌキアヌス",
-          "iconFilename": ""
+          "iconFilename": "80221.png"
         },
         {
           "guid": "147974",
           "displayName": "独学のゲーム学者",
-          "iconFilename": ""
+          "iconFilename": "147974.png"
         }
       ]
     },
@@ -1143,7 +1153,7 @@
         {
           "guid": "80221",
           "displayName": "小宇宙学者-マクロビウス・ミヌキアヌス",
-          "iconFilename": ""
+          "iconFilename": "80221.png"
         }
       ]
     },
@@ -1166,7 +1176,7 @@
         {
           "guid": "80221",
           "displayName": "小宇宙学者-マクロビウス・ミヌキアヌス",
-          "iconFilename": ""
+          "iconFilename": "80221.png"
         }
       ]
     },
@@ -1189,7 +1199,7 @@
         {
           "guid": "80221",
           "displayName": "小宇宙学者-マクロビウス・ミヌキアヌス",
-          "iconFilename": ""
+          "iconFilename": "80221.png"
         }
       ]
     },
@@ -1232,7 +1242,7 @@
         {
           "guid": "80221",
           "displayName": "小宇宙学者-マクロビウス・ミヌキアヌス",
-          "iconFilename": ""
+          "iconFilename": "80221.png"
         }
       ]
     },
@@ -1250,7 +1260,7 @@
         {
           "guid": "80221",
           "displayName": "小宇宙学者-マクロビウス・ミヌキアヌス",
-          "iconFilename": ""
+          "iconFilename": "80221.png"
         }
       ]
     },
@@ -1285,7 +1295,7 @@
         {
           "guid": "80221",
           "displayName": "小宇宙学者-マクロビウス・ミヌキアヌス",
-          "iconFilename": ""
+          "iconFilename": "80221.png"
         }
       ]
     },
@@ -1313,7 +1323,7 @@
         {
           "guid": "184812",
           "displayName": "レンガ職人",
-          "iconFilename": ""
+          "iconFilename": "184812.png"
         },
         {
           "guid": "96819",
@@ -1323,7 +1333,7 @@
         {
           "guid": "80221",
           "displayName": "小宇宙学者-マクロビウス・ミヌキアヌス",
-          "iconFilename": ""
+          "iconFilename": "80221.png"
         }
       ]
     },
@@ -1356,7 +1366,7 @@
         {
           "guid": "80221",
           "displayName": "小宇宙学者-マクロビウス・ミヌキアヌス",
-          "iconFilename": ""
+          "iconFilename": "80221.png"
         }
       ]
     },
@@ -1381,16 +1391,6 @@
       "items": []
     },
     {
-      "id": "ochs",
-      "displayName": "Aurochs",
-      "icon": "ochs",
-      "regions": [
-        "Celtic"
-      ],
-      "files": {},
-      "items": []
-    },
-    {
       "id": "aegyptus_oil_lamps",
       "displayName": "Oil Lamps",
       "icon": "aegyptus_oil_lamps",
@@ -1404,7 +1404,7 @@
         {
           "guid": "80221",
           "displayName": "小宇宙学者-マクロビウス・ミヌキアヌス",
-          "iconFilename": ""
+          "iconFilename": "80221.png"
         }
       ]
     },
@@ -1427,7 +1427,7 @@
         {
           "guid": "80221",
           "displayName": "小宇宙学者-マクロビウス・ミヌキアヌス",
-          "iconFilename": ""
+          "iconFilename": "80221.png"
         }
       ]
     },
@@ -1480,7 +1480,7 @@
         {
           "guid": "80221",
           "displayName": "小宇宙学者-マクロビウス・ミヌキアヌス",
-          "iconFilename": ""
+          "iconFilename": "80221.png"
         },
         {
           "guid": "44143",
@@ -1503,7 +1503,7 @@
         {
           "guid": "80221",
           "displayName": "小宇宙学者-マクロビウス・ミヌキアヌス",
-          "iconFilename": ""
+          "iconFilename": "80221.png"
         }
       ]
     },
@@ -1542,7 +1542,7 @@
         {
           "guid": "80221",
           "displayName": "小宇宙学者-マクロビウス・ミヌキアヌス",
-          "iconFilename": ""
+          "iconFilename": "80221.png"
         },
         {
           "guid": "44144",
@@ -1580,7 +1580,7 @@
         {
           "guid": "80221",
           "displayName": "小宇宙学者-マクロビウス・ミヌキアヌス",
-          "iconFilename": ""
+          "iconFilename": "80221.png"
         },
         {
           "guid": "44076",
@@ -1603,7 +1603,7 @@
         {
           "guid": "184824",
           "displayName": "アシュキス、食欲の占者",
-          "iconFilename": ""
+          "iconFilename": "184824.png"
         },
         {
           "guid": "96817",
@@ -1613,7 +1613,7 @@
         {
           "guid": "80221",
           "displayName": "小宇宙学者-マクロビウス・ミヌキアヌス",
-          "iconFilename": ""
+          "iconFilename": "80221.png"
         }
       ]
     },
@@ -1631,7 +1631,7 @@
         {
           "guid": "80221",
           "displayName": "小宇宙学者-マクロビウス・ミヌキアヌス",
-          "iconFilename": ""
+          "iconFilename": "80221.png"
         },
         {
           "guid": "44140",
@@ -1685,7 +1685,7 @@
         {
           "guid": "80221",
           "displayName": "小宇宙学者-マクロビウス・ミヌキアヌス",
-          "iconFilename": ""
+          "iconFilename": "80221.png"
         }
       ]
     },
@@ -1710,12 +1710,12 @@
         {
           "guid": "166523",
           "displayName": "小スコルピオ・アフリカヌス、法的に別人の将軍",
-          "iconFilename": ""
+          "iconFilename": "166523.png"
         },
         {
           "guid": "80221",
           "displayName": "小宇宙学者-マクロビウス・ミヌキアヌス",
-          "iconFilename": ""
+          "iconFilename": "80221.png"
         }
       ]
     },
@@ -1735,12 +1735,12 @@
         {
           "guid": "166523",
           "displayName": "小スコルピオ・アフリカヌス、法的に別人の将軍",
-          "iconFilename": ""
+          "iconFilename": "166523.png"
         },
         {
           "guid": "80221",
           "displayName": "小宇宙学者-マクロビウス・ミヌキアヌス",
-          "iconFilename": ""
+          "iconFilename": "80221.png"
         },
         {
           "guid": "44078",
@@ -1800,7 +1800,7 @@
         {
           "guid": "80221",
           "displayName": "小宇宙学者-マクロビウス・ミヌキアヌス",
-          "iconFilename": ""
+          "iconFilename": "80221.png"
         }
       ]
     },
@@ -1828,12 +1828,12 @@
         {
           "guid": "160054",
           "displayName": "エルクマルの子フィネケス、全知の鮭漁師",
-          "iconFilename": ""
+          "iconFilename": "160054.png"
         },
         {
           "guid": "156710",
           "displayName": "スペアー・ニク・レアルタ、策士の釣り人",
-          "iconFilename": ""
+          "iconFilename": "156710.png"
         },
         {
           "guid": "95403",
@@ -1843,7 +1843,7 @@
         {
           "guid": "80221",
           "displayName": "小宇宙学者-マクロビウス・ミヌキアヌス",
-          "iconFilename": ""
+          "iconFilename": "80221.png"
         },
         {
           "guid": "44075",
@@ -1871,7 +1871,7 @@
         {
           "guid": "80221",
           "displayName": "小宇宙学者-マクロビウス・ミヌキアヌス",
-          "iconFilename": ""
+          "iconFilename": "80221.png"
         },
         {
           "guid": "44147",
@@ -1927,12 +1927,12 @@
         {
           "guid": "181055",
           "displayName": "シェンティ職人",
-          "iconFilename": ""
+          "iconFilename": "181055.png"
         },
         {
           "guid": "80221",
           "displayName": "小宇宙学者-マクロビウス・ミヌキアヌス",
-          "iconFilename": ""
+          "iconFilename": "80221.png"
         }
       ]
     },
@@ -1981,7 +1981,7 @@
         {
           "guid": "80221",
           "displayName": "小宇宙学者-マクロビウス・ミヌキアヌス",
-          "iconFilename": ""
+          "iconFilename": "80221.png"
         }
       ]
     },
@@ -2011,7 +2011,7 @@
         {
           "guid": "80221",
           "displayName": "小宇宙学者-マクロビウス・ミヌキアヌス",
-          "iconFilename": ""
+          "iconFilename": "80221.png"
         },
         {
           "guid": "44142",
@@ -2034,22 +2034,22 @@
         {
           "guid": "160531",
           "displayName": "プロクレス、異質なクソアノン彫刻家",
-          "iconFilename": ""
+          "iconFilename": "160531.png"
         },
         {
           "guid": "156688",
           "displayName": "近視の石工",
-          "iconFilename": ""
+          "iconFilename": "156688.png"
         },
         {
           "guid": "145271",
           "displayName": "従者の彫刻家",
-          "iconFilename": ""
+          "iconFilename": "145271.png"
         },
         {
           "guid": "80221",
           "displayName": "小宇宙学者-マクロビウス・ミヌキアヌス",
-          "iconFilename": ""
+          "iconFilename": "80221.png"
         }
       ]
     },
@@ -2077,7 +2077,7 @@
         {
           "guid": "153695",
           "displayName": "雁叩き",
-          "iconFilename": ""
+          "iconFilename": "153695.png"
         },
         {
           "guid": "96817",
@@ -2087,7 +2087,7 @@
         {
           "guid": "80221",
           "displayName": "小宇宙学者-マクロビウス・ミヌキアヌス",
-          "iconFilename": ""
+          "iconFilename": "80221.png"
         }
       ]
     },
@@ -2119,7 +2119,7 @@
         {
           "guid": "156690",
           "displayName": "具象的な粘土職人",
-          "iconFilename": ""
+          "iconFilename": "156690.png"
         },
         {
           "guid": "96819",
@@ -2129,7 +2129,7 @@
         {
           "guid": "80221",
           "displayName": "小宇宙学者-マクロビウス・ミヌキアヌス",
-          "iconFilename": ""
+          "iconFilename": "80221.png"
         }
       ]
     },
@@ -2154,7 +2154,7 @@
         {
           "guid": "80221",
           "displayName": "小宇宙学者-マクロビウス・ミヌキアヌス",
-          "iconFilename": ""
+          "iconFilename": "80221.png"
         }
       ]
     },
@@ -2182,12 +2182,12 @@
         {
           "guid": "160513",
           "displayName": "ティランナ、生粋の多色主義者",
-          "iconFilename": ""
+          "iconFilename": "160513.png"
         },
         {
           "guid": "80221",
           "displayName": "小宇宙学者-マクロビウス・ミヌキアヌス",
-          "iconFilename": ""
+          "iconFilename": "80221.png"
         },
         {
           "guid": "44118",
@@ -2215,7 +2215,7 @@
         {
           "guid": "80221",
           "displayName": "小宇宙学者-マクロビウス・ミヌキアヌス",
-          "iconFilename": ""
+          "iconFilename": "80221.png"
         }
       ]
     },
@@ -2238,7 +2238,7 @@
         {
           "guid": "80221",
           "displayName": "小宇宙学者-マクロビウス・ミヌキアヌス",
-          "iconFilename": ""
+          "iconFilename": "80221.png"
         }
       ]
     },
@@ -2263,7 +2263,7 @@
         {
           "guid": "80221",
           "displayName": "小宇宙学者-マクロビウス・ミヌキアヌス",
-          "iconFilename": ""
+          "iconFilename": "80221.png"
         }
       ]
     },
@@ -2306,7 +2306,7 @@
         {
           "guid": "80221",
           "displayName": "小宇宙学者-マクロビウス・ミヌキアヌス",
-          "iconFilename": ""
+          "iconFilename": "80221.png"
         }
       ]
     },
@@ -2326,22 +2326,22 @@
         {
           "guid": "179653",
           "displayName": "ケペシュの剣職人",
-          "iconFilename": ""
+          "iconFilename": "179653.png"
         },
         {
           "guid": "80510",
           "displayName": "サルマティアの剣匠-ゾルシネス",
-          "iconFilename": ""
+          "iconFilename": "80510.png"
         },
         {
           "guid": "160075",
           "displayName": "ボリオラヌス、包囲戦で鍛えられた勇者",
-          "iconFilename": ""
+          "iconFilename": "160075.png"
         },
         {
           "guid": "107339",
           "displayName": "マルス・ルーケティウスへの改宗者-アウン",
-          "iconFilename": ""
+          "iconFilename": "107339.png"
         },
         {
           "guid": "50289",
@@ -2351,22 +2351,22 @@
         {
           "guid": "50890",
           "displayName": "砂とサンダルの生存者-ファビルス",
-          "iconFilename": ""
+          "iconFilename": "50890.png"
         },
         {
           "guid": "166523",
           "displayName": "小スコルピオ・アフリカヌス、法的に別人の将軍",
-          "iconFilename": ""
+          "iconFilename": "166523.png"
         },
         {
           "guid": "80221",
           "displayName": "小宇宙学者-マクロビウス・ミヌキアヌス",
-          "iconFilename": ""
+          "iconFilename": "80221.png"
         },
         {
           "guid": "185170",
           "displayName": "燃える眼のタウセルト",
-          "iconFilename": ""
+          "iconFilename": "185170.png"
         }
       ]
     },
@@ -2384,12 +2384,12 @@
         {
           "guid": "179652",
           "displayName": "首飾り職人",
-          "iconFilename": ""
+          "iconFilename": "179652.png"
         },
         {
           "guid": "80221",
           "displayName": "小宇宙学者-マクロビウス・ミヌキアヌス",
-          "iconFilename": ""
+          "iconFilename": "80221.png"
         }
       ]
     },
@@ -2418,17 +2418,17 @@
         {
           "guid": "80225",
           "displayName": "リアンノンのかつての御者-ピル・ファブ・マナウィダン",
-          "iconFilename": ""
+          "iconFilename": "80225.png"
         },
         {
           "guid": "166523",
           "displayName": "小スコルピオ・アフリカヌス、法的に別人の将軍",
-          "iconFilename": ""
+          "iconFilename": "166523.png"
         },
         {
           "guid": "80221",
           "displayName": "小宇宙学者-マクロビウス・ミヌキアヌス",
-          "iconFilename": ""
+          "iconFilename": "80221.png"
         },
         {
           "guid": "44119",
@@ -2443,7 +2443,7 @@
         {
           "guid": "156679",
           "displayName": "馬丁",
-          "iconFilename": ""
+          "iconFilename": "156679.png"
         }
       ]
     },
@@ -2468,7 +2468,7 @@
         {
           "guid": "80221",
           "displayName": "小宇宙学者-マクロビウス・ミヌキアヌス",
-          "iconFilename": ""
+          "iconFilename": "80221.png"
         }
       ]
     },
@@ -2502,12 +2502,12 @@
         {
           "guid": "80221",
           "displayName": "小宇宙学者-マクロビウス・ミヌキアヌス",
-          "iconFilename": ""
+          "iconFilename": "80221.png"
         },
         {
           "guid": "156685",
           "displayName": "台帳係",
-          "iconFilename": ""
+          "iconFilename": "156685.png"
         }
       ]
     }

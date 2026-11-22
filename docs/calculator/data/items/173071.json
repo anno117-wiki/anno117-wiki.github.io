@@ -2,7 +2,7 @@
   "displayName": "デーツを投げる者",
   "guid": "173071",
   "description": "恐れることなくヤシの木に登り、一番熟した果実を採る。",
-  "iconFilename": "",
+  "iconFilename": "173071.png",
   "rarity": "Common",
   "niche": "Agriculture",
   "targets": [
