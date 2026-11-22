@@ -1,7 +1,15 @@
 <template>
   <div class="sh-root">
     <h2 id="sea-ships">海の船（編成ごと）</h2>
-    <p class="sh-lead">造船所の建造メニューに並ぶ、民間と軍団の6つの編成です。数値は、ラティウムの造船所で実機を確認した値です。</p>
+    <p class="sh-lead">造船所の建造メニューに並ぶ、民間と軍団の6つの編成です。付いているモジュールは、地域で違います。</p>
+    <div class="sh-filter">
+      <label><strong>地域:</strong>
+        <select v-model="selRegion">
+          <option v-for="r in REGIONS" :key="r" :value="r">{{ r }}</option>
+        </select>
+      </label>
+    </div>
+    <p v-if="!hasMeasured" class="sh-lead">この地域の造船所は、実機の確認がまだです。ゲームのデータからの値で、航行速度は未確認です。</p>
     <div class="sh-table-wrap">
       <table>
         <thead>
@@ -10,6 +18,7 @@
             <th>ヒットポイント</th>
             <th>積荷スロット</th>
             <th>航行速度</th>
+            <th v-if="hasRiver">川の速度</th>
             <th>設置済みのモジュール</th>
             <th>建設時間</th>
             <th>建設費</th>
@@ -17,11 +26,12 @@
           </tr>
         </thead>
         <tbody>
-          <tr v-for="c in configs" :key="c.label">
+          <tr v-for="c in visibleConfigs" :key="c.label">
             <td><strong>{{ c.label }}</strong><br /><span class="sh-sub">{{ c.ship }}</span></td>
             <td class="sh-num">{{ c.health }}</td>
             <td class="sh-num">{{ c.slots }}</td>
             <td class="sh-nowrap">{{ speedText(c.sail) }}</td>
+            <td v-if="hasRiver" class="sh-nowrap">{{ speedText(c.river) }}</td>
             <td>{{ moduleText(c) }}</td>
             <td class="sh-nowrap">{{ c.buildMinutes }}分</td>
             <td class="sh-cost"><BuildingCostList :costs="c.cost" /></td>
@@ -31,7 +41,7 @@
       </table>
     </div>
     <div class="sh-cards">
-      <div v-for="c in configs" :key="c.label" class="sh-card">
+      <div v-for="c in visibleConfigs" :key="c.label" class="sh-card">
         <div class="sh-card-header">
           <strong>{{ c.label }}</strong>
           <span class="sh-sub">{{ c.ship }}</span>
@@ -40,6 +50,7 @@
           <div><dt>ヒットポイント</dt><dd>{{ c.health }}</dd></div>
           <div><dt>積荷スロット</dt><dd>{{ c.slots }}</dd></div>
           <div><dt>航行速度</dt><dd>{{ speedText(c.sail) }}</dd></div>
+          <div v-if="hasRiver"><dt>川の速度</dt><dd>{{ speedText(c.river) }}</dd></div>
           <div><dt>設置済みのモジュール</dt><dd>{{ moduleText(c) }}</dd></div>
           <div><dt>建設時間</dt><dd>{{ c.buildMinutes }}分</dd></div>
           <div><dt>建設費</dt><dd><BuildingCostList :costs="c.cost" /></dd></div>
@@ -172,7 +183,7 @@
 </template>
 
 <script setup lang="ts">
-import { computed } from 'vue'
+import { computed, ref } from 'vue'
 import data from '../../wiki/ships-list.json'
 import BuildingCostList from './BuildingCostList.vue'
 
@@ -200,12 +211,14 @@ interface Ship {
   fitted: string[]
 }
 interface SeaConfig {
+  region: string
+  river: [number, number] | null
   label: string
   kind: 'civil' | 'military'
   ship: string
   health: number
   slots: number
-  sail: [number, number]
+  sail: [number, number] | null
   modules: { name: string; count: number }[]
   buildMinutes: number
   cost: Cost[]
@@ -230,6 +243,12 @@ const ships = data.ships as Ship[]
 const modules = data.modules as ShipModule[]
 const seaShips = computed(() => ships.filter(s => s.kind === 'sea'))
 const configs = data.configs as SeaConfig[]
+const selRegion = ref('ラティウム')
+const visibleConfigs = computed(() => configs.filter(c => c.region === selRegion.value))
+// 実機で航行速度を確認した地域か（確認していなければ、その旨を出す）
+const hasMeasured = computed(() => visibleConfigs.value.some(c => c.sail))
+// 川の速度は、アイギュプトの造船所の画面にだけ表示される
+const hasRiver = computed(() => visibleConfigs.value.some(c => c.river))
 const riverShips = computed(() => ships.filter(s => s.kind === 'river'))
 
 function moduleText(c: SeaConfig): string {
@@ -262,6 +281,23 @@ const workforceRows = computed(() => {
 </script>
 
 <style scoped>
+.sh-filter {
+  margin: 8px 0 12px;
+}
+.sh-filter label {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  font-size: 14px;
+}
+.sh-filter select {
+  padding: 4px 8px;
+  font-size: 14px;
+  color: var(--vp-c-text-1);
+  background: var(--vp-c-bg);
+  border: 1px solid var(--vp-c-divider);
+  border-radius: 6px;
+}
 .sh-lead {
   margin: 8px 0;
   font-size: 14px;

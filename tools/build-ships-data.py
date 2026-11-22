@@ -224,18 +224,38 @@ for key, lat, alb, aeg, unlock in MODULES:
             sys.exit(f"地域でモジュールの数値が違います: {name} {other}")
     modules.append(rec)
 
-# --- 海の船の編成（造船所の建造メニューに並ぶ6つ: 民間 I〜III・軍団 I〜III） ---
+# --- 海の船の編成（造船所の建造メニューに並ぶ6つ: 民間 I〜III・軍団 I〜III。地域ごとに、付いているモジュールが違う） ---
 # 編成 = 船体 + 設置済みのモジュール。費用・建設時間・維持費は足し算、積荷スロットは「船体の枠 - モジュールの数」
-# （実機のラティウムの造船所の6編成で、建設費・建設時間・積荷スロットが一致することを確かめた。2026-11-22）
-MODULE_BY_TYPE = {"Mast": 31647, "Rows": 31648, "AdditionalHull": 31649, "Archers": 31651, "Scorpion": 31652, "Catapult": 31653}
-# 実機（PS5・ラティウムの造船所）の表示。航行速度は [最小, 最大]（ペース/秒）。維持費は難易度などでデータの約1.2倍
+# 実機（PS5）の表示（2026-11-22）と、データからの計算を突き合わせる。航行速度・川の速度は [最小, 最大]（ペース/秒）の実機の値。
+#   ラティウム: 建設費・建設時間・積荷スロットがデータの計算と一致
+#   アイギュプト: 建設時間・積荷スロット・モジュールが一致。建設費は、データの計算のちょうど半分（端数は切り上げ）。
+#     撮影した画面に、研究「統一単位」(船の建造速度+100%)・専門家「帝国の公使-ヘリウス・アシナ・レストイトゥトゥス」(建造速度+50%・建造費-25%)などの
+#     効果が掛かっていたため。表は効果なしの基本値を載せる
+#   アルビオン: 実機の確認なし（データの計算のみ）
+REGIONS_SEA = [
+    # 地域, 造船所, モジュールの資産（種類 -> GUID）, 実機の表示
+    ("ラティウム", 6054, {"Mast": 31647, "Rows": 31648, "AdditionalHull": 31649, "Archers": 31651, "Scorpion": 31652, "Catapult": 31653}, "lat"),
+    ("アルビオン", 29340, {"Mast": 39574, "Rows": 39575, "AdditionalHull": 39576, "Archers": 39577, "Scorpion": 39578, "Catapult": 39579}, None),
+    ("アイギュプト", 153332, {"Mast": 157318, "Rows": 157319, "AdditionalHull": 157320, "Archers": 157321, "Scorpion": 157322, "Catapult": 157323}, "aeg"),
+]
+# 実機の表示: 編成 -> 積荷スロット・建設時間（分）・航行速度・川の速度（アイギュプトのみ表示）・建設費（アイギュプトは効果込み）
 MEASURED_SEA = {
-    "民間 I": {"hull": 37222, "slots": 3, "min": 5, "sail": [45, 90], "cost": {1010017: 1500, 2174: 15, 2171: 10, 2172: 10}},
-    "民間 II": {"hull": 37223, "slots": 4, "min": 9, "sail": [40, 98], "cost": {1010017: 4500, 2174: 30, 2171: 25, 2172: 25}},
-    "民間 III": {"hull": 37224, "slots": 6, "min": 11, "sail": [36, 87], "cost": {1010017: 8500, 2174: 45, 2171: 30, 2172: 30}},
-    "軍団 I": {"hull": 37222, "slots": 1, "min": 7, "sail": [45, 90], "cost": {1010017: 4000, 2174: 30, 2171: 15, 2172: 10, 2173: 11}},
-    "軍団 II": {"hull": 37223, "slots": 2, "min": 11, "sail": [58, 81], "cost": {1010017: 6700, 2174: 55, 2171: 20, 2172: 15, 2173: 8}},
-    "軍団 III": {"hull": 37224, "slots": 3, "min": 14, "sail": [51, 72], "cost": {1010017: 12000, 2174: 75, 2171: 25, 2172: 20, 2173: 14}},
+    "lat": {
+        "民間 I": {"slots": 3, "min": 5, "sail": [45, 90], "cost": {1010017: 1500, 2174: 15, 2171: 10, 2172: 10}},
+        "民間 II": {"slots": 4, "min": 9, "sail": [40, 98], "cost": {1010017: 4500, 2174: 30, 2171: 25, 2172: 25}},
+        "民間 III": {"slots": 6, "min": 11, "sail": [36, 87], "cost": {1010017: 8500, 2174: 45, 2171: 30, 2172: 30}},
+        "軍団 I": {"slots": 1, "min": 7, "sail": [45, 90], "cost": {1010017: 4000, 2174: 30, 2171: 15, 2172: 10, 2173: 11}},
+        "軍団 II": {"slots": 2, "min": 11, "sail": [58, 81], "cost": {1010017: 6700, 2174: 55, 2171: 20, 2172: 15, 2173: 8}},
+        "軍団 III": {"slots": 3, "min": 14, "sail": [51, 72], "cost": {1010017: 12000, 2174: 75, 2171: 25, 2172: 20, 2173: 14}},
+    },
+    "aeg": {
+        "民間 I": {"slots": 2, "min": 6, "sail": [64, 90], "river": [38, 48], "cost": {1010017: 1000, 2174: 13, 2171: 5, 2172: 5}},
+        "民間 II": {"slots": 4, "min": 9, "sail": [58, 81], "river": [34, 43], "cost": {1010017: 2250, 2174: 18, 2171: 8, 2172: 8}},
+        "民間 III": {"slots": 6, "min": 11, "sail": [51, 72], "river": [30, 38], "cost": {1010017: 4250, 2174: 25, 2171: 10, 2172: 10}},
+        "軍団 I": {"slots": 1, "min": 7, "sail": [64, 90], "river": [38, 48], "cost": {1010017: 1500, 2174: 18, 2171: 5, 2172: 5, 2173: 2}},
+        "軍団 II": {"slots": 2, "min": 11, "sail": [58, 81], "river": [34, 43], "cost": {1010017: 3350, 2174: 28, 2171: 10, 2172: 8, 2173: 4}},
+        "軍団 III": {"slots": 3, "min": 14, "sail": [51, 72], "river": [30, 38], "cost": {1010017: 6000, 2174: 38, 2171: 13, 2172: 10, 2173: 7}},
+    },
 }
 
 
@@ -247,45 +267,56 @@ def sum_items(parts):
     return list(total.items())
 
 
+def half_up(x):
+    return int(x + 0.5)
+
+
 configs = []
-for opt in range(16):
-    cfg_id = R.get(YARD_LATIUM)["v"].get(f"/Recruitment/AssemblyOptions/Item[{opt}]/Vehicle")
-    if not cfg_id:
-        continue
-    cv = R.get(int(cfg_id))["v"]
-    label = ja(cv.get("/ShipConfiguration/DefaultConfigurationName"))
-    hull_id = int(cv["/ShipConfiguration/ShipHullGUID"])
-    counts = {k.split("/")[3]: int(val) for k, val in cv.items() if k.startswith("/ShipConfiguration/ShipModules/") and k.endswith("ModuleCount")}
-    hv = R.get(hull_id)["v"]
-    parts_cost, parts_upkeep, minutes_total, mods = [items(hv, "/Cost/Costs", "Ingredient")], [items(hv, "/Maintenance/Maintenances", "Product")], num(hv.get("/Craftable/CraftingTime")), []
-    for mtype, cnt in counts.items():
-        mv = R.get(MODULE_BY_TYPE[mtype])["v"]
-        for _ in range(cnt):
-            parts_cost.append(items(mv, "/Cost/Costs", "Ingredient"))
-            parts_upkeep.append(items(mv, "/Maintenance/Maintenances", "Product"))
-            minutes_total += num(mv.get("/Craftable/CraftingTime"))
-        mods.append({"name": name_of(MODULE_BY_TYPE[mtype]), "count": cnt})
-    cost = sum_items(parts_cost)
-    slots = int(num(hv.get("/ItemContainer/SlotCount"))) - sum(counts.values())
-    meas = MEASURED_SEA[label]
-    # 実機の表示との突き合わせ（食い違えば、前提が崩れているので止める）
-    if meas["hull"] != hull_id or meas["slots"] != slots or meas["min"] != minutes(minutes_total) or {p: clean(a) for p, a in cost} != meas["cost"]:
-        sys.exit(f"実機と合いません: {label} 計算 {slots} {minutes(minutes_total)} {dict(cost)} 実機 {meas}")
-    upkeep = []
-    for pid, amt in sum_items(parts_upkeep):
-        upkeep.append({"name": "デナリウス" if pid == DENARII else "労働力", "amount": clean(amt)})
-    configs.append({
-        "label": label,
-        "kind": "military" if label.startswith("軍団") else "civil",
-        "ship": name_of(hull_id),
-        "health": clean(num(hv.get("/Health/BaseHealth"))),
-        "slots": slots,
-        "sail": meas["sail"],
-        "modules": mods,
-        "buildMinutes": minutes(minutes_total),
-        "cost": cost_list(cost),
-        "upkeep": upkeep,
-    })
+for region, yard, mod_ids, mkey in REGIONS_SEA:
+    yv = R.get(yard)["v"]
+    for opt in range(16):
+        cfg_id = yv.get(f"/Recruitment/AssemblyOptions/Item[{opt}]/Vehicle")
+        if not cfg_id:
+            continue
+        cv = R.get(int(cfg_id))["v"]
+        label = ja(cv.get("/ShipConfiguration/DefaultConfigurationName"))
+        hull_id = int(cv["/ShipConfiguration/ShipHullGUID"])
+        counts = {k.split("/")[3]: int(val) for k, val in cv.items() if k.startswith("/ShipConfiguration/ShipModules/") and k.endswith("ModuleCount")}
+        hv = R.get(hull_id)["v"]
+        parts_cost = [items(hv, "/Cost/Costs", "Ingredient")]
+        parts_upkeep = [items(hv, "/Maintenance/Maintenances", "Product")]
+        minutes_total, mods = num(hv.get("/Craftable/CraftingTime")), []
+        for mtype, cnt in counts.items():
+            mv = R.get(mod_ids[mtype])["v"]
+            for _ in range(cnt):
+                parts_cost.append(items(mv, "/Cost/Costs", "Ingredient"))
+                parts_upkeep.append(items(mv, "/Maintenance/Maintenances", "Product"))
+                minutes_total += num(mv.get("/Craftable/CraftingTime"))
+            mods.append({"name": name_of(mod_ids[mtype]), "count": cnt})
+        cost = sum_items(parts_cost)
+        slots = int(num(hv.get("/ItemContainer/SlotCount"))) - sum(counts.values())
+        meas = MEASURED_SEA.get(mkey, {}).get(label) if mkey else None
+        sail = river = None
+        if meas:
+            expect_cost = {p: clean(a) for p, a in cost} if mkey == "lat" else {p: half_up(a * 0.5) for p, a in cost}
+            if meas["slots"] != slots or meas["min"] != minutes(minutes_total) or expect_cost != meas["cost"]:
+                sys.exit(f"実機と合いません: {region} {label} 計算 {slots} {minutes(minutes_total)} {expect_cost} 実機 {meas}")
+            sail, river = meas["sail"], meas.get("river")
+        upkeep = [{"name": "デナリウス" if pid == DENARII else "労働力", "amount": clean(amt)} for pid, amt in sum_items(parts_upkeep)]
+        configs.append({
+            "region": region,
+            "label": label,
+            "kind": "military" if label.startswith("軍団") else "civil",
+            "ship": name_of(hull_id),
+            "health": clean(num(hv.get("/Health/BaseHealth"))),
+            "slots": slots,
+            "sail": sail,
+            "river": river,
+            "modules": mods,
+            "buildMinutes": minutes(minutes_total),
+            "cost": cost_list(cost),
+            "upkeep": upkeep,
+        })
 
 # アイギュプト専用の弓兵（アイギュプトの軍団 II の編成に設置済み。費用は武器5だけ。実機で確認）
 kv = R.get(166548)["v"]
