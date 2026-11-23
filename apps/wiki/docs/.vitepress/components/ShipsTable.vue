@@ -25,8 +25,8 @@
             <th>編成</th>
             <th>ヒットポイント</th>
             <th>積荷スロット</th>
-            <th>航行速度</th>
-            <th v-if="hasRiver">川の速度</th>
+            <th>航行速度<br /><span class="sh-sub">ペース/秒</span></th>
+            <th v-if="hasRiver">川の速度<br /><span class="sh-sub">ペース/秒</span></th>
             <th>設置済みのモジュール</th>
             <th>建設時間</th>
             <th>建設費</th>
@@ -35,11 +35,11 @@
         </thead>
         <tbody>
           <tr v-for="c in visibleConfigs" :key="c.label">
-            <td><strong>{{ c.label }}</strong><br /><span class="sh-sub">{{ c.ship }}</span></td>
+            <td class="sh-nowrap"><strong>{{ c.label }}</strong><br /><span class="sh-sub">{{ c.ship }}</span></td>
             <td class="sh-num">{{ c.health }}</td>
             <td class="sh-num">{{ c.slots }}</td>
-            <td class="sh-nowrap">{{ speedText(c.sail) }}</td>
-            <td v-if="hasRiver" class="sh-nowrap">{{ speedText(c.river) }}</td>
+            <td class="sh-nowrap">{{ speedRange(c.sail) }}</td>
+            <td v-if="hasRiver" class="sh-nowrap">{{ speedRange(c.river) }}</td>
             <td>{{ moduleText(c) }}</td>
             <td class="sh-nowrap">{{ c.buildMinutes }}分</td>
             <td class="sh-cost"><BuildingCostList :costs="c.cost" /></td>
@@ -74,8 +74,8 @@
           <tr>
             <th>船</th>
             <th>ヒットポイント</th>
-            <th>航行速度</th>
-            <th>川の速度</th>
+            <th>航行速度<br /><span class="sh-sub">ペース/秒</span></th>
+            <th>川の速度<br /><span class="sh-sub">ペース/秒</span></th>
             <th>積荷スロット</th>
             <th>建設時間</th>
             <th>建設費</th>
@@ -87,8 +87,8 @@
           <tr v-for="s in riverShips" :key="s.id">
             <td><strong>{{ s.name }}</strong><template v-if="s.kind === 'sea'"><br /><span class="sh-sub">編成: {{ s.configs.join('・') }}</span></template><template v-if="s.fitted.length"><br /><span class="sh-sub">設置済みのモジュール: {{ s.fitted.join('・') }}</span></template></td>
             <td class="sh-num">{{ s.health }}</td>
-            <td class="sh-nowrap">{{ speedText(s.sail) }}</td>
-            <td class="sh-nowrap">{{ speedText(s.river) }}</td>
+            <td class="sh-nowrap">{{ speedRange(s.sail) }}</td>
+            <td class="sh-nowrap">{{ speedRange(s.river) }}</td>
             <td class="sh-nowrap">{{ loadText(s) }}</td>
             <td class="sh-nowrap">{{ s.buildMinutes }}分</td>
             <td class="sh-cost"><BuildingCostList :costs="s.cost" /></td>
@@ -281,6 +281,10 @@ function loadText(s: Ship): string {
 }
 
 // 航行速度・川の速度は、実機の表示（最小 - 最大）。確認していない船は「未確認です」
+function speedRange(range: [number, number] | null): string {
+  return range ? `${range[0]} - ${range[1]}` : '未確認です'
+}
+
 function speedText(range: [number, number] | null): string {
   return range ? `${range[0]} - ${range[1]} ペース（毎秒）` : '未確認です'
 }
@@ -338,8 +342,13 @@ const workforceRows = computed(() => {
 .sh-table-wrap th {
   white-space: nowrap;
 }
+/* VitePress の標準の余白(12px 16px)は広く、列が増えると表が内容欄からはみ出す */
+.sh-table-wrap th,
+.sh-table-wrap td {
+  padding: 8px 10px;
+}
 .sh-cost {
-  min-width: 12em;
+  min-width: 10em;
 }
 
 .sh-cards {
