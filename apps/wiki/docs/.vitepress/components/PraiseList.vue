@@ -25,7 +25,7 @@ const visible = computed(() => {
       index: i + 1,
       items: s.items.filter(it =>
         (!grade.value || it.grade === grade.value)
-        && (!q || it.title.toLowerCase().includes(q) || it.desc.toLowerCase().includes(q)),
+        && (!q || it.title.toLowerCase().includes(q) || it.desc.toLowerCase().includes(q) || noteHas(it, q)),
       ),
     }))
     .filter(s => s.items.length > 0 && (!region.value || s.region === region.value))
@@ -33,8 +33,27 @@ const visible = computed(() => {
 
 const shown = computed(() => visible.value.reduce((n, s) => n + s.items.length, 0))
 
+/** 絞り込みが1つでも掛かっているか（リセットボタンの有効・無効に使う） */
+const isFiltered = computed(() => query.value.trim() !== '' || grade.value !== '' || region.value !== '')
+
+function reset() {
+  query.value = ''
+  grade.value = ''
+  region.value = ''
+}
+
+function noteHas(it: Item, q: string): boolean {
+  return !!it.note && it.note.toLowerCase().includes(q)
+}
+
+/** 検索の言葉が内訳にだけ当たったときは、内訳を開いて見せる */
+function noteOpen(it: Item): boolean {
+  const q = query.value.trim().toLowerCase()
+  return !!q && noteHas(it, q) && !it.title.toLowerCase().includes(q) && !it.desc.toLowerCase().includes(q)
+}
+
 function rewardText(s: PraiseSet): string {
-  return s.rewards.length ? `称号「${s.rewards.join('」と「')}」` : ''
+  return s.rewards.length ? `称号「${s.name}」` : ''
 }
 </script>
 
@@ -59,6 +78,7 @@ function rewardText(s: PraiseSet): string {
           <option v-for="r in REGIONS" :key="r" :value="r">{{ r }}</option>
         </select>
       </label>
+      <button type="button" class="pr-reset" :disabled="!isFiltered" @click="reset">リセット</button>
     </div>
     <p class="pr-count">{{ total }}件中 {{ shown }}件を表示しています。</p>
 
@@ -77,7 +97,10 @@ function rewardText(s: PraiseSet): string {
           <div class="pr-body">
             <strong class="pr-title">{{ it.title }}</strong>
             <span class="pr-desc">{{ it.desc }}</span>
-            <span v-if="it.note" class="pr-note">内訳: {{ it.note }}</span>
+            <details v-if="it.note" class="pr-note" :open="noteOpen(it)">
+              <summary>内訳</summary>
+              <p>{{ it.note }}</p>
+            </details>
           </div>
         </li>
       </ul>
@@ -190,9 +213,31 @@ function rewardText(s: PraiseSet): string {
   color: var(--vp-c-text-2);
   overflow-wrap: anywhere;
 }
+.pr-reset {
+  padding: 4px 12px;
+  font-size: 14px;
+  color: var(--vp-c-text-1);
+  background: var(--vp-c-bg-soft);
+  border: 1px solid var(--vp-c-divider);
+  border-radius: 6px;
+  cursor: pointer;
+}
+.pr-reset:disabled {
+  opacity: 0.5;
+  cursor: default;
+}
 .pr-note {
   font-size: 13px;
   color: var(--vp-c-text-2);
+}
+.pr-note summary {
+  display: inline-block;
+  cursor: pointer;
+  color: var(--vp-c-brand-1);
+}
+.pr-note p {
+  margin: 4px 0 0;
+  line-height: 1.6;
   overflow-wrap: anywhere;
 }
 
