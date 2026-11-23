@@ -3,7 +3,7 @@
 import { computed, ref } from 'vue'
 import data from '../../wiki/praise-list.json'
 
-interface Item { title: string; desc: string; grade: '銅' | '銀' | '金' }
+interface Item { title: string; desc: string; grade: '銅' | '銀' | '金'; note?: string }
 interface PraiseSet { name: string; region: string; rewards: string[]; items: Item[] }
 
 const sets = data.sets as PraiseSet[]
@@ -77,6 +77,7 @@ function rewardText(s: PraiseSet): string {
           <div class="pr-body">
             <strong class="pr-title">{{ it.title }}</strong>
             <span class="pr-desc">{{ it.desc }}</span>
+            <span v-if="it.note" class="pr-note">内訳: {{ it.note }}</span>
           </div>
         </li>
       </ul>
@@ -186,6 +187,11 @@ function rewardText(s: PraiseSet): string {
 }
 .pr-desc {
   font-size: 14px;
+  color: var(--vp-c-text-2);
+  overflow-wrap: anywhere;
+}
+.pr-note {
+  font-size: 13px;
   color: var(--vp-c-text-2);
   overflow-wrap: anywhere;
 }

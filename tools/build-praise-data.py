@@ -16,6 +16,7 @@ from pathlib import Path
 sys.path.insert(0, str(Path(__file__).resolve().parent))
 sys.stdout.reconfigure(encoding="utf-8")
 from assets_resolver import Resolver  # noqa: E402
+import assets_techs as techs_mod  # noqa: E402
 import assets_texts as at  # noqa: E402
 
 ROOT = Path(__file__).resolve().parent.parent
@@ -26,6 +27,30 @@ JA = at.load_texts("japanese")
 
 REGION_JA = {"Meta": "全地域", "Roman": "ラティウム", "Celtic": "アルビオン", "Egyptian": "アイギュプト"}
 GRADE_JA = {"Bronze": "銅", "Silver": "銀", "Gold": "金"}
+
+
+def research_note(ach_guid, tech_words):
+    """条件に並ぶ研究（TechGuid）の名前から、内訳の文を作る。
+    条件の研究が、そのスキルツリーのゲート以外の研究と過不足なく一致することを確かめる（違えば止まる）"""
+    techs = {int(t["guid"]): t for t in techs_mod.load_techs()["techs"]}
+    refs = [int(x) for k, x in R.get(ach_guid)["v"].items() if k.endswith("/TechGuid") and x.isdigit()]
+    refs = sorted(set(refs))
+    if not refs:
+        sys.exit(f"条件に研究がありません: {ach_guid}")
+    category = techs[refs[0]]["category"]
+    expected = sorted(g for g, t in techs.items() if t["category"] == category and not t["gate"])
+    if refs != expected:
+        sys.exit(f"条件の研究が、ゲート以外の研究と一致しません: {ach_guid} 条件{len(refs)}件 ゲート以外{len(expected)}件")
+    gates = [at.strip_zw(t["loca"]["japanese"]) for g, t in techs.items() if t["category"] == category and t["gate"]]
+    names = [at.strip_zw(techs[g]["loca"]["japanese"]) for g in sorted(refs, key=lambda g: (-techs[g]["y"], techs[g]["x"]))]
+    return (f"「{tech_words}」は、スキルツリーの研究のことです。{len(names)}件を全部研究します: {'・'.join(names)}。"
+            f"次の段階への解放条件のゲート（{'・'.join(gates)}）は含みません")
+
+
+# 条件の内訳を添える称賛（実績の資産の GUID → 内訳の文）。内訳はゲームのデータの条件から読んだ内容
+NOTES = {
+    145347: lambda: research_note(145347, "発見"),  # 自然哲学（火山の探鉱者 6番目）
+}
 
 
 def ja(text_id):
@@ -56,7 +81,10 @@ for guid, _ in sets:
         grade = GRADE_JA.get(av.get("/Achievement/AchievementDifficulty"))
         if not (title and desc and grade):
             sys.exit(f"実績の名前・条件・等級のどれかがありません: {aid} {title!r} {desc!r} {grade!r}")
-        items.append({"title": title, "desc": desc, "grade": grade})
+        item = {"title": title, "desc": desc, "grade": grade}
+        if aid in NOTES:
+            item["note"] = NOTES[aid]()
+        items.append(item)
         region = region or av.get("/Achievement/AchievementRegion")
     total += len(items)
     out.append({
