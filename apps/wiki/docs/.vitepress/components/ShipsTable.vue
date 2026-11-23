@@ -134,7 +134,7 @@
         </thead>
         <tbody>
           <tr v-for="m in modules" :key="m.id">
-            <td><strong>{{ m.name }}</strong><template v-if="m.regions"><br /><span class="sh-sub">{{ m.regions.join('・') }}専用</span></template><br /><span class="sh-sub">{{ m.desc }}</span></td>
+            <td><strong>{{ m.name }}</strong><template v-if="m.regions"><br /><span class="sh-sub">{{ m.regions.join('・') }}専用</span></template><br /><span class="sh-sub">{{ m.desc }}</span><template v-if="m.effect"><br /><span class="sh-sub">効果: {{ m.effect }}</span></template></td>
             <td class="sh-cost"><BuildingCostList :costs="m.cost" /></td>
             <td class="sh-nowrap">{{ m.buildMinutes ? `${m.buildMinutes}分` : '—' }}</td>
             <td class="sh-cost"><BuildingCostList :costs="upkeepOf(m.upkeep)" /></td>
@@ -150,6 +150,7 @@
           <strong>{{ m.name }}</strong>
           <span v-if="m.regions" class="sh-sub">{{ m.regions.join('・') }}専用</span>
           <span class="sh-sub">{{ m.desc }}</span>
+          <span v-if="m.effect" class="sh-sub">効果: {{ m.effect }}</span>
         </div>
         <dl class="sh-card-body">
           <div class="sh-wide"><dt>建設費</dt><dd><BuildingCostList :costs="m.cost" /></dd></div>
@@ -236,6 +237,7 @@ interface ShipModule {
   id: string
   name: string
   desc: string
+  effect: string | null
   buildMinutes: number | null
   cost: Cost[]
   upkeep: Cost[]

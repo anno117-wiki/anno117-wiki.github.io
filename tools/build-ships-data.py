@@ -211,6 +211,25 @@ MODULES = [
     ("scorpion", 31652, 39578, 157322, "Shipboard Scorpiones"),
     ("catapult", 31653, 39579, 157323, "Ship Catapults"),
 ]
+def buff_value(buff_guid, path):
+    return num(R.get(buff_guid)["v"].get(path))
+
+
+def module_effect(key, v):
+    """マスト・オール・船体装甲の効果の文。数値は、モジュールの効果（Effect/Buffs）の資産から読む。他のモジュールは効果なし(None)"""
+    if key not in ("mast", "rows", "hull"):
+        return None
+    b = int(v["/Effect/Buffs/Item[0]/GUID"])
+    m = "/MovementUpgrade/"
+    if key == "mast":
+        return f"追い風のときの速度の上乗せが{clean(-buff_value(b, m + 'BuffReducePositiveWindImpactUpgrade/Value'))}%増える（風の係数 1.4 が 1.7 になる）"
+    if key == "rows":
+        return f"向かい風の悪影響を{clean(buff_value(b, m + 'BuffReduceNegativeWindImpactUpgrade/Value'))}%なくす（風の係数 0.7 が 1.0 になる）。川の流れに逆らうときの悪影響も{clean(buff_value(b, m + 'BuffReduceNegativeRiverCurrentImpactUpgrade/Value'))}%減る"
+    hp = clean(buff_value(b, "/HealthUpgrade/BaseHealthUpgrade/Value"))
+    sp = clean(buff_value(b, m + "BuffBaseSpeedUpgrade/Value"))
+    return f"ヒットポイントが{hp}%増える。航行速度は、風の係数から{abs(sp) / 100}を引いた分になる（約{abs(sp)}%遅くなる）"
+
+
 modules = []
 for key, lat, alb, aeg, unlock in MODULES:
     v = R.get(lat)["v"]
@@ -219,6 +238,7 @@ for key, lat, alb, aeg, unlock in MODULES:
         "id": key,
         "name": name,
         "desc": ja(v.get("/Standard/InfoDescription")),
+        "effect": module_effect(key, v),
         "buildMinutes": minutes(v.get("/Craftable/CraftingTime")),
         "cost": cost_list(items(v, "/Cost/Costs", "Ingredient")),
         "upkeep": upkeep_list(items(v, "/Maintenance/Maintenances", "Product")),
@@ -347,6 +367,7 @@ modules.append({
     "id": "kumato-archers",
     "name": name_of(166548),
     "desc": ja(kv.get("/Standard/InfoDescription")),
+    "effect": None,
     "buildMinutes": None,
     "cost": cost_list(items(kv, "/Cost/Costs", "Ingredient")),
     "upkeep": [],
