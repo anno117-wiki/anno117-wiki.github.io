@@ -283,8 +283,11 @@ export default defineConfig({
             items: [{ text: 'アイテム一覧', link: '/wiki/items' }],
           },
           {
-            text: 'クエスト',
-            items: [{ text: 'クエスト一覧', link: '/wiki/quests' }],
+            text: 'クエスト・称賛',
+            items: [
+              { text: 'クエスト一覧', link: '/wiki/quests' },
+              { text: '称賛一覧', link: '/wiki/praise' },
+            ],
           },
         ],
       },
@@ -385,8 +388,11 @@ export default defineConfig({
           items: [{ text: 'アイテム一覧', link: '/wiki/items' }],
         },
         {
-          text: 'クエスト',
-          items: [{ text: 'クエスト一覧', link: '/wiki/quests' }],
+          text: 'クエスト・称賛',
+          items: [
+            { text: 'クエスト一覧', link: '/wiki/quests' },
+            { text: '称賛一覧', link: '/wiki/praise' },
+          ],
         },
       ],
     },
