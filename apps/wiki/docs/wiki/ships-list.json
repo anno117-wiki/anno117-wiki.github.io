@@ -705,7 +705,10 @@
       "ship": "ペンテコンター",
       "health": 500,
       "slots": 3,
-      "sail": null,
+      "sail": [
+        45,
+        90
+      ],
       "river": null,
       "modules": [],
       "buildMinutes": 5,
@@ -745,7 +748,10 @@
       "ship": "ペンテコンター",
       "health": 500,
       "slots": 1,
-      "sail": null,
+      "sail": [
+        45,
+        90
+      ],
       "river": null,
       "modules": [
         {
@@ -802,7 +808,10 @@
       "ship": "トライリーメ",
       "health": 1250,
       "slots": 4,
-      "sail": null,
+      "sail": [
+        40,
+        98
+      ],
       "river": null,
       "modules": [
         {
@@ -847,7 +856,10 @@
       "ship": "トライリーメ",
       "health": 1250,
       "slots": 2,
-      "sail": null,
+      "sail": [
+        58,
+        81
+      ],
       "river": null,
       "modules": [
         {
@@ -908,7 +920,10 @@
       "ship": "クィンクェレメ",
       "health": 2000,
       "slots": 6,
-      "sail": null,
+      "sail": [
+        36,
+        87
+      ],
       "river": null,
       "modules": [
         {
@@ -953,7 +968,10 @@
       "ship": "クィンクェレメ",
       "health": 2000,
       "slots": 3,
-      "sail": null,
+      "sail": [
+        51,
+        72
+      ],
       "river": null,
       "modules": [
         {

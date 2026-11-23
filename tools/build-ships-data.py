@@ -240,15 +240,23 @@ for key, lat, alb, aeg, unlock in MODULES:
 #   アイギュプト: 建設時間・積荷スロット・モジュールが一致。建設費は、データの計算のちょうど半分（端数は切り上げ）。
 #     撮影した画面に、専門家「帝国の公使-ヘリウス・アシナ・レストイトゥトゥス」の覚醒効果(造船所の範囲内で船の建造費-50%。覚醒前は-25%)が掛かっていたため。
 #     研究「統一単位」(船の建造速度+100%)も有効だったが、建設時間の表示には効かない。表は効果なしの基本値を載せる
-#   アルビオン: 実機の確認なし（データの計算のみ）
+#   アルビオン: 建設費・建設時間・積荷スロット・航行速度・維持費のデナリウスが、ラティウムと同じ値で一致（2026-11-23。建設費に効果は掛かっていない）
 REGIONS_SEA = [
     # 地域, 造船所, モジュールの資産（種類 -> GUID）, 実機の表示
     ("ラティウム", 6054, {"Mast": 31647, "Rows": 31648, "AdditionalHull": 31649, "Archers": 31651, "Scorpion": 31652, "Catapult": 31653}, "lat"),
-    ("アルビオン", 29340, {"Mast": 39574, "Rows": 39575, "AdditionalHull": 39576, "Archers": 39577, "Scorpion": 39578, "Catapult": 39579}, None),
+    ("アルビオン", 29340, {"Mast": 39574, "Rows": 39575, "AdditionalHull": 39576, "Archers": 39577, "Scorpion": 39578, "Catapult": 39579}, "alb"),
     ("アイギュプト", 153332, {"Mast": 157318, "Rows": 157319, "AdditionalHull": 157320, "Archers": 157321, "Scorpion": 157322, "Catapult": 157323}, "aeg"),
 ]
 # 実機の表示: 編成 -> 積荷スロット・建設時間（分）・航行速度・川の速度（アイギュプトのみ表示）・建設費（アイギュプトは効果込み）
 MEASURED_SEA = {
+    "alb": {
+        "民間 I": {"money": 18, "slots": 3, "min": 5, "sail": [45, 90], "cost": {1010017: 1500, 2174: 15, 2171: 10, 2172: 10}},
+        "民間 II": {"money": 73, "slots": 4, "min": 9, "sail": [40, 98], "cost": {1010017: 4500, 2174: 30, 2171: 25, 2172: 25}},
+        "民間 III": {"money": 134, "slots": 6, "min": 11, "sail": [36, 87], "cost": {1010017: 8500, 2174: 45, 2171: 30, 2172: 30}},
+        "軍団 I": {"money": 67, "slots": 1, "min": 7, "sail": [45, 90], "cost": {1010017: 4000, 2174: 30, 2171: 15, 2172: 10, 2173: 11}},
+        "軍団 II": {"money": 109, "slots": 2, "min": 11, "sail": [58, 81], "cost": {1010017: 6700, 2174: 55, 2171: 20, 2172: 15, 2173: 8}},
+        "軍団 III": {"money": 195, "slots": 3, "min": 14, "sail": [51, 72], "cost": {1010017: 12000, 2174: 75, 2171: 25, 2172: 20, 2173: 14}},
+    },
     "lat": {
         "民間 I": {"money": 18, "slots": 3, "min": 5, "sail": [45, 90], "cost": {1010017: 1500, 2174: 15, 2171: 10, 2172: 10}},
         "民間 II": {"money": 73, "slots": 4, "min": 9, "sail": [40, 98], "cost": {1010017: 4500, 2174: 30, 2171: 25, 2172: 25}},
@@ -307,7 +315,7 @@ for region, yard, mod_ids, mkey in REGIONS_SEA:
         meas = MEASURED_SEA.get(mkey, {}).get(label) if mkey else None
         sail = river = None
         if meas:
-            expect_cost = {p: clean(a) for p, a in cost} if mkey == "lat" else {p: half_up(a * 0.5) for p, a in cost}
+            expect_cost = {p: clean(a) for p, a in cost} if mkey in ("lat", "alb") else {p: half_up(a * 0.5) for p, a in cost}
             if meas["slots"] != slots or meas["min"] != minutes(minutes_total) or expect_cost != meas["cost"]:
                 sys.exit(f"実機と合いません: {region} {label} 計算 {slots} {minutes(minutes_total)} {expect_cost} 実機 {meas}")
             sail, river = meas["sail"], meas.get("river")
