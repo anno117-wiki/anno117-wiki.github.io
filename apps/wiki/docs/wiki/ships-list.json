@@ -382,7 +382,11 @@
         45,
         90
       ],
-      "river": null,
+      "river": [
+        19,
+        48
+      ],
+      "riverMeasured": false,
       "modules": [],
       "buildMinutes": 5,
       "cost": [
@@ -425,7 +429,11 @@
         45,
         90
       ],
-      "river": null,
+      "river": [
+        19,
+        48
+      ],
+      "riverMeasured": false,
       "modules": [
         {
           "name": "船上弓兵",
@@ -485,7 +493,11 @@
         40,
         98
       ],
-      "river": null,
+      "river": [
+        17,
+        43
+      ],
+      "riverMeasured": false,
       "modules": [
         {
           "name": "マスト",
@@ -533,7 +545,11 @@
         58,
         81
       ],
-      "river": null,
+      "river": [
+        34,
+        43
+      ],
+      "riverMeasured": false,
       "modules": [
         {
           "name": "オール",
@@ -597,7 +613,11 @@
         36,
         87
       ],
-      "river": null,
+      "river": [
+        15,
+        38
+      ],
+      "riverMeasured": false,
       "modules": [
         {
           "name": "マスト",
@@ -645,7 +665,11 @@
         51,
         72
       ],
-      "river": null,
+      "river": [
+        30,
+        38
+      ],
+      "riverMeasured": false,
       "modules": [
         {
           "name": "オール",
@@ -709,7 +733,11 @@
         45,
         90
       ],
-      "river": null,
+      "river": [
+        19,
+        48
+      ],
+      "riverMeasured": false,
       "modules": [],
       "buildMinutes": 5,
       "cost": [
@@ -752,7 +780,11 @@
         45,
         90
       ],
-      "river": null,
+      "river": [
+        19,
+        48
+      ],
+      "riverMeasured": false,
       "modules": [
         {
           "name": "船上弓兵",
@@ -812,7 +844,11 @@
         40,
         98
       ],
-      "river": null,
+      "river": [
+        17,
+        43
+      ],
+      "riverMeasured": false,
       "modules": [
         {
           "name": "マスト",
@@ -860,7 +896,11 @@
         58,
         81
       ],
-      "river": null,
+      "river": [
+        34,
+        43
+      ],
+      "riverMeasured": false,
       "modules": [
         {
           "name": "オール",
@@ -924,7 +964,11 @@
         36,
         87
       ],
-      "river": null,
+      "river": [
+        15,
+        38
+      ],
+      "riverMeasured": false,
       "modules": [
         {
           "name": "マスト",
@@ -972,7 +1016,11 @@
         51,
         72
       ],
-      "river": null,
+      "river": [
+        30,
+        38
+      ],
+      "riverMeasured": false,
       "modules": [
         {
           "name": "オール",
@@ -1040,6 +1088,7 @@
         38,
         48
       ],
+      "riverMeasured": true,
       "modules": [
         {
           "name": "オール",
@@ -1091,6 +1140,7 @@
         38,
         48
       ],
+      "riverMeasured": true,
       "modules": [
         {
           "name": "オール",
@@ -1150,6 +1200,7 @@
         34,
         43
       ],
+      "riverMeasured": true,
       "modules": [
         {
           "name": "オール",
@@ -1201,6 +1252,7 @@
         34,
         43
       ],
+      "riverMeasured": true,
       "modules": [
         {
           "name": "オール",
@@ -1268,6 +1320,7 @@
         30,
         38
       ],
+      "riverMeasured": true,
       "modules": [
         {
           "name": "オール",
@@ -1319,6 +1372,7 @@
         30,
         38
       ],
+      "riverMeasured": true,
       "modules": [
         {
           "name": "オール",

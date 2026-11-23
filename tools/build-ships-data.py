@@ -296,6 +296,23 @@ MEASURED_SEA = {
 }
 
 
+# 川の速度の式（実機のアイギュプト12値と、ナイルの川船の値で確かめた）:
+#   表示 = 切り捨て(基本速度 x SPEED_UNIT x 川の流れの係数)。最小は逆らうとき、最大は沿うとき。
+#   オールは、逆らうときの悪影響（係数 1 との差）を42%減らす（効果 31681）。マスト・船体装甲は川の係数に関係しない（船体装甲を付けた川の速度は未確認）
+SPEED_UNIT = 13.5
+ROWS_BUFF = 31681
+
+
+def river_speed(hv, rows):
+    base = num(hv.get("/Movement/BaseSpeed")) * SPEED_UNIT
+    against = num(hv.get("/Movement/RiverCurrent/SpeedFactorAgainstRiverCurrent_MovingStraight"))
+    along = num(hv.get("/Movement/RiverCurrent/SpeedFactorAlongRiverCurrent_MovingStraight"))
+    if rows:
+        cut = buff_value(ROWS_BUFF, "/MovementUpgrade/BuffReduceNegativeRiverCurrentImpactUpgrade/Value") / 100
+        against += (1 - against) * cut
+    return [int(base * against), int(base * along)]
+
+
 def sum_items(parts):
     total = {}
     for pairs in parts:
@@ -334,11 +351,19 @@ for region, yard, mod_ids, mkey in REGIONS_SEA:
         slots = int(num(hv.get("/ItemContainer/SlotCount"))) - sum(counts.values())
         meas = MEASURED_SEA.get(mkey, {}).get(label) if mkey else None
         sail = river = None
+        river_measured = False
         if meas:
             expect_cost = {p: clean(a) for p, a in cost} if mkey in ("lat", "alb") else {p: half_up(a * 0.5) for p, a in cost}
             if meas["slots"] != slots or meas["min"] != minutes(minutes_total) or expect_cost != meas["cost"]:
                 sys.exit(f"実機と合いません: {region} {label} 計算 {slots} {minutes(minutes_total)} {expect_cost} 実機 {meas}")
             sail, river = meas["sail"], meas.get("river")
+            calc_river = river_speed(hv, counts.get("Rows", 0) > 0)
+            if river:
+                river_measured = True
+                if calc_river != river:
+                    sys.exit(f"川の速度の式が実機と合いません: {region} {label} 計算 {calc_river} 実機 {river}")
+            elif "AdditionalHull" not in counts:
+                river = calc_river  # この地域の造船所の画面には出ないので、式からの値
         upkeep = upkeep_list(sum_items(parts_upkeep), named=True)
         # 維持費のデナリウスは、難易度の倍率（assets.xml の DifficultySettings。ノーマル100%・ハード122%・ベテラン140%）が掛かる。
         # 実機（ハード相当の122%）の値は、切り捨て(基本値 x 1.22)と一致する。労働力は難易度の影響を受けない
@@ -355,6 +380,7 @@ for region, yard, mod_ids, mkey in REGIONS_SEA:
             "slots": slots,
             "sail": sail,
             "river": river,
+            "riverMeasured": river_measured,
             "modules": mods,
             "buildMinutes": minutes(minutes_total),
             "cost": cost_list(cost),

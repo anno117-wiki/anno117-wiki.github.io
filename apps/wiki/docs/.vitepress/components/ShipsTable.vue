@@ -18,6 +18,7 @@
       </label>
     </div>
     <p v-if="!hasMeasured" class="sh-lead">この地域の造船所は、実機の確認がまだです。ゲームのデータからの値で、航行速度は未確認です。</p>
+    <p v-if="hasRiver && !riverMeasured" class="sh-lead">この地域の造船所の画面には、川の速度が出ません。表の川の速度は、アイギュプトの実機の値と合う式（基本速度 x 約13.5 x 川の流れの係数）で出した値です。</p>
     <div class="sh-table-wrap">
       <table>
         <thead>
@@ -220,6 +221,7 @@ interface Ship {
   fitted: string[]
 }
 interface SeaConfig {
+  riverMeasured: boolean
   region: string
   river: [number, number] | null
   label: string
@@ -271,6 +273,7 @@ const visibleConfigs = computed(() => configs.filter(c => c.region === selRegion
 // 実機で航行速度を確認した地域か（確認していなければ、その旨を出す）
 const hasMeasured = computed(() => visibleConfigs.value.some(c => c.sail))
 // 川の速度は、アイギュプトの造船所の画面にだけ表示される
+const riverMeasured = computed(() => visibleConfigs.value.every(c => c.riverMeasured))
 const hasRiver = computed(() => visibleConfigs.value.some(c => c.river))
 const riverShips = computed(() => ships.filter(s => s.kind === 'river'))
 
