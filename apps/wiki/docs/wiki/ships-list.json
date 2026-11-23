@@ -1432,6 +1432,17 @@
       "name": "マスト",
       "desc": "マストを増設することで、風を受けて航行する際の最大速度が向上する。長い距離を航行する船に最適。",
       "effect": "追い風のときの速度の上乗せが75%増える（風の係数 1.4 が 1.7 になる）",
+      "combat": null,
+      "maxPerShip": [
+        {
+          "ship": "トライリーメ",
+          "count": 1
+        },
+        {
+          "ship": "クィンクェレメ",
+          "count": 1
+        }
+      ],
       "buildMinutes": 1,
       "cost": [
         {
@@ -1475,6 +1486,21 @@
       "name": "オール",
       "desc": "扱うには専門の漕ぎ手が必要になるが、船の操縦性が高まり風への依存が減る。",
       "effect": "向かい風の悪影響を100%なくす（風の係数 0.7 が 1.0 になる）。川の流れに逆らうときの悪影響も42%減る",
+      "combat": null,
+      "maxPerShip": [
+        {
+          "ship": "ペンテコンター",
+          "count": 1
+        },
+        {
+          "ship": "トライリーメ",
+          "count": 1
+        },
+        {
+          "ship": "クィンクェレメ",
+          "count": 1
+        }
+      ],
       "buildMinutes": 1,
       "cost": [
         {
@@ -1510,6 +1536,21 @@
       "name": "船体装甲",
       "desc": "船体外部に取りつける装甲。船の耐久力を高める。",
       "effect": "ヒットポイントが35%増える。航行速度は、風の係数から0.05を引いた分になる（約5%遅くなる）",
+      "combat": null,
+      "maxPerShip": [
+        {
+          "ship": "ペンテコンター",
+          "count": 1
+        },
+        {
+          "ship": "トライリーメ",
+          "count": 1
+        },
+        {
+          "ship": "クィンクェレメ",
+          "count": 1
+        }
+      ],
       "buildMinutes": 1,
       "cost": [
         {
@@ -1541,6 +1582,59 @@
       "name": "船上弓兵",
       "desc": "射程は短いものの攻撃速度が早い。船同士の戦闘で非常に強力。",
       "effect": null,
+      "combat": {
+        "angle": 360,
+        "shot": {
+          "range": 35,
+          "cooldown": 4,
+          "perMinute": 15,
+          "damage": 1,
+          "crit": [
+            25,
+            10
+          ],
+          "targets": [
+            "歩兵",
+            "騎兵",
+            "砲兵"
+          ],
+          "attack": 7,
+          "accuracy": 70,
+          "pierce": [
+            "基本防御を無視"
+          ]
+        },
+        "torch": {
+          "range": 35,
+          "cooldown": 4,
+          "perMinute": 15,
+          "damage": 2,
+          "crit": [
+            30,
+            5
+          ],
+          "targets": [
+            "船",
+            "柵",
+            "防衛施設",
+            "軍事施設"
+          ]
+        }
+      },
+      "maxPerShip": [
+        {
+          "ship": "ペンテコンター",
+          "count": 1
+        },
+        {
+          "ship": "トライリーメ",
+          "count": 2
+        },
+        {
+          "ship": "クィンクェレメ",
+          "count": 2
+        }
+      ],
       "buildMinutes": 1,
       "cost": [
         {
@@ -1580,6 +1674,51 @@
       "name": "船上バリスタ",
       "desc": "中距離戦闘で無類の強さを誇り、海上戦と対陸戦のどちらでも活躍できる万能な兵器。",
       "effect": null,
+      "combat": {
+        "angle": 100,
+        "shot": {
+          "range": 40,
+          "cooldown": 12,
+          "perMinute": 5,
+          "damage": 30,
+          "crit": [
+            10,
+            70
+          ],
+          "targets": [
+            "歩兵",
+            "騎兵",
+            "砲兵",
+            "船",
+            "補強した壁",
+            "柵",
+            "防衛施設",
+            "軍事施設",
+            "民間の建物"
+          ],
+          "attack": 20,
+          "accuracy": 70,
+          "pierce": [
+            "装甲・盾の防御を半減",
+            "基本防御を無視"
+          ]
+        },
+        "torch": null
+      },
+      "maxPerShip": [
+        {
+          "ship": "ペンテコンター",
+          "count": 2
+        },
+        {
+          "ship": "トライリーメ",
+          "count": 3
+        },
+        {
+          "ship": "クィンクェレメ",
+          "count": 4
+        }
+      ],
       "buildMinutes": 1,
       "cost": [
         {
@@ -1623,6 +1762,51 @@
       "name": "船上カタパルト",
       "desc": "射程は長いが攻撃速度は遅い。動かない標的に対してはこれ以上ない破壊力を誇る。",
       "effect": null,
+      "combat": {
+        "angle": 40,
+        "shot": {
+          "range": 50,
+          "cooldown": 18,
+          "perMinute": 3.3,
+          "damage": 2,
+          "crit": [
+            25,
+            10
+          ],
+          "targets": [
+            "歩兵",
+            "騎兵",
+            "砲兵",
+            "船",
+            "補強した壁",
+            "柵",
+            "防衛施設",
+            "軍事施設",
+            "民間の建物"
+          ],
+          "attack": 200,
+          "accuracy": 50,
+          "pierce": [
+            "装甲・盾の防御を半減",
+            "基本防御を無視"
+          ]
+        },
+        "torch": null
+      },
+      "maxPerShip": [
+        {
+          "ship": "ペンテコンター",
+          "count": 1
+        },
+        {
+          "ship": "トライリーメ",
+          "count": 2
+        },
+        {
+          "ship": "クィンクェレメ",
+          "count": 2
+        }
+      ],
       "buildMinutes": 1,
       "cost": [
         {
@@ -1666,6 +1850,46 @@
       "name": "クマトの弓兵",
       "desc": "射程は短いものの攻撃速度が早い。船同士の戦闘で非常に強力。",
       "effect": null,
+      "combat": {
+        "angle": 360,
+        "shot": {
+          "range": 45,
+          "cooldown": 4,
+          "perMinute": 15,
+          "damage": 1,
+          "crit": [
+            25,
+            10
+          ],
+          "targets": [
+            "歩兵",
+            "騎兵",
+            "砲兵"
+          ],
+          "attack": 8,
+          "accuracy": 80,
+          "pierce": [
+            "基本防御を無視"
+          ]
+        },
+        "torch": {
+          "range": 45,
+          "cooldown": 4,
+          "perMinute": 15,
+          "damage": 2,
+          "crit": [
+            30,
+            5
+          ],
+          "targets": [
+            "船",
+            "柵",
+            "防衛施設",
+            "軍事施設"
+          ]
+        }
+      },
+      "maxPerShip": [],
       "buildMinutes": null,
       "cost": [
         {

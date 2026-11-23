@@ -135,7 +135,7 @@
         </thead>
         <tbody>
           <tr v-for="m in modules" :key="m.id">
-            <td><strong>{{ m.name }}</strong><template v-if="m.regions"><br /><span class="sh-sub">{{ m.regions.join('・') }}専用</span></template><br /><span class="sh-sub">{{ m.desc }}</span><template v-if="m.effect"><br /><span class="sh-sub">効果: {{ m.effect }}</span></template></td>
+            <td><strong>{{ m.name }}</strong><template v-if="m.regions"><br /><span class="sh-sub">{{ m.regions.join('・') }}専用</span></template><br /><span class="sh-sub">{{ m.desc }}</span><template v-if="m.effect"><br /><span class="sh-sub">効果: {{ m.effect }}</span></template><template v-for="line in detailLines(m)" :key="line"><br /><span class="sh-sub">{{ line }}</span></template></td>
             <td class="sh-cost"><BuildingCostList :costs="m.cost" /></td>
             <td class="sh-nowrap">{{ m.buildMinutes ? `${m.buildMinutes}分` : '—' }}</td>
             <td class="sh-cost"><BuildingCostList :costs="upkeepOf(m.upkeep)" /></td>
@@ -152,6 +152,7 @@
           <span v-if="m.regions" class="sh-sub">{{ m.regions.join('・') }}専用</span>
           <span class="sh-sub">{{ m.desc }}</span>
           <span v-if="m.effect" class="sh-sub">効果: {{ m.effect }}</span>
+          <span v-for="line in detailLines(m)" :key="line" class="sh-sub">{{ line }}</span>
         </div>
         <dl class="sh-card-body">
           <div class="sh-wide"><dt>建設費</dt><dd><BuildingCostList :costs="m.cost" /></dd></div>
@@ -235,7 +236,20 @@ interface SeaConfig {
   cost: Cost[]
   upkeep: Cost[]
 }
+interface Shot {
+  range: number
+  cooldown: number
+  perMinute: number
+  damage: number
+  crit: [number, number]
+  targets: string[]
+  attack?: number
+  accuracy?: number
+  pierce?: string[]
+}
 interface ShipModule {
+  combat: { angle: number; shot: Shot | null; torch: Shot | null } | null
+  maxPerShip: { ship: string; count: number }[]
   id: string
   name: string
   desc: string
@@ -286,6 +300,24 @@ function loadText(s: Ship): string {
 }
 
 // 航行速度・川の速度は、実機の表示（最小 - 最大）。確認していない船は「未確認です」
+// モジュールの戦闘値と最大搭載数の説明（ゲームのデータの値。実機の画面では未確認）
+function detailLines(m: ShipModule): string[] {
+  const lines: string[] = []
+  if (m.maxPerShip.length) lines.push(`最大搭載数: ${m.maxPerShip.map(x => `${x.ship}${x.count}`).join('・')}`)
+  const c = m.combat
+  if (c?.shot) {
+    const s = c.shot
+    lines.push(`攻撃${s.attack}・精度${s.accuracy}・射程${s.range}・毎分${s.perMinute}発（${s.cooldown}秒おき）・攻撃範囲${c.angle}度`)
+    lines.push(`基本ダメージ${s.damage}（会心${s.crit[0]}%で+${s.crit[1]}）${s.pierce?.length ? '・' + s.pierce.join('・') : ''}`)
+    lines.push(`攻撃できる相手: ${s.targets.join('・')}`)
+  }
+  if (c?.torch) {
+    const t = c.torch
+    lines.push(`松明（火矢）: 基本ダメージ${t.damage}（会心${t.crit[0]}%で+${t.crit[1]}）・射程${t.range}・攻撃できる相手: ${t.targets.join('・')}`)
+  }
+  return lines
+}
+
 function speedRange(range: [number, number] | null): string {
   return range ? `${range[0]} - ${range[1]}` : '未確認です'
 }

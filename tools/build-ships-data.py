@@ -230,6 +230,69 @@ def module_effect(key, v):
     return f"ヒットポイントが{hp}%増える。航行速度は、風の係数から{abs(sp) / 100}を引いた分になる（約{abs(sp)}%遅くなる）"
 
 
+# --- モジュールの戦闘値（ユニットの資産 ShipModuleElement から。実機の画面では未確認） ---
+# 防御側の種別は、データ上の分類名。ゲーム内の表記が分からないので、こちらで日本語にした
+DEFENDER_JA = {
+    "InfantryTroop": "歩兵", "CavalryTroop": "騎兵", "ArtilleryTroop": "砲兵", "Ship": "船",
+    "ReinforcedWall": "補強した壁", "Palisade": "柵", "DefenseBuilding": "防衛施設",
+    "MilitaryBuilding": "軍事施設", "CivilianBuilding": "民間の建物",
+}
+PIERCE_HALF, PIERCE_IGNORE = "DefenseHalfed", "DefenseIgnored"
+
+
+def attack_text(unit, mode):
+    """ユニットの攻撃（Range=通常、Torch=松明）の値。無ければ None"""
+    base = f"/BaseElement/AttackBehaviors/{mode}/AttackBehavior/"
+    if unit.get(base + "Template") == "AttackBehaviorNone" or not unit.get(base + "Values/AttackBehavior/AttackType"):
+        return None
+    beh = base + "Values/AttackBehavior/"
+    at = R.get(int(unit[beh + "AttackType"]))["v"]
+    cooldown = num(unit.get(beh + "AttackCooldown")) / 1000
+    rec = {
+        "range": clean(num(unit.get(beh + "RangeAttack_BtB"))),
+        "cooldown": clean(cooldown),
+        "perMinute": clean(round(60 / cooldown, 1)),
+        "damage": clean(num(at.get("/AttackType/BaseDamage"))),
+        "crit": [clean(num(at.get("/AttackType/CriticalChance100"))), clean(num(at.get("/AttackType/CriticalDamage")))],
+        "targets": [DEFENDER_JA.get(t, t) for t in (unit.get(beh + "DefenderTypes") or "").split(";") if t],
+    }
+    if mode == "Range":
+        rv = base + "Values/AttackBehaviorRanged/"
+        rec["attack"] = clean(num(unit.get(rv + "OffenseValue")))
+        rec["accuracy"] = clean(num(unit.get(rv + "Accuracy")))
+        mod = R.get(int(unit[beh + "AttackModifier"]))["v"] if unit.get(beh + "AttackModifier") else {}
+        pierce = []
+        if mod.get("/AttackModifier/ArmorPiercingType") == PIERCE_HALF:
+            pierce.append("装甲・盾の防御を半減")
+        if mod.get("/AttackModifier/BaseDefensePiercingType") == PIERCE_IGNORE:
+            pierce.append("基本防御を無視")
+        rec["pierce"] = pierce
+    return rec
+
+
+def combat_of(unit_guid):
+    u = R.get(unit_guid)["v"]
+    return {
+        "angle": clean(num(u.get("/LinkedElement/AttackCone"))),
+        "shot": attack_text(u, "Range"),
+        "torch": attack_text(u, "Torch"),
+    }
+
+
+COMBAT_UNIT = {"archers": 32847, "scorpion": 31683, "catapult": 37463}
+# モジュールの種類ごとの、船体ごとの最大搭載数（ラティウムの船体。他の地域の船体も同じ並び）
+MODULE_TYPE = {"mast": "Mast", "rows": "Rows", "hull": "AdditionalHull", "archers": "Archers", "scorpion": "Scorpion", "catapult": "Catapult"}
+
+
+def max_per_ship(key):
+    out = []
+    for _, lat, _, _, _ in SEA:
+        n = R.get(lat)["v"].get(f"/ShipModuleOwner/ShipModulesConfig/{MODULE_TYPE[key]}/MaximumModuleCount")
+        if n:
+            out.append({"ship": name_of(lat), "count": int(num(n))})
+    return out
+
+
 modules = []
 for key, lat, alb, aeg, unlock in MODULES:
     v = R.get(lat)["v"]
@@ -239,6 +302,8 @@ for key, lat, alb, aeg, unlock in MODULES:
         "name": name,
         "desc": ja(v.get("/Standard/InfoDescription")),
         "effect": module_effect(key, v),
+        "combat": combat_of(COMBAT_UNIT[key]) if key in COMBAT_UNIT else None,
+        "maxPerShip": max_per_ship(key),
         "buildMinutes": minutes(v.get("/Craftable/CraftingTime")),
         "cost": cost_list(items(v, "/Cost/Costs", "Ingredient")),
         "upkeep": upkeep_list(items(v, "/Maintenance/Maintenances", "Product")),
@@ -394,6 +459,8 @@ modules.append({
     "name": name_of(166548),
     "desc": ja(kv.get("/Standard/InfoDescription")),
     "effect": None,
+    "combat": combat_of(166645),
+    "maxPerShip": [],
     "buildMinutes": None,
     "cost": cost_list(items(kv, "/Cost/Costs", "Ingredient")),
     "upkeep": [],
