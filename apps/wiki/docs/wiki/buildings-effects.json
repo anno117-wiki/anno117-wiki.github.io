@@ -851,7 +851,8 @@
       "prestige": 0,
       "health": -2,
       "happiness": 0,
-      "fireSafety": 0
+      "fireSafety": 0,
+      "icon": "limestone_goods"
     },
     {
       "id": "marble_quarry",
@@ -866,7 +867,8 @@
       "prestige": 0,
       "health": -2,
       "happiness": 0,
-      "fireSafety": 0
+      "fireSafety": 0,
+      "icon": "marble_goods"
     },
     {
       "id": "custodia",
@@ -2792,7 +2794,8 @@
       "prestige": 0,
       "health": 0,
       "happiness": 0,
-      "fireSafety": -2
+      "fireSafety": -2,
+      "icon": "roast_goods"
     },
     {
       "id": "albion_dairy",
@@ -3063,7 +3066,8 @@
       "prestige": 0,
       "health": -2,
       "happiness": 0,
-      "fireSafety": 0
+      "fireSafety": 0,
+      "icon": "granite_goods"
     },
     {
       "id": "albion_council",
