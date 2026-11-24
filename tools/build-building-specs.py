@@ -12,6 +12,9 @@ import json
 import sys
 from pathlib import Path
 
+sys.path.insert(0, str(Path(__file__).resolve().parent))
+from assets_resolver import Resolver  # 建物のアイコン名を、PC版(Steam)の assets.xml から引く
+
 ROOT = Path(__file__).resolve().parent.parent
 SRC = ROOT / "_local" / "anno-official-data" / "v3.0.1-planner"
 MASTER_CSV = ROOT / "_local" / "anno-official-data" / "official_master.csv"
@@ -149,13 +152,22 @@ def radius_text(b):
     raise ValueError(f"未知の範囲の種類: {r['type']} (guid {b['guid']})")
 
 
-def build_row(b, names):
+def icon_key(resolver, guid):
+    """建物のアイコン名(icon_3d_ と拡張子を除いた部分)。アイコンが引けないときは空文字"""
+    asset = resolver.get(guid)
+    path = asset["v"].get("/Standard/IconFilename") if asset else ""
+    name = Path(path).stem if path else ""
+    return name.removeprefix("icon_3d_")
+
+
+def build_row(b, names, resolver):
     category = b.get("category")
     regions = [r for r in REGION_ORDER if r in REGION_OVERRIDE.get(b["guid"], b.get("regions") or [])]
     return {
         "guid": str(b["guid"]),
         "name": ja(b.get("loca")),
         "nameEn": (b.get("loca") or {}).get("english", ""),
+        "icon": icon_key(resolver, b["guid"]),
         "category": ja(category),
         "regions": [REGION_JA[r] for r in regions],
         "width": b["width"],
@@ -171,7 +183,7 @@ def merge_same_rows(rows):
     """地域以外の内容が全て同じ行を1つにまとめ、地域を並べる(ラティウム・アルビオン等)"""
     merged = {}
     for row in rows:
-        key = json.dumps({k: v for k, v in row.items() if k not in ("guid", "regions", "nameEn")}, ensure_ascii=False, sort_keys=True)
+        key = json.dumps({k: v for k, v in row.items() if k not in ("guid", "regions", "nameEn", "icon")}, ensure_ascii=False, sort_keys=True)
         if key in merged:
             first = merged[key]
             first["regions"] = [r for r in REGION_JA.values() if r in first["regions"] or r in row["regions"]]
@@ -183,12 +195,13 @@ def merge_same_rows(rows):
 def main():
     buildings = load("buildings.json")
     names = product_names(load("products.json"), load("population.json"))
+    resolver = Resolver()
     rows = []  # 名前・分類・地域のどれかが無いもの(スタンプ等、建物でないもの)は載せない
     for b in buildings.values():
         category = (b.get("category") or {}).get("english")
         if category in EXCLUDED_CATEGORIES or b["guid"] in EXCLUDED_GUIDS:
             continue
-        row = build_row(b, names)
+        row = build_row(b, names, resolver)
         if not row["name"] or not row["category"] or not row["regions"]:
             continue
         rows.append(row)

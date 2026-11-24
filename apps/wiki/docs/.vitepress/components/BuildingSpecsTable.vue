@@ -43,7 +43,12 @@
         </thead>
         <tbody>
           <tr v-for="b in filtered" :key="b.guid">
-            <td><strong>{{ b.name }}</strong><br /><span class="bs-sub">{{ b.category }}</span></td>
+            <td>
+              <div class="bs-name">
+                <img v-if="b.icon" :src="iconSrc(b)" alt="" width="28" height="28" loading="lazy" class="bs-icon" />
+                <div><strong>{{ b.name }}</strong><br /><span class="bs-sub">{{ b.category }}</span></div>
+              </div>
+            </td>
             <td class="bs-nowrap"><span v-for="r in regionList(b)" :key="r" class="bs-region">{{ r }}</span></td>
             <td class="bs-nowrap">{{ sizeText(b) }}</td>
             <td class="bs-nowrap">{{ b.radius || '—' }}</td>
@@ -58,8 +63,11 @@
     <div class="bs-cards">
       <div v-for="b in filtered" :key="b.guid" class="bs-card">
         <div class="bs-card-header">
-          <strong>{{ b.name }}</strong>
-          <span class="bs-sub">{{ b.category }}・{{ regionText(b) }}</span>
+          <img v-if="b.icon" :src="iconSrc(b)" alt="" width="28" height="28" loading="lazy" class="bs-icon" />
+          <div class="bs-card-title">
+            <strong>{{ b.name }}</strong>
+            <span class="bs-sub">{{ b.category }}・{{ regionText(b) }}</span>
+          </div>
         </div>
         <dl class="bs-card-body">
           <div><dt>サイズ</dt><dd>{{ sizeText(b) }}</dd></div>
@@ -75,6 +83,7 @@
 
 <script setup lang="ts">
 import { ref, computed } from 'vue'
+import { withBase } from 'vitepress'
 import specs from '../../wiki/building-specs-list.json'
 import BuildingCostList from './BuildingCostList.vue'
 
@@ -82,6 +91,7 @@ interface Cost { name: string; amount: number }
 interface Building {
   guid: string
   name: string
+  icon: string
   category: string
   regions: string[]
   width: number
@@ -120,6 +130,10 @@ function resetFilters(): void {
   selPlacement.value = ''
 }
 
+// 建物のアイコン(表示用の小さい WebP)。生産施設は、ゲームでも生産品のアイコンを使っている
+function iconSrc(b: Building): string {
+  return withBase(`/icons/buildings-thumb/icon_3d_${b.icon}.webp`)
+}
 function sizeText(b: Building): string {
   return `${b.width}×${b.height}`
 }
@@ -189,6 +203,17 @@ function placementText(b: Building): string {
   font-size: 12px;
   color: var(--vp-c-text-2);
 }
+.bs-name {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+}
+.bs-icon {
+  flex: none;
+  width: 28px;
+  height: 28px;
+  object-fit: contain;
+}
 .bs-nowrap {
   white-space: nowrap;
 }
@@ -230,10 +255,15 @@ function placementText(b: Building): string {
   }
   .bs-card-header {
     display: flex;
-    flex-direction: column;
-    gap: 2px;
+    align-items: center;
+    gap: 8px;
     padding: 8px 12px;
     background: var(--vp-c-bg-soft);
+  }
+  .bs-card-title {
+    display: flex;
+    flex-direction: column;
+    gap: 2px;
   }
   .bs-card-body {
     margin: 0;
