@@ -5,6 +5,8 @@ import itemTargetBuildingsJson from './item-target-buildings.json'
 import aegyptusJson from './buildings-aegyptus.json'
 // DLC03のスキルが建物に付ける追加効果。tools/build-skill-bonuses-dlc03.py で生成
 import dlc03SkillsJson from './skill-bonuses-dlc03.json'
+// 建物データのページの一覧。並び順(分類・名前・アップグレード順)をそろえるために使う。tools/build-building-specs.py で生成
+import specsJson from './building-specs-list.json'
 
 interface BuildingEffect {
   id: string
@@ -139,6 +141,26 @@ export default {
     // 効果の補正値（スキルの追加効果を含む）も関連アイテムも無い建物は載せない
     const hasValue = (b: BuildingEffect) =>
       b.itemCount > 0 || (b.skillBonuses?.length ?? 0) > 0 || EFFECT_KEYS.some((k) => k !== 'maintenance' && b[k] !== 0)
-    return { buildings: all.filter(hasValue) }
+    // 並び順は建物データのページにそろえる（分類・名前の順。住居・倉庫・穀物庫はアップグレード順）。
+    // 建物データに無い建物は最後に、元の順で並べる
+    const specIndexes = new Map<string, { index: number; regions: string[] }[]>()
+    specsJson.buildings.forEach((spec, index) => {
+      const list = specIndexes.get(spec.name) ?? []
+      list.push({ index, regions: spec.regions })
+      specIndexes.set(spec.name, list)
+    })
+    const regionOf = (b: { id: string; nameJa: string | null }) => {
+      if (aegyptus.includes(b as (typeof aegyptus)[number])) return 'アイギュプト'
+      return b.id.startsWith('albion_') ? 'アルビオン' : 'ラティウム'
+    }
+    const specOrder = (b: { id: string; nameJa: string | null }) => {
+      const name = (b.nameJa ?? '').replace(/（(アルビオン|アイギュプト)）$/, '')
+      const list = specIndexes.get(name)
+      if (!list) return Number.MAX_SAFE_INTEGER
+      return (list.find((e) => e.regions.includes(regionOf(b))) ?? list[0]).index
+    }
+    const rows = all.filter(hasValue).map((b, i) => ({ b, i, order: specOrder(b) }))
+    rows.sort((x, y) => x.order - y.order || x.i - y.i)
+    return { buildings: rows.map((r) => r.b) }
   },
 }
