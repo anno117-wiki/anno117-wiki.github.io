@@ -208,6 +208,9 @@ function placementText(b: Building): string {
   align-items: center;
   gap: 8px;
 }
+.bs-name > div {
+  min-width: 9em;
+}
 .bs-icon {
   flex: none;
   width: 28px;
