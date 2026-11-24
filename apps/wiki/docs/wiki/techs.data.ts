@@ -1,4 +1,5 @@
 import techsJson from './techs.json'
+import techIcons from './tech-icons.json'
 
 function parseBranch(internalName: string, annoNodeId?: string): string {
   if (annoNodeId) {
@@ -61,6 +62,10 @@ export interface TechEntry {
   annoR?: number
   annoNodeId: string
   connections: string[]
+  /** アイコンのファイル名（/icons/tech/<名前>.webp）。tools/build-tech-icons.py が作る */
+  iconName: string
+  /** ほぼ白いアイコン（淡い背景では暗い下地が要る） */
+  iconWhite: boolean
 }
 
 const BRANCH_ORDER = ['economy', 'civic', 'military', 'dlc01', 'dlc02', 'dlc03', 'other']
@@ -92,6 +97,8 @@ export default {
       gridY: t.gridY ?? 0,
       annoNodeId: t.annoNodeId ?? '',
       connections: t.connections ?? [],
+      iconName: (techIcons.icons as Record<string, string>)[t.guid] ?? '',
+      iconWhite: techIcons.whiteIcons.includes((techIcons.icons as Record<string, string>)[t.guid]),
       ...(t.annoS !== undefined ? { annoS: t.annoS } : {}),
       ...(t.annoR !== undefined ? { annoR: t.annoR } : {}),
       ...(t.repeatable ? { isRepeatable: true } : {}),

@@ -20,6 +20,7 @@
 
 <script setup lang="ts">
 import { computed } from 'vue'
+import { CELL_W, CELL_R, BOX_W, BOX_H } from './techGrid'
 
 interface TechEntry {
   guid: string
@@ -36,17 +37,14 @@ const props = defineProps<{
   color: string
 }>()
 
-const CELL_W = 120
-const CELL_R = 60
-
-const svgW = computed(() => (props.meta.maxX - props.meta.minX) * CELL_W + 96)
-const svgH = computed(() => (props.meta.maxR! - props.meta.minR!) * CELL_R + 40)
+const svgW = computed(() => (props.meta.maxX - props.meta.minX) * CELL_W + BOX_W)
+const svgH = computed(() => (props.meta.maxR! - props.meta.minR!) * CELL_R + BOX_H)
 
 function cx(t: TechEntry) {
-  return (t.gridX - props.meta.minX) * CELL_W + 48
+  return (t.gridX - props.meta.minX) * CELL_W + BOX_W / 2
 }
 function cy(t: TechEntry) {
-  return (t.annoR! - props.meta.minR!) * CELL_R + 20
+  return (t.annoR! - props.meta.minR!) * CELL_R + BOX_H / 2
 }
 
 const segments = computed(() => {

@@ -56,7 +56,10 @@
           <path v-for="(l, i) in WR.leaves" :key="'l' + i" :d="l.d" :transform="l.tf" class="rep-leaf" />
           <circle :cx="WR.cx" :cy="WR.bowY" r="3" class="rep-leaf" />
         </svg>
-        <span v-if="tech.isGate && tech.knowledgeCost" class="gate-cost">{{ formatKnowledge(tech.knowledgeCost) }}</span>
+        <span v-if="tech.iconName || (tech.isGate && tech.knowledgeCost)" class="tech-head">
+          <img v-if="tech.iconName" :class="['tech-icon', { 'is-white': tech.iconWhite }]" :src="withBase(`/icons/tech/${tech.iconName}.webp`)" alt="" width="34" height="34" loading="lazy" />
+          <span v-if="tech.isGate && tech.knowledgeCost" class="gate-cost">{{ formatKnowledge(tech.knowledgeCost) }}</span>
+        </span>
         <span class="tech-label">{{ tech.label }}</span>
       </div>
     </div>
@@ -78,7 +81,9 @@
 <script setup lang="ts">
 import { ref, onMounted, onUnmounted } from 'vue'
 import SkillEffectList from './SkillEffectList.vue'
+import { withBase } from 'vitepress'
 import { stripTags, formatKnowledge } from './techFormat'
+import { CELL_W, CELL_R, BOX_W, BOX_H } from './techGrid'
 
 interface TechEntry {
   guid: string
@@ -113,9 +118,9 @@ const tooltipStyle = ref('')
 const selected = ref<any>(null)
 const zoom = ref(0.6)
 
-// 繰り返し研究できるスキルの飾り枠(月桂冠風)。マス(96x40)の周りに、葉の付いた枝を左右に1本ずつ描く
+// 繰り返し研究できるスキルの飾り枠(月桂冠風)。マス(96x62)の周りに、葉の付いた枝を左右に1本ずつ描く
 const WR = (() => {
-  const rx = 60, ry = 30, pad = 14
+  const rx = 60, ry = 30 + (BOX_H - 40) / 2, pad = 14
   const W = 2 * (rx + pad), H = 2 * (ry + pad), cx = W / 2, cy = H / 2
   const n = 6, phiMax = Math.PI * 0.78, len = 8, wd = 2.6
   const stems: string[] = []
@@ -143,22 +148,19 @@ const WR = (() => {
   return { W, H, cx, bowY: cy + ry + 1, stems, leaves }
 })()
 
-const CELL_W = 120
-const CELL_R = 60
-
 function gridStyle(tech: TechEntry) {
   const m = props.meta
   if (!m) return ''
   const x = (tech.gridX - m.minX) * CELL_W
   const y = (tech.annoR! - m.minR!) * CELL_R
-  return `position:absolute;left:${x}px;top:${y}px;width:96px;height:40px;`
+  return `position:absolute;left:${x}px;top:${y}px;width:${BOX_W}px;height:${BOX_H}px;`
 }
 
 function gridVars() {
   const m = props.meta
   if (!m) return ''
-  const w = (m.maxX - m.minX) * CELL_W + 96
-  const h = (m.maxR! - m.minR!) * CELL_R + 40
+  const w = (m.maxX - m.minX) * CELL_W + BOX_W
+  const h = (m.maxR! - m.minR!) * CELL_R + BOX_H
   return `width:${w}px;height:${h}px;`
 }
 
@@ -308,8 +310,8 @@ onUnmounted(() => {
 .tech-cell {
   border: 1px solid transparent;
   border-radius: 6px;
-  padding: 2px 4px;
-  font-size: 0.65rem;
+  padding: 3px 4px 2px;
+  font-size: 0.6rem;
   display: flex;
   flex-direction: column;
   align-items: center;
@@ -323,6 +325,12 @@ onUnmounted(() => {
 }
 .tech-cell:hover { transform: scale(1.06); box-shadow: 0 2px 8px rgba(0,0,0,0.2); z-index: 2; position: relative; }
 .is-selected { outline: 2px solid #fff; outline-offset: 1px; box-shadow: 0 0 0 3px rgba(0,0,0,0.3); z-index: 3; position: relative; }
+.tech-head { display: flex; align-items: center; justify-content: center; gap: 4px; }
+.tech-icon { width: 34px; height: 34px; flex: none; }
+/* ゲートは枠が太く、文字が2行になることもあるので、アイコンを小さくしてコストと横に並べる */
+.tech-cell.is-gate .tech-icon { width: 26px; height: 26px; }
+/* ほぼ白いアイコンは、淡い背景で消えるので暗い丸の下地を敷く */
+.tech-icon.is-white { background: rgba(30, 30, 50, 0.6); border-radius: 50%; padding: 3px; box-sizing: border-box; }
 .gate-cost { font-size: 0.6rem; font-weight: 700; margin-bottom: 0; }
 .tech-label { line-height: 1.2; }
 
