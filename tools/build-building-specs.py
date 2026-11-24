@@ -43,6 +43,15 @@ EXCLUDED_GUIDS = {
     36908, 36911, 36912,  # 円形闘技場(闘技場の名前の段階): 基礎・外壁・闘技場
     153790, 153791, 153792, 153793,  # 競馬場: 基礎・追跡する・ファサードとアーチ・観客席とロッジ
 }
+# 名前順ではなく、アップグレード(段階)の順に並べる建物の組。各組の先頭の建物の分類・名前の位置に、組ごとまとめて並ぶ
+# 住居は住民層の順(Planner の population.json の tier の順)。倉庫は段階ごとに地域を ラティウム→アルビオン→アイギュプト の順
+UPGRADE_ORDER = [
+    [3087, 3141, 3142, 3145],  # ラティウムの住居: リベルトゥス・プレブス・エクィテス・パトリキ
+    [6414, 6471, 6472, 6475, 6514],  # アルビオンの住居: ウェーダー・スミス・アルダー・メルカトル・ノビレス
+    [149684, 150584, 150585, 150586, 150587],  # アイギュプトの住居: 麦打ち人・陶工・奉唱巫女・書記・ギムナシアリコス
+    [3310, 149842, 3311, 149848, 3312, 7057, 149849, 3313],  # 倉庫・改良型倉庫・倉庫(特大/大)・倉庫(超特大)
+    [152969, 153059, 153060],  # アイギュプトの穀物庫: 穀物庫・大型穀物庫・広大な穀物庫
+]
 REGION_JA = {"Roman": "ラティウム", "Celtic": "アルビオン", "Egyptian": "アイギュプト"}
 REGION_ORDER = ["Roman", "Celtic", "Egyptian"]
 
@@ -192,6 +201,24 @@ def merge_same_rows(rows):
     return list(merged.values())
 
 
+def sort_key_factory(rows):
+    """分類・名前の順。ただし UPGRADE_ORDER の組は、先頭の建物の位置にアップグレード順でまとめる"""
+    by_guid = {r["guid"]: r for r in rows}
+    position = {}
+    for group in UPGRADE_ORDER:
+        members = [by_guid[str(g)] for g in group if str(g) in by_guid]
+        if len(members) != len(group):
+            raise ValueError(f"アップグレード順の建物が一覧にありません: {group}")
+        head = members[0]
+        for i, m in enumerate(members):
+            position[m["guid"]] = (head["category"], head["name"], i)
+
+    def key(r):
+        return position.get(r["guid"]) or (r["category"], r["name"], 0, r["guid"])
+
+    return key
+
+
 def main():
     buildings = load("buildings.json")
     names = product_names(load("products.json"), load("population.json"))
@@ -206,7 +233,7 @@ def main():
             continue
         rows.append(row)
     rows = merge_same_rows(rows)
-    rows.sort(key=lambda r: (r["category"], r["name"], r["guid"]))
+    rows.sort(key=sort_key_factory(rows))
     categories = sorted({r["category"] for r in rows if r["category"]})
     OUT.write_text(
         json.dumps({"categories": categories, "buildings": rows}, ensure_ascii=False, indent=1) + "\n",

@@ -42,9 +42,9 @@
  ],
  "buildings": [
   {
-   "guid": "150585",
-   "name": "奉唱巫女の住居",
-   "nameEn": "Chanter Residence",
+   "guid": "149684",
+   "name": "麦打ち人の住居",
+   "nameEn": "Thresher Residence",
    "icon": "base_residence",
    "category": "アイギュプトの住居",
    "regions": [
@@ -57,10 +57,6 @@
    "construction": [
     {
      "name": "泥レンガ",
-     "amount": 2
-    },
-    {
-     "name": "石灰岩レンガ",
      "amount": 1
     }
    ],
@@ -88,9 +84,9 @@
    "maintenance": []
   },
   {
-   "guid": "149684",
-   "name": "麦打ち人の住居",
-   "nameEn": "Thresher Residence",
+   "guid": "150585",
+   "name": "奉唱巫女の住居",
+   "nameEn": "Chanter Residence",
    "icon": "base_residence",
    "category": "アイギュプトの住居",
    "regions": [
@@ -103,6 +99,56 @@
    "construction": [
     {
      "name": "泥レンガ",
+     "amount": 2
+    },
+    {
+     "name": "石灰岩レンガ",
+     "amount": 1
+    }
+   ],
+   "maintenance": []
+  },
+  {
+   "guid": "150586",
+   "name": "書記の住居",
+   "nameEn": "Scribe Residence",
+   "icon": "base_residence",
+   "category": "ギリシャ・ローマの住居",
+   "regions": [
+    "アイギュプト"
+   ],
+   "width": 3,
+   "height": 3,
+   "radius": "",
+   "placement": [],
+   "construction": [
+    {
+     "name": "泥レンガ",
+     "amount": 2
+    }
+   ],
+   "maintenance": []
+  },
+  {
+   "guid": "150587",
+   "name": "ギムナシアリコスの住居",
+   "nameEn": "Gymnasiarch Residence",
+   "icon": "base_residence",
+   "category": "ギリシャ・ローマの住居",
+   "regions": [
+    "アイギュプト"
+   ],
+   "width": 3,
+   "height": 3,
+   "radius": "",
+   "placement": [],
+   "construction": [
+    {
+     "name": "泥レンガ",
+     "amount": 2
+    },
+    {
+     "name": "瓦",
      "amount": 1
     }
    ],
@@ -550,6 +596,41 @@
    ]
   },
   {
+   "guid": "3310",
+   "name": "倉庫",
+   "nameEn": "Warehouse",
+   "icon": "base_warehouse",
+   "category": "インフラ施設",
+   "regions": [
+    "ラティウム",
+    "アルビオン"
+   ],
+   "width": 6,
+   "height": 6,
+   "radius": "",
+   "placement": [],
+   "construction": [
+    {
+     "name": "デナリウス",
+     "amount": 100
+    },
+    {
+     "name": "木板",
+     "amount": 3
+    }
+   ],
+   "maintenance": [
+    {
+     "name": "デナリウス",
+     "amount": 6
+    },
+    {
+     "name": "労働力",
+     "amount": 4
+    }
+   ]
+  },
+  {
    "guid": "149842",
    "name": "倉庫",
    "nameEn": "Warehouse",
@@ -584,9 +665,9 @@
    ]
   },
   {
-   "guid": "3310",
-   "name": "倉庫",
-   "nameEn": "Warehouse",
+   "guid": "3311",
+   "name": "改良型倉庫",
+   "nameEn": "Improved Warehouse",
    "icon": "base_warehouse",
    "category": "インフラ施設",
    "regions": [
@@ -600,21 +681,105 @@
    "construction": [
     {
      "name": "デナリウス",
-     "amount": 100
+     "amount": 250
     },
     {
      "name": "木板",
-     "amount": 3
+     "amount": 25
+    },
+    {
+     "name": "瓦",
+     "amount": 5
     }
    ],
    "maintenance": [
     {
      "name": "デナリウス",
-     "amount": 6
+     "amount": 10
     },
     {
      "name": "労働力",
-     "amount": 4
+     "amount": 8
+    }
+   ]
+  },
+  {
+   "guid": "149848",
+   "name": "改良型倉庫",
+   "nameEn": "Improved Warehouse",
+   "icon": "base_warehouse",
+   "category": "インフラ施設",
+   "regions": [
+    "アイギュプト"
+   ],
+   "width": 6,
+   "height": 6,
+   "radius": "",
+   "placement": [],
+   "construction": [
+    {
+     "name": "デナリウス",
+     "amount": 250
+    },
+    {
+     "name": "泥レンガ",
+     "amount": 25
+    },
+    {
+     "name": "瓦",
+     "amount": 5
+    }
+   ],
+   "maintenance": [
+    {
+     "name": "デナリウス",
+     "amount": 10
+    },
+    {
+     "name": "労働力",
+     "amount": 8
+    }
+   ]
+  },
+  {
+   "guid": "3312",
+   "name": "倉庫（特大）",
+   "nameEn": "Grand Warehouse",
+   "icon": "base_warehouse",
+   "category": "インフラ施設",
+   "regions": [
+    "ラティウム"
+   ],
+   "width": 6,
+   "height": 6,
+   "radius": "",
+   "placement": [],
+   "construction": [
+    {
+     "name": "デナリウス",
+     "amount": 750
+    },
+    {
+     "name": "木板",
+     "amount": 75
+    },
+    {
+     "name": "瓦",
+     "amount": 20
+    },
+    {
+     "name": "コンクリート",
+     "amount": 5
+    }
+   ],
+   "maintenance": [
+    {
+     "name": "デナリウス",
+     "amount": 16
+    },
+    {
+     "name": "労働力",
+     "amount": 12
     }
    ]
   },
@@ -695,48 +860,6 @@
    ]
   },
   {
-   "guid": "3312",
-   "name": "倉庫（特大）",
-   "nameEn": "Grand Warehouse",
-   "icon": "base_warehouse",
-   "category": "インフラ施設",
-   "regions": [
-    "ラティウム"
-   ],
-   "width": 6,
-   "height": 6,
-   "radius": "",
-   "placement": [],
-   "construction": [
-    {
-     "name": "デナリウス",
-     "amount": 750
-    },
-    {
-     "name": "木板",
-     "amount": 75
-    },
-    {
-     "name": "瓦",
-     "amount": 20
-    },
-    {
-     "name": "コンクリート",
-     "amount": 5
-    }
-   ],
-   "maintenance": [
-    {
-     "name": "デナリウス",
-     "amount": 16
-    },
-    {
-     "name": "労働力",
-     "amount": 12
-    }
-   ]
-  },
-  {
    "guid": "3313",
    "name": "倉庫（超特大）",
    "nameEn": "Colossal Warehouse",
@@ -783,44 +906,6 @@
    ]
   },
   {
-   "guid": "153059",
-   "name": "大型穀物庫",
-   "nameEn": "Large Granary",
-   "icon": "public_egypt_granary_specialized",
-   "category": "インフラ施設",
-   "regions": [
-    "アイギュプト"
-   ],
-   "width": 5,
-   "height": 5,
-   "radius": "半径25タイル",
-   "placement": [],
-   "construction": [
-    {
-     "name": "デナリウス",
-     "amount": 250
-    },
-    {
-     "name": "泥レンガ",
-     "amount": 25
-    },
-    {
-     "name": "瓦",
-     "amount": 5
-    }
-   ],
-   "maintenance": [
-    {
-     "name": "デナリウス",
-     "amount": 5
-    },
-    {
-     "name": "労働力",
-     "amount": 4
-    }
-   ]
-  },
-  {
    "guid": "149683",
    "name": "川岸の交易所",
    "nameEn": "Riverside Trading Post",
@@ -835,44 +920,6 @@
    "placement": [],
    "construction": [],
    "maintenance": []
-  },
-  {
-   "guid": "153060",
-   "name": "広大な穀物庫",
-   "nameEn": "Capacious Granary",
-   "icon": "public_egypt_granary_advanced",
-   "category": "インフラ施設",
-   "regions": [
-    "アイギュプト"
-   ],
-   "width": 5,
-   "height": 5,
-   "radius": "半径35タイル",
-   "placement": [],
-   "construction": [
-    {
-     "name": "デナリウス",
-     "amount": 750
-    },
-    {
-     "name": "泥レンガ",
-     "amount": 75
-    },
-    {
-     "name": "瓦",
-     "amount": 25
-    }
-   ],
-   "maintenance": [
-    {
-     "name": "デナリウス",
-     "amount": 8
-    },
-    {
-     "name": "労働力",
-     "amount": 6
-    }
-   ]
   },
   {
    "guid": "31120",
@@ -921,83 +968,6 @@
     {
      "name": "デナリウス",
      "amount": 500
-    },
-    {
-     "name": "木板",
-     "amount": 25
-    },
-    {
-     "name": "瓦",
-     "amount": 5
-    }
-   ],
-   "maintenance": [
-    {
-     "name": "デナリウス",
-     "amount": 10
-    },
-    {
-     "name": "労働力",
-     "amount": 8
-    }
-   ]
-  },
-  {
-   "guid": "149848",
-   "name": "改良型倉庫",
-   "nameEn": "Improved Warehouse",
-   "icon": "base_warehouse",
-   "category": "インフラ施設",
-   "regions": [
-    "アイギュプト"
-   ],
-   "width": 6,
-   "height": 6,
-   "radius": "",
-   "placement": [],
-   "construction": [
-    {
-     "name": "デナリウス",
-     "amount": 250
-    },
-    {
-     "name": "泥レンガ",
-     "amount": 25
-    },
-    {
-     "name": "瓦",
-     "amount": 5
-    }
-   ],
-   "maintenance": [
-    {
-     "name": "デナリウス",
-     "amount": 10
-    },
-    {
-     "name": "労働力",
-     "amount": 8
-    }
-   ]
-  },
-  {
-   "guid": "3311",
-   "name": "改良型倉庫",
-   "nameEn": "Improved Warehouse",
-   "icon": "base_warehouse",
-   "category": "インフラ施設",
-   "regions": [
-    "ラティウム",
-    "アルビオン"
-   ],
-   "width": 6,
-   "height": 6,
-   "radius": "",
-   "placement": [],
-   "construction": [
-    {
-     "name": "デナリウス",
-     "amount": 250
     },
     {
      "name": "木板",
@@ -1343,6 +1313,82 @@
    ]
   },
   {
+   "guid": "153059",
+   "name": "大型穀物庫",
+   "nameEn": "Large Granary",
+   "icon": "public_egypt_granary_specialized",
+   "category": "インフラ施設",
+   "regions": [
+    "アイギュプト"
+   ],
+   "width": 5,
+   "height": 5,
+   "radius": "半径25タイル",
+   "placement": [],
+   "construction": [
+    {
+     "name": "デナリウス",
+     "amount": 250
+    },
+    {
+     "name": "泥レンガ",
+     "amount": 25
+    },
+    {
+     "name": "瓦",
+     "amount": 5
+    }
+   ],
+   "maintenance": [
+    {
+     "name": "デナリウス",
+     "amount": 5
+    },
+    {
+     "name": "労働力",
+     "amount": 4
+    }
+   ]
+  },
+  {
+   "guid": "153060",
+   "name": "広大な穀物庫",
+   "nameEn": "Capacious Granary",
+   "icon": "public_egypt_granary_advanced",
+   "category": "インフラ施設",
+   "regions": [
+    "アイギュプト"
+   ],
+   "width": 5,
+   "height": 5,
+   "radius": "半径35タイル",
+   "placement": [],
+   "construction": [
+    {
+     "name": "デナリウス",
+     "amount": 750
+    },
+    {
+     "name": "泥レンガ",
+     "amount": 75
+    },
+    {
+     "name": "瓦",
+     "amount": 25
+    }
+   ],
+   "maintenance": [
+    {
+     "name": "デナリウス",
+     "amount": 8
+    },
+    {
+     "name": "労働力",
+     "amount": 6
+    }
+   ]
+  },
+  {
    "guid": "153010",
    "name": "貯水池",
    "nameEn": "Water Basin",
@@ -1416,13 +1462,13 @@
    ]
   },
   {
-   "guid": "150587",
-   "name": "ギムナシアリコスの住居",
-   "nameEn": "Gymnasiarch Residence",
+   "guid": "6414",
+   "name": "ウェーダーの住居",
+   "nameEn": "Wader Residence",
    "icon": "base_residence",
-   "category": "ギリシャ・ローマの住居",
+   "category": "ケルトの住居",
    "regions": [
-    "アイギュプト"
+    "アルビオン"
    ],
    "width": 3,
    "height": 3,
@@ -1430,24 +1476,20 @@
    "placement": [],
    "construction": [
     {
-     "name": "泥レンガ",
-     "amount": 2
-    },
-    {
-     "name": "瓦",
+     "name": "木板",
      "amount": 1
     }
    ],
    "maintenance": []
   },
   {
-   "guid": "150586",
-   "name": "書記の住居",
-   "nameEn": "Scribe Residence",
+   "guid": "6471",
+   "name": "スミスの住居",
+   "nameEn": "Smith Residence",
    "icon": "base_residence",
-   "category": "ギリシャ・ローマの住居",
+   "category": "ケルトの住居",
    "regions": [
-    "アイギュプト"
+    "アルビオン"
    ],
    "width": 3,
    "height": 3,
@@ -1455,8 +1497,8 @@
    "placement": [],
    "construction": [
     {
-     "name": "泥レンガ",
-     "amount": 2
+     "name": "木板",
+     "amount": 1
     }
    ],
    "maintenance": []
@@ -1487,11 +1529,11 @@
    "maintenance": []
   },
   {
-   "guid": "6414",
-   "name": "ウェーダーの住居",
-   "nameEn": "Wader Residence",
+   "guid": "6475",
+   "name": "メルカトルの住居",
+   "nameEn": "Mercator Residence",
    "icon": "base_residence",
-   "category": "ケルトの住居",
+   "category": "ローマ・ケルトの住居",
    "regions": [
     "アルビオン"
    ],
@@ -1508,13 +1550,59 @@
    "maintenance": []
   },
   {
-   "guid": "6471",
-   "name": "スミスの住居",
-   "nameEn": "Smith Residence",
+   "guid": "6514",
+   "name": "ノビレスの住居",
+   "nameEn": "Noble Residence",
    "icon": "base_residence",
-   "category": "ケルトの住居",
+   "category": "ローマ・ケルトの住居",
    "regions": [
     "アルビオン"
+   ],
+   "width": 3,
+   "height": 3,
+   "radius": "",
+   "placement": [],
+   "construction": [
+    {
+     "name": "木板",
+     "amount": 1
+    },
+    {
+     "name": "瓦",
+     "amount": 1
+    }
+   ],
+   "maintenance": []
+  },
+  {
+   "guid": "3087",
+   "name": "リベルトゥスの住居",
+   "nameEn": "Libertus Residence",
+   "icon": "base_residence",
+   "category": "ローマの住居",
+   "regions": [
+    "ラティウム"
+   ],
+   "width": 3,
+   "height": 3,
+   "radius": "",
+   "placement": [],
+   "construction": [
+    {
+     "name": "木板",
+     "amount": 1
+    }
+   ],
+   "maintenance": []
+  },
+  {
+   "guid": "3141",
+   "name": "プレブスの住居",
+   "nameEn": "Plebeian Residence",
+   "icon": "base_residence",
+   "category": "ローマの住居",
+   "regions": [
+    "ラティウム"
    ],
    "width": 3,
    "height": 3,
@@ -1581,94 +1669,6 @@
     },
     {
      "name": "大理石",
-     "amount": 1
-    }
-   ],
-   "maintenance": []
-  },
-  {
-   "guid": "3141",
-   "name": "プレブスの住居",
-   "nameEn": "Plebeian Residence",
-   "icon": "base_residence",
-   "category": "ローマの住居",
-   "regions": [
-    "ラティウム"
-   ],
-   "width": 3,
-   "height": 3,
-   "radius": "",
-   "placement": [],
-   "construction": [
-    {
-     "name": "木板",
-     "amount": 1
-    }
-   ],
-   "maintenance": []
-  },
-  {
-   "guid": "3087",
-   "name": "リベルトゥスの住居",
-   "nameEn": "Libertus Residence",
-   "icon": "base_residence",
-   "category": "ローマの住居",
-   "regions": [
-    "ラティウム"
-   ],
-   "width": 3,
-   "height": 3,
-   "radius": "",
-   "placement": [],
-   "construction": [
-    {
-     "name": "木板",
-     "amount": 1
-    }
-   ],
-   "maintenance": []
-  },
-  {
-   "guid": "6514",
-   "name": "ノビレスの住居",
-   "nameEn": "Noble Residence",
-   "icon": "base_residence",
-   "category": "ローマ・ケルトの住居",
-   "regions": [
-    "アルビオン"
-   ],
-   "width": 3,
-   "height": 3,
-   "radius": "",
-   "placement": [],
-   "construction": [
-    {
-     "name": "木板",
-     "amount": 1
-    },
-    {
-     "name": "瓦",
-     "amount": 1
-    }
-   ],
-   "maintenance": []
-  },
-  {
-   "guid": "6475",
-   "name": "メルカトルの住居",
-   "nameEn": "Mercator Residence",
-   "icon": "base_residence",
-   "category": "ローマ・ケルトの住居",
-   "regions": [
-    "アルビオン"
-   ],
-   "width": 3,
-   "height": 3,
-   "radius": "",
-   "placement": [],
-   "construction": [
-    {
-     "name": "木板",
      "amount": 1
     }
    ],
