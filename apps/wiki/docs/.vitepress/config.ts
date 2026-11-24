@@ -155,6 +155,8 @@ export default defineConfig({
   head: [
     ['link', { rel: 'icon', type: 'image/png', sizes: '48x48', href: '/images/anno_icon.png' }],
     ['link', { rel: 'apple-touch-icon', href: '/images/anno_icon.png' }],
+    // アクセス解析（Cloudflare Web Analytics。Cookie を使わず、個人は特定しない。token は公開サイトの HTML に載る値で秘密ではない）
+    ['script', { type: 'module', src: 'https://static.cloudflareinsights.com/beacon.min.js', 'data-cf-beacon': '{"token": "d7814e6c5ed04a52a24ba1490db6fa63"}' }],
   ],
 
   // 全ページにcanonical・OGPを付与。加えて検索結果にパンくずを表示させるための BreadcrumbList 構造化データ
