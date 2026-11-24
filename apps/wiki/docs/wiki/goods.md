@@ -1,203 +1,25 @@
 ---
-title: Anno 117 全商品一覧｜食料・建設資材・文化・原材料
-description: Anno 117の全商品を食料・建設資材・ファッション・文化・家庭・中間財・原材料の7分類で一覧表示。ゲーム内データ準拠の日本語商品名と地域情報を掲載。
+title: 商品一覧（生産チェーン・全商品一覧へ移動しました）
+description: 商品一覧は、生産チェーン・全商品一覧のページにまとめました。
+head:
+  - - meta
+    - name: robots
+      content: noindex
+  - - meta
+    - http-equiv: refresh
+      content: 0; url=/wiki/production-chains
 ---
 
 <script setup lang="ts">
-import { onMounted, watch } from 'vue'
-import { withBase, useData } from 'vitepress'
-import { data } from './goods.data.ts'
+import { onMounted } from 'vue'
+import { withBase } from 'vitepress'
 
-const categoryLabels: Record<string, string> = {
-  food: '食料',
-  construction: '建設資材',
-  fashion: 'ファッション',
-  culture: '文化',
-  household: '家庭',
-  intermediate: '中間財',
-  resource: '原材料',
-}
-
-const regionLabels: Record<string, string> = {
-  Roman: 'ラティウム',
-  Celtic: 'アルビオン',
-  Egyptian: 'アイギュプト',
-}
-
-function regionText(regions: string[]): string {
-  if (!regions || regions.length === 0) return '—'
-  return regions.map((r) => regionLabels[r] ?? r).join(' / ')
-}
-
-function hasCalc(cat: string, good: { calcLinks: unknown[] }): boolean {
-  return good.calcLinks.length > 0 && cat !== 'intermediate' && cat !== 'resource'
-}
-
-// 一覧（スマホ幅）では、リンクが1つの商品だけ行全体をリンクにする。作り方が複数ある商品は行の中にリンクを並べる
-function rowLink(cat: string, good: { calcLinks: { query: string }[] }): string | null {
-  return hasCalc(cat, good) && good.calcLinks.length === 1 ? good.calcLinks[0].query : null
-}
-
-// SPA遷移直後はまだ描画されておらずアンカーへスクロールできないため、
-// 描画完了後に改めて該当行までスクロールする(production-chains.mdと同じパターン)。
-// テーブル版・コンパクトリスト版のうち画面幅に応じて表示されている方の要素へ
-// スクロールする必要があるため、id直指定ではなくdata-anchorを両方に持たせて選別する。
-const { hash } = useData()
-
-function scrollToHash(): void {
-  const target = decodeURIComponent(hash.value || '').replace(/^#/, '')
-  if (!target) return
-  setTimeout(() => {
-    const candidates = document.querySelectorAll(`[data-anchor="${CSS.escape(target)}"]`)
-    for (const el of candidates) {
-      if ((el as HTMLElement).offsetParent !== null) {
-        el.scrollIntoView({ block: 'center' })
-        return
-      }
-    }
-  }, 100)
-}
-
-onMounted(scrollToHash)
-watch(hash, scrollToHash)
+// 以前の「商品一覧」のURLで来た人（アンカー付きを含む）を、生産チェーン・全商品一覧へ移す
+onMounted(() => {
+  window.location.replace(withBase('/wiki/production-chains') + window.location.hash)
+})
 </script>
 
 # 商品一覧
 
-Anno 117 で生産・消費される全 {{ data.categories.reduce((n, c) => n + data.byCategory[c].length, 0) }} 商品の一覧です。
-個別の生産チェーンと必要量の計算は[計算機](/calculator/)で。
-ラティウム・アルビオン・アイギュプト地域別の商品分布は[地域別商品](/wiki/regions)にあります。アイギュプトの新商品は、計算機の地域をアイギュプトにして開きます。象牙の小箱とコールは、作り方（建物）ごとにボタンが2つあります。
-
-<div v-for="cat in data.categories" :key="cat">
-
-<h2>{{ categoryLabels[cat] ?? cat }}</h2>
-
-<div class="goods-table-wrap">
-<table>
-<thead>
-<tr><th>商品名</th><th>対応地域</th><th>計算機</th></tr>
-</thead>
-<tbody>
-<template v-for="good in data.byCategory[cat]" :key="good.id">
-<tr :data-anchor="good.id">
-<td style="white-space:nowrap;">
-  <img v-if="good.icon" :src="withBase('/icons/goods-thumb/' + good.icon + '.webp')" :alt="good.nameJa" width="28" height="28" loading="lazy" style="width:28px;height:28px;vertical-align:middle;margin-right:6px;object-fit:contain;" />
-  {{ good.nameJa }}
-</td>
-<td>{{ regionText(good.regions) }}</td>
-<td>
-  <span v-if="hasCalc(cat, good)" class="calc-links"><a v-for="l in good.calcLinks" :key="l.query" class="calc-link-btn" :href="withBase('/calculator/?' + l.query)" target="_blank" rel="noopener noreferrer">{{ l.label ? '開く（' + l.label + '）' : '開く' }}</a></span>
-  <span v-else>—</span>
-</td>
-</tr>
-<tr v-if="good.producers">
-<td colspan="3"><GoodsProducers :producers="good.producers" /></td>
-</tr>
-</template>
-</tbody>
-</table>
-</div>
-
-<div class="goods-compact-list">
-<template v-for="good in data.byCategory[cat]" :key="good.id">
-<component
-  :is="rowLink(cat, good) ? 'a' : 'div'"
-  :data-anchor="good.id"
-  class="goods-compact-row"
-  v-bind="rowLink(cat, good) ? { href: withBase('/calculator/?' + rowLink(cat, good)), target: '_blank', rel: 'noopener noreferrer' } : {}"
->
-  <img v-if="good.icon" :src="withBase('/icons/goods-thumb/' + good.icon + '.webp')" :alt="good.nameJa" width="24" height="24" loading="lazy" class="goods-compact-icon" />
-  <span class="goods-compact-name">{{ good.nameJa }}</span>
-  <span class="goods-compact-region">{{ regionText(good.regions) }}</span>
-  <span v-if="rowLink(cat, good)" class="goods-compact-arrow">›</span>
-  <template v-else-if="hasCalc(cat, good)"><a v-for="l in good.calcLinks" :key="l.query" class="goods-compact-link" :href="withBase('/calculator/?' + l.query)" target="_blank" rel="noopener noreferrer">{{ l.label }}›</a></template>
-</component>
-<div v-if="good.producers" class="goods-compact-producers"><GoodsProducers :producers="good.producers" /></div>
-</template>
-</div>
-
-</div>
-
-<style scoped>
-.goods-compact-list {
-  display: none;
-}
-
-@media (max-width: 959px) {
-  .goods-table-wrap {
-    display: none;
-  }
-  .goods-compact-list {
-    display: flex;
-    flex-direction: column;
-    border: 1px solid var(--vp-c-divider);
-    border-radius: 8px;
-    overflow: hidden;
-    margin: 12px 0;
-  }
-}
-
-.goods-compact-row {
-  display: flex;
-  align-items: center;
-  gap: 8px;
-  padding: 8px 12px;
-  border-bottom: 1px solid var(--vp-c-divider);
-  text-decoration: none;
-  color: var(--vp-c-text-1);
-}
-.goods-compact-row:last-child {
-  border-bottom: none;
-}
-.goods-compact-icon {
-  width: 24px;
-  height: 24px;
-  object-fit: contain;
-  flex-shrink: 0;
-}
-.goods-compact-name {
-  font-size: 14px;
-  font-weight: 600;
-  flex: 1;
-  min-width: 0;
-  word-break: break-word;
-}
-.goods-compact-region {
-  font-size: 11px;
-  color: var(--vp-c-text-2);
-  background: var(--vp-c-bg-soft);
-  padding: 2px 8px;
-  border-radius: 999px;
-  white-space: nowrap;
-  flex-shrink: 0;
-}
-.goods-compact-producers {
-  padding: 8px 12px;
-  border-bottom: 1px solid var(--vp-c-divider);
-}
-.goods-compact-link {
-  color: var(--vp-c-brand-1);
-  font-size: 12px;
-  font-weight: 600;
-  white-space: nowrap;
-  flex-shrink: 0;
-  text-decoration: none;
-}
-.goods-compact-arrow {
-  color: var(--vp-c-brand-1);
-  font-size: 16px;
-  font-weight: 700;
-  flex-shrink: 0;
-}
-</style>
-
-## 関連データ
-
-- [生産チェーン一覧](/wiki/production-chains) — 各商品の生産工程と必要な素材
-- [商品需要逆引き](/wiki/needs-index) — その商品を欲しがる住民層
-- [地域別商品](/wiki/regions) — ラティウム・アルビオン・アイギュプトで作れる商品の違い
-
-## 関連ガイド
-
-- [序盤攻略・基本戦略](/guide/early-game-strategy) — 建設順・木材チェーン・住民需要の基本
-- [経済・収入最適化ガイド](/guide/economy-guide) — 税収・維持費・交易での利益
+商品一覧は、[生産チェーン・全商品一覧](/wiki/production-chains)にまとめました。自動で移動しない場合は、リンクを押してください。

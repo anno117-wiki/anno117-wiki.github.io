@@ -11,8 +11,10 @@ import ratiosJson from './chain-ratios.json'
 import ratiosAegyptusJson from './chain-ratios-aegyptus.json'
 // アイギュプト専用の新商品の生産チェーン。tools/build-chain-aegyptus.py で生成
 import aegyptusJson from './production-chains-aegyptus.json'
-// 既存の商品のうち、アイギュプトでも作れるもの（商品一覧 goods.data.ts と同じデータ）
+// 既存の商品のうち、アイギュプトでも作れるもの
 import regionsAegyptusJson from './regions-aegyptus.json'
+// 全商品のデータ。生産チェーンを持たない商品（原材料・中間財）を、同じページの後ろに載せるために使う
+import goodsData from './goods.data'
 
 const __filename = fileURLToPath(import.meta.url)
 const __dirname = dirname(__filename)
@@ -125,8 +127,22 @@ function readProduction(filename: string): any | null {
   }
 }
 
+/** 生産チェーンを持たない商品（原材料・中間財）。作れる建物（生産元）がある商品だけ producers を持つ */
+export interface OtherGood {
+  id: string
+  nameJa: string
+  icon: string
+  regions: string[]
+  producers?: unknown[]
+}
+
 export default {
-  load(): { byCategory: Record<string, ProductionEntry[]>; categories: string[] } {
+  load(): {
+    byCategory: Record<string, ProductionEntry[]>
+    categories: string[]
+    others: Record<string, OtherGood[]>
+    otherCategories: string[]
+  } {
     const jaGoods = (jaJson as { goods: Record<string, string> }).goods
     const alsoEgyptian = new Set<string>(regionsAegyptusJson.shared)
 
@@ -210,9 +226,20 @@ export default {
       byCategory[cat].sort((a, b) => a.nameJa.localeCompare(b.nameJa, 'ja'))
     }
 
+    // 全商品のうち、上の表に入らなかったもの（チェーンが無い商品）を、分類ごとに集める
+    const chained = new Set(entries.map((e) => e.id))
+    const allGoods = goodsData.load()
+    const others: Record<string, OtherGood[]> = {}
+    for (const cat of allGoods.categories) {
+      const rest = allGoods.byCategory[cat].filter((g) => !chained.has(g.id))
+      if (rest.length) others[cat] = rest.map((g) => ({ id: g.id, nameJa: g.nameJa, icon: g.icon, regions: g.regions, producers: g.producers }))
+    }
+
     return {
       byCategory,
       categories: CATEGORY_ORDER.filter((c) => byCategory[c]),
+      others,
+      otherCategories: allGoods.categories.filter((c) => others[c]),
     }
   },
 }

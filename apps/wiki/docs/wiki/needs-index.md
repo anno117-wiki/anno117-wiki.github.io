@@ -134,7 +134,7 @@ const TIER_CSS: Record<string, string> = {
 ## 関連データ
 
 - [住民層](/wiki/population) — 住民層ごとの需要の全体像
-- [商品一覧](/wiki/goods) — 分類ごとの全商品
+- [生産チェーン・全商品一覧](/wiki/production-chains) — 分類ごとの全商品と、商品ごとの生産チェーン
 
 ## 関連ガイド
 

@@ -1,6 +1,6 @@
 ---
-title: 生産チェーン一覧
-description: Anno 117の商品ごとの生産チェーンを図で表示。必要建物・原材料の関係を一覧で確認できる。
+title: 生産チェーン・全商品一覧
+description: Anno 117の全商品を食料・建設資材・ファッション・文化・家庭・中間財・原材料の7分類で一覧表示。商品ごとの生産チェーン（必要建物・素材・生産時間）と対応地域を確認できる。
 ---
 
 <script setup lang="ts">
@@ -15,6 +15,8 @@ const categoryLabels: Record<string, string> = {
   fashion: 'ファッション',
   culture: '文化',
   household: '家庭',
+  intermediate: '中間財',
+  resource: '原材料',
 }
 
 const regionLabels: Record<string, string> = {
@@ -24,6 +26,7 @@ const regionLabels: Record<string, string> = {
 }
 
 function regionText(regions: string[]): string {
+  if (!regions || regions.length === 0) return '—'
   return regions.map((r) => regionLabels[r] ?? r).join(' / ')
 }
 
@@ -60,7 +63,9 @@ onMounted(scrollToHash)
 watch(hash, scrollToHash)
 </script>
 
-# 生産チェーン一覧
+# 生産チェーン・全商品一覧
+
+Anno 117 で生産・消費される全商品の一覧です。食料・建設資材・ファッション・文化・家庭の商品には、生産チェーンを載せています。中間財と原材料は、ページの後ろにまとめています（石炭と金鉱石だけは、作れる建物ごとの建物効果も載せています）。
 
 各商品の生産に必要な建物・素材・時間をまとめています。
 図の「×」の数字は、ブーストなしの100%効率で回すときの建物数の比率です（「石炭×」は、燃料用に必要な炭焼き師の数）。
@@ -137,6 +142,45 @@ watch(hash, scrollToHash)
 
 </div>
 
+<div v-for="cat in data.otherCategories" :key="cat">
+
+<h2>{{ categoryLabels[cat] ?? cat }}</h2>
+
+<div class="chain-table-wrap">
+<table>
+<thead>
+<tr><th>商品名</th><th>対応地域</th><th>作れる建物</th></tr>
+</thead>
+<tbody>
+<template v-for="good in data.others[cat]" :key="good.id">
+<tr :data-anchor="good.id">
+<td style="white-space:nowrap;">
+  <img v-if="good.icon" :src="withBase('/icons/goods-thumb/' + good.icon + '.webp')" :alt="good.nameJa" width="28" height="28" loading="lazy" style="width:28px;height:28px;vertical-align:middle;margin-right:6px;object-fit:contain;" />
+  {{ good.nameJa }}
+</td>
+<td>{{ regionText(good.regions) }}</td>
+<td><GoodsProducers v-if="good.producers" :producers="good.producers" /><span v-else>—</span></td>
+</tr>
+</template>
+</tbody>
+</table>
+</div>
+
+<div class="chain-card-list">
+<div class="chain-card" v-for="good in data.others[cat]" :key="good.id" :data-anchor="good.id">
+  <div class="chain-card-header">
+    <img v-if="good.icon" :src="withBase('/icons/goods-thumb/' + good.icon + '.webp')" :alt="good.nameJa" width="28" height="28" loading="lazy" class="chain-card-icon" />
+    <span class="chain-card-name">{{ good.nameJa }}</span>
+  </div>
+  <div class="chain-card-body">
+    <div class="chain-card-meta"><span>{{ regionText(good.regions) }}</span></div>
+    <GoodsProducers v-if="good.producers" :producers="good.producers" />
+  </div>
+</div>
+</div>
+
+</div>
+
 <style scoped>
 .chain-card-list {
   display: none;
@@ -206,7 +250,6 @@ watch(hash, scrollToHash)
 
 ## 関連データ
 
-- [商品一覧](/wiki/goods) — 分類ごとの全商品
 - [商品需要逆引き](/wiki/needs-index) — その商品を欲しがる住民層
 
 ## 関連ガイド

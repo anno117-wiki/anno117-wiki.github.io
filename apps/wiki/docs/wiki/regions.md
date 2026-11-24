@@ -22,7 +22,7 @@ const categoryLabel: Record<string, string> = {
 <p v-if="!data.hasEgyptian">Anno 117 には <strong>ラティウム地域</strong> と <strong>アルビオン地域</strong> の2つの地域があり、生産できる商品が異なります。</p>
 <p v-else>Anno 117 には <strong>ラティウム地域</strong>・<strong>アルビオン地域</strong>・<strong>アイギュプト地域</strong>（DLC03）の3つの地域があり、生産できる商品が異なります。</p>
 
-各商品の詳細な生産チェーンは[計算機](/calculator/)で確認できます。アイギュプトの新商品は、計算機の地域をアイギュプトにすると計算できます（商品一覧・生産チェーン一覧の「開く」から開けます）。[生産チェーン一覧](/wiki/production-chains)に新商品のチェーンを載せています。
+各商品の詳細な生産チェーンは[計算機](/calculator/)で確認できます。アイギュプトの新商品は、計算機の地域をアイギュプトにすると計算できます（[生産チェーン・全商品一覧](/wiki/production-chains)の「開く」から開けます）。新商品のチェーンも、そこに載せています。
 
 ## 地域サマリー
 
@@ -100,8 +100,7 @@ const categoryLabel: Record<string, string> = {
 
 ## 関連データ
 
-- [商品一覧](/wiki/goods) — 分類ごとの全商品
-- [生産チェーン一覧](/wiki/production-chains) — 各商品の生産工程と必要な素材
+- [生産チェーン・全商品一覧](/wiki/production-chains) — 分類ごとの全商品と、各商品の生産工程・必要な素材
 
 ## 関連ガイド
 

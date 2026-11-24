@@ -37,7 +37,6 @@ description: Anno 117（アノ117）の攻略ガイド。序盤の進め方、�
 
 ## 関連データ
 
-- [商品一覧](/wiki/goods)
-- [生産チェーン一覧](/wiki/production-chains)
+- [生産チェーン・全商品一覧](/wiki/production-chains)
 - [建物効果](/wiki/buildings)
 - [住民層](/wiki/population)

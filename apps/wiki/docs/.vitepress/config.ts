@@ -145,8 +145,9 @@ export default defineConfig({
     hostname: 'https://anno117-wiki.github.io/',
     // /calculator/ はVitePress外の別SPAビルドのため、自動収集対象に含まれない。手動で追加する
     // lastmod はソースの最終コミット日（VitePress の lastUpdated はページに表示も出るため使わない）
+    // 移動済みの旧ページ（商品一覧）は載せない
     transformItems: (items) => [
-      ...items.map((item) => ({ ...item, lastmod: gitLastModified(sourcePathForUrl(item.url)) })),
+      ...items.filter((item) => item.url !== 'wiki/goods.html').map((item) => ({ ...item, lastmod: gitLastModified(sourcePathForUrl(item.url)) })),
       { url: '/calculator/', lastmod: gitLastModified(CALCULATOR_SRC) },
     ],
   },
@@ -254,8 +255,7 @@ export default defineConfig({
           {
             text: '生産',
             items: [
-              { text: '商品一覧', link: '/wiki/goods' },
-              { text: '生産チェーン一覧', link: '/wiki/production-chains' },
+              { text: '生産チェーン・全商品一覧', link: '/wiki/production-chains' },
               { text: '地域別商品', link: '/wiki/regions' },
               { text: '商品需要逆引き', link: '/wiki/needs-index' },
             ],
@@ -348,8 +348,7 @@ export default defineConfig({
         {
           text: '生産',
           items: [
-            { text: '商品一覧', link: '/wiki/goods' },
-            { text: '生産チェーン一覧', link: '/wiki/production-chains' },
+            { text: '生産チェーン・全商品一覧', link: '/wiki/production-chains' },
             { text: '地域別商品', link: '/wiki/regions' },
             { text: '商品需要逆引き', link: '/wiki/needs-index' },
           ],
