@@ -1840,7 +1840,8 @@
       "prestige": 0,
       "health": -3,
       "happiness": 0,
-      "fireSafety": -3
+      "fireSafety": -3,
+      "icon": "coal_ore_forest_goods"
     },
     {
       "id": "coal_mine",
@@ -1855,7 +1856,8 @@
       "prestige": 0,
       "health": -2,
       "happiness": 0,
-      "fireSafety": 0
+      "fireSafety": 0,
+      "icon": "coal_ore_mine_goods"
     },
     {
       "id": "gold_smelter",
@@ -2398,7 +2400,8 @@
       "prestige": 0,
       "health": 0,
       "happiness": 2,
-      "fireSafety": -2
+      "fireSafety": -2,
+      "icon": "handmirros_goods"
     },
     {
       "id": "albion_logging_camp",
@@ -2493,7 +2496,8 @@
       "prestige": 0,
       "health": -2,
       "happiness": 0,
-      "fireSafety": 0
+      "fireSafety": 0,
+      "icon": "coal_ore_mine_goods"
     },
     {
       "id": "albion_sail_factory",
