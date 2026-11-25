@@ -32,6 +32,10 @@ JOBS: list[tuple[Path, Path]] = [
      / "icon_content" / "production_goods", WIKI_ICONS / "goods-thumb"),
 ]
 
+# wiki が使わない画像（計算機専用のアイギュプトの商品・住居・倉庫・穀物庫のアイコン）。サムネイルを作らない
+UNUSED_IN_WIKI_STEMS = {"chanter", "granary", "granary-large", "granary-capacious", "gymnasiarch", "potter", "scribe", "thresher"}
+UNUSED_IN_WIKI_PREFIXES = ("aegyptus_",)
+
 # 表示は最大28px。高解像度スマホ(3倍)でもぼやけないよう 28*3 を上回る96pxにする
 THUMB_SIZE = 96
 WEBP_QUALITY = 85
@@ -49,7 +53,10 @@ def run_job(src_dir: Path, out_dir: Path) -> list[str]:
     if not src_dir.is_dir():
         return [f"入力ディレクトリがありません: {src_dir}"]
 
-    sources = sorted(src_dir.glob("*.png"))
+    sources = sorted(
+        s for s in src_dir.glob("*.png")
+        if s.stem not in UNUSED_IN_WIKI_STEMS and not s.stem.startswith(UNUSED_IN_WIKI_PREFIXES)
+    )
     if not sources:
         return [f"PNG が見つかりません: {src_dir}"]
 
