@@ -1973,40 +1973,11 @@
    "icon": "public_roman_marketplace",
    "category": "公共サービス",
    "regions": [
-    "ラティウム"
+    "ラティウム",
+    "アルビオン"
    ],
    "width": 5,
    "height": 6,
-   "radius": "基本距離28タイル",
-   "placement": [],
-   "construction": [
-    {
-     "name": "デナリウス",
-     "amount": 250
-    },
-    {
-     "name": "木板",
-     "amount": 5
-    }
-   ],
-   "maintenance": [
-    {
-     "name": "デナリウス",
-     "amount": 10
-    }
-   ]
-  },
-  {
-   "guid": "6724",
-   "name": "市場",
-   "nameEn": "Market",
-   "icon": "public_celtic_marketplace",
-   "category": "公共サービス",
-   "regions": [
-    "アルビオン"
-   ],
-   "width": 6,
-   "height": 5,
    "radius": "基本距離28タイル",
    "placement": [],
    "construction": [

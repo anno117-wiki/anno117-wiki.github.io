@@ -189,10 +189,16 @@ def build_row(b, names, resolver):
 
 
 def merge_same_rows(rows):
-    """地域以外の内容が全て同じ行を1つにまとめ、地域を並べる(ラティウム・アルビオン等)"""
+    """地域以外の内容が全て同じ行を1つにまとめ、地域を並べる(ラティウム・アルビオン等)
+
+    建物は回して置けるので、縦と横が入れ替わっているだけのサイズ(5x6 と 6x5)は同じものとして扱う。
+    元データは地域ごとに縦横が逆に入っていることがある(市場: ラティウム 5x6・アルビオン 6x5。2026-11-25 ユーザー指摘)。
+    まとめた行のサイズは、先に出てきた行(元データで先の建物)のまま。"""
     merged = {}
     for row in rows:
-        key = json.dumps({k: v for k, v in row.items() if k not in ("guid", "regions", "nameEn", "icon")}, ensure_ascii=False, sort_keys=True)
+        content = {k: v for k, v in row.items() if k not in ("guid", "regions", "nameEn", "icon", "width", "height")}
+        content["size"] = sorted([row["width"], row["height"]])
+        key = json.dumps(content, ensure_ascii=False, sort_keys=True)
         if key in merged:
             first = merged[key]
             first["regions"] = [r for r in REGION_JA.values() if r in first["regions"] or r in row["regions"]]
