@@ -3,6 +3,7 @@
 この文書には「今の状態・次の任務・保留・注意点」だけを書く。完了した作業の記録は `docs-notes/handover-archive.md` に移してあり、開始時に読む必要はない（文中の「アーカイブX節」で必要な箇所だけ引く）。
 
 ## git状態
+- **（2026-11-25・クラウドの追記）建物データの市場を1行にまとめた＋アイコン61件を wiki 側に追跡した**（`a2d61e4e`・`640b2e23`・`2ab05504`。全てpush済み）: `tools/build-building-specs.py` の `merge_same_rows` が縦横入れ替えを同じサイズとして扱う。ラティウムの市場 5×6 とアルビオンの市場 6×5 が別の行だったのを、ユーザー指摘で1行（ラティウム・アルビオン、5×6）にした（元データの Planner は地域ごとに縦横が逆。範囲・建設費・維持費は同じ。アイギュプトの市場は建設費が泥レンガで別。まとまる組はこの1組だけ）。`building-specs-list.json` は `_local` が無く再生成できないので同じ結果に直接修正した。**Windows で `build-building-specs.py` を再実行して同じ出力になるか確かめる**。また、穀物庫3件とアイテム58件のアイコンが `packages/shared/public/icons` にだけあり、クラウドのビルドで `docs/icons/goods/` から消えた（`build:site` の画像の減少の検査が検出）ため、`apps/wiki/docs/public/icons/goods/` にコピーして `git add -f` した。**Windows でアイコンを足すときは両方に置く（CLAUDE.md の決まり）**。更新履歴への追記はしていない
 - **第75版（2026-11-23・Windows の単独セッション）: 全てpush済み（船データ・ガイドの変更は `6f1d1c18` まで、更新履歴の追記と引き継ぎ書の更新も含む）。作業は下の「2026-11-23 の作業（船データの調査と充実）」。第74版以前の記録は2026-11-24 にアーカイブ末尾の「BG」節へ移した。**
 - GitHub Pagesデプロイの確認は `gh run list --repo anno117-wiki/anno117-wiki.github.io --limit 5`
 - **`docs-notes/` は `.gitignore` 対象**（`handover-next-session.md` / `handover-archive.md` / `building-icon-mapping.md` / `how-to-edit-site.md` / `dlc03-ingame-checklist.md` / `unverified-items.md` / `research-ps5-controls.md`（2026-11-03追加） / `rda-extraction-plan.md`（2026-11-04追加） / `wiki/` のみ例外で追跡）。次の調査メモ3本は**ローカルのみでGit未管理**
