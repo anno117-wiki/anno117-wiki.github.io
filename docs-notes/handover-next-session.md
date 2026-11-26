@@ -15,6 +15,14 @@
 ## 未コミット作業
 なし（2026-11-23・第75版の時点。push 済み。`tools/__pycache__/` が未追跡で出るが無視してよい）。`docs-notes/research-*.md` 3本はGit管理外
 
+## 2026-11-26 の追記（Windows の単独セッション。E2E 以外は push 済み）
+- **読み込み時の画面のずれ（CLS）を直した**（`64c56940`・`9a58d223`）: Cloudflare Web Analytics の Web Vitals で見つけた。(1) 更新履歴はコメント欄を後から差し込んで押し下げていた → `commentEntries.ts` に `useCommentState()`（loading 付き）を足し、`UpdateLog.vue` が読み込み中も見出しと 100vh の場所を取る。(2) 960〜1279px でページ内の目次の帯（VPLocalNav）が JS 後に出て本文が48px下がっていた → `custom.css` 末尾で最初から帯を出す。目次の出ないページ（技術ツリー6・クエスト一覧・旧商品一覧）は frontmatter `pageClass: no-outline` で外す。**目次の無いページを新しく作ったら、同じく `pageClass: no-outline` を付ける**（付けないと 960〜1279px で空の帯が出る）
+- **DLC01 ガイドに「噴火のサイクル」の表**（`23842caf`）: assets.xml の `VolcanoPhase` 5件（GUID 145352/144831/144837/145212/145213）。Planner の表と一致。未確認一覧 A34。目覚めのあと沈静化したときの `NextPhaseDurationReductionModifier`（0.55）は、短くなる段階が読み取れず載せていない
+- **計算機の言語ボタン**: 今の言語ではなく、押すと切り替わる先の言語を出すように直した（`LanguageToggle.vue`・E2E の期待値も）
+- **Planner（Taludas/Anno-117-Planner）v1.5.0（2026-11-25）**: ゲームデータは書き出し直されていない（manifest は 11-18・3.0.1 のまま）。増えたのは `sector_projects.json`（ヘロンのピラミッドの修復プロジェクト1件）だけ。手元 `v3.0.1-planner/`（v1.4.0）の取り直しは不要と判断
+- **E2E のタイムアウト**（`c041bb06`、**未push**）: 原因は2つ。(1) NordVPN の DNS（103.86.99.108）が `static.cloudflareinsights.com` を NXDOMAIN で返すのに11〜22秒かかり、load が遅れる → `playwright.config.ts` の `launchOptions` で `--host-resolver-rules` によりこのドメインを即 NOTFOUND にした。(2) この PC ではブラウザを4つ以上同時に動かすと、ローカルへの通信が止まる（計算機でも何でもないページでも同じ。Vite でも Bun の静的配信でも同じ。2つまでは通る）→ `workers: 2`。原因は未確定: VPN 停止中（NordVPN のリアルタイム保護は VPN 接続中のみ働く）でも止まる、Norton の履歴に記録なし。残る候補は Norton のファイアウォール・Windows 側・Chromium 自体。**並列を増やす試験は、ユーザーの PC の通信がすべて止まるので流さない**。全35件は2並列で29秒で通る
+- `check:mobile` や本番を Playwright で開く一時スクリプトも、VPN 接続中は同じ DNS の遅れで1ページ20秒ほど余計にかかる（`check-mobile.ts` には同じ設定をまだ入れていない）
+
 ## 2026-11-25 の作業（第77版。アイコンの整理と建物データの並び順。Windows の単独セッション。全て push 済み: 下記）
 - **建物データ（`/wiki/building-specs`）の建物名にアイコンを表示（356件）**: `tools/build-building-specs.py` が `assets_resolver` で各建物の `/Standard/IconFilename` を引き、行の `icon`（`icon_3d_` を除いた名前）に入れる（結合の判定キーからは外した。行数・中身は不変）。表示は `BuildingSpecsTable.vue`（28px・`buildings-thumb/icon_3d_<icon>.webp`・名前の列は `min-width: 9em`）。生産施設は、ゲームでも生産品のアイコンを使う。必要な216種類のうち、サイトに無かった68枚を PC版 4k から128pxのPNGにして `public/icons/buildings/` に追加。サムネイルは `tools/build-icon-thumbs.py`。更新履歴に1件追記（計141件）
 - **建物効果の4件（炭焼き師・炭鉱・アルビオンの炭鉱・アルビオンの鏡職人）にアイコンを設定**（`buildings-effects.json`。分類は「生産」のまま）
