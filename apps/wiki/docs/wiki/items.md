@@ -7,6 +7,7 @@ description: Anno 117の全アイテムをニッチ・レアリティ別に一�
 import { ref, computed, watch, nextTick, onMounted, onUnmounted } from 'vue'
 import { withBase } from 'vitepress'
 import { data } from './items.data.ts'
+import FilterBar from '../.vitepress/components/FilterBar.vue'
 
 const selRegion = ref('')
 const selRarity = ref('')
@@ -68,6 +69,9 @@ function toggleSourcePopover(item: ItemRow, event: MouseEvent) {
   }
 }
 
+/** アイテム名の検索欄以外で、条件を指定している欄の数（スマホの［絞り込み］に出す） */
+const activeFilterCount = computed(() => [selRegion.value, selRarity.value, selNiche.value, selTarget.value.trim()].filter(Boolean).length)
+
 function resetFilters(): void {
   selRegion.value = ''
   selRarity.value = ''
@@ -106,6 +110,8 @@ function fmtPrice(item: { price: string; obsidianPrice: number | null }): string
 
 Anno 117 の専門家が装着できる全アイテムの一覧です。地域・分類・レアリティ・対象・効果・価格を掲載しています。
 
+::: details この一覧の見方
+
 使い方は次のとおりです。
 
 - 下の絞り込み欄で表を絞れます。複数を指定すると、すべてに当てはまるアイテムだけが残ります。
@@ -120,10 +126,15 @@ Anno 117 の専門家が装着できる全アイテムの一覧です。地域�
 
 「地域」は、アイテムの効果の対象になる建物がどの地域にあるかで決めています（ゲーム内データ、アップデート3.0）。船のアイテムなど、対象から地域が決まらないものは「指定なし」で、どの地域を選んでも表示します。実機での確認はまだです。
 
-<div class="item-filters">
-  <label><strong>アイテム名:</strong>
-    <input type="text" v-model="selName" placeholder="アイテム名で検索" />
-  </label>
+:::
+
+<FilterBar class="item-filters" :active-count="activeFilterCount">
+  <template #main>
+    <label><strong>アイテム名:</strong>
+      <input type="text" v-model="selName" placeholder="アイテム名で検索" />
+    </label>
+  </template>
+  <template #count>{{ filtered.length }} 件</template>
   <label><strong>地域:</strong>
     <select v-model="selRegion">
       <option value="">すべて</option>
@@ -148,11 +159,8 @@ Anno 117 の専門家が装着できる全アイテムの一覧です。地域�
       <option v-for="t in data.targets" :key="t" :value="t" />
     </datalist>
   </label>
-  <div class="item-filters-footer">
-    <button type="button" class="item-filter-reset" @click="resetFilters">リセット</button>
-    <span class="item-count">{{ filtered.length }} 件</span>
-  </div>
-</div>
+  <button type="button" class="item-filter-reset" @click="resetFilters">リセット</button>
+</FilterBar>
 
 <a href="#対象の総称と内訳" class="item-legend-jumplink">「対象」の総称の内訳を見る ↓</a>
 
@@ -161,17 +169,6 @@ Anno 117 の専門家が装着できる全アイテムの一覧です。地域�
   display: none;
 }
 
-.item-filters {
-  display: flex;
-  flex-wrap: wrap;
-  gap: 16px;
-  align-items: center;
-  margin: 12px 0;
-  padding: 12px;
-  background: var(--vp-c-bg-soft);
-  border: 1px solid var(--vp-c-divider);
-  border-radius: 8px;
-}
 .item-filters label {
   display: flex;
   align-items: center;
@@ -190,12 +187,6 @@ Anno 117 の専門家が装着できる全アイテムの一覧です。地域�
 .item-filters select {
   cursor: pointer;
 }
-.item-filters-footer {
-  display: flex;
-  align-items: center;
-  gap: 12px;
-  margin-left: auto;
-}
 .item-filter-reset {
   padding: 6px 12px;
   border: 1px solid var(--vp-c-divider);
@@ -207,9 +198,6 @@ Anno 117 の専門家が装着できる全アイテムの一覧です。地域�
 }
 .item-filter-reset:hover {
   background: var(--vp-c-bg-mute);
-}
-.item-count {
-  color: var(--vp-c-text-2);
 }
 .item-caution-badge {
   display: inline-block;
@@ -302,17 +290,7 @@ Anno 117 の専門家が装着できる全アイテムの一覧です。地域�
     gap: 10px;
     margin: 16px 0;
   }
-  .item-filters {
-    position: sticky;
-    top: var(--local-nav-height, var(--vp-nav-height));
-    z-index: 10;
-    margin-bottom: 0 !important;
-    display: grid;
-    grid-template-columns: repeat(3, 1fr);
-    gap: 4px 8px;
-    padding: 8px 10px;
-  }
-  .item-filters label {
+  .item-filters .filter-bar-more label {
     flex-direction: column;
     align-items: flex-start;
     gap: 2px;
@@ -323,14 +301,6 @@ Anno 117 の専門家が装着できる全アイテムの一覧です。地域�
     width: 100%;
     min-width: 0;
     padding: 4px 6px;
-    font-size: 0.8rem;
-  }
-  .item-filters-footer {
-    grid-column: 1 / -1;
-    margin-left: 0;
-    justify-content: space-between;
-  }
-  .item-count {
     font-size: 0.8rem;
   }
   .item-filter-reset {

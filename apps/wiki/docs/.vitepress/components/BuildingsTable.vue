@@ -2,6 +2,7 @@
 import { ref, computed, onMounted, watch } from 'vue'
 import { withBase, useData } from 'vitepress'
 import { data } from '../../wiki/buildings.data.ts'
+import FilterBar from './FilterBar.vue'
 
 const tableWrap = ref<HTMLElement | null>(null)
 const isPanning = ref(false)
@@ -133,6 +134,9 @@ function cardEffects(b: Record<string, unknown>): string {
   return Object.keys(effects).length ? formatEffects(effects) : '—'
 }
 
+/** 建物名の検索欄以外で、条件を指定している欄の数（スマホの［絞り込み］に出す） */
+const activeFilterCount = computed(() => [selectedCategory.value, selectedTier.value, sortKey.value].filter(Boolean).length)
+
 function resetFilters() {
   searchText.value = ''
   selectedTier.value = ''
@@ -221,13 +225,16 @@ watch(hash, scrollToHash)
 </script>
 
 <template>
-  <div class="buildings-filter-bar" style="display:flex;gap:8px;align-items:center;margin:16px 0;flex-wrap:wrap;">
-    <input
-      v-model="searchText"
-      type="text"
-      placeholder="建物名で検索..."
-      style="padding:6px 10px;border:1px solid var(--vp-c-divider);border-radius:6px;font-size:14px;background:var(--vp-c-bg);color:var(--vp-c-text-1);width:200px;"
-    />
+  <FilterBar class="buildings-filter-bar" :active-count="activeFilterCount">
+    <template #main>
+      <input
+        v-model="searchText"
+        type="text"
+        placeholder="建物名で検索..."
+        style="padding:6px 10px;border:1px solid var(--vp-c-divider);border-radius:6px;font-size:14px;background:var(--vp-c-bg);color:var(--vp-c-text-1);width:200px;"
+      />
+    </template>
+    <template #count>{{ sortedFiltered.length }}<span class="filter-bar-total"> / {{ data.buildings.length }}</span> 件</template>
     <select
       v-model="selectedCategory"
       style="padding:6px 10px;border:1px solid var(--vp-c-divider);border-radius:6px;font-size:14px;background:var(--vp-c-bg);color:var(--vp-c-text-1);"
@@ -253,8 +260,7 @@ watch(hash, scrollToHash)
       <option value="">並べ替えなし</option>
       <option v-for="o in SORT_OPTIONS" :key="o.value" :value="o.value">{{ o.label }}{{ o.value === 'tier' ? 'の低い順' : 'の大きい順' }}</option>
     </select>
-    <span style="font-size:13px;color:var(--vp-c-text-2);">{{ sortedFiltered.length }} / {{ data.buildings.length }} 件</span>
-  </div>
+  </FilterBar>
 
   <div
     class="buildings-table-wrap"

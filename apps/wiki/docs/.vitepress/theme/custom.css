@@ -477,16 +477,6 @@
   }
 }
 
-/* buildings フィルタバー sticky 固定 */
-.buildings-filter-bar {
-  position: sticky;
-  top: var(--local-nav-height, var(--vp-nav-height));
-  z-index: 10;
-  background: var(--vp-c-bg);
-  padding: 4px 0;
-  margin-bottom: 0 !important;
-}
-
 /* buildings thead sticky（wrap がスクロールボックスのため top:0 で wrap 基準に固定） */
 .buildings-table-wrap table {
   display: table;

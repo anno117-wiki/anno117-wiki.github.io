@@ -2,6 +2,7 @@
 // 称賛（ゲーム内の実績）の一覧（wiki/praise）。データは tools/build-praise-data.py が作る praise-list.json。
 import { computed, ref } from 'vue'
 import data from '../../wiki/praise-list.json'
+import FilterBar from './FilterBar.vue'
 
 interface Item { title: string; desc: string; grade: '銅' | '銀' | '金'; note?: string }
 interface PraiseSet { name: string; region: string; rewards: string[]; items: Item[] }
@@ -36,6 +37,9 @@ const shown = computed(() => visible.value.reduce((n, s) => n + s.items.length, 
 /** 絞り込みが1つでも掛かっているか（リセットボタンの有効・無効に使う） */
 const isFiltered = computed(() => query.value.trim() !== '' || grade.value !== '' || region.value !== '')
 
+/** 検索欄以外で、条件を指定している欄の数（スマホの［絞り込み］に出す） */
+const activeFilterCount = computed(() => [grade.value, region.value].filter(Boolean).length)
+
 function reset() {
   query.value = ''
   grade.value = ''
@@ -59,11 +63,14 @@ function rewardText(s: PraiseSet): string {
 
 <template>
   <div class="pr-root">
-    <div class="pr-filter">
-      <label class="pr-field">
-        <span>検索</span>
-        <input v-model="query" type="search" placeholder="名前や条件の言葉" />
-      </label>
+    <FilterBar class="pr-filter" :active-count="activeFilterCount">
+      <template #main>
+        <label class="pr-field">
+          <span>検索</span>
+          <input v-model="query" type="search" placeholder="名前や条件の言葉" />
+        </label>
+      </template>
+      <template #count>{{ shown }}<span class="filter-bar-total"> / {{ total }}</span> 件</template>
       <label class="pr-field">
         <span>等級</span>
         <select v-model="grade">
@@ -79,8 +86,7 @@ function rewardText(s: PraiseSet): string {
         </select>
       </label>
       <button type="button" class="pr-reset" :disabled="!isFiltered" @click="reset">リセット</button>
-    </div>
-    <p class="pr-count">{{ total }}件中 {{ shown }}件を表示しています。</p>
+    </FilterBar>
 
     <p v-if="!visible.length" class="pr-empty">条件に合う称賛はありません。</p>
 
@@ -109,12 +115,6 @@ function rewardText(s: PraiseSet): string {
 </template>
 
 <style scoped>
-.pr-filter {
-  display: flex;
-  flex-wrap: wrap;
-  gap: 8px 16px;
-  margin: 12px 0 4px;
-}
 .pr-field {
   display: inline-flex;
   align-items: center;
@@ -133,7 +133,6 @@ function rewardText(s: PraiseSet): string {
 .pr-field input {
   min-width: 14em;
 }
-.pr-count,
 .pr-empty {
   margin: 8px 0;
   font-size: 14px;
@@ -246,7 +245,7 @@ function rewardText(s: PraiseSet): string {
     min-width: 0;
     width: 100%;
   }
-  .pr-field {
+  .filter-bar-more .pr-field {
     flex: 1 1 100%;
   }
   .pr-field input,

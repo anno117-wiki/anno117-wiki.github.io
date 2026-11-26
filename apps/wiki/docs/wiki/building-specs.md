@@ -12,6 +12,8 @@ import BuildingSpecsTable from '../.vitepress/components/BuildingSpecsTable.vue'
 
 建物を置く前に知りたい情報（サイズ・範囲・配置制限・建設費・維持費）の一覧です。建物が住民に与える効果は、[建物効果](/wiki/buildings)のページにあります。
 
+::: details この一覧の見方
+
 - サイズは「横×縦」のタイル数です。
 - 範囲は、建物の影響が届く距離です。範囲のない建物は「—」にしています。
   - 「半径」は直線距離（タイル数）で、固定です。
@@ -20,6 +22,8 @@ import BuildingSpecsTable from '../.vitepress/components/BuildingSpecsTable.vue'
 - サイズや費用が地域で同じ建物は、地域を並べて1行にまとめています。違うものは地域ごとに行を分けています。
 - 維持費の労働力は、地域や住民層の違いによらず「労働力」と書いています。どの住民層の労働力かは、[住民層](/wiki/population)のページで確認できます。
 - 装飾品・防衛施設・地面の模様・景観の模様・道（大理石の道を除く）は載せていません。
+
+:::
 
 <BuildingSpecsTable />
 

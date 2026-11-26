@@ -1,9 +1,12 @@
 <template>
   <div>
-    <div class="bs-filters">
-      <label><strong>建物名:</strong>
-        <input type="text" v-model="selName" placeholder="建物名で検索" />
-      </label>
+    <FilterBar class="bs-filters" :active-count="activeFilterCount">
+      <template #main>
+        <label><strong>建物名:</strong>
+          <input type="text" v-model="selName" placeholder="建物名で検索" />
+        </label>
+      </template>
+      <template #count>{{ filtered.length }} 件</template>
       <label><strong>地域:</strong>
         <select v-model="selRegion">
           <option value="">すべて</option>
@@ -22,11 +25,8 @@
           <option v-for="p in PLACEMENTS" :key="p" :value="p">{{ p }}</option>
         </select>
       </label>
-      <div class="bs-filters-footer">
-        <button type="button" class="bs-reset" @click="resetFilters">リセット</button>
-        <span class="bs-count">{{ filtered.length }} 件</span>
-      </div>
-    </div>
+      <button type="button" class="bs-reset" @click="resetFilters">リセット</button>
+    </FilterBar>
 
     <div class="bs-table-wrap">
       <table>
@@ -86,6 +86,7 @@ import { ref, computed } from 'vue'
 import { withBase } from 'vitepress'
 import specs from '../../wiki/building-specs-list.json'
 import BuildingCostList from './BuildingCostList.vue'
+import FilterBar from './FilterBar.vue'
 
 interface Cost { name: string; amount: number }
 interface Building {
@@ -123,6 +124,9 @@ const filtered = computed(() => {
   )
 })
 
+/** 建物名の検索欄以外で、条件を指定している欄の数（スマホの［絞り込み］に出す） */
+const activeFilterCount = computed(() => [selRegion.value, selCategory.value, selPlacement.value].filter(Boolean).length)
+
 function resetFilters(): void {
   selName.value = ''
   selRegion.value = ''
@@ -150,16 +154,6 @@ function placementText(b: Building): string {
 </script>
 
 <style scoped>
-.bs-filters {
-  display: flex;
-  flex-wrap: wrap;
-  gap: 12px 16px;
-  align-items: flex-end;
-  margin: 16px 0;
-  padding: 12px;
-  background: var(--vp-c-bg-soft);
-  border-radius: 8px;
-}
 .bs-filters label {
   display: flex;
   flex-direction: column;
@@ -176,12 +170,6 @@ function placementText(b: Building): string {
   border: 1px solid var(--vp-c-divider);
   border-radius: 6px;
 }
-.bs-filters-footer {
-  display: flex;
-  align-items: center;
-  gap: 12px;
-  margin-left: auto;
-}
 .bs-reset {
   padding: 5px 12px;
   font-size: 13px;
@@ -193,10 +181,6 @@ function placementText(b: Building): string {
 }
 .bs-reset:hover {
   border-color: var(--vp-c-brand-1);
-}
-.bs-count {
-  font-size: 13px;
-  color: var(--vp-c-text-2);
 }
 
 .bs-sub {
@@ -246,10 +230,17 @@ function placementText(b: Building): string {
     flex-direction: column;
     gap: 10px;
   }
-  .bs-filters label,
-  .bs-filters select,
-  .bs-filters input[type="text"] {
+  .bs-filters .filter-bar-more label,
+  .bs-filters .filter-bar-more select {
     width: 100%;
+  }
+  /* 1行に縮めた欄では、検索欄の見出し（建物名:）を横に並べる */
+  .bs-filters .filter-bar-main label {
+    flex-direction: row;
+    align-items: center;
+  }
+  .bs-filters .filter-bar-main input[type="text"] {
+    min-width: 0;
   }
   .bs-card {
     border: 1px solid var(--vp-c-divider);

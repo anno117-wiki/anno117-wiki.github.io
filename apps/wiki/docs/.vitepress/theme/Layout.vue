@@ -110,7 +110,7 @@ function labelStackTables() {
 }
 
 // VPLocalNav(Menu行+セクション間ナビボタン)は内容によって高さが可変のため、
-// sticky要素(item-filters・buildings-filter-bar等)がtop固定値だと重なって隠れる。
+// sticky要素(一覧ページの絞り込み欄 FilterBar 等)がtop固定値だと重なって隠れる。
 // 実測高さをCSS変数化し、各ページのCSSからvar(--local-nav-height)で参照させる。
 function updateLocalNavHeight() {
   const localNav = document.querySelector<HTMLElement>('.VPLocalNav')

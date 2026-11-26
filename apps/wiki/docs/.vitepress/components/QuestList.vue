@@ -4,6 +4,7 @@
 import { computed, nextTick, reactive, ref } from 'vue'
 import { withBase } from 'vitepress'
 import data from '../../wiki/quests-list.json'
+import FilterBar from './FilterBar.vue'
 
 interface Reward { t: string; k: string; rarity?: string | null; link?: boolean }
 interface Alt { cond: string; yes: string[]; no: string[] }
@@ -66,6 +67,9 @@ const filtered = computed(() => {
     return true
   })
 })
+
+/** 名前の検索欄以外で、条件を指定している欄の数（スマホの［絞り込み］に出す） */
+const activeFilterCount = computed(() => [selDlc.value, selRegion.value, onlyItems.value].filter(Boolean).length)
 
 function resetFilters() {
   selName.value = ''
@@ -169,10 +173,13 @@ function isEmpty(r?: Result) {
 
 <template>
   <div class="ql">
-    <div class="ql-filters">
-      <label><strong>名前:</strong>
-        <input v-model="selName" type="text" placeholder="クエスト名・依頼人・報酬で検索" />
-      </label>
+    <FilterBar class="ql-filters" :active-count="activeFilterCount">
+      <template #main>
+        <label><strong>名前:</strong>
+          <input v-model="selName" type="text" placeholder="クエスト名・依頼人・報酬で検索" />
+        </label>
+      </template>
+      <template #count>{{ filtered.length }} 件</template>
       <label><strong>DLC:</strong>
         <select v-model="selDlc">
           <option value="">すべて</option>
@@ -186,11 +193,8 @@ function isEmpty(r?: Result) {
         </select>
       </label>
       <label class="ql-check"><input v-model="onlyItems" type="checkbox" /> アイテムがもらえるものだけ</label>
-      <div class="ql-footer">
-        <button type="button" class="ql-reset" @click="resetFilters">リセット</button>
-        <span class="ql-count">{{ filtered.length }} 件</span>
-      </div>
-    </div>
+      <button type="button" class="ql-reset" @click="resetFilters">リセット</button>
+    </FilterBar>
 
     <details v-for="q in filtered" :id="`quest-${q.guid}`" :key="q.guid" class="ql-quest" @toggle="onToggle(q.guid, $event)">
       <summary>
@@ -310,17 +314,6 @@ function isEmpty(r?: Result) {
 </template>
 
 <style scoped>
-.ql-filters {
-  display: flex;
-  flex-wrap: wrap;
-  gap: 8px 16px;
-  align-items: center;
-  margin: 16px 0;
-  padding: 12px;
-  border: 1px solid var(--vp-c-divider);
-  border-radius: 8px;
-  background: var(--vp-c-bg-soft);
-}
 .ql-filters label { display: flex; align-items: center; gap: 6px; font-size: 14px; }
 .ql-filters label strong { white-space: nowrap; }
 .ql-filters input[type='text'], .ql-filters select {
@@ -331,14 +324,12 @@ function isEmpty(r?: Result) {
   max-width: 100%;
 }
 .ql-filters input[type='text'] { width: 15em; }
-.ql-footer { display: flex; gap: 12px; align-items: center; margin-left: auto; }
 .ql-reset {
   border: 1px solid var(--vp-c-divider);
   border-radius: 4px;
   padding: 2px 10px;
   background: var(--vp-c-bg);
 }
-.ql-count { color: var(--vp-c-text-2); font-size: 14px; }
 
 .ql-quest {
   border: 1px solid var(--vp-c-divider);
@@ -418,7 +409,5 @@ function isEmpty(r?: Result) {
 
 @media (max-width: 959px) {
   .ql-filters input[type='text'] { width: 100%; }
-  .ql-filters label:first-child { width: 100%; }
-  .ql-footer { margin-left: 0; }
 }
 </style>
