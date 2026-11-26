@@ -125,14 +125,18 @@ function startServer() {
   });
 }
 
+// 閲覧数の計測スクリプト（Cloudflare Web Analytics）を読み込ませない。
+// DNS によっては名前解決に20秒ほどかかり、ページの読み込みが遅れるため（playwright.config.ts と同じ）
+const LAUNCH_ARGS = ['--host-resolver-rules=MAP static.cloudflareinsights.com ~NOTFOUND'];
+
 async function launchBrowser(): Promise<Browser> {
   try {
-    return await chromium.launch();
+    return await chromium.launch({ args: LAUNCH_ARGS });
   } catch (error) {
     if (!existsSync(FALLBACK_CHROMIUM)) throw error;
     console.warn(`  [WARN] 既定のブラウザを起動できないため ${FALLBACK_CHROMIUM} を使います`);
 
-    return chromium.launch({ executablePath: FALLBACK_CHROMIUM });
+    return chromium.launch({ executablePath: FALLBACK_CHROMIUM, args: LAUNCH_ARGS });
   }
 }
 
