@@ -58,8 +58,9 @@ const productivityRows = [...new Set([...commonSteps.keys(), ...aegyptusSteps.ke
 
 各神の局所効果1（生産アップ系）は、島の信仰値が下のしきい値を超えるたびに段階が上がります。アイギュプトの3柱（イシス・バステト、セベク、トト・トリスメギストス）は、ほかの8柱と段階が違います。
 
+<div class="wrap-head">
 <table>
-<thead><tr><th>島の信仰値</th><th>8柱共通</th><th>アイギュプトの3柱</th></tr></thead>
+<thead><tr><th>信仰値</th><th>8柱共通</th><th>アイギュプト3柱</th></tr></thead>
 <tbody>
 <tr v-for="row in productivityRows" :key="row.devotion">
 <td>{{ row.devotion.toLocaleString() }}</td>
@@ -68,6 +69,7 @@ const productivityRows = [...new Set([...commonSteps.keys(), ...aegyptusSteps.ke
 </tr>
 </tbody>
 </table>
+</div>
 
 「—」は、その信仰値では段階が上がらないことを表します。どちらも10%刻みで上がり、8柱は全15段階で最大+150%、アイギュプトの3柱は全17段階で最大+170%になります。
 

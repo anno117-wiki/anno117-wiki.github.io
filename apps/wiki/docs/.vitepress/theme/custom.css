@@ -282,8 +282,9 @@
   /* (1) 本文の左右余白復活
      グローバルの .VPDoc{padding-left:0!important} と
      .vp-doc{padding:2rem 0!important} が左右0にしているのを上書き */
+  /* unset だと CSS の初めの値(0)に戻り、左だけ余白が無くなるので、VitePress の右の余白と同じ値を入れる */
   .VPDoc {
-    padding-left: unset !important;
+    padding-left: 24px !important;
   }
 
   .vp-doc {
@@ -698,5 +699,12 @@
     padding: 0 6px;
     font-size: 13px;
     white-space: nowrap;
+  }
+}
+
+/* 768〜959px は、VitePress の右の余白が 32px になるので、左もそろえる */
+@media (min-width: 768px) and (max-width: 959px) {
+  .VPDoc {
+    padding-left: 32px !important;
   }
 }
