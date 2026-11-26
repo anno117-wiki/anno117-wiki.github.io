@@ -185,6 +185,8 @@
     "about": "について",
     "storage": "保存",
     "help": "操作ヒント",
+    "helpButton": "ヘルプ",
+    "darkModeToggle": "ダークモードの切り替え",
     "outputPerMinute": "生産数 / 分",
     "autoRatio": "自動比率",
     "inputs": "原料",
@@ -253,6 +255,7 @@
   "regions": {
     "latium": "ラティウム",
     "albion": "アルビオン",
+    "aegyptus": "アイギュプト",
     "roman": "ローマ",
     "celtic": "ケルト"
   },
