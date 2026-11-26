@@ -1,19 +1,20 @@
-# 引き継ぎ: 次回セッション向け（2026-11-26 更新・第78版）
+# 引き継ぎ: 次回セッション向け（2026-11-26 更新・第79版）
 
 この文書には「今の状態・次の任務・保留・注意点」だけを書く。完了した作業の記録は `docs-notes/handover-archive.md` に移してあり、開始時に読む必要はない（文中の「アーカイブX節」で必要な箇所だけ引く）。
 
 ## git状態
+- **第79版（2026-11-26 午後・Windows の単独セッション）: 全てpush済み（`701037d7` まで、デプロイ success）**。作業は下の「2026-11-26 午後の作業」、完了の記録はアーカイブBH節
 - **（2026-11-25・クラウドの追記）建物データの市場を1行にまとめた＋アイコン61件を wiki 側に追跡した**（`a2d61e4e`・`640b2e23`・`2ab05504`。全てpush済み）: `tools/build-building-specs.py` の `merge_same_rows` が縦横入れ替えを同じサイズとして扱う。ラティウムの市場 5×6 とアルビオンの市場 6×5 が別の行だったのを、ユーザー指摘で1行（ラティウム・アルビオン、5×6）にした（元データの Planner は地域ごとに縦横が逆。範囲・建設費・維持費は同じ。アイギュプトの市場は建設費が泥レンガで別。まとまる組はこの1組だけ）。`building-specs-list.json` は `_local` が無く再生成できないので同じ結果に直接修正した。**Windows で `build-building-specs.py` を再実行して同じ出力になるか確かめる**。また、穀物庫3件とアイテム58件のアイコンが `packages/shared/public/icons` にだけあり、クラウドのビルドで `docs/icons/goods/` から消えた（`build:site` の画像の減少の検査が検出）ため、`apps/wiki/docs/public/icons/goods/` にコピーして `git add -f` した。**Windows でアイコンを足すときは両方に置く（CLAUDE.md の決まり）**。更新履歴への追記はしていない
 - **第75版（2026-11-23・Windows の単独セッション）: 全てpush済み（船データ・ガイドの変更は `6f1d1c18` まで、更新履歴の追記と引き継ぎ書の更新も含む）。作業は下の「2026-11-23 の作業（船データの調査と充実）」。第74版以前の記録は2026-11-24 にアーカイブ末尾の「BG」節へ移した。**
 - GitHub Pagesデプロイの確認は `gh run list --repo anno117-wiki/anno117-wiki.github.io --limit 5`
 - **`docs-notes/` は `.gitignore` 対象**（`handover-next-session.md` / `handover-archive.md` / `building-icon-mapping.md` / `how-to-edit-site.md` / `dlc03-ingame-checklist.md` / `unverified-items.md` / `research-ps5-controls.md`（2026-11-03追加） / `rda-extraction-plan.md`（2026-11-04追加） / `wiki/` のみ例外で追跡）。次の調査メモ3本は**ローカルのみでGit未管理**
   - `docs-notes/research-alt-producers-coal-gold.md`（石炭・金の生産元、信仰神、サイロ、実機確認の記録）
   - `docs-notes/research-splendor-hippodrome-colosseum.md`（競馬場・円形闘技場の輝きバフ。2026-10-17夜に実機確認を大量に追記: 競馬場の報酬内訳、円形闘技場の試合、建設フェーズI〜IV、効果X）
-  - `docs-notes/research-hippodrome-racer-stats.md`（2026-09-22新規。競馬場レーサー適性`ItemRacerPreset`の全数値、Item Inspectorリポジトリの配布方式変更リスク。2026-10-17にコモン御者の試走12回の記録を追記: 初期値1〜3・上限差+3〜+7でCommonプリセットと整合、上限到達後は変化なし）
+  - `docs-notes/research-hippodrome-racer-stats.md`（2026-09-22新規。競馬場レーサー適性`ItemRacerPreset`の全数値、Item Inspectorリポジトリの配布方式変更リスク。2026-10-17にコモン御者の試走12回の記録を追記: 初期値1〜3・上限差+3〜+7でCommonプリセットと整合、上限到達後は変化なし。2026-11-26に設定「戦車御者のステータスをシャッフル」と実機の上限値4人分を追記）
   - 消したくない場合は `.gitignore` に例外を足すか、必要な内容を別ファイルへ移すこと
 
 ## 未コミット作業
-なし（2026-11-23・第75版の時点。push 済み。`tools/__pycache__/` が未追跡で出るが無視してよい）。`docs-notes/research-*.md` 3本はGit管理外
+なし（2026-11-26・第79版の時点。push 済み。`tools/__pycache__/` が未追跡で出るが無視してよい）。`docs-notes/research-*.md` 3本はGit管理外
 
 ## 【済】スマホ表示の改善 1〜11（2026-11-26。全項目済み・更新履歴に1件追記済み）
 ユーザーの依頼で、スマホ表示を厳しめに見て 11 項目を挙げ、1 項目ずつ打ち合わせて直した（案を出す→了承→直す→撮って確かめる→コミット）。9〜11 と更新履歴・docs/ は `7a715cba`〜`309d8977`（push は下記「git状態」参照）。
@@ -28,6 +29,14 @@
   - 更新履歴の最新が `/calculator/` へのリンクのとき、`check:site` のサイト内リンク数がページ数（35）ぶん減って見える（ナビの同じリンクと重複して数えないため）。壊れたリンクではない
 - スマホ確認の撮影は、手元ビルドを Bun.serve で配信して Playwright で撮る一時スクリプト（scripts/_tmp_*.ts、使ったら消す）。`--host-resolver-rules=MAP static.cloudflareinsights.com ~NOTFOUND` を付ける。計算機で商品を選ぶときは、スマホでは［商品を選ぶ］を押してから `#tree-search` に入れる。ラティウムに無い商品（青スイレン茶・鳥舌肉アスピック）は出てこない
 - `~/.claude/settings.json` の permissions.ask から `Bash(rm *)` を外した（ユーザー指示。bypass で rm を通すため。sudo は残す）
+
+## 2026-11-26 午後の作業（第79版。DLC03・DLC02 ページの直しと騎手の調査。全て push 済み。完了の記録はアーカイブBH節）
+- **残り・注意**:
+  - 未確認一覧に A35（ピラミッドの工程I〜IIIの報酬「帝国の利益」。データの値）を足し、ネズミの A25・A26 を消した。A分類は18件
+  - **騎手の能力値はデータに無い**（ゲーム本体が計算）。サイトの「おすすめの騎手」（DLC02）は実機の値だけが出典。足すときはユーザーのスクショで上限を読む（明るいマス=今の値、灰色=伸びしろ、暗い=上限の外）。設定「戦車御者のステータスをシャッフル」がオフの値であること
+  - イアン・ガイウス・馬丁の上限がそろって 10・10・8・7 なのは偶然か不明（フーイは違う）。追加調査はユーザー判断で打ち切り（労力のため）
+  - 調査で展開した config.rda・script.rda は scratchpad の一時フォルダ（約190MB）。必要なら同じ手順で取り直せる（`RdaConsole.exe extract -f <maindata/config.rda> -o <出力先> -y -n`）。パッチRDA（zz_patchfiles_*）には設定ファイルは入っていない
+  - Git Bash で `check:mobile -- --page /guide/...` は `MSYS_NO_PATHCONV=1` が要る（付けないと `C:/Program Files/Git/guide/...` に化けて「対象のページがありません」）
 
 ## 2026-11-26 の追記（Windows の単独セッション。全て push 済み）
 - **読み込み時の画面のずれ（CLS）を直した**（`64c56940`・`9a58d223`）: Cloudflare Web Analytics の Web Vitals で見つけた。(1) 更新履歴はコメント欄を後から差し込んで押し下げていた → `commentEntries.ts` に `useCommentState()`（loading 付き）を足し、`UpdateLog.vue` が読み込み中も見出しと 100vh の場所を取る。(2) 960〜1279px でページ内の目次の帯（VPLocalNav）が JS 後に出て本文が48px下がっていた → `custom.css` 末尾で最初から帯を出す。目次の出ないページ（技術ツリー6・クエスト一覧・旧商品一覧）は frontmatter `pageClass: no-outline` で外す。**目次の無いページを新しく作ったら、同じく `pageClass: no-outline` を付ける**（付けないと 960〜1279px で空の帯が出る）
