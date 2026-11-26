@@ -80,9 +80,9 @@ test.describe('言語切り替え機能', () => {
     });
     expect(afterReloadSettings.language).toBe('ja');
 
-    // 言語ボタンも日本語表示になっていることを確認
+    // 言語ボタンは切り替え先（英語）を出していることを確認
     const buttonText = await page.locator('button#language-toggle-btn').textContent();
-    expect(buttonText).toContain('日本語');
+    expect(buttonText).toContain('EN');
   });
 
   test('商品選択後も言語切り替えが機能する', async ({ page }) => {
@@ -106,19 +106,20 @@ test.describe('言語切り替え機能', () => {
     const languageToggle = page.locator('button#language-toggle-btn');
     await languageToggle.click();
 
-    // 言語ボタンのテキストが変更されることを確認
+    // 言語ボタンのテキストが切り替え先（英語）に変わることを確認
     await page.waitForTimeout(500);
     const buttonText = await languageToggle.textContent();
-    expect(buttonText).toContain('日本語');
+    expect(buttonText).toContain('EN');
   });
 
   test('UIテキストが言語に応じて切り替わる', async ({ page }) => {
-    // 英語モード - ボタンテキストで確認
+    // 英語モード - ボタンは切り替え先（日本語）を出す
     await page.goto('/?lang=en');
     await page.waitForSelector('button#language-toggle-btn');
+    await page.waitForTimeout(300);
 
     let langButton = await page.locator('button#language-toggle-btn').textContent();
-    expect(langButton).toContain('EN');
+    expect(langButton).toContain('日本語');
 
     // 日本語モード
     await page.goto('/?lang=ja');
@@ -128,6 +129,6 @@ test.describe('言語切り替え機能', () => {
     await page.waitForTimeout(300);
 
     langButton = await page.locator('button#language-toggle-btn').textContent();
-    expect(langButton).toContain('日本語');
+    expect(langButton).toContain('EN');
   });
 });

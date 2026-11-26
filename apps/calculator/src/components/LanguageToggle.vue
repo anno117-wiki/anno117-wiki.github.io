@@ -19,10 +19,10 @@ const settingsManager = SettingsManager.getInstance();
 const buttonText = ref<string>('EN');
 
 /**
- * ボタンテキストを更新
+ * ボタンテキストを更新（今の言語ではなく、押すと切り替わる先の言語を出す）
  */
 const updateButtonText = (locale: Locale) => {
-  buttonText.value = locale === 'en' ? 'EN' : '日本語';
+  buttonText.value = locale === 'en' ? '日本語' : 'EN';
 };
 
 /**
