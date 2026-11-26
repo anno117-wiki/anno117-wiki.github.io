@@ -23,6 +23,9 @@ export class GraphInteractionHandler {
     /** 小さな図を大きくしすぎない上限 */
     private static readonly MOBILE_MAX_SCALE = 1.2;
     private static readonly MOBILE_PADDING = 24;
+    /** PC: 小さな図（原料1つなど）を大きくしすぎない上限 */
+    private static readonly DESKTOP_MAX_SCALE = 1.5;
+    private static readonly DESKTOP_PADDING = 40;
 
     constructor(svgElement: SVGSVGElement, onViewBoxChange: (vb: ViewBox) => void) {
         this.svgElement = svgElement;
@@ -62,19 +65,36 @@ export class GraphInteractionHandler {
                         return;
                     }
 
-                    const padding = 100;
-                    const verticalOffset = 80;
-                    this.updateViewBox({
-                        x: bbox.x - padding,
-                        y: bbox.y - padding + verticalOffset,
-                        width: bbox.width + padding * 2,
-                        height: bbox.height + padding * 2
-                    });
+                    this.updateViewBox(this.desktopFitViewBox(bbox));
                 } catch (error) {
                     console.warn('[fitToView] getBBox failed:', error);
                 }
             });
         });
+    }
+
+    /**
+     * PC 用の初期表示。図全体を枠に収めて上下左右の中央に置く（縮める倍率の下限は無し。大きくする上限だけ設ける）。
+     * viewBox の縦横比を画面上の枠と同じにして、ブラウザ任せの余白の付き方に頼らない
+     */
+    private desktopFitViewBox(bbox: DOMRect): ViewBox {
+        const rect = this.svgElement.getBoundingClientRect();
+        const pad = GraphInteractionHandler.DESKTOP_PADDING;
+        const contentWidth = bbox.width + pad * 2;
+        const contentHeight = bbox.height + pad * 2;
+        if (rect.width === 0 || rect.height === 0) {
+            return { x: bbox.x - pad, y: bbox.y - pad, width: contentWidth, height: contentHeight };
+        }
+        const fitScale = Math.min(rect.width / contentWidth, rect.height / contentHeight);
+        const scale = Math.min(fitScale, GraphInteractionHandler.DESKTOP_MAX_SCALE);
+        const width = rect.width / scale;
+        const height = rect.height / scale;
+        return {
+            x: bbox.x + bbox.width / 2 - width / 2,
+            y: bbox.y + bbox.height / 2 - height / 2,
+            width,
+            height
+        };
     }
 
     /**

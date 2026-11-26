@@ -986,6 +986,14 @@ input[type="number"]:focus,
   overflow: hidden;
 }
 
+/* 図の絵（SVG）を外枠の高さに収める。これが無いと SVG が横幅に合わせて縦に伸び、
+   図が SVG の中央（枠より下）に置かれて下側が切れる。図を枠に合わせる計算（GraphInteractionHandler の fitToView）も、この枠の大きさで行われる */
+.graph-host {
+  flex: 1;
+  min-height: 0;
+  display: flex;
+}
+
 .production-graph h4 {
   margin-bottom: 0.5rem;
   flex-shrink: 0;
@@ -993,8 +1001,9 @@ input[type="number"]:focus,
 
 .dependency-graph {
   width: 100%;
+  height: 100%;
   flex: 1;
-  min-height: 500px; /* 増加: 200px→500px */
+  min-height: 0;
   touch-action: pan-x pan-y;
   -ms-touch-action: pan-x pan-y;
   user-select: none;
@@ -1694,10 +1703,6 @@ input[type="number"]:focus,
     height: 50dvh;
   }
 
-  /* 図は外枠（50dvh）いっぱいに。PC 用の最低 500px が残ると、外枠からはみ出した下側が切れる */
-  .dependency-graph {
-    min-height: 0;
-  }
 
   /* Readability: stacked controls and full-width inputs/buttons */
   .calculator-header h3 {
@@ -2255,19 +2260,6 @@ header .header-icon-btn:active {
   .production-graph {
     height: auto;
     min-height: 120px;
-  }
-
-  .dependency-graph {
-    min-height: 0;
-    height: 100%;
-  }
-
-  /* 図の絵（SVG）を外枠の高さに収める。これが無いと SVG が横幅に合わせて縦に伸び、上端しか見えない。
-     図を画面に合わせて縮める計算（GraphInteractionHandler の mobileFitViewBox）も、この枠の大きさで行われる */
-  .graph-host {
-    flex: 1;
-    min-height: 0;
-    display: flex;
   }
 
   .production-graph {
