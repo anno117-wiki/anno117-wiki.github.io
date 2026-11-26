@@ -73,7 +73,7 @@ Anno 117 で生産・消費される全商品の一覧です。食料・建設�
 詳しい計算は[計算機](/calculator/)で。
 ラティウム・アルビオン・アイギュプト地域別の商品分布は[地域別商品](/wiki/regions)にあります。
 
-アイギュプトで新しく作れる商品（DLC03）も載せています。「開く」は、計算機の地域をアイギュプトにして開きます。象牙の小箱とコールは、作り方（建物）ごとにボタンが2つあります。同じ素材を複数の建物で作れる場合（石炭は炭焼き師と炭鉱、金鉱石は金選鉱と金鉱）は、図に両方を並べています。並べた建物の数は、その建物だけで全量をまかなう場合の数です。
+アイギュプトで新しく作れる商品（DLC03）も載せています。計算機のボタンは、計算機の地域をアイギュプトにして開きます。象牙の小箱とコールは、作り方（建物）ごとにボタンが2つあります。同じ素材を複数の建物で作れる場合（石炭は炭焼き師と炭鉱、金鉱石は金選鉱と金鉱）は、図に両方を並べています。並べた建物の数は、その建物だけで全量をまかなう場合の数です。
 
 <div v-for="cat in data.categories" :key="cat">
 
@@ -115,12 +115,12 @@ Anno 117 で生産・消費される全商品の一覧です。食料・建設�
   <div class="chain-card-header">
     <img v-if="entry.icon" :src="withBase('/icons/goods-thumb/' + entry.icon + '.webp')" :alt="entry.nameJa" width="28" height="28" loading="lazy" class="chain-card-icon" />
     <span class="chain-card-name">{{ entry.nameJa }}</span>
-    <span v-if="entry.calcLinks.length" class="calc-links"><a v-for="l in entry.calcLinks" :key="l.query" class="calc-link-btn" :href="withBase('/calculator/?' + l.query)" target="_blank" rel="noopener noreferrer">{{ l.label ? '開く（' + l.label + '）' : '開く' }}</a></span>
+    <span v-if="entry.calcLinks.length" class="calc-links"><a v-for="l in entry.calcLinks" :key="l.query" class="calc-link-btn" :href="withBase('/calculator/?' + l.query)" target="_blank" rel="noopener noreferrer">{{ l.label ? '計算機（' + l.label + '）' : '計算機で開く' }}</a></span>
   </div>
   <div class="chain-card-body">
     <div class="chain-card-meta">
       <span>{{ regionText(entry.regions) }}</span>
-      <span>{{ timeText(entry.timeSeconds) }}</span>
+      <span>生産時間: {{ timeText(entry.timeSeconds) }}</span>
     </div>
     <template v-if="entry.variants.length > 1">
       <div v-for="v in entry.variants" :key="v.label" class="chain-variant">
@@ -220,7 +220,7 @@ Anno 117 で生産・消費される全商品の一覧です。食料・建設�
 }
 .chain-card-name {
   font-weight: 700;
-  /* 名前は縮めずに、入りきらない「開く」ボタンのほうを次の行へ回す */
+  /* 名前は縮めずに、入りきらない計算機のボタンのほうを次の行へ回す */
   flex: 1 0 auto;
   min-width: 0;
   word-break: break-word;
