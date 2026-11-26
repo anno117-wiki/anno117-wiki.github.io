@@ -2355,3 +2355,51 @@ footer.site-disclaimer {
   line-height: 1.6;
   color: var(--text-secondary);
 }
+
+/* スマホ縦向きの計算機の上段: 1行目に［戻る］と題名、2行目に「生産数 / 分」の見出し・数量欄・［自動比率］を並べる。
+   flex の折り返し任せだと、見出しが1行目の右端に、数量欄が2行目に分かれて、何の数か分からなくなるため */
+@media (max-width: 768px) and (orientation: portrait) {
+  .calculator-topbar {
+    display: grid;
+    grid-template-columns: auto 5.5rem 1fr;
+    grid-template-areas:
+      "back  title title"
+      "label rate  ratio";
+    align-items: center;
+    gap: 8px 10px;
+    /* 上段の入れ物（.app-header）は flex なので、幅いっぱいに広げて下線を端まで届かせる */
+    flex: 1;
+    width: 100%;
+  }
+  .calculator-topbar .topbar-separator {
+    display: none;
+  }
+  .calculator-topbar .back-button {
+    grid-area: back;
+  }
+  .calculator-topbar .topbar-title {
+    grid-area: title;
+    /* 長い題名（英語など）は切らずに折り返す */
+    white-space: normal;
+    overflow-wrap: anywhere;
+  }
+  .calculator-topbar label[for="target-rate"] {
+    grid-area: label;
+    white-space: nowrap;
+  }
+  .calculator-topbar #target-rate {
+    grid-area: rate;
+    width: 100%;
+    min-width: 0;
+  }
+  .calculator-topbar .recommend-button {
+    grid-area: ratio;
+    justify-self: start;
+    width: auto;
+  }
+}
+
+/* 商品を選ぶ前は上段の入れ物が空なので、影付きの空の帯を出さない（PC・スマホとも） */
+.app-header:empty {
+  display: none;
+}
