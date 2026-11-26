@@ -2,6 +2,7 @@
 title: スキルツリー・軍事
 description: Anno 117の軍事スキルツリー全58件。ローマ軍団兵・バリスタ・装甲艦・石の壁など、陸軍・海軍・防衛を強化するスキルの研究順序と効果を日本語で確認できる。
 outline: false
+pageClass: no-outline
 ---
 
 <script setup lang="ts">

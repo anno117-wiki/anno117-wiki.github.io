@@ -650,3 +650,18 @@
 .qsvg .qs-h { fill: var(--vp-c-brand-soft); }
 .qsvg .qs-hb { font-size: 13.5px; font-weight: 700; }
 .qsvg .qs-g { fill: none; stroke: var(--vp-c-divider); stroke-width: 1; }
+
+/* 960〜1279px のページ内ナビ帯（「このページの目次」）の場所取り。
+   VitePress は見出しを JS で集めるまで帯を隠すため、読み込み直後に帯が出て本文が 48px 下がる（画面のずれ）。
+   最初から帯を出しておく（長いページは見出しが届く前に描かれるため、見出しの有無では判定しない）。
+   目次の出ないページ（outline: false・見出しが無い）は pageClass: no-outline で外す */
+@media (min-width: 960px) and (max-width: 1279px) {
+  .Layout:not(.no-outline) .VPLocalNav.empty {
+    display: block;
+  }
+  /* サイドバーの無いページ（更新履歴など）では、空の帯は画面に固定（fixed）で置かれ本文の場所を取らない。
+     見出しが集まった後と同じく、本文の上に場所を取らせる */
+  .Layout:not(.no-outline) .VPLocalNav.empty.fixed {
+    position: sticky;
+  }
+}

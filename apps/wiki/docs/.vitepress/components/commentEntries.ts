@@ -75,8 +75,10 @@ async function fetchCommentEntries(): Promise<LogEntry[]> {
 }
 
 // コメントは実行時にWorkerから取る。取れなくても呼び出し側は更新履歴だけで表示できる
-export function useCommentEntries(): Ref<LogEntry[]> {
+// loading は取得が終わる（成功・失敗とも）まで true。読み込み中の場所取りに使う
+export function useCommentState(): { entries: Ref<LogEntry[]>; loading: Ref<boolean> } {
   const entries = ref<LogEntry[]>([])
+  const loading = ref(Boolean(WORKER_URL))
   onMounted(async () => {
     if (!WORKER_URL) return
     try {
@@ -85,7 +87,13 @@ export function useCommentEntries(): Ref<LogEntry[]> {
     } catch (e) {
       cached = null
       console.warn('コメントの取得に失敗しました', e)
+    } finally {
+      loading.value = false
     }
   })
-  return entries
+  return { entries, loading }
+}
+
+export function useCommentEntries(): Ref<LogEntry[]> {
+  return useCommentState().entries
 }

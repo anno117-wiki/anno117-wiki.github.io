@@ -1,5 +1,6 @@
 ---
 title: 商品一覧（生産チェーン・全商品一覧へ移動しました）
+pageClass: no-outline
 description: 商品一覧は、生産チェーン・全商品一覧のページにまとめました。
 head:
   - - meta

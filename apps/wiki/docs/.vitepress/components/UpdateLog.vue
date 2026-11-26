@@ -2,7 +2,8 @@
   <div class="update-log">
     <section v-for="section in sections" :key="section.id" class="ul-section">
       <h2 :id="section.id">{{ section.heading }}</h2>
-      <div class="ul-list">
+      <p v-if="section.loading" class="ul-loading">コメントを読み込み中…</p>
+      <div v-else class="ul-list">
         <div v-for="(entry, i) in section.items" :key="i" class="update-entry">
           <div class="update-meta">
             <span class="ul-badge" :class="entry.type">{{ BADGE_LABEL[entry.type] }}</span>
@@ -30,25 +31,29 @@
 import { computed, ref } from 'vue'
 import { withBase } from 'vitepress'
 import updates from '../data/updates.json'
-import { useCommentEntries, type LogEntry } from './commentEntries'
+import { useCommentState, type LogEntry } from './commentEntries'
 
 const BADGE_LABEL: Record<string, string> = { post: '追加', fix: '修正', comment: 'コメント' }
 
 // 最初に見せるコメントの件数。残りは「もっと見る」で開く
 const INITIAL_COMMENT_COUNT = 5
 
-const commentEntries = useCommentEntries()
+const { entries: commentEntries, loading: commentsLoading } = useCommentState()
 const showAllComments = ref(false)
 
 const byDateDesc = (a: LogEntry, b: LogEntry) => b.date.localeCompare(a.date)
 const comments = computed<LogEntry[]>(() => [...commentEntries.value].sort(byDateDesc))
 const updateEntries = computed<LogEntry[]>(() => [...updates].sort(byDateDesc))
 
-// コメントを上、更新履歴を下に置く。コメントが無い間（読み込み中・取得失敗）はコメント枠ごと出さない
+// コメントを上、更新履歴を下に置く。
+// 読み込み中はコメント枠の場所を先に取っておく（後から差し込むと更新履歴が押し下げられ、画面がずれるため）。
+// 取得に失敗した・コメントが無いときは枠ごと出さない
 const sections = computed(() => {
   const hasMore = !showAllComments.value && comments.value.length > INITIAL_COMMENT_COUNT
   const list = []
-  if (comments.value.length > 0) {
+  if (commentsLoading.value) {
+    list.push({ id: 'comments-from-everyone', heading: 'みなさんからのコメント', items: [], canExpand: false, loading: true })
+  } else if (comments.value.length > 0) {
     list.push({
       id: 'comments-from-everyone',
       heading: 'みなさんからのコメント',
@@ -64,6 +69,15 @@ const sections = computed(() => {
 <style scoped>
 .update-log {
   margin-top: 16px;
+}
+
+/* 読み込み中の場所取り。届くコメント欄（今は画面1枚分より高い）に近い高さにして、
+   下の更新履歴が画面外のまま動くようにする（画面外の移動はずれに数えられない） */
+.ul-loading {
+  min-height: 100vh;
+  margin: 16px 0 0;
+  font-size: 13px;
+  color: var(--vp-c-text-2);
 }
 
 .ul-list {

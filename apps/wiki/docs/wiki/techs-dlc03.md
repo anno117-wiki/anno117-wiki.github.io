@@ -2,6 +2,7 @@
 title: スキルツリー・デルタの夜明け
 description: Anno 117 DLC03「デルタの夜明け」のスキルツリー全41件。アイギュプトで解放される追加スキルの研究順序と効果を日本語で確認できる。
 outline: false
+pageClass: no-outline
 ---
 
 <script setup lang="ts">

@@ -2,6 +2,7 @@
 title: スキルツリー・経済
 description: Anno 117の経済スキルツリー全55件。倉庫管理・交易所の改善・舗装道路・水路灌漑など、生産と物流を強化するスキルの研究順序と効果を日本語で確認できる。
 outline: false
+pageClass: no-outline
 ---
 
 <script setup lang="ts">

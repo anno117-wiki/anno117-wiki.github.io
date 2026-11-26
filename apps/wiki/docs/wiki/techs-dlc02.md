@@ -2,6 +2,7 @@
 title: スキルツリー・競馬場
 description: Anno 117 DLC02「競馬場」のスキルツリー全12件。競馬場の設計図・たゆまぬ訓練・大規模選考会など、競馬に関わるスキルの研究順序と効果を日本語で確認できる。
 outline: false
+pageClass: no-outline
 ---
 
 <script setup lang="ts">

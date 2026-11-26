@@ -2,6 +2,7 @@
 title: スキルツリー・社会
 description: Anno 117の社会スキルツリー全62件。井戸・トイレ・市場の力・ミネルヴァ信仰など、住民の需要や信仰に関わるスキルの研究順序と効果を日本語で確認できる。
 outline: false
+pageClass: no-outline
 ---
 
 <script setup lang="ts">
