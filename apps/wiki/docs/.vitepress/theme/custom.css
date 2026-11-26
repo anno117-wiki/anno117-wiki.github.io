@@ -208,7 +208,8 @@
   box-shadow: var(--neo-shadow);
   background: #eef0f4;
 }
-.VPSidebarItem.is-active .item {
+/* 選んでいる項目だけに枠を付ける（子の項目にまで付くと、どれを見ているか分からない） */
+.VPSidebarItem.is-active > .item {
   box-shadow: var(--neo-inset);
   background: #eef0f4;
   color: #c9a84c;
@@ -543,7 +544,7 @@
   background: #1a2840;
 }
 
-.dark .VPSidebarItem.is-active .item {
+.dark .VPSidebarItem.is-active > .item {
   background: #1a2840;
 }
 
@@ -583,6 +584,11 @@
 }
 .VPSidebarItem.level-0:not(.is-link) > .item:hover .text {
   color: var(--vp-c-text-1);
+}
+
+/* サイドバー（スマホではメニュー）: 見出し（「生産」など）の下の項目を字下げして、まとまりを分かりやすくする */
+.VPSidebarItem.level-0 > .items {
+  padding-left: 16px;
 }
 
 /* トップページ最下部の権利注記。VPHome のコンテンツ幅(1152px)と左右余白に揃える */

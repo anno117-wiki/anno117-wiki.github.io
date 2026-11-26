@@ -206,6 +206,29 @@ export default defineConfig({
 
   search: {
     provider: 'local',
+    options: {
+      translations: {
+        button: {
+          buttonText: '検索',
+          buttonAriaLabel: '検索',
+        },
+        modal: {
+          displayDetails: '詳しく表示',
+          resetButtonTitle: '検索をクリア',
+          backButtonTitle: '検索を閉じる',
+          noResultsText: '見つかりませんでした',
+          footer: {
+            selectText: '選ぶ',
+            selectKeyAriaLabel: 'Enter',
+            navigateText: '移動',
+            navigateUpKeyAriaLabel: '上矢印',
+            navigateDownKeyAriaLabel: '下矢印',
+            closeText: '閉じる',
+            closeKeyAriaLabel: 'Esc',
+          },
+        },
+      },
+    },
   },
 
   themeConfig: {
@@ -402,5 +425,14 @@ export default defineConfig({
       prev: false,
       next: false,
     },
+
+    // VitePress の決まり文句（既定は英語）を日本語にする
+    outline: { label: 'このページの目次' },
+    sidebarMenuLabel: 'メニュー',
+    returnToTopLabel: 'ページの先頭へ',
+    darkModeSwitchLabel: 'ダークモード',
+    darkModeSwitchTitle: 'ダークモードにする',
+    lightModeSwitchTitle: 'ライトモードにする',
+    skipToContentLabel: '本文へ移動',
   },
 })
