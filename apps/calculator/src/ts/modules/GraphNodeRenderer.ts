@@ -8,7 +8,7 @@ import type { NodeInfoPopup } from './NodeInfoPopup';
 
 const CENTER_X = 360;
 const CENTER_Y = 150;
-const NODE_X_SPACING = 180;
+const NODE_X_SPACING = 120; // 列の間隔。100 未満にすると長い名前が隣の列と重なる（2026-11-26 に全商品・日英で確認）
 const NODE_Y_SPACING = 120;
 const NODE_ICON_SIZE = 64;
 const NODE_CORNER_ICON_RATIO = 0.56;
