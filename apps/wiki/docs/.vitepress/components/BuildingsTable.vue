@@ -230,7 +230,7 @@ watch(hash, scrollToHash)
       <input
         v-model="searchText"
         type="text"
-        placeholder="建物名で検索..."
+        placeholder="建物名で検索"
         style="padding:6px 10px;border:1px solid var(--vp-c-divider);border-radius:6px;font-size:14px;background:var(--vp-c-bg);color:var(--vp-c-text-1);width:200px;"
       />
     </template>

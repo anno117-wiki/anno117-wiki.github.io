@@ -131,7 +131,7 @@ Anno 117 の専門家が装着できる全アイテムの一覧です。地域�
 <FilterBar class="item-filters" :active-count="activeFilterCount">
   <template #main>
     <label><strong>アイテム名:</strong>
-      <input type="text" v-model="selName" placeholder="アイテム名で検索" />
+      <input type="text" v-model="selName" placeholder="名前で検索" />
     </label>
   </template>
   <template #count>{{ filtered.length }} 件</template>

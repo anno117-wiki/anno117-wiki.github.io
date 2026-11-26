@@ -176,7 +176,7 @@ function isEmpty(r?: Result) {
     <FilterBar class="ql-filters" :active-count="activeFilterCount">
       <template #main>
         <label><strong>名前:</strong>
-          <input v-model="selName" type="text" placeholder="クエスト名・依頼人・報酬で検索" />
+          <input v-model="selName" type="text" placeholder="名前や報酬" />
         </label>
       </template>
       <template #count>{{ filtered.length }} 件</template>

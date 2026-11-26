@@ -67,7 +67,7 @@ function rewardText(s: PraiseSet): string {
       <template #main>
         <label class="pr-field">
           <span>検索</span>
-          <input v-model="query" type="search" placeholder="名前や条件の言葉" />
+          <input v-model="query" type="search" placeholder="名前・条件" />
         </label>
       </template>
       <template #count>{{ shown }}<span class="filter-bar-total"> / {{ total }}</span> 件</template>
