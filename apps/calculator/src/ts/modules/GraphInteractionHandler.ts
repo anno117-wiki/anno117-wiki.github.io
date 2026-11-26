@@ -16,6 +16,13 @@ export class GraphInteractionHandler {
 
     private static readonly TAP_MAX_MOVE_PX = 10;
     private static readonly TAP_MAX_MS = 600;
+    /** theme.css のスマホ用の範囲（縦向き・横向き）と同じ */
+    private static readonly MOBILE_QUERY = '(max-width: 768px), (orientation: landscape) and (max-height: 500px) and (max-width: 1024px)';
+    /** ノードの文字（12px）が 11px を下回らない倍率 */
+    private static readonly MOBILE_MIN_SCALE = 11 / 12;
+    /** 小さな図を大きくしすぎない上限 */
+    private static readonly MOBILE_MAX_SCALE = 1.2;
+    private static readonly MOBILE_PADDING = 24;
 
     constructor(svgElement: SVGSVGElement, onViewBoxChange: (vb: ViewBox) => void) {
         this.svgElement = svgElement;
@@ -50,6 +57,11 @@ export class GraphInteractionHandler {
                     const bbox = this.svgElement.getBBox();
                     if (bbox.width === 0 || bbox.height === 0) return;
 
+                    if (window.matchMedia(GraphInteractionHandler.MOBILE_QUERY).matches) {
+                        this.updateViewBox(this.mobileFitViewBox(bbox));
+                        return;
+                    }
+
                     const padding = 100;
                     const verticalOffset = 80;
                     this.updateViewBox({
@@ -63,6 +75,28 @@ export class GraphInteractionHandler {
                 }
             });
         });
+    }
+
+    /**
+     * スマホ用の初期表示。図全体を幅に収めると文字が 6px ほどまで縮むので、縮める倍率に下限を設ける。
+     * 横は、収まるなら中央、はみ出すなら完成品のある右端をそろえる（残りは指でずらして見る）。
+     * 縦は常に上端をそろえる（枠の下側は画面下の「商品を選ぶ／補正」の帯に隠れるため）。
+     * viewBox の縦横比を画面上の枠と同じにして、上下左右に余白が付かないようにする
+     */
+    private mobileFitViewBox(bbox: DOMRect): ViewBox {
+        const rect = this.svgElement.getBoundingClientRect();
+        const pad = GraphInteractionHandler.MOBILE_PADDING;
+        const contentWidth = bbox.width + pad * 2;
+        const contentHeight = bbox.height + pad * 2;
+        const fitScale = Math.min(rect.width / contentWidth, rect.height / contentHeight);
+        const scale = Math.min(Math.max(fitScale, GraphInteractionHandler.MOBILE_MIN_SCALE), GraphInteractionHandler.MOBILE_MAX_SCALE);
+        const width = rect.width / scale;
+        const height = rect.height / scale;
+        const x = contentWidth <= width
+            ? bbox.x + bbox.width / 2 - width / 2
+            : bbox.x + bbox.width + pad - width;
+        const y = bbox.y - pad;
+        return { x, y, width, height };
     }
 
     private clientToSvgPoint(touch: Touch): Point {

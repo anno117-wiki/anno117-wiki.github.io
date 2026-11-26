@@ -1679,6 +1679,11 @@ input[type="number"]:focus,
     height: 50dvh;
   }
 
+  /* 図は外枠（50dvh）いっぱいに。PC 用の最低 500px が残ると、外枠からはみ出した下側が切れる */
+  .dependency-graph {
+    min-height: 0;
+  }
+
   /* Readability: stacked controls and full-width inputs/buttons */
   .calculator-header h3 {
     font-size: 1rem;
@@ -2188,6 +2193,10 @@ body:not(.dark) .icon-tone-light {
   .production-graph {
     height: auto;
     min-height: 120px;
+  }
+
+  .dependency-graph {
+    min-height: 0;
   }
 
   /* スクロール保険: セクションを縦スクロール可能に */
