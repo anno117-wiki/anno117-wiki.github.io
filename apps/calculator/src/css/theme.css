@@ -2259,6 +2259,95 @@ header .header-icon-btn:active {
 
   .dependency-graph {
     min-height: 0;
+    height: 100%;
+  }
+
+  /* 図の絵（SVG）を外枠の高さに収める。これが無いと SVG が横幅に合わせて縦に伸び、上端しか見えない。
+     図を画面に合わせて縮める計算（GraphInteractionHandler の mobileFitViewBox）も、この枠の大きさで行われる */
+  .graph-host {
+    flex: 1;
+    min-height: 0;
+    display: flex;
+  }
+
+  .production-graph {
+    padding: 2px;
+  }
+
+  #calculator-container.center-panel {
+    padding: 4px;
+  }
+
+  /* 下の［商品を選ぶ／補正］を薄くする（62px→約44px）。開くシートの位置も合わせる */
+  #mobile-toolbar {
+    padding: 4px 12px;
+  }
+
+  #mobile-toolbar button {
+    padding: 6px 8px;
+  }
+
+  .calculator-section {
+    padding-bottom: 50px;
+  }
+
+  /* サイトの帯と上段を細くする。セクションの高さは、縦向き用の calc(100dvh - 60px) を外して残りいっぱいに */
+  header {
+    gap: 4px;
+    padding: 6px 8px;
+  }
+
+  header .language-toggle-btn,
+  header .region-toggle-btn,
+  header .header-icon-btn {
+    height: 36px;
+    min-height: 36px;
+  }
+
+  .calculator-section {
+    height: auto;
+    padding-top: 4px;
+  }
+
+  .app-header {
+    padding: 2px 8px;
+  }
+
+  .calculator-topbar .back-button,
+  .calculator-topbar label {
+    white-space: nowrap;
+  }
+
+  /* 幅に余裕があれば、商品を選んで図を出している間は、サイトの帯を右上に寄せて上段と1段にする
+     （iPhone SE などの幅 700px 未満では上段が入りきらないので2段のまま） */
+  @media (min-width: 700px) {
+    body:has(.app-header:not(:empty)) header {
+      position: fixed;
+      top: 0;
+      right: 0;
+      z-index: 150;
+      border-bottom-left-radius: 12px;
+    }
+
+    body:has(.app-header:not(:empty)) .app-header {
+      margin-right: 290px; /* 右上の帯の幅の分 */
+    }
+  }
+
+  .calculator-topbar .topbar-title {
+    flex: 0 1 auto;
+    min-width: 0;
+  }
+
+  .calculator-topbar #target-rate {
+    width: 64px;
+    min-width: 0;
+    height: 36px;
+  }
+
+  .calculator-topbar .back-button {
+    padding-top: 6px;
+    padding-bottom: 6px;
   }
 
   /* スクロール保険: セクションを縦スクロール可能に */
@@ -2279,14 +2368,14 @@ header .header-icon-btn:active {
 
   #selection-container {
     position: fixed;
-    bottom: 60px;
+    bottom: 44px;
     left: 0;
     right: 0;
     z-index: 200;
     height: 75vh;
     max-height: 75vh;
     border-radius: 20px 20px 0 0;
-    transform: translateY(calc(100% + 60px));
+    transform: translateY(calc(100% + 44px));
     transition: transform 0.3s cubic-bezier(0.32, 0.72, 0, 1);
     overflow-y: auto;
     overflow-x: hidden;
@@ -2299,14 +2388,14 @@ header .header-icon-btn:active {
 
   #modifier-container {
     position: fixed;
-    bottom: 60px;
+    bottom: 44px;
     left: 0;
     right: 0;
     z-index: 200;
     height: 60vh;
     max-height: 60vh;
     border-radius: 20px 20px 0 0;
-    transform: translateY(calc(100% + 60px));
+    transform: translateY(calc(100% + 44px));
     transition: transform 0.3s cubic-bezier(0.32, 0.72, 0, 1);
     overflow-y: auto;
     overflow-x: hidden;
