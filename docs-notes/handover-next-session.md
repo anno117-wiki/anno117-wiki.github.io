@@ -1,4 +1,4 @@
-# 引き継ぎ: 次回セッション向け（2026-11-25 更新・第77版）
+# 引き継ぎ: 次回セッション向け（2026-11-26 更新・第78版）
 
 この文書には「今の状態・次の任務・保留・注意点」だけを書く。完了した作業の記録は `docs-notes/handover-archive.md` に移してあり、開始時に読む必要はない（文中の「アーカイブX節」で必要な箇所だけ引く）。
 
@@ -15,12 +15,23 @@
 ## 未コミット作業
 なし（2026-11-23・第75版の時点。push 済み。`tools/__pycache__/` が未追跡で出るが無視してよい）。`docs-notes/research-*.md` 3本はGit管理外
 
-## 2026-11-26 の追記（Windows の単独セッション。E2E 以外は push 済み）
+## 【次の任務】スマホ表示の改善 1〜11 の続き（2026-11-26 開始。9 から再開）
+ユーザーの依頼で、スマホ表示を厳しめに見て 11 項目を挙げ、1 項目ずつ打ち合わせて直している（案を出す→了承→直す→撮って確かめる→コミット）。**更新履歴は 11 まで終えてから 1 件にまとめて追記する（ユーザー指示）**。push 済み。
+- 済: 1 計算機の生産チェーン図（スマホで縮めすぎない・上端そろえ。`GraphInteractionHandler.ts` の `mobileFitViewBox`）／2 wiki の英語の決まり文句を日本語に（`config.ts` の themeConfig・search.translations）、サイドバーの字下げ（PC も）と選択中の枠が子にも付く件／3 一覧5ページの説明を「この一覧の見方」に折りたたみ（`::: details`）、絞り込み欄の共通部品 `FilterBar.vue`（スマホは1行に縮めて固定、PC は欄全体をナビの下に固定）、船データの戦闘の節を表の下へ／4 計算機の上の帯のボタンをそろえ、日本語表示の英語（地域名・Help・aria-label）を翻訳キーで出し分け（`regions.aegyptus`・`ui.helpButton`・`ui.darkModeToggle`、`data-i18n-aria-label`）／5 計算機の上段をスマホで2行（［戻る］題名／生産数/分・数量欄・自動比率）、空の帯（`.app-header:empty`）を PC でも消す／6 トップのスマホの題名を小さく・ボタン1段／7 更新履歴の節の見出しを「サイトの更新」に／8 スマホの本文の左の余白（`padding-left: unset` が 0 に戻っていた。767px以下 24px・768〜959px 32px）、狭くなって溢れた表4つ（stack-table 3・wrap-head 1、信仰神の表の見出しを「信仰値」「アイギュプト3柱」に短縮）
+- 残り:
+  - 9 序盤攻略などで、節の区切りの横線が2本続き、間に大きな空白がある（スマホで縦がもったいない）
+  - 10 アイテム一覧の絞り込みの入力欄の案内文が「アイテム名で検」と切れる → FilterBar 化でスマホは解消済みの見込み。PC・開いた欄で要確認
+  - 11 生産チェーン一覧の「開く」ボタンの意味（何が開くか）と「1分」が何の時間か分からない
+- 保留（ユーザーに後で伺う）: 計算機の図の**横向きスマホ**（枠が 722px と縦に大きく、最初は図の上端しか見えない）。960〜1279px の建物データの絞り込み欄が4段・318px（ユーザーは「このまま」でよいと回答済み）
+- スマホ確認の撮影は、手元ビルドを Bun.serve で配信して Playwright で撮る一時スクリプト（scripts/_tmp_*.ts、使ったら消す）。`--host-resolver-rules=MAP static.cloudflareinsights.com ~NOTFOUND` を付ける。計算機で商品を選ぶときは、スマホでは［商品を選ぶ］を押してから `#tree-search` に入れる。ラティウムに無い商品（青スイレン茶・鳥舌肉アスピック）は出てこない
+- `~/.claude/settings.json` の permissions.ask から `Bash(rm *)` を外した（ユーザー指示。bypass で rm を通すため。sudo は残す）
+
+## 2026-11-26 の追記（Windows の単独セッション。全て push 済み）
 - **読み込み時の画面のずれ（CLS）を直した**（`64c56940`・`9a58d223`）: Cloudflare Web Analytics の Web Vitals で見つけた。(1) 更新履歴はコメント欄を後から差し込んで押し下げていた → `commentEntries.ts` に `useCommentState()`（loading 付き）を足し、`UpdateLog.vue` が読み込み中も見出しと 100vh の場所を取る。(2) 960〜1279px でページ内の目次の帯（VPLocalNav）が JS 後に出て本文が48px下がっていた → `custom.css` 末尾で最初から帯を出す。目次の出ないページ（技術ツリー6・クエスト一覧・旧商品一覧）は frontmatter `pageClass: no-outline` で外す。**目次の無いページを新しく作ったら、同じく `pageClass: no-outline` を付ける**（付けないと 960〜1279px で空の帯が出る）
 - **DLC01 ガイドに「噴火のサイクル」の表**（`23842caf`）: assets.xml の `VolcanoPhase` 5件（GUID 145352/144831/144837/145212/145213）。Planner の表と一致。未確認一覧 A34。目覚めのあと沈静化したときの `NextPhaseDurationReductionModifier`（0.55）は、短くなる段階が読み取れず載せていない
 - **計算機の言語ボタン**: 今の言語ではなく、押すと切り替わる先の言語を出すように直した（`LanguageToggle.vue`・E2E の期待値も）
 - **Planner（Taludas/Anno-117-Planner）v1.5.0（2026-11-25）**: ゲームデータは書き出し直されていない（manifest は 11-18・3.0.1 のまま）。増えたのは `sector_projects.json`（ヘロンのピラミッドの修復プロジェクト1件）だけ。手元 `v3.0.1-planner/`（v1.4.0）の取り直しは不要と判断
-- **E2E のタイムアウト**（`c041bb06`、**未push**）: 原因は2つ。(1) NordVPN の DNS（103.86.99.108）が `static.cloudflareinsights.com` を NXDOMAIN で返すのに11〜22秒かかり、load が遅れる → `playwright.config.ts` の `launchOptions` で `--host-resolver-rules` によりこのドメインを即 NOTFOUND にした。(2) この PC ではブラウザを4つ以上同時に動かすと、ローカルへの通信が止まる（計算機でも何でもないページでも同じ。Vite でも Bun の静的配信でも同じ。2つまでは通る）→ `workers: 2`。原因は未確定: VPN 停止中（NordVPN のリアルタイム保護は VPN 接続中のみ働く）でも止まる、Norton の履歴に記録なし。その後の切り分けでも止まった: DNS を直した後（下記）、Norton のスマートファイアウォールを10分止めた状態。ネットに同じ症状の報告は無し（近いのは playwright-dotnet #2203 だが、原因は Windows Home 版 IIS の同時接続数の上限で当てはまらない）。残る候補は Norton のほかの機能（侵入防止など）・Windows 側・Chromium 自体。**ユーザー判断でこれ以上は深追いしない（2026-11-26）**。**並列を増やす試験は、ユーザーの PC の通信がすべて止まるので流さない**。全35件は2並列で29秒で通る
+- **E2E のタイムアウト**（`c041bb06`）: 原因は2つ。(1) NordVPN の DNS（103.86.99.108）が `static.cloudflareinsights.com` を NXDOMAIN で返すのに11〜22秒かかり、load が遅れる → `playwright.config.ts` の `launchOptions` で `--host-resolver-rules` によりこのドメインを即 NOTFOUND にした。(2) この PC ではブラウザを4つ以上同時に動かすと、ローカルへの通信が止まる（計算機でも何でもないページでも同じ。Vite でも Bun の静的配信でも同じ。2つまでは通る）→ `workers: 2`。原因は未確定: VPN 停止中（NordVPN のリアルタイム保護は VPN 接続中のみ働く）でも止まる、Norton の履歴に記録なし。その後の切り分けでも止まった: DNS を直した後（下記）、Norton のスマートファイアウォールを10分止めた状態。ネットに同じ症状の報告は無し（近いのは playwright-dotnet #2203 だが、原因は Windows Home 版 IIS の同時接続数の上限で当てはまらない）。残る候補は Norton のほかの機能（侵入防止など）・Windows 側・Chromium 自体。**ユーザー判断でこれ以上は深追いしない（2026-11-26）**。**並列を増やす試験は、ユーザーの PC の通信がすべて止まるので流さない**。全35件は2並列で29秒で通る
 - **PC の DNS の設定を直した（ユーザーが変更）**: 有線「イーサネット 3」の1番目の DNS が、今の Tailscale に無い 100.95.162.18 のままで応答せず、毎回タイムアウトしていた。DNS サーバー役は NAS（dxp2800、Tailscale 100.123.9.117・LAN 192.168.11.200）で、Tailscale のアドレスが変わった名残と推測。1番目を 192.168.11.200 に変えた（2番目は 8.8.8.8 のまま）。**Wi-Fi 3 には 100.95.162.18 が残っている**。VPN 接続中は NordVPN の DNS に戻り、計測スクリプトはトラッカーとして止められる（この PC からの閲覧は Cloudflare に数えられない）
 - **CLS の修正の効果（Cloudflare、直した後10回）**: すべて「良い」。アイテム一覧・建物データ（PC）が 0.214 → 0.03、更新履歴（スマホ）が 0.583 → 0。集計は scratchpad の一時スクリプトで `rumWebVitalsEventsAdaptiveGroups`（sum の clsGood/clsNeedsImprovement/clsPoor、quantiles の cumulativeLayoutShiftP75、dimensions の requestPath・deviceType・cumulativeLayoutShiftElement）を引いた。`_local/tools/cf_analytics.py` は閲覧数だけで、CLS は未対応
 - `check:mobile` や本番を Playwright で開く一時スクリプトも、VPN 接続中は同じ DNS の遅れで1ページ20秒ほど余計にかかる（`check-mobile.ts` には同じ設定をまだ入れていない）
