@@ -61,7 +61,7 @@ const sections = computed(() => {
       canExpand: hasMore,
     })
   }
-  list.push({ id: 'update-history', heading: '更新履歴', items: updateEntries.value, canExpand: false })
+  list.push({ id: 'update-history', heading: 'サイトの更新', items: updateEntries.value, canExpand: false })
   return list
 })
 </script>
