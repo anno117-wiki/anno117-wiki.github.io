@@ -661,3 +661,42 @@
     position: sticky;
   }
 }
+
+/* トップページの最初の画面（スマホ）: 題名を小さくし、ボタン3つを1段に並べて、
+   1枚目のカード（攻略ガイド）まで最初の画面に入るようにする */
+@media (max-width: 959px) {
+  .VPHero .name,
+  .VPHero .text {
+    font-size: 28px;
+    line-height: 1.3;
+  }
+  .VPHero .text {
+    margin-top: 4px;
+    font-size: 20px;
+    /* 「生産／チェーン」のような言葉の途中ではなく、空白（「+」のあと）で改行する */
+    word-break: keep-all;
+    overflow-wrap: anywhere;
+  }
+  .VPHero .tagline {
+    padding-top: 8px;
+    font-size: 15px;
+    line-height: 1.6;
+  }
+  .VPHero .actions {
+    flex-wrap: nowrap;
+    gap: 8px;
+    margin: 0;
+    padding-top: 16px;
+  }
+  .VPHero .action {
+    flex: 1 1 0;
+    min-width: 0;
+    padding: 0;
+  }
+  .VPHero .action .VPButton {
+    width: 100%;
+    padding: 0 6px;
+    font-size: 13px;
+    white-space: nowrap;
+  }
+}
