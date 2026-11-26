@@ -185,6 +185,8 @@
     "about": "About",
     "storage": "Storage",
     "help": "Help",
+    "helpButton": "Help",
+    "darkModeToggle": "Toggle dark mode",
     "outputPerMinute": "Output / min",
     "autoRatio": "Auto Ratio",
     "inputs": "Inputs",
@@ -253,6 +255,7 @@
   "regions": {
     "latium": "Latium",
     "albion": "Albion",
+    "aegyptus": "Aegyptus",
     "roman": "Roman",
     "celtic": "Celtic"
   },

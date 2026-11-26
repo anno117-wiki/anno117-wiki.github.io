@@ -22,8 +22,8 @@ test.describe('地域切り替え機能', () => {
   });
 
   test('地域切り替えボタンが表示される', async ({ page }) => {
-    // 地域名を含むボタンまたはトグルを確認
-    const regionButtons = page.locator('button, .toggle-button').filter({ hasText: /Latium|Albion|Mesopotamia/i });
+    // 地域名を含むボタンまたはトグルを確認（日本語表示では「ラティウム」など）
+    const regionButtons = page.locator('button, .toggle-button').filter({ hasText: /Latium|Albion|Aegyptus|ラティウム|アルビオン|アイギュプト/i });
 
     // 少なくとも1つの地域ボタンが表示される
     const count = await regionButtons.count();

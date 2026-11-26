@@ -1545,20 +1545,35 @@ input[type="number"]:focus,
   }
 
   /* Wikiリンクを縮小表示（非表示は廃止・タップ可を維持） */
-  .wiki-link-btn {
-    padding: 0.4rem 0.5rem;
+  /* 地域名を切らずに出すため、言語・Wiki のボタンの余白を詰める
+     （header を付けて、後ろに書かれた .language-toggle-btn の基本の指定より強くする） */
+  header .language-toggle-btn {
+    padding: 0 0.7rem;
     min-width: 0;
-    font-size: 0.75rem;
-    height: 36px;
   }
 
-  .region-toggle-btn {
+  header .region-toggle-btn,
+  header .language-toggle-btn,
+  header .header-icon-btn {
+    flex-shrink: 0;
+  }
+
+  header .region-toggle-btn {
     min-width: 0 !important;
-    padding: 0.5rem 0.5rem;
+    padding: 0 0.6rem;
+    gap: 0.3rem;
+    font-size: 0.875rem;
   }
 
-  .region-text {
-    display: none;
+  .region-toggle-btn .region-icon {
+    width: 22px;
+    height: 22px;
+  }
+
+  /* ヘルプ・ダークモードはアイコンだけの正方形にして、地域名を出す幅を空ける */
+  header .header-icon-btn {
+    width: 44px;
+    padding: 0;
   }
 
   /* Create proper icon-only buttons */
@@ -2149,6 +2164,53 @@ body:not(.dark) .icon-tone-light {
 }
 .dark-mode-btn:hover {
   background: rgba(255,255,255,0.15);
+}
+
+/* 上の帯のボタンをそろえる: ヘルプ・ダークモードも、言語・地域・Wiki と同じ白地・角丸・高さ44px にする */
+header .header-icon-btn {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 0.4rem;
+  height: 44px;
+  min-width: 44px;
+  padding: 0 0.75rem;
+  background: var(--background);
+  color: var(--theme-color-dark);
+  border: none;
+  border-radius: 12px;
+  font-family: var(--font-family);
+  font-size: 0.875rem;
+  font-weight: 600;
+  cursor: pointer;
+  transition: all 0.3s ease;
+}
+header .help-button svg {
+  width: 22px;
+  height: 22px;
+}
+header .dark-mode-btn {
+  font-size: 1.1rem;
+}
+
+/* 紺の帯の上では、浮き出しの白い影が白いにじみに見えるので、薄い影にする */
+header .language-toggle-btn,
+header .region-toggle-btn,
+header .header-icon-btn {
+  box-shadow: 0 1px 3px rgba(0, 0, 0, 0.25);
+}
+header .language-toggle-btn:hover,
+header .region-toggle-btn:hover,
+header .header-icon-btn:hover {
+  background: var(--background);
+  box-shadow: 0 3px 8px rgba(0, 0, 0, 0.3);
+  transform: translateY(-1px);
+}
+header .language-toggle-btn:active,
+header .region-toggle-btn:active,
+header .header-icon-btn:active {
+  box-shadow: 0 1px 2px rgba(0, 0, 0, 0.3);
+  transform: translateY(0);
 }
 
 /* スマホ横向き対応: 低高(≤500px)かつ≤1024px限定。iPad横向きはmax-heightで除外、デスクトップは除外 */

@@ -99,7 +99,8 @@ class ParameterParser {
 interface RegionDef {
     /** list.json の regions と一致する内部キー */
     key: string;
-    label: string;
+    /** 表示名の翻訳キー（regions.*） */
+    labelKey: string;
     /** icons/ 配下のファイル名。画像が無い地域はアイコンを出さない */
     icon?: string;
     /** true の地域は、その地域の商品データがあるときだけ切替対象になる */
@@ -109,9 +110,9 @@ interface RegionDef {
 // 並び順が切替ボタンの巡回順になる。
 // Egyptian（DLC03 アイギュプト）は、その地域の商品データがあるときだけ切替に出る。
 const REGIONS: readonly RegionDef[] = [
-    { key: 'Roman', label: 'Latium', icon: 'latium.webp' },
-    { key: 'Celtic', label: 'Albion', icon: 'albion.webp' },
-    { key: 'Egyptian', label: 'Aegyptus', icon: 'aegyptus.webp', dlc: true },
+    { key: 'Roman', labelKey: 'regions.latium', icon: 'latium.webp' },
+    { key: 'Celtic', labelKey: 'regions.albion', icon: 'albion.webp' },
+    { key: 'Egyptian', labelKey: 'regions.aegyptus', icon: 'aegyptus.webp', dlc: true },
 ];
 
 // ---------------------------------------------------------------------------
@@ -206,6 +207,8 @@ export class App {
 
     private async handleLanguageChange(): Promise<void> {
         this.applyStaticTranslations();
+        // 地域ボタンの地域名も、言語に合わせて出し直す
+        this.updateRegionButtonState(this.currentRegion);
         // 言語変更時にUIを再描画
         // GoodsRepositoryから最新のローカライズされたリストを取得
         this.allGoods = this.goodsRepository.getGoodsList();
@@ -250,7 +253,7 @@ export class App {
                 icon.style.setProperty('mask-image', url);
             }
         }
-        if (text) text.textContent = def.label;
+        if (text) text.textContent = this.i18nManager.t(def.labelKey);
     }
 
     private bindRegionToggle(): void {
@@ -434,6 +437,11 @@ export class App {
         document.querySelectorAll<HTMLElement>('[data-i18n]').forEach((el) => {
             const key = el.dataset.i18n;
             if (key) el.textContent = this.i18nManager.t(key);
+        });
+        // 読み上げ用のラベル（文字の無いボタンなど）
+        document.querySelectorAll<HTMLElement>('[data-i18n-aria-label]').forEach((el) => {
+            const key = el.dataset.i18nAriaLabel;
+            if (key) el.setAttribute('aria-label', this.i18nManager.t(key));
         });
     }
 
