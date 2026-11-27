@@ -128,6 +128,7 @@ async function handlePost(request, env, origin) {
   }
 
   const issue = await res.json();
+  await invalidateCommentsCache(env); // 一覧のキャッシュを消し、すぐ画面に出す
   return json({ number: issue.number, url: issue.html_url }, 201, origin);
 }
 
@@ -194,8 +195,8 @@ async function handleReply(request, env, origin) {
   });
   if (!res.ok) return json({ error: 'GitHub API エラー' }, 502, origin);
 
-  // 返信一覧のキャッシュを消し、すぐ画面に出す
-  if (env.COMMENT_KV) await env.COMMENT_KV.delete(`replies:${number}`);
+  // 一覧のキャッシュを消し、すぐ画面に出す
+  await invalidateCommentsCache(env);
   return json({ ok: true }, 201, origin);
 }
 
@@ -227,33 +228,26 @@ function parseReply(c) {
   };
 }
 
-async function handleGet(request, env, origin) {
-  const url = new URL(request.url);
-  const page = url.searchParams.get('page');
+// コメント一覧（返信込み）は、全件を1つの KV キーにまとめて持つ。
+// KV の無料枠は書き込みが1日1,000回までで、以前は「コメント1件ごとに60秒おき」に書いていたため、
+// アクセスが続くと上限に近づいていた（2026-11 に Cloudflare から「50%」の通知）。
+// 今は全件を1キー・5分おきに書くので、書き込みは多くても1日288回。読み取りは1回のリクエストにつき1回。
+// 投稿・返信があったときはこのキーを消して、すぐ新しい内容が出るようにする。
+const COMMENTS_CACHE_KEY = 'comments:all:v1';
+const COMMENTS_CACHE_TTL = 300; // 秒。KV の expirationTtl は60秒以上
 
-  const MAX_PAGES = 5;
-  let issues = [];
-  let nextUrl = `${GH_API}/repos/${REPO}/issues?state=all&labels=user-comment&sort=created&direction=desc&per_page=100`;
-  for (let p = 0; p < MAX_PAGES && nextUrl; p++) {
-    const res = await fetch(nextUrl, {
-      headers: {
-        Authorization: `Bearer ${env.GITHUB_TOKEN}`,
-        Accept: 'application/vnd.github+json',
-        'X-GitHub-Api-Version': '2022-11-28',
-        'User-Agent': 'anno117-wiki-worker',
-      },
-    });
-    if (!res.ok) return json({ error: 'GitHub API エラー' }, 502, origin);
-    const batch = await res.json();
-    issues = issues.concat(batch);
-    const link = res.headers.get('Link') || '';
-    const m = link.match(/<([^>]+)>;\s*rel="next"/);
-    nextUrl = m ? m[1] : null;
+async function invalidateCommentsCache(env) {
+  if (!env.COMMENT_KV) return;
+  try {
+    await env.COMMENT_KV.delete(COMMENTS_CACHE_KEY);
+  } catch (error) {
+    console.error('[cache] invalidate failed:', error);
   }
-  const filtered = issues.filter((issue) =>
-    !(issue.labels ?? []).some((l) => l.name === HIDDEN_LABEL) &&
-    (!page || (issue.body || '').includes(`**ページ**: ${page}`))
-  );
+}
+
+// 隠していないコメントIssueを全件、返信込みで GitHub から取る。
+// 返す項目に pageLine（投稿時のページ。絞り込み用）を含める。呼び出し側で取り除く。
+async function loadAllComments(env) {
   const ghHeaders = {
     Authorization: `Bearer ${env.GITHUB_TOKEN}`,
     Accept: 'application/vnd.github+json',
@@ -261,28 +255,31 @@ async function handleGet(request, env, origin) {
     'User-Agent': 'anno117-wiki-worker',
   };
 
-  const comments = await Promise.all(
-    filtered.map(async (issue) => {
-      const { name, typeJa, text } = parseIssueBody(issue.body || '');
+  const MAX_PAGES = 5;
+  let issues = [];
+  let nextUrl = `${GH_API}/repos/${REPO}/issues?state=all&labels=user-comment&sort=created&direction=desc&per_page=100`;
+  for (let p = 0; p < MAX_PAGES && nextUrl; p++) {
+    const res = await fetch(nextUrl, { headers: ghHeaders });
+    if (!res.ok) throw new Error(`GitHub API ${res.status}`);
+    const batch = await res.json();
+    issues = issues.concat(batch);
+    const link = res.headers.get('Link') || '';
+    const m = link.match(/<([^>]+)>;\s*rel="next"/);
+    nextUrl = m ? m[1] : null;
+  }
+  const visible = issues.filter((issue) => !(issue.labels ?? []).some((l) => l.name === HIDDEN_LABEL));
+
+  return Promise.all(
+    visible.map(async (issue) => {
+      const rawBody = issue.body || '';
+      const { name, typeJa, text } = parseIssueBody(rawBody);
 
       let replies = [];
       try {
-        const cacheKey = `replies:${issue.number}`;
-        const cached = env.COMMENT_KV ? await env.COMMENT_KV.get(cacheKey) : null;
-        if (cached) {
-          replies = JSON.parse(cached);
-        } else {
-          const rRes = await fetch(`${GH_API}/repos/${REPO}/issues/${issue.number}/comments?per_page=50`, {
-            headers: ghHeaders,
-          });
-          if (rRes.ok) {
-            const rData = await rRes.json();
-            replies = rData.map((c) => parseReply(c));
-            if (env.COMMENT_KV) {
-              await env.COMMENT_KV.put(cacheKey, JSON.stringify(replies), { expirationTtl: 60 });
-            }
-          }
-        }
+        const rRes = await fetch(`${GH_API}/repos/${REPO}/issues/${issue.number}/comments?per_page=50`, {
+          headers: ghHeaders,
+        });
+        if (rRes.ok) replies = (await rRes.json()).map((c) => parseReply(c));
       } catch {
         // フォールバック: replies は空配列のまま
       }
@@ -296,11 +293,48 @@ async function handleGet(request, env, origin) {
         body: text,
         createdAt: issue.created_at,
         replies,
+        pageLine: (rawBody.match(/^\*\*ページ\*\*: (.*)$/m) || [, ''])[1],
       };
     })
   );
+}
 
-  return json(comments, 200, origin);
+async function handleGet(request, env, origin) {
+  const url = new URL(request.url);
+  const page = url.searchParams.get('page');
+
+  let all = null;
+  if (env.COMMENT_KV) {
+    try {
+      const cached = await env.COMMENT_KV.get(COMMENTS_CACHE_KEY);
+      if (cached) all = JSON.parse(cached);
+    } catch (error) {
+      console.error('[cache] read failed:', error);
+    }
+  }
+
+  if (!all) {
+    try {
+      all = await loadAllComments(env);
+    } catch {
+      return json({ error: 'GitHub API エラー' }, 502, origin);
+    }
+    if (env.COMMENT_KV) {
+      try {
+        await env.COMMENT_KV.put(COMMENTS_CACHE_KEY, JSON.stringify(all), { expirationTtl: COMMENTS_CACHE_TTL });
+      } catch (error) {
+        // 無料枠の上限などで書けなくても、取った内容はそのまま返す
+        console.error('[cache] write failed:', error);
+      }
+    }
+  }
+
+  // ページを指定されたら、そのページに付いたコメントだけにする（以前の「本文に **ページ**: ○○ を含む」と同じ条件）
+  const result = all
+    .filter((c) => !page || (c.pageLine ?? '').startsWith(page))
+    .map(({ pageLine, ...rest }) => rest);
+
+  return json(result, 200, origin);
 }
 
 export default {
